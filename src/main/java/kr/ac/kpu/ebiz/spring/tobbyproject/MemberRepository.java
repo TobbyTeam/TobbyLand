@@ -11,8 +11,8 @@ public interface MemberRepository {
 
 	boolean delete(int memberId);
 
-	boolean insert(Map actor);
+	boolean insert(Map member);
 
-	boolean update(Map actor);
+	boolean update(Map member);
 }
 

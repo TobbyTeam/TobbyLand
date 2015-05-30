@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/helloworld")
+@RequestMapping("/reg")
 public class MemberController {
 
 	@Autowired
@@ -15,7 +15,7 @@ public class MemberController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView world() {
-		ModelAndView mav = new ModelAndView("/hello");
+		ModelAndView mav = new ModelAndView("/insert");
 		mav.addObject("members", memberRepository.selectAll());
 		return mav;
 	}
