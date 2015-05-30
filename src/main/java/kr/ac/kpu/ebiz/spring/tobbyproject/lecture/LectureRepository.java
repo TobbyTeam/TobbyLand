@@ -14,5 +14,7 @@ public interface LectureRepository {
 	boolean insert(Map lecture);
 
 	boolean update(Map lecture);
+
+	boolean updateLike(Map lecture);
 }
 

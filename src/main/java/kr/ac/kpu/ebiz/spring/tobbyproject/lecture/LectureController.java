@@ -14,7 +14,7 @@ public class LectureController {
 	LectureRepository lectureRepository;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView world() {
+	public ModelAndView list() {
 		ModelAndView mav = new ModelAndView("/lecture");
 		mav.addObject("lectures", lectureRepository.selectAll());
 		return mav;

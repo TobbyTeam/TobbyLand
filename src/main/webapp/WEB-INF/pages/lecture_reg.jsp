@@ -16,7 +16,6 @@
       학과명:<input type="text" name="dept"><br>
       교수명: <input type="text" name="prof"><br>
   <input type="submit" value="전송">
-
 </form>
 </body>
 </html>

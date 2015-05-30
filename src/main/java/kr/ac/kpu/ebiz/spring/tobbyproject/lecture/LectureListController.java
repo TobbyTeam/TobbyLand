@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class LectureListController {
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView world() {
+	public ModelAndView reg() {
 		ModelAndView mav = new ModelAndView("/lecture_reg");
 		return mav;
 	}

@@ -30,7 +30,14 @@
     lecture_name = #{lecture_name},
     dept = #{dept},
     prof = #{prof}
-    WHERE LECTURE_ID = #{id}
+    WHERE LECTURE_ID = #{lecture_id}
+  </update>
+
+  <update id="updateLike" parameterType="map">
+    UPDATE LECTURE
+    SET
+    likes = #{likes}
+    WHERE LECTURE_ID = #{lecture_id}
   </update>
 
 </mapper>

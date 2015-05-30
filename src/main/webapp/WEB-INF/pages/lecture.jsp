@@ -9,13 +9,16 @@
 			<td>강의명</td>
 			<td>학과명</td>
 			<td>교수명</td>
+			<td>추천수</td>
 		</tr>
 		<c:forEach var="lecture" items="${lectures}" varStatus="status">
 		<tr>
 			<td>${lecture.lecture_name}</td>
 			<td>${lecture.dept}</td>
 			<td>${lecture.prof}</td>
-			<td><a href="/modify?id=${lecture.lecture_id}">수정</a></td>
+			<td>${lecture.likes}</td>
+			<td><a href="/lecture_likes?likes=${lecture.likes}&lecture_id=${lecture.lecture_id}">추천</td>
+			<td><a href="/lecture_view?lecture_id=${lecture.lecture_id}">수정</a></td>
 		</tr>
 		</c:forEach>
 	</table></br>

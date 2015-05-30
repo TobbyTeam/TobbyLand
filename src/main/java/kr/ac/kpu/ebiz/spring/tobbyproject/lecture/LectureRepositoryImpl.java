@@ -26,4 +26,8 @@ public class LectureRepositoryImpl extends SqlSessionDaoSupport implements Lectu
 	public boolean update(Map lecture) {
 		return getSqlSession().update("LectureRepository.update", lecture) > 0;
 	}
+
+	public boolean updateLike(Map lecture) {
+		return getSqlSession().update("LectureRepository.updateLike", lecture) > 0;
+	}
 }

@@ -1,6 +1,5 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.lecture;
 
-import kr.ac.kpu.ebiz.spring.tobbyproject.member.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,30 +7,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 
 /**
  * Created by hellraris on 2015-05-31.
  */
 @Controller
-@RequestMapping("/lecture_reg")
-public class LectureRegisterController {
+@RequestMapping("/lecture_likes")
+public class LectureLikeController {
 
     @Autowired
     LectureRepository lectureRepository;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView insert(@RequestParam ("lecture_name")String lecture_name, @RequestParam ("dept")String dept ,
-                               @RequestParam("prof")String prof)
-    {
+    public ModelAndView likes(@RequestParam ("likes")int like,@RequestParam ("lecture_id")String lecture_id)
+    {   int likes = like + 1;
         ModelAndView mav = new ModelAndView("lecture");
         HashMap lecture = new HashMap();
-        lecture.put("lecture_name",lecture_name);
-        lecture.put("dept",dept);
-        lecture.put("prof",prof);
-        mav.addObject("lecturesReg", lectureRepository.insert(lecture));
+        lecture.put("likes",likes);
+        lecture.put("lecture_id",lecture_id);
+        System.out.println("lecture");
+        mav.addObject("lectureup", lectureRepository.updateLike(lecture));
         mav.addObject("lectures", lectureRepository.selectAll());
         return mav;
     }
+
 }
