@@ -1,4 +1,4 @@
-package kr.ac.kpu.ebiz.spring.tobbyproject;
+package kr.ac.kpu.ebiz.spring.tobbyproject.lecture;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 

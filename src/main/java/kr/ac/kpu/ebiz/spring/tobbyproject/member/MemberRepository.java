@@ -1,4 +1,4 @@
-package kr.ac.kpu.ebiz.spring.tobbyproject;
+package kr.ac.kpu.ebiz.spring.tobbyproject.member;
 
 import java.util.List;
 import java.util.Map;

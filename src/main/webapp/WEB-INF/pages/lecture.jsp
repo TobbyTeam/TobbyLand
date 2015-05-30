@@ -18,7 +18,8 @@
 			<td><a href="/modify?id=${lecture.lecture_id}">수정</a></td>
 		</tr>
 		</c:forEach>
-	</table>
+	</table></br>
+	<a href="/lecture_list">강의생성
 
 </body>
 </html>

@@ -84,17 +84,17 @@
 
 	<!-- ========================= BEAN DEFINITION ========================= -->
 
-	<bean id="memberRepository" class="kr.ac.kpu.ebiz.spring.tobbyproject.MemberRepositoryImpl">
+	<bean id="memberRepository" class="kr.ac.kpu.ebiz.spring.tobbyproject.member.MemberRepositoryImpl">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 
-	<bean id="evaluationRepository" class="kr.ac.kpu.ebiz.spring.tobbyproject.EvaluationRepositoryImpl">
+	<bean id="evaluationRepository" class="kr.ac.kpu.ebiz.spring.tobbyproject.evaluation.EvaluationRepositoryImpl">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 
-	<bean id="lectureRepository" class="kr.ac.kpu.ebiz.spring.tobbyproject.LectureRepositoryImpl">
+	<bean id="lectureRepository" class="kr.ac.kpu.ebiz.spring.tobbyproject.lecture.LectureRepositoryImpl">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>

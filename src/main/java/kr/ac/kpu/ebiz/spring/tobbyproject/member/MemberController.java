@@ -1,4 +1,4 @@
-package kr.ac.kpu.ebiz.spring.tobbyproject;
+package kr.ac.kpu.ebiz.spring.tobbyproject.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,9 +14,8 @@ public class MemberController {
 	MemberRepository memberRepository;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView world() {
-		ModelAndView mav = new ModelAndView("/insert");
-		mav.addObject("members", memberRepository.selectAll());
+	public ModelAndView register() {
+		ModelAndView mav = new ModelAndView("insert");
 		return mav;
 	}
 

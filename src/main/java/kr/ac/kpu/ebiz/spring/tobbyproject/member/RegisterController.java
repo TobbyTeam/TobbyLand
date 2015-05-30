@@ -1,4 +1,4 @@
-package kr.ac.kpu.ebiz.spring.tobbyproject;
+package kr.ac.kpu.ebiz.spring.tobbyproject.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +25,7 @@ public class RegisterController {
                                @RequestParam ("tAsk")String tAsk, @RequestParam ("eXam")String eXam, @RequestParam ("tYpe")String tYpe)
     {
 
-        ModelAndView mav = new ModelAndView();
+        ModelAndView mav = new ModelAndView("login");
         HashMap member = new HashMap();
         member.put("memberId",memberId);
         member.put("passWord",passWord);

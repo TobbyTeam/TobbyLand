@@ -1,4 +1,4 @@
-package kr.ac.kpu.ebiz.spring.tobbyproject;
+package kr.ac.kpu.ebiz.spring.tobbyproject.lecture;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,16 +7,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/evaluation")
-public class EvaluationController {
-
-	@Autowired
-	EvaluationRepository evaluationRepository;
+@RequestMapping("/lecture_list")
+public class LectureListController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView world() {
-		ModelAndView mav = new ModelAndView("/evaluation");
-		mav.addObject("evaluations", evaluationRepository.selectAll());
+		ModelAndView mav = new ModelAndView("/lecture_reg");
 		return mav;
 	}
 

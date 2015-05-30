@@ -7,6 +7,10 @@
     SELECT * FROM LECTURE WHERE LECTURE_ID = #{value}
   </select>
 
+  <select id="selectName" resultType="map">
+    SELECT * FROM LECTURE WHERE LECTURE_NAME lIKE '%#{value}%'
+  </select>
+
   <select id="selectAll" resultType="map">
     SELECT * FROM LECTURE
   </select>
