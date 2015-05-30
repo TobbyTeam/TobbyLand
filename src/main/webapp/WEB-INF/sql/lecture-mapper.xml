@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="LectureRepository">
+
+  <select id="select" resultType="map">
+    SELECT * FROM LECTURE WHERE LECTURE_ID = #{value}
+  </select>
+
+  <select id="selectAll" resultType="map">
+    SELECT * FROM LECTURE
+  </select>
+
+  <delete id="delete" parameterType="int">
+    DELETE FROM LECTURE WHERE LECTURE_ID = #{value}
+  </delete>
+
+  <insert id="insert" parameterType="map">
+    INSERT INTO LECTURE (lecture_name, dept, prof)
+    VALUES (#{lecture_name},#{dept},#{prof})
+  </insert>
+
+  <update id="update" parameterType="map">
+    UPDATE LECTURE
+    SET
+    lecture_name = #{lecture_name},
+    dept = #{dept},
+    prof = #{prof}
+    WHERE LECTURE_ID = #{id}
+  </update>
+
+</mapper>

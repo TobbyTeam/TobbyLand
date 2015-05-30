@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="EvaluationRepository">
+
+  <select id="select" resultType="map">
+    SELECT * FROM EVALUATION WHERE Evaluation_ID = #{value}
+  </select>
+
+  <select id="selectAll" resultType="map">
+    SELECT * FROM EVALUATION
+  </select>
+
+  <delete id="delete" parameterType="int">
+    DELETE FROM EVALUATION WHERE EVALUATION_ID = #{value}
+  </delete>
+
+  <insert id="insert" parameterType="map">
+    INSERT INTO EVALUATION (member_id, lecture_id)
+    VALUES (#{member_id},#{lecture_id})
+  </insert>
+
+  <update id="update" parameterType="map">
+    UPDATE EVALUATION
+    SET
+    member_id = #{member_id},
+    lecture_id = #{lecture_id}
+    WHERE EVALUATION_ID = #{id}
+  </update>
+
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MemberRepository">
+
+  <select id="select" resultType="map">
+    SELECT * FROM MEMBER WHERE MEMBER_ID = #{value}
+  </select>
+
+  <select id="selectAll" resultType="map">
+    SELECT * FROM MEMBER
+  </select>
+
+  <delete id="delete" parameterType="int">
+    DELETE FROM MEMBER WHERE MEMBER_ID = #{value}
+  </delete>
+
+  <insert id="insert" parameterType="map">
+    INSERT INTO MEMBER (member_id, password)
+    VALUES (#{member_id},#{password})
+  </insert>
+
+  <update id="update" parameterType="map">
+    UPDATE MEMBER
+    SET
+    password = #{password}
+    WHERE MEMBER_ID = #{id}
+  </update>
+
+</mapper>
