@@ -20,14 +20,10 @@ public class LectureLikeController {
     LectureRepository lectureRepository;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView likes(@RequestParam ("likes")int like,@RequestParam ("lecture_id")String lecture_id)
-    {   int likes = like + 1;
+    public ModelAndView likes(@RequestParam ("lecture_id")int lecture_id)
+    {
         ModelAndView mav = new ModelAndView("lecture");
-        HashMap lecture = new HashMap();
-        lecture.put("likes",likes);
-        lecture.put("lecture_id",lecture_id);
-        System.out.println("lecture");
-        mav.addObject("lectureup", lectureRepository.updateLike(lecture));
+        mav.addObject("lecturelikes", lectureRepository.updateLike(lecture_id));
         mav.addObject("lectures", lectureRepository.selectAll());
         return mav;
     }

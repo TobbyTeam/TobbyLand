@@ -20,21 +20,20 @@ public class RegisterController {
     MemberRepository memberRepository;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView insert(@RequestParam ("memberId")String memberId, @RequestParam ("passWord")String passWord ,
-                               @RequestParam("nickName")String nickName , @RequestParam ("eMail")String eMail, @RequestParam("metHod")String metHod,
-                               @RequestParam ("tAsk")String tAsk, @RequestParam ("eXam")String eXam, @RequestParam ("tYpe")String tYpe)
+    public ModelAndView insert(@RequestParam ("memberId")String memberId, @RequestParam ("password")String password ,
+                               @RequestParam("nickname")String nickname , @RequestParam ("email")String email, @RequestParam("method")String method,
+                               @RequestParam ("task")String task, @RequestParam ("exam")String exam)
     {
 
         ModelAndView mav = new ModelAndView("login");
         HashMap member = new HashMap();
         member.put("memberId",memberId);
-        member.put("passWord",passWord);
-        member.put("nickName",nickName);
-        member.put("eMail",eMail);
-        member.put("metHod",metHod);
-        member.put("tAsk",tAsk);
-        member.put("eXam",eXam);
-        member.put("tYpe",tYpe);
+        member.put("password",password);
+        member.put("nickname",nickname);
+        member.put("email",email);
+        member.put("method",method);
+        member.put("task",task);
+        member.put("exam",exam);
         mav.addObject("members", memberRepository.insert(member));
         return mav;
     }

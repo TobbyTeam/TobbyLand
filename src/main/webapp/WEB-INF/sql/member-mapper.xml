@@ -16,8 +16,8 @@
   </delete>
 
   <insert id="insert" parameterType="map">
-    INSERT INTO MEMBER (member_id, password, nickname, email, method, task, exam, type)
-    VALUES (#{memberId},#{passWord},#{nickName},#{eMail},#{metHod},#{tAsk},#{eXam}, #{tYpe})
+    INSERT INTO MEMBER (member_id, password, nickname, email, method, task, exam)
+    VALUES (#{memberId},#{password},#{nickname},#{email},#{method},#{task},#{exam})
   </insert>
 
   <update id="update" parameterType="map">
