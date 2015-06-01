@@ -11,3 +11,14 @@ mysql -uroot -p < database/sakila-data.sql
 [Java Exception Tutorial]
 
   o http://www.tutorialspoint.com/java/java_exceptions.htm
+  
+[Tomcat]
+
+Tomcat/conf/server.xml 파일
+
+```xml
+    <Connector executor="tomcatThreadPool"
+               port="8080" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" URIEncoding="UTF-8" />
+```
