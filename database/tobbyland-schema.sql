@@ -1,6 +1,6 @@
 DROP SCHEMA IF EXISTS tobbyland;
-CREATE SCHEMA tobbyland2;
-USE tobbyland2;
+CREATE SCHEMA tobbyland;
+USE tobbyland;
 
 --
 -- Table structure for table `tendency`
