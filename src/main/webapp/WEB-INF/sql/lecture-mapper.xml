@@ -11,10 +11,6 @@
     <![CDATA[  SELECT * FROM LECTURE WHERE likes < 10 ]]>
   </select>
 
-  <select id="selectId" resultType="map">
-    SELECT * FROM LECTURE WHERE LECTURE_ID LIKE CONCAT('%', #{value}, '%')
-  </select>
-
   <select id="selectName" resultType="map">
     SELECT * FROM LECTURE WHERE LECTURE_NAME LIKE CONCAT('%', #{value}, '%')
   </select>
