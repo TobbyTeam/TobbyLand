@@ -1,0 +1,31 @@
+form[role=search] {
+	color: #5d5d5d;
+	background: #FFF;
+	padding: 26px;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#searchform{
+	margin-top:10px;
+    border: solid 1px #E4E4E4;
+    background-color: #fff;
+}
+
+#searchform input{
+    border: 0;
+    box-shadow: none;
+}
+
+#searchform button{
+    margin: 2px 0 0 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 0 8px 0 10px;
+    border-left: solid 1px #ccc;
+}
