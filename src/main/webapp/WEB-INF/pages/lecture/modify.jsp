@@ -11,7 +11,7 @@
     <title></title>
 </head>
 <body>
-<form action="lecture_modify" method="get">
+<form action="/lecture/mod" method="post">
   강의명: <input type="text" name="lecture_name" value="${lecture.lecture_name}"><br>
   학과명:<input type="text" name="dept" value="${lecture.dept}"><br>
   교수명: <input type="text" name="prof" value="${lecture.prof}"><br>

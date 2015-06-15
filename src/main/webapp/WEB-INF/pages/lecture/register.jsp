@@ -11,7 +11,7 @@
     <title></title>
 </head>
 <body>
-<form action="lecture_reg" method="get">
+<form action="/lecture/reg" method="post">
       강의명: <input type="text" name="lecture_name"><br>
       학과명:<input type="text" name="dept"><br>
       교수명: <input type="text" name="prof"><br>

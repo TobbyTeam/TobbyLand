@@ -17,12 +17,12 @@
 			<td>${lecture.dept}</td>
 			<td>${lecture.prof}</td>
 			<td>${lecture.likes}</td>
-			<td><a href="/lecture_likes?lecture_id=${lecture.lecture_id}">추천</a></td>
-			<td><a href="/lecture_view?lecture_id=${lecture.lecture_id}">수정</a></td>
+			<td><a href="/lecture/likes?lecture_id=${lecture.lecture_id}">추천</a></td>
+			<td><a href="/lecture/view?lecture_id=${lecture.lecture_id}">수정</a></td>
 		</tr>
 		</c:forEach>
 	</table></br>
-	<a href="/lecture_list">강의생성</a>
+	<a href="/lecture/reg_form">강의생성</a>
 
 </body>
 </html>
