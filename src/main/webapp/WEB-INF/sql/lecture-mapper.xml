@@ -7,12 +7,24 @@
     SELECT * FROM LECTURE WHERE LECTURE_ID = #{value}
   </select>
 
-  <select id="selectName" resultType="map">
-    SELECT * FROM LECTURE WHERE LECTURE_NAME lIKE '%#{value}%'
+  <select id="selectAll" resultType="map">
+    <![CDATA[  SELECT * FROM LECTURE WHERE likes < 10 ]]>
   </select>
 
-  <select id="selectAll" resultType="map">
-    SELECT * FROM LECTURE
+  <select id="selectId" resultType="map">
+    SELECT * FROM LECTURE WHERE LECTURE_ID LIKE CONCAT('%', #{value}, '%')
+  </select>
+
+  <select id="selectName" resultType="map">
+    SELECT * FROM LECTURE WHERE LECTURE_NAME LIKE CONCAT('%', #{value}, '%')
+  </select>
+
+  <select id="selectDept" resultType="map">
+    SELECT * FROM LECTURE WHERE DEPT LIKE CONCAT('%', #{value}, '%')
+  </select>
+
+  <select id="selectProf" resultType="map">
+    SELECT * FROM LECTURE WHERE PROF LIKE CONCAT('%', #{value}, '%')
   </select>
 
   <delete id="delete" parameterType="int">
