@@ -16,16 +16,40 @@
   </delete>
 
   <insert id="insert" parameterType="map">
-    INSERT INTO EVALUATION (member_id, lecture_id)
-    VALUES (#{member_id},#{lecture_id})
+    INSERT INTO EVALUATION (member_id, lecture_id, method, task, exam, comment, score)
+    VALUES (#{member_id},#{lecture_id},#{method},#{task},#{exam},#{comment},#{score})
   </insert>
 
   <update id="update" parameterType="map">
     UPDATE EVALUATION
     SET
-    member_id = #{member_id},
-    lecture_id = #{lecture_id}
-    WHERE EVALUATION_ID = #{id}
+    method = #{method},
+    task = #{task},
+    exam = #{exam},
+    comment = #{comment},
+    score = #{score}
+    WHERE EVALUATION_ID = #{evaluation_id}
+  </update>
+
+  <update id="updateLike" parameterType="map">
+    UPDATE LECTURE
+    SET
+    likes = likes + 1
+    WHERE LECTURE_ID = #{lecture_id}
+  </update>
+
+  <update id="updateDislike" parameterType="map">
+    UPDATE LECTURE
+    SET
+    likes = dislike + 1
+    WHERE LECTURE_ID = #{lecture_id}
+  </update>
+
+  <update id="updateReport" parameterType="map">
+    UPDATE LECTURE
+    SET
+    likes = report + 1
+    WHERE LECTURE_ID = #{lecture_id}
   </update>
 
 </mapper>

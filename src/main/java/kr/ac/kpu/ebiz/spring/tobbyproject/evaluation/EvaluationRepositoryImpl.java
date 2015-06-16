@@ -26,4 +26,16 @@ public class EvaluationRepositoryImpl extends SqlSessionDaoSupport implements Ev
 	public boolean update(Map evaluation) {
 		return getSqlSession().update("EvaluationRepository.update", evaluation) > 0;
 	}
+
+	public boolean updateLike(int lectureId) {
+		return getSqlSession().update("LectureRepository.updateLike", lectureId) > 0;
+	}
+
+	public boolean updateDislike(int lectureId) {
+		return getSqlSession().update("LectureRepository.updateDislike", lectureId) > 0;
+	}
+
+	public boolean updateReport(int lectureId) {
+		return getSqlSession().update("LectureRepository.updateReport", lectureId) > 0;
+	}
 }

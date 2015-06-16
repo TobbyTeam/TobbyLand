@@ -14,5 +14,11 @@ public interface EvaluationRepository {
 	boolean insert(Map evaluation);
 
 	boolean update(Map evaluation);
+
+	boolean updateLike(int lectureId);
+
+	boolean updateDislike(int lectureId);
+
+	boolean updateReport(int lectureId);
 }
 

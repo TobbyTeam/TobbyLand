@@ -13,9 +13,9 @@ public class EvaluationController {
 	@Autowired
 	EvaluationRepository evaluationRepository;
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public ModelAndView world() {
-		ModelAndView mav = new ModelAndView("/evaluation");
+		ModelAndView mav = new ModelAndView("/evaluation/list");
 		mav.addObject("evaluations", evaluationRepository.selectAll());
 		return mav;
 	}

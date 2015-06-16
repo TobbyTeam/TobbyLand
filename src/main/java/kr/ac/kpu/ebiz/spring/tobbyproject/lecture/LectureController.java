@@ -30,7 +30,7 @@ public class LectureController {
 	}
 
 	@RequestMapping(value = "/reg", method = RequestMethod.POST)
-	public ModelAndView insert(@RequestParam ("lecture_name")String lecture_name, @RequestParam ("dept")String dept ,
+	public ModelAndView insert(@RequestParam ("lecture_name")String lecture_name, @RequestParam ("dept")String dept,
 							   @RequestParam("prof")String prof)
 	{
 		ModelAndView mav = new ModelAndView("/lecture/list");
@@ -38,7 +38,7 @@ public class LectureController {
 		lecture.put("lecture_name", lecture_name);
 		lecture.put("dept", dept);
 		lecture.put("prof", prof);
-		mav.addObject("lecturesReg", lectureRepository.insert(lecture));
+		lectureRepository.insert(lecture);
 		mav.addObject("lectures", lectureRepository.selectAll());
 		return mav;
 	}
