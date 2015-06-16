@@ -1,5 +1,6 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.member;
 
+import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
+import java.util.Locale;
 
 @Controller
 @RequestMapping("/member")
@@ -26,7 +28,7 @@ public class MemberController {
 							   @RequestParam("nickname")String nickname , @RequestParam ("email")String email, @RequestParam("method")String method,
 							   @RequestParam ("task")String task, @RequestParam ("exam")String exam)
 	{
-		ModelAndView mav = new ModelAndView("/login");
+		ModelAndView mav = new ModelAndView("/member/login");
 		HashMap<String, String> member = new HashMap<String, String>();
 		member.put("memberId",memberId);
 		member.put("password",password);
@@ -37,6 +39,17 @@ public class MemberController {
 		member.put("exam",exam);
 		memberRepository.insert(member);
 		return mav;
+	}
+
+	@RequestMapping(value = "/loginForm")
+	public String loginForm(Locale locale, Model model){
+		return "/member/loginForm";
+	}
+
+	@RequestMapping("/login")
+	public String login(Locale locale, Model model){
+
+		return "/member/login";
 	}
 
 }

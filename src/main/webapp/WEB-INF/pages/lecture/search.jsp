@@ -14,6 +14,13 @@
 <form action="/lecture/search" method="get">
       검색 : <input type="text" name="lecture_name"><br>
   <input type="submit" value="전송">
+
+    <br/>
+
+    <a href="${pageContext.request.contextPath}/j_spring_security_logout">Log Out</a> <br />
+
+    <br/>
+    <a href="/lecture/list">강의생성</a>
 </form>
 </body>
 </html>
