@@ -9,6 +9,12 @@ public interface LectureRepository {
 
 	List<Map> selectAll();
 
+	List<Map> selectName(String lectureName);
+
+	List<Map> selectDept(String lectureDept);
+
+	List<Map> selectProf(String lectureProf);
+
 	boolean delete(int lectureId);
 
 	boolean insert(Map lecture);

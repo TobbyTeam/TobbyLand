@@ -44,8 +44,8 @@ public class LectureController {
 	}
 
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
-	public ModelAndView view(@RequestParam String lecture_id) {
-		Map lecture = lectureRepository.select(Integer.parseInt(lecture_id));
+	public ModelAndView view(@RequestParam int lecture_id) {
+		Map lecture = lectureRepository.select(lecture_id);
 		ModelAndView mav = new ModelAndView("/lecture/modify");
 		mav.addObject("lecture", lecture);
 		return mav;
@@ -71,7 +71,18 @@ public class LectureController {
 		ModelAndView mav = new ModelAndView("/lecture/list");
 		mav.addObject("lectures", lectureRepository.selectAll());
 		return mav;
+}
+
+	@RequestMapping(value = "/search_form", method = RequestMethod.GET)
+	public String search_form() {
+		return "/lecture/search";
 	}
 
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public ModelAndView search(@RequestParam String lecture_name) {
+		ModelAndView mav = new ModelAndView("/lecture/search_list");
+		mav.addObject("lectures", lectureRepository.selectName(lecture_name));
+		return mav;
+	}
 
 }
