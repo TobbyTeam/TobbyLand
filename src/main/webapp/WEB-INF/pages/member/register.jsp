@@ -13,7 +13,7 @@
 
 <body>
 
-<form action="insert" method="get">
+<form action="/member/reg" method="post">
     아이디: <input type="text" name="memberId"><br>
     패스워드:<input type="text" name="password"><br>
     별명: <input type="text" name="nickname"><br>

@@ -13,7 +13,13 @@
 </head>
 <body>
 
-login.jsp
+      <form action="<c:url value = "/j_spring_security_check"/>" method="get">
+              아이디: <input type="text" name="j_username"><br>
+              패스워드:<input type="text" name="j_password"><br>
+        <input type="submit" value="전송">
+      </form></br>
+      <a href="/member/reg_form">회원가입
+
 
 </body>
 </html>
