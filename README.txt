@@ -1,7 +1,7 @@
 [Sakila DB]
 
-mysql -uroot -p < database/sakila-schema.sql
-mysql -uroot -p < database/sakila-data.sql
+mysql -uroot -p < tobbyland-schema.sql
+mysql -uroot -p < tobbyland < tobbyland-data.sql
 
 
 [자바의 정석 예제코드]
