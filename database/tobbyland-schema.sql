@@ -19,7 +19,7 @@ CREATE TABLE tendency (
 --
 
 CREATE TABLE member (
-  member_id varchar(45) NOT NULL DEFAULT '',
+  member_id varchar(45) NOT NULL,
   password varchar(45) DEFAULT NULL,
   nickname varchar(45) DEFAULT NULL,
   email varchar(45) DEFAULT NULL,
@@ -27,13 +27,25 @@ CREATE TABLE member (
   method varchar(10) DEFAULT NULL,
   task varchar(10) DEFAULT NULL,
   exam varchar(10) DEFAULT NULL,
-  email_auth tinyint(1) unsigned DEFAULT '0',
-  type varchar(45) DEFAULT '0',
-  stop tinyint(1) unsigned DEFAULT '0',
+  email_auth tinyint(4) unsigned DEFAULT '1',
+  type varchar(45) DEFAULT '1',
+  enabled tinyint(4) unsigned DEFAULT '1',
   PRIMARY KEY (member_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+--
+-- Table structure for table `member_roles`
+--
+
+CREATE TABLE member_roles (
+  member_role_id INT(11) NOT NULL AUTO_INCREMENT,
+  member_id VARCHAR(45) NOT NULL,
+  ROLE VARCHAR(45) NOT NULL,
+  PRIMARY KEY (member_role_id),
+  UNIQUE KEY uni_member_id_role (ROLE,member_id),
+  KEY fk_username_idx (member_id),
+  CONSTRAINT fk_member_id FOREIGN KEY (member_id) REFERENCES member (member_id));
 
 
 --
@@ -45,7 +57,7 @@ CREATE TABLE lecture (
   lecture_name varchar(45) DEFAULT NULL,
   dept varchar(45) DEFAULT NULL,
   prof varchar(45) DEFAULT NULL,
-  likes int(10) unsigned DEFAULT '0',
+  likes int(10) unsigned DEFAULT '1',
   PRIMARY KEY (lecture_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
@@ -64,10 +76,10 @@ CREATE TABLE evaluation (
   task varchar(45) DEFAULT NULL,
   exam varchar(45) DEFAULT NULL,
   comment varchar(45) DEFAULT NULL,
-  score int(10) unsigned DEFAULT '0',
+  score int(10) unsigned DEFAULT NULL,
   write_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  is_delete tinyint(1) unsigned DEFAULT '0',
-  is_reply tinyint(1) unsigned DEFAULT NULL,
+  is_delete tinyint(4) unsigned DEFAULT '1',
+  is_reply tinyint(4) unsigned DEFAULT NULL,
   upper_id int(10) unsigned DEFAULT NULL,
   likes int(10) unsigned DEFAULT '0',
   dislike int(10) unsigned DEFAULT '0',
