@@ -10,8 +10,10 @@
     <!-- enable use-expressions -->
     <security:http auto-config="true" use-expressions="true">
         <security:intercept-url pattern="/login" access="permitAll" />
+<!--        <security:intercept-url pattern="/lecture/*" access="hasRole('ROLE_USER')" />
+        <security:intercept-url pattern="/evaluation/*" access="hasRole('ROLE_USER')" />
+        <security:intercept-url pattern="/*" access="hasRole('ROLE_USER')" />-->
         <security:intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')" />
-        <security:intercept-url pattern="/*" access="hasRole('ROLE_USER')" />
 
 
         <!-- access denied page -->
@@ -20,11 +22,14 @@
         <security:form-login
                 login-page="/login"
                 default-target-url="/lecture/search_form"
-                authentication-failure-url="/login?error"
-                username-parameter="username"
-                password-parameter="password" />
+                always-use-default-target="true"
+                authentication-failure-url="/login?error"/>
 
-        <security:logout logout-success-url="/login?logout"  />
+        <security:logout invalidate-session="true" logout-success-url="/login?logout"  />
+
+        <security:session-management>
+            <security:concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />
+        </security:session-management>
 
     </security:http>
 
