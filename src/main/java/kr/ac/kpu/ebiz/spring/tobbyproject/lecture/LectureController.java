@@ -60,7 +60,7 @@ public class LectureController {
 		lecture.put("lecture_name",lecture_name);
 		lecture.put("dept",dept);
 		lecture.put("prof",prof);
-		mav.addObject("lectureup", lectureRepository.update(lecture));
+		lectureRepository.update(lecture);
 		mav.addObject("lectures", lectureRepository.selectAll());
 		return mav;
 	}
@@ -71,7 +71,7 @@ public class LectureController {
 		ModelAndView mav = new ModelAndView("/lecture/list");
 		mav.addObject("lectures", lectureRepository.selectAll());
 		return mav;
-}
+	}
 
 	@RequestMapping(value = "/search_form", method = RequestMethod.GET)
 	public String search_form() {

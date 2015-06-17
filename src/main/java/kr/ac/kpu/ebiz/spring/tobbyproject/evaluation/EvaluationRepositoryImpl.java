@@ -15,7 +15,7 @@ public class EvaluationRepositoryImpl extends SqlSessionDaoSupport implements Ev
 		return getSqlSession().selectList("EvaluationRepository.selectAll");
 	}
 
-	public List<Map> selectLecture_id(Integer lectureId) {
+	public List<Map> selectLecture_id(String lectureId) {
 		return getSqlSession().selectList("EvaluationRepository.selectLecture_id, lectureId");
 	}
 
@@ -31,15 +31,15 @@ public class EvaluationRepositoryImpl extends SqlSessionDaoSupport implements Ev
 		return getSqlSession().update("EvaluationRepository.update", evaluation) > 0;
 	}
 
-	public boolean updateLike(int lectureId) {
-		return getSqlSession().update("LectureRepository.updateLike", lectureId) > 0;
+	public boolean updateLike(int evaluationId) {
+		return getSqlSession().update("EvaluationRepository.updateLike", evaluationId) > 0;
 	}
 
-	public boolean updateDislike(int lectureId) {
-		return getSqlSession().update("LectureRepository.updateDislike", lectureId) > 0;
+	public boolean updateDislike(int evaluationId) {
+		return getSqlSession().update("EvaluationRepository.updateDislike", evaluationId) > 0;
 	}
 
-	public boolean updateReport(int lectureId) {
-		return getSqlSession().update("LectureRepository.updateReport", lectureId) > 0;
+	public boolean updateReport(int evaluationId) {
+		return getSqlSession().update("EvaluationRepository.updateReport", evaluationId) > 0;
 	}
 }

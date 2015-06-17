@@ -36,24 +36,24 @@
   </update>
 
   <update id="updateLike" parameterType="map">
-    UPDATE LECTURE
+    UPDATE EVALUATION
     SET
     likes = likes + 1
-    WHERE LECTURE_ID = #{lecture_id}
+    WHERE EVALUATION_ID = #{evaluation_id}
   </update>
 
   <update id="updateDislike" parameterType="map">
-    UPDATE LECTURE
+    UPDATE EVALUATION
     SET
-    likes = dislike + 1
-    WHERE LECTURE_ID = #{lecture_id}
+    dislike = dislike + 1
+    WHERE EVALUATION_ID = #{evaluation_id}
   </update>
 
   <update id="updateReport" parameterType="map">
-    UPDATE LECTURE
+    UPDATE EVALUATION
     SET
-    likes = report + 1
-    WHERE LECTURE_ID = #{lecture_id}
+    report = report + 1
+    WHERE EVALUATION_ID = #{evaluation_id}
   </update>
 
 </mapper>

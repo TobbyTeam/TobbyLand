@@ -9,7 +9,7 @@ public interface EvaluationRepository {
 
 	List<Map> selectAll();
 
-	List<Map> selectLecture_id(Integer lectureId);
+	List<Map> selectLecture_id(String lectureId);
 
 	boolean delete(int evaluationId);
 
@@ -17,10 +17,10 @@ public interface EvaluationRepository {
 
 	boolean update(Map evaluation);
 
-	boolean updateLike(int lectureId);
+	boolean updateLike(int evaluationId);
 
-	boolean updateDislike(int lectureId);
+	boolean updateDislike(int evaluationId);
 
-	boolean updateReport(int lectureId);
+	boolean updateReport(int evaluationId);
 }
 
