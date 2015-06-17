@@ -20,6 +20,9 @@ public class EvaluationController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list(@RequestParam int lecture_id) {
 		ModelAndView mav = new ModelAndView("/evaluation/list");
+		HashMap lecture = new HashMap();
+		lecture.put("lecture_id", lecture_id);
+		mav.addObject("lecture", lecture);
 		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 		return mav;
 	}
@@ -28,6 +31,33 @@ public class EvaluationController {
 	public ModelAndView list2() {
 		ModelAndView mav = new ModelAndView("/evaluation/list");
 		mav.addObject("evaluations", evaluationRepository.selectAll());
+		return mav;
+	}
+
+	@RequestMapping(value = "/reg_form", method = RequestMethod.GET)
+	public ModelAndView reg(@RequestParam int lecture_id) {
+		ModelAndView mav = new ModelAndView("/evaluation/register");
+		HashMap evaluation = new HashMap();
+		evaluation.put("lecture_id", lecture_id);
+		mav.addObject("evaluation", evaluation);
+		return mav;
+	}
+
+	@RequestMapping(value = "/reg", method = RequestMethod.POST)
+	public ModelAndView insert(@RequestParam("lecture_id") int lecture_id, @RequestParam("member_id")String member_id,
+							   @RequestParam("method") String method, @RequestParam("task") String task, @RequestParam("exam") String exam,
+							   @RequestParam("comment") String comment, @RequestParam("score") int score) {
+		ModelAndView mav = new ModelAndView("/evaluation/list");
+		HashMap<String, java.io.Serializable> evaluation = new HashMap<String, java.io.Serializable>();
+		evaluation.put("lecture_id", lecture_id);
+		evaluation.put("member_id", member_id);
+		evaluation.put("method", method);
+		evaluation.put("task", task);
+		evaluation.put("exam", exam);
+		evaluation.put("comment", comment);
+		evaluation.put("score", score);
+		evaluationRepository.insert(evaluation);
+		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 		return mav;
 	}
 
@@ -40,7 +70,7 @@ public class EvaluationController {
 	}
 
 	@RequestMapping(value = "/mod", method = RequestMethod.POST)
-	public ModelAndView modify(@RequestParam ("evaluation_id") int evaluation_id, @RequestParam("method") String method, @RequestParam("task") String task,
+	public ModelAndView modify(@RequestParam("evaluation_id") int evaluation_id, @RequestParam("method") String method, @RequestParam("task") String task,
 							   @RequestParam("exam") String exam, @RequestParam("comment") String comment, @RequestParam("score") int score,
 							   @RequestParam("lecture_id") int lecture_id) {
 		ModelAndView mav = new ModelAndView("/evaluation/list");

@@ -12,11 +12,14 @@
     <title></title>
 </head>
 <body>
-<form action="/lecture/reg" method="post">
+<form action="/evaluation/reg" method="post">
 
-  강의명: <input type="text" name="lecture_name"><br>
-  학과명: <input type="text" name="dept"><br>
-  교수명: <input type="text" name="prof"><br>
+    수업: <input type="text" name="method"><br>
+    과제: <input type="text" name="task"><br>
+    시험: <input type="text" name="exam"><br>
+    총평: <input type="text" name="comment"><br>
+    점수: <input type="text" name="score"><br>
+          <input type="hidden" name="lecture_id" value="${evaluation.lecture_id}"/>
           <input type="hidden" name="member_id" value="<s:authentication property="name"/>">
           <input type="submit" value="등록">
 

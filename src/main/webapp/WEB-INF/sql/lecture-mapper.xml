@@ -28,8 +28,8 @@
   </delete>
 
   <insert id="insert" parameterType="map">
-    INSERT INTO LECTURE (lecture_name, dept, prof)
-    VALUES (#{lecture_name},#{dept},#{prof})
+    INSERT INTO LECTURE (member_id, lecture_name, dept, prof)
+    VALUES (#{member_id},#{lecture_name},#{dept},#{prof})
   </insert>
 
   <update id="update" parameterType="map">

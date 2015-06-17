@@ -41,7 +41,7 @@
 		</tr>
 		</c:forEach>
 	</table></br>
-	<a href="/evaluation/reg_form">강의평가 작성</a>
+	<a href="/evaluation/reg_form?lecture_id=${lecture.lecture_id}">강의평가 작성</a>
 
 </body>
 </html>

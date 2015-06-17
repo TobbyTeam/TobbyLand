@@ -31,10 +31,11 @@ public class LectureController {
 
 	@RequestMapping(value = "/reg", method = RequestMethod.POST)
 	public ModelAndView insert(@RequestParam ("lecture_name")String lecture_name, @RequestParam ("dept")String dept,
-							   @RequestParam("prof")String prof)
+							   @RequestParam("prof")String prof, @RequestParam("member_id")String member_id)
 	{
 		ModelAndView mav = new ModelAndView("/lecture/list");
 		HashMap<String, String> lecture = new HashMap<String, String>();
+		lecture.put("member_id", member_id);
 		lecture.put("lecture_name", lecture_name);
 		lecture.put("dept", dept);
 		lecture.put("prof", prof);

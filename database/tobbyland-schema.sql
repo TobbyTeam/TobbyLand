@@ -54,14 +54,15 @@ CREATE TABLE member_roles (
 
 CREATE TABLE lecture (
   lecture_id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  member_id varchar(45) DEFAULT NULL,
   lecture_name varchar(45) DEFAULT NULL,
   dept varchar(45) DEFAULT NULL,
   prof varchar(45) DEFAULT NULL,
-  likes int(10) unsigned DEFAULT '1',
-  PRIMARY KEY (lecture_id)
+  likes int(10) unsigned DEFAULT '0',
+  PRIMARY KEY (lecture_id),
+  KEY FK_lecture_member (member_id),
+  CONSTRAINT FK_lecture_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
-
-
 
 
 --
