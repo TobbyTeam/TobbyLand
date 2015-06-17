@@ -13,6 +13,8 @@ public interface MemberRepository {
 
 	boolean insert(Map member);
 
+	boolean insert_role(Map member);
+
 	boolean update(Map member);
 }
 

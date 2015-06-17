@@ -28,7 +28,7 @@ public class MemberController {
 							   @RequestParam("nickname")String nickname , @RequestParam ("email")String email, @RequestParam("method")String method,
 							   @RequestParam ("task")String task, @RequestParam ("exam")String exam)
 	{
-		ModelAndView mav = new ModelAndView("/member/login");
+		ModelAndView mav = new ModelAndView("/login");
 		HashMap<String, String> member = new HashMap<String, String>();
 		member.put("memberId",memberId);
 		member.put("password",password);
@@ -38,10 +38,16 @@ public class MemberController {
 		member.put("task",task);
 		member.put("exam",exam);
 		memberRepository.insert(member);
+
+		HashMap member_role = new HashMap();
+		member_role.put("memberId", memberId);
+		member_role.put("role", "ROLE_USER");
+		memberRepository.insert_role(member_role);
+
 		return mav;
 	}
 
-	@RequestMapping(value = "/loginForm")
+/*	@RequestMapping(value = "/loginForm")
 	public String loginForm(Locale locale, Model model){
 		return "/member/loginForm";
 	}
@@ -50,6 +56,6 @@ public class MemberController {
 	public String login(Locale locale, Model model){
 
 		return "/member/login";
-	}
+	}*/
 
 }

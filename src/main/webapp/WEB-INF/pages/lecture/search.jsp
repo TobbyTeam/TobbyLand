@@ -20,7 +20,8 @@
     <a href="${pageContext.request.contextPath}/j_spring_security_logout">Log Out</a> <br />
 
     <br/>
-    <a href="/lecture/list">강의생성</a>
+    <a href="/lecture/list">강의생성</a><br/>
+    USER ID : <s:authentication property="name"/><br/>
 </form>
 </body>
 </html>

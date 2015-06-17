@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
 import java.util.Locale;
+/*
 
 @Controller
 @RequestMapping("")
@@ -21,4 +22,4 @@ public class HomeController {
 		return "/member/loginForm";
 	}
 
-}
+}*/
