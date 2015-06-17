@@ -52,10 +52,10 @@ public class LectureController {
 	}
 
 	@RequestMapping(value = "/mod", method = RequestMethod.POST)
-	public ModelAndView modify(@RequestParam String lecture_id,@RequestParam ("lecture_name")String lecture_name,
+	public ModelAndView modify(@RequestParam int lecture_id,@RequestParam ("lecture_name")String lecture_name,
 							   @RequestParam ("dept")String dept, @RequestParam("prof")String prof)
 	{   ModelAndView mav = new ModelAndView("/lecture/list");
-		HashMap<String, String> lecture = new HashMap<String, String>();
+		HashMap<String, java.io.Serializable> lecture = new HashMap<String, java.io.Serializable>();
 		lecture.put("lecture_id",lecture_id);
 		lecture.put("lecture_name",lecture_name);
 		lecture.put("dept",dept);

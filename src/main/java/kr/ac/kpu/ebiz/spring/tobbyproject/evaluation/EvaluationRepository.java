@@ -9,7 +9,7 @@ public interface EvaluationRepository {
 
 	List<Map> selectAll();
 
-	List<Map> selectLecture_id(String lectureId);
+	List<Map> selectL(Integer lectureId);
 
 	boolean delete(int evaluationId);
 

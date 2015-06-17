@@ -20,6 +20,7 @@
 
 
   <input type="hidden" name="evaluation_id" value="${evaluation.evaluation_id}">
+  <input type="hidden" name="lecture_id" value="${evaluation.lecture_id}">
   <input type="submit" value="전송">
 </form>
 </body>

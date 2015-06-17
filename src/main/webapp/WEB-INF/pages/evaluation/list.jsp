@@ -34,9 +34,9 @@
 			<td>${evaluation.likes}</td>
 			<td>${evaluation.dislike}</td>
 			<td>${evaluation.report}</td>
-			<td><a href="/evaluation/likes?evaluation_id=${evaluation.evaluation_id}">추천</a></td>
-			<td><a href="/evaluation/dislike?evaluation_id=${evaluation.evaluation_id}">비공감</a></td>
-			<td><a href="/evaluation/report?evaluation_id=${evaluation.evaluation_id}">신고</a></td>
+			<td><a href="/evaluation/likes?evaluation_id=${evaluation.evaluation_id}&lecture_id=${evaluation.lecture_id}">추천</a></td>
+			<td><a href="/evaluation/dislike?evaluation_id=${evaluation.evaluation_id}&lecture_id=${evaluation.lecture_id}">비공감</a></td>
+			<td><a href="/evaluation/report?evaluation_id=${evaluation.evaluation_id}&lecture_id=${evaluation.lecture_id}">신고</a></td>
 			<td><a href="/evaluation/view?evaluation_id=${evaluation.evaluation_id}">수정</a></td>
 		</tr>
 		</c:forEach>

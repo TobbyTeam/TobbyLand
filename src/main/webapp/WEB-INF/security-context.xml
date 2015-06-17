@@ -25,6 +25,7 @@
                 always-use-default-target="true"
                 authentication-failure-url="/login?error"/>
 
+
         <security:logout invalidate-session="true" logout-success-url="/login?logout"  />
 
         <security:session-management>
