@@ -12,12 +12,11 @@
 		</tr>
 		<c:forEach var="lecture" items="${lectures}" varStatus="status">
 		<tr>
-			<td>${lecture.lecture_name}</td>
+			<td><a href="/evaluation/list?lecture_id=${lecture.lecture_id}">${lecture.lecture_name}</a></td>
 			<td>${lecture.dept}</td>
 			<td>${lecture.prof}</td>
 		</tr>
 		</c:forEach>
 	</table></br>
-
 </body>
 </html>

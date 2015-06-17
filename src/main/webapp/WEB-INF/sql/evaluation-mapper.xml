@@ -11,6 +11,10 @@
     SELECT * FROM EVALUATION
   </select>
 
+  <select id="selectLecture_id" resultType="map">
+    SELECT * FROM EVALUATION WHERE LECTURE_ID = #{value}
+  </select>
+
   <delete id="delete" parameterType="int">
     DELETE FROM EVALUATION WHERE EVALUATION_ID = #{value}
   </delete>

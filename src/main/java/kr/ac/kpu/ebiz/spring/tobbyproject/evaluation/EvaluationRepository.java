@@ -9,6 +9,8 @@ public interface EvaluationRepository {
 
 	List<Map> selectAll();
 
+	List<Map> selectLecture_id(Integer lectureId);
+
 	boolean delete(int evaluationId);
 
 	boolean insert(Map evaluation);
