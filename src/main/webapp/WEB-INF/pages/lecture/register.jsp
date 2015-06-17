@@ -21,5 +21,7 @@
           <input type="submit" value="등록">
 
 </form>
+
+<a href="${pageContext.request.contextPath}/j_spring_security_logout">Log Out</a> <br />
 </body>
 </html>

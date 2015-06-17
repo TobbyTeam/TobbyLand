@@ -57,6 +57,9 @@ public class EvaluationController {
 		evaluation.put("comment", comment);
 		evaluation.put("score", score);
 		evaluationRepository.insert(evaluation);
+		HashMap lecture = new HashMap();
+		lecture.put("lecture_id", lecture_id);
+		mav.addObject("lecture", lecture);
 		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 		return mav;
 	}
@@ -82,6 +85,9 @@ public class EvaluationController {
 		evaluation.put("comment", comment);
 		evaluation.put("score", score);
 		evaluationRepository.update(evaluation);
+		HashMap lecture = new HashMap();
+		lecture.put("lecture_id", lecture_id);
+		mav.addObject("lecture", lecture);
 		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 		return mav;
 	}
@@ -90,6 +96,9 @@ public class EvaluationController {
 	public ModelAndView likes(@RequestParam("evaluation_id")int evaluation_id, @RequestParam("lecture_id") int lecture_id)
 	{	evaluationRepository.updateLike(evaluation_id);
 		ModelAndView mav = new ModelAndView("/evaluation/list");
+		HashMap lecture = new HashMap();
+		lecture.put("lecture_id", lecture_id);
+		mav.addObject("lecture", lecture);
 		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 		return mav;
 	}
@@ -98,6 +107,9 @@ public class EvaluationController {
 	public ModelAndView dislike(@RequestParam("evaluation_id")int evaluation_id, @RequestParam("lecture_id") int lecture_id)
 	{	evaluationRepository.updateDislike(evaluation_id);
 		ModelAndView mav = new ModelAndView("/evaluation/list");
+		HashMap lecture = new HashMap();
+		lecture.put("lecture_id", lecture_id);
+		mav.addObject("lecture", lecture);
 		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 		return mav;
 	}
@@ -106,6 +118,9 @@ public class EvaluationController {
 	public ModelAndView report(@RequestParam("evaluation_id")int evaluation_id, @RequestParam("lecture_id") int lecture_id)
 	{	evaluationRepository.updateReport(evaluation_id);
 		ModelAndView mav = new ModelAndView("/evaluation/list");
+		HashMap lecture = new HashMap();
+		lecture.put("lecture_id", lecture_id);
+		mav.addObject("lecture", lecture);
 		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 		return mav;
 	}

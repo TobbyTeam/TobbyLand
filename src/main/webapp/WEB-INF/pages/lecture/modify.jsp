@@ -18,5 +18,7 @@
   <input type="hidden" name="lecture_id" value="${lecture.lecture_id}">
   <input type="submit" value="전송">
 </form>
+
+<a href="${pageContext.request.contextPath}/j_spring_security_logout">Log Out</a> <br />
 </body>
 </html>

@@ -24,5 +24,7 @@
 	</table></br>
 	<a href="/lecture/reg_form">강의생성</a>
 
+	<a href="${pageContext.request.contextPath}/j_spring_security_logout">Log Out</a> <br />
+
 </body>
 </html>

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.handler.MappedInterceptor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -81,8 +82,19 @@ public class LectureController {
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public ModelAndView search(@RequestParam String lecture_name) {
+
+		String a = "a23ad2flqkn1";
+
 		ModelAndView mav = new ModelAndView("/lecture/search_list");
 		mav.addObject("lectures", lectureRepository.selectName(lecture_name));
+		if (lectureRepository.selectName(lecture_name).equals(lectureRepository.selectName(a))) {
+			mav.addObject("error", "검색 결과가 없습니다.");
+		}
+
+		System.out.println(lectureRepository.selectName(lecture_name) == lectureRepository.selectName(a));
+		System.out.println(lectureRepository.selectName(lecture_name).equals(lectureRepository.selectName(a)));
+		System.out.println(mav.getModel());
+
 		return mav;
 	}
 

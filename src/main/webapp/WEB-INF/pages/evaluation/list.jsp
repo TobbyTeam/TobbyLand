@@ -43,5 +43,6 @@
 	</table></br>
 	<a href="/evaluation/reg_form?lecture_id=${lecture.lecture_id}">강의평가 작성</a>
 
+	<a href="${pageContext.request.contextPath}/j_spring_security_logout">Log Out</a> <br />
 </body>
 </html>
