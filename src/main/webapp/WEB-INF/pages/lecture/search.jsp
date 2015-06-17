@@ -1,3 +1,4 @@
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 <%--
   Created by IntelliJ IDEA.
   User: happy
