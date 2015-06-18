@@ -15,6 +15,13 @@
     DELETE FROM MEMBER WHERE MEMBER_ID = #{value}
   </delete>
 
+  <update id="deleteEnabled" parameterType="map">
+    UPDATE MEMBER
+    SET
+    enabled = 0
+    WHERE MEMBER_ID = #{member_id}
+  </update>
+
   <insert id="insert" parameterType="map">
     INSERT INTO MEMBER (member_id, password, nickname, email, method, task, exam)
     VALUES (#{member_id},#{password},#{nickname},#{email},#{method},#{task},#{exam})
