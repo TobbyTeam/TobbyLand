@@ -11,6 +11,8 @@ public interface MemberRepository {
 
 	boolean delete(int memberId);
 
+	boolean deleteEnabled(Map member);
+
 	boolean insert(Map member);
 
 	boolean insert_role(Map member);
