@@ -13,6 +13,9 @@ VALUES ('ADMIN','1234','ADMIN','a','a','a','a');
 INSERT INTO MEMBER_ROLES (member_id, ROLE)
 VALUES ('ADMIN','ROLE_ADMIN');
 
+INSERT INTO MEMBER_ROLES (member_id, ROLE)
+VALUES ('ADMIN','ROLE_USER');
+
 
 --
 -- tendency table data
