@@ -86,7 +86,7 @@ CREATE TABLE evaluation (
   dislike int(10) unsigned DEFAULT '0',
   report int(10) unsigned DEFAULT '0',
   PRIMARY KEY (evaluation_id),
-  UNIQUE KEY uni_lecture_id_member_id (lecture_id,member_id),
+/*  UNIQUE KEY uni_lecture_id_member_id (lecture_id,member_id),*/
   KEY FK_evaluation_lecture (lecture_id),
   KEY FK_evaluation_member (member_id),
   CONSTRAINT FK_evaluation_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE CASCADE ON UPDATE CASCADE,
