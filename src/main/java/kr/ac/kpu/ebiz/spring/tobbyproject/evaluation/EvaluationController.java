@@ -1,6 +1,8 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.evaluation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,9 +47,14 @@ public class EvaluationController {
 	}
 
 	@RequestMapping(value = "/reg", method = RequestMethod.POST)
-	public ModelAndView insert(@RequestParam("lecture_id") int lecture_id, @RequestParam("member_id")String member_id,
-							   @RequestParam("method") String method, @RequestParam("task") String task, @RequestParam("exam") String exam,
+	public ModelAndView insert(@RequestParam("lecture_id") int lecture_id,@RequestParam("method") String method,
+							   @RequestParam("task") String task, @RequestParam("exam") String exam,
 							   @RequestParam("comment") String comment, @RequestParam("score") int score) {
+
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String member_id = user.getUsername();
+
+
 		ModelAndView mav = new ModelAndView("/evaluation/list");
 		HashMap<String, java.io.Serializable> evaluation = new HashMap<String, java.io.Serializable>();
 		evaluation.put("lecture_id", lecture_id);
@@ -107,6 +114,7 @@ public class EvaluationController {
 	@RequestMapping(value = "/dislike", method = RequestMethod.GET)
 	public ModelAndView dislike(@RequestParam("evaluation_id")int evaluation_id, @RequestParam("lecture_id") int lecture_id)
 	{	evaluationRepository.updateDislike(evaluation_id);
+
 		ModelAndView mav = new ModelAndView("/evaluation/list");
 		HashMap lecture = new HashMap();
 		lecture.put("lecture_id", lecture_id);

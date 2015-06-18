@@ -17,7 +17,6 @@
   강의명: <input type="text" name="lecture_name"><br>
   학과명: <input type="text" name="dept"><br>
   교수명: <input type="text" name="prof"><br>
-          <input type="hidden" name="member_id" value="<s:authentication property="name"/>">
           <input type="submit" value="등록">
 
 </form>

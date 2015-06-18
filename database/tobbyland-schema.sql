@@ -13,7 +13,6 @@ CREATE TABLE tendency (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-
 --
 -- Table structure for table `member`
 --
@@ -39,7 +38,7 @@ CREATE TABLE member (
 --
 
 CREATE TABLE member_roles (
-  member_role_id INT(11) NOT NULL AUTO_INCREMENT,
+  member_role_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   member_id VARCHAR(45) NOT NULL,
   ROLE VARCHAR(45) NOT NULL,
   PRIMARY KEY (member_role_id),
@@ -87,8 +86,43 @@ CREATE TABLE evaluation (
   dislike int(10) unsigned DEFAULT '0',
   report int(10) unsigned DEFAULT '0',
   PRIMARY KEY (evaluation_id),
+  UNIQUE KEY uni_lecture_id_member_id (lecture_id,member_id),
   KEY FK_evaluation_lecture (lecture_id),
   KEY FK_evaluation_member (member_id),
   CONSTRAINT FK_evaluation_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT FK_evaluation_lecture FOREIGN KEY (lecture_id) REFERENCES lecture (lecture_id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+--
+-- Table structure for table `lecturesub`
+--
+
+CREATE TABLE lecturesub (
+  ls_id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  lecture_id int(10) unsigned DEFAULT NULL,
+  member_id varchar(45) DEFAULT NULL,
+  PRIMARY KEY (ls_id),
+  UNIQUE KEY uni_lecture_id_member_id (lecture_id,member_id),
+  KEY FK_evaluation_lecture (lecture_id),
+  KEY FK_evaluation_member (member_id),
+  CONSTRAINT FK_lecturesub_lecture FOREIGN KEY (lecture_id) REFERENCES lecture (lecture_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT FK_lecturesub_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+--
+-- Table structure for table `evaluationsub`
+--
+
+CREATE TABLE evaluationsub (
+  es_id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  evaluation_id int(10) unsigned DEFAULT NULL,
+  member_id varchar(45) DEFAULT NULL,
+  PRIMARY KEY (es_id),
+  UNIQUE KEY uni_evaluation_id_member_id (evaluation_id,member_id),
+  KEY FK_evaluation_evaluation (evaluation_id),
+  KEY FK_evaluation_member (member_id),
+  CONSTRAINT FK_lecturesub_evaluation FOREIGN KEY (evaluation_id) REFERENCES evaluation (evaluation_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT FK_lecturesub_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

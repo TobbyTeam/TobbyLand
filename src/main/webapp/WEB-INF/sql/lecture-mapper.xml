@@ -8,7 +8,7 @@
   </select>
 
   <select id="selectAll" resultType="map">
-    <![CDATA[  SELECT * FROM LECTURE WHERE likes < 10 ]]>
+    SELECT * FROM LECTURE WHERE likes <![CDATA[ < ]]> 10
   </select>
 
   <select id="selectName" resultType="map">
@@ -47,5 +47,18 @@
     likes = likes + 1
     WHERE LECTURE_ID = #{lecture_id}
   </update>
+
+  <insert id="insertSub" parameterType="map">
+    INSERT INTO LECTURESUB (lecture_id, member_id)
+    VALUES (#{lecture_id},#{member_id})
+  </insert>
+
+  <select id="selectSub" parameterType="map" resultType="int" >
+    SELECT Count(LS_ID) FROM LECTURESUB WHERE LECTURE_ID = #{lecture_id} AND MEMBER_ID = #{member_id}
+  </select>
+
+  <!--  <select id="selectSub" parameterType="map" resultType="map" >
+      SELECT * FROM LECTURESUB WHERE LECTURE_ID = #{lecture_id} AND MEMBER_ID = #{member_id}
+    </select>-->
 
 </mapper>

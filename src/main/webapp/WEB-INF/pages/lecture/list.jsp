@@ -4,6 +4,11 @@
 <head><title>헬로 월드</title></head>
 <body>
 
+<c:if test="${not empty error}">
+	<div class="error">${error}</div>
+</c:if>
+
+
 	<table border="1">
 		<tr>
 			<td>강의명</td>

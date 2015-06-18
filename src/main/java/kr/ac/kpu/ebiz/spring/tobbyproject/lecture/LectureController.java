@@ -1,6 +1,9 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.lecture;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,8 +35,10 @@ public class LectureController {
 
 	@RequestMapping(value = "/reg", method = RequestMethod.POST)
 	public ModelAndView insert(@RequestParam ("lecture_name")String lecture_name, @RequestParam ("dept")String dept,
-							   @RequestParam("prof")String prof, @RequestParam("member_id")String member_id)
-	{
+							   @RequestParam("prof")String prof) {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String member_id = user.getUsername();
+
 		ModelAndView mav = new ModelAndView("/lecture/list");
 		HashMap<String, String> lecture = new HashMap<String, String>();
 		lecture.put("member_id", member_id);
@@ -55,22 +60,14 @@ public class LectureController {
 
 	@RequestMapping(value = "/mod", method = RequestMethod.POST)
 	public ModelAndView modify(@RequestParam int lecture_id,@RequestParam ("lecture_name")String lecture_name,
-							   @RequestParam ("dept")String dept, @RequestParam("prof")String prof)
-	{   ModelAndView mav = new ModelAndView("/lecture/list");
+							   @RequestParam ("dept")String dept, @RequestParam("prof")String prof)	{
+		ModelAndView mav = new ModelAndView("/lecture/list");
 		HashMap<String, java.io.Serializable> lecture = new HashMap<String, java.io.Serializable>();
 		lecture.put("lecture_id",lecture_id);
 		lecture.put("lecture_name",lecture_name);
 		lecture.put("dept",dept);
 		lecture.put("prof",prof);
 		lectureRepository.update(lecture);
-		mav.addObject("lectures", lectureRepository.selectAll());
-		return mav;
-	}
-
-	@RequestMapping(value = "/likes", method = RequestMethod.GET)
-	public ModelAndView likes(@RequestParam("lecture_id")int lecture_id)
-	{	lectureRepository.updateLike(lecture_id);
-		ModelAndView mav = new ModelAndView("/lecture/list");
 		mav.addObject("lectures", lectureRepository.selectAll());
 		return mav;
 	}
@@ -97,6 +94,35 @@ public class LectureController {
 
 		return mav;
 
+	}
+
+	@RequestMapping(value = "/likes", method = RequestMethod.GET)
+	public ModelAndView likes(@RequestParam("lecture_id")int lecture_id,@RequestParam(value = "error", required = false) String error) {
+
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String member_id = user.getUsername();
+
+		HashMap lecture = new HashMap();
+		lecture.put("lecture_id", lecture_id);
+		lecture.put("member_id", member_id);
+
+		int count = lectureRepository.selectSub(lecture);
+
+		ModelAndView mav = new ModelAndView("/lecture/list");
+
+		System.out.println(count);
+
+		if(count != 0) {
+			mav.addObject("lectures", lectureRepository.selectAll());
+			mav.addObject("error", "이미 클릭하셨습니다.");
+
+		} else {
+			lectureRepository.insertSub(lecture);
+			lectureRepository.updateLike(lecture_id);
+			mav.addObject("lectures", lectureRepository.selectAll());
+		}
+
+		return mav;
 	}
 
 }

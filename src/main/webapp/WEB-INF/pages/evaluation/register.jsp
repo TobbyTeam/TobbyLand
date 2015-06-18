@@ -20,7 +20,6 @@
     총평: <input type="text" name="comment"><br>
     점수: <input type="text" name="score"><br>
           <input type="hidden" name="lecture_id" value="${evaluation.lecture_id}"/>
-          <input type="hidden" name="member_id" value="<s:authentication property="name"/>">
           <input type="submit" value="등록">
 
 </form>

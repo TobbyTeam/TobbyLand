@@ -22,5 +22,9 @@ public interface LectureRepository {
 	boolean update(Map lecture);
 
 	boolean updateLike(int lectureId);
+
+	boolean insertSub(Map lecture);
+
+	int selectSub(Map lecture);
 }
 

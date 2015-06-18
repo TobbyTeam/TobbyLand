@@ -36,4 +36,16 @@ public class LectureRepositoryImpl extends SqlSessionDaoSupport implements Lectu
 	public boolean updateLike(int lectureId) {
 		return getSqlSession().update("LectureRepository.updateLike", lectureId) > 0;
 	}
+
+	public boolean insertSub(Map lecture) {
+		return getSqlSession().insert("LectureRepository.insertSub", lecture) > 0;
+	}
+
+	public int selectSub(Map lecture) {
+		return getSqlSession().selectOne("LectureRepository.selectSub", lecture);
+	}
+
+/*	public Map selectSub(Map lecture) {
+		return getSqlSession().update("LectureRepository.selectSub", lecture);
+	}*/
 }
