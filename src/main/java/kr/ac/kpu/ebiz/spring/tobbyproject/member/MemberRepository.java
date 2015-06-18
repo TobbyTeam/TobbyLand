@@ -5,7 +5,7 @@ import java.util.Map;
 
 public interface MemberRepository {
 
-	Map select(Integer memberId);
+	Map select(String memberId);
 
 	List<Map> selectAll();
 

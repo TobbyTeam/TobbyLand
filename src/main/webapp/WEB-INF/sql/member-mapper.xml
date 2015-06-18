@@ -17,18 +17,22 @@
 
   <insert id="insert" parameterType="map">
     INSERT INTO MEMBER (member_id, password, nickname, email, method, task, exam)
-    VALUES (#{memberId},#{password},#{nickname},#{email},#{method},#{task},#{exam})
+    VALUES (#{member_id},#{password},#{nickname},#{email},#{method},#{task},#{exam})
   </insert>
 
   <insert id="insert_role" parameterType="map">
-    INSERT INTO MEMBER_ROLES (member_id, role) VALUES (#{memberId}, #{role})
+    INSERT INTO MEMBER_ROLES (member_id, role) VALUES (#{member_id}, #{role})
   </insert>
 
   <update id="update" parameterType="map">
     UPDATE MEMBER
     SET
-    password = #{password}
-    WHERE MEMBER_ID = #{id}
+    password = #{password},
+    nickname = #{nickname},
+    method = #{method},
+    task = #{task},
+    exam = #{exam}
+    WHERE MEMBER_ID = #{member_id}
   </update>
 
 </mapper>

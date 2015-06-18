@@ -14,7 +14,8 @@
 <body>
 
 <form action="/member/reg" method="post">
-    아이디: <input type="text" name="memberId"><br>
+
+    아이디: <input type="text" name="member_id"><br>
     패스워드:<input type="text" name="password"><br>
     별명: <input type="text" name="nickname"><br>
     이메일: <input type="text" name="email"><br>

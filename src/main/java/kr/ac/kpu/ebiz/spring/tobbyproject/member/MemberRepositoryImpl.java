@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class MemberRepositoryImpl extends SqlSessionDaoSupport implements MemberRepository {
 
-	public Map select(Integer memberId) {
+	public Map select(String memberId) {
 		return getSqlSession().selectOne("MemberRepository.select", memberId);
 	}
 

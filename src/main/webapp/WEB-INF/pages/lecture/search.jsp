@@ -22,7 +22,11 @@
 
     <br/>
     <a href="/lecture/list">강의생성</a><br/>
-    USER ID : <s:authentication property="name"/><br/>
+    <a href="/member/view">회원정보</a><br/>
+
+
+
+  USER ID : <s:authentication property="name"/><br/>
 </form>
 </body>
 </html>
