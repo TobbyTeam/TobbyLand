@@ -34,6 +34,9 @@
 
     <a href="/member/modView">정보수정</a><br/>
 
+    <a href="/member/deleteEnabled">회원탈퇴</a> <br />
+
+
 </table></br>
 
 
