@@ -12,7 +12,7 @@
   </select>
 
   <select id="selectName" resultType="map">
-    SELECT * FROM LECTURE WHERE LECTURE_NAME LIKE CONCAT('%', #{value}, '%')
+    SELECT * FROM LECTURE WHERE likes <![CDATA[ >= ]]> 10 AND LECTURE_NAME LIKE CONCAT('%', #{value}, '%')
   </select>
 
   <select id="selectDept" resultType="map">

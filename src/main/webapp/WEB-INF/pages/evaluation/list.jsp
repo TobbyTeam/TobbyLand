@@ -4,6 +4,10 @@
 <head><title>헬로 월드</title></head>
 <body>
 
+${lecture.lecture_name}
+
+</br>
+
 	<table border="1">
 		<tr>
 			<td>강의평가아이디</td>

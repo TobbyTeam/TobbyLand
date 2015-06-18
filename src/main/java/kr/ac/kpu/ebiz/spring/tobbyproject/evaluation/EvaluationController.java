@@ -18,10 +18,11 @@ public class EvaluationController {
 	EvaluationRepository evaluationRepository;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list(@RequestParam int lecture_id) {
+	public ModelAndView list(@RequestParam int lecture_id,@RequestParam("lecture_name") String lecture_name) {
 		ModelAndView mav = new ModelAndView("/evaluation/list");
 		HashMap lecture = new HashMap();
 		lecture.put("lecture_id", lecture_id);
+		lecture.put("lecture_name", lecture_name);
 		mav.addObject("lecture", lecture);
 		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 		return mav;

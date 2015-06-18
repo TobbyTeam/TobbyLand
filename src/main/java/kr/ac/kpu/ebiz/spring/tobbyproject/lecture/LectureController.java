@@ -96,6 +96,7 @@ public class LectureController {
 		System.out.println(mav.getModel());
 
 		return mav;
+
 	}
 
 }

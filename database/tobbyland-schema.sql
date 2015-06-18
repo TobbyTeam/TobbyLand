@@ -45,7 +45,8 @@ CREATE TABLE member_roles (
   PRIMARY KEY (member_role_id),
   UNIQUE KEY uni_member_id_role (ROLE,member_id),
   KEY fk_member_id_idx (member_id),
-  CONSTRAINT fk_member_id FOREIGN KEY (member_id) REFERENCES member (member_id);
+  CONSTRAINT fk_member_id FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 
 --
