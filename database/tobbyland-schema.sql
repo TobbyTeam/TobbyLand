@@ -9,7 +9,7 @@ USE tobbyland;
 CREATE TABLE tendency (
   tendency_id varchar(10) NOT NULL,
   title varchar(45) DEFAULT NULL,
-  PRIMARY KEY (tendency_id) USING BTREE
+  PRIMARY KEY (tendency_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -104,10 +104,10 @@ CREATE TABLE lecturesub (
   member_id varchar(45) DEFAULT NULL,
   PRIMARY KEY (ls_id),
   UNIQUE KEY uni_lecture_id_member_id (lecture_id,member_id),
-  KEY FK_evaluation_lecture (lecture_id),
-  KEY FK_evaluation_member (member_id),
-  CONSTRAINT FK_lecturesub_lecture FOREIGN KEY (lecture_id) REFERENCES lecture (lecture_id) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT FK_lecturesub_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY FK_lecturesub_lecture (lecture_id),
+  KEY FK_lecturesub_member (member_id),
+  CONSTRAINT FK_lecturesub_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT FK_lecturesub_lecture FOREIGN KEY (lecture_id) REFERENCES lecture (lecture_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -121,8 +121,8 @@ CREATE TABLE evaluationsub (
   member_id varchar(45) DEFAULT NULL,
   PRIMARY KEY (es_id),
   UNIQUE KEY uni_evaluation_id_member_id (evaluation_id,member_id),
-  KEY FK_evaluation_evaluation (evaluation_id),
-  KEY FK_evaluation_member (member_id),
-  CONSTRAINT FK_lecturesub_evaluation FOREIGN KEY (evaluation_id) REFERENCES evaluation (evaluation_id) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT FK_lecturesub_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY FK_evaluationsub_evaluation (evaluation_id),
+  KEY FK_evaluationsub_member (member_id),
+  CONSTRAINT FK_evaluationsub_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT FK_evaluationsub_evaluation FOREIGN KEY (evaluation_id) REFERENCES evaluation (evaluation_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
