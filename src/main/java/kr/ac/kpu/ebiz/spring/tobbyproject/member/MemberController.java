@@ -1,7 +1,6 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.member;
 
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,7 +40,7 @@ public class MemberController {
 		member.put("exam",exam);
 		memberRepository.insert(member);
 
-		HashMap member_role = new HashMap();
+		HashMap<String, String> member_role = new HashMap<String, String>();
 		member_role.put("member_id", member_id);
 		member_role.put("role", "ROLE_USER");
 		memberRepository.insert_role(member_role);
@@ -95,6 +94,21 @@ public class MemberController {
 		mav.addObject("member", member);
 
 		return mav;
+	}
+
+	@RequestMapping(value = "/deleteEnabled", method = RequestMethod.GET)
+	public String deleteEnabled()	{
+
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String member_id = user.getUsername();
+
+		SecurityContextHolder.clearContext();
+
+		HashMap<String, String> member = new HashMap<String, String>();
+		member.put("member_id",member_id);
+		memberRepository.deleteEnabled(member);
+
+		return "/login";
 	}
 
 }
