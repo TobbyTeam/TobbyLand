@@ -7,6 +7,9 @@
 <c:if test="${not empty error}">
 	${error}
 </c:if>
+</br>
+<c:set var="noResult" value="@org.springframework.util.StringUtils@hasLength(${lectures})"/>
+<c:if test="${ false == noResult}"> ${error} </c:if>
 
 	<table border="1">
 		<tr>
