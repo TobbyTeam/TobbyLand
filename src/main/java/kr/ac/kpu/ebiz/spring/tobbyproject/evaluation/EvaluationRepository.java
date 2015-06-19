@@ -22,5 +22,9 @@ public interface EvaluationRepository {
 	boolean updateDislike(int evaluationId);
 
 	boolean updateReport(int evaluationId);
+
+	boolean insertSub(Map lecture);
+
+	int selectSub(Map lecture);
 }
 

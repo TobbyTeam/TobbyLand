@@ -4,7 +4,7 @@
 <mapper namespace="LectureRepository">
 
   <select id="select" resultType="map">
-    SELECT * FROM LECTURE WHERE LECTURE_ID = #{value}
+    SELECT * FROM LECTURE WHERE LECTURE_ID = #{lecture_id}
   </select>
 
   <select id="selectAll" resultType="map">

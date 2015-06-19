@@ -42,4 +42,13 @@ public class EvaluationRepositoryImpl extends SqlSessionDaoSupport implements Ev
 	public boolean updateReport(int evaluationId) {
 		return getSqlSession().update("EvaluationRepository.updateReport", evaluationId) > 0;
 	}
+
+
+	public boolean insertSub(Map evaluation) {
+		return getSqlSession().insert("EvaluationRepository.insertSub", evaluation) > 0;
+	}
+
+	public int selectSub(Map evaluation) {
+		return getSqlSession().selectOne("EvaluationRepository.selectSub", evaluation);
+	}
 }

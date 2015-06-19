@@ -19,7 +19,7 @@
 		</tr>
 		<c:forEach var="lecture" items="${lectures}" varStatus="status">
 		<tr>
-			<td><a href="/evaluation/list?lecture_id=${lecture.lecture_id}&lecture_name=${lecture.lecture_name}&">${lecture.lecture_name}</a></td>
+			<td><a href="/evaluation/list?lecture_id=${lecture.lecture_id}">${lecture.lecture_name}</a></td>
 			<td>${lecture.dept}</td>
 			<td>${lecture.prof}</td>
 		</tr>

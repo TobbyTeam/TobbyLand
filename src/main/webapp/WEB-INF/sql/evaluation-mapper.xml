@@ -61,12 +61,12 @@
   </update>
 
   <insert id="insertSub" parameterType="map">
-    INSERT INTO LECTURESUB (lecture_id, member_id)
-    VALUES (#{lecture_id},#{member_id})
+    INSERT INTO EVALUATIONSUB (evaluation_id, member_id)
+    VALUES (#{evaluation_id},#{member_id})
   </insert>
 
   <select id="selectSub" parameterType="map" resultType="int" >
-    SELECT Count(LS_ID) FROM LECTURESUB WHERE LECTURE_ID = #{lecture_id} AND MEMBER_ID = #{member_id}
+    SELECT Count(ES_ID) FROM EVALUATIONSUB WHERE EVALUATION_ID = #{evaluation_id} AND MEMBER_ID = #{member_id}
   </select>
 
 </mapper>
