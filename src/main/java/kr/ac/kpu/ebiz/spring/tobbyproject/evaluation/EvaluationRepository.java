@@ -13,6 +13,8 @@ public interface EvaluationRepository {
 
 	boolean delete(int evaluationId);
 
+	boolean isDelete(int evaluationId);
+
 	boolean insert(Map evaluation);
 
 	boolean update(Map evaluation);

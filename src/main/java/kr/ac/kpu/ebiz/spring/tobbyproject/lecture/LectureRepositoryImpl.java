@@ -25,6 +25,10 @@ public class LectureRepositoryImpl extends SqlSessionDaoSupport implements Lectu
 		return getSqlSession().delete("LectureRepository.delete", lectureId) > 0;
 	}
 
+	public boolean isDelete(int lectureId) {
+		return getSqlSession().update("LectureRepository.isDelete", lectureId) > 0;
+	}
+
 	public boolean insert(Map lecture) {
 		return getSqlSession().insert("LectureRepository.insert", lecture) > 0;
 	}

@@ -17,6 +17,8 @@ public interface LectureRepository {
 
 	boolean delete(int lectureId);
 
+	boolean isDelete(int lectureId);
+
 	boolean insert(Map lecture);
 
 	boolean update(Map lecture);

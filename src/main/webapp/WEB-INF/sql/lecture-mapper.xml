@@ -8,7 +8,7 @@
   </select>
 
   <select id="selectAll" resultType="map">
-    SELECT * FROM LECTURE WHERE likes <![CDATA[ < ]]> 10
+    SELECT * FROM LECTURE WHERE likes <![CDATA[ < ]]> 10 AND IS_DELETE <![CDATA[ = ]]> 1
   </select>
 
   <select id="selectName" resultType="map">
@@ -26,6 +26,13 @@
   <delete id="delete" parameterType="int">
     DELETE FROM LECTURE WHERE LECTURE_ID = #{value}
   </delete>
+
+  <update id="isDelete" parameterType="map">
+    UPDATE LECTURE
+    SET
+    IS_DELETE = 0
+    WHERE LECTURE_ID = #{lecture_id}
+  </update>
 
   <insert id="insert" parameterType="map">
     INSERT INTO LECTURE (member_id, lecture_name, dept, prof)

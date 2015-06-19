@@ -1,6 +1,5 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.lecture;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.handler.MappedInterceptor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -121,6 +119,21 @@ public class LectureController {
 			lectureRepository.updateLike(lecture_id);
 			mav.addObject("lectures", lectureRepository.selectAll());
 		}
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/isDelete", method = RequestMethod.GET)
+	public ModelAndView isDelete(@RequestParam("lecture_id") int lecture_id)	{
+
+/*		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String member_id = user.getUsername();*/
+
+		lectureRepository.isDelete(lecture_id);
+
+		ModelAndView mav = new ModelAndView("/lecture/list");
+
+		mav.addObject("lectures", lectureRepository.selectAll());
 
 		return mav;
 	}

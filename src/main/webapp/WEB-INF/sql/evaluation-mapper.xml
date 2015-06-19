@@ -12,7 +12,7 @@
   </select>
 
   <select id="selectL" resultType="map">
-    SELECT * FROM EVALUATION WHERE LECTURE_ID = #{value}
+    SELECT * FROM EVALUATION WHERE LECTURE_ID = #{value} AND IS_DELETE <![CDATA[ = ]]> 1
   </select>
 
 <!--  <select id="selectL" resultType="map">
@@ -22,6 +22,13 @@
   <delete id="delete" parameterType="int">
     DELETE FROM EVALUATION WHERE EVALUATION_ID = #{value}
   </delete>
+
+  <update id="isDelete" parameterType="map">
+    UPDATE EVALUATION
+    SET
+    IS_DELETE = 0
+    WHERE EVALUATION_ID = #{evaluation_id}
+  </update>
 
   <insert id="insert" parameterType="map">
     INSERT INTO EVALUATION (member_id, lecture_id, method, task, exam, comment, score)

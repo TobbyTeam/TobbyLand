@@ -233,4 +233,20 @@ public class EvaluationController {
 		return mav;
 	}
 
+	@RequestMapping(value = "/isDelete", method = RequestMethod.GET)
+	public ModelAndView isDelete(@RequestParam("evaluation_id")int evaluation_id, @RequestParam("lecture_id") int lecture_id)	{
+
+/*		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String member_id = user.getUsername();*/
+
+		evaluationRepository.isDelete(evaluation_id);
+
+		ModelAndView mav = new ModelAndView("/evaluation/list");
+
+		mav.addObject("lecture", lectureRepository.select(lecture_id));
+		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
+
+		return mav;
+	}
+
 }

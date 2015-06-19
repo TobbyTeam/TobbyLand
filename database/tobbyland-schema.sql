@@ -59,6 +59,7 @@ CREATE TABLE lecture (
   dept varchar(45) DEFAULT NULL,
   prof varchar(45) DEFAULT NULL,
   likes int(10) unsigned DEFAULT '0',
+  is_delete tinyint(4) unsigned DEFAULT '1',
   PRIMARY KEY (lecture_id),
   KEY FK_lecture_member (member_id),
   CONSTRAINT FK_lecture_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE CASCADE ON UPDATE CASCADE

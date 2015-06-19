@@ -23,6 +23,10 @@ public class EvaluationRepositoryImpl extends SqlSessionDaoSupport implements Ev
 		return getSqlSession().delete("EvaluationRepository.delete", evaluationId) > 0;
 	}
 
+	public boolean isDelete(int evaluationId) {
+		return getSqlSession().update("EvaluationRepository.isDelete", evaluationId) > 0;
+	}
+
 	public boolean insert(Map evaluation) {
 		return getSqlSession().insert("EvaluationRepository.insert", evaluation) > 0;
 	}

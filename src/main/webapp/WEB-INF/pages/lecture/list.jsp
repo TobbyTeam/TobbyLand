@@ -24,6 +24,7 @@
 			<td>${lecture.likes}</td>
 			<td><a href="/lecture/likes?lecture_id=${lecture.lecture_id}">추천</a></td>
 			<td><a href="/lecture/view?lecture_id=${lecture.lecture_id}">수정</a></td>
+			<td><a href="/lecture/isDelete?lecture_id=${lecture.lecture_id}">삭제</a></td>
 		</tr>
 		</c:forEach>
 	</table></br>
