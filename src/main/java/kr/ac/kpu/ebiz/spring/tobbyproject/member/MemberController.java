@@ -30,7 +30,7 @@ public class MemberController {
 	@RequestMapping(value = "/reg", method = RequestMethod.POST)
 	public String insert(@ModelAttribute("Member") Member member, BindingResult result) {
 
-		String page = "/login";
+		String page = "/etc/login";
 
 		String member_id = member.getMember_id();
 
