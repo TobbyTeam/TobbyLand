@@ -32,7 +32,7 @@
   </insert>
 
   <insert id="insert_role" parameterType="map">
-    INSERT INTO MEMBER_ROLES (member_id) VALUES (#{member_id}
+    INSERT INTO MEMBER_ROLES (member_id, role) VALUES (#{member_id}, #{role})
   </insert>
 
   <update id="update" parameterType="map">
