@@ -3,7 +3,7 @@
 --
 
 INSERT INTO MEMBER (member_id, password, nickname, email, method, task, exam)
-VALUES ('ADMIN','1234','운영자','babsang24@hanmail.net','a1','b1','c1');
+VALUES ('ADMIN','1234','ADMIN','babsang24@hanmail.net','a1','b1','c1');
 
 
 --
