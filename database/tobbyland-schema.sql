@@ -29,7 +29,13 @@ CREATE TABLE member (
   email_auth tinyint(4) unsigned DEFAULT '1',
   type varchar(45) DEFAULT '1',
   enabled tinyint(4) unsigned DEFAULT '1',
-  PRIMARY KEY (member_id)
+  PRIMARY KEY (member_id),
+  KEY FK_member_method (method),
+  KEY FK_member_task (task),
+  KEY FK_member_exam (exam),
+  CONSTRAINT FK_member_exam FOREIGN KEY (method) REFERENCES tendency (tendency_id),
+  CONSTRAINT FK_member_task FOREIGN KEY (task) REFERENCES tendency (tendency_id),
+  CONSTRAINT FK_member_method FOREIGN KEY (exam) REFERENCES tendency (tendency_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -87,7 +93,7 @@ CREATE TABLE evaluation (
   dislike int(10) unsigned DEFAULT '0',
   report int(10) unsigned DEFAULT '0',
   PRIMARY KEY (evaluation_id),
-/*  UNIQUE KEY uni_lecture_id_member_id (lecture_id,member_id),*/
+  UNIQUE KEY uni_lecture_id_member_id (lecture_id,member_id),
   KEY FK_evaluation_lecture (lecture_id),
   KEY FK_evaluation_member (member_id),
   CONSTRAINT FK_evaluation_member FOREIGN KEY (member_id) REFERENCES member (member_id),

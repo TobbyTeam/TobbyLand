@@ -1,29 +1,10 @@
 USE tobbyland;
 
 --
--- member table data
---
-
-INSERT INTO MEMBER (member_id, password, nickname, email, method, task, exam)
-VALUES ('ADMIN','1234','ADMIN','babsang24@hanmail.net','a1','b1','c1');
-
-
---
--- member_roles table data
---
-
-INSERT INTO MEMBER_ROLES (member_id, ROLE)
-VALUES ('ADMIN','ROLE_ADMIN');
-
-INSERT INTO MEMBER_ROLES (member_id, ROLE)
-VALUES ('ADMIN','ROLE_USER');
-
-
---
 -- tendency table data
 --
 
-insert into tendency
+INSERT INTO tendency (tendency_id, title)
 values ('a1', '독고다이형');
 
 insert into tendency
@@ -52,6 +33,25 @@ values ('c3', '오픈북');
 
 insert into tendency
 values ('c4', '실습');
+
+
+--
+-- member table data
+--
+
+INSERT INTO MEMBER (member_id, password, nickname, email, method, task, exam)
+VALUES ('ADMIN','1234','ADMIN','babsang24@hanmail.net','a1','b1','c1');
+
+
+--
+-- member_roles table data
+--
+
+INSERT INTO MEMBER_ROLES (member_id, ROLE)
+VALUES ('ADMIN','ROLE_ADMIN');
+
+INSERT INTO MEMBER_ROLES (member_id, ROLE)
+VALUES ('ADMIN','ROLE_USER');
 
 
 --
