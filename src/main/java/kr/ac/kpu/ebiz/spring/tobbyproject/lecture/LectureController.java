@@ -82,9 +82,7 @@ public class LectureController {
 
 		ModelAndView mav = new ModelAndView("/lecture/search_list");
 		mav.addObject("lectures", lectureRepository.selectName(lecture_name));
-		if (lectureRepository.selectName(lecture_name).equals(lectureRepository.selectName(a))) {
-			mav.addObject("error", "검색 결과가 없습니다.");
-		}
+		mav.addObject("error", "검색 결과가 없습니다.");
 
 		System.out.println(lectureRepository.selectName(lecture_name) == lectureRepository.selectName(a));
 		System.out.println(lectureRepository.selectName(lecture_name).equals(lectureRepository.selectName(a)));

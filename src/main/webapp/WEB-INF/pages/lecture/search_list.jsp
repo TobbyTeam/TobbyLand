@@ -4,9 +4,6 @@
 <head><title>헬로 월드</title></head>
 <body>
 
-<c:if test="${not empty error}">
-	${error}
-</c:if>
 </br>
 <c:set var="noResult" value="@org.springframework.util.StringUtils@hasLength(${lectures})"/>
 <c:if test="${ false == noResult}"> ${error} </c:if>
