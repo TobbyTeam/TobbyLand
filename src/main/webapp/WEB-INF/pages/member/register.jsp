@@ -12,13 +12,13 @@
     패스워드:<input type="text" name="password"><br>
     별명: <input type="text" name="nickname"><br>
     이메일: <input type="text" name="email"><br>
-    수업방식:A1<input type="radio" name="method" value="A1">
+    수업방식:A1<input type="radio" name="method" value="A1" checked>
              A2<input type="radio" name="method" value="A2">
              A3<input type="radio" name="method" value="A3"><br>
-    과제방식:B1<input type="radio" name="task" value="B1">
+    과제방식:B1<input type="radio" name="task" value="B1"checked>
              B2<input type="radio" name="task" value="B2">
              B3<input type="radio" name="task" value="B3"><br>
-    시험방식:C1<input type="radio" name="exam" value="C1">
+    시험방식:C1<input type="radio" name="exam" value="C1" checked>
              C2<input type="radio" name="exam" value="C2">
              C3<input type="radio" name="exam" value="C3"><br>
 <br>
