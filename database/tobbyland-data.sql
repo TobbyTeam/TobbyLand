@@ -3,7 +3,7 @@
 --
 
 INSERT INTO MEMBER (member_id, password, nickname, email, method, task, exam)
-VALUES ('ADMIN','1234','ADMIN','a','a','a','a');
+VALUES ('ADMIN','1234','운영자','babsang24@hanmail.net','a1','b1','c1');
 
 
 --
@@ -52,7 +52,30 @@ insert into tendency
 values ('c4', '실습');
 
 
+--
+-- lecture table data
+--
 
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES ('admin','sysem','ebiz','kim', 10);
+
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES ('admin','data','nano','박상욱', 10);
+
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES ('admin','기업데이터','나노','이영석', 10);
+
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES ('admin','물리학','기계','나경상', 10);
+
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES ('admin','전기회로','전기','박준규', 10);
+
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES ('admin','C언어','컴공','이영호', 10);
+
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES ('admin','물리학','기계','나경상', 10);
 
 
 
