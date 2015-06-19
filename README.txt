@@ -1,4 +1,4 @@
-[Sakila DB]
+[Tobbyland DB]
 
 mysql -uroot -p < tobbyland-schema.sql
 mysql -uroot -p < tobbyland < tobbyland-data.sql
