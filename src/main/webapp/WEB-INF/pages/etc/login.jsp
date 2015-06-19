@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page session="true"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
 <title>Login Page</title>
@@ -64,7 +65,7 @@
 				</tr>
 				<tr>
 					<td colspan='2'><input name="submit" type="submit"
-						value="submit" /></td>
+						value="로그인" /></td>
 				</tr>
 			</table>
 

@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Tobby - 산기대 강의평가 시스템</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script language="javascript" src="searchbar.js"></script>
+  <script language="javascript" src="star.js"></script>
+    <link rel="stylesheet" href="subwrite.css">
+   
+</head>
+
+<body>
+    <div class="navbar navbar-default">
+		<div class="container">
+        <div class="collapse navbar-collapse" id="bar">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="makesub.html">강의생성</a></li>
+            <li><a href="#">정보변경</a></li>
+            <li><a href="#">로그아웃</a></li>
+          </ul>   
+        </div>
+      </div>
+      </div>
+      
+<div class="container">
+  <div class="row" id="pwd-container">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <form method="post" action="searchresult.html" role="search">
+           <img src="source/mainlogo.png" width="306" height="89" class="img-responsive" alt""/>
+          <div id="searchform">
+                <div class="input-group col-md-12">
+                 <div class="input-group-btn search-panel">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    	<span id="search_concept">과목명</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#">과목명</a></li>
+                      <li><a href="#">교수명</a></li>
+                      <li><a href="#">학과명</a></li>
+                    </ul>
+                </div>
+                    <input type="text" class="form-control input-lg"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div> 
+        </form>
+    </div>
+</div>
+
+
+<hr size="40" width="100%" color="#5d5d5d"/><br/>
+
+ <div class="list-group">
+   <div class="list-group-item">
+	<div class="container">
+  <form class="form-horizontal" role="form">
+    <fieldset>
+      <H2>기업데이터 분석</h2><br />
+       <h3>평점 <span id="count">0</span> 점
+       <div id="stars" class="starrr"></div><br /></h3>
+       
+      <hr color="#333333" width="90%"/><br />
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="card-holder-name">수업방식</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" name="how">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="card-number">과제</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" name="report">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="expiry-month">시험</label>
+        <div class="col-sm-9">
+		<input type="text" class="form-control" name="exam">
+        </div>
+      </div>
+       <div class="form-group">
+        <label class="col-sm-2 control-label" for="expiry-month">총평가</label>
+        <div class="col-sm-9">
+		<form action="#" method="post">
+        <textarea class="form-control counted" name="message" rows="5" style="margin-bottom:10px;"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-9">
+          <button type="button" class="btn btn-success">등록하기</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>	
+   </div>
+ </div>
+
+</body>
+</html>

@@ -143,7 +143,7 @@ public class MemberController {
 		member.put("member_id",member_id);
 		memberRepository.deleteEnabled(member);
 
-		return "/login";
+		return "etc/login";
 	}
 
 }

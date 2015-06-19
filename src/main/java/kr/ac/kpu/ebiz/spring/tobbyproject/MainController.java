@@ -26,7 +26,7 @@ public class MainController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home() {
-        return "/login";
+        return "etc/login";
     }
 
     @RequestMapping(value = "/admin**", method = RequestMethod.GET)
@@ -35,7 +35,7 @@ public class MainController {
         ModelAndView model = new ModelAndView();
         model.addObject("title", "Spring Security Login Form - Database Authentication");
         model.addObject("message", "This page is for ROLE_ADMIN only!");
-        model.setViewName("admin");
+        model.setViewName("etc/admin");
 
         return model;
 
@@ -53,7 +53,7 @@ public class MainController {
         if (logout != null) {
             model.addObject("msg", "You've been logged out successfully.");
         }
-        model.setViewName("login");
+        model.setViewName("etc/login");
 
         return model;
 
@@ -75,7 +75,7 @@ public class MainController {
 
         }
 
-        model.setViewName("403");
+        model.setViewName("etc/403");
         return model;
 
     }

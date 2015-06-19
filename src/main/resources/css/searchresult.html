@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script language="javascript" src="searchbar.js"></script>
+	<link rel="stylesheet" href="searchlist.css">    
+<title>Tobby - 산기대 강의평가 시스템</title>
+</head>
+
+<body>
+    <div class="navbar navbar-default">
+		<div class="container">
+        <div class="collapse navbar-collapse" id="bar">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="makesub.html">강의생성</a></li>
+            <li><a href="#">정보변경</a></li>
+            <li><a href="#">로그아웃</a></li>
+          </ul>   
+        </div>
+      </div>
+      </div>
+      
+<div class="container">
+  <div class="row" id="pwd-container">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <form method="post" action="searchresult.html" role="search">
+           <img src="source/mainlogo.png" width="306" height="89" class="img-responsive" alt""/>
+          <div id="searchform">
+                <div class="input-group col-md-12">
+                 <div class="input-group-btn search-panel">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    	<span id="search_concept">과목명</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#">과목명</a></li>
+                      <li><a href="#">교수명</a></li>
+                      <li><a href="#">학과명</a></li>
+                    </ul>
+                </div>
+                    <input type="text" class="form-control input-lg"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div> 
+        </form>
+    </div>
+</div>
+
+<hr size="40" width="100%" color="#5d5d5d"/><br/>
+
+
+
+		<div class="well">
+        <h1 class="text-center">'데이터'로 검색한 결과</h1>
+        <div class="list-group">
+          <a href=# class="list-group-item">
+                <div class="col-md-8">
+                    <h4 class="list-group-item-heading"> 데이터베이스 설계 </h4>
+                    <p class="list-group-item-text"> 
+                    (전공 3학점, 주 4시간)<br><br>
+                    E-비즈니스 전공<br>
+                    이충석 교수님<br><br>
+                    데이터 베이스를 설계하고 이해하는데 필수로 들어야 하는 과목
+                    </p>
+                </div>
+          		<div class="col-md-4 text-center">
+                    <h2> 121 <small> 건 </small></h2>
+                    <div class="stars">
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </div>
+                    <p> 평점 4 <small> / </small> 5 </p>
+                </div>
+         	 </a>
+          </div>
+          <div class="list-group">
+          <a href=# class="list-group-item">
+                <div class="col-md-8">
+                    <h4 class="list-group-item-heading"> 데이터베이스 응용 </h4>
+                    <p class="list-group-item-text"> 
+                    (전공 3학점, 주 4시간)<br><br>
+                    E-비즈니스 전공<br>
+                    공재근 교수님<br><br>
+                    데이터 베이스를 설계과목에서 수강한 내용을 바탕으로 응용하는 과목
+                    </p>
+                </div>
+          		<div class="col-md-4 text-center">
+                    <h2> 55 <small> 건 </small></h2>
+                    <div class="stars">
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </div>
+                    <p> 평점 3 <small> / </small> 5 </p>
+                </div>
+         	 </a>
+          </div>
+          <div class="list-group">
+          <a href="subinfo.html" class="list-group-item">
+                <div class="col-md-8">
+                    <h4 class="list-group-item-heading"> 기업데이터 분석 </h4>
+                    <p class="list-group-item-text"> 
+                    (전공 3학점, 주 4시간)<br><br>
+                    E-비즈니스 전공<br>
+                    임홍순 교수님<br><br>
+                    데이터 마이닝을 통해 문제 분석 및 해결방법을 각종 모델링을 통해 도출해내는 과목
+                    </p>
+                </div>
+          		<div class="col-md-4 text-center">
+                    <h2> 2 <small> 건 </small></h2>
+                    <div class="stars">
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </div>
+                    <p> 평점 2 <small> / </small> 5 </p>
+                </div>
+         	 </a>
+          </div>
+        </div>
+        
+	</div>
+</div>
+</body>
+</html>

@@ -12,6 +12,11 @@ ${lecture.lecture_name}
 </c:if>
 </br>
 
+<form action="/lecture/search" method="get">
+	검색 : <input type="text" name="lecture_name"><br>
+	<input type="submit" value="검색">
+</form><br>
+
 	<table border="1">
 		<tr>
 			<td>강의평가아이디</td>
@@ -53,5 +58,7 @@ ${lecture.lecture_name}
 	<a href="/evaluation/reg_form?lecture_id=${lecture.lecture_id}">강의평가 작성</a>
 
 	<a href="${pageContext.request.contextPath}/j_spring_security_logout">Log Out</a> <br />
+<a href="/lecture/list">강의생성</a><br/>
+<a href="/member/view">회원정보</a><br/>
 </body>
 </html>
