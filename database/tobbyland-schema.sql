@@ -40,7 +40,7 @@ CREATE TABLE member (
 CREATE TABLE member_roles (
   member_role_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   member_id VARCHAR(45) NOT NULL,
-  ROLE VARCHAR(45) NOT NULL,
+  ROLE VARCHAR(45) DEFAULT 'ROLE_USER',
   PRIMARY KEY (member_role_id),
   UNIQUE KEY uni_member_id_role (ROLE,member_id),
   KEY fk_member_id_idx (member_id),

@@ -1,8 +1,11 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.member;
 
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.springframework.security.core.userdetails.User;
 
 
 @Controller
@@ -26,26 +28,59 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/reg", method = RequestMethod.POST)
-	public ModelAndView insert(@RequestParam("member_id")String member_id, @RequestParam ("password")String password ,
-							   @RequestParam("nickname")String nickname , @RequestParam ("email")String email, @RequestParam("method")String method,
-							   @RequestParam ("task")String task, @RequestParam ("exam")String exam) {
-		ModelAndView mav = new ModelAndView("/login");
-		HashMap<String, String> member = new HashMap<String, String>();
-		member.put("member_id",member_id);
-		member.put("password",password);
-		member.put("nickname",nickname);
-		member.put("email",email);
-		member.put("method",method);
-		member.put("task",task);
-		member.put("exam",exam);
-		memberRepository.insert(member);
+	public String insert(@ModelAttribute("Member") Member member, BindingResult result) {
 
-		HashMap<String, String> member_role = new HashMap<String, String>();
+		String page = "/login";
+
+		String member_id = member.getMember_id();
+
+//		System.out.println(member_id+"+"+"멤버아이디 확인");
+
+		int count = memberRepository.selectCount(member_id);
+
+		member.setTest(count);
+
+//		System.out.println(count + "+" +"잘되나 확인하자");
+
+		int count1= member.getTest();
+
+//		System.out.println(count1 + "+" + "모델 셋 확인");
+
+		MemberValidator validator = new MemberValidator();
+		validator.validate(member, result);
+
+		if(result.hasErrors()) {
+
+			page = "/member/register";
+
+		} else {
+
+		String password = member.getPassword();
+		String nickname = member.getNickname();
+		String email = member.getEmail();
+		String method = member.getMethod();
+		String task = member.getTask();
+		String exam = member.getExam();
+
+		HashMap<String, String> member1 = new HashMap<String, String>();
+		member1.put("member_id",member_id);
+		member1.put("password",password);
+		member1.put("nickname", nickname);
+		member1.put("email",email);
+		member1.put("method",method);
+		member1.put("task", task);
+		member1.put("exam",exam);
+
+/*		HashMap<String, String> member_role = new HashMap<String, String>();
 		member_role.put("member_id", member_id);
-		member_role.put("role", "ROLE_USER");
-		memberRepository.insert_role(member_role);
+		*//*member_role.put("role", "ROLE_USER");*//*
+		memberRepository.insert_role(member_role);*/
 
-		return mav;
+
+
+		memberRepository.insert(member1); }
+
+		return page;
 	}
 
 	@RequestMapping(value = "/view", method = RequestMethod.GET)

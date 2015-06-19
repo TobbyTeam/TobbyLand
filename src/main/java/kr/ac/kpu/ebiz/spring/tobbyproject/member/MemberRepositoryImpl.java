@@ -11,6 +11,11 @@ public class MemberRepositoryImpl extends SqlSessionDaoSupport implements Member
 		return getSqlSession().selectOne("MemberRepository.select", memberId);
 	}
 
+	public int selectCount(String memberId) {
+		return getSqlSession().selectOne("MemberRepository.selectCount", memberId);
+	}
+
+
 	public List<Map> selectAll() {
 		return getSqlSession().selectList("MemberRepository.selectAll");
 	}

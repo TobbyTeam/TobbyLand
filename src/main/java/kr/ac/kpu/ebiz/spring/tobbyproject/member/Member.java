@@ -12,6 +12,7 @@ public class Member {
     private String method;
     private String task;
     private String exam;
+    private int test;
 
     public String getMember_id() {
         return member_id;
@@ -67,5 +68,13 @@ public class Member {
 
     public void setExam(String exam) {
         this.exam = exam;
+    }
+
+    public int getTest() {
+        return test;
+    }
+
+    public void setTest(int test) {
+        this.test = test;
     }
 }

@@ -7,6 +7,8 @@ public interface MemberRepository {
 
 	Map select(String memberId);
 
+	int selectCount(String memberId);
+
 	List<Map> selectAll();
 
 	boolean delete(int memberId);
