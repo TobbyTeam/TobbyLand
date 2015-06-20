@@ -27,7 +27,7 @@ public class EvaluationController {
 	public ModelAndView list(@RequestParam("lecture_id") int lecture_id) {
 
 		ModelAndView mav = new ModelAndView("/evaluation/list");
-		mav.addObject("lecture", lectureRepository.select(lecture_id));
+		mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
 		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 
 		return mav;
@@ -63,7 +63,7 @@ public class EvaluationController {
 		evaluationRepository.insert(evaluation);
 
 		ModelAndView mav = new ModelAndView("/evaluation/list");
-		mav.addObject("lecture", lectureRepository.select(lecture_id));
+		mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
 		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 
 		return mav;
@@ -93,7 +93,7 @@ public class EvaluationController {
 		evaluationRepository.update(evaluation);
 
 		ModelAndView mav = new ModelAndView("/evaluation/list");
-		mav.addObject("lecture", lectureRepository.select(lecture_id));
+		mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
 		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 
 		return mav;
@@ -106,7 +106,7 @@ public class EvaluationController {
 		evaluationRepository.updateLike(evaluation_id);
 
 		ModelAndView mav = new ModelAndView("/evaluation/list");
-		mav.addObject("lecture", lectureRepository.select(lecture_id));
+		mav.addObject("lecture", lectureRepositoryIAN.select(lecture_id));
 		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 		return mav;
 	}
@@ -118,7 +118,7 @@ public class EvaluationController {
 		evaluationRepository.updateDislike(evaluation_id);
 
 		ModelAndView mav = new ModelAndView("/evaluation/list");
-		mav.addObject("lecture", lectureRepository.select(lecture_id));
+		mav.addObject("lecture", lectureRepositoryIAN.select(lecture_id));
 		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 
 		return mav;
@@ -131,7 +131,7 @@ public class EvaluationController {
 		evaluationRepository.updateReport(evaluation_id);
 
 		ModelAndView mav = new ModelAndView("/evaluation/list");
-		mav.addObject("lecture", lectureRepository.select(lecture_id));
+		mav.addObject("lecture", lectureRepositoryIAN.select(lecture_id));
 		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 
 		return mav;
@@ -155,16 +155,14 @@ public class EvaluationController {
 		System.out.println(count);
 
 		if(count != 0) {
-			mav.addObject("lecture", lectureRepository.select(lecture_id));
-			mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 			mav.addObject("error", "이미 추천/비공감/신고 중에 하나를 하셨습니다.");
-
 		} else {
 			evaluationRepository.insertSub(evaluationSub);
 			evaluationRepository.updateLike(evaluation_id);
-			mav.addObject("lecture", lectureRepository.select(lecture_id));
-			mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 		}
+
+		mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
+		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 
 		return mav;
 	}
@@ -187,16 +185,15 @@ public class EvaluationController {
 		System.out.println(count);
 
 		if(count != 0) {
-			mav.addObject("lecture", lectureRepository.select(lecture_id));
-			mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 			mav.addObject("error", "이미 추천/비공감/신고 중에 하나를 하셨습니다.");
 
 		} else {
 			evaluationRepository.insertSub(evaluationSub);
 			evaluationRepository.updateDislike(evaluation_id);
-			mav.addObject("lecture", lectureRepository.select(lecture_id));
-			mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 		}
+
+		mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
+		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 
 		return mav;
 	}
@@ -219,16 +216,14 @@ public class EvaluationController {
 		System.out.println(count);
 
 		if(count != 0) {
-			mav.addObject("lecture", lectureRepository.select(lecture_id));
-			mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 			mav.addObject("error", "이미 추천/비공감/신고 중에 하나를 하셨습니다.");
-
 		} else {
 			evaluationRepository.insertSub(evaluationSub);
 			evaluationRepository.updateReport(evaluation_id);
-			mav.addObject("lecture", lectureRepository.select(lecture_id));
-			mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 		}
+
+		mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
+		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 
 		return mav;
 	}

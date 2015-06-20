@@ -7,6 +7,10 @@
     SELECT * FROM LECTURE WHERE LECTURE_ID = #{lecture_id}
   </select>
 
+  <select id="selectIAN" resultType="map">
+    SELECT lecture_id, lecture_name FROM LECTURE WHERE LECTURE_ID = #{lecture_id}
+  </select>
+
   <select id="selectAll" resultType="map">
     SELECT * FROM LECTURE WHERE likes <![CDATA[ < ]]> 10 AND IS_DELETE <![CDATA[ = ]]> 1
   </select>

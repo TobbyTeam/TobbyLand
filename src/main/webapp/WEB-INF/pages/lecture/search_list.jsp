@@ -5,8 +5,13 @@
 <body>
 
 </br>
-<c:set var="noResult" value="@org.springframework.util.StringUtils@hasLength(${lectures})"/>
-<c:if test="${ false == noResult}"> ${error} </c:if>
+<%--<c:set var="noResult" value="@org.springframework.util.StringUtils@hasLength(${lectures})"/>
+
+<c:if test="${ false == noResult}"> ${error} </c:if>--%>
+
+<c:if test="${not empty error}">
+	<div class="error">${error}</div>
+</c:if>
 
 <form action="/lecture/search" method="get">
 	검색 : <input type="text" name="lecture_name"><br>

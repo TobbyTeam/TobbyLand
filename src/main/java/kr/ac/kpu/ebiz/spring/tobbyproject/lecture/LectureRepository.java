@@ -7,6 +7,8 @@ public interface LectureRepository {
 
 	Map select(Integer lectureId);
 
+	Map selectIAN(Integer lectureId);
+
 	List<Map> selectAll();
 
 	List<Map> selectName(String lectureName);
