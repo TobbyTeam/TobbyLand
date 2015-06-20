@@ -7,6 +7,10 @@ public interface EvaluationRepository {
 
 	Map select(Integer evaluationId);
 
+	int selectCount(String memberId);
+
+	String selectMember(Integer lectureId);
+
 	List<Map> selectAll();
 
 	List<Map> selectL(Integer lectureId);

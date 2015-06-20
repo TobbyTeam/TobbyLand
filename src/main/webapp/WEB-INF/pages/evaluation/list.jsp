@@ -8,7 +8,7 @@ ${lecture.lecture_name}
 </br></br>
 
 <c:if test="${not empty error}">
-	<div class="error">${error}</div>
+	${error}
 </c:if>
 </br>
 

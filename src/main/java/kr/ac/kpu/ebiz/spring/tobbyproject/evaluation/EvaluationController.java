@@ -35,9 +35,26 @@ public class EvaluationController {
 
 	@RequestMapping(value = "/reg_form", method = RequestMethod.GET)
 	public ModelAndView reg(@RequestParam int lecture_id) {
+
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String member_id = user.getUsername();
+
+		int count = evaluationRepository.selectCount(member_id);
+
+		ModelAndView mav1 = new ModelAndView("/evaluation/list");
+
+		if(count != 0) {
+			mav1.addObject("error", "이미 이 강의에 대해 강의평가를 작성하셨습니다.");
+			mav1.addObject("lecture", lectureRepository.selectIAN(lecture_id));
+			mav1.addObject("evaluations", evaluationRepository.selectL(lecture_id));
+			return mav1;
+		}
+
 		ModelAndView mav = new ModelAndView("/evaluation/register");
+
 		HashMap evaluation = new HashMap();
 		evaluation.put("lecture_id", lecture_id);
+
 		mav.addObject("evaluation", evaluation);
 
 		return mav;
@@ -51,19 +68,29 @@ public class EvaluationController {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String member_id = user.getUsername();
 
-		HashMap<String, java.io.Serializable> evaluation = new HashMap<String, java.io.Serializable>();
-		evaluation.put("lecture_id", lecture_id);
-		evaluation.put("member_id", member_id);
-		evaluation.put("method", method);
-		evaluation.put("task", task);
-		evaluation.put("exam", exam);
-		evaluation.put("comment", comment);
-		evaluation.put("score", score);
+		int count = evaluationRepository.selectCount(member_id);
 
-		evaluationRepository.insert(evaluation);
+		System.out.println(count + "+" + "카운트 확인");
 
 		ModelAndView mav = new ModelAndView("/evaluation/list");
 		mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
+
+		if(count != 0) {
+			mav.addObject("error", "이미 이 강의에 대해 강의평가를 작성하셨습니다.");
+		}else {
+
+			HashMap<String, java.io.Serializable> evaluation = new HashMap<String, java.io.Serializable>();
+			evaluation.put("lecture_id", lecture_id);
+			evaluation.put("member_id", member_id);
+			evaluation.put("method", method);
+			evaluation.put("task", task);
+			evaluation.put("exam", exam);
+			evaluation.put("comment", comment);
+			evaluation.put("score", score);
+
+			evaluationRepository.insert(evaluation);
+		}
+
 		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 
 		return mav;
@@ -98,44 +125,6 @@ public class EvaluationController {
 
 		return mav;
 	}
-
-/*	@RequestMapping(value = "/likes", method = RequestMethod.GET)
-	public ModelAndView likes(@RequestParam("evaluation_id")int evaluation_id,
-							  @RequestParam("lecture_id") int lecture_id){
-
-		evaluationRepository.updateLike(evaluation_id);
-
-		ModelAndView mav = new ModelAndView("/evaluation/list");
-		mav.addObject("lecture", lectureRepositoryIAN.select(lecture_id));
-		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
-		return mav;
-	}
-
-	@RequestMapping(value = "/dislike", method = RequestMethod.GET)
-	public ModelAndView dislike(@RequestParam("evaluation_id")int evaluation_id,
-								@RequestParam("lecture_id") int lecture_id)	{
-
-		evaluationRepository.updateDislike(evaluation_id);
-
-		ModelAndView mav = new ModelAndView("/evaluation/list");
-		mav.addObject("lecture", lectureRepositoryIAN.select(lecture_id));
-		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
-
-		return mav;
-	}
-
-	@RequestMapping(value = "/report", method = RequestMethod.GET)
-	public ModelAndView report(@RequestParam("evaluation_id")int evaluation_id,
-							   @RequestParam("lecture_id") int lecture_id) {
-
-		evaluationRepository.updateReport(evaluation_id);
-
-		ModelAndView mav = new ModelAndView("/evaluation/list");
-		mav.addObject("lecture", lectureRepositoryIAN.select(lecture_id));
-		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
-
-		return mav;
-	}*/
 
 	@RequestMapping(value = "/likes", method = RequestMethod.GET)
 	public ModelAndView likes(@RequestParam("evaluation_id")int evaluation_id, @RequestParam("lecture_id") int lecture_id,
@@ -229,14 +218,24 @@ public class EvaluationController {
 	}
 
 	@RequestMapping(value = "/isDelete", method = RequestMethod.GET)
-	public ModelAndView isDelete(@RequestParam("evaluation_id")int evaluation_id, @RequestParam("lecture_id") int lecture_id)	{
+	public ModelAndView isDelete(@RequestParam("evaluation_id")int evaluation_id, @RequestParam("lecture_id") int lecture_id) {
 
-/*		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String member_id = user.getUsername();*/
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String member_id = user.getUsername();
 
-		evaluationRepository.isDelete(evaluation_id);
+		String writer = evaluationRepository.selectMember(evaluation_id);
+
+		System.out.println(writer);
+		System.out.println(member_id);
+		System.out.println(writer.equals(member_id));
 
 		ModelAndView mav = new ModelAndView("/evaluation/list");
+
+		if(member_id.equals(writer) == true){
+			evaluationRepository.isDelete(evaluation_id);
+		} else {
+			mav.addObject("error", "본인이 작성한 것이 아닙니다.");
+		}
 
 		mav.addObject("lecture", lectureRepository.select(lecture_id));
 		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));

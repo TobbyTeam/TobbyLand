@@ -125,13 +125,22 @@ public class LectureController {
 	@RequestMapping(value = "/isDelete", method = RequestMethod.GET)
 	public ModelAndView isDelete(@RequestParam("lecture_id") int lecture_id)	{
 
-/*		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String member_id = user.getUsername();*/
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String member_id = user.getUsername();
 
-		lectureRepository.isDelete(lecture_id);
+		String writer = lectureRepository.selectMember(lecture_id);
+
+		System.out.println(writer);
+		System.out.println(member_id);
+		System.out.println(writer.equals(member_id));
 
 		ModelAndView mav = new ModelAndView("/lecture/list");
 
+		if(member_id.equals(writer) == true){
+			lectureRepository.isDelete(lecture_id);
+		} else {
+			mav.addObject("error", "본인이 작성한 것이 아닙니다.");
+		}
 		mav.addObject("lectures", lectureRepository.selectAll());
 
 		return mav;

@@ -15,6 +15,14 @@
     SELECT * FROM EVALUATION WHERE LECTURE_ID = #{value} AND IS_DELETE <![CDATA[ = ]]> 1
   </select>
 
+  <select id="selectCount" resultType="int">
+    SELECT Count(evaluation_id) FROM EVALUATION WHERE MEMBER_ID = #{member_id}
+  </select>
+
+  <select id="selectMember" resultType="String">
+    SELECT member_id FROM EVALUATION WHERE Evaluation_ID = #{evaluation_id}
+  </select>
+
 <!--  <select id="selectL" resultType="map">
     SELECT * FROM EVALUATION E LEFT OUTER JOIN LECTURE L ON E.LECTURE_ID=L.LECTURE_ID WHERE E.LECTURE_ID = #{value}
   </select>-->
@@ -31,8 +39,8 @@
   </update>
 
   <insert id="insert" parameterType="map">
-    INSERT INTO EVALUATION (member_id, lecture_id, method, task, exam, comment, score)
-    VALUES (#{member_id},#{lecture_id},#{method},#{task},#{exam},#{comment},#{score})
+    INSERT INTO EVALUATION (lecture_id, member_id, method, task, exam, comment, score)
+    VALUES (#{lecture_id},#{member_id},#{method},#{task},#{exam},#{comment},#{score})
   </insert>
 
   <update id="update" parameterType="map">

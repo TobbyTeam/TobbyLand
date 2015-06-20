@@ -6,6 +6,8 @@
 </head>
 <body>
 
+
+
 <form action="/lecture/search" method="get">
     검색 : <input type="text" name="lecture_name"><br>
     <input type="submit" value="검색">
