@@ -39,25 +39,28 @@ public class EvaluationController {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String member_id = user.getUsername();
 
-		int count = evaluationRepository.selectCount(member_id);
+		HashMap check = new HashMap();
+		check.put("lecture_id", lecture_id);
+		check.put("member_id", member_id);
 
-		ModelAndView mav1 = new ModelAndView("/evaluation/list");
+		int count = evaluationRepository.selectCount(check);
 
 		if(count != 0) {
+			ModelAndView mav1 = new ModelAndView("/evaluation/list");
 			mav1.addObject("error", "이미 이 강의에 대해 강의평가를 작성하셨습니다.");
 			mav1.addObject("lecture", lectureRepository.selectIAN(lecture_id));
 			mav1.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 			return mav1;
 		}
 
-		ModelAndView mav = new ModelAndView("/evaluation/register");
+		ModelAndView mav2 = new ModelAndView("/evaluation/register");
 
 		HashMap evaluation = new HashMap();
 		evaluation.put("lecture_id", lecture_id);
 
-		mav.addObject("evaluation", evaluation);
+		mav2.addObject("evaluation", evaluation);
 
-		return mav;
+		return mav2;
 	}
 
 	@RequestMapping(value = "/reg", method = RequestMethod.POST)
@@ -68,7 +71,11 @@ public class EvaluationController {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String member_id = user.getUsername();
 
-		int count = evaluationRepository.selectCount(member_id);
+		HashMap check = new HashMap();
+		check.put("lecture_id", lecture_id);
+		check.put("member_id", member_id);
+
+		int count = evaluationRepository.selectCount(check);
 
 		System.out.println(count + "+" + "카운트 확인");
 
@@ -97,9 +104,26 @@ public class EvaluationController {
 	}
 
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
-	public ModelAndView view(@RequestParam int evaluation_id) {
-		Map evaluation = evaluationRepository.select(evaluation_id);
+	public ModelAndView view(@RequestParam int evaluation_id, @RequestParam int lecture_id) {
+
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String member_id = user.getUsername();
+
+		String writer = evaluationRepository.selectMember(evaluation_id);
+
+		System.out.println(member_id + "+" + "로그인아이디");
+		System.out.println(writer + "+" + "작성자아이디");
+
+		if(member_id.equals(writer) == false){
+			ModelAndView mav = new ModelAndView("/evaluation/list");
+			mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
+			mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
+			mav.addObject("error", "본인이 작성하신 강의평가가 아닙니다.");
+			return mav;
+		}
+
 		ModelAndView mav = new ModelAndView("/evaluation/modify");
+		Map evaluation = evaluationRepository.select(evaluation_id);
 		mav.addObject("evaluation", evaluation);
 
 		return mav;
@@ -110,6 +134,19 @@ public class EvaluationController {
 							   @RequestParam("exam") String exam, @RequestParam("comment") String comment, @RequestParam("score") int score,
 							   @RequestParam("lecture_id") int lecture_id) {
 
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String member_id = user.getUsername();
+
+		String writer = evaluationRepository.selectMember(evaluation_id);
+
+		ModelAndView mav = new ModelAndView("/evaluation/list");
+
+		if(member_id.equals(writer) == false){
+
+			mav.addObject("error", "본인이 작성하신 강의평가가 아닙니다.");
+
+		}
+
 		HashMap<String, java.io.Serializable> evaluation = new HashMap<String, java.io.Serializable>();
 		evaluation.put("evaluation_id", evaluation_id);
 		evaluation.put("method", method);
@@ -119,7 +156,6 @@ public class EvaluationController {
 		evaluation.put("score", score);
 		evaluationRepository.update(evaluation);
 
-		ModelAndView mav = new ModelAndView("/evaluation/list");
 		mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
 		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 
@@ -224,10 +260,6 @@ public class EvaluationController {
 		String member_id = user.getUsername();
 
 		String writer = evaluationRepository.selectMember(evaluation_id);
-
-		System.out.println(writer);
-		System.out.println(member_id);
-		System.out.println(writer.equals(member_id));
 
 		ModelAndView mav = new ModelAndView("/evaluation/list");
 

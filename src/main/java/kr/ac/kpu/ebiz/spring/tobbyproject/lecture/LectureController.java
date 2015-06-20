@@ -51,16 +51,42 @@ public class LectureController {
 
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public ModelAndView view(@RequestParam int lecture_id) {
-		Map lecture = lectureRepository.select(lecture_id);
+
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String member_id = user.getUsername();
+
+		String writer = lectureRepository.selectMember(lecture_id);
+
+		if(member_id.equals(writer) == false){
+			ModelAndView mav = new ModelAndView("/lecture/list");
+			mav.addObject("lectures", lectureRepository.selectAll());
+			mav.addObject("error", "본인이 생성하신 강의가 아닙니다.");
+			return mav;
+		}
+
 		ModelAndView mav = new ModelAndView("/lecture/modify");
+		Map lecture = lectureRepository.select(lecture_id);
 		mav.addObject("lecture", lecture);
+
 		return mav;
 	}
 
 	@RequestMapping(value = "/mod", method = RequestMethod.POST)
 	public ModelAndView modify(@RequestParam int lecture_id,@RequestParam ("lecture_name")String lecture_name,
 							   @RequestParam ("dept")String dept, @RequestParam("prof")String prof)	{
+
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String member_id = user.getUsername();
+
+		String writer = lectureRepository.selectMember(lecture_id);
+
 		ModelAndView mav = new ModelAndView("/lecture/list");
+
+		if(member_id.equals(writer) == false){
+			mav.addObject("lectures", lectureRepository.selectAll());
+			mav.addObject("error", "본인이 생성하신 강의가 아닙니다.");
+		}
+
 		HashMap<String, java.io.Serializable> lecture = new HashMap<String, java.io.Serializable>();
 		lecture.put("lecture_id",lecture_id);
 		lecture.put("lecture_name",lecture_name);
@@ -68,6 +94,7 @@ public class LectureController {
 		lecture.put("prof",prof);
 		lectureRepository.update(lecture);
 		mav.addObject("lectures", lectureRepository.selectAll());
+
 		return mav;
 	}
 
@@ -112,7 +139,6 @@ public class LectureController {
 		if(count != 0) {
 			mav.addObject("lectures", lectureRepository.selectAll());
 			mav.addObject("error", "이미 클릭하셨습니다.");
-
 		} else {
 			lectureRepository.insertSub(lecture);
 			lectureRepository.updateLike(lecture_id);
@@ -130,10 +156,6 @@ public class LectureController {
 
 		String writer = lectureRepository.selectMember(lecture_id);
 
-		System.out.println(writer);
-		System.out.println(member_id);
-		System.out.println(writer.equals(member_id));
-
 		ModelAndView mav = new ModelAndView("/lecture/list");
 
 		if(member_id.equals(writer) == true){
@@ -141,6 +163,7 @@ public class LectureController {
 		} else {
 			mav.addObject("error", "본인이 작성한 것이 아닙니다.");
 		}
+
 		mav.addObject("lectures", lectureRepository.selectAll());
 
 		return mav;

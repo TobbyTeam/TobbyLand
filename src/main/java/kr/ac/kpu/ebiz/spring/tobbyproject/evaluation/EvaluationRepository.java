@@ -7,7 +7,7 @@ public interface EvaluationRepository {
 
 	Map select(Integer evaluationId);
 
-	int selectCount(String memberId);
+	int selectCount(Map evaluation);
 
 	String selectMember(Integer lectureId);
 

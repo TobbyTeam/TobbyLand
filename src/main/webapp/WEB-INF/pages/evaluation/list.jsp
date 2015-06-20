@@ -50,7 +50,7 @@ ${lecture.lecture_name}
 			<td><a href="/evaluation/likes?evaluation_id=${evaluation.evaluation_id}&lecture_id=${evaluation.lecture_id}">추천</a></td>
 			<td><a href="/evaluation/dislike?evaluation_id=${evaluation.evaluation_id}&lecture_id=${evaluation.lecture_id}">비공감</a></td>
 			<td><a href="/evaluation/report?evaluation_id=${evaluation.evaluation_id}&lecture_id=${evaluation.lecture_id}">신고</a></td>
-			<td><a href="/evaluation/view?evaluation_id=${evaluation.evaluation_id}">수정</a></td>
+			<td><a href="/evaluation/view?evaluation_id=${evaluation.evaluation_id}&lecture_id=${evaluation.lecture_id}">수정</a></td>
 			<td><a href="/evaluation/isDelete?evaluation_id=${evaluation.evaluation_id}&lecture_id=${evaluation.lecture_id}">삭제</a></td>
 		</tr>
 		</c:forEach>
@@ -58,7 +58,7 @@ ${lecture.lecture_name}
 	<a href="/evaluation/reg_form?lecture_id=${lecture.lecture_id}">강의평가 작성</a>
 
 	<a href="${pageContext.request.contextPath}/j_spring_security_logout">Log Out</a> <br />
-<a href="/lecture/list">강의생성</a><br/>
+<a href="/lecture/list">강의생성게시판</a><br/>
 <a href="/member/view">회원정보</a><br/>
 </body>
 </html>

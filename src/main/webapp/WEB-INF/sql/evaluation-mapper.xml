@@ -16,7 +16,7 @@
   </select>
 
   <select id="selectCount" resultType="int">
-    SELECT Count(evaluation_id) FROM EVALUATION WHERE MEMBER_ID = #{member_id}
+    SELECT Count(evaluation_id) FROM EVALUATION WHERE MEMBER_ID = #{member_id} AND LECTURE_ID = #{lecture_id}
   </select>
 
   <select id="selectMember" resultType="String">

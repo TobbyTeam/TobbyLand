@@ -35,7 +35,7 @@
 	</table></br>
 
 <a href="${pageContext.request.contextPath}/j_spring_security_logout">Log Out</a> <br />
-<a href="/lecture/list">강의생성</a><br/>
+<a href="/lecture/list">강의생성게시판</a><br/>
 <a href="/member/view">회원정보</a><br/>
 
 </body>
