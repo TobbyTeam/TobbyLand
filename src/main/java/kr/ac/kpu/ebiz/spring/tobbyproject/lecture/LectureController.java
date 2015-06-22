@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,18 +38,6 @@ public class LectureController {
 							   @RequestParam("prof")String prof) {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String member_id = user.getUsername();
-
-		if(member_id.equalsIgnoreCase("admin")){
-			ModelAndView mav = new ModelAndView("/admin/lectureList");
-			HashMap<String, String> lecture = new HashMap<String, String>();
-			lecture.put("member_id", member_id);
-			lecture.put("lecture_name", lecture_name);
-			lecture.put("dept", dept);
-			lecture.put("prof", prof);
-			lectureRepository.insertAdmin(lecture);
-			mav.addObject("lectures", lectureRepository.selectAdmin());
-			return mav;
-		}
 
 		ModelAndView mav = new ModelAndView("/lecture/list");
 		HashMap<String, String> lecture = new HashMap<String, String>();
@@ -87,8 +76,8 @@ public class LectureController {
 	public ModelAndView modify(@RequestParam int lecture_id,@RequestParam ("lecture_name")String lecture_name,
 							   @RequestParam ("dept")String dept, @RequestParam("prof")String prof)	{
 
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String member_id = user.getUsername();
+/*		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String member_id = user.getUsername();*/
 
 /*		String writer = lectureRepository.selectMember(lecture_id);*/
 
@@ -96,18 +85,6 @@ public class LectureController {
 			mav.addObject("lectures", lectureRepository.selectAll());
 			mav.addObject("error", "본인이 생성하신 강의가 아닙니다.");
 		}*/
-
-		if(member_id.equalsIgnoreCase("admin")){
-			ModelAndView mav = new ModelAndView("/admin/lectureList");
-			HashMap<String, java.io.Serializable> lecture = new HashMap<String, java.io.Serializable>();
-			lecture.put("lecture_id",lecture_id);
-			lecture.put("lecture_name",lecture_name);
-			lecture.put("dept",dept);
-			lecture.put("prof",prof);
-			lectureRepository.update(lecture);
-			mav.addObject("lectures", lectureRepository.selectAdmin());
-			return mav;
-		}
 
 		ModelAndView mav = new ModelAndView("/lecture/list");
 		HashMap<String, java.io.Serializable> lecture = new HashMap<String, java.io.Serializable>();
@@ -123,13 +100,19 @@ public class LectureController {
 
 	@RequestMapping(value = "/search_form", method = RequestMethod.GET)
 	public String search_form() {
+
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Collection authorites = user.getAuthorities();
+
+		System.out.println(authorites.toString());
+
 		return "/lecture/search";
 	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public ModelAndView search(@RequestParam ("searchType")String searchType, @RequestParam ("searchWord")String searchWord) {
 
-		ModelAndView mav = new ModelAndView("/lecture/search_list");
+		ModelAndView mav = new ModelAndView("lecture/searchList");
 
 		HashMap search = new HashMap();
 		search.put("searchType",searchType);

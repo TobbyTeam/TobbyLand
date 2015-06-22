@@ -13,6 +13,10 @@ public interface EvaluationRepository {
 
 	List<Map> selectAll();
 
+	List<Map> selectAdmin();
+
+	List<Map> selectReport();
+
 	List<Map> selectL(Integer lectureId);
 
 	List<Map> selectBest(Integer lectureId);

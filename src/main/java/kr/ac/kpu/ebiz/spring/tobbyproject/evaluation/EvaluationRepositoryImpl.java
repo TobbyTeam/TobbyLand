@@ -23,6 +23,14 @@ public class EvaluationRepositoryImpl extends SqlSessionDaoSupport implements Ev
 		return getSqlSession().selectList("EvaluationRepository.selectAll");
 	}
 
+	public List<Map> selectAdmin()  {
+		return getSqlSession().selectList("EvaluationRepository.selectAdmin");
+	}
+
+	public List<Map> selectReport()  {
+		return getSqlSession().selectList("EvaluationRepository.selectReport");
+	}
+
 	public List<Map> selectL(Integer lectureId) {
 		return getSqlSession().selectList("EvaluationRepository.selectL", lectureId);
 	}

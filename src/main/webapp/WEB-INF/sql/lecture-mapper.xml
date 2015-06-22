@@ -32,6 +32,16 @@
     ORDER BY WRITE_DATE DESC
   </select>
 
+  <select id="selectSearchAdmin" parameterType="map" resultType="map">
+    SELECT * FROM LECTURE WHERE
+    <choose><when test="searchType != null and searchType.equalsIgnoreCase('lecture_name')">LECTURE_NAME LIKE CONCAT('%', #{searchWord}, '%')</when>
+      <when test="searchType != null and searchType.equalsIgnoreCase('dept')">DEPT LIKE CONCAT('%', #{searchWord}, '%')</when>
+      <when test="searchType != null and searchType.equalsIgnoreCase('prof')">PROF LIKE CONCAT('%', #{searchWord}, '%')</when>
+      <otherwise>MEMBER_ID LIKE CONCAT('%', #{searchWord}, '%')</otherwise>
+    </choose>
+    ORDER BY WRITE_DATE DESC
+  </select>
+
   <delete id="delete" parameterType="int">
     DELETE FROM LECTURE WHERE LECTURE_ID = #{value}
   </delete>

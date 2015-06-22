@@ -17,15 +17,17 @@
 		<option value="prof">교수명</option>
 	</select>
 
-	<input type="text" name="searchWord"><br>
+	<input type="text" name="searchWord">
 	<input type="submit" value="검색">
 
 </form>
-<br/>
+
+<br/><br/>
 
 
 	<table border="1">
 		<tr>
+			<td>강의아이디</td>
 			<td>작성자</td>
 			<td>강의명</td>
 			<td>학과명</td>
@@ -36,6 +38,7 @@
 		</tr>
 		<c:forEach var="lecture" items="${lectures}" varStatus="status">
 		<tr>
+			<td>${lecture.lecture_id}</td>
 			<td>${lecture.member_id}</td>
 			<td>${lecture.lecture_name}</td>
 			<td>${lecture.dept}</td>
@@ -49,13 +52,31 @@
 			<td><a href="/admin/lecture/delete?lecture_id=${lecture.lecture_id}">완전삭제</a></td>
 		</tr>
 		</c:forEach>
-	</table></br>
+	</table>
+
+</br><br/>
+
+<form action="/admin/lecture/Search" method="get">
+
+	검색
+	<select name="searchType">
+		<option value="lecture_name">강의명</option>
+		<option value="dept">학과명</option>
+		<option value="prof">교수명</option>
+		<option value="member_id">작성자</option>
+	</select>
+
+	<input type="text" name="searchWord">
+	<input type="submit" value="검색">
+
+</form>
 
 
-	<a href="/lecture/reg_form">강의생성</a>
+	<a href="/admin//lecture/Form">강의생성</a><br/><br/>
 
-	<a href="${pageContext.request.contextPath}/j_spring_security_logout">Log Out</a> <br />
-<a href="/member/view">회원정보</a><br/>
+	<a href="${pageContext.request.contextPath}/j_spring_security_logout">Log Out</a> <br/><br/>
+
+	<a href="/member/view">회원정보</a><br/>
 
 
 </body>

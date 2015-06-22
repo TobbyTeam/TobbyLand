@@ -16,20 +16,25 @@
     <option value="prof">교수명</option>
     </select>
 
-    <input type="text" name="searchWord"><br>
+    <input type="text" name="searchWord">
     <input type="submit" value="검색">
 
 </form>
-<br/>
 
-<a href="${pageContext.request.contextPath}/j_spring_security_logout">Log Out</a> <br />
+<br/><br/>
+
+<a href="${pageContext.request.contextPath}/j_spring_security_logout">Log Out</a> <br/><br/>
 
 <br/>
-<a href="/lecture/list">강의생성게시판</a><br/>
+<a href="/lecture/list">강의생성게시판</a><br/><br/>
 <a href="/member/view">회원정보</a><br/>
 
 <sec:authorize access="hasRole('ROLE_ADMIN')">
-<a href="/admin/lecture/list">강의관리</a><br/>
+<a href="/admin/lecture/list">강의관리</a><br/><br/>
+</sec:authorize>
+
+<sec:authorize access="hasRole('ROLE_ADMIN')">
+    <a href="/admin/evaluation/reportList">강의평가관리</a><br/><br/>
 </sec:authorize>
 
 

@@ -8,7 +8,15 @@
   </select>
 
   <select id="selectAll" resultType="map">
-    SELECT * FROM EVALUATION
+    SELECT * FROM EVALUATION WHERE IS_DELETE <![CDATA[ = ]]> 1 AND REPORT <![CDATA[ < ]]> 5 ORDER BY WRITE_DATE DESC
+  </select>
+
+  <select id="selectAdmin" resultType="map">
+    SELECT * FROM EVALUATION ORDER BY WRITE_DATE DESC
+  </select>
+
+  <select id="selectReport" resultType="map">
+    SELECT * FROM EVALUATION WHERE REPORT <![CDATA[ >= ]]> 5 ORDER BY WRITE_DATE DESC
   </select>
 
   <select id="selectL" resultType="map">

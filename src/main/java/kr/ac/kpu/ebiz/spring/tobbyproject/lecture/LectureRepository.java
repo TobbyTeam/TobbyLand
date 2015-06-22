@@ -17,6 +17,8 @@ public interface LectureRepository {
 
 	List<Map> selectSearch(Map search);
 
+	List<Map> selectSearchAdmin(Map search);
+
 	boolean delete(int lectureId);
 
 	boolean isDelete(int lectureId);

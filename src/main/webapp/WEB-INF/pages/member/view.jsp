@@ -14,11 +14,12 @@
         <option value="prof">교수명</option>
     </select>
 
-    <input type="text" name="searchWord"><br>
+    <input type="text" name="searchWord">
     <input type="submit" value="검색">
 
 </form>
-<br/>
+
+<br/><br/>
 
 <table border="1">
 
@@ -40,21 +41,19 @@
       <td>${member.exam}</td>
   </tr>
 
-    <a href="/member/modView">정보수정</a><br/>
+</table>
 
-    <a href="/member/deleteEnabled">회원탈퇴</a> <br />
+<br/><br/>
 
-    <br/>
+    <a href="/member/modView">정보수정</a><br/><br/>
 
-    <a href="${pageContext.request.contextPath}/j_spring_security_logout">Log Out</a> <br />
-    <a href="/lecture/list">강의생성게시판</a><br/>
+    <a href="/member/deleteEnabled">회원탈퇴</a> <br /><br/>
+
+    <a href="${pageContext.request.contextPath}/j_spring_security_logout">Log Out</a> <br/><br/>
+
+    <a href="/lecture/list">강의생성게시판</a><br/><br/>
+
     <a href="/member/view">회원정보</a><br/>
-
-    <br/>
-
-
-</table></br>
-
 
 </body>
 </html>

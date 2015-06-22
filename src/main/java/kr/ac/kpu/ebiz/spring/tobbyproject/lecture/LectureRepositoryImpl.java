@@ -29,6 +29,8 @@ public class LectureRepositoryImpl extends SqlSessionDaoSupport implements Lectu
 
 	public List<Map> selectSearch(Map search) { return getSqlSession().selectList("LectureRepository.selectSearch", search); }
 
+	public List<Map> selectSearchAdmin(Map search) { return getSqlSession().selectList("LectureRepository.selectSearchAdmin", search); }
+
 	public boolean delete(int lectureId) {
 		return getSqlSession().delete("LectureRepository.delete", lectureId) > 0;
 	}

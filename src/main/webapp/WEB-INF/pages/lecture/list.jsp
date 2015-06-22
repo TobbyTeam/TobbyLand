@@ -17,11 +17,12 @@
 		<option value="prof">교수명</option>
 	</select>
 
-	<input type="text" name="searchWord"><br>
+	<input type="text" name="searchWord">
 	<input type="submit" value="검색">
 
 </form>
-<br/>
+
+<br/><br/>
 
 	<table border="1">
 		<tr>
@@ -44,11 +45,13 @@
 			<td><a href="/lecture/isDelete?lecture_id=${lecture.lecture_id}">삭제</a></td>
 		</tr>
 		</c:forEach>
-	</table></br>
-	<a href="/lecture/reg_form">강의생성</a>
+	</table></br><br/>
 
-	<a href="${pageContext.request.contextPath}/j_spring_security_logout">Log Out</a> <br />
-<a href="/member/view">회원정보</a><br/>
+	<a href="/lecture/reg_form">강의생성</a><br/><br/>
+
+	<a href="${pageContext.request.contextPath}/j_spring_security_logout">Log Out</a> <br/><br/>
+
+	<a href="/member/view">회원정보</a><br/><br/>
 
 
 </body>
