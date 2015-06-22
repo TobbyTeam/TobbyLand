@@ -77,7 +77,7 @@ INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
 VALUES ('admin','C언어','컴공','이영호', 10);
 
 INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
-VALUES ('admin','물리학','기계','나경상', 10);
+VALUES ('admin','제어학','기계','장진영', 10);
 
 
 

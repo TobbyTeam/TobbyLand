@@ -13,7 +13,7 @@ public interface LectureRepository {
 
 	List<Map> selectAll();
 
-	List<Map> selectName(String lectureName);
+	List<Map> selectName(Map search);
 
 	List<Map> selectDept(String lectureDept);
 

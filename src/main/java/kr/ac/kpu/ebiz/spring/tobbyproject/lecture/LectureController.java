@@ -104,11 +104,15 @@ public class LectureController {
 	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public ModelAndView search(@RequestParam String lecture_name) {
+	public ModelAndView search(@RequestParam ("searchType")String searchType, @RequestParam ("searchWord")String searchWord) {
 
 		ModelAndView mav = new ModelAndView("/lecture/search_list");
 
-		List<Map> result = lectureRepository.selectName(lecture_name);
+		HashMap search = new HashMap();
+		search.put("searchType",searchType);
+		search.put("searchWord",searchWord);
+
+		List<Map> result = lectureRepository.selectName(search);
 
 		mav.addObject("lectures", result);
 

@@ -19,8 +19,12 @@
     SELECT * FROM LECTURE WHERE likes <![CDATA[ < ]]> 10 AND IS_DELETE <![CDATA[ = ]]> 1
   </select>
 
-  <select id="selectName" resultType="map">
-    SELECT * FROM LECTURE WHERE likes <![CDATA[ >= ]]> 10 AND LECTURE_NAME LIKE CONCAT('%', #{value}, '%')
+  <select id="selectName" parameterType="map" resultType="map">
+    SELECT * FROM LECTURE WHERE likes <![CDATA[ >= ]]> 10
+    <choose><when test="searchType != null and searchType.equalsIgnoreCase('lecture_name')">AND LECTURE_NAME LIKE CONCAT('%', #{searchWord}, '%')</when>
+            <when test="searchType != null and searchType.equalsIgnoreCase('dept')">AND DEPT LIKE CONCAT('%', #{searchWord}, '%')</when>
+            <otherwise> AND PROF LIKE CONCAT('%', #{searchWord}, '%')</otherwise>
+    </choose>
   </select>
 
   <select id="selectDept" resultType="map">

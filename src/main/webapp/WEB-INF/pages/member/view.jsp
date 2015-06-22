@@ -6,9 +6,19 @@
 <body>
 
 <form action="/lecture/search" method="get">
-    검색 : <input type="text" name="lecture_name"><br>
+
+    검색
+    <select name="searchType">
+        <option value="lecture_name">강의명</option>
+        <option value="dept">학과명</option>
+        <option value="prof">교수명</option>
+    </select>
+
+    <input type="text" name="searchWord"><br>
     <input type="submit" value="검색">
-</form><br>
+
+</form>
+<br/>
 
 <table border="1">
 
