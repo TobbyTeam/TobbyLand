@@ -134,18 +134,18 @@ public class EvaluationController {
 							   @RequestParam("exam") String exam, @RequestParam("comment") String comment, @RequestParam("score") int score,
 							   @RequestParam("lecture_id") int lecture_id) {
 
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+/*		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String member_id = user.getUsername();
 
-		String writer = evaluationRepository.selectMember(evaluation_id);
+		String writer = evaluationRepository.selectMember(evaluation_id);*/
 
 		ModelAndView mav = new ModelAndView("/evaluation/list");
 
-		if(member_id.equals(writer) == false){
+	/*	if(member_id.equals(writer) == false){
 
 			mav.addObject("error", "본인이 작성하신 강의평가가 아닙니다.");
 
-		}
+		}*/
 
 		HashMap<String, java.io.Serializable> evaluation = new HashMap<String, java.io.Serializable>();
 		evaluation.put("evaluation_id", evaluation_id);

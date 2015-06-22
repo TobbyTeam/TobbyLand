@@ -59,10 +59,10 @@ VALUES ('ADMIN','ROLE_USER');
 --
 
 INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
-VALUES ('admin','sysem','ebiz','kim', 10);
+VALUES ('admin','시스템분석설계','경영학부','임홍순', 10);
 
 INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
-VALUES ('admin','data','nano','박상욱', 10);
+VALUES ('admin','데이터베이스','이비즈','이충석', 10);
 
 INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
 VALUES ('admin','기업데이터','나노','이영석', 10);

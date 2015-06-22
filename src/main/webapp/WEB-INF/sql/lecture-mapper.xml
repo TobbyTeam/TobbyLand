@@ -16,23 +16,20 @@
   </select>
 
   <select id="selectAll" resultType="map">
-    SELECT * FROM LECTURE WHERE likes <![CDATA[ < ]]> 10 AND IS_DELETE <![CDATA[ = ]]> 1
+    SELECT * FROM LECTURE WHERE likes <![CDATA[ < ]]> 10 AND IS_DELETE <![CDATA[ = ]]> 1 ORDER BY WRITE_DATE DESC
   </select>
 
-  <select id="selectName" parameterType="map" resultType="map">
-    SELECT * FROM LECTURE WHERE likes <![CDATA[ >= ]]> 10
+  <select id="selectAdmin" resultType="map">
+    SELECT * FROM LECTURE ORDER BY WRITE_DATE DESC
+  </select>
+
+  <select id="selectSearch" parameterType="map" resultType="map">
+    SELECT * FROM LECTURE WHERE likes <![CDATA[ >= ]]> 10 AND IS_DELETE <![CDATA[ = ]]> 1
     <choose><when test="searchType != null and searchType.equalsIgnoreCase('lecture_name')">AND LECTURE_NAME LIKE CONCAT('%', #{searchWord}, '%')</when>
             <when test="searchType != null and searchType.equalsIgnoreCase('dept')">AND DEPT LIKE CONCAT('%', #{searchWord}, '%')</when>
             <otherwise> AND PROF LIKE CONCAT('%', #{searchWord}, '%')</otherwise>
     </choose>
-  </select>
-
-  <select id="selectDept" resultType="map">
-    SELECT * FROM LECTURE WHERE DEPT LIKE CONCAT('%', #{value}, '%')
-  </select>
-
-  <select id="selectProf" resultType="map">
-    SELECT * FROM LECTURE WHERE PROF LIKE CONCAT('%', #{value}, '%')
+    ORDER BY WRITE_DATE DESC
   </select>
 
   <delete id="delete" parameterType="int">
@@ -46,9 +43,21 @@
     WHERE LECTURE_ID = #{lecture_id}
   </update>
 
+  <update id="isUndelete" parameterType="map">
+    UPDATE LECTURE
+    SET
+    IS_DELETE = 1
+    WHERE LECTURE_ID = #{lecture_id}
+  </update>
+
   <insert id="insert" parameterType="map">
     INSERT INTO LECTURE (member_id, lecture_name, dept, prof)
     VALUES (#{member_id},#{lecture_name},#{dept},#{prof})
+  </insert>
+
+  <insert id="insertAdmin" parameterType="map">
+    INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+    VALUES (#{member_id},#{lecture_name},#{dept},#{prof}, 10)
   </insert>
 
   <update id="update" parameterType="map">

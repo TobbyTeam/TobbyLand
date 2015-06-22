@@ -22,7 +22,7 @@ CREATE TABLE member (
   password varchar(45) DEFAULT NULL,
   nickname varchar(45) DEFAULT NULL,
   email varchar(45) DEFAULT NULL,
-  reg_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  reg_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   method varchar(10) DEFAULT NULL,
   task varchar(10) DEFAULT NULL,
   exam varchar(10) DEFAULT NULL,
@@ -65,10 +65,11 @@ CREATE TABLE lecture (
   dept varchar(45) DEFAULT NULL,
   prof varchar(45) DEFAULT NULL,
   likes int(10) unsigned DEFAULT '0',
+  write_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   is_delete tinyint(4) unsigned DEFAULT '1',
   PRIMARY KEY (lecture_id),
   KEY FK_lecture_member (member_id),
-  CONSTRAINT FK_lecture_member FOREIGN KEY (member_id) REFERENCES member (member_id)
+  CONSTRAINT FK_lecture_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 
@@ -85,7 +86,7 @@ CREATE TABLE evaluation (
   exam varchar(45) DEFAULT NULL,
   comment varchar(45) DEFAULT NULL,
   score int(10) unsigned DEFAULT NULL,
-  write_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  write_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   is_delete tinyint(4) unsigned DEFAULT '1',
   is_reply tinyint(4) unsigned DEFAULT NULL,
   upper_id int(10) unsigned DEFAULT NULL,
@@ -96,8 +97,8 @@ CREATE TABLE evaluation (
   UNIQUE KEY uni_lecture_id_member_id (lecture_id,member_id),
   KEY FK_evaluation_lecture (lecture_id),
   KEY FK_evaluation_member (member_id),
-  CONSTRAINT FK_evaluation_member FOREIGN KEY (member_id) REFERENCES member (member_id),
-  CONSTRAINT FK_evaluation_lecture FOREIGN KEY (lecture_id) REFERENCES lecture (lecture_id)
+  CONSTRAINT FK_evaluation_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT FK_evaluation_lecture FOREIGN KEY (lecture_id) REFERENCES lecture (lecture_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -113,14 +114,14 @@ CREATE TABLE lecturesub (
   UNIQUE KEY uni_lecture_id_member_id (lecture_id,member_id),
   KEY FK_lecturesub_lecture (lecture_id),
   KEY FK_lecturesub_member (member_id),
-  CONSTRAINT FK_lecturesub_member FOREIGN KEY (member_id) REFERENCES member (member_id),
-  CONSTRAINT FK_lecturesub_lecture FOREIGN KEY (lecture_id) REFERENCES lecture (lecture_id)
+  CONSTRAINT FK_lecturesub_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT FK_lecturesub_lecture FOREIGN KEY (lecture_id) REFERENCES lecture (lecture_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 --
 -- Table structure for table `evaluationsub`
---
+--ㅊ
 
 CREATE TABLE evaluationsub (
   es_id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -130,6 +131,6 @@ CREATE TABLE evaluationsub (
   UNIQUE KEY uni_evaluation_id_member_id (evaluation_id,member_id),
   KEY FK_evaluationsub_evaluation (evaluation_id),
   KEY FK_evaluationsub_member (member_id),
-  CONSTRAINT FK_evaluationsub_member FOREIGN KEY (member_id) REFERENCES member (member_id),
-  CONSTRAINT FK_evaluationsub_evaluation FOREIGN KEY (evaluation_id) REFERENCES evaluation (evaluation_id)
+  CONSTRAINT FK_evaluationsub_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT FK_evaluationsub_evaluation FOREIGN KEY (evaluation_id) REFERENCES evaluation (evaluation_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

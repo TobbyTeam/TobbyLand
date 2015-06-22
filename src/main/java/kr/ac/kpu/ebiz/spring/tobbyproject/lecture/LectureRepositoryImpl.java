@@ -23,11 +23,11 @@ public class LectureRepositoryImpl extends SqlSessionDaoSupport implements Lectu
 		return getSqlSession().selectList("LectureRepository.selectAll");
 	}
 
-	public List<Map> selectName(Map search) { return getSqlSession().selectList("LectureRepository.selectName", search); }
+	public List<Map> selectAdmin() {
+		return getSqlSession().selectList("LectureRepository.selectAdmin");
+	}
 
-	public List<Map> selectDept(String lectureDept) { return getSqlSession().selectList("LectureRepository.selectDept", lectureDept); }
-
-	public List<Map> selectProf(String lectureProf) { return getSqlSession().selectList("LectureRepository.selectProf", lectureProf); }
+	public List<Map> selectSearch(Map search) { return getSqlSession().selectList("LectureRepository.selectSearch", search); }
 
 	public boolean delete(int lectureId) {
 		return getSqlSession().delete("LectureRepository.delete", lectureId) > 0;
@@ -37,8 +37,16 @@ public class LectureRepositoryImpl extends SqlSessionDaoSupport implements Lectu
 		return getSqlSession().update("LectureRepository.isDelete", lectureId) > 0;
 	}
 
+	public boolean isUndelete(int lectureId) {
+		return getSqlSession().update("LectureRepository.isUndelete", lectureId) > 0;
+	}
+
 	public boolean insert(Map lecture) {
 		return getSqlSession().insert("LectureRepository.insert", lecture) > 0;
+	}
+
+	public boolean insertAdmin(Map lecture) {
+		return getSqlSession().insert("LectureRepository.insertAdmin", lecture) > 0;
 	}
 
 	public boolean update(Map lecture) {
@@ -57,7 +65,4 @@ public class LectureRepositoryImpl extends SqlSessionDaoSupport implements Lectu
 		return getSqlSession().selectOne("LectureRepository.selectSub", lecture);
 	}
 
-/*	public Map selectSub(Map lecture) {
-		return getSqlSession().update("LectureRepository.selectSub", lecture);
-	}*/
 }

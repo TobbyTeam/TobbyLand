@@ -13,17 +13,19 @@ public interface LectureRepository {
 
 	List<Map> selectAll();
 
-	List<Map> selectName(Map search);
+	List<Map> selectAdmin();
 
-	List<Map> selectDept(String lectureDept);
-
-	List<Map> selectProf(String lectureProf);
+	List<Map> selectSearch(Map search);
 
 	boolean delete(int lectureId);
 
 	boolean isDelete(int lectureId);
 
+	boolean isUndelete(int lectureId);
+
 	boolean insert(Map lecture);
+
+	boolean insertAdmin(Map lecture);
 
 	boolean update(Map lecture);
 

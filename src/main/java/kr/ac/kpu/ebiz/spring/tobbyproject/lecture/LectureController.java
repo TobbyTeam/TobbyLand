@@ -38,6 +38,18 @@ public class LectureController {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String member_id = user.getUsername();
 
+		if(member_id.equalsIgnoreCase("admin")){
+			ModelAndView mav = new ModelAndView("/admin/lectureList");
+			HashMap<String, String> lecture = new HashMap<String, String>();
+			lecture.put("member_id", member_id);
+			lecture.put("lecture_name", lecture_name);
+			lecture.put("dept", dept);
+			lecture.put("prof", prof);
+			lectureRepository.insertAdmin(lecture);
+			mav.addObject("lectures", lectureRepository.selectAdmin());
+			return mav;
+		}
+
 		ModelAndView mav = new ModelAndView("/lecture/list");
 		HashMap<String, String> lecture = new HashMap<String, String>();
 		lecture.put("member_id", member_id);
@@ -78,15 +90,26 @@ public class LectureController {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String member_id = user.getUsername();
 
-		String writer = lectureRepository.selectMember(lecture_id);
+/*		String writer = lectureRepository.selectMember(lecture_id);*/
 
-		ModelAndView mav = new ModelAndView("/lecture/list");
-
-		if(member_id.equals(writer) == false){
+/*		if(member_id.equals(writer) == false){
 			mav.addObject("lectures", lectureRepository.selectAll());
 			mav.addObject("error", "본인이 생성하신 강의가 아닙니다.");
+		}*/
+
+		if(member_id.equalsIgnoreCase("admin")){
+			ModelAndView mav = new ModelAndView("/admin/lectureList");
+			HashMap<String, java.io.Serializable> lecture = new HashMap<String, java.io.Serializable>();
+			lecture.put("lecture_id",lecture_id);
+			lecture.put("lecture_name",lecture_name);
+			lecture.put("dept",dept);
+			lecture.put("prof",prof);
+			lectureRepository.update(lecture);
+			mav.addObject("lectures", lectureRepository.selectAdmin());
+			return mav;
 		}
 
+		ModelAndView mav = new ModelAndView("/lecture/list");
 		HashMap<String, java.io.Serializable> lecture = new HashMap<String, java.io.Serializable>();
 		lecture.put("lecture_id",lecture_id);
 		lecture.put("lecture_name",lecture_name);
@@ -112,7 +135,7 @@ public class LectureController {
 		search.put("searchType",searchType);
 		search.put("searchWord",searchWord);
 
-		List<Map> result = lectureRepository.selectName(search);
+		List<Map> result = lectureRepository.selectSearch(search);
 
 		mav.addObject("lectures", result);
 

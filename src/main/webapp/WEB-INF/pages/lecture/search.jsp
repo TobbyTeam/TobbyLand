@@ -26,6 +26,7 @@
 <br/>
 <a href="/lecture/list">강의생성게시판</a><br/>
 <a href="/member/view">회원정보</a><br/>
+<a href="/admin/lecture/list">강의관리</a><br/>
 
 
 
