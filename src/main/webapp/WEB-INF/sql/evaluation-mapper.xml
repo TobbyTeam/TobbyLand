@@ -12,7 +12,11 @@
   </select>
 
   <select id="selectL" resultType="map">
-    SELECT * FROM EVALUATION WHERE LECTURE_ID = #{value} AND IS_DELETE <![CDATA[ = ]]> 1
+    SELECT * FROM EVALUATION WHERE LECTURE_ID = #{value} AND IS_DELETE <![CDATA[ = ]]> 1 ORDER BY WRITE_DATE DESC
+  </select>
+
+  <select id="selectBest" resultType="map">
+    SELECT * FROM EVALUATION WHERE LECTURE_ID = #{value} AND IS_DELETE <![CDATA[ = ]]> 1 ORDER BY likes DESC, WRITE_DATE DESC
   </select>
 
   <select id="selectCount" resultType="int">

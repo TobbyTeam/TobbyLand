@@ -29,6 +29,8 @@ public class EvaluationController {
 		ModelAndView mav = new ModelAndView("/evaluation/list");
 		mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
 		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
+		mav.addObject("best", evaluationRepository.selectBest(lecture_id));
+
 
 		return mav;
 	}

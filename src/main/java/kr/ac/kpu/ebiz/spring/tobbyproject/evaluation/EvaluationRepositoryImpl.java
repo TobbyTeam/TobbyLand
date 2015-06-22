@@ -27,6 +27,10 @@ public class EvaluationRepositoryImpl extends SqlSessionDaoSupport implements Ev
 		return getSqlSession().selectList("EvaluationRepository.selectL", lectureId);
 	}
 
+	public List<Map> selectBest(Integer lectureId) {
+		return getSqlSession().selectList("EvaluationRepository.selectBest", lectureId);
+	}
+
 	public boolean delete(int evaluationId) {
 		return getSqlSession().delete("EvaluationRepository.delete", evaluationId) > 0;
 	}

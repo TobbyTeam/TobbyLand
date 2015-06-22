@@ -15,6 +15,8 @@ public interface EvaluationRepository {
 
 	List<Map> selectL(Integer lectureId);
 
+	List<Map> selectBest(Integer lectureId);
+
 	boolean delete(int evaluationId);
 
 	boolean isDelete(int evaluationId);
