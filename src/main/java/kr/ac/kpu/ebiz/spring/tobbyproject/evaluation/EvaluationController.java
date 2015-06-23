@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,7 +32,6 @@ public class EvaluationController {
 		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 		mav.addObject("best", evaluationRepository.selectBest(lecture_id));
 
-
 		return mav;
 	}
 
@@ -48,21 +48,22 @@ public class EvaluationController {
 		int count = evaluationRepository.selectCount(check);
 
 		if(count != 0) {
-			ModelAndView mav1 = new ModelAndView("/evaluation/list");
-			mav1.addObject("error", "이미 이 강의에 대해 강의평가를 작성하셨습니다.");
-			mav1.addObject("lecture", lectureRepository.selectIAN(lecture_id));
-			mav1.addObject("evaluations", evaluationRepository.selectL(lecture_id));
-			return mav1;
+			ModelAndView mav = new ModelAndView("/evaluation/list");
+			mav.addObject("error", "이미 이 강의에 대해 강의평가를 작성하셨습니다.");
+			mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
+			mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
+			mav.addObject("best", evaluationRepository.selectBest(lecture_id));
+			return mav;
 		}
 
-		ModelAndView mav2 = new ModelAndView("/evaluation/register");
+		ModelAndView mav = new ModelAndView("/evaluation/register");
 
 		HashMap evaluation = new HashMap();
 		evaluation.put("lecture_id", lecture_id);
 
-		mav2.addObject("evaluation", evaluation);
+		mav.addObject("evaluation", evaluation);
 
-		return mav2;
+		return mav;
 	}
 
 	@RequestMapping(value = "/reg", method = RequestMethod.POST)
@@ -79,28 +80,22 @@ public class EvaluationController {
 
 		int count = evaluationRepository.selectCount(check);
 
-		System.out.println(count + "+" + "카운트 확인");
-
 		ModelAndView mav = new ModelAndView("/evaluation/list");
+
+		HashMap<String, java.io.Serializable> evaluation = new HashMap<String, java.io.Serializable>();
+		evaluation.put("lecture_id", lecture_id);
+		evaluation.put("member_id", member_id);
+		evaluation.put("method", method);
+		evaluation.put("task", task);
+		evaluation.put("exam", exam);
+		evaluation.put("comment", comment);
+		evaluation.put("score", score);
+
+		evaluationRepository.insert(evaluation);
+
 		mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
-
-		if(count != 0) {
-			mav.addObject("error", "이미 이 강의에 대해 강의평가를 작성하셨습니다.");
-		}else {
-
-			HashMap<String, java.io.Serializable> evaluation = new HashMap<String, java.io.Serializable>();
-			evaluation.put("lecture_id", lecture_id);
-			evaluation.put("member_id", member_id);
-			evaluation.put("method", method);
-			evaluation.put("task", task);
-			evaluation.put("exam", exam);
-			evaluation.put("comment", comment);
-			evaluation.put("score", score);
-
-			evaluationRepository.insert(evaluation);
-		}
-
 		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
+		mav.addObject("best", evaluationRepository.selectBest(lecture_id));
 
 		return mav;
 	}
@@ -113,20 +108,23 @@ public class EvaluationController {
 
 		String writer = evaluationRepository.selectMember(evaluation_id);
 
+		Collection authorities = user.getAuthorities();
+
 		System.out.println(member_id + "+" + "로그인아이디");
 		System.out.println(writer + "+" + "작성자아이디");
 
-		if(member_id.equals(writer) == false){
-			ModelAndView mav = new ModelAndView("/evaluation/list");
-			mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
-			mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
-			mav.addObject("error", "본인이 작성하신 강의평가가 아닙니다.");
+		if(member_id.equals(writer) == true || authorities.toString().contains("ROLE_ADMIN")){
+			ModelAndView mav = new ModelAndView("/evaluation/modify");
+			Map evaluation = evaluationRepository.select(evaluation_id);
+			mav.addObject("evaluation", evaluation);
 			return mav;
 		}
 
-		ModelAndView mav = new ModelAndView("/evaluation/modify");
-		Map evaluation = evaluationRepository.select(evaluation_id);
-		mav.addObject("evaluation", evaluation);
+		ModelAndView mav = new ModelAndView("/evaluation/list");
+		mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
+		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
+		mav.addObject("best", evaluationRepository.selectBest(lecture_id));
+		mav.addObject("error", "본인이 작성하신 강의평가가 아닙니다.");
 
 		return mav;
 	}
@@ -136,18 +134,7 @@ public class EvaluationController {
 							   @RequestParam("exam") String exam, @RequestParam("comment") String comment, @RequestParam("score") int score,
 							   @RequestParam("lecture_id") int lecture_id) {
 
-/*		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String member_id = user.getUsername();
-
-		String writer = evaluationRepository.selectMember(evaluation_id);*/
-
 		ModelAndView mav = new ModelAndView("/evaluation/list");
-
-	/*	if(member_id.equals(writer) == false){
-
-			mav.addObject("error", "본인이 작성하신 강의평가가 아닙니다.");
-
-		}*/
 
 		HashMap<String, java.io.Serializable> evaluation = new HashMap<String, java.io.Serializable>();
 		evaluation.put("evaluation_id", evaluation_id);
@@ -160,6 +147,7 @@ public class EvaluationController {
 
 		mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
 		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
+		mav.addObject("best", evaluationRepository.selectBest(lecture_id));
 
 		return mav;
 	}
@@ -190,6 +178,7 @@ public class EvaluationController {
 
 		mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
 		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
+		mav.addObject("best", evaluationRepository.selectBest(lecture_id));
 
 		return mav;
 	}
@@ -221,6 +210,7 @@ public class EvaluationController {
 
 		mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
 		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
+		mav.addObject("best", evaluationRepository.selectBest(lecture_id));
 
 		return mav;
 	}
@@ -251,6 +241,7 @@ public class EvaluationController {
 
 		mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
 		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
+		mav.addObject("best", evaluationRepository.selectBest(lecture_id));
 
 		return mav;
 	}
@@ -263,9 +254,11 @@ public class EvaluationController {
 
 		String writer = evaluationRepository.selectMember(evaluation_id);
 
+		Collection authorities = user.getAuthorities();
+
 		ModelAndView mav = new ModelAndView("/evaluation/list");
 
-		if(member_id.equals(writer) == true){
+		if(member_id.equals(writer) == true || authorities.toString().contains("ROLE_ADMIN")){
 			evaluationRepository.isDelete(evaluation_id);
 		} else {
 			mav.addObject("error", "본인이 작성한 것이 아닙니다.");
@@ -273,6 +266,7 @@ public class EvaluationController {
 
 		mav.addObject("lecture", lectureRepository.select(lecture_id));
 		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
+		mav.addObject("best", evaluationRepository.selectBest(lecture_id));
 
 		return mav;
 	}

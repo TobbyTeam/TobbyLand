@@ -100,7 +100,7 @@
     task = #{task},
     exam = #{exam},
     comment = #{comment},
-    score = #{score},
+    score = #{score}
     WHERE EVALUATION_ID = #{evaluation_id}
   </update>
 

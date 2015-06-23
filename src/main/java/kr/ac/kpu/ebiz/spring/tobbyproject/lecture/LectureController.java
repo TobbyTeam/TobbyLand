@@ -9,10 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/lecture")
@@ -58,16 +55,18 @@ public class LectureController {
 
 		String writer = lectureRepository.selectMember(lecture_id);
 
-		if(member_id.equals(writer) == false){
-			ModelAndView mav = new ModelAndView("/lecture/list");
-			mav.addObject("lectures", lectureRepository.selectAll());
-			mav.addObject("error", "본인이 생성하신 강의가 아닙니다.");
+		Collection authorities = user.getAuthorities();
+
+		if(member_id.equals(writer) == true || authorities.toString().contains("ROLE_ADMIN")){
+			ModelAndView mav = new ModelAndView("/lecture/modify");
+			Map lecture = lectureRepository.select(lecture_id);
+			mav.addObject("lecture", lecture);
 			return mav;
 		}
 
-		ModelAndView mav = new ModelAndView("/lecture/modify");
-		Map lecture = lectureRepository.select(lecture_id);
-		mav.addObject("lecture", lecture);
+		ModelAndView mav = new ModelAndView("/lecture/list");
+		mav.addObject("lectures", lectureRepository.selectAll());
+		mav.addObject("error", "본인이 생성하신 강의가 아닙니다.");
 
 		return mav;
 	}
@@ -102,9 +101,11 @@ public class LectureController {
 	public String search_form() {
 
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Collection authorites = user.getAuthorities();
 
-		System.out.println(authorites.toString());
+		Collection authorities = user.getAuthorities();
+
+		System.out.println(authorities.toString().contains("ROLE_USER")+"++++++++"+"롤 확인");
+
 
 		return "/lecture/search";
 	}
@@ -164,13 +165,15 @@ public class LectureController {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String member_id = user.getUsername();
 
+		Collection authorities = user.getAuthorities();
+
 		String writer = lectureRepository.selectMember(lecture_id);
 
 		ModelAndView mav = new ModelAndView("/lecture/list");
 
-		if(member_id.equals(writer) == true){
+		if(member_id.equals(writer) == true || authorities.toString().contains("ROLE_ADMIN")){
 			lectureRepository.isDelete(lecture_id);
-		} else {
+		} else{
 			mav.addObject("error", "본인이 작성한 것이 아닙니다.");
 		}
 
