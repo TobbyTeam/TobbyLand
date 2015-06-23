@@ -164,13 +164,6 @@ public class LectureController {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String member_id = user.getUsername();
 
-		if(member_id.equalsIgnoreCase("admin")){
-			lectureRepository.isDelete(lecture_id);
-			ModelAndView mav = new ModelAndView("/admin/lectureList");
-			mav.addObject("lectures", lectureRepository.selectAdmin());
-			return mav;
-		}
-
 		String writer = lectureRepository.selectMember(lecture_id);
 
 		ModelAndView mav = new ModelAndView("/lecture/list");

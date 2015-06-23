@@ -21,13 +21,19 @@ public interface EvaluationRepository {
 
 	List<Map> selectBest(Integer lectureId);
 
+	List<Map> selectSearchAdmin(Map search);
+
 	boolean delete(int evaluationId);
 
 	boolean isDelete(int evaluationId);
 
+	boolean isUndelete(int evaluationId);
+
 	boolean insert(Map evaluation);
 
 	boolean update(Map evaluation);
+
+	boolean updateAdmin(Map evaluation);
 
 	boolean updateLike(int evaluationId);
 

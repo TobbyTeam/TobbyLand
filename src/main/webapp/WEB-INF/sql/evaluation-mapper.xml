@@ -12,11 +12,42 @@
   </select>
 
   <select id="selectAdmin" resultType="map">
-    SELECT * FROM EVALUATION ORDER BY WRITE_DATE DESC
+    SELECT E.EVALUATION_ID AS evaluation_id, E.MEMBER_ID AS member_id, E.LECTURE_ID AS lecture_id, L.LECTURE_NAME AS lecture_name,
+    E.METHOD AS method, E.TASK AS task, E.EXAM AS exam, E.COMMENT AS comment, E.SCORE AS score, E.WRITE_DATE AS write_date,
+    E.LIKES AS likes, E.DISLIKE AS dislike, E.REPORT AS report, E.IS_DELETE AS is_delete
+    FROM LECTURE L JOIN EVALUATION E ON L.LECTURE_ID = E.LECTURE_ID
+    ORDER BY L.LECTURE_ID, E.WRITE_DATE DESC
   </select>
 
+<!--  <select id="selectReport" resultType="map">
+    SELECT L.LECTURE_ID, L.LECTURE_NAME, E.EVALUATION_ID, E.MEMBER_ID, E.METHOD, E.TASK, E.EXAM, E.COMMENT,
+           E.SCORE, E.WRITE_DATE, E.LIKES, E.DISLIKE, E.REPORT, E.IS_DELETE
+    FROM LECTURE L JOIN EVALUATION E ON L.LECTURE_ID = E.LECTURE_ID
+    WHERE REPORT <![CDATA[ >= ]]> 5
+    ORDER BY L.LECTURE_ID, E.WRITE_DATE DESC
+  </select>-->
+
   <select id="selectReport" resultType="map">
-    SELECT * FROM EVALUATION WHERE REPORT <![CDATA[ >= ]]> 5 ORDER BY WRITE_DATE DESC
+    SELECT E.EVALUATION_ID AS evaluation_id, E.MEMBER_ID AS member_id, E.LECTURE_ID AS lecture_id, L.LECTURE_NAME AS lecture_name,
+    E.METHOD AS method, E.TASK AS task, E.EXAM AS exam, E.COMMENT AS comment, E.SCORE AS score, E.WRITE_DATE AS write_date,
+    E.LIKES AS likes, E.DISLIKE AS dislike, E.REPORT AS report, E.IS_DELETE AS is_delete
+    FROM EVALUATION E LEFT OUTER JOIN LECTURE L ON L.LECTURE_ID = E.LECTURE_ID
+    WHERE REPORT <![CDATA[ >= ]]> 5
+    ORDER BY L.LECTURE_ID, E.WRITE_DATE DESC
+  </select>
+
+  <select id="selectSearchAdmin" resultType="map">
+    SELECT E.EVALUATION_ID AS evaluation_id, E.MEMBER_ID AS member_id, E.LECTURE_ID AS lecture_id, L.LECTURE_NAME AS lecture_name,
+    E.METHOD AS method, E.TASK AS task, E.EXAM AS exam, E.COMMENT AS comment, E.SCORE AS score, E.WRITE_DATE AS write_date,
+    E.LIKES AS likes, E.DISLIKE AS dislike, E.REPORT AS report, E.IS_DELETE AS is_delete
+    FROM LECTURE L JOIN EVALUATION E ON L.LECTURE_ID = E.LECTURE_ID
+    WHERE
+    <choose><when test="searchType != null and searchType.equalsIgnoreCase('lecture_name')">L.LECTURE_NAME LIKE CONCAT('%', #{searchWord}, '%')</when>
+    <when test="searchType != null and searchType.equalsIgnoreCase('content')">E.COMMENT LIKE CONCAT('%', #{searchWord}, '%') OR
+    E.METHOD LIKE CONCAT('%', #{searchWord}, '%') OR E.TASK LIKE CONCAT('%', #{searchWord}, '%') OR E.EXAM LIKE CONCAT('%', #{searchWord}, '%')</when>
+    <otherwise>E.MEMBER_ID LIKE CONCAT('%', #{searchWord}, '%')</otherwise>
+    </choose>
+    ORDER BY L.LECTURE_ID, E.WRITE_DATE DESC
   </select>
 
   <select id="selectL" resultType="map">
@@ -43,10 +74,17 @@
     DELETE FROM EVALUATION WHERE EVALUATION_ID = #{value}
   </delete>
 
-  <update id="isDelete" parameterType="map">
+  <update id="isDelete" parameterType="int">
     UPDATE EVALUATION
     SET
     IS_DELETE = 0
+    WHERE EVALUATION_ID = #{evaluation_id}
+  </update>
+
+  <update id="isUndelete" parameterType="int">
+    UPDATE EVALUATION
+    SET
+    IS_DELETE = 1
     WHERE EVALUATION_ID = #{evaluation_id}
   </update>
 
@@ -62,7 +100,19 @@
     task = #{task},
     exam = #{exam},
     comment = #{comment},
-    score = #{score}
+    score = #{score},
+    WHERE EVALUATION_ID = #{evaluation_id}
+  </update>
+
+  <update id="updateAdmin" parameterType="map">
+    UPDATE EVALUATION
+    SET
+    method = #{method},
+    task = #{task},
+    exam = #{exam},
+    comment = #{comment},
+    score = #{score},
+    report = #{report}
     WHERE EVALUATION_ID = #{evaluation_id}
   </update>
 

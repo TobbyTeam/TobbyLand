@@ -39,12 +39,18 @@ public class EvaluationRepositoryImpl extends SqlSessionDaoSupport implements Ev
 		return getSqlSession().selectList("EvaluationRepository.selectBest", lectureId);
 	}
 
+	public List<Map> selectSearchAdmin(Map search) { return getSqlSession().selectList("EvaluationRepository.selectSearchAdmin", search); }
+
 	public boolean delete(int evaluationId) {
 		return getSqlSession().delete("EvaluationRepository.delete", evaluationId) > 0;
 	}
 
 	public boolean isDelete(int evaluationId) {
 		return getSqlSession().update("EvaluationRepository.isDelete", evaluationId) > 0;
+	}
+
+	public boolean isUndelete(int evaluationId) {
+		return getSqlSession().update("EvaluationRepository.isUndelete", evaluationId) > 0;
 	}
 
 	public boolean insert(Map evaluation) {
@@ -54,6 +60,11 @@ public class EvaluationRepositoryImpl extends SqlSessionDaoSupport implements Ev
 	public boolean update(Map evaluation) {
 		return getSqlSession().update("EvaluationRepository.update", evaluation) > 0;
 	}
+
+	public boolean updateAdmin(Map evaluation) {
+		return getSqlSession().update("EvaluationRepository.updateAdmin", evaluation) > 0;
+	}
+
 
 	public boolean updateLike(int evaluationId) {
 		return getSqlSession().update("EvaluationRepository.updateLike", evaluationId) > 0;

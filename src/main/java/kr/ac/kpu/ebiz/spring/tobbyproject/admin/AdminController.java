@@ -26,7 +26,10 @@ public class AdminController {
 	EvaluationRepository evaluationRepository;
 
 
+
+
 	/*강의 관리*/
+
 
 	@RequestMapping(value = "/lecture/list", method = RequestMethod.GET)
 	public ModelAndView lectureList() {
@@ -59,7 +62,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/lecture/view", method = RequestMethod.GET)
-	public ModelAndView view(@RequestParam int lecture_id) {
+	public ModelAndView lectureView(@RequestParam int lecture_id) {
 
 		ModelAndView mav = new ModelAndView("/admin/lectureModForm");
 		Map lecture = lectureRepository.select(lecture_id);
@@ -69,7 +72,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/lecture/mod", method = RequestMethod.POST)
-	public ModelAndView modify(@RequestParam int lecture_id,@RequestParam ("lecture_name")String lecture_name,
+	public ModelAndView lectureModify(@RequestParam int lecture_id,@RequestParam ("lecture_name")String lecture_name,
 							   @RequestParam ("dept")String dept, @RequestParam("prof")String prof)	{
 
 		ModelAndView mav = new ModelAndView("/admin/lectureList");
@@ -141,7 +144,8 @@ public class AdminController {
 
 
 
-		/*강의평가 관리*/
+	/*강의평가 관리*/
+
 
 	@RequestMapping(value = "/evaluation/list", method = RequestMethod.GET)
 	public ModelAndView evaluationList() {
@@ -160,7 +164,100 @@ public class AdminController {
 
 		mav.addObject("evaluations", evaluationRepository.selectReport());
 
+		System.out.println(mav.getModel());
+
+
+
 		return mav;
 	}
+
+	@RequestMapping(value = "/evaluation/view", method = RequestMethod.GET)
+	public ModelAndView evaluationView(@RequestParam int evaluation_id) {
+
+		ModelAndView mav = new ModelAndView("/admin/evaluationModForm");
+		Map evaluation = evaluationRepository.select(evaluation_id);
+		mav.addObject("evaluation", evaluation);
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/evaluation/mod", method = RequestMethod.POST)
+	public ModelAndView evaluationModify(@RequestParam("evaluation_id") int evaluation_id, @RequestParam("method") String method,
+										 @RequestParam("task") String task, @RequestParam("exam") String exam,
+										 @RequestParam("comment") String comment, @RequestParam("score") int score,
+										 @RequestParam("report") int report) {
+
+		ModelAndView mav = new ModelAndView("/admin/evaluationList");
+
+		HashMap<String, java.io.Serializable> evaluation = new HashMap<String, java.io.Serializable>();
+		evaluation.put("evaluation_id", evaluation_id);
+		evaluation.put("method", method);
+		evaluation.put("task", task);
+		evaluation.put("exam", exam);
+		evaluation.put("comment", comment);
+		evaluation.put("score", score);
+		evaluation.put("report", report);
+		evaluationRepository.updateAdmin(evaluation);
+
+		mav.addObject("evaluations", evaluationRepository.selectReport());
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/evaluation/isDelete", method = RequestMethod.GET)
+	public ModelAndView evaluationisDelete(@RequestParam("evaluation_id")int evaluation_id) {
+
+		ModelAndView mav = new ModelAndView("/admin/evaluationList");
+
+		evaluationRepository.isDelete(evaluation_id);
+
+		mav.addObject("evaluations", evaluationRepository.selectReport());
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/evaluation/isUndelete", method = RequestMethod.GET)
+	public ModelAndView evaluationIsUndelete(@RequestParam("evaluation_id") int evaluation_id)	{
+
+		ModelAndView mav = new ModelAndView("/admin/evaluationList");
+		evaluationRepository.isUndelete(evaluation_id);
+
+		mav.addObject("evaluations", evaluationRepository.selectReport());
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/evaluation/delete", method = RequestMethod.GET)
+	public ModelAndView evaluationDelete(@RequestParam("evaluation_id") int evaluation_id)	{
+
+		ModelAndView mav = new ModelAndView("/admin/evaluationList");
+		evaluationRepository.delete(evaluation_id);
+
+		mav.addObject("evaluations", evaluationRepository.selectReport());
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/evaluation/Search", method = RequestMethod.GET)
+	public ModelAndView evaluationSearch(@RequestParam ("searchType")String searchType, @RequestParam ("searchWord")String searchWord) {
+
+		ModelAndView mav = new ModelAndView("/admin/evaluationList");
+
+		HashMap search = new HashMap();
+		search.put("searchType",searchType);
+		search.put("searchWord",searchWord);
+
+		List<Map> result = evaluationRepository.selectSearchAdmin(search);
+
+		mav.addObject("evaluations", result);
+
+		if(result.isEmpty() == true){
+			mav.addObject("error", "검색 결과가 없습니다.");
+		}
+
+		return mav;
+
+	}
+
 
 }

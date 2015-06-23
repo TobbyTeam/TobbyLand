@@ -13,17 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MainController {
 
-/*    @RequestMapping(value = { "/"*//*, "/welcome**" *//*}, method = RequestMethod.GET)
-    public ModelAndView defaultPage() {
-
-        ModelAndView model = new ModelAndView();
-        model.addObject("title", "Spring Security Login Form - Database Authentication");
-        model.addObject("message", "This is default page!");
-        model.setViewName("hello");
-        return model;
-
-    }*/
-
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home() {
         return "etc/login";
@@ -38,7 +27,6 @@ public class MainController {
         model.setViewName("etc/admin");
 
         return model;
-
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
