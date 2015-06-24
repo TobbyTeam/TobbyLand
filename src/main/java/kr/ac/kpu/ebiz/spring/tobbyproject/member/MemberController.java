@@ -96,16 +96,32 @@ public class MemberController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/modView", method = RequestMethod.GET)
-	public ModelAndView modView() {
+	@RequestMapping(value = "/password", method = RequestMethod.GET)
+	public String password() {
+
+		return "member/password";
+	}
+
+	@RequestMapping(value = "/modView", method = RequestMethod.POST)
+	public ModelAndView modView(@RequestParam ("password")String password) {
 
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String member_id = user.getUsername();
+		String member_pw = user.getPassword();
 
-		Map member = memberRepository.select(member_id);
-		ModelAndView mav = new ModelAndView("/member/modify");
-		mav.addObject("member", member);
+		System.out.println(member_pw + "+++++ 세션 패스워드");
+
+		if(member_pw.equals(password)){
+			Map member = memberRepository.select(member_id);
+			ModelAndView mav = new ModelAndView("/member/modify");
+			mav.addObject("member", member);
+			return mav;
+		}
+
+		ModelAndView mav = new ModelAndView("/member/password");
+		mav.addObject("error", "비밀번호가 틀립니다");
 		return mav;
+
 	}
 
 	@RequestMapping(value = "/mod", method = RequestMethod.POST)

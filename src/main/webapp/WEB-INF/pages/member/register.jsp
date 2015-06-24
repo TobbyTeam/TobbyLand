@@ -23,7 +23,7 @@
              C3<input type="radio" name="exam" value="C3"><br>
 <br>
     <input type="submit" value="전송">
-
+    <input type="reset" value="전송">
 </form>
 
 </body>

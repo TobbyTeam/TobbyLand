@@ -1,9 +1,14 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title></title>
 </head>
 <body>
+
+<c:if test="${not empty error}">
+    ${error}
+</c:if>
 
 <form action="/lecture/search" method="get">
 
@@ -45,7 +50,7 @@
 
 <br/><br/>
 
-    <a href="/member/modView">정보수정</a><br/><br/>
+    <a href="/member/password">정보수정</a><br/><br/>
 
     <a href="/member/deleteEnabled">회원탈퇴</a> <br /><br/>
 
