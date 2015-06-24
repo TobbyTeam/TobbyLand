@@ -36,7 +36,7 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 
-	<mvc:resources mapping="/**" location="/resources/"/>
+	<mvc:resources mapping="/resources/**" location="/resources/"/>
 
 	<context:component-scan base-package="kr.ac.kpu.ebiz.spring.tobbyproject"/>
 

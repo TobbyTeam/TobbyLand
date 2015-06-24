@@ -9,6 +9,7 @@
 
         <!-- enable use-expressions -->
     <security:http auto-config="true" use-expressions="true">
+        <security:intercept-url pattern="/resources/**" access="permitAll" />
         <security:intercept-url pattern="/login" access="permitAll" />
         <security:intercept-url pattern="/member/reg_form" access="permitAll" />
         <security:intercept-url pattern="/member/reg" access="permitAll" />
