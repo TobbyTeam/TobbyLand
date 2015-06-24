@@ -3,6 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+<%-- css경로	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">	--%>
 <title>Login Page</title>
 <style>
 .error {
@@ -35,6 +36,9 @@
 	border: 1px solid #000;
 }
 </style>
+
+
+
 </head>
 <body onload='document.loginForm.username.focus();'>
 
