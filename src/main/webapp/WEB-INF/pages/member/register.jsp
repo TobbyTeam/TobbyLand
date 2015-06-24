@@ -1,15 +1,19 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title></title>
+
+    <script src="<c:url value="/resources/js/members.js" />"></script>
 </head>
 
 <body>
 
-<form action="/member/reg" method="post">
+<form action="/member/reg" method="post" name="reg_frm">
 
     아이디: <input type="text" name="member_id"><br>
     패스워드:<input type="text" name="password"><br>
+    패스워드:<input type="text" name="password_check"><br>
     별명: <input type="text" name="nickname"><br>
     이메일: <input type="text" name="email"><br>
     수업방식:A1<input type="radio" name="method" value="A1" checked>
@@ -22,8 +26,7 @@
              C2<input type="radio" name="exam" value="C2">
              C3<input type="radio" name="exam" value="C3"><br>
 <br>
-    <input type="submit" value="전송">
-    <input type="reset" value="전송">
+    <input type="button" value="회원가입" onclick="infoConfirm()">&nbsp;&nbsp;&nbsp; <input type="reset" value="취소" onclick="javascript:window.location='/login'">
 </form>
 
 </body>
