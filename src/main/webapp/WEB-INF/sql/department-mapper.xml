@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+CREATE TABLE actor (
+  actor_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  first_name VARCHAR(45) NOT NULL,
+  last_name VARCHAR(45) NOT NULL,
+  last_update TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY  (actor_id),
+  KEY idx_actor_last_name (last_name)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-->
+
+<mapper namespace="DepartmentRepository">
+
+  <select id="select" resultType="map">
+    SELECT * FROM DEPARTMENT WHERE DEPARTMENT_ID = #{value}
+  </select>
+
+  <select id="selectAll" resultType="map">
+    SELECT * FROM DEPARTMENT
+  </select>
+
+  <delete id="delete" parameterType="int">
+    DELETE FROM DEPARTMENT WHERE DEPARTMENT_ID = #{value}
+  </delete>
+
+</mapper>
