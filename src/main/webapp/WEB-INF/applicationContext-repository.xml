@@ -98,4 +98,9 @@
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
+
+	<bean id="departmentRepository" class="kr.ac.kpu.ebiz.spring.tobbyproject.department.DepartmentRepositoryImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
 </beans>

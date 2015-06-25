@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -24,21 +25,20 @@
 <form action="/lecture/mod" method="post">
   강의명: <input type="text" name="lecture_name" value="${lecture.lecture_name}"><br>
   학과명:
+
           <select name="dept">
-            <option value="기계공학과">기계공학과</option>
-            <option value="기계설계공학과">기계설계공학과</option>
-            <option value="메카트로닉스공학과">메카트로닉스공학과</option>
-            <option value="전자공학부">전자공학부</option>
-            <option value="컴퓨터공학부">컴퓨터공학부</option>
-            <option value="게임공학부">게임공학부</option>
-            <option value="신소재공학과">신소재공학과</option>
-            <option value="생명화학공학과">생명화학공학과</option>
-            <option value="디자인학부">디자인학부</option>
-            <option value="경영학부">경영학부</option>
-            <option value="나노-광공학과">나노-광공학과</option>
-            <option value="에너지·전기공학과">에너지·전기공학과</option>
-            <option value="지식융합학부">지식융합학부</option>
+            <c:forEach var="department" items="${departments}" varStatus="status">
+              <c:choose>
+              <c:when test="${department.department_name eq lecture.dept}">
+              <option value="${department.department_name}" selected="selected">${department.department_name}</option>
+              </c:when>
+              <c:otherwise>
+              <option value="${department.department_name}">${department.department_name}</option>
+              </c:otherwise>
+              </c:choose>
+            </c:forEach>
           </select>  <br/>
+
   교수명: <input type="text" name="prof" value="${lecture.prof}"><br>
   <input type="hidden" name="lecture_id" value="${lecture.lecture_id}">
   <input type="submit" value="전송">

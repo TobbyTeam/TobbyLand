@@ -1,5 +1,6 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.lecture;
 
+import kr.ac.kpu.ebiz.spring.tobbyproject.department.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -18,6 +19,9 @@ public class LectureController {
 	@Autowired
 	LectureRepository lectureRepository;
 
+	@Autowired
+	DepartmentRepository departmentRepository;
+
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 		ModelAndView mav = new ModelAndView("/lecture/list");
@@ -26,8 +30,10 @@ public class LectureController {
 	}
 
 	@RequestMapping(value = "/reg_form", method = RequestMethod.GET)
-	public String reg() {
-		return "/lecture/register";
+	public ModelAndView reg() {
+		ModelAndView mav = new ModelAndView("/lecture/register");
+		mav.addObject("departments", departmentRepository.selectAll());
+		return mav;
 	}
 
 	@RequestMapping(value = "/reg", method = RequestMethod.POST)
@@ -61,6 +67,7 @@ public class LectureController {
 			ModelAndView mav = new ModelAndView("/lecture/modify");
 			Map lecture = lectureRepository.select(lecture_id);
 			mav.addObject("lecture", lecture);
+			mav.addObject("departments", departmentRepository.selectAll());
 			return mav;
 		}
 
