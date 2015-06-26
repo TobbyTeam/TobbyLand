@@ -58,6 +58,49 @@ VALUES ('ADMIN','ROLE_USER');
 -- lecture table data
 --
 
+INSERT INTO DEPARTMENT (department_name)
+VALUES ('기계공학과');
+
+INSERT INTO DEPARTMENT (department_name)
+VALUES ('기계설계공학과');
+
+INSERT INTO DEPARTMENT (department_name)
+VALUES ('메카트로닉스공학과');
+
+INSERT INTO DEPARTMENT (department_name)
+VALUES ('전자공학부');
+
+INSERT INTO DEPARTMENT (department_name)
+VALUES ('컴퓨터공학부');
+
+INSERT INTO DEPARTMENT (department_name)
+VALUES ('게임공학부');
+
+INSERT INTO DEPARTMENT (department_name)
+VALUES ('신소재공학과');
+
+INSERT INTO DEPARTMENT (department_name)
+VALUES ('생명화학공학과');
+
+INSERT INTO DEPARTMENT (department_name)
+VALUES ('디자인학부');
+
+INSERT INTO DEPARTMENT (department_name)
+VALUES ('경영학부');
+
+INSERT INTO DEPARTMENT (department_name)
+VALUES ('나노광공학과');
+
+INSERT INTO DEPARTMENT (department_name)
+VALUES ('에너지전기공학과');
+
+INSERT INTO DEPARTMENT (department_name)
+VALUES ('지식융합학부');
+
+--
+-- lecture table data
+--
+
 INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
 VALUES ('admin','시스템분석설계','경영학부','임홍순', 10);
 

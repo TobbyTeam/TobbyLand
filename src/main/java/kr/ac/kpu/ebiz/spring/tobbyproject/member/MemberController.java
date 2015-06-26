@@ -42,16 +42,20 @@ public class MemberController {
 
 //		System.out.println(count + "+" +"잘되나 확인하자");
 
-		int count1= member.getTest();
+/*		int count1= member.getTest();*/
 
 //		System.out.println(count1 + "+" + "모델 셋 확인");
 
 		MemberValidator validator = new MemberValidator();
 		validator.validate(member, result);
 
+		System.out.println(result.toString()+"에러 확인");
+
 		if(result.hasErrors()) {
 
 			page = "/member/register";
+
+			return page;
 
 		} else {
 

@@ -44,6 +44,10 @@
 
 	<h1>Spring Security Login Form (Database Authentication)</h1>
 
+	<img src="/resources/image/mainlogo.png"/>
+
+	<%= request.getContextPath() %>
+
 	<div id="login-box">
 
 		<h3>Login with Username and Password</h3>

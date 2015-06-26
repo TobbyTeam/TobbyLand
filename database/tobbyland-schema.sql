@@ -55,6 +55,17 @@ CREATE TABLE member_roles (
 
 
 --
+-- Table structure for table `department`
+--
+
+CREATE TABLE department (
+  department_id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  department_name varchar(45) DEFAULT NULL,
+  PRIMARY KEY (department_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+--
 -- Table structure for table `lecture`
 --
 
