@@ -27,7 +27,6 @@ CREATE TABLE member (
   task varchar(10) DEFAULT NULL,
   exam varchar(10) DEFAULT NULL,
   email_auth tinyint(4) unsigned DEFAULT '1',
-  type varchar(45) DEFAULT '1',
   enabled tinyint(4) unsigned DEFAULT '1',
   PRIMARY KEY (member_id),
   KEY FK_member_method (method),
@@ -51,7 +50,7 @@ CREATE TABLE member_roles (
   UNIQUE KEY uni_member_id_role (ROLE,member_id),
   KEY fk_member_id_idx (member_id),
   CONSTRAINT fk_member_id FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 --
@@ -59,9 +58,18 @@ CREATE TABLE member_roles (
 --
 
 CREATE TABLE department (
-  department_id int(10) unsigned NOT NULL AUTO_INCREMENT,
   department_name varchar(45) DEFAULT NULL,
-  PRIMARY KEY (department_id)
+  PRIMARY KEY (department_name)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+--
+-- Table structure for table `semester`
+--
+
+CREATE TABLE semester (
+  semester varchar(45) DEFAULT NULL,
+  PRIMARY KEY (semester)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -80,8 +88,10 @@ CREATE TABLE lecture (
   is_delete tinyint(4) unsigned DEFAULT '1',
   PRIMARY KEY (lecture_id),
   KEY FK_lecture_member (member_id),
-  CONSTRAINT FK_lecture_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  KEY FK_lecture_department (dept),
+  CONSTRAINT FK_lecture_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT FK_lecture_department FOREIGN KEY (dept) REFERENCES department (department_name) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 --
@@ -97,7 +107,8 @@ CREATE TABLE evaluation (
   exam varchar(45) DEFAULT NULL,
   comment varchar(45) DEFAULT NULL,
   score int(10) unsigned DEFAULT NULL,
-  write_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  write_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  semester varchar(20) DEFAULT NULL,
   is_delete tinyint(4) unsigned DEFAULT '1',
   is_reply tinyint(4) unsigned DEFAULT NULL,
   upper_id int(10) unsigned DEFAULT NULL,
@@ -108,6 +119,8 @@ CREATE TABLE evaluation (
   UNIQUE KEY uni_lecture_id_member_id (lecture_id,member_id),
   KEY FK_evaluation_lecture (lecture_id),
   KEY FK_evaluation_member (member_id),
+  KEY FK_evaluation_semester (member_id),
+  CONSTRAINT FK_evaluation_semester FOREIGN KEY (semester) REFERENCES semester (semester) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT FK_evaluation_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT FK_evaluation_lecture FOREIGN KEY (lecture_id) REFERENCES lecture (lecture_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -132,7 +145,6 @@ CREATE TABLE lecturesub (
 
 --
 -- Table structure for table `evaluationsub`
---ㅊ
 
 CREATE TABLE evaluationsub (
   es_id int(10) unsigned NOT NULL AUTO_INCREMENT,

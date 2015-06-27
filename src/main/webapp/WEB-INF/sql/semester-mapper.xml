@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SemesterRepository">
+
+  <select id="select" resultType="map">
+    SELECT * FROM SEMESTER WHERE SEMESTER = #{value}
+  </select>
+
+  <select id="selectAll" resultType="map">
+    SELECT * FROM SEMESTER
+  </select>
+
+  <delete id="delete" parameterType="int">
+    DELETE FROM SEMESTER WHERE SEMESTER = #{value}
+  </delete>
+
+</mapper>

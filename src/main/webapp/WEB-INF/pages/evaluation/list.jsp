@@ -4,13 +4,18 @@
 <head><title>헬로 월드</title></head>
 <body>
 
-${lecture.lecture_name}
 </br></br>
 
 <c:if test="${not empty error}">
 	${error}
 </c:if>
 </br>
+강의명 : ${lecture.lecture_name}</br>
+학과명 : ${lecture.dept}</br>
+교수명 : ${lecture.prof}</br>
+강의평가 수: ${lecture.count}</br>
+</br></br>
+
 
 <form action="/lecture/search" method="get">
 
@@ -34,6 +39,7 @@ ${lecture.lecture_name}
 		<td>강의평가아이디</td>
 		<td>멤버아이디</td>
 		<td>강의아이디</td>
+		<td>수강학기</td>
 		<td>수업방식</td>
 		<td>과제</td>
 		<td>시험</td>
@@ -50,6 +56,7 @@ ${lecture.lecture_name}
 			<td>${best.evaluation_id}</td>
 			<td>${best.member_id}</td>
 			<td>${best.lecture_id}</td>
+			<td>${best.semester}</td>
 			<td>${best.method}</td>
 			<td>${best.task}</td>
 			<td>${best.exam}</td>
@@ -75,6 +82,7 @@ ${lecture.lecture_name}
 		<td>강의평가아이디</td>
 		<td>멤버아이디</td>
 		<td>강의아이디</td>
+		<td>수강학기</td>
 		<td>수업방식</td>
 		<td>과제</td>
 		<td>시험</td>
@@ -91,6 +99,7 @@ ${lecture.lecture_name}
 		<td>${evaluation.evaluation_id}</td>
 		<td>${evaluation.member_id}</td>
 		<td>${evaluation.lecture_id}</td>
+		<td>${evaluation.semester}</td>
 		<td>${evaluation.method}</td>
 		<td>${evaluation.task}</td>
 		<td>${evaluation.exam}</td>

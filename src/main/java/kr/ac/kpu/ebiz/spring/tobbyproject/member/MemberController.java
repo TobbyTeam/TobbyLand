@@ -34,22 +34,16 @@ public class MemberController {
 
 		String member_id = member.getMember_id();
 
-//		System.out.println(member_id+"+"+"멤버아이디 확인");
-
 		int count = memberRepository.selectCount(member_id);
 
 		member.setTest(count);
 
-//		System.out.println(count + "+" +"잘되나 확인하자");
-
 /*		int count1= member.getTest();*/
-
-//		System.out.println(count1 + "+" + "모델 셋 확인");
 
 		MemberValidator validator = new MemberValidator();
 		validator.validate(member, result);
 
-		System.out.println(result.toString()+"에러 확인");
+/*		System.out.println(result.toString()+"에러 확인");*/
 
 		if(result.hasErrors()) {
 
@@ -129,8 +123,8 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/mod", method = RequestMethod.POST)
-	public ModelAndView modify(@RequestParam ("password")String password ,
-							   @RequestParam("nickname")String nickname , @RequestParam("method")String method,
+	public ModelAndView modify(@RequestParam ("password")String password,
+							   @RequestParam("nickname")String nickname, @RequestParam("method")String method,
 							   @RequestParam ("task")String task, @RequestParam ("exam")String exam) {
 
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

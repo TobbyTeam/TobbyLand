@@ -55,7 +55,7 @@ VALUES ('ADMIN','ROLE_USER');
 
 
 --
--- lecture table data
+-- department table data
 --
 
 INSERT INTO DEPARTMENT (department_name)
@@ -97,30 +97,54 @@ VALUES ('에너지전기공학과');
 INSERT INTO DEPARTMENT (department_name)
 VALUES ('지식융합학부');
 
+
+--
+-- department table data
+--
+
+INSERT INTO SEMESTER (semester)
+VALUES ('13-1학기');
+
+INSERT INTO SEMESTER (semester)
+VALUES ('13-2학기');
+
+INSERT INTO SEMESTER (semester)
+VALUES ('14-1학기');
+
+INSERT INTO SEMESTER (semester)
+VALUES ('14-2학기');
+
+INSERT INTO SEMESTER (semester)
+VALUES ('15-1학기');
+
+INSERT INTO SEMESTER (semester)
+VALUES ('15-2학기');
+
+
 --
 -- lecture table data
 --
 
 INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
-VALUES ('admin','시스템분석설계','경영학부','임홍순', 10);
+VALUES ('admin','시스템분석설계','기계공학과','임홍순', 10);
 
 INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
-VALUES ('admin','데이터베이스','이비즈','이충석', 10);
+VALUES ('admin','데이터베이스','기계설계공학과','이충석', 10);
 
 INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
-VALUES ('admin','기업데이터','나노','이영석', 10);
+VALUES ('admin','기업데이터','메카트로닉스공학과','이영석', 10);
 
 INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
-VALUES ('admin','물리학','기계','나경상', 10);
+VALUES ('admin','물리학','전자공학부','나경상', 10);
 
 INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
-VALUES ('admin','전기회로','전기','박준규', 10);
+VALUES ('admin','전기회로','게임공학부','박준규', 10);
 
 INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
-VALUES ('admin','C언어','컴공','이영호', 10);
+VALUES ('admin','C언어','나노광공학과','이영호', 10);
 
 INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
-VALUES ('admin','제어학','기계','장진영', 10);
+VALUES ('admin','제어학','경영학부','장진영', 10);
 
 
 

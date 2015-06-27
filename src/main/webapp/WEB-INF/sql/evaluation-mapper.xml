@@ -55,7 +55,7 @@
   </select>
 
   <select id="selectBest" resultType="map">
-    SELECT * FROM EVALUATION WHERE LECTURE_ID = #{value} AND IS_DELETE <![CDATA[ = ]]> 1 ORDER BY likes DESC, WRITE_DATE DESC
+    SELECT * FROM EVALUATION WHERE LECTURE_ID = #{value} AND IS_DELETE <![CDATA[ = ]]> 1 ORDER BY likes DESC, WRITE_DATE DESC LIMIT 3
   </select>
 
   <select id="selectCount" resultType="int">
@@ -89,8 +89,8 @@
   </update>
 
   <insert id="insert" parameterType="map">
-    INSERT INTO EVALUATION (lecture_id, member_id, method, task, exam, comment, score)
-    VALUES (#{lecture_id},#{member_id},#{method},#{task},#{exam},#{comment},#{score})
+    INSERT INTO EVALUATION (lecture_id, member_id, method, task, exam, comment, score, semester)
+    VALUES (#{lecture_id},#{member_id},#{method},#{task},#{exam},#{comment},#{score},#{semester})
   </insert>
 
   <update id="update" parameterType="map">
@@ -100,7 +100,8 @@
     task = #{task},
     exam = #{exam},
     comment = #{comment},
-    score = #{score}
+    score = #{score},
+    semester = #{semester}
     WHERE EVALUATION_ID = #{evaluation_id}
   </update>
 

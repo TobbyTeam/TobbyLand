@@ -23,7 +23,7 @@ public class MemberValidator implements Validator {
 /*
         int count = memberRepository.selectCount(member_id);
         System.out.println(count);
-*//*
+        *//*
 
         int count1 = 10;*/
 
@@ -36,7 +36,7 @@ public class MemberValidator implements Validator {
         String member_id = member.getMember_id();
         if (member_id == null || member_id.trim().isEmpty()) {
             System.out.println("member_id is null or empty");
-            errors.rejectValue("member_id", "trouble");
+            errors.rejectValue("member_id2", "trouble");
         }
 
         String password = member.getPassword();

@@ -35,12 +35,14 @@
 			<td>강의명</td>
 			<td>학과명</td>
 			<td>교수명</td>
+			<td>강의평가수</td>
 		</tr>
 		<c:forEach var="lecture" items="${lectures}" varStatus="status">
 		<tr>
 			<td><a href="/evaluation/list?lecture_id=${lecture.lecture_id}">${lecture.lecture_name}</a></td>
 			<td>${lecture.dept}</td>
 			<td>${lecture.prof}</td>
+			<td>${lecture.count}</td>
 		</tr>
 		</c:forEach>
 	</table></br><br/>

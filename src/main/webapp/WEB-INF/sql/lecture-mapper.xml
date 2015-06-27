@@ -8,7 +8,12 @@
   </select>
 
   <select id="selectIAN" resultType="map">
-    SELECT lecture_id, lecture_name FROM LECTURE WHERE LECTURE_ID = #{lecture_id}
+
+    SELECT L.LECTURE_ID as lecture_id, L.LECTURE_NAME as lecture_name, L.DEPT as dept, L.PROF as prof, Count(E.EVALUATION_ID) as count
+    FROM LECTURE L LEFT OUTER JOIN EVALUATION E ON E.LECTURE_ID = L.LECTURE_ID
+    WHERE L.LECTURE_ID = #{lecture_id} AND (E.IS_DELETE <![CDATA[ = ]]> 1 OR E.IS_DELETE iS NULL)
+    GROUP BY L.LECTURE_ID
+
   </select>
 
   <select id="selectMember" resultType="String">
@@ -24,12 +29,15 @@
   </select>
 
   <select id="selectSearch" parameterType="map" resultType="map">
-    SELECT * FROM LECTURE WHERE likes <![CDATA[ >= ]]> 10 AND IS_DELETE <![CDATA[ = ]]> 1
-    <choose><when test="searchType != null and searchType.equalsIgnoreCase('lecture_name')">AND LECTURE_NAME LIKE CONCAT('%', #{searchWord}, '%')</when>
-            <when test="searchType != null and searchType.equalsIgnoreCase('dept')">AND DEPT LIKE CONCAT('%', #{searchWord}, '%')</when>
-            <otherwise> AND PROF LIKE CONCAT('%', #{searchWord}, '%')</otherwise>
+    SELECT L.LECTURE_ID as lecture_id, L.LECTURE_NAME as lecture_name, L.DEPT as dept, L.PROF as prof, Count(E.EVALUATION_ID) as count
+    FROM LECTURE L LEFT OUTER JOIN EVALUATION E ON E.LECTURE_ID = L.LECTURE_ID
+    WHERE L.LIKES <![CDATA[ >= ]]> 10 AND L.IS_DELETE <![CDATA[ = ]]> 1 AND (E.IS_DELETE <![CDATA[ = ]]> 1 OR E.IS_DELETE iS NULL)
+    <choose><when test="searchType != null and searchType.equalsIgnoreCase('lecture_name')">AND L.LECTURE_NAME LIKE CONCAT('%', #{searchWord}, '%')</when>
+            <when test="searchType != null and searchType.equalsIgnoreCase('dept')">AND L.DEPT LIKE CONCAT('%', #{searchWord}, '%')</when>
+            <otherwise> AND L.PROF LIKE CONCAT('%', #{searchWord}, '%')</otherwise>
     </choose>
-    ORDER BY WRITE_DATE DESC
+    GROUP BY L.LECTURE_ID
+    ORDER BY L.WRITE_DATE DESC
   </select>
 
   <select id="selectSearchAdmin" parameterType="map" resultType="map">

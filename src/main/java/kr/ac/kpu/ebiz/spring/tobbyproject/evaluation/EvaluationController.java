@@ -1,6 +1,7 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.evaluation;
 
 import kr.ac.kpu.ebiz.spring.tobbyproject.lecture.LectureRepository;
+import kr.ac.kpu.ebiz.spring.tobbyproject.semester.SemesterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -23,6 +24,9 @@ public class EvaluationController {
 
 	@Autowired
 	LectureRepository lectureRepository;
+
+	@Autowired
+	SemesterRepository semesterRepository;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list(@RequestParam("lecture_id") int lecture_id) {
@@ -62,6 +66,7 @@ public class EvaluationController {
 		evaluation.put("lecture_id", lecture_id);
 
 		mav.addObject("evaluation", evaluation);
+		mav.addObject("semesters", semesterRepository.selectAll());
 
 		return mav;
 	}
@@ -69,7 +74,8 @@ public class EvaluationController {
 	@RequestMapping(value = "/reg", method = RequestMethod.POST)
 	public ModelAndView insert(@RequestParam("lecture_id") int lecture_id,@RequestParam("method") String method,
 							   @RequestParam("task") String task, @RequestParam("exam") String exam,
-							   @RequestParam("comment") String comment, @RequestParam("score") int score) {
+							   @RequestParam("comment") String comment, @RequestParam("score") int score,
+							   @RequestParam("semester") String semester) {
 
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String member_id = user.getUsername();
@@ -90,6 +96,7 @@ public class EvaluationController {
 		evaluation.put("exam", exam);
 		evaluation.put("comment", comment);
 		evaluation.put("score", score);
+		evaluation.put("semester", semester);
 
 		evaluationRepository.insert(evaluation);
 
@@ -117,6 +124,7 @@ public class EvaluationController {
 			ModelAndView mav = new ModelAndView("/evaluation/modify");
 			Map evaluation = evaluationRepository.select(evaluation_id);
 			mav.addObject("evaluation", evaluation);
+			mav.addObject("semesters", semesterRepository.selectAll());
 			return mav;
 		}
 
@@ -132,7 +140,7 @@ public class EvaluationController {
 	@RequestMapping(value = "/mod", method = RequestMethod.POST)
 	public ModelAndView modify(@RequestParam("evaluation_id") int evaluation_id, @RequestParam("method") String method, @RequestParam("task") String task,
 							   @RequestParam("exam") String exam, @RequestParam("comment") String comment, @RequestParam("score") int score,
-							   @RequestParam("lecture_id") int lecture_id) {
+							   @RequestParam("lecture_id") int lecture_id,@RequestParam("semester") String semester) {
 
 		ModelAndView mav = new ModelAndView("/evaluation/list");
 
@@ -143,6 +151,7 @@ public class EvaluationController {
 		evaluation.put("exam", exam);
 		evaluation.put("comment", comment);
 		evaluation.put("score", score);
+		evaluation.put("semester", semester);
 		evaluationRepository.update(evaluation);
 
 		mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
