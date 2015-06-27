@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -60,6 +61,21 @@ public class EvaluationController {
 			return mav;
 		}
 
+		Calendar cal = Calendar.getInstance();
+
+		int year = cal.get(Calendar.YEAR) - 2000;
+		int month = cal.get(Calendar.MONTH);
+		int half;
+		if(month>7){half = 2;}
+		else{half = 1;}
+
+		StringBuilder current = new StringBuilder(String.valueOf(year));
+		StringBuilder current2 = new StringBuilder("-");
+		StringBuilder current3 = new StringBuilder(String.valueOf(half));
+		StringBuilder current4 = new StringBuilder("학기");
+
+		current.append(current2).append(current3).append(current4);
+
 		ModelAndView mav = new ModelAndView("/evaluation/register");
 
 		HashMap evaluation = new HashMap();
@@ -67,6 +83,7 @@ public class EvaluationController {
 
 		mav.addObject("evaluation", evaluation);
 		mav.addObject("semesters", semesterRepository.selectAll());
+		mav.addObject("current", current);
 
 		return mav;
 	}

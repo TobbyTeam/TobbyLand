@@ -23,8 +23,8 @@
 <br/><br/>
 
 <form action="/evaluation/mod" method="post">
-    학기:
 
+    학기:
     <select name="semester">
         <c:forEach var="semester" items="${semesters}" varStatus="status">
             <c:choose>
