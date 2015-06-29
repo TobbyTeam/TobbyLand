@@ -290,7 +290,7 @@ public class EvaluationController {
 			mav.addObject("error", "본인이 작성한 것이 아닙니다.");
 		}
 
-		mav.addObject("lecture", lectureRepository.select(lecture_id));
+		mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
 		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
 		mav.addObject("best", evaluationRepository.selectBest(lecture_id));
 

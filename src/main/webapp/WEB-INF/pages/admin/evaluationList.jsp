@@ -9,22 +9,8 @@
 	${error}
 </c:if>
 
-</br>
+<jsp:include page="/top" flush="true"/> <br />
 
-<form action="/admin/evaluation/search" method="get">
-
-	검색
-	<select name="searchType">
-		<option value="lecture_name">강의명</option>
-		<option value="dept">학과명</option>
-		<option value="prof">교수명</option>
-	</select>
-
-	<input type="text" name="searchWord">
-	<input type="submit" value="검색">
-
-</form>
-<br/>
 <table border="1">
 	<tr>
 		<td>강의평가아이디</td>
@@ -82,21 +68,14 @@
 </form>
 </br></br>
 
-${requestScope['javax.servlet.forward.request_uri']}
-
 <c:choose>
 	<c:when test="${requestScope['javax.servlet.forward.request_uri'] eq '/admin/evaluation/list'}">
-		<a href="/admin/evaluation/reportList">신고강의평가관리</a><br/><br/>
+		<a href="/admin/evaluation/reportList">신고강의평가관리</a>
 	</c:when>
 	<c:otherwise>
-		<a href="/admin/evaluation/list">모든강의평가관리</a><br/><br/>
+		<a href="/admin/evaluation/list">모든강의평가관리</a>
 	</c:otherwise>
 </c:choose>
 
-	<a href="${pageContext.request.contextPath}/j_spring_security_logout">Log Out</a> <br/><br/>
-
-	<a href="/lecture/list">강의생성게시판</a><br/><br/>
-
-	<a href="/member/view">회원정보</a><br/>
 </body>
 </html>
