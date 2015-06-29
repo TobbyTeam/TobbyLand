@@ -69,13 +69,12 @@ public class MemberController {
 		member1.put("task", task);
 		member1.put("exam",exam);
 
-		HashMap<String, String> member_role = new HashMap<String, String>();
-		member_role.put("member_id", member_id);
-/*		member_role.put("role", "ROLE_USER");*/
+/*		HashMap<String, String> member_role = new HashMap<String, String>();
+		member_role.put("member_id", member_id);*/
 
 		memberRepository.insert(member1);
 
-		memberRepository.insert_role(member_role);
+		memberRepository.insert_role(member_id);
 
 		}
 

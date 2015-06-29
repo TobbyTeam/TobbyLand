@@ -31,8 +31,8 @@ public class MemberRepositoryImpl extends SqlSessionDaoSupport implements Member
 		return getSqlSession().insert("MemberRepository.insert", member) > 0;
 	}
 
-	public boolean insert_role(Map member) {
-		return getSqlSession().insert("MemberRepository.insert_role", member) > 0;
+	public boolean insert_role(String memberId) {
+		return getSqlSession().insert("MemberRepository.insert_role", memberId) > 0;
 	}
 
 	public boolean update(Map member) {

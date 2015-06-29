@@ -31,7 +31,7 @@
     VALUES (#{member_id},#{password},#{nickname},#{email},#{method},#{task},#{exam})
   </insert>
 
-  <insert id="insert_role" parameterType="map">
+  <insert id="insert_role" parameterType="String">
     INSERT INTO MEMBER_ROLES (member_id) VALUES (#{member_id})
   </insert>
 

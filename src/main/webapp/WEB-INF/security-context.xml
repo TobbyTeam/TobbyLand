@@ -45,13 +45,41 @@
         </security:authentication-provider>
     </security:authentication-manager>
 
-    <bean id="dataSource1"
+<!--    <bean id="dataSource1"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://localhost:3306/tobbyland" />
         <property name="username" value="root" />
         <property name="password" value="" />
+    </bean>-->
+
+    <bean id="dataSource1" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+        <constructor-arg ref="pooledDataSource1"/>
+        <property name="logFormatter">
+            <bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+                <property name="sqlPrefix" value="[SQL]  "/>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="pooledDataSource1" class="com.zaxxer.hikari.HikariDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="minimumIdle" value="${jdbc.min.pool}"/>
+        <property name="maximumPoolSize" value="${jdbc.max.pool}"/>
+        <property name="connectionTestQuery" value="select 1"/>
+        <property name="registerMbeans" value="true"/>
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="cachePrepStmts">true</prop>
+                <prop key="prepStmtCacheSize">250</prop>
+                <prop key="prepStmtCacheSqlLimit">2048</prop>
+                <prop key="useServerPrepStmts">true</prop>
+            </props>
+        </property>
     </bean>
 
 </beans>
