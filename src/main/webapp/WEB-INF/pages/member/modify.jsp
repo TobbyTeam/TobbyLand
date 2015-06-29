@@ -3,27 +3,20 @@
 <html>
 <head>
     <title></title>
+
+    <script src="<c:url value="/resources/js/members.js" />"></script>
+
 </head>
 <body>
 
-<form action="/lecture/search" method="get">
 
-    검색
-    <select name="searchType">
-        <option value="lecture_name">강의명</option>
-        <option value="dept">학과명</option>
-        <option value="prof">교수명</option>
-    </select>
+<jsp:include page="/top" flush="true"/> <br />
 
-    <input type="text" name="searchWord">
-    <input type="submit" value="검색">
+<form action="/member/mod" method="post" name="mod_frm">
 
-</form>
-<br/><br/>
-
-<form action="/member/mod" method="post">
   아이디: <text>${member.member_id}</text><br>
-  패스워드:<input type="text" name="password" value="${member.password}"><br>
+  패스워드:<input type="password" name="password" value="${member.password}"><br>
+  패스워드확인:<input type="password" name="password_check" value="${member.password}"><br/>
   별명: <input type="text" name="nickname" value="${member.nickname}"><br>
   이메일: <text>${member.email}</text><br>
   수업방식:
@@ -82,20 +75,13 @@
             C3<input type="radio" name="exam" value="C3" checked><br>
         </c:otherwise>
     </c:choose>
-  <br>
-  <input type="submit" value="전송">
 
-    <br/><br/>
+    <br />
 
-    <a href="${pageContext.request.contextPath}/j_spring_security_logout">Log Out</a> <br /><br/>
-
-    <br/>
+    <input type="button" value="수정" onclick="updateInfoConfirm()">&nbsp;&nbsp;&nbsp; <input type="reset" value="취소" onclick="javascript:window.location='/member/view'">
 
 </form>
 
-<a href="${pageContext.request.contextPath}/j_spring_security_logout">Log Out</a> <br/><br/>
-<a href="/lecture/list">강의생성게시판</a><br/><br/>
-<a href="/member/view">회원정보</a><br/>
 </body>
 </html>
 

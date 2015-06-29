@@ -4,7 +4,7 @@
 <head><title>헬로 월드</title></head>
 <body>
 
-</br></br>
+<jsp:include page="/top" flush="true"/> <br />
 
 <c:if test="${not empty error}">
 	${error}
@@ -15,23 +15,6 @@
 교수명 : ${lecture.prof}</br>
 강의평가 수: ${lecture.count}</br>
 </br></br>
-
-
-<form action="/lecture/search" method="get">
-
-	검색
-	<select name="searchType">
-		<option value="lecture_name">강의명</option>
-		<option value="dept">학과명</option>
-		<option value="prof">교수명</option>
-	</select>
-
-	<input type="text" name="searchWord">
-	<input type="submit" value="검색">
-
-</form>
-
-<br/><br/>
 
 베스트 강의평가
 <table border="1">
@@ -121,10 +104,5 @@
 </br><br/>
 	<a href="/evaluation/reg_form?lecture_id=${lecture.lecture_id}">강의평가 작성</a> <br/><br/>
 
-	<a href="${pageContext.request.contextPath}/j_spring_security_logout">Log Out</a> <br/><br/>
-
-	<a href="/lecture/list">강의생성게시판</a><br/><br/>
-
-	<a href="/member/view">회원정보</a><br/>
 </body>
 </html>

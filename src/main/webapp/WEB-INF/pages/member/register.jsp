@@ -19,7 +19,7 @@
 
     아이디: <input type="text" name="member_id"><br/>
     패스워드:<input type="password" name="password"><br/>
-    패스워드:<input type="password" name="password_check"><br/>
+    패스워드확인:<input type="password" name="password_check"><br/>
     별명: <input type="text" name="nickname"><br/>
     이메일: <input type="text" name="email"><br/>
     수업방식:A1<input type="radio" name="method" value="A1" checked>
