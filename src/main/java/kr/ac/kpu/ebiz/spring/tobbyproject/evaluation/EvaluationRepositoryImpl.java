@@ -43,15 +43,15 @@ public class EvaluationRepositoryImpl extends SqlSessionDaoSupport implements Ev
 
 	public List<Map> SearchPrefer(Map search) { return getSqlSession().selectList("EvaluationRepository.SearchPrefer", search); }
 
-	public boolean delete(int evaluationId) {
+	public boolean delete(Integer evaluationId) {
 		return getSqlSession().delete("EvaluationRepository.delete", evaluationId) > 0;
 	}
 
-	public boolean isDelete(int evaluationId) {
+	public boolean isDelete(Integer evaluationId) {
 		return getSqlSession().update("EvaluationRepository.isDelete", evaluationId) > 0;
 	}
 
-	public boolean isUndelete(int evaluationId) {
+	public boolean isUndelete(Integer evaluationId) {
 		return getSqlSession().update("EvaluationRepository.isUndelete", evaluationId) > 0;
 	}
 
@@ -68,15 +68,15 @@ public class EvaluationRepositoryImpl extends SqlSessionDaoSupport implements Ev
 	}
 
 
-	public boolean updateLike(int evaluationId) {
+	public boolean updateLike(Integer evaluationId) {
 		return getSqlSession().update("EvaluationRepository.updateLike", evaluationId) > 0;
 	}
 
-	public boolean updateDislike(int evaluationId) {
+	public boolean updateDislike(Integer evaluationId) {
 		return getSqlSession().update("EvaluationRepository.updateDislike", evaluationId) > 0;
 	}
 
-	public boolean updateReport(int evaluationId) {
+	public boolean updateReport(Integer evaluationId) {
 		return getSqlSession().update("EvaluationRepository.updateReport", evaluationId) > 0;
 	}
 
@@ -87,5 +87,9 @@ public class EvaluationRepositoryImpl extends SqlSessionDaoSupport implements Ev
 
 	public int selectSub(Map evaluation) {
 		return getSqlSession().selectOne("EvaluationRepository.selectSub", evaluation);
+	}
+
+	public List<Map> selectRe(Integer evaluationId) {
+		return getSqlSession().selectList("EvaluationRepository.selectRe", evaluationId);
 	}
 }

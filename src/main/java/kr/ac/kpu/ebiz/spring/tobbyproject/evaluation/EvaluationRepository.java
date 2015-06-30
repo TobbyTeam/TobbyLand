@@ -25,11 +25,11 @@ public interface EvaluationRepository {
 
 	List<Map> SearchPrefer(Map search);
 
-	boolean delete(int evaluationId);
+	boolean delete(Integer evaluationId);
 
-	boolean isDelete(int evaluationId);
+	boolean isDelete(Integer evaluationId);
 
-	boolean isUndelete(int evaluationId);
+	boolean isUndelete(Integer evaluationId);
 
 	boolean insert(Map evaluation);
 
@@ -37,14 +37,16 @@ public interface EvaluationRepository {
 
 	boolean updateAdmin(Map evaluation);
 
-	boolean updateLike(int evaluationId);
+	boolean updateLike(Integer evaluationId);
 
-	boolean updateDislike(int evaluationId);
+	boolean updateDislike(Integer evaluationId);
 
-	boolean updateReport(int evaluationId);
+	boolean updateReport(Integer evaluationId);
 
 	boolean insertSub(Map lecture);
 
 	int selectSub(Map lecture);
+
+	List<Map> selectRe(Integer evaluationId);
 }
 

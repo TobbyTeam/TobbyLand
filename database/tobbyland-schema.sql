@@ -150,8 +150,9 @@ CREATE TABLE evaluationsub (
   es_id int(10) unsigned NOT NULL AUTO_INCREMENT,
   evaluation_id int(10) unsigned DEFAULT NULL,
   member_id varchar(45) DEFAULT NULL,
+  contents varchar(45) DEFAULT NULL,
   PRIMARY KEY (es_id),
-  UNIQUE KEY uni_evaluation_id_member_id (evaluation_id,member_id),
+/*  UNIQUE KEY uni_evaluation_id_member_id (evaluation_id,member_id),*/
   KEY FK_evaluationsub_evaluation (evaluation_id),
   KEY FK_evaluationsub_member (member_id),
   CONSTRAINT FK_evaluationsub_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE CASCADE ON UPDATE CASCADE,

@@ -13,7 +13,7 @@
 강의평가 수: ${lecture.count}</br>
 </br></br>
 
-<form action="/evaluation/search" method="get">
+<form action="/evaluation/searchPrefer" method="get">
 
 	수업방식:
 	전체<input type="radio" name="method" value="all" checked>
@@ -56,9 +56,9 @@
 		<td>신고수</td>
 
 	</tr>
-	<c:forEach var="best" items="${best}" begin="0" end="2" step="1" varStatus="status">
+	<c:forEach var="best" items="${best}" varStatus="status">
 		<tr>
-			<td>${best.evaluation_id}</td>
+			<td><a href="/evaluation/replyList?evaluation_id=${best.evaluation_id}">${best.evaluation_id}</a></td>
 			<td>${best.member_id}</td>
 			<td>${best.lecture_id}</td>
 			<td>${best.semester}</td>
@@ -101,7 +101,7 @@
 	</tr>
 	<c:forEach var="evaluation" items="${evaluations}" varStatus="status">
 	<tr>
-		<td>${evaluation.evaluation_id}</td>
+		<td><a href="/evaluation/replyList?evaluation_id=${evaluation.evaluation_id}">${evaluation.evaluation_id}</a></td>
 		<td>${evaluation.member_id}</td>
 		<td>${evaluation.lecture_id}</td>
 		<td>${evaluation.semester}</td>

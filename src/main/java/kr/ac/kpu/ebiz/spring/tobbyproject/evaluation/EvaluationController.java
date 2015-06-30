@@ -294,7 +294,7 @@ public class EvaluationController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	@RequestMapping(value = "/searchPrefer", method = RequestMethod.GET)
 	public ModelAndView search(@RequestParam ("method")String method, @RequestParam ("task")String task, @RequestParam ("exam")String exam,
 							   @RequestParam("lecture_id") int lecture_id) {
 
@@ -318,6 +318,41 @@ public class EvaluationController {
 
 		return mav;
 
+	}
+
+
+	@RequestMapping(value = "/reply", method = RequestMethod.GET)
+	public ModelAndView replyList(@RequestParam("evaluation_id") int evaluation_id) {
+
+		ModelAndView mav = new ModelAndView("evaluation/reply");
+		mav.addObject("replys", evaluationRepository.selectRe(evaluation_id));
+		mav.addObject("evaluation_id", evaluation_id);
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/replyReg", method = RequestMethod.POST)
+	public String replyReg(@RequestParam("evaluation_id")int evaluation_id, @RequestParam ("contents")String contents) {
+
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String member_id = user.getUsername();
+
+		HashMap evaluationSub = new HashMap();
+		evaluationSub.put("evaluation_id", evaluation_id);
+		evaluationSub.put("member_id", member_id);
+		evaluationSub.put("contents", contents);
+
+		evaluationRepository.insertSub(evaluationSub);
+
+/*		String page = "redirect:/evaluation/replyList?evaluation_id=";
+		String id = String.valueOf(evaluation_id);
+		page = page + id ;*/
+
+		StringBuilder page = new StringBuilder("redirect:/evaluation/reply?evaluation_id=");
+		StringBuilder id = new StringBuilder(String.valueOf(evaluation_id));
+		page.append(id);
+
+		return page.toString();
 	}
 
 }
