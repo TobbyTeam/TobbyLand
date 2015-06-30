@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,57 +26,44 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/reg", method = RequestMethod.POST)
-	public String insert(@ModelAttribute("Member") Member member, BindingResult result) {
+	public ModelAndView insert(@RequestParam ("member_id")String member_id, @RequestParam ("password")String password,
+						 @RequestParam ("nickname")String nickname, @RequestParam ("email")String email,
+						 @RequestParam ("method")String method, @RequestParam ("task")String task, @RequestParam ("exam")String exam) {
 
-		String page = "/etc/login";
-
-		String member_id = member.getMember_id();
+		HashMap<String, String> member = new HashMap<String, String>();
+		member.put("member_id",member_id);
+		member.put("password",password);
+		member.put("nickname", nickname);
+		member.put("email",email);
+		member.put("method",method);
+		member.put("task", task);
+		member.put("exam",exam);
 
 		int count = memberRepository.selectCount(member_id);
 
-		member.setTest(count);
+		ModelAndView mav = new ModelAndView();
 
-/*		int count1= member.getTest();*/
+		if(count !=0) {
 
-		MemberValidator validator = new MemberValidator();
-		validator.validate(member, result);
 
-/*		System.out.println(result.toString()+"에러 확인");*/
-
-		if(result.hasErrors()) {
-
-			page = "/member/register";
-
-			return page;
-
-		} else {
-
-		String password = member.getPassword();
-		String nickname = member.getNickname();
-		String email = member.getEmail();
-		String method = member.getMethod();
-		String task = member.getTask();
-		String exam = member.getExam();
-
-		HashMap<String, String> member1 = new HashMap<String, String>();
-		member1.put("member_id",member_id);
-		member1.put("password",password);
-		member1.put("nickname", nickname);
-		member1.put("email",email);
-		member1.put("method",method);
-		member1.put("task", task);
-		member1.put("exam",exam);
-
-/*		HashMap<String, String> member_role = new HashMap<String, String>();
-		member_role.put("member_id", member_id);*/
-
-		memberRepository.insert(member1);
-
-		memberRepository.insert_role(member_id);
+			mav.addObject("member", member);
+			mav.addObject("error", "등록된 아이디 입니다.");
+			mav.setViewName("/member/register");
+			return mav;
 
 		}
 
-		return page;
+		HashMap<String, String> member_role = new HashMap<String, String>();
+		member_role.put("member_id", member_id);
+
+		memberRepository.insert(member);
+
+		memberRepository.insert_role(member_id);
+
+		mav.addObject("member_id", member_id);
+		mav.setViewName("/etc/login");
+
+		return mav;
 	}
 
 	@RequestMapping(value = "/view", method = RequestMethod.GET)

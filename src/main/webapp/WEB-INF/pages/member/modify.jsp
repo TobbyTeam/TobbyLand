@@ -21,7 +21,7 @@
   이메일: <text>${member.email}</text><br>
   수업방식:
     <c:choose>
-        <c:when test="${member.method eq 'A1'}">
+        <c:when test="${member.method eq 'A1' }">
             독고다이형<input type="radio" name="method" value="a1" checked>
             토론형<input type="radio" name="method" value="a2">
             실습형<input type="radio" name="method" value="a3"><br>

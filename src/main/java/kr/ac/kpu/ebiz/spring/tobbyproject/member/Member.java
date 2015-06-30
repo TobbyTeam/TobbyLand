@@ -1,9 +1,11 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.member;
 
+import java.util.HashMap;
+
 /**
  * Created by happy on 2015-06-19.
  */
-public class Member {
+public class Member extends HashMap {
 
     private String member_id;
     private String password;

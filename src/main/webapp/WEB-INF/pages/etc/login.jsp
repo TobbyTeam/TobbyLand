@@ -65,7 +65,7 @@
 			<table>
 				<tr>
 					<td>User:</td>
-					<td><input type='text' name='j_username'></td>
+					<td><input type='text' name='j_username' value="${member_id}"></td>
 				</tr>
 				<tr>
 					<td>Password:</td>
