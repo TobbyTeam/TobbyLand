@@ -40,7 +40,7 @@ values ('c4', '실습');
 --
 
 INSERT INTO MEMBER (member_id, password, nickname, email, method, task, exam)
-VALUES ('ADMIN','1234','ADMIN','babsang24@hanmail.net','a1','b1','c1');
+VALUES ('admin','1234','ADMIN','babsang24@hanmail.net','a1','b1','c1');
 
 
 --
@@ -48,10 +48,10 @@ VALUES ('ADMIN','1234','ADMIN','babsang24@hanmail.net','a1','b1','c1');
 --
 
 INSERT INTO MEMBER_ROLES (member_id, ROLE)
-VALUES ('ADMIN','ROLE_ADMIN');
+VALUES ('admin','ROLE_ADMIN');
 
 INSERT INTO MEMBER_ROLES (member_id, ROLE)
-VALUES ('ADMIN','ROLE_USER');
+VALUES ('admin','ROLE_USER');
 
 
 --

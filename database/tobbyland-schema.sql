@@ -119,7 +119,7 @@ CREATE TABLE evaluation (
   UNIQUE KEY uni_lecture_id_member_id (lecture_id,member_id),
   KEY FK_evaluation_lecture (lecture_id),
   KEY FK_evaluation_member (member_id),
-  KEY FK_evaluation_semester (member_id),
+  KEY FK_evaluation_semester (semester),
   CONSTRAINT FK_evaluation_semester FOREIGN KEY (semester) REFERENCES semester (semester) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT FK_evaluation_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT FK_evaluation_lecture FOREIGN KEY (lecture_id) REFERENCES lecture (lecture_id) ON DELETE CASCADE ON UPDATE CASCADE
