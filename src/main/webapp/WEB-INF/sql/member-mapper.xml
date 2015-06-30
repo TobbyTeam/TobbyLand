@@ -11,6 +11,10 @@
      SELECT Count(MEMBER_ID) FROM MEMBER WHERE MEMBER_ID = #{member_id}
   </select>
 
+  <select id="selectPw" resultType="String">
+    SELECT password FROM MEMBER WHERE MEMBER_ID = #{member_id}
+  </select>
+
   <select id="selectAll" resultType="map">
     SELECT * FROM MEMBER
   </select>
@@ -19,7 +23,7 @@
     DELETE FROM MEMBER WHERE MEMBER_ID = #{value}
   </delete>
 
-  <update id="deleteEnabled" parameterType="map">
+  <update id="deleteEnabled" parameterType="String">
     UPDATE MEMBER
     SET
     enabled = 0

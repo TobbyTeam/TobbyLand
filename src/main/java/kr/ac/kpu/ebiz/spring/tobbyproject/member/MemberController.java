@@ -54,9 +54,6 @@ public class MemberController {
 			return mav;
 		}
 
-		HashMap<String, String> member_role = new HashMap<String, String>();
-		member_role.put("member_id", member_id);
-
 		memberRepository.insert(member);
 
 		memberRepository.insert_role(member_id);
@@ -76,10 +73,6 @@ public class MemberController {
 	@RequestMapping(value = "/enabled", method = RequestMethod.GET)
 	public String enabled(@RequestParam("member_id") String member_id) {
 
-		System.out.println(member_id+"++++++아이디 확인");
-
-/*		HashMap<String, String> member = new HashMap<String, String>();
-		member.put("member_id",member_id);*/
 		memberRepository.enabled(member_id);
 
 		return "redirect:etc/login";
@@ -108,7 +101,9 @@ public class MemberController {
 
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String member_id = user.getUsername();
-		String member_pw = user.getPassword();
+/*		String member_pw = user.getPassword();*/
+
+		String member_pw = memberRepository.selectPw(member_id);
 
 		System.out.println(member_pw + "+++++ 세션 패스워드");
 
@@ -157,9 +152,9 @@ public class MemberController {
 
 		SecurityContextHolder.clearContext();
 
-		HashMap<String, String> member = new HashMap<String, String>();
-		member.put("member_id",member_id);
-		memberRepository.deleteEnabled(member);
+/*		HashMap<String, String> member = new HashMap<String, String>();
+		member.put("member_id",member_id);*/
+		memberRepository.deleteEnabled(member_id);
 
 		return "etc/login";
 	}

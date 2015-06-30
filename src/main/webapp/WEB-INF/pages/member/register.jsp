@@ -26,12 +26,12 @@
     이메일: <input type="text" name="email" value="${member.email}"><br/>
     수업방식:
     <c:choose>
-        <c:when test="${member.method eq 'A1'}">
+        <c:when test="${member.method eq 'a1' || empty member.method}">
             독고다이형<input type="radio" name="method" value="a1" checked>
             토론형<input type="radio" name="method" value="a2">
             실습형<input type="radio" name="method" value="a3"><br>
         </c:when>
-        <c:when test="${member.method eq 'A2'}">
+        <c:when test="${member.method eq 'a2'}">
             독고다이형<input type="radio" name="method" value="a1" >
             토론형<input type="radio" name="method" value="a2" checked>
             실습형<input type="radio" name="method" value="a3"><br>
@@ -45,12 +45,12 @@
 
     과제방식:
     <c:choose>
-        <c:when test="${member.task eq 'B1'}">
+        <c:when test="${member.task eq 'b1' || empty member.task}">
             텀프로젝트<input type="radio" name="task" value="b1" checked>
             팀과제<input type="radio" name="task" value="b2">
             개인과제<input type="radio" name="task" value="b3"><br>
         </c:when>
-        <c:when test="${member.task eq 'B2'}">
+        <c:when test="${member.task eq 'b2'}">
             텀프로젝트<input type="radio" name="task" value="b1">
             팀과제<input type="radio" name="task" value="b2" checked>
             개인과제<input type="radio" name="task" value="b3"><br>
@@ -64,7 +64,7 @@
 
     시험방식:
     <c:choose>
-        <c:when test="${member.exam eq 'c1'}">
+        <c:when test="${member.exam eq 'c1' || empty member.exam}">
             서술형<input type="radio" name="exam" value="c1" checked>
             혼합형<input type="radio" name="exam" value="c2">
             오픈북<input type="radio" name="exam" value="c3">

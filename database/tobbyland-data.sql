@@ -39,8 +39,8 @@ values ('c4', '실습');
 -- member table data
 --
 
-INSERT INTO MEMBER (member_id, password, nickname, email, method, task, exam)
-VALUES ('admin','1234','ADMIN','babsang24@hanmail.net','a1','b1','c1');
+INSERT INTO MEMBER (member_id, password, nickname, email, method, task, exam, enabled)
+VALUES ('admin','1234','ADMIN','babsang24@hanmail.net','a1','b1','c1', 1);
 
 
 --

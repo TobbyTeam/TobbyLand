@@ -9,11 +9,13 @@ public interface MemberRepository {
 
 	int selectCount(String memberId);
 
+	String selectPw(String memberId);
+
 	List<Map> selectAll();
 
 	boolean delete(String memberId);
 
-	boolean deleteEnabled(Map member);
+	boolean deleteEnabled(String memberId);
 
 	boolean enabled(String memberId);
 

@@ -21,12 +21,12 @@
   이메일: <text>${member.email}</text><br>
   수업방식:
     <c:choose>
-        <c:when test="${member.method eq 'A1' }">
+        <c:when test="${member.method eq 'a1' }">
             독고다이형<input type="radio" name="method" value="a1" checked>
             토론형<input type="radio" name="method" value="a2">
             실습형<input type="radio" name="method" value="a3"><br>
         </c:when>
-        <c:when test="${member.method eq 'A2'}">
+        <c:when test="${member.method eq 'a2'}">
             독고다이형<input type="radio" name="method" value="a1" >
             토론형<input type="radio" name="method" value="a2" checked>
             실습형<input type="radio" name="method" value="a3"><br>
@@ -40,12 +40,12 @@
 
   과제방식:
     <c:choose>
-        <c:when test="${member.task eq 'B1'}">
+        <c:when test="${member.task eq 'b1'}">
             텀프로젝트<input type="radio" name="task" value="b1" checked>
             팀과제<input type="radio" name="task" value="b2">
             개인과제<input type="radio" name="task" value="b3"><br>
         </c:when>
-        <c:when test="${member.task eq 'B2'}">
+        <c:when test="${member.task eq 'b2'}">
             텀프로젝트<input type="radio" name="task" value="b1">
             팀과제<input type="radio" name="task" value="b2" checked>
             개인과제<input type="radio" name="task" value="b3"><br>
