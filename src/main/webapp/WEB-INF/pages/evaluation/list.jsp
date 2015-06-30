@@ -6,15 +6,37 @@
 
 <jsp:include page="/top" flush="true"/> <br />
 
-<c:if test="${not empty error}">
-	${error}
-</c:if>
 </br>
 강의명 : ${lecture.lecture_name}</br>
 학과명 : ${lecture.dept}</br>
 교수명 : ${lecture.prof}</br>
 강의평가 수: ${lecture.count}</br>
 </br></br>
+
+<form action="/evaluation/search" method="get">
+
+	수업방식:
+	전체<input type="radio" name="method" value="all" checked>
+	독고다이형<input type="radio" name="method" value="a1">
+	토론형<input type="radio" name="method" value="a2">
+	실습형<input type="radio" name="method" value="a3"><br/>
+
+	과제방식:
+	전체<input type="radio" name="task" value="all"checked>
+	텀프로젝트<input type="radio" name="task" value="b1">
+	팀과제<input type="radio" name="task" value="b2">
+	개인과제<input type="radio" name="task" value="b3"><br/>
+
+	시험방식:
+	전체<input type="radio" name="exam" value="all" checked>
+	서술형<input type="radio" name="exam" value="c1">
+	혼합형<input type="radio" name="exam" value="c2">
+	오픈북<input type="radio" name="exam" value="c3">
+	실습<input type="radio" name="exam" value="c4"><br/>
+	<input type="hidden" name="lecture_id" value="${lecture.lecture_id}">
+	<input type="submit" value="검색">
+</form>
+<br/>
 
 베스트 강의평가
 <table border="1">
@@ -100,6 +122,12 @@
 	</tr>
 	</c:forEach>
 </table>
+
+<br />
+<c:if test="${not empty error}">
+	${error}
+</c:if>
+<br />
 
 </br><br/>
 	<a href="/evaluation/reg_form?lecture_id=${lecture.lecture_id}">강의평가 작성</a> <br/><br/>

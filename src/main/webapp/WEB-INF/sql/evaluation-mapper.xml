@@ -51,11 +51,11 @@
   </select>
 
   <select id="selectL" resultType="map">
-    SELECT * FROM EVALUATION WHERE LECTURE_ID = #{value} AND IS_DELETE <![CDATA[ = ]]> 1 ORDER BY WRITE_DATE DESC
+    SELECT * FROM EVALUATION WHERE LECTURE_ID = #{value} AND IS_DELETE <![CDATA[ = ]]> 1 ORDER BY SEMESTER DESC, WRITE_DATE DESC
   </select>
 
   <select id="selectBest" resultType="map">
-    SELECT * FROM EVALUATION WHERE LECTURE_ID = #{value} AND IS_DELETE <![CDATA[ = ]]> 1 ORDER BY likes DESC, WRITE_DATE DESC LIMIT 3
+    SELECT * FROM EVALUATION WHERE LECTURE_ID = #{value} AND IS_DELETE <![CDATA[ = ]]> 1 ORDER BY LIKES DESC, WRITE_DATE DESC LIMIT 3
   </select>
 
   <select id="selectCount" resultType="int">
@@ -66,9 +66,24 @@
     SELECT member_id FROM EVALUATION WHERE Evaluation_ID = #{evaluation_id}
   </select>
 
-<!--  <select id="selectL" resultType="map">
-    SELECT * FROM EVALUATION E LEFT OUTER JOIN LECTURE L ON E.LECTURE_ID=L.LECTURE_ID WHERE E.LECTURE_ID = #{value}
-  </select>-->
+  <select id="SearchPrefer" parameterType="map" resultType="map">
+    SELECT *
+    FROM EVALUATION E LEFT OUTER JOIN MEMBER M ON E.MEMBER_ID = M.MEMBER_ID
+    WHERE E.LECTURE_ID = #{lecture_id} AND E.IS_DELETE <![CDATA[ = ]]> 1
+    <choose>
+      <when test="method != null and method.equalsIgnoreCase('all')"> </when>
+      <otherwise> AND M.METHOD = #{method}</otherwise>
+    </choose>
+    <choose>
+      <when test="task != null and task.equalsIgnoreCase('all')"> </when>
+      <otherwise> AND M.TASK = #{task}</otherwise>
+    </choose>
+    <choose>
+      <when test="exam != null and exam.equalsIgnoreCase('all')"> </when>
+      <otherwise> AND M.EXAM = #{exam}</otherwise>
+    </choose>
+    ORDER BY SEMESTER DESC, WRITE_DATE DESC
+  </select>
 
   <delete id="delete" parameterType="int">
     DELETE FROM EVALUATION WHERE EVALUATION_ID = #{value}

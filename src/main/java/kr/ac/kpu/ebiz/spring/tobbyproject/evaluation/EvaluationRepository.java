@@ -23,6 +23,8 @@ public interface EvaluationRepository {
 
 	List<Map> selectSearchAdmin(Map search);
 
+	List<Map> SearchPrefer(Map search);
+
 	boolean delete(int evaluationId);
 
 	boolean isDelete(int evaluationId);

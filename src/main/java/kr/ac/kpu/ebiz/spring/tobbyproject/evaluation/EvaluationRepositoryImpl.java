@@ -41,6 +41,8 @@ public class EvaluationRepositoryImpl extends SqlSessionDaoSupport implements Ev
 
 	public List<Map> selectSearchAdmin(Map search) { return getSqlSession().selectList("EvaluationRepository.selectSearchAdmin", search); }
 
+	public List<Map> SearchPrefer(Map search) { return getSqlSession().selectList("EvaluationRepository.SearchPrefer", search); }
+
 	public boolean delete(int evaluationId) {
 		return getSqlSession().delete("EvaluationRepository.delete", evaluationId) > 0;
 	}

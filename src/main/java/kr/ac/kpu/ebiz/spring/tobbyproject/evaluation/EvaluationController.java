@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/evaluation")
@@ -295,6 +292,32 @@ public class EvaluationController {
 		mav.addObject("best", evaluationRepository.selectBest(lecture_id));
 
 		return mav;
+	}
+
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public ModelAndView search(@RequestParam ("method")String method, @RequestParam ("task")String task, @RequestParam ("exam")String exam,
+							   @RequestParam("lecture_id") int lecture_id) {
+
+		ModelAndView mav = new ModelAndView("evaluation/list");
+
+		HashMap search = new HashMap();
+		search.put("lecture_id",lecture_id);
+		search.put("method",method);
+		search.put("task",task);
+		search.put("exam",exam);
+
+		List<Map> result = evaluationRepository.SearchPrefer(search);
+
+		mav.addObject("evaluations", result);
+		mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
+		mav.addObject("best", evaluationRepository.selectBest(lecture_id));
+
+		if(result.isEmpty() == true){
+			mav.addObject("error", "검색 결과가 없습니다.");
+		}
+
+		return mav;
+
 	}
 
 }

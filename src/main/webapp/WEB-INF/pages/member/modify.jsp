@@ -20,59 +20,68 @@
   별명: <input type="text" name="nickname" value="${member.nickname}"><br>
   이메일: <text>${member.email}</text><br>
   수업방식:
-<c:choose>
-    <c:when test="${member.method eq 'A1'}">
-        A1<input type="radio" name="method" value="A1" checked>
-        A2<input type="radio" name="method" value="A2">
-        A3<input type="radio" name="method" value="A3"><br>
-    </c:when>
-    <c:when test="${member.method eq 'A2'}">
-        A1<input type="radio" name="method" value="A1" >
-        A2<input type="radio" name="method" value="A2" checked>
-        A3<input type="radio" name="method" value="A3"><br>
-    </c:when>
-    <c:otherwise>
-        A1<input type="radio" name="method" value="A1" >
-        A2<input type="radio" name="method" value="A2">
-        A3<input type="radio" name="method" value="A3" checked><br>
-    </c:otherwise>
-</c:choose>
+    <c:choose>
+        <c:when test="${member.method eq 'A1'}">
+            독고다이형<input type="radio" name="method" value="a1" checked>
+            토론형<input type="radio" name="method" value="a2">
+            실습형<input type="radio" name="method" value="a3"><br>
+        </c:when>
+        <c:when test="${member.method eq 'A2'}">
+            독고다이형<input type="radio" name="method" value="a1" >
+            토론형<input type="radio" name="method" value="a2" checked>
+            실습형<input type="radio" name="method" value="a3"><br>
+        </c:when>
+        <c:otherwise>
+            독고다이형<input type="radio" name="method" value="a1" >
+            토론형<input type="radio" name="method" value="a2">
+            실습형<input type="radio" name="method" value="a3" checked><br>
+        </c:otherwise>
+    </c:choose>
 
   과제방식:
-<c:choose>
-    <c:when test="${member.task eq 'B1'}">
-        B1<input type="radio" name="task" value="B1" checked>
-        B2<input type="radio" name="task" value="B2">
-        B3<input type="radio" name="task" value="B3"><br>
-    </c:when>
-    <c:when test="${member.task eq 'B2'}">
-        B1<input type="radio" name="task" value="B1">
-        B2<input type="radio" name="task" value="B2" checked>
-        B3<input type="radio" name="task" value="B3"><br>
-    </c:when>
-    <c:otherwise>
-        B1<input type="radio" name="task" value="B1">
-        B2<input type="radio" name="task" value="B2">
-        B3<input type="radio" name="task" value="B3" checked><br>
-    </c:otherwise>
-</c:choose>
+    <c:choose>
+        <c:when test="${member.task eq 'B1'}">
+            텀프로젝트<input type="radio" name="task" value="b1" checked>
+            팀과제<input type="radio" name="task" value="b2">
+            개인과제<input type="radio" name="task" value="b3"><br>
+        </c:when>
+        <c:when test="${member.task eq 'B2'}">
+            텀프로젝트<input type="radio" name="task" value="b1">
+            팀과제<input type="radio" name="task" value="b2" checked>
+            개인과제<input type="radio" name="task" value="b3"><br>
+        </c:when>
+        <c:otherwise>
+            텀프로젝트<input type="radio" name="task" value="b1">
+            팀과제<input type="radio" name="task" value="b2">
+            개인과제<input type="radio" name="task" value="b3" checked><br>
+        </c:otherwise>
+    </c:choose>
 
   시험방식:
     <c:choose>
-        <c:when test="${member.exam eq 'C1'}">
-            C1<input type="radio" name="exam" value="C1" checked>
-            C2<input type="radio" name="exam" value="C2">
-            C3<input type="radio" name="exam" value="C3"><br>
+        <c:when test="${member.exam eq 'c1'}">
+            서술형<input type="radio" name="exam" value="c1" checked>
+            혼합형<input type="radio" name="exam" value="c2">
+            오픈북<input type="radio" name="exam" value="c3">
+            실습<input type="radio" name="exam" value="c4"><br>
         </c:when>
-        <c:when test="${member.exam eq 'C2'}">
-            C1<input type="radio" name="exam" value="C1">
-            C2<input type="radio" name="exam" value="C2" checked>
-            C3<input type="radio" name="exam" value="C3"><br>
+        <c:when test="${member.exam eq 'c2'}">
+            서술형<input type="radio" name="exam" value="c1">
+            혼합형<input type="radio" name="exam" value="c2" checked>
+            오픈북<input type="radio" name="exam" value="c3">
+            실습<input type="radio" name="exam" value="c4"><br>
+        </c:when>
+        <c:when test="${member.exam eq 'c3'}">
+            서술형<input type="radio" name="exam" value="c1">
+            혼합형<input type="radio" name="exam" value="c2">
+            오픈북<input type="radio" name="exam" value="c3" checked>
+            실습<input type="radio" name="exam" value="c4"><br>
         </c:when>
         <c:otherwise>
-            C1<input type="radio" name="exam" value="C1">
-            C2<input type="radio" name="exam" value="C2">
-            C3<input type="radio" name="exam" value="C3" checked><br>
+            서술형<input type="radio" name="exam" value="c1">
+            혼합형<input type="radio" name="exam" value="c2">
+            오픈북<input type="radio" name="exam" value="c3">
+            실습<input type="radio" name="exam" value="c4" checked><br>
         </c:otherwise>
     </c:choose>
 
