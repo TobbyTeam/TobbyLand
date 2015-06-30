@@ -26,6 +26,13 @@
     WHERE MEMBER_ID = #{member_id}
   </update>
 
+  <update id="enabled" parameterType="String">
+    UPDATE MEMBER
+    SET
+    enabled = 1
+    WHERE MEMBER_ID = #{member_id}
+  </update>
+
   <insert id="insert" parameterType="map">
     INSERT INTO MEMBER (member_id, password, nickname, email, method, task, exam)
     VALUES (#{member_id},#{password},#{nickname},#{email},#{method},#{task},#{exam})

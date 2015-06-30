@@ -13,6 +13,7 @@
         <security:intercept-url pattern="/login" access="permitAll" />
         <security:intercept-url pattern="/member/reg_form" access="permitAll" />
         <security:intercept-url pattern="/member/reg" access="permitAll" />
+        <security:intercept-url pattern="/member/enabled" access="permitAll" />
         <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
         <security:intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
 

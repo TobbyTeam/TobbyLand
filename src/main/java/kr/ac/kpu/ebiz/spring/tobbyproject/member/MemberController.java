@@ -1,5 +1,6 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.member;
 
+import kr.ac.kpu.ebiz.spring.tobbyproject.mail.MailMail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -19,6 +20,9 @@ public class MemberController {
 
 	@Autowired
 	MemberRepository memberRepository;
+
+	@Autowired
+	MailMail mailMail;
 
 	@RequestMapping(value = "/reg_form", method = RequestMethod.GET)
 	public String reg() {
@@ -44,13 +48,10 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 
 		if(count !=0) {
-
-
 			mav.addObject("member", member);
 			mav.addObject("error", "등록된 아이디 입니다.");
 			mav.setViewName("/member/register");
 			return mav;
-
 		}
 
 		HashMap<String, String> member_role = new HashMap<String, String>();
@@ -63,7 +64,25 @@ public class MemberController {
 		mav.addObject("member_id", member_id);
 		mav.setViewName("/etc/login");
 
+		mailMail.sendMail("kpytobbyland@google.com",
+				email,
+				"TOBBYLAND 인증 메일입니다.",
+				member_id+"님 회원가입을 축하드립니다. \n\n" +
+						"http://localhost:8080/member/enabled?member_id="+member_id);
+
 		return mav;
+	}
+
+	@RequestMapping(value = "/enabled", method = RequestMethod.GET)
+	public String enabled(@RequestParam("member_id") String member_id) {
+
+		System.out.println(member_id+"++++++아이디 확인");
+
+/*		HashMap<String, String> member = new HashMap<String, String>();
+		member.put("member_id",member_id);*/
+		memberRepository.enabled(member_id);
+
+		return "redirect:etc/login";
 	}
 
 	@RequestMapping(value = "/view", method = RequestMethod.GET)

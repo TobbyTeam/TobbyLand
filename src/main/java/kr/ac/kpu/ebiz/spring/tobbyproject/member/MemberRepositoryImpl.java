@@ -20,11 +20,15 @@ public class MemberRepositoryImpl extends SqlSessionDaoSupport implements Member
 		return getSqlSession().selectList("MemberRepository.selectAll");
 	}
 
-	public boolean delete(int memberId) { return getSqlSession().delete("MemberRepository.delete", memberId) > 0;
+	public boolean delete(String memberId) { return getSqlSession().delete("MemberRepository.delete", memberId) > 0;
 	}
 
 	public boolean deleteEnabled(Map member) {
 		return getSqlSession().update("MemberRepository.deleteEnabled", member) > 0;
+	}
+
+	public boolean enabled(String memberId) {
+		return getSqlSession().update("MemberRepository.enabled", memberId) > 0;
 	}
 
 	public boolean insert(Map member) {

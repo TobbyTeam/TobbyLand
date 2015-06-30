@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ef39bd55-c5a4-43ad-bf23-0a0b224e2f8b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/member/Member.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/member/Member.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/mail/MailMail.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/member/MemberController.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/member/MemberController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/member/MemberRepository.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/member/MemberRepository.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/member/MemberRepositoryImpl.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/member/MemberRepositoryImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/applicationContext.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/applicationContext.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/dispatcher-servlet.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/dispatcher-servlet.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/etc/login.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/etc/login.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/member/modify.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/member/modify.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/member/register.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/member/register.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/member-mapper.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/member-mapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/security-context.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/security-context.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="tobby.iws" />
@@ -31,7 +32,20 @@
     <favorites_list name="tobby" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="MailMail.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/mail/MailMail.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.18041237">
+              <caret line="7" column="34" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -39,8 +53,8 @@
         <option value="spring-beans.schema" />
         <option value="jsf" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -61,11 +75,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/lecture/LectureRepositoryImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/member/view.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/actor-mapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/register.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/modify.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/department/DepartmentRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/department/DepartmentRepositoryImpl.java" />
@@ -84,12 +93,8 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/evaluation/modify.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/evaluation/register.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/applicationContext-repository.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/security-context.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/config.properties" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/lecture-mapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/member/MemberRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/member/MemberRepositoryImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/member-mapper.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/evaluationModForm.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/lectureForm.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/lectureList.jsp" />
@@ -105,13 +110,22 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/evaluation/list.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/evaluation/EvaluationController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/applicationContext.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/dispatcher-servlet.xml" />
         <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/member/Member.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/member/modify.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/member/MemberController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/member/register.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/etc/login.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/dispatcher-servlet.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/mail/Email.java" />
+        <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/mail/EmailSender.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/mail.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/semester/MailController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/mail/MailMail.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/applicationContext.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/security-context.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/member-mapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/member/MemberRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/member/MemberRepositoryImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/member/MemberController.java" />
       </list>
     </option>
   </component>
@@ -547,6 +561,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -566,23 +581,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tobby" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TobbyLand" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -1093,7 +1093,14 @@
       <workItem from="1435584330666" duration="25000" />
       <workItem from="1435587027157" duration="954000" />
       <workItem from="1435638492117" duration="5282000" />
-      <workItem from="1435644515305" duration="8195000" />
+      <workItem from="1435644515305" duration="9376000" />
+      <workItem from="1435654135108" duration="1234000" />
+      <workItem from="1435655433338" duration="10000" />
+      <workItem from="1435655465864" duration="48000" />
+      <workItem from="1435655527009" duration="592000" />
+      <workItem from="1435656217793" duration="361000" />
+      <workItem from="1435656679621" duration="4070000" />
+      <workItem from="1435661152351" duration="873000" />
     </task>
     <task id="LOCAL-00001" summary="강의평가 검색 결과 없을 때 처리 &amp; jsp 수정">
       <created>1434585409931</created>
@@ -1281,11 +1288,17 @@
       <option name="project" value="LOCAL" />
       <updated>1435650487432</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="회원가입 수정">
+      <created>1435652834411</created>
+      <option name="number" value="00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1435652834411</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="259062000" />
+    <option name="totallyTimeSpent" value="267431000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
@@ -1295,7 +1308,7 @@
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35476464" sideWeight="0.507326" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907662" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1308,12 +1321,12 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295063" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35476464" sideWeight="0.492674" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30080366" sideWeight="0.492674" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295063" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2728938" sideWeight="0.48099172" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25396827" sideWeight="0.5190083" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1336,7 +1349,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="sql문 수정" />
     <MESSAGE value="sql문 오류 수정" />
     <MESSAGE value="회원가입 에러 수정" />
     <MESSAGE value="강의 데이터 입력 추가" />
@@ -1361,7 +1373,8 @@
     <MESSAGE value="강의평가 작성 수정" />
     <MESSAGE value="강의평가 선호방식 검색 추가" />
     <MESSAGE value="강의평가 댓글 추가 그리고 메일 셋팅 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="강의평가 댓글 추가 그리고 메일 셋팅 추가" />
+    <MESSAGE value="회원가입 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="회원가입 수정" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1374,31 +1387,31 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/idea.jar!/resources/html5-schema/html5/web-forms.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0035460992">
-          <caret line="180" column="13" selection-start-line="180" selection-start-column="13" selection-end-line="180" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/java/lang/Throwable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="375" column="18" selection-start-line="375" selection-start-column="18" selection-end-line="375" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/department-mapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3469751">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.txt">
+    <entry file="file://$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/member/MemberController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="3" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
+          <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1349#1365#0" expanded="true" />
+            <element signature="e#1899#1915#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/applicationContext.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/applicationContext.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1441,7 +1454,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1449,36 +1461,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.13345195">
           <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/member-mapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9341637">
-          <caret line="35" column="11" selection-start-line="35" selection-start-column="11" selection-end-line="35" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/member/MemberRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48042706">
-          <caret line="19" column="39" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/member/MemberRepositoryImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6939502">
-          <caret line="34" column="84" selection-start-line="34" selection-start-column="84" selection-end-line="34" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/list.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27829313">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1507,7 +1489,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6400742">
           <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1522,14 +1503,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/security-context.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.896551">
-          <caret line="74" column="46" selection-start-line="74" selection-start-column="46" selection-end-line="74" selection-end-column="46" />
           <folding />
         </state>
       </provider>
@@ -1563,7 +1536,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.42056075">
           <caret line="127" column="0" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1571,23 +1543,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.541667">
           <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/lecture-mapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/register.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.875">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="23" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1595,7 +1550,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.16463415">
           <caret line="9" column="65" selection-start-line="9" selection-start-column="65" selection-end-line="9" selection-end-column="65" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1603,7 +1557,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18292683">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="12" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1611,7 +1564,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.078277886">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="35" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1619,7 +1571,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.285714">
           <caret line="49" column="22" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1627,7 +1578,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.392858">
           <caret line="92" column="41" selection-start-line="92" selection-start-column="41" selection-end-line="92" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1643,7 +1593,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33271027">
           <caret line="71" column="19" selection-start-line="71" selection-start-column="19" selection-end-line="71" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1651,15 +1600,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.5900621">
           <caret line="67" column="36" selection-start-line="67" selection-start-column="36" selection-end-line="67" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/evaluation-mapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8037383">
-          <caret line="167" column="0" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1667,7 +1607,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.26418787">
           <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1675,31 +1614,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.84812623">
           <caret line="159" column="37" selection-start-line="159" selection-start-column="37" selection-end-line="159" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/applicationContext.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41501975">
-          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/dispatcher-servlet.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40828404">
-          <caret line="128" column="11" selection-start-line="128" selection-start-column="11" selection-end-line="128" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/applicationContext-repository.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.028037382">
-          <caret line="50" column="33" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1707,15 +1621,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/member/Member.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3364486">
-          <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1723,7 +1628,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="8.037383">
           <caret line="350" column="90" selection-start-line="350" selection-start-column="47" selection-end-line="350" selection-end-column="90" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1739,18 +1643,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.375">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="9" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/member/MemberController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4317757">
-          <caret line="51" column="23" selection-start-line="51" selection-start-column="23" selection-end-line="51" selection-end-column="23" />
-          <folding>
-            <element signature="e#1259#1275#0" expanded="true" />
-            <element signature="e#1812#1828#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1764,9 +1656,173 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/etc/login.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.4677104">
-          <caret line="58" column="41" selection-start-line="58" selection-start-column="41" selection-end-line="58" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.65328467">
+          <caret line="75" column="33" selection-start-line="60" selection-start-column="0" selection-end-line="75" selection-end-column="33" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/register.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.67514676">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/dispatcher-servlet.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="120" column="26" selection-start-line="120" selection-start-column="26" selection-end-line="120" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/member/Member.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29950082">
+          <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/applicationContext.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49825174">
+          <caret line="19" column="53" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/applicationContext-repository.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4329897">
+          <caret line="94" column="11" selection-start-line="94" selection-start-column="11" selection-end-line="94" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/lecture-mapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding>
+            <marker date="1435586988758" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..LECTURE..." />
+            <marker date="1435586988758" expanded="true" signature="-1:-1" placeholder="SELECT L.LEC..." />
+            <marker date="1435586988758" expanded="true" signature="-1:-1" placeholder="/* AND (E.IS..." />
+            <marker date="1435586988758" expanded="true" signature="-1:-1" placeholder="SELECT membe..LECTURE..." />
+            <marker date="1435586988758" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..LECTURE..." />
+            <marker date="1435586988758" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..LECTURE..." />
+            <marker date="1435586988758" expanded="true" signature="-1:-1" placeholder="SELECT L.LEC..." />
+            <marker date="1435586988758" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..LECTURE..." />
+            <marker date="1435586988758" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+            <marker date="1435586988758" expanded="true" signature="-1:-1" placeholder="UPDATE LECTU..." />
+            <marker date="1435586988758" expanded="true" signature="-1:-1" placeholder="UPDATE LECTU..." />
+            <marker date="1435586988758" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1435586988758" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1435586988758" expanded="true" signature="-1:-1" placeholder="UPDATE LECTU..." />
+            <marker date="1435586988758" expanded="true" signature="-1:-1" placeholder="UPDATE LECTU..." />
+            <marker date="1435586988758" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1435586988758" expanded="true" signature="-1:-1" placeholder="SELECT Count..LECTURESUB..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/evaluation-mapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="64" column="46" selection-start-line="64" selection-start-column="40" selection-end-line="64" selection-end-column="46" />
+          <folding>
+            <marker date="1435647804906" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..EVALUATION..." />
+            <marker date="1435647804906" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..EVALUATION..." />
+            <marker date="1435647804906" expanded="true" signature="-1:-1" placeholder="SELECT E.EVA..LECTURE..." />
+            <marker date="1435647804906" expanded="true" signature="-1:-1" placeholder="SELECT E.EVA..EVALUATION..." />
+            <marker date="1435647804906" expanded="true" signature="-1:-1" placeholder="SELECT E.EVA..LECTURE..." />
+            <marker date="1435647804906" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..EVALUATION..." />
+            <marker date="1435647804906" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..EVALUATION..." />
+            <marker date="1435647804906" expanded="true" signature="-1:-1" placeholder="SELECT Count..EVALUATION..." />
+            <marker date="1435647804906" expanded="true" signature="-1:-1" placeholder="SELECT membe..EVALUATION..." />
+            <marker date="1435647804906" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..EVALUATION..." />
+            <marker date="1435647804906" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+            <marker date="1435647804906" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
+            <marker date="1435647804906" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
+            <marker date="1435647804906" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1435647804906" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
+            <marker date="1435647804906" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
+            <marker date="1435647804906" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
+            <marker date="1435647804906" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
+            <marker date="1435647804906" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
+            <marker date="1435647804906" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1435647804906" expanded="true" signature="-1:-1" placeholder="SELECT Count..EVALUATIONSUB..." />
+            <marker date="1435647804906" expanded="true" signature="-1:-1" placeholder="SELECT conte..EVALUATIONSUB..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/list.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5430108">
+          <caret line="28" column="72" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/security-context.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.97649187">
+          <caret line="36" column="54" selection-start-line="36" selection-start-column="54" selection-end-line="36" selection-end-column="54" />
+          <folding>
+            <marker date="1435661451075" expanded="true" signature="-1:-1" placeholder="select membe..member..." />
+            <marker date="1435661451075" expanded="true" signature="-1:-1" placeholder="select membe..member_roles..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/member-mapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="44" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/member/MemberRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="26" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/member/MemberRepositoryImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5927835">
+          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding>
+            <element signature="e#879#880#0" expanded="true" />
+            <element signature="e#957#958#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/member/MemberController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.59386283">
+          <caret line="84" column="36" selection-start-line="84" selection-start-column="36" selection-end-line="84" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1349#1365#0" expanded="true" />
+            <element signature="e#1899#1915#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/mail/MailMail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18041237">
+          <caret line="7" column="34" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

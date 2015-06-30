@@ -11,9 +11,11 @@ public interface MemberRepository {
 
 	List<Map> selectAll();
 
-	boolean delete(int memberId);
+	boolean delete(String memberId);
 
 	boolean deleteEnabled(Map member);
+
+	boolean enabled(String memberId);
 
 	boolean insert(Map member);
 
