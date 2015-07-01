@@ -130,7 +130,7 @@
 <br />
 
 </br><br/>
-	<a href="/evaluation/reg_form?lecture_id=${lecture.lecture_id}">강의평가 작성</a> <br/><br/>
+	<a href="/evaluation/regForm?lecture_id=${lecture.lecture_id}">강의평가 작성</a> <br/><br/>
 
 </body>
 </html>

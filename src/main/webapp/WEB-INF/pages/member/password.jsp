@@ -17,8 +17,6 @@
     ${error}
 </c:if>
 
-<% out.println(request.getHeader("referer")); %>
-
 <form action="/member/modView" method="post">
     패스워드:<input type="password" name="password"><br>
     <input type="submit" value="확인">

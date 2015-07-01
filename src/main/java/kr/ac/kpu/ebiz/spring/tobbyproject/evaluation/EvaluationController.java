@@ -1,7 +1,5 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.evaluation;
 
-import kr.ac.kpu.ebiz.spring.tobbyproject.lecture.LectureRepository;
-import kr.ac.kpu.ebiz.spring.tobbyproject.semester.SemesterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -11,96 +9,43 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.*;
+import java.util.HashMap;
 
 @Controller
 @RequestMapping("/evaluation")
 public class EvaluationController {
 
 	@Autowired
-	EvaluationRepository evaluationRepository;
-
-	@Autowired
-	LectureRepository lectureRepository;
-
-	@Autowired
-	SemesterRepository semesterRepository;
+	EvaluationService evaluationService;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list(@RequestParam("lecture_id") int lecture_id) {
 
 		ModelAndView mav = new ModelAndView("/evaluation/list");
-		mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
-		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
-		mav.addObject("best", evaluationRepository.selectBest(lecture_id));
+
+		evaluationService.listService(lecture_id, mav);
 
 		return mav;
 	}
 
-	@RequestMapping(value = "/reg_form", method = RequestMethod.GET)
-	public ModelAndView reg(@RequestParam int lecture_id) {
+	@RequestMapping(value = "/regForm", method = RequestMethod.GET)
+	public ModelAndView regForm(@RequestParam int lecture_id) {
 
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String member_id = user.getUsername();
+		ModelAndView mav = new ModelAndView();
 
-		HashMap check = new HashMap();
-		check.put("lecture_id", lecture_id);
-		check.put("member_id", member_id);
-
-		int count = evaluationRepository.selectCount(check);
-
-		if(count != 0) {
-			ModelAndView mav = new ModelAndView("/evaluation/list");
-			mav.addObject("error", "이미 이 강의에 대해 강의평가를 작성하셨습니다.");
-			mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
-			mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
-			mav.addObject("best", evaluationRepository.selectBest(lecture_id));
-			return mav;
-		}
-
-		Calendar cal = Calendar.getInstance();
-
-		int year = cal.get(Calendar.YEAR) - 2000;
-		int month = cal.get(Calendar.MONTH);
-		int half;
-		if(month>7){half = 2;}
-		else{half = 1;}
-
-		StringBuilder current = new StringBuilder(String.valueOf(year));
-		StringBuilder current2 = new StringBuilder("-");
-		StringBuilder current3 = new StringBuilder(String.valueOf(half));
-		StringBuilder current4 = new StringBuilder("학기");
-
-		current.append(current2).append(current3).append(current4);
-
-		ModelAndView mav = new ModelAndView("/evaluation/register");
-
-		HashMap evaluation = new HashMap();
-		evaluation.put("lecture_id", lecture_id);
-
-		mav.addObject("evaluation", evaluation);
-		mav.addObject("semesters", semesterRepository.selectAll());
-		mav.addObject("current", current);
+		evaluationService.regFormService(lecture_id, mav);
 
 		return mav;
 	}
 
 	@RequestMapping(value = "/reg", method = RequestMethod.POST)
-	public ModelAndView insert(@RequestParam("lecture_id") int lecture_id,@RequestParam("method") String method,
+	public ModelAndView register(@RequestParam("lecture_id") int lecture_id,@RequestParam("method") String method,
 							   @RequestParam("task") String task, @RequestParam("exam") String exam,
 							   @RequestParam("comment") String comment, @RequestParam("score") int score,
 							   @RequestParam("semester") String semester) {
 
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String member_id = user.getUsername();
-
-		HashMap check = new HashMap();
-		check.put("lecture_id", lecture_id);
-		check.put("member_id", member_id);
-
-		int count = evaluationRepository.selectCount(check);
-
-		ModelAndView mav = new ModelAndView("/evaluation/list");
 
 		HashMap<String, java.io.Serializable> evaluation = new HashMap<String, java.io.Serializable>();
 		evaluation.put("lecture_id", lecture_id);
@@ -112,11 +57,9 @@ public class EvaluationController {
 		evaluation.put("score", score);
 		evaluation.put("semester", semester);
 
-		evaluationRepository.insert(evaluation);
+		ModelAndView mav = new ModelAndView("/evaluation/list");
 
-		mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
-		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
-		mav.addObject("best", evaluationRepository.selectBest(lecture_id));
+		evaluationService.regService(evaluation, mav);
 
 		return mav;
 	}
@@ -124,29 +67,9 @@ public class EvaluationController {
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public ModelAndView view(@RequestParam int evaluation_id, @RequestParam int lecture_id) {
 
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String member_id = user.getUsername();
+		ModelAndView mav = new ModelAndView("/evaluation/modify");
 
-		String writer = evaluationRepository.selectMember(evaluation_id);
-
-		Collection authorities = user.getAuthorities();
-
-		System.out.println(member_id + "+" + "로그인아이디");
-		System.out.println(writer + "+" + "작성자아이디");
-
-		if(member_id.equals(writer) == true || authorities.toString().contains("ROLE_ADMIN")){
-			ModelAndView mav = new ModelAndView("/evaluation/modify");
-			Map evaluation = evaluationRepository.select(evaluation_id);
-			mav.addObject("evaluation", evaluation);
-			mav.addObject("semesters", semesterRepository.selectAll());
-			return mav;
-		}
-
-		ModelAndView mav = new ModelAndView("/evaluation/list");
-		mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
-		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
-		mav.addObject("best", evaluationRepository.selectBest(lecture_id));
-		mav.addObject("error", "본인이 작성하신 강의평가가 아닙니다.");
+		evaluationService.viewService(lecture_id, evaluation_id, mav);
 
 		return mav;
 	}
@@ -156,8 +79,6 @@ public class EvaluationController {
 							   @RequestParam("exam") String exam, @RequestParam("comment") String comment, @RequestParam("score") int score,
 							   @RequestParam("lecture_id") int lecture_id,@RequestParam("semester") String semester) {
 
-		ModelAndView mav = new ModelAndView("/evaluation/list");
-
 		HashMap<String, java.io.Serializable> evaluation = new HashMap<String, java.io.Serializable>();
 		evaluation.put("evaluation_id", evaluation_id);
 		evaluation.put("method", method);
@@ -166,11 +87,10 @@ public class EvaluationController {
 		evaluation.put("comment", comment);
 		evaluation.put("score", score);
 		evaluation.put("semester", semester);
-		evaluationRepository.update(evaluation);
 
-		mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
-		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
-		mav.addObject("best", evaluationRepository.selectBest(lecture_id));
+		ModelAndView mav = new ModelAndView("/evaluation/list");
+
+		evaluationService.modService(lecture_id, evaluation, mav);
 
 		return mav;
 	}
@@ -179,29 +99,9 @@ public class EvaluationController {
 	public ModelAndView likes(@RequestParam("evaluation_id")int evaluation_id, @RequestParam("lecture_id") int lecture_id,
 							  @RequestParam(value = "error", required = false) String error) {
 
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String member_id = user.getUsername();
-
-		HashMap evaluationSub = new HashMap();
-		evaluationSub.put("evaluation_id", evaluation_id);
-		evaluationSub.put("member_id", member_id);
-
-		int count = evaluationRepository.selectSub(evaluationSub);
-
 		ModelAndView mav = new ModelAndView("/evaluation/list");
 
-		System.out.println(count);
-
-		if(count != 0) {
-			mav.addObject("error", "이미 추천/비공감/신고 중에 하나를 하셨습니다.");
-		} else {
-			evaluationRepository.insertSub(evaluationSub);
-			evaluationRepository.updateLike(evaluation_id);
-		}
-
-		mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
-		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
-		mav.addObject("best", evaluationRepository.selectBest(lecture_id));
+		evaluationService.likesService(lecture_id, evaluation_id, mav);
 
 		return mav;
 	}
@@ -210,30 +110,9 @@ public class EvaluationController {
 	public ModelAndView dislike(@RequestParam("evaluation_id")int evaluation_id, @RequestParam("lecture_id") int lecture_id,
 							  @RequestParam(value = "error", required = false) String error) {
 
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String member_id = user.getUsername();
-
-		HashMap evaluationSub = new HashMap();
-		evaluationSub.put("evaluation_id", evaluation_id);
-		evaluationSub.put("member_id", member_id);
-
-		int count = evaluationRepository.selectSub(evaluationSub);
-
 		ModelAndView mav = new ModelAndView("/evaluation/list");
 
-		System.out.println(count);
-
-		if(count != 0) {
-			mav.addObject("error", "이미 추천/비공감/신고 중에 하나를 하셨습니다.");
-
-		} else {
-			evaluationRepository.insertSub(evaluationSub);
-			evaluationRepository.updateDislike(evaluation_id);
-		}
-
-		mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
-		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
-		mav.addObject("best", evaluationRepository.selectBest(lecture_id));
+		evaluationService.dislikeService(lecture_id, evaluation_id, mav);
 
 		return mav;
 	}
@@ -242,29 +121,9 @@ public class EvaluationController {
 	public ModelAndView report(@RequestParam("evaluation_id")int evaluation_id, @RequestParam("lecture_id") int lecture_id,
 							  @RequestParam(value = "error", required = false) String error) {
 
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String member_id = user.getUsername();
-
-		HashMap evaluationSub = new HashMap();
-		evaluationSub.put("evaluation_id", evaluation_id);
-		evaluationSub.put("member_id", member_id);
-
-		int count = evaluationRepository.selectSub(evaluationSub);
-
 		ModelAndView mav = new ModelAndView("/evaluation/list");
 
-		System.out.println(count);
-
-		if(count != 0) {
-			mav.addObject("error", "이미 추천/비공감/신고 중에 하나를 하셨습니다.");
-		} else {
-			evaluationRepository.insertSub(evaluationSub);
-			evaluationRepository.updateReport(evaluation_id);
-		}
-
-		mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
-		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
-		mav.addObject("best", evaluationRepository.selectBest(lecture_id));
+		evaluationService.reportService(lecture_id, evaluation_id, mav);
 
 		return mav;
 	}
@@ -272,24 +131,9 @@ public class EvaluationController {
 	@RequestMapping(value = "/isDelete", method = RequestMethod.GET)
 	public ModelAndView isDelete(@RequestParam("evaluation_id")int evaluation_id, @RequestParam("lecture_id") int lecture_id) {
 
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String member_id = user.getUsername();
-
-		String writer = evaluationRepository.selectMember(evaluation_id);
-
-		Collection authorities = user.getAuthorities();
-
 		ModelAndView mav = new ModelAndView("/evaluation/list");
 
-		if(member_id.equals(writer) == true || authorities.toString().contains("ROLE_ADMIN")){
-			evaluationRepository.isDelete(evaluation_id);
-		} else {
-			mav.addObject("error", "본인이 작성한 것이 아닙니다.");
-		}
-
-		mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
-		mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
-		mav.addObject("best", evaluationRepository.selectBest(lecture_id));
+		evaluationService.isDeleteService(lecture_id, evaluation_id, mav);
 
 		return mav;
 	}
@@ -298,41 +142,33 @@ public class EvaluationController {
 	public ModelAndView search(@RequestParam ("method")String method, @RequestParam ("task")String task, @RequestParam ("exam")String exam,
 							   @RequestParam("lecture_id") int lecture_id) {
 
-		ModelAndView mav = new ModelAndView("evaluation/list");
-
 		HashMap search = new HashMap();
 		search.put("lecture_id",lecture_id);
 		search.put("method",method);
 		search.put("task",task);
 		search.put("exam",exam);
 
-		List<Map> result = evaluationRepository.SearchPrefer(search);
+		ModelAndView mav = new ModelAndView("/evaluation/list");
 
-		mav.addObject("evaluations", result);
-		mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
-		mav.addObject("best", evaluationRepository.selectBest(lecture_id));
-
-		if(result.isEmpty() == true){
-			mav.addObject("error", "검색 결과가 없습니다.");
-		}
+		evaluationService.searchPreferService(search, mav);
 
 		return mav;
 
 	}
 
 
-	@RequestMapping(value = "/reply", method = RequestMethod.GET)
+	@RequestMapping(value = "/replyList", method = RequestMethod.GET)
 	public ModelAndView replyList(@RequestParam("evaluation_id") int evaluation_id) {
 
-		ModelAndView mav = new ModelAndView("evaluation/reply");
-		mav.addObject("replys", evaluationRepository.selectRe(evaluation_id));
-		mav.addObject("evaluation_id", evaluation_id);
+		ModelAndView mav = new ModelAndView("/evaluation/reply");
+
+		evaluationService.replyService(evaluation_id, mav);
 
 		return mav;
 	}
 
 	@RequestMapping(value = "/replyReg", method = RequestMethod.POST)
-	public String replyReg(@RequestParam("evaluation_id")int evaluation_id, @RequestParam ("contents")String contents) {
+	public ModelAndView replyReg(@RequestParam("evaluation_id")int evaluation_id, @RequestParam ("contents")String contents) {
 
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String member_id = user.getUsername();
@@ -342,17 +178,11 @@ public class EvaluationController {
 		evaluationSub.put("member_id", member_id);
 		evaluationSub.put("contents", contents);
 
-		evaluationRepository.insertSub(evaluationSub);
+		ModelAndView mav = new ModelAndView();
 
-/*		String page = "redirect:/evaluation/replyList?evaluation_id=";
-		String id = String.valueOf(evaluation_id);
-		page = page + id ;*/
+		evaluationService.replyRegService(evaluationSub, mav);
 
-		StringBuilder page = new StringBuilder("redirect:/evaluation/reply?evaluation_id=");
-		StringBuilder id = new StringBuilder(String.valueOf(evaluation_id));
-		page.append(id);
-
-		return page.toString();
+		return mav;
 	}
 
 }
