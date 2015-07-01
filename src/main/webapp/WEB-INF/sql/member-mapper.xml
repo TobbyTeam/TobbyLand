@@ -15,11 +15,15 @@
     SELECT password FROM MEMBER WHERE MEMBER_ID = #{member_id}
   </select>
 
+  <select id="selectEn" resultType="int">
+    SELECT Enabled FROM MEMBER WHERE MEMBER_ID = #{member_id}
+  </select>
+
   <select id="selectAll" resultType="map">
     SELECT * FROM MEMBER
   </select>
 
-  <delete id="delete" parameterType="int">
+  <delete id="delete" parameterType="String">
     DELETE FROM MEMBER WHERE MEMBER_ID = #{value}
   </delete>
 

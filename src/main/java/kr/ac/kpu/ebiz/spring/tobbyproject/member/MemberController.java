@@ -24,6 +24,9 @@ public class MemberController {
 	@Autowired
 	MailMail mailMail;
 
+	@Autowired
+	MemberService memberService;
+
 	@RequestMapping(value = "/reg_form", method = RequestMethod.GET)
 	public String reg() {
 		return "/member/register";
@@ -43,6 +46,8 @@ public class MemberController {
 		member.put("task", task);
 		member.put("exam",exam);
 
+		memberService.regService(member);
+
 		int count = memberRepository.selectCount(member_id);
 
 		ModelAndView mav = new ModelAndView();
@@ -61,11 +66,14 @@ public class MemberController {
 		mav.addObject("member_id", member_id);
 		mav.setViewName("/etc/login");
 
-		mailMail.sendMail("kpytobbyland@google.com",
-				email,
+/*		mailMail.sendMail(
+				"kpytobbyland@google.com", email,
 				"TOBBYLAND 인증 메일입니다.",
 				member_id+"님 회원가입을 축하드립니다. \n\n" +
-						"http://localhost:8080/member/enabled?member_id="+member_id);
+				"http://localhost:8080/member/enabled?member_id="+member_id);*/
+
+/*		MemberThread thread = new MemberThread(member_id);
+		thread.start();*/
 
 		return mav;
 	}

@@ -11,6 +11,8 @@ public interface MemberRepository {
 
 	String selectPw(String memberId);
 
+	int selectEn(String memberId);
+
 	List<Map> selectAll();
 
 	boolean delete(String memberId);
