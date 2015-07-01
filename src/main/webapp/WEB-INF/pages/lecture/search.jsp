@@ -1,13 +1,15 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title></title>
+    <script src="<c:url value="/resources/js/lectures.js" />"></script>
 </head>
 <body>
 
-<form action="/lecture/search" method="get">
+<form action="/lecture/search" method="get" name="search_frm">
 
     검색
     <select name="searchType">
@@ -17,7 +19,7 @@
     </select>
 
     <input type="text" name="searchWord">
-    <input type="submit" value="검색">
+    <input type="button" value="검색" onclick="searchLecture()">
 
 </form>
 

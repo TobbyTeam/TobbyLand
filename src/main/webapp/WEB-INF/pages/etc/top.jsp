@@ -1,9 +1,11 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title></title>
+    <script src="<c:url value="/resources/js/lectures.js" />"></script>
 </head>
 <body>
 
@@ -23,7 +25,7 @@
 
 <a href="/lecture/list">강의생성게시판</a> <br /><br />
 
-<form action="/lecture/search" method="get">
+<form action="/lecture/search" method="get" name="search_frm">
 
     <select name="searchType">
     <option value="lecture_name">강의명</option>
@@ -32,7 +34,7 @@
     </select>
 
     <input type="text" name="searchWord">
-    <input type="submit" value="검색">
+    <input type="button" value="검색" onclick="searchLecture()">
 
 </form>
 
