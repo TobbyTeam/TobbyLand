@@ -1,5 +1,7 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.member;
 
+import org.springframework.web.servlet.ModelAndView;
+
 import java.util.Map;
 
 /**
@@ -7,16 +9,16 @@ import java.util.Map;
  */
 public interface MemberService {
 
-    void regService(Map map);
+    void regService(Map member, ModelAndView mav);
 
-    void enabledService(Map map);
+    void enabledService(String member_id, ModelAndView mav);
 
-    void viewService(Map map);
+    void viewService(ModelAndView mav);
 
-    void modViewService(Map map);
+    void modViewService(String password, ModelAndView mav);
 
-    void modService(Map map);
+    void modService(Map member, ModelAndView mav);
 
-    void deleteEnabledService(Map map);
+    void deleteEnabledService();
 
 }

@@ -27,12 +27,6 @@ public class MemberValidator implements Validator {
 
         int count1 = 10;*/
 
-        int count = member.getTest();
-        if (count != 0) {
-            System.out.println("member_id is duplication");
-            errors.rejectValue("member_id", "trouble");
-        }
-
         String member_id = member.getMember_id();
         if (member_id == null || member_id.trim().isEmpty()) {
             System.out.println("member_id is null or empty");

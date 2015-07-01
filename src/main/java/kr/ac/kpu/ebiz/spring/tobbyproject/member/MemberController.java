@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
-import java.util.Map;
 
 
 @Controller
@@ -46,55 +45,31 @@ public class MemberController {
 		member.put("task", task);
 		member.put("exam",exam);
 
-		memberService.regService(member);
-
-		int count = memberRepository.selectCount(member_id);
-
 		ModelAndView mav = new ModelAndView();
-
-		if(count !=0) {
-			mav.addObject("member", member);
-			mav.addObject("error", "등록된 아이디 입니다.");
-			mav.setViewName("/member/register");
-			return mav;
-		}
-
-		memberRepository.insert(member);
-
-		memberRepository.insert_role(member_id);
-
-		mav.addObject("member_id", member_id);
 		mav.setViewName("/etc/login");
 
-/*		mailMail.sendMail(
-				"kpytobbyland@google.com", email,
-				"TOBBYLAND 인증 메일입니다.",
-				member_id+"님 회원가입을 축하드립니다. \n\n" +
-				"http://localhost:8080/member/enabled?member_id="+member_id);*/
-
-/*		MemberThread thread = new MemberThread(member_id);
-		thread.start();*/
+		memberService.regService(member, mav);
 
 		return mav;
 	}
 
 	@RequestMapping(value = "/enabled", method = RequestMethod.GET)
-	public String enabled(@RequestParam("member_id") String member_id) {
+	public ModelAndView enabled(@RequestParam("member_id") String member_id) {
 
-		memberRepository.enabled(member_id);
+		ModelAndView mav = new ModelAndView("/member/enabled");
 
-		return "redirect:etc/login";
+		memberService.enabledService(member_id, mav);
+
+		return mav;
 	}
 
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public ModelAndView view() {
 
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String member_id = user.getUsername();
-
-		Map member = memberRepository.select(member_id);
 		ModelAndView mav = new ModelAndView("/member/view");
-		mav.addObject("member", member);
+
+		memberService.viewService(mav);
+
 		return mav;
 	}
 
@@ -107,23 +82,11 @@ public class MemberController {
 	@RequestMapping(value = "/modView", method = RequestMethod.POST)
 	public ModelAndView modView(@RequestParam ("password")String password) {
 
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String member_id = user.getUsername();
-/*		String member_pw = user.getPassword();*/
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/member/modify");
 
-		String member_pw = memberRepository.selectPw(member_id);
+		memberService.modViewService(password, mav);
 
-		System.out.println(member_pw + "+++++ 세션 패스워드");
-
-		if(member_pw.equals(password)){
-			Map member = memberRepository.select(member_id);
-			ModelAndView mav = new ModelAndView("/member/modify");
-			mav.addObject("member", member);
-			return mav;
-		}
-
-		ModelAndView mav = new ModelAndView("/member/password");
-		mav.addObject("error", "비밀번호가 틀립니다");
 		return mav;
 
 	}
@@ -136,18 +99,17 @@ public class MemberController {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String member_id = user.getUsername();
 
-		HashMap<String, String> memberMod = new HashMap<String, String>();
-		memberMod.put("member_id",member_id);
-		memberMod.put("password",password);
-		memberMod.put("nickname",nickname);
-		memberMod.put("method",method);
-		memberMod.put("task",task);
-		memberMod.put("exam",exam);
-		memberRepository.update(memberMod);
+		HashMap<String, String> member = new HashMap<String, String>();
+		member.put("member_id",member_id);
+		member.put("password",password);
+		member.put("nickname",nickname);
+		member.put("method",method);
+		member.put("task",task);
+		member.put("exam",exam);
 
 		ModelAndView mav = new ModelAndView("/member/view");
-		Map member = memberRepository.select(member_id);
-		mav.addObject("member", member);
+
+		memberService.modService(member, mav);
 
 		return mav;
 	}
@@ -155,14 +117,7 @@ public class MemberController {
 	@RequestMapping(value = "/deleteEnabled", method = RequestMethod.GET)
 	public String deleteEnabled()	{
 
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String member_id = user.getUsername();
-
-		SecurityContextHolder.clearContext();
-
-/*		HashMap<String, String> member = new HashMap<String, String>();
-		member.put("member_id",member_id);*/
-		memberRepository.deleteEnabled(member_id);
+		memberService.deleteEnabledService();
 
 		return "etc/login";
 	}
