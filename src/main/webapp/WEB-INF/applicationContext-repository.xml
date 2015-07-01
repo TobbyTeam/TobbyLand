@@ -111,4 +111,6 @@
 
 	<bean id="memberService" class="kr.ac.kpu.ebiz.spring.tobbyproject.member.MemberServiceImpl"/>
 
+	<bean id="lectureService" class="kr.ac.kpu.ebiz.spring.tobbyproject.lecture.LectureServiceImpl"/>
+
 </beans>

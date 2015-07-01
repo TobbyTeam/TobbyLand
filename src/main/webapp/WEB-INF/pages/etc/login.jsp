@@ -82,7 +82,7 @@
 
 		</form>
 
-		<a href="/member/reg_form">sign up</a>
+		<a href="/member/regForm">sign up</a>
 	</div>
 
 </body>

@@ -26,13 +26,13 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 
-	@RequestMapping(value = "/reg_form", method = RequestMethod.GET)
-	public String reg() {
+	@RequestMapping(value = "/regForm", method = RequestMethod.GET)
+	public String regForm() {
 		return "/member/register";
 	}
 
 	@RequestMapping(value = "/reg", method = RequestMethod.POST)
-	public ModelAndView insert(@RequestParam ("member_id")String member_id, @RequestParam ("password")String password,
+	public ModelAndView register(@RequestParam ("member_id")String member_id, @RequestParam ("password")String password,
 						 @RequestParam ("nickname")String nickname, @RequestParam ("email")String email,
 						 @RequestParam ("method")String method, @RequestParam ("task")String task, @RequestParam ("exam")String exam) {
 

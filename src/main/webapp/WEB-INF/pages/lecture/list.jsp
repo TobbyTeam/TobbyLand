@@ -4,11 +4,13 @@
 <head><title>헬로 월드</title></head>
 <body>
 
+
+<jsp:include page="/top" flush="true"/> <br />
+
 <c:if test="${not empty error}">
 	${error}
 </c:if>
-
-<jsp:include page="/top" flush="true"/> <br />
+<br /><br />
 
 	<table border="1">
 		<tr>
@@ -31,9 +33,9 @@
 			<td><a href="/lecture/isDelete?lecture_id=${lecture.lecture_id}">삭제</a></td>
 		</tr>
 		</c:forEach>
-	</table></br><br/>
+	</table><br /><br />
 
-	<a href="/lecture/reg_form">강의생성</a><br/><br/>
+	<a href="/lecture/regForm">강의생성</a><br/><br/>
 
 
 </body>

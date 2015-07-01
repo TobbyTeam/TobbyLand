@@ -1,6 +1,5 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.lecture;
 
-import kr.ac.kpu.ebiz.spring.tobbyproject.department.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -10,70 +9,56 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.*;
+import java.util.HashMap;
 
 @Controller
 @RequestMapping("/lecture")
 public class LectureController {
 
 	@Autowired
-	LectureRepository lectureRepository;
-
-	@Autowired
-	DepartmentRepository departmentRepository;
+	LectureService lectureService;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 		ModelAndView mav = new ModelAndView("/lecture/list");
-		mav.addObject("lectures", lectureRepository.selectAll());
+		lectureService.listService(mav);
 		return mav;
 	}
 
-	@RequestMapping(value = "/reg_form", method = RequestMethod.GET)
-	public ModelAndView reg() {
+	@RequestMapping(value = "/regForm", method = RequestMethod.GET)
+	public ModelAndView regForm() {
 		ModelAndView mav = new ModelAndView("/lecture/register");
-		mav.addObject("departments", departmentRepository.selectAll());
+		lectureService.regFormService(mav);
 		return mav;
 	}
 
 	@RequestMapping(value = "/reg", method = RequestMethod.POST)
-	public ModelAndView insert(@RequestParam ("lecture_name")String lecture_name, @RequestParam ("dept")String dept,
+	public ModelAndView register(@RequestParam ("lecture_name")String lecture_name, @RequestParam ("dept")String dept,
 							   @RequestParam("prof")String prof) {
+
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String member_id = user.getUsername();
 
-		ModelAndView mav = new ModelAndView("/lecture/list");
+
 		HashMap<String, String> lecture = new HashMap<String, String>();
 		lecture.put("member_id", member_id);
 		lecture.put("lecture_name", lecture_name);
 		lecture.put("dept", dept);
 		lecture.put("prof", prof);
-		lectureRepository.insert(lecture);
-		mav.addObject("lectures", lectureRepository.selectAll());
+
+		ModelAndView mav = new ModelAndView("/lecture/list");
+		lectureService.regService(lecture, mav);
+
 		return mav;
 	}
 
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public ModelAndView view(@RequestParam int lecture_id) {
 
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String member_id = user.getUsername();
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/lecture/modify");
 
-		String writer = lectureRepository.selectMember(lecture_id);
-
-		Collection authorities = user.getAuthorities();
-
-		if(member_id.equals(writer) == true || authorities.toString().contains("ROLE_ADMIN")){
-			ModelAndView mav = new ModelAndView("/lecture/modify");
-			Map lecture = lectureRepository.select(lecture_id);
-			mav.addObject("lecture", lecture);
-			mav.addObject("departments", departmentRepository.selectAll());
-			return mav;
-		}
-
-		ModelAndView mav = new ModelAndView("/lecture/list");
-		mav.addObject("lectures", lectureRepository.selectAll());
-		mav.addObject("error", "본인이 생성하신 강의가 아닙니다.");
+		lectureService.viewService(lecture_id, mav);
 
 		return mav;
 	}
@@ -82,64 +67,41 @@ public class LectureController {
 	public ModelAndView modify(@RequestParam int lecture_id,@RequestParam ("lecture_name")String lecture_name,
 							   @RequestParam ("dept")String dept, @RequestParam("prof")String prof)	{
 
-/*		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String member_id = user.getUsername();*/
-
-/*		String writer = lectureRepository.selectMember(lecture_id);*/
-
-/*		if(member_id.equals(writer) == false){
-			mav.addObject("lectures", lectureRepository.selectAll());
-			mav.addObject("error", "본인이 생성하신 강의가 아닙니다.");
-		}*/
-
-		ModelAndView mav = new ModelAndView("/lecture/list");
 		HashMap<String, java.io.Serializable> lecture = new HashMap<String, java.io.Serializable>();
 		lecture.put("lecture_id",lecture_id);
 		lecture.put("lecture_name",lecture_name);
 		lecture.put("dept",dept);
 		lecture.put("prof",prof);
-		lectureRepository.update(lecture);
-		mav.addObject("lectures", lectureRepository.selectAll());
+
+		ModelAndView mav = new ModelAndView("/lecture/list");
+
+		lectureService.modService(lecture, mav);
 
 		return mav;
 	}
 
 	@RequestMapping(value = "/search_form", method = RequestMethod.GET)
 	public String search_form() {
-
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-		Collection authorities = user.getAuthorities();
-
-		System.out.println(authorities.toString().contains("ROLE_USER")+"++++++++"+"롤 확인");
-
-
 		return "/lecture/search";
 	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public ModelAndView search(@RequestParam ("searchType")String searchType, @RequestParam ("searchWord")String searchWord) {
 
-		ModelAndView mav = new ModelAndView("lecture/searchList");
-
 		HashMap search = new HashMap();
 		search.put("searchType",searchType);
 		search.put("searchWord",searchWord);
 
-		List<Map> result = lectureRepository.selectSearch(search);
+		ModelAndView mav = new ModelAndView("lecture/searchList");
 
-		mav.addObject("lectures", result);
-
-		if(result.isEmpty() == true){
-			mav.addObject("error", "검색 결과가 없습니다.");
-		}
+		lectureService.searchService(search, mav);
 
 		return mav;
 
 	}
 
 	@RequestMapping(value = "/likes", method = RequestMethod.GET)
-	public ModelAndView likes(@RequestParam("lecture_id")int lecture_id,@RequestParam(value = "error", required = false) String error) {
+	public ModelAndView likes(@RequestParam("lecture_id")int lecture_id) {
 
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String member_id = user.getUsername();
@@ -148,20 +110,9 @@ public class LectureController {
 		lecture.put("lecture_id", lecture_id);
 		lecture.put("member_id", member_id);
 
-		int count = lectureRepository.selectSub(lecture);
-
 		ModelAndView mav = new ModelAndView("/lecture/list");
 
-		System.out.println(count);
-
-		if(count != 0) {
-			mav.addObject("lectures", lectureRepository.selectAll());
-			mav.addObject("error", "이미 클릭하셨습니다.");
-		} else {
-			lectureRepository.insertSub(lecture);
-			lectureRepository.updateLike(lecture_id);
-			mav.addObject("lectures", lectureRepository.selectAll());
-		}
+		lectureService.likesService(lecture, mav);
 
 		return mav;
 	}
@@ -169,22 +120,9 @@ public class LectureController {
 	@RequestMapping(value = "/isDelete", method = RequestMethod.GET)
 	public ModelAndView isDelete(@RequestParam("lecture_id") int lecture_id)	{
 
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String member_id = user.getUsername();
-
-		Collection authorities = user.getAuthorities();
-
-		String writer = lectureRepository.selectMember(lecture_id);
-
 		ModelAndView mav = new ModelAndView("/lecture/list");
 
-		if(member_id.equals(writer) == true || authorities.toString().contains("ROLE_ADMIN")){
-			lectureRepository.isDelete(lecture_id);
-		} else{
-			mav.addObject("error", "본인이 작성한 것이 아닙니다.");
-		}
-
-		mav.addObject("lectures", lectureRepository.selectAll());
+		lectureService.isDeleteService(lecture_id, mav);
 
 		return mav;
 	}
