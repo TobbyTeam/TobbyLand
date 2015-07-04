@@ -1,15 +1,14 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.evaluation;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.HashMap;
+import java.io.Serializable;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/evaluation")
@@ -39,23 +38,7 @@ public class EvaluationController {
 	}
 
 	@RequestMapping(value = "/reg", method = RequestMethod.POST)
-	public ModelAndView register(@RequestParam("lecture_id") int lecture_id,@RequestParam("method") String method,
-							   @RequestParam("task") String task, @RequestParam("exam") String exam,
-							   @RequestParam("comment") String comment, @RequestParam("score") int score,
-							   @RequestParam("semester") String semester) {
-
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String member_id = user.getUsername();
-
-		HashMap<String, java.io.Serializable> evaluation = new HashMap<String, java.io.Serializable>();
-		evaluation.put("lecture_id", lecture_id);
-		evaluation.put("member_id", member_id);
-		evaluation.put("method", method);
-		evaluation.put("task", task);
-		evaluation.put("exam", exam);
-		evaluation.put("comment", comment);
-		evaluation.put("score", score);
-		evaluation.put("semester", semester);
+	public ModelAndView register(@RequestParam Map<String, Serializable> evaluation) {
 
 		ModelAndView mav = new ModelAndView("/evaluation/list");
 
@@ -75,22 +58,11 @@ public class EvaluationController {
 	}
 
 	@RequestMapping(value = "/mod", method = RequestMethod.POST)
-	public ModelAndView modify(@RequestParam("evaluation_id") int evaluation_id, @RequestParam("method") String method, @RequestParam("task") String task,
-							   @RequestParam("exam") String exam, @RequestParam("comment") String comment, @RequestParam("score") int score,
-							   @RequestParam("lecture_id") int lecture_id,@RequestParam("semester") String semester) {
-
-		HashMap<String, java.io.Serializable> evaluation = new HashMap<String, java.io.Serializable>();
-		evaluation.put("evaluation_id", evaluation_id);
-		evaluation.put("method", method);
-		evaluation.put("task", task);
-		evaluation.put("exam", exam);
-		evaluation.put("comment", comment);
-		evaluation.put("score", score);
-		evaluation.put("semester", semester);
+	public ModelAndView modify(@RequestParam Map<String, Serializable> evaluation) {
 
 		ModelAndView mav = new ModelAndView("/evaluation/list");
 
-		evaluationService.modService(lecture_id, evaluation, mav);
+		evaluationService.modService(evaluation, mav);
 
 		return mav;
 	}
@@ -139,14 +111,7 @@ public class EvaluationController {
 	}
 
 	@RequestMapping(value = "/searchPrefer", method = RequestMethod.GET)
-	public ModelAndView search(@RequestParam ("method")String method, @RequestParam ("task")String task, @RequestParam ("exam")String exam,
-							   @RequestParam("lecture_id") int lecture_id) {
-
-		HashMap search = new HashMap();
-		search.put("lecture_id",lecture_id);
-		search.put("method",method);
-		search.put("task",task);
-		search.put("exam",exam);
+	public ModelAndView search(@RequestParam Map<String, Serializable> search) {
 
 		ModelAndView mav = new ModelAndView("/evaluation/list");
 
@@ -168,15 +133,7 @@ public class EvaluationController {
 	}
 
 	@RequestMapping(value = "/replyReg", method = RequestMethod.POST)
-	public ModelAndView replyReg(@RequestParam("evaluation_id")int evaluation_id, @RequestParam ("contents")String contents) {
-
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String member_id = user.getUsername();
-
-		HashMap evaluationSub = new HashMap();
-		evaluationSub.put("evaluation_id", evaluation_id);
-		evaluationSub.put("member_id", member_id);
-		evaluationSub.put("contents", contents);
+	public ModelAndView replyReg(@RequestParam Map<String, Serializable> evaluationSub) {
 
 		ModelAndView mav = new ModelAndView();
 

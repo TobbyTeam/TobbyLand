@@ -81,9 +81,14 @@ public class EvaluationServiceImpl implements EvaluationService {
 
     public void regService(Map evaluation, ModelAndView mav) {
 
-        evaluationRepository.insert(evaluation);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String member_id = user.getUsername();
 
-        int lecture_id = (Integer)evaluation.get("lecture_id");
+        evaluation.put("member_id", member_id);
+
+        int lecture_id =  Integer.parseInt(evaluation.get("lecture_id").toString());
+
+        evaluationRepository.insert(evaluation);
 
         mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
         mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
@@ -119,7 +124,9 @@ public class EvaluationServiceImpl implements EvaluationService {
 
     }
 
-    public void modService(int lecture_id, Map evaluation, ModelAndView mav) {
+    public void modService(Map evaluation, ModelAndView mav) {
+
+        int lecture_id =  Integer.parseInt(evaluation.get("lecture_id").toString());
 
         evaluationRepository.update(evaluation);
 
@@ -228,7 +235,7 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         List<Map> result = evaluationRepository.SearchPrefer(search);
 
-        int lecture_id = (Integer)search.get("lecture_id");
+        int lecture_id =  Integer.parseInt(search.get("lecture_id").toString());
 
         mav.addObject("evaluations", result);
         mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
@@ -250,9 +257,14 @@ public class EvaluationServiceImpl implements EvaluationService {
 
     public void replyRegService(Map evaluationSub, ModelAndView mav) {
 
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String member_id = user.getUsername();
+
+        evaluationSub.put("member_id", member_id);
+
         evaluationRepository.insertSub(evaluationSub);
 
-        int evaluation_id = (Integer)evaluationSub.get("evaluation_id");
+        int evaluation_id = Integer.parseInt(evaluationSub.get("evaluation_id").toString());
 
         StringBuilder page = new StringBuilder("redirect:/evaluation/replyList?evaluation_id=");
         StringBuilder id = new StringBuilder(String.valueOf(evaluation_id));

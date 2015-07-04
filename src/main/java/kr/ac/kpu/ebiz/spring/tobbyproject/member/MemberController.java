@@ -2,15 +2,13 @@ package kr.ac.kpu.ebiz.spring.tobbyproject.member;
 
 import kr.ac.kpu.ebiz.spring.tobbyproject.mail.MailMail;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.HashMap;
+import java.util.Map;
 
 
 @Controller
@@ -32,18 +30,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/reg", method = RequestMethod.POST)
-	public ModelAndView register(@RequestParam ("member_id")String member_id, @RequestParam ("password")String password,
-						 @RequestParam ("nickname")String nickname, @RequestParam ("email")String email,
-						 @RequestParam ("method")String method, @RequestParam ("task")String task, @RequestParam ("exam")String exam) {
-
-		HashMap<String, String> member = new HashMap<String, String>();
-		member.put("member_id",member_id);
-		member.put("password",password);
-		member.put("nickname", nickname);
-		member.put("email",email);
-		member.put("method",method);
-		member.put("task", task);
-		member.put("exam",exam);
+	public ModelAndView register(@RequestParam Map<String, String> member) {
 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/etc/login");
@@ -92,20 +79,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/mod", method = RequestMethod.POST)
-	public ModelAndView modify(@RequestParam ("password")String password,
-							   @RequestParam("nickname")String nickname, @RequestParam("method")String method,
-							   @RequestParam ("task")String task, @RequestParam ("exam")String exam) {
-
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String member_id = user.getUsername();
-
-		HashMap<String, String> member = new HashMap<String, String>();
-		member.put("member_id",member_id);
-		member.put("password",password);
-		member.put("nickname",nickname);
-		member.put("method",method);
-		member.put("task",task);
-		member.put("exam",exam);
+	public ModelAndView modify(@RequestParam Map<String, String> member) {
 
 		ModelAndView mav = new ModelAndView("/member/view");
 

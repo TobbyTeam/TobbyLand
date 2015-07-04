@@ -17,7 +17,7 @@ public interface EvaluationService {
 
     void viewService(int lecture_id, int evaluation_id,  ModelAndView mav);
 
-    void modService(int lecture_id, Map evaluation, ModelAndView mav);
+    void modService(Map evaluation, ModelAndView mav);
 
     void likesService(int lecture_id, int evaluation_id, ModelAndView mav);
 

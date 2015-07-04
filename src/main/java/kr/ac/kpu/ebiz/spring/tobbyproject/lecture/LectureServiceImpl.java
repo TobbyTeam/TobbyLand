@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +35,11 @@ public class LectureServiceImpl implements LectureService{
     }
 
     public void regService(Map lecture, ModelAndView mav) {
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String member_id = user.getUsername();
+
+        lecture.put("member_id", member_id);
 
         lectureRepository.insert(lecture);
 
@@ -64,6 +70,7 @@ public class LectureServiceImpl implements LectureService{
     public void modService(Map lecture, ModelAndView mav) {
 
         lectureRepository.update(lecture);
+
         mav.addObject("lectures", lectureRepository.selectAll());
 
     }
@@ -79,12 +86,14 @@ public class LectureServiceImpl implements LectureService{
 
     }
 
-    public void likesService(Map lecture, ModelAndView mav) {
+    public void likesService(int lecture_id, ModelAndView mav) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
-        int lecture_id = (Integer)lecture.get("lecture_id");
+        Map lecture = new HashMap();
+        lecture.put("lecture_id", lecture_id);
+        lecture.put("member_id", member_id);
 
         int count = lectureRepository.selectSub(lecture);
 

@@ -32,11 +32,11 @@ public class MemberServiceImpl implements MemberService{
             memberRepository.insert_role(member_id);
             mav.addObject("member_id", member_id);
 
-            mailMail.sendMail(
+/*            mailMail.sendMail(
                     "kpytobbyland@google.com", email,
                     "TOBBYLAND 인증 메일입니다.",
                     member_id+"님 회원가입을 축하드립니다. \n\n" +
-                            "http://localhost:8080/member/enabled?member_id="+member_id);
+                            "http://localhost:8080/member/enabled?member_id="+member_id);*/
 
 /*            MemberThread thread = new MemberThread(member_id);
             thread.start();*/
@@ -84,7 +84,10 @@ public class MemberServiceImpl implements MemberService{
 
     public void modService(Map member, ModelAndView mav) {
 
-        String member_id = (String) member.get("member_id");
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String member_id = user.getUsername();
+
+        member.put("member_id",member_id);
 
         memberRepository.update(member);
 
