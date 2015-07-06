@@ -71,12 +71,16 @@ function updateInfoConfirm() {
 
 $(document).ready(function() {
 
-	jQuery.validator.addMethod("alphanumeric", function (value, element) {
+	$.validator.addMethod("alphanumeric", function (value, element) {
 		return this.optional(element) || /^[a-zA-Z0-9]+$/.test(value);
 	});
 
-	jQuery.validator.addMethod("kpumail", function (value, element) {
+	$.validator.addMethod("kpumail", function (value, element) {
 		return this.optional(element) || /(\W|^)[\w.+\-]{0,25}@(kpu)\.ac.kr(\W|$)/.test(value);
+	});
+
+	$.validator.addMethod("space", function(value, element) {
+		return value.indexOf(" ") < 0 && value != "";
 	});
 
 	$("#reg_frm").validate({
@@ -95,6 +99,7 @@ $(document).ready(function() {
 				}
 			}, password: {
 				required: true,
+				space : true,
 				rangelength: [5, 12]
 			}, password_check: {
 				required: true,
@@ -113,6 +118,7 @@ $(document).ready(function() {
 				}
 			}, nickname: {
 				required: true,
+				space : true,
 				remote: {
 					type: "post", url: "/member/nickCheck", data: {
 						email: function () {
@@ -125,17 +131,19 @@ $(document).ready(function() {
 			member_id: {
 				required: "아이디를 입력하세요.",
 				rangelength: $.validator.format("아이디는 5 글자 이상 12글자 이하로 입력하세요."),
-				alphanumeric: "알파벳과 숫자만 사용가능합니다.",
+				alphanumeric: "알파벳과 숫자만 사용가능하고 공백은 불가능합니다.",
 				remote: "아이디 중복입니다."
 			}, password: {
 				required: "패스워드를 입력하세요.",
-				rangelength: $.validator.format("패스워드 5글자 이상 12글자 이하로 입력하세요.")
+				space: "공백은 불가능합니다.",
+				rangelength: $.validator.format("패스워드 5글자 이상 12글자 이하로 입력하세요."),
 			}, password_check: {
 				required: "패스워드 확인 입력하세요.",
 				rangelength: $.validator.format("패스워드확인은 최소 5글자 이상 12글자 이하로 입력하세요."),
 				equalTo: "패스워드와 일치하지 않습니다."
 			}, nickname: {
 				required: "닉네임을 입력하세요.",
+				space: "공백은 불가능합니다.",
 				remote: "닉네임 중복입니다."
 			}, email: {
 				required: "이메일을 입력하세요",
@@ -171,11 +179,16 @@ $(document).ready(function() {
 
 $(document).ready(function() {
 
+	$.validator.addMethod("space", function(value, element) {
+		return value.indexOf(" ") < 0 && value != "";
+	});
+
 	$("#mod_frm").validate({
 		onfocusout: false,
 		rules: {
 			password: {
 				required: true,
+				space :true,
 				rangelength: [5, 12]
 			}, password_check: {
 				required: true,
@@ -194,6 +207,7 @@ $(document).ready(function() {
 		}, messages: {
 			password: {
 				required: "패스워드를 입력하세요.",
+				space : "공백은 불가능합니다.",
 				rangelength: $.validator.format("패스워드 5글자 이상 12글자 이하로 입력하세요.")
 			}, password_check: {
 				required: "패스워드 확인 입력하세요.",
