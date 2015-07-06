@@ -7,90 +7,41 @@
     <title></title>
 
 <%--    <script src="${pageContext.request.contextPath}/resources/js/members.js"></script>--%>
-    <script src="<c:url value="/resources/js/members.js" />"></script>
 <%--    <spring:url value="/resources/js/members.js" var="membersJs" />--%>
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" charset="utf-8"></script>
+    <script src="<c:url value="/resources/js/jquery.validate.min.js" />"></script>
+    <script src="<c:url value="/resources/js/members.js" />"></script>
+
 </head>
 
 <body>
 
-<c:if test="${not empty error}">
-    ${error}
-</c:if>
 
-<form action="/member/reg" method="post" name="reg_frm">
+<form id="reg_frm" name="reg_frm" <%--action="/member/reg" method="post"--%>>
 
-    아이디: <input type="text" name="member_id" value="${member.member_id}"><br/>
-    패스워드:<input type="password" name="password" value="${member.password}" ><br/>
-    패스워드확인:<input type="password" name="password_check" value="${member.password}"><br/>
-    별명: <input type="text" name="nickname" value="${member.nickname}"><br/>
-    이메일: <input type="text" name="email" value="${member.email}"><br/>
+    아이디: <input type="text" id="member_id" name="member_id"><br/>
+    패스워드:<input type="password" id = "password" name="password"><br/>
+    패스워드확인:<input type="password" id = "password_check" name="password_check"><br/>
+    별명: <input type="text" id= "nickname" name="nickname"><br/>
+    이메일: <input type="text" id="email" name="email"><br />
     수업방식:
-    <c:choose>
-        <c:when test="${member.method eq 'a1' || empty member.method}">
             독고다이형<input type="radio" name="method" value="a1" checked>
             토론형<input type="radio" name="method" value="a2">
             실습형<input type="radio" name="method" value="a3"><br>
-        </c:when>
-        <c:when test="${member.method eq 'a2'}">
-            독고다이형<input type="radio" name="method" value="a1" >
-            토론형<input type="radio" name="method" value="a2" checked>
-            실습형<input type="radio" name="method" value="a3"><br>
-        </c:when>
-        <c:otherwise>
-            독고다이형<input type="radio" name="method" value="a1" >
-            토론형<input type="radio" name="method" value="a2">
-            실습형<input type="radio" name="method" value="a3" checked><br>
-        </c:otherwise>
-    </c:choose>
 
     과제방식:
-    <c:choose>
-        <c:when test="${member.task eq 'b1' || empty member.task}">
             텀프로젝트<input type="radio" name="task" value="b1" checked>
             팀과제<input type="radio" name="task" value="b2">
             개인과제<input type="radio" name="task" value="b3"><br>
-        </c:when>
-        <c:when test="${member.task eq 'b2'}">
-            텀프로젝트<input type="radio" name="task" value="b1">
-            팀과제<input type="radio" name="task" value="b2" checked>
-            개인과제<input type="radio" name="task" value="b3"><br>
-        </c:when>
-        <c:otherwise>
-            텀프로젝트<input type="radio" name="task" value="b1">
-            팀과제<input type="radio" name="task" value="b2">
-            개인과제<input type="radio" name="task" value="b3" checked><br>
-        </c:otherwise>
-    </c:choose>
 
     시험방식:
-    <c:choose>
-        <c:when test="${member.exam eq 'c1' || empty member.exam}">
             서술형<input type="radio" name="exam" value="c1" checked>
             혼합형<input type="radio" name="exam" value="c2">
             오픈북<input type="radio" name="exam" value="c3">
             실습<input type="radio" name="exam" value="c4"><br>
-        </c:when>
-        <c:when test="${member.exam eq 'c2'}">
-            서술형<input type="radio" name="exam" value="c1">
-            혼합형<input type="radio" name="exam" value="c2" checked>
-            오픈북<input type="radio" name="exam" value="c3">
-            실습<input type="radio" name="exam" value="c4"><br>
-        </c:when>
-        <c:when test="${member.exam eq 'c3'}">
-            서술형<input type="radio" name="exam" value="c1">
-            혼합형<input type="radio" name="exam" value="c2">
-            오픈북<input type="radio" name="exam" value="c3" checked>
-            실습<input type="radio" name="exam" value="c4"><br>
-        </c:when>
-        <c:otherwise>
-            서술형<input type="radio" name="exam" value="c1">
-            혼합형<input type="radio" name="exam" value="c2">
-            오픈북<input type="radio" name="exam" value="c3">
-            실습<input type="radio" name="exam" value="c4" checked><br>
-        </c:otherwise>
-    </c:choose>
-    <br/>
-    <input type="button" value="회원가입" onclick="infoConfirm()">&nbsp;&nbsp;&nbsp; <input type="reset" value="취소" onclick="javascript:window.location='/login'">
+    <br />
+    <button type="button" onclick="$(this.form).submit()">SUBMIT</button>&nbsp;&nbsp;&nbsp; <input type="reset" value="취소" onclick="javascript:window.location='/login'">
 </form>
 
 </body>

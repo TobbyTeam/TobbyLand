@@ -19,7 +19,7 @@
         <security:intercept-url pattern="/member/reg" access="permitAll" />
         <security:intercept-url pattern="/member/enabled" access="permitAll" />
         <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
-        <security:intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
+<!--        <security:intercept-url pattern="/**" access="hasRole('ROLE_USER')" />-->
 
         <!-- access denied page -->
         <security:access-denied-handler error-page="/403" />

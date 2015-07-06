@@ -9,7 +9,11 @@ import java.util.Map;
  */
 public interface MemberService {
 
-    void regService(Map member, ModelAndView mav);
+    boolean regService(Map member);
+
+    boolean idCheckService(String member_id);
+
+    boolean emailCheckService(String email);
 
     void enabledService(String member_id, ModelAndView mav);
 

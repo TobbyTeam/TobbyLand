@@ -7,8 +7,12 @@
     SELECT * FROM MEMBER WHERE MEMBER_ID = #{value}
   </select>
 
-  <select id="selectCount" resultType="int">
+  <select id="selectMember" resultType="int">
      SELECT Count(MEMBER_ID) FROM MEMBER WHERE MEMBER_ID = #{member_id}
+  </select>
+
+  <select id="selectEmail" resultType="int">
+    SELECT Count(MEMBER_ID) FROM MEMBER WHERE EMAIL = #{email}
   </select>
 
   <select id="selectPw" resultType="String">

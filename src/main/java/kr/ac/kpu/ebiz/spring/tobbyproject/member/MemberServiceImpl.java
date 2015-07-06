@@ -16,22 +16,16 @@ public class MemberServiceImpl implements MemberService{
     @Autowired
     MailMail mailMail;
 
-    public void regService(Map member, ModelAndView mav) {
+    public boolean regService(Map member) {
 
         String member_id = (String) member.get("member_id");
         String email = (String) member.get("email");
 
-        int count = memberRepository.selectCount(member_id);
+        boolean result = false;
 
-        if(count !=0) {
-            mav.addObject("member", member);
-            mav.addObject("error", "등록된 아이디 입니다.");
-            mav.setViewName("/member/register");
-        } else {
-            memberRepository.insert(member);
-            memberRepository.insert_role(member_id);
-            mav.addObject("member_id", member_id);
-
+        if(memberRepository.insert(member) && memberRepository.insert_role(member_id)) {
+            result = true;
+        }
 /*            mailMail.sendMail(
                     "kpytobbyland@google.com", email,
                     "TOBBYLAND 인증 메일입니다.",
@@ -41,7 +35,27 @@ public class MemberServiceImpl implements MemberService{
 /*            MemberThread thread = new MemberThread(member_id);
             thread.start();*/
 
+        return result;
+    }
+
+    public boolean idCheckService(String member_id) {
+
+        boolean result = false;
+        if(memberRepository.selectMember(member_id) == 0){
+            result = true;
         }
+
+        return result;
+    }
+
+    public boolean emailCheckService(String email) {
+
+        boolean result = false;
+        if(memberRepository.selectEmail(email) == 0){
+            result = true;
+        }
+
+        return result;
     }
 
     public void enabledService(String member_id, ModelAndView mav) {

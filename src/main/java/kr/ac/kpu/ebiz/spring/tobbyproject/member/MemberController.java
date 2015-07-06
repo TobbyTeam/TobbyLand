@@ -30,15 +30,23 @@ public class MemberController {
 		return "/member/register";
 	}
 
+	@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
+	public @ResponseBody boolean member_id(@RequestParam("member_id") String member_id) {
+
+
+		return memberService.idCheckService(member_id);
+	}
+
+	@RequestMapping(value = "/emailCheck", method = RequestMethod.POST)
+	public @ResponseBody boolean email(@RequestParam("email") String email) {
+
+		return memberService.emailCheckService(email);
+	}
+
 	@RequestMapping(value = "/reg", method = RequestMethod.POST)
-	public ModelAndView register(@RequestParam Map<String, String> member) {
+	public @ResponseBody boolean register(@RequestParam Map<String, String> member) {
 
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/etc/login");
-
-		memberService.regService(member, mav);
-
-		return mav;
+		return memberService.regService(member);
 	}
 
 	@RequestMapping(value = "/enabled", method = RequestMethod.GET)
@@ -51,22 +59,15 @@ public class MemberController {
 		return mav;
 	}
 
-/*	@RequestMapping(value = "/view", method = RequestMethod.GET)
+	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public ModelAndView view() {
 
 		ModelAndView mav = new ModelAndView("/member/view");
 
-		memberService.viewService(mav);
+		memberService.viewService();
 
 		return mav;
-	}*/
-
-	@RequestMapping(value = "/view", method = RequestMethod.POST)
-	public @ResponseBody Map view() {
-
-		return memberService.viewService();
 	}
-
 
 	@RequestMapping(value = "/password", method = RequestMethod.GET)
 	public String password() {
