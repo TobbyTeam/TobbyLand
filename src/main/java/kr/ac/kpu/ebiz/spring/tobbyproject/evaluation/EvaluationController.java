@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.Serializable;
@@ -27,6 +28,16 @@ public class EvaluationController {
 		return mav;
 	}
 
+	@RequestMapping(value = "/listBest", method = RequestMethod.GET)
+	public ModelAndView listBest(@RequestParam("lecture_id") int lecture_id) {
+
+		ModelAndView mav = new ModelAndView("/evaluation/listBest");
+
+		evaluationService.listBestService(lecture_id, mav);
+
+		return mav;
+	}
+
 	@RequestMapping(value = "/regForm", method = RequestMethod.GET)
 	public ModelAndView regForm(@RequestParam int lecture_id) {
 
@@ -40,7 +51,7 @@ public class EvaluationController {
 	@RequestMapping(value = "/reg", method = RequestMethod.POST)
 	public ModelAndView register(@RequestParam Map<String, Serializable> evaluation) {
 
-		ModelAndView mav = new ModelAndView("/evaluation/list");
+		ModelAndView mav = new ModelAndView();
 
 		evaluationService.regService(evaluation, mav);
 
@@ -60,50 +71,35 @@ public class EvaluationController {
 	@RequestMapping(value = "/mod", method = RequestMethod.POST)
 	public ModelAndView modify(@RequestParam Map<String, Serializable> evaluation) {
 
-		ModelAndView mav = new ModelAndView("/evaluation/list");
+		ModelAndView mav = new ModelAndView();
 
 		evaluationService.modService(evaluation, mav);
 
 		return mav;
 	}
 
-	@RequestMapping(value = "/likes", method = RequestMethod.GET)
-	public ModelAndView likes(@RequestParam("evaluation_id")int evaluation_id, @RequestParam("lecture_id") int lecture_id,
-							  @RequestParam(value = "error", required = false) String error) {
+	@RequestMapping(value = "/likes", method = RequestMethod.POST)
+	public @ResponseBody int likes(@RequestParam("evaluation_id")int evaluation_id) {
 
-		ModelAndView mav = new ModelAndView("/evaluation/list");
-
-		evaluationService.likesService(lecture_id, evaluation_id, mav);
-
-		return mav;
+		return evaluationService.likesService(evaluation_id);
 	}
 
-	@RequestMapping(value = "/dislike", method = RequestMethod.GET)
-	public ModelAndView dislike(@RequestParam("evaluation_id")int evaluation_id, @RequestParam("lecture_id") int lecture_id,
-							  @RequestParam(value = "error", required = false) String error) {
+	@RequestMapping(value = "/dislike", method = RequestMethod.POST)
+	public @ResponseBody int dislike(@RequestParam("evaluation_id")int evaluation_id) {
 
-		ModelAndView mav = new ModelAndView("/evaluation/list");
-
-		evaluationService.dislikeService(lecture_id, evaluation_id, mav);
-
-		return mav;
+		return evaluationService.dislikeService(evaluation_id);
 	}
 
-	@RequestMapping(value = "/report", method = RequestMethod.GET)
-	public ModelAndView report(@RequestParam("evaluation_id")int evaluation_id, @RequestParam("lecture_id") int lecture_id,
-							  @RequestParam(value = "error", required = false) String error) {
+	@RequestMapping(value = "/report", method = RequestMethod.POST)
+	public @ResponseBody int report(@RequestParam("evaluation_id")int evaluation_id) {
 
-		ModelAndView mav = new ModelAndView("/evaluation/list");
-
-		evaluationService.reportService(lecture_id, evaluation_id, mav);
-
-		return mav;
+		return evaluationService.reportService(evaluation_id);
 	}
 
 	@RequestMapping(value = "/isDelete", method = RequestMethod.GET)
 	public ModelAndView isDelete(@RequestParam("evaluation_id")int evaluation_id, @RequestParam("lecture_id") int lecture_id) {
 
-		ModelAndView mav = new ModelAndView("/evaluation/list");
+		ModelAndView mav = new ModelAndView();
 
 		evaluationService.isDeleteService(lecture_id, evaluation_id, mav);
 

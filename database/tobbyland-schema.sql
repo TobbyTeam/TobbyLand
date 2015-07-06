@@ -149,6 +149,7 @@ CREATE TABLE evaluationsub (
   es_id int(10) unsigned NOT NULL AUTO_INCREMENT,
   evaluation_id int(10) unsigned DEFAULT NULL,
   member_id varchar(45) DEFAULT NULL,
+  kind int(10) unsigned DEFAULT '0',
   contents varchar(45) DEFAULT NULL,
   PRIMARY KEY (es_id),
 /*  UNIQUE KEY uni_evaluation_id_member_id (evaluation_id,member_id),*/

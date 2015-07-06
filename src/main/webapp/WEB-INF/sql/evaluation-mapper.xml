@@ -154,12 +154,16 @@
   </update>
 
   <insert id="insertSub" parameterType="map">
-    INSERT INTO EVALUATIONSUB (evaluation_id, member_id, contents)
-    VALUES (#{evaluation_id},#{member_id},#{contents})
+    INSERT INTO EVALUATIONSUB (evaluation_id, member_id, kind, contents)
+    VALUES (#{evaluation_id},#{member_id},#{kind},#{contents})
   </insert>
 
-  <select id="selectSub" parameterType="map" resultType="int">
-    SELECT Count(ES_ID) FROM EVALUATIONSUB WHERE EVALUATION_ID = #{evaluation_id} AND MEMBER_ID = #{member_id} AND CONTENTS IS NULL
+  <select id="selectSubCount" parameterType="map" resultType="int">
+    SELECT count(es_id) FROM EVALUATIONSUB WHERE EVALUATION_ID = #{evaluation_id} AND MEMBER_ID = #{member_id} AND CONTENTS IS NULL
+  </select>
+
+  <select id="selectSubType" parameterType="map" resultType="int">
+    SELECT kind FROM EVALUATIONSUB WHERE EVALUATION_ID = #{evaluation_id} AND MEMBER_ID = #{member_id} AND CONTENTS IS NULL
   </select>
 
   <select id="selectRe" resultType="map">

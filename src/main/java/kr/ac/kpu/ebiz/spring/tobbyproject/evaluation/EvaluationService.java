@@ -11,6 +11,8 @@ public interface EvaluationService {
 
     void listService(int lecture_id, ModelAndView mav);
 
+    void listBestService(int lecture_id, ModelAndView mav);
+
     void regFormService(int lecture_id, ModelAndView mav);
 
     void regService(Map evaluation, ModelAndView mav);
@@ -19,11 +21,11 @@ public interface EvaluationService {
 
     void modService(Map evaluation, ModelAndView mav);
 
-    void likesService(int lecture_id, int evaluation_id, ModelAndView mav);
+    int likesService(int evaluation_id);
 
-    void dislikeService(int lecture_id, int evaluation_id, ModelAndView mav);
+    int dislikeService(int evaluation_id);
 
-    void reportService(int lecture_id, int evaluation_id, ModelAndView mav);
+    int reportService(int evaluation_id);
 
     void isDeleteService(int lecture_id, int evaluation_id, ModelAndView mav);
 

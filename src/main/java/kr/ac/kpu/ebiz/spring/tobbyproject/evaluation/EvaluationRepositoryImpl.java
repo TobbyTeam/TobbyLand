@@ -85,8 +85,12 @@ public class EvaluationRepositoryImpl extends SqlSessionDaoSupport implements Ev
 		return getSqlSession().insert("EvaluationRepository.insertSub", evaluation) > 0;
 	}
 
-	public int selectSub(Map evaluation) {
-		return getSqlSession().selectOne("EvaluationRepository.selectSub", evaluation);
+	public int selectSubCount(Map evaluation) {
+		return getSqlSession().selectOne("EvaluationRepository.selectSubCount", evaluation);
+	}
+
+	public int selectSubType(Map evaluation) {
+		return getSqlSession().selectOne("EvaluationRepository.selectSubType", evaluation);
 	}
 
 	public List<Map> selectRe(Integer evaluationId) {

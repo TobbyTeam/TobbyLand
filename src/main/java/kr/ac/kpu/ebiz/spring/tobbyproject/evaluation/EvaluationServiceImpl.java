@@ -9,9 +9,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.*;
 
-/**
- * Created by happy on 2015-07-01.
- */
 public class EvaluationServiceImpl implements EvaluationService {
 
     @Autowired
@@ -27,6 +24,11 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
         mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
+
+    }
+
+    public void listBestService(int lecture_id, ModelAndView mav) {
+
         mav.addObject("best", evaluationRepository.selectBest(lecture_id));
 
     }
@@ -44,11 +46,8 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         if(count != 0) {
 
-            mav.setViewName("/evaluation/list");
+            mav.setViewName("redirect:/evaluation/list?lecture_id="+lecture_id);
             mav.addObject("error", "이미 이 강의에 대해 강의평가를 작성하셨습니다.");
-            mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
-            mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
-            mav.addObject("best", evaluationRepository.selectBest(lecture_id));
 
         } else {
 
@@ -57,7 +56,7 @@ public class EvaluationServiceImpl implements EvaluationService {
             int year = cal.get(Calendar.YEAR) - 2000;
             int month = cal.get(Calendar.MONTH);
             int half;
-            if(month>7){half = 2;}
+            if(month>=6){half = 2;}
             else{half = 1;}
 
             StringBuilder current = new StringBuilder(String.valueOf(year));
@@ -90,10 +89,7 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         evaluationRepository.insert(evaluation);
 
-        mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
-        mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
-        mav.addObject("best", evaluationRepository.selectBest(lecture_id));
-
+        mav.setViewName("redirect:/evaluation/list?lecture_id="+lecture_id);
     }
 
     public void viewService(int lecture_id, int evaluation_id, ModelAndView mav) {
@@ -114,10 +110,7 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         } else {
 
-            mav.setViewName("/evaluation/list");
-            mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
-            mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
-            mav.addObject("best", evaluationRepository.selectBest(lecture_id));
+            mav.setViewName("redirect:/evaluation/list?lecture_id=" + lecture_id);
             mav.addObject("error", "본인이 작성하신 강의평가가 아닙니다.");
 
         }
@@ -130,13 +123,11 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         evaluationRepository.update(evaluation);
 
-        mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
-        mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
-        mav.addObject("best", evaluationRepository.selectBest(lecture_id));
+        mav.setViewName("redirect:/evaluation/list?lecture_id=" + lecture_id);
 
     }
 
-    public void likesService(int lecture_id, int evaluation_id, ModelAndView mav) {
+    public int likesService(int evaluation_id) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
@@ -145,22 +136,24 @@ public class EvaluationServiceImpl implements EvaluationService {
         evaluationSub.put("evaluation_id", evaluation_id);
         evaluationSub.put("member_id", member_id);
 
-        int count = evaluationRepository.selectSub(evaluationSub);
+        int count = evaluationRepository.selectSubCount(evaluationSub);
 
-        if(count != 0) {
-            mav.addObject("error", "이미 추천/비공감/신고 중에 하나를 하셨습니다.");
+        int result;
+
+        if(count !=0) {
+            int kind = evaluationRepository.selectSubType(evaluationSub);
+            result = kind;
         } else {
+            evaluationSub.put("kind", 1);
             evaluationRepository.insertSub(evaluationSub);
             evaluationRepository.updateLike(evaluation_id);
+            result = 0;
         }
 
-        mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
-        mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
-        mav.addObject("best", evaluationRepository.selectBest(lecture_id));
-
+        return result;
     }
 
-    public void dislikeService(int lecture_id, int evaluation_id, ModelAndView mav) {
+    public int dislikeService(int evaluation_id) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
@@ -169,23 +162,25 @@ public class EvaluationServiceImpl implements EvaluationService {
         evaluationSub.put("evaluation_id", evaluation_id);
         evaluationSub.put("member_id", member_id);
 
-        int count = evaluationRepository.selectSub(evaluationSub);
+        int count = evaluationRepository.selectSubCount(evaluationSub);
 
-        if(count != 0) {
-            mav.addObject("error", "이미 추천/비공감/신고 중에 하나를 하셨습니다.");
+        int result;
 
+        if(count !=0) {
+            int kind = evaluationRepository.selectSubType(evaluationSub);
+            result = kind;
         } else {
+            evaluationSub.put("kind", 2);
             evaluationRepository.insertSub(evaluationSub);
             evaluationRepository.updateDislike(evaluation_id);
+            result = 0;
         }
 
-        mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
-        mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
-        mav.addObject("best", evaluationRepository.selectBest(lecture_id));
+        return result;
 
     }
 
-    public void reportService(int lecture_id, int evaluation_id, ModelAndView mav) {
+    public int reportService(int evaluation_id) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
@@ -194,18 +189,21 @@ public class EvaluationServiceImpl implements EvaluationService {
         evaluationSub.put("evaluation_id", evaluation_id);
         evaluationSub.put("member_id", member_id);
 
-        int count = evaluationRepository.selectSub(evaluationSub);
+        int count = evaluationRepository.selectSubCount(evaluationSub);
 
-        if(count != 0) {
-            mav.addObject("error", "이미 추천/비공감/신고 중에 하나를 하셨습니다.");
+        int result;
+
+        if(count !=0) {
+            int kind = evaluationRepository.selectSubType(evaluationSub);
+            result = kind;
         } else {
+            evaluationSub.put("kind", 3);
             evaluationRepository.insertSub(evaluationSub);
             evaluationRepository.updateReport(evaluation_id);
+            result = 0;
         }
 
-        mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
-        mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
-        mav.addObject("best", evaluationRepository.selectBest(lecture_id));
+        return result;
 
     }
 
@@ -224,9 +222,7 @@ public class EvaluationServiceImpl implements EvaluationService {
             mav.addObject("error", "본인이 작성한 것이 아닙니다.");
         }
 
-        mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
-        mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
-        mav.addObject("best", evaluationRepository.selectBest(lecture_id));
+        mav.setViewName("redirect:/evaluation/list?lecture_id="+lecture_id);
 
 
     }
@@ -235,11 +231,11 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         List<Map> result = evaluationRepository.SearchPrefer(search);
 
-        int lecture_id =  Integer.parseInt(search.get("lecture_id").toString());
+/*        int lecture_id =  Integer.parseInt(search.get("lecture_id").toString());*/
 
         mav.addObject("evaluations", result);
-        mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
-        mav.addObject("best", evaluationRepository.selectBest(lecture_id));
+/*        mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
+        mav.addObject("best", evaluationRepository.selectBest(lecture_id));*/
 
         if(result.isEmpty() == true){
             mav.addObject("error", "검색 결과가 없습니다.");

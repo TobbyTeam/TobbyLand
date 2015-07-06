@@ -45,7 +45,9 @@ public interface EvaluationRepository {
 
 	boolean insertSub(Map lecture);
 
-	int selectSub(Map lecture);
+	int selectSubCount(Map lecture);
+
+	int selectSubType(Map lecture);
 
 	List<Map> selectRe(Integer evaluationId);
 }
