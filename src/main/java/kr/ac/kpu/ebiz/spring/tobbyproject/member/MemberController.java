@@ -33,7 +33,6 @@ public class MemberController {
 	@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
 	public @ResponseBody boolean member_id(@RequestParam("member_id") String member_id) {
 
-
 		return memberService.idCheckService(member_id);
 	}
 
@@ -41,6 +40,12 @@ public class MemberController {
 	public @ResponseBody boolean email(@RequestParam("email") String email) {
 
 		return memberService.emailCheckService(email);
+	}
+
+	@RequestMapping(value = "/nickCheck", method = RequestMethod.POST)
+	public @ResponseBody boolean nickCheck(@RequestParam("nickname") String nickname) {
+
+		return memberService.nickCheckService(nickname);
 	}
 
 	@RequestMapping(value = "/reg", method = RequestMethod.POST)

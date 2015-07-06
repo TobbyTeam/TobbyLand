@@ -68,14 +68,31 @@ function updateInfoConfirm() {
 
 };
 
-$(function() {
+
+$(document).ready(function() {
+
+	jQuery.validator.addMethod("alphanumeric", function (value, element) {
+		return this.optional(element) || /^[a-zA-Z0-9]+$/.test(value);
+	});
+
+	jQuery.validator.addMethod("kpumail", function (value, element) {
+		return this.optional(element) || /(\W|^)[\w.+\-]{0,25}@(kpu)\.ac.kr(\W|$)/.test(value);
+	});
+
 	$("#reg_frm").validate({
 		onfocusout: false,
 		rules: {
 			member_id: {
 				required: true,
 				minlength: 5,
-				remote: {type: "post", url:"/member/idCheck", data: { member_id : function() { return $("#member_id").val(); } } }
+				alphanumeric: true,
+				remote: {
+					type: "post", url: "/member/idCheck", data: {
+						member_id: function () {
+							return $("#member_id").val();
+						}
+					}
+				}
 			}, password: {
 				required: true,
 				rangelength: [5, 12]
@@ -86,27 +103,44 @@ $(function() {
 			}, email: {
 				required: true,
 				email: true,
-				remote: {type: "post", url:"/member/emailCheck", data: { email : function() { return $("#email").val(); } } }
+				kpumail: true,
+				remote: {
+					type: "post", url: "/member/emailCheck", data: {
+						email: function () {
+							return $("#email").val();
+						}
+					}
+				}
 			}, nickname: {
-				required: true
+				required: true,
+				remote: {
+					type: "post", url: "/member/nickCheck", data: {
+						email: function () {
+							return $("#nickname").val();
+						}
+					}
+				}
 			}
 		}, messages: {
 			member_id: {
-				required: "이름을 입력하세요.",
-				minlength: $.validator.format("이름은 최소 5 글자 이상 입력하세요."),
+				required: "아이디를 입력하세요.",
+				minlength: $.validator.format("아이디는 5 글자 이상 입력하세요."),
+				alphanumeric: "알파벳과 숫자만 사용가능합니다.",
 				remote: "아이디 중복입니다."
 			}, password: {
 				required: "패스워드를 입력하세요.",
-				rangelength: $.validator.format("패스워드 최소 5글자 이상 12글자 이하로 입력하세요.")
+				rangelength: $.validator.format("패스워드 5글자 이상 12글자 이하로 입력하세요.")
 			}, password_check: {
 				required: "패스워드 확인 입력하세요.",
 				rangelength: $.validator.format("패스워드확인은 최소 5글자 이상 12글자 이하로 입력하세요."),
 				equalTo: "패스워드와 일치하지 않습니다."
 			}, nickname: {
-				required: "닉네임을 입력하세요."
+				required: "닉네임을 입력하세요.",
+				remote: "닉네임 중복입니다."
 			}, email: {
 				required: "이메일을 입력하세요",
 				email: "올바른 이메일 주소가 아닙니다.",
+				kpumail: "kpu메일을 입력해주세요.(kpu@ac.kr)",
 				remote: "이메일 중복입니다."
 			}
 			/*        }, invalidHandler: function (form, validator) {
@@ -134,3 +168,4 @@ $(function() {
 		}
 	})
 })
+

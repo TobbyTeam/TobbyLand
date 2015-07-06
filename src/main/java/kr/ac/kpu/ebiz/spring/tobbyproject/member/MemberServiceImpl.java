@@ -58,6 +58,16 @@ public class MemberServiceImpl implements MemberService{
         return result;
     }
 
+    public boolean nickCheckService(String nickname) {
+
+        boolean result = false;
+        if(memberRepository.selectNick(nickname) == 0){
+            result = true;
+        }
+
+        return result;
+    }
+
     public void enabledService(String member_id, ModelAndView mav) {
 
         int enabled = memberRepository.selectEn(member_id);

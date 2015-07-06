@@ -11,6 +11,8 @@ public interface MemberRepository {
 
 	int selectEmail(String email);
 
+	int selectNick(String nickname);
+
 	String selectPw(String memberId);
 
 	int selectEn(String memberId);

@@ -15,6 +15,10 @@
     SELECT Count(MEMBER_ID) FROM MEMBER WHERE EMAIL = #{email}
   </select>
 
+  <select id="selectNick" resultType="int">
+    SELECT Count(MEMBER_ID) FROM MEMBER WHERE NICKNAME = #{nickname}
+  </select>
+
   <select id="selectPw" resultType="String">
     SELECT password FROM MEMBER WHERE MEMBER_ID = #{member_id}
   </select>

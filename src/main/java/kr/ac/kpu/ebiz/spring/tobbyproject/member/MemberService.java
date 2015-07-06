@@ -15,6 +15,8 @@ public interface MemberService {
 
     boolean emailCheckService(String email);
 
+    boolean nickCheckService(String nickname);
+
     void enabledService(String member_id, ModelAndView mav);
 
     void viewService(ModelAndView mav);

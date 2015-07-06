@@ -33,8 +33,6 @@ public class MainController {
     public ModelAndView login(@RequestParam(value = "error", required = false) String error,
                               @RequestParam(value = "logout", required = false) String logout) {
 
-        System.out.println(error.toString()+"에러확인");
-
         ModelAndView model = new ModelAndView();
         if (error != null) {
             model.addObject("error", "Invalid username and password!");
