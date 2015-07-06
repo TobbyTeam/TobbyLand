@@ -66,7 +66,7 @@ function updateInfoConfirm() {
 
 	document.mod_frm.submit();
 
-}
+};
 
 $(function() {
 	$("#reg_frm").validate({

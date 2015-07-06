@@ -64,7 +64,7 @@ public class MemberController {
 
 		ModelAndView mav = new ModelAndView("/member/view");
 
-		memberService.viewService();
+		memberService.viewService(mav);
 
 		return mav;
 	}

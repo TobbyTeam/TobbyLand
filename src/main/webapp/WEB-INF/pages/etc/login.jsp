@@ -42,11 +42,7 @@
 </head>
 <body onload='document.loginForm.username.focus();'>
 
-	<h1>Spring Security Login Form (Database Authentication)</h1>
-
 	<img src="/resources/image/mainlogo.png"/>
-
-	<%= request.getContextPath() %>
 
 	<div id="login-box">
 
@@ -60,7 +56,7 @@
 		</c:if>
 
 		<form name='loginForm'
-			action="<c:url value='/j_spring_security_check' />" method='POST'>
+			  action="<c:url value='/j_spring_security_check' />" method='POST'>
 
 			<table>
 				<tr>
@@ -73,12 +69,12 @@
 				</tr>
 				<tr>
 					<td colspan='2'><input name="submit" type="submit"
-						value="로그인" /></td>
+										   value="로그인" /></td>
 				</tr>
 			</table>
 
 			<input type="hidden" name="${_csrf.parameterName}"
-				value="${_csrf.token}" />
+				   value="${_csrf.token}" />
 
 		</form>
 
