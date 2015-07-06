@@ -46,6 +46,26 @@ public class LectureServiceImpl implements LectureService{
         mav.addObject("lectures", lectureRepository.selectAll());
     }
 
+    public int confirmService(int lecture_id) {
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String member_id = user.getUsername();
+
+        String writer = lectureRepository.selectMember(lecture_id);
+
+        Collection authorities = user.getAuthorities();
+
+        int result;
+
+        if(member_id.equals(writer) == true || authorities.toString().contains("ROLE_ADMIN")){
+            result = 1;
+        } else {
+            result = 0;
+        }
+
+        return result;
+    }
+
     public void viewService(int lecture_id, ModelAndView mav) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -56,13 +76,12 @@ public class LectureServiceImpl implements LectureService{
         Collection authorities = user.getAuthorities();
 
         if(member_id.equals(writer) == true || authorities.toString().contains("ROLE_ADMIN")){
-            Map lecture = lectureRepository.select(lecture_id);
-            mav.addObject("lecture", lecture);
+
+            mav.addObject("lecture", lectureRepository.select(lecture_id));
             mav.addObject("departments", departmentRepository.selectAll());
+
         } else {
-            mav.setViewName("/lecture/list");
-            mav.addObject("lectures", lectureRepository.selectAll());
-            mav.addObject("error", "본인이 생성하신 강의가 아닙니다.");
+            mav.setViewName("redirect:/lecture/list");
         }
 
     }
@@ -110,7 +129,7 @@ public class LectureServiceImpl implements LectureService{
         return result;
     }
 
-    public void isDeleteService(int lecture_id, ModelAndView mav) {
+    public int isDeleteService(int lecture_id) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
@@ -119,13 +138,18 @@ public class LectureServiceImpl implements LectureService{
 
         String writer = lectureRepository.selectMember(lecture_id);
 
-        if(member_id.equals(writer) == true || authorities.toString().contains("ROLE_ADMIN")){
-            lectureRepository.isDelete(lecture_id);
-        } else{
-            mav.addObject("error", "본인이 작성한 것이 아닙니다.");
-        }
+        int data;
 
-        mav.addObject("lectures", lectureRepository.selectAll());
+        if(member_id.equals(writer) == true || authorities.toString().contains("ROLE_ADMIN")){
+            if(lectureRepository.isDelete(lecture_id)==true){
+                data = 1;
+            }else{
+                data = 0;
+            }
+        } else{
+           data = 0;
+        }
+        return data;
     }
 
 }

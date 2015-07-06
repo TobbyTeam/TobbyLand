@@ -1,7 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-<head><title>헬로 월드</title></head>
+<head>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" charset="utf-8"></script>
+<script src="<c:url value="/resources/js/evaluation.js" />"></script>
+
+<title>헬로 월드</title></head>
 <body>
 
 베스트 강의평가
@@ -37,9 +42,9 @@
 			<td>${best.likes}</td>
 			<td>${best.dislike}</td>
 			<td>${best.report}</td>
-			<td><a href="/evaluation/likes?evaluation_id=${best.evaluation_id}&lecture_id=${best.lecture_id}">추천</a></td>
-			<td><a href="/evaluation/dislike?evaluation_id=${best.evaluation_id}&lecture_id=${best.lecture_id}">비공감</a></td>
-			<td><a href="/evaluation/report?evaluation_id=${best.evaluation_id}&lecture_id=${best.lecture_id}">신고</a></td>
+			<td><input type="button" value="추천(${evaluation.likes})" onclick="evalLikeAjax(${evaluation.evaluation_id})"></td>
+			<td><input type="button" value="비공감(${evaluation.dislike})" onclick="evalDislikeAjax(${evaluation.evaluation_id})"></td>
+			<td><input type="button" value="신고(${evaluation.report})" onclick="evalReportAjax(${evaluation.evaluation_id})"></td>
 			<td><a href="/evaluation/view?evaluation_id=${best.evaluation_id}&lecture_id=${best.lecture_id}">수정</a></td>
 			<td><a href="/evaluation/isDelete?evaluation_id=${best.evaluation_id}&lecture_id=${best.lecture_id}">삭제</a></td>
 		</tr>

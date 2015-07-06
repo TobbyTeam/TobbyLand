@@ -8,7 +8,7 @@
 
 <jsp:include page="/top" flush="true"/> <br />
 
-<form action="/lecture/mod" method="post">
+<form action="/lecture/mod" method="post" name="lecture_frm">
   강의명: <input type="text" name="lecture_name" value="${lecture.lecture_name}"><br>
   학과명:
 
@@ -27,7 +27,7 @@
 
   교수명: <input type="text" name="prof" value="${lecture.prof}"><br>
   <input type="hidden" name="lecture_id" value="${lecture.lecture_id}">
-  <input type="submit" value="전송">
+  <input type="button" value="강의생성" onclick="infoConfirm()">&nbsp;&nbsp;&nbsp; <input type="reset" value="취소" onclick="javascript:window.location='/lecture/list'">
 </form>
 
 <br/><br/>

@@ -41,6 +41,12 @@ public class LectureController {
 		return mav;
 	}
 
+	@RequestMapping(value = "/confirm", method = RequestMethod.POST)
+	public @ResponseBody int confirm(@RequestParam int lecture_id) {
+
+		return lectureService.confirmService(lecture_id);
+	}
+
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public ModelAndView view(@RequestParam int lecture_id) {
 
@@ -86,14 +92,10 @@ public class LectureController {
 		return lectureService.likesService(lecture_id);
 	}
 
-	@RequestMapping(value = "/isDelete", method = RequestMethod.GET)
-	public ModelAndView isDelete(@RequestParam("lecture_id") int lecture_id)	{
+	@RequestMapping(value = "/isDelete", method = RequestMethod.POST)
+	public @ResponseBody int isDelete(@RequestParam("lecture_id") int lecture_id)	{
 
-		ModelAndView mav = new ModelAndView("redirect:/lecture/list");
-
-		lectureService.isDeleteService(lecture_id, mav);
-
-		return mav;
+		return lectureService.isDeleteService(lecture_id);
 	}
 
 }

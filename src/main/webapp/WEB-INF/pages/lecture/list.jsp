@@ -12,10 +12,6 @@
 
 <jsp:include page="/top" flush="true"/> <br />
 
-<c:if test="${not empty error}">
-	${error}
-</c:if>
-
 <br /><br />
 
 	<table border="1">
@@ -34,8 +30,8 @@
 			<td>${lecture.prof}</td>
 			<td><input type="button" value="추천(${lecture.likes})" onclick="likeAjax(${lecture.lecture_id})"></td>
 			<td>${lecture.write_date}</td>
-			<td><a href="/lecture/view?lecture_id=${lecture.lecture_id}">수정</a></td>
-			<td><a href="/lecture/isDelete?lecture_id=${lecture.lecture_id}">삭제</a></td>
+			<td><input type="button" value="수정" onclick="modAjax(${lecture.lecture_id})"></td>
+			<td><input type="button" value="삭제" onclick="deleteAjax(${lecture.lecture_id})"></td>
 		</tr>
 		</c:forEach>
 	</table><br /><br />

@@ -15,6 +15,8 @@ public interface LectureService {
 
     void regService(Map lecture, ModelAndView mav);
 
+    int confirmService(int lecture_id);
+
     void viewService(int lecture_id, ModelAndView mav);
 
     void modService(Map lecture, ModelAndView mav);
@@ -23,6 +25,6 @@ public interface LectureService {
 
     int likesService(int lecture_id);
 
-    void isDeleteService(int lecture_id, ModelAndView mav);
+    int isDeleteService(int lecture_id);
 
 }
