@@ -38,7 +38,7 @@
 	혼합형<input type="radio" name="exam" value="c2">
 	오픈북<input type="radio" name="exam" value="c3">
 	실습<input type="radio" name="exam" value="c4"><br/>
-	<input type="hidden" name="lecture_id" value="${lecture.lecture_id}">
+	<input type="hidden" id="lecture_id" name="lecture_id" value="${lecture.lecture_id}">
 	<input type="submit" value="검색">
 </form>
 <br/>
@@ -79,7 +79,7 @@
 		<td><input type="button" value="비공감(${evaluation.dislike})" onclick="evalDislikeAjax(${evaluation.evaluation_id})"></td>
 		<td><input type="button" value="신고(${evaluation.report})" onclick="evalReportAjax(${evaluation.evaluation_id})"></td>
 		<td><input type="button" value="수정" onclick="evalModAjax(${evaluation.evaluation_id})"></td>
-		<td><a href="/evaluation/isDelete?evaluation_id=${evaluation.evaluation_id}&lecture_id=${evaluation.lecture_id}">삭제</a></td>
+		<td><input type="button" value="삭제" onclick="evalDeleteAjax(${evaluation.evaluation_id})"></td>
 	</tr>
 	</c:forEach>
 </table>

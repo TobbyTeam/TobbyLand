@@ -17,6 +17,8 @@ public interface EvaluationService {
 
     void regService(Map evaluation, ModelAndView mav);
 
+    boolean confirmService(int evaluation_id);
+
     void viewService(int lecture_id, int evaluation_id,  ModelAndView mav);
 
     void modService(Map evaluation, ModelAndView mav);
@@ -27,7 +29,7 @@ public interface EvaluationService {
 
     int reportService(int evaluation_id);
 
-    void isDeleteService(int lecture_id, int evaluation_id, ModelAndView mav);
+    boolean isDeleteService(int evaluation_id);
 
     void searchPreferService(Map search, ModelAndView mav);
 

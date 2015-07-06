@@ -92,6 +92,24 @@ public class EvaluationServiceImpl implements EvaluationService {
         mav.setViewName("redirect:/evaluation/list?lecture_id="+lecture_id);
     }
 
+    public boolean confirmService(int evaluation_id) {
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String member_id = user.getUsername();
+
+        String writer = evaluationRepository.selectMember(evaluation_id);
+
+        Collection authorities = user.getAuthorities();
+
+        boolean result = false;
+
+        if(member_id.equals(writer) == true || authorities.toString().contains("ROLE_ADMIN")){
+            result = true;
+        }
+
+        return result;
+    }
+
     public void viewService(int lecture_id, int evaluation_id, ModelAndView mav) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -111,7 +129,6 @@ public class EvaluationServiceImpl implements EvaluationService {
         } else {
 
             mav.setViewName("redirect:/evaluation/list?lecture_id=" + lecture_id);
-            mav.addObject("error", "본인이 작성하신 강의평가가 아닙니다.");
 
         }
 
@@ -207,24 +224,15 @@ public class EvaluationServiceImpl implements EvaluationService {
 
     }
 
-    public void isDeleteService(int lecture_id, int evaluation_id, ModelAndView mav) {
+    public boolean isDeleteService(int evaluation_id) {
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String member_id = user.getUsername();
+        boolean data = false;
 
-        String writer = evaluationRepository.selectMember(evaluation_id);
-
-        Collection authorities = user.getAuthorities();
-
-        if(member_id.equals(writer) == true || authorities.toString().contains("ROLE_ADMIN")){
-            evaluationRepository.isDelete(evaluation_id);
-        } else {
-            mav.addObject("error", "본인이 작성한 것이 아닙니다.");
+        if(evaluationRepository.isDelete(evaluation_id)){
+            data = true;
         }
 
-        mav.setViewName("redirect:/evaluation/list?lecture_id="+lecture_id);
-
-
+        return data;
     }
 
     public void searchPreferService(Map search, ModelAndView mav) {

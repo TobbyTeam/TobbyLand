@@ -58,6 +58,12 @@ public class EvaluationController {
 		return mav;
 	}
 
+	@RequestMapping(value = "/confirm", method = RequestMethod.POST)
+	public @ResponseBody boolean confirm(@RequestParam int evaluation_id) {
+
+		return evaluationService.confirmService(evaluation_id);
+	}
+
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public ModelAndView view(@RequestParam int evaluation_id, @RequestParam int lecture_id) {
 
@@ -96,14 +102,10 @@ public class EvaluationController {
 		return evaluationService.reportService(evaluation_id);
 	}
 
-	@RequestMapping(value = "/isDelete", method = RequestMethod.GET)
-	public ModelAndView isDelete(@RequestParam("evaluation_id")int evaluation_id, @RequestParam("lecture_id") int lecture_id) {
+	@RequestMapping(value = "/isDelete", method = RequestMethod.POST)
+	public @ResponseBody Boolean isDelete(@RequestParam("evaluation_id")int evaluation_id) {
 
-		ModelAndView mav = new ModelAndView();
-
-		evaluationService.isDeleteService(lecture_id, evaluation_id, mav);
-
-		return mav;
+		return evaluationService.isDeleteService(evaluation_id);
 	}
 
 	@RequestMapping(value = "/searchPrefer", method = RequestMethod.GET)

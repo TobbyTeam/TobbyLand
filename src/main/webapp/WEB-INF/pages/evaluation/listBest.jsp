@@ -39,14 +39,11 @@
 			<td>${best.comment}</td>
 			<td>${best.score}</td>
 			<td>${best.write_date}</td>
-			<td>${best.likes}</td>
-			<td>${best.dislike}</td>
-			<td>${best.report}</td>
-			<td><input type="button" value="추천(${evaluation.likes})" onclick="evalLikeAjax(${evaluation.evaluation_id})"></td>
-			<td><input type="button" value="비공감(${evaluation.dislike})" onclick="evalDislikeAjax(${evaluation.evaluation_id})"></td>
-			<td><input type="button" value="신고(${evaluation.report})" onclick="evalReportAjax(${evaluation.evaluation_id})"></td>
-			<td><a href="/evaluation/view?evaluation_id=${best.evaluation_id}&lecture_id=${best.lecture_id}">수정</a></td>
-			<td><a href="/evaluation/isDelete?evaluation_id=${best.evaluation_id}&lecture_id=${best.lecture_id}">삭제</a></td>
+			<td><input type="button" value="추천(${best.likes})" onclick="evalLikeAjax(${evaluation.evaluation_id})"></td>
+			<td><input type="button" value="비공감(${best.dislike})" onclick="evalDislikeAjax(${evaluation.evaluation_id})"></td>
+			<td><input type="button" value="신고(${best.report})" onclick="evalReportAjax(${evaluation.evaluation_id})"></td>
+			<td><input type="button" value="수정" onclick="evalModAjax(${best.evaluation_id})"></td>
+			<td><input type="button" value="삭제" onclick="evalDeleteAjax(${best.evaluation_id})"></td>
 		</tr>
 	</c:forEach>
 </table>

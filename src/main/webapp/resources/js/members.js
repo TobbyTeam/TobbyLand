@@ -84,7 +84,7 @@ $(document).ready(function() {
 		rules: {
 			member_id: {
 				required: true,
-				minlength: 5,
+				rangelength: [5, 12],
 				alphanumeric: true,
 				remote: {
 					type: "post", url: "/member/idCheck", data: {
@@ -124,7 +124,7 @@ $(document).ready(function() {
 		}, messages: {
 			member_id: {
 				required: "아이디를 입력하세요.",
-				minlength: $.validator.format("아이디는 5 글자 이상 입력하세요."),
+				rangelength: $.validator.format("아이디는 5 글자 이상 12글자 이하로 입력하세요."),
 				alphanumeric: "알파벳과 숫자만 사용가능합니다.",
 				remote: "아이디 중복입니다."
 			}, password: {

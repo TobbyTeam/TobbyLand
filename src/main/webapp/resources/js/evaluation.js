@@ -1,3 +1,5 @@
+var lecture_id = $("#lecture_id").val();
+
 function evalLikeAjax(evaluation_id) {
 	$.ajax({
 		type: "POST",
@@ -81,6 +83,56 @@ function evalModAjax(evaluation_id) {
 			} else {
 				alert("신고 되었습니다.");
 				location.reload();
+			}
+		}
+	})
+}
+
+function evalModAjax(evaluation_id) {
+	$.ajax({
+		type: "POST",
+		url: "/evaluation/confirm",
+		dataType: "json",
+		data: {evaluation_id: evaluation_id},
+		success: function (result) {
+
+			if (result) {
+				window.open('/evaluation/view?evaluation_id='+evaluation_id+'&lecture_id='+lecture_id, '_self');
+			} else {
+				alert("본인이 작성하신 글이 아닙니다.");
+			}
+		}
+	})
+
+}
+
+function evalDeleteAjax(evaluation_id) {
+	$.ajax({
+		type: "POST",
+		url: "/evaluation/confirm",
+		dataType: "json",
+		data: {evaluation_id: evaluation_id},
+		success: function (result) {
+
+			if (result) {
+				if (confirm("정말 삭제하시겠습니까?")) {
+					$.ajax({
+						type: "POST",
+						url: "/evaluation/isDelete",
+						dataType: "json",
+						data: {evaluation_id: evaluation_id},
+						success: function (data) {
+							if (data) {
+								alert("삭제되었습니다.");
+								location.reload();
+							} else {
+								alert("다시 시도 하세요.");
+							}
+						}
+					})
+				}
+			} else {
+				alert("본인이 작성하신 글이 아닙니다.");
 			}
 		}
 	})
