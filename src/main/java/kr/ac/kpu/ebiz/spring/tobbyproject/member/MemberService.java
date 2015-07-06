@@ -17,6 +17,8 @@ public interface MemberService {
 
     boolean nickCheckService(String nickname);
 
+    boolean modNickCheckService(String nickname);
+
     void enabledService(String member_id, ModelAndView mav);
 
     void viewService(ModelAndView mav);

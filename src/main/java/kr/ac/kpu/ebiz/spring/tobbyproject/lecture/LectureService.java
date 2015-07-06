@@ -15,7 +15,7 @@ public interface LectureService {
 
     void regService(Map lecture, ModelAndView mav);
 
-    int confirmService(int lecture_id);
+    boolean confirmService(int lecture_id);
 
     void viewService(int lecture_id, ModelAndView mav);
 
@@ -23,8 +23,8 @@ public interface LectureService {
 
     void searchService(Map search, ModelAndView mav);
 
-    int likesService(int lecture_id);
+    boolean likesService(int lecture_id);
 
-    int isDeleteService(int lecture_id);
+    boolean isDeleteService(int lecture_id);
 
 }

@@ -19,6 +19,10 @@
     SELECT Count(MEMBER_ID) FROM MEMBER WHERE NICKNAME = #{nickname}
   </select>
 
+  <select id="selectModNick" parameterType="map" resultType="int">
+    SELECT Count(MEMBER_ID) FROM MEMBER WHERE NICKNAME = #{nickname} AND MEMBER_ID != #{member_id}
+  </select>
+
   <select id="selectPw" resultType="String">
     SELECT password FROM MEMBER WHERE MEMBER_ID = #{member_id}
   </select>

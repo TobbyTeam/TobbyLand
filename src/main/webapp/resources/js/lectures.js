@@ -36,11 +36,11 @@ function likeAjax(lecture_id) {
 		data     : {lecture_id:lecture_id},
 		success  : function(result) {
 
-			if(result===0){
-				alert("이미 추천하였습니다.");
-			}else{
+			if(result){
 				alert("추천 되었습니다");
 				location.reload();
+			}else{
+				alert("이미 추천하였습니다.");
 			}
 		}
 	});
@@ -54,9 +54,8 @@ function modAjax(lecture_id) {
 		data: {lecture_id: lecture_id},
 		success: function (result) {
 
-			if (result === 1) {
+			if (result) {
 				window.open('/lecture/view?lecture_id='+lecture_id, '_self');
-
 			} else {
 				alert("본인이 작성하신 글이 아닙니다.");
 			}
@@ -73,7 +72,7 @@ function deleteAjax(lecture_id) {
 		data: {lecture_id: lecture_id},
 		success: function (result) {
 
-			if (result === 1) {
+			if (result) {
 				if (confirm("정말 삭제하시겠습니까?")) {
 					$.ajax({
 						type: "POST",
@@ -81,7 +80,7 @@ function deleteAjax(lecture_id) {
 						dataType: "json",
 						data: {lecture_id: lecture_id},
 						success: function (data) {
-							if (data === 1) {
+							if (data) {
 								alert("삭제되었습니다.");
 								location.reload();
 							} else {

@@ -46,7 +46,7 @@ public class LectureServiceImpl implements LectureService{
         mav.addObject("lectures", lectureRepository.selectAll());
     }
 
-    public int confirmService(int lecture_id) {
+    public boolean confirmService(int lecture_id) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
@@ -55,12 +55,10 @@ public class LectureServiceImpl implements LectureService{
 
         Collection authorities = user.getAuthorities();
 
-        int result;
+        boolean result = false;
 
         if(member_id.equals(writer) == true || authorities.toString().contains("ROLE_ADMIN")){
-            result = 1;
-        } else {
-            result = 0;
+            result = true;
         }
 
         return result;
@@ -105,7 +103,7 @@ public class LectureServiceImpl implements LectureService{
 
     }
 
-    public int likesService(int lecture_id) {
+    public boolean likesService(int lecture_id) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
@@ -116,39 +114,25 @@ public class LectureServiceImpl implements LectureService{
 
         int count = lectureRepository.selectSub(lecture);
 
-        int result;
+        boolean result = false;
 
-        if(count != 0) {
-            result = 0;
-        } else {
+        if(count == 0) {
             lectureRepository.insertSub(lecture);
             lectureRepository.updateLike(lecture_id);
-            result = 1;
+            result = true;
         }
 
         return result;
     }
 
-    public int isDeleteService(int lecture_id) {
+    public boolean isDeleteService(int lecture_id) {
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String member_id = user.getUsername();
+        boolean data = false;
 
-        Collection authorities = user.getAuthorities();
-
-        String writer = lectureRepository.selectMember(lecture_id);
-
-        int data;
-
-        if(member_id.equals(writer) == true || authorities.toString().contains("ROLE_ADMIN")){
-            if(lectureRepository.isDelete(lecture_id)==true){
-                data = 1;
-            }else{
-                data = 0;
-            }
-        } else{
-           data = 0;
+        if(lectureRepository.isDelete(lecture_id)){
+            data = true;
         }
+
         return data;
     }
 

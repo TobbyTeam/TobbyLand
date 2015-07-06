@@ -42,7 +42,7 @@ public class LectureController {
 	}
 
 	@RequestMapping(value = "/confirm", method = RequestMethod.POST)
-	public @ResponseBody int confirm(@RequestParam int lecture_id) {
+	public @ResponseBody boolean confirm(@RequestParam int lecture_id) {
 
 		return lectureService.confirmService(lecture_id);
 	}
@@ -85,15 +85,13 @@ public class LectureController {
 	}
 
 	@RequestMapping(value = "/likes", method = RequestMethod.POST)
-	public @ResponseBody int likes(@RequestParam("lecture_id") int lecture_id) {
-
-		System.out.println(lecture_id+"확인확인확인");
+	public @ResponseBody boolean likes(@RequestParam("lecture_id") int lecture_id) {
 
 		return lectureService.likesService(lecture_id);
 	}
 
 	@RequestMapping(value = "/isDelete", method = RequestMethod.POST)
-	public @ResponseBody int isDelete(@RequestParam("lecture_id") int lecture_id)	{
+	public @ResponseBody boolean isDelete(@RequestParam("lecture_id") int lecture_id)	{
 
 		return lectureService.isDeleteService(lecture_id);
 	}

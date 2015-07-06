@@ -6,6 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class MemberServiceImpl implements MemberService{
@@ -62,6 +63,24 @@ public class MemberServiceImpl implements MemberService{
 
         boolean result = false;
         if(memberRepository.selectNick(nickname) == 0){
+            result = true;
+        }
+
+        return result;
+    }
+
+    public boolean modNickCheckService(String nickname) {
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String member_id = user.getUsername();
+
+        Map member = new HashMap();
+        member.put("nickname", nickname);
+        member.put("member_id", member_id);
+
+        boolean result = false;
+
+        if(memberRepository.selectModNick(member) == 0){
             result = true;
         }
 

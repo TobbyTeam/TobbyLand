@@ -184,7 +184,7 @@ $(document).ready(function() {
 			}, nickname: {
 				required: true,
 				remote: {
-					type: "post", url: "/member/nickCheck", data: {
+					type: "post", url: "/member/modNickCheck", data: {
 						email: function () {
 							return $("#nickname").val();
 						}

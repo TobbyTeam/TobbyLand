@@ -78,7 +78,7 @@
 		<td><input type="button" value="추천(${evaluation.likes})" onclick="evalLikeAjax(${evaluation.evaluation_id})"></td>
 		<td><input type="button" value="비공감(${evaluation.dislike})" onclick="evalDislikeAjax(${evaluation.evaluation_id})"></td>
 		<td><input type="button" value="신고(${evaluation.report})" onclick="evalReportAjax(${evaluation.evaluation_id})"></td>
-		<td><a href="/evaluation/view?evaluation_id=${evaluation.evaluation_id}&lecture_id=${evaluation.lecture_id}">수정</a></td>
+		<td><input type="button" value="수정" onclick="evalModAjax(${evaluation.evaluation_id})"></td>
 		<td><a href="/evaluation/isDelete?evaluation_id=${evaluation.evaluation_id}&lecture_id=${evaluation.lecture_id}">삭제</a></td>
 	</tr>
 	</c:forEach>

@@ -48,6 +48,12 @@ public class MemberController {
 		return memberService.nickCheckService(nickname);
 	}
 
+	@RequestMapping(value = "/modNickCheck", method = RequestMethod.POST)
+	public @ResponseBody boolean modNickCheck(@RequestParam("nickname") String nickname) {
+
+		return memberService.modNickCheckService(nickname);
+	}
+
 	@RequestMapping(value = "/reg", method = RequestMethod.POST)
 	public @ResponseBody boolean register(@RequestParam Map<String, String> member) {
 
