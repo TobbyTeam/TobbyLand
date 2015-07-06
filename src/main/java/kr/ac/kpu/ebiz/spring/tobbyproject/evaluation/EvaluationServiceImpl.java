@@ -33,6 +33,26 @@ public class EvaluationServiceImpl implements EvaluationService {
 
     }
 
+    public boolean regChechService(int lecture_id) {
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String member_id = user.getUsername();
+
+        HashMap check = new HashMap();
+        check.put("lecture_id", lecture_id);
+        check.put("member_id", member_id);
+
+        int count = evaluationRepository.selectCount(check);
+
+        boolean result = false;
+
+        if(count==0){
+            result = true;
+        }
+
+        return result;
+    }
+
     public void regFormService(int lecture_id, ModelAndView mav) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -47,7 +67,6 @@ public class EvaluationServiceImpl implements EvaluationService {
         if(count != 0) {
 
             mav.setViewName("redirect:/evaluation/list?lecture_id="+lecture_id);
-            mav.addObject("error", "이미 이 강의에 대해 강의평가를 작성하셨습니다.");
 
         } else {
 
@@ -239,11 +258,12 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         List<Map> result = evaluationRepository.SearchPrefer(search);
 
-/*        int lecture_id =  Integer.parseInt(search.get("lecture_id").toString());*/
+        int lecture_id =  Integer.parseInt(search.get("lecture_id").toString());
 
+        mav.addObject("search", search);
         mav.addObject("evaluations", result);
-/*        mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
-        mav.addObject("best", evaluationRepository.selectBest(lecture_id));*/
+        mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
+/*        mav.addObject("best", evaluationRepository.selectBest(lecture_id));*/
 
         if(result.isEmpty() == true){
             mav.addObject("error", "검색 결과가 없습니다.");

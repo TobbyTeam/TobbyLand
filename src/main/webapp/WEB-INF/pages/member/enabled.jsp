@@ -14,7 +14,7 @@
 
 ${message}
 
-<% response.setHeader("Refresh","5;URL=/login");%>
+<% response.setHeader("Refresh","3;URL=/login");%>
 
 </body>
 </html>

@@ -1,5 +1,22 @@
 var lecture_id = $("#lecture_id").val();
 
+function evalRegAjax() {
+	$.ajax({
+		type: "POST",
+		url: "/evaluation/regChech",
+		dataType: "json",
+		data: {lecture_id: lecture_id},
+		success: function (result) {
+
+			if (result) {
+				window.open('/evaluation/regForm?lecture_id='+lecture_id, '_self');
+			} else {
+				alert("이미 이 강의에 대해 강의평가를 작성하셨습니다..");
+			}
+		}
+	})
+}
+
 function evalLikeAjax(evaluation_id) {
 	$.ajax({
 		type: "POST",
