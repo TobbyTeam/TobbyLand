@@ -11,3 +11,21 @@ function searchLecture() {
 
 	document.search_frm.submit();
 }
+
+function likeAjax(lecture_id) {
+	$.ajax({
+		type     : "POST",
+		url      : "/lecture/likes",
+		dataType : "json",
+		data     : {lecture_id:lecture_id},
+		success  : function(result) {
+
+			if(result===0){
+				alert("이미 추천하였습니다.");
+			}else{
+				alert("추천 되었습니다");
+				location.reload();
+			}
+		}
+	});
+}

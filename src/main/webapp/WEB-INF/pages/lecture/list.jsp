@@ -1,7 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-<head><title>헬로 월드</title></head>
+<head>
+
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" charset="utf-8"></script>
+	<script src="<c:url value="/resources/js/lectures.js" />"></script>
+
+<title>헬로 월드</title></head>
 <body>
 
 
@@ -10,6 +15,7 @@
 <c:if test="${not empty error}">
 	${error}
 </c:if>
+
 <br /><br />
 
 	<table border="1">
@@ -26,9 +32,8 @@
 			<td>${lecture.lecture_name}</td>
 			<td>${lecture.dept}</td>
 			<td>${lecture.prof}</td>
-			<td>${lecture.likes}</td>
+			<td><input type="button" value="추천(${lecture.likes})" onclick="likeAjax(${lecture.lecture_id})"></td>
 			<td>${lecture.write_date}</td>
-			<td><a href="/lecture/likes?lecture_id=${lecture.lecture_id}">추천</a></td>
 			<td><a href="/lecture/view?lecture_id=${lecture.lecture_id}">수정</a></td>
 			<td><a href="/lecture/isDelete?lecture_id=${lecture.lecture_id}">삭제</a></td>
 		</tr>
@@ -36,7 +41,6 @@
 	</table><br /><br />
 
 	<a href="/lecture/regForm">강의생성</a><br/><br/>
-
 
 </body>
 </html>

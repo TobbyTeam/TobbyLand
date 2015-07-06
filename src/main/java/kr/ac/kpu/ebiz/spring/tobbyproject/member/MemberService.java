@@ -13,7 +13,7 @@ public interface MemberService {
 
     void enabledService(String member_id, ModelAndView mav);
 
-    void viewService(ModelAndView mav);
+    Map viewService();
 
     void modViewService(String password, ModelAndView mav);
 

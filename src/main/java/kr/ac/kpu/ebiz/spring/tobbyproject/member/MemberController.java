@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
@@ -50,7 +51,7 @@ public class MemberController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/view", method = RequestMethod.GET)
+/*	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public ModelAndView view() {
 
 		ModelAndView mav = new ModelAndView("/member/view");
@@ -58,7 +59,14 @@ public class MemberController {
 		memberService.viewService(mav);
 
 		return mav;
+	}*/
+
+	@RequestMapping(value = "/view", method = RequestMethod.POST)
+	public @ResponseBody Map view() {
+
+		return memberService.viewService();
 	}
+
 
 	@RequestMapping(value = "/password", method = RequestMethod.GET)
 	public String password() {

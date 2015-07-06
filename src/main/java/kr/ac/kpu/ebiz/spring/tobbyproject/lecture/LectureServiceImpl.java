@@ -86,7 +86,7 @@ public class LectureServiceImpl implements LectureService{
 
     }
 
-    public void likesService(int lecture_id, ModelAndView mav) {
+    public int likesService(int lecture_id) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
@@ -97,15 +97,17 @@ public class LectureServiceImpl implements LectureService{
 
         int count = lectureRepository.selectSub(lecture);
 
+        int result;
+
         if(count != 0) {
-            mav.addObject("lectures", lectureRepository.selectAll());
-            mav.addObject("error", "이미 클릭하셨습니다.");
+            result = 0;
         } else {
             lectureRepository.insertSub(lecture);
             lectureRepository.updateLike(lecture_id);
-            mav.addObject("lectures", lectureRepository.selectAll());
+            result = 1;
         }
 
+        return result;
     }
 
     public void isDeleteService(int lecture_id, ModelAndView mav) {

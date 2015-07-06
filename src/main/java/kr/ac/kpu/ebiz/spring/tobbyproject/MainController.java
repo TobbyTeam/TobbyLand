@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.HashMap;
-
 @Controller
 public class MainController {
 
@@ -82,29 +80,10 @@ public class MainController {
         return "/etc/top";
     }
 
-    @RequestMapping(value = "/test1")
+    @RequestMapping(value = "/test")
     public String test1() {
 
-        return "/etc/test";
-    }
-
-
-    @RequestMapping(value = "/test")
-    public ModelAndView test(@RequestParam ("msg")String msg) {
-
-        System.out.println(msg+"확인확인확인");
-
-        HashMap<String, String> result = new HashMap<String, String>();
-        result.put("msg", msg);
-        result.put("result", "true");
-
-        System.out.println(result.toString());
-
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("result", result);
-        mav.setViewName("jsonView");
-
-        return mav;
+        return "/ajaxView";
     }
 
 }

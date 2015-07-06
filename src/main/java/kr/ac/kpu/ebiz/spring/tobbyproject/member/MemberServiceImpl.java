@@ -56,13 +56,14 @@ public class MemberServiceImpl implements MemberService{
         }
     }
 
-    public void viewService(ModelAndView mav) {
+    public Map viewService() {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
-        mav.addObject("member", memberRepository.select(member_id));
+        Map member = memberRepository.select(member_id);
 
+        return  member;
     }
 
     public void modViewService(String password, ModelAndView mav) {

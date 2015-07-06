@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
@@ -33,7 +34,7 @@ public class LectureController {
 	@RequestMapping(value = "/reg", method = RequestMethod.POST)
 	public ModelAndView register(@RequestParam Map<String, String> lecture) {
 
-		ModelAndView mav = new ModelAndView("/lecture/list");
+		ModelAndView mav = new ModelAndView("redirect:/lecture/list");
 
 		lectureService.regService(lecture, mav);
 
@@ -54,7 +55,7 @@ public class LectureController {
 	@RequestMapping(value = "/mod", method = RequestMethod.POST)
 	public ModelAndView modify(@RequestParam Map<String, java.io.Serializable> lecture)	{
 
-		ModelAndView mav = new ModelAndView("/lecture/list");
+		ModelAndView mav = new ModelAndView("redirect:/lecture/list");
 
 		lectureService.modService(lecture, mav);
 
@@ -77,20 +78,18 @@ public class LectureController {
 
 	}
 
-	@RequestMapping(value = "/likes", method = RequestMethod.GET)
-	public ModelAndView likes(@RequestParam("lecture_id") int lecture_id) {
+	@RequestMapping(value = "/likes", method = RequestMethod.POST)
+	public @ResponseBody int likes(@RequestParam("lecture_id") int lecture_id) {
 
-		ModelAndView mav = new ModelAndView("/lecture/list");
+		System.out.println(lecture_id+"확인확인확인");
 
-		lectureService.likesService(lecture_id, mav);
-
-		return mav;
+		return lectureService.likesService(lecture_id);
 	}
 
 	@RequestMapping(value = "/isDelete", method = RequestMethod.GET)
 	public ModelAndView isDelete(@RequestParam("lecture_id") int lecture_id)	{
 
-		ModelAndView mav = new ModelAndView("/lecture/list");
+		ModelAndView mav = new ModelAndView("redirect:/lecture/list");
 
 		lectureService.isDeleteService(lecture_id, mav);
 
