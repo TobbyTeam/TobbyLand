@@ -23,7 +23,7 @@ public interface MemberService {
 
     void modViewService(String password, ModelAndView mav);
 
-    void modService(Map member, ModelAndView mav);
+    boolean modService(Map member);
 
     void deleteEnabledService();
 

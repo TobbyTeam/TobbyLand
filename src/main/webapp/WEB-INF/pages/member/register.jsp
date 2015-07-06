@@ -18,7 +18,7 @@
 <body>
 
 
-<form id="reg_frm" name="reg_frm" <%--action="/member/reg" method="post"--%>>
+<form id="reg_frm" name="reg_frm">
 
     아이디: <input type="text" id="member_id" name="member_id"><br/>
     패스워드:<input type="password" id = "password" name="password"><br/>
@@ -41,7 +41,7 @@
             오픈북<input type="radio" name="exam" value="c3">
             실습<input type="radio" name="exam" value="c4"><br>
     <br />
-    <button type="button" onclick="$(this.form).submit()">SUBMIT</button>&nbsp;&nbsp;&nbsp; <input type="reset" value="취소" onclick="javascript:window.location='/login'">
+    <button type="button" onclick="$(this.form).submit()">회원가입</button>&nbsp;&nbsp;&nbsp; <input type="reset" value="취소" onclick="javascript:window.location='/login'">
 </form>
 
 </body>

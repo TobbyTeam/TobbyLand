@@ -4,6 +4,8 @@
 <head>
     <title></title>
 
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" charset="utf-8"></script>
+    <script src="<c:url value="/resources/js/jquery.validate.min.js" />"></script>
     <script src="<c:url value="/resources/js/members.js" />"></script>
 
 </head>
@@ -12,12 +14,12 @@
 
 <jsp:include page="/top" flush="true"/> <br />
 
-<form action="/member/mod" method="post" name="mod_frm">
+<form id="mod_frm" action="/member/mod">
 
   아이디: <text>${member.member_id}</text><br>
-  패스워드:<input type="password" name="password" value="${member.password}"><br>
-  패스워드확인:<input type="password" name="password_check" value="${member.password}"><br/>
-  별명: <input type="text" name="nickname" value="${member.nickname}"><br>
+  패스워드:<input type="password" id="password" name="password" value="${member.password}"><br>
+  패스워드확인:<input type="password" id="password_check" name="password_check" value="${member.password}"><br/>
+  별명: <input type="text" id="nickname" name="nickname" value="${member.nickname}"><br>
   이메일: <text>${member.email}</text><br>
   수업방식:
     <c:choose>
@@ -87,7 +89,8 @@
 
     <br />
 
-    <input type="button" value="수정" onclick="updateInfoConfirm()">&nbsp;&nbsp;&nbsp; <input type="reset" value="취소" onclick="javascript:window.location='/member/view'">
+    <button type="button" onclick="$(this.form).submit()">수정</button>&nbsp;&nbsp;&nbsp; <input type="reset" value="취소" onclick="javascript:window.location='/member/view'">
+
 
 </form>
 

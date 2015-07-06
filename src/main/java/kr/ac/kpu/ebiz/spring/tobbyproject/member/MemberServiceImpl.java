@@ -106,17 +106,19 @@ public class MemberServiceImpl implements MemberService{
 
     }
 
-    public void modService(Map member, ModelAndView mav) {
+    public boolean modService(Map member) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
         member.put("member_id",member_id);
 
-        memberRepository.update(member);
+        boolean result = false;
 
-        mav.addObject("member", memberRepository.select(member_id));
-
+        if(memberRepository.update(member)){
+            result = true;
+        }
+        return result;
     }
 
     public void deleteEnabledService() {

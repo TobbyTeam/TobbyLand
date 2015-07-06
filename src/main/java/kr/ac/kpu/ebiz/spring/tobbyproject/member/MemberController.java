@@ -93,13 +93,9 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/mod", method = RequestMethod.POST)
-	public ModelAndView modify(@RequestParam Map<String, String> member) {
+	public @ResponseBody boolean modify(@RequestParam Map<String, String> member) {
 
-		ModelAndView mav = new ModelAndView("/member/view");
-
-		memberService.modService(member, mav);
-
-		return mav;
+		return memberService.modService(member);
 	}
 
 	@RequestMapping(value = "/deleteEnabled", method = RequestMethod.GET)
