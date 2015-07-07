@@ -1,12 +1,35 @@
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/security/tags" %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
+<%@ page import="org.springframework.security.core.Authentication" %>
+<%@ page import="kr.ac.kpu.ebiz.spring.tobbyproject.member.MemberInfo" %>
 <html>
 <head>
     <title></title>
     <script src="<c:url value="/resources/js/lectures.js" />"></script>
 </head>
 <body>
+
+<%
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+    Object principal = auth.getPrincipal();
+    String nickname = "";
+    if(principal != null && principal instanceof MemberInfo){
+        nickname = ((MemberInfo)principal).getNickname();
+    }
+%>
+
+    <s:authorize access="isAuthenticated()">
+
+    <%=nickname%>님 반갑습니다
+ 
+    <a href="${ctx}/j_spring_security_logout">로그아웃</a>
+
+    </s:authorize>
+
+<br /><br />
 
 <form action="/lecture/search" method="get" name="search_frm">
 

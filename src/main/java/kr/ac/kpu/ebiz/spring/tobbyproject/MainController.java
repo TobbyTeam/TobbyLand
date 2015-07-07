@@ -33,23 +33,17 @@ public class MainController {
         return model;
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView login(/*@RequestParam(value = "error", required = false) String error,
-                              @RequestParam(value = "logout", required = false) String logout*/) {
+/*    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login() {
 
-        ModelAndView model = new ModelAndView();
-/*
-        if (error != null) {
-            model.addObject("error", "Invalid username and password!");
-        }
+        return "etc/login";
 
-        if (logout != null) {
-            model.addObject("msg", "You've been logged out successfully.");
-        }
-*/
-        model.setViewName("etc/login");
+    }*/
 
-        return model;
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String login() {
+
+        return "etc/login";
 
     }
 

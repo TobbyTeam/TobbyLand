@@ -1,6 +1,7 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page session="true"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="s" uri="http://www.springframework.org/security/tags" %>
+
 <html>
 <head>
 <%-- css경로	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">	--%>
@@ -11,20 +12,20 @@
 	$(document).ready(function (){
 
 		$("#loginbtn").click(function(){
-			if($("#member_id").val() == ""){
+			if($("#loginid").val() == ""){
 				alert("로그인 아이디를 입력해주세요");
-				$("#member_id").focus();
-			}else if($("#password").val() == ""){
+				$("#loginid").focus();
+			}else if($("#loginpwd").val() == ""){
 				alert("로그인 비밀번호를 입력해주세요");
-				$("#password").focus();
+				$("#loginpwd").focus();
 			}else{
-				$("#loginfrm").attr("action", "<c:url value='/j_spring_security_check' />");
+				$("#loginfrm").attr("action", "<c:url value='${pageContext.request.contextPath}/j_spring_security_check' />");
 				$("#loginfrm").submit();
 			}
 		});
 
 	});
-</script>   
+</script>   
 
 <title>Login Page</title>
 <style>
@@ -62,13 +63,13 @@
 
 
 </head>
-<body onload='document.loginfrm.member_id.focus();'>
+<body onload='document.loginfrm.loginid.focus();'>
 
 	<img src="/resources/image/mainlogo.png"/>
 
 	<div id="login-box">
 
-		<h3>Login with Username and Password</h3>
+		<h3>Login with Username and loginpwd</h3>
 
 <%--		<c:if test="${not empty error}">
 			<div class="error">${error}</div>
@@ -77,35 +78,35 @@
 			<div class="msg">${msg}</div>
 		</c:if>--%>
 
-		<form id="loginfrm" name="loginfrm" action="<c:url value='/j_spring_security_check' />" method='POST'>
+		<form id="loginfrm" name="loginfrm" action="<c:url value='${pageContext.request.contextPath}/j_spring_security_check'/>" method='POST'>
 
 			<table>
 				<tr>
 					<td>아이디</td>
-					<td><input type="text" id="member_id" name="member_id" value="${member_id}"></td>
+					<td><input type="text" id="loginid" name="loginid" value="${loginid}" /></td>
 				</tr>
 				<tr>
-					<td>Password:</td>
-					<td><input type="password" id="password" name="password" /></td>
+					<td>loginpwd:</td>
+					<td><input type="password" id="loginpwd" name="loginpwd" value="${loginpwd}" /></td>
 				</tr>
 				<tr>
 					<td colspan='2'><input type="button" id="loginbtn" name="loginbtn" value="로그인" /></td>
 				</tr>
-		        <c:if test="${not empty param.fail}">
+		        <c:if test="${not empty securityexceptionmsg}">
 		        <tr>
 		            <td colspan="2">
 		                <font color="red">
 		                <p>Your login attempt was not successful, try again.</p>
-		                <p>Reason: ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
+		                <p>${securityexceptionmsg}</p>
 		                </font>
-		                <c:remove scope="session" var="SPRING_SECURITY_LAST_EXCEPTION"/>
 		            </td>
 		        </tr>
 		        </c:if>
 			</table>
 
-			<input type="hidden" name="${_csrf.parameterName}"
-				   value="${_csrf.token}" />
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+
+			<input type="hidden" name="loginRedirect" value="${loginRedirect}" />
 
 		</form>
 
