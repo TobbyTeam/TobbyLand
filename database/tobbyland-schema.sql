@@ -38,10 +38,10 @@ CREATE TABLE member (
 
 
 --
--- Table structure for table `member_roles`
+-- Table structure for table `member_role`
 --
 
-CREATE TABLE member_roles (
+CREATE TABLE member_role (
   member_role_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   member_id VARCHAR(45) NOT NULL,
   ROLE VARCHAR(45) DEFAULT 'ROLE_USER',

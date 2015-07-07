@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- ========================= PROPERTY PLACE HOLDER DEFINITION ========================= -->
@@ -32,31 +33,10 @@
         <property name="mailSender" ref="mailSender" />
     </bean>
 
-
-    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-           <property name="basenames">
-
-               <list>
-
-                   <value>/WEB-INF/messages/spring_security_messages</value>
-                   <value>classpath:/spring_security_messages.properties</value>
-
-                   <value>/WEB-INF/config.properties</value>                  
-                   <value>/messages/spring_security_messages</value>
-                   <value>/spring_security_messages</value>
-                   <value>spring_security_messages.properties</value>
-                   <value>classpath:/WEB-INF/messages/spring_security_messages</value>
-                   <value>classpath:/messages/spring_security_messages</value>                                 
-                   <value>classpath:/resources/messages/spring_security_messages</value>                  
-                   <value>classpath:/resources/messages/spring_security_messages</value>
-                   <value>classpath:/resources/messages/spring_security_messages</value>
-                   <value>classpath:/messages/spring_security_messages</value>
-
-               </list>
-
-           </property>
-           <property name="defaultEncoding" value="UTF-8"/>
-           <property name="cacheSeconds" value="5"/>
-    </bean>
+    <!-- message -->
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
+          p:basename="/WEB-INF/messages/spring_security_messages.properties"
+          p:defaultEncoding="UTF-8"
+          p:cacheSeconds="5"/>
 
 </beans>

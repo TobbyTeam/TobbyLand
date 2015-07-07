@@ -4,6 +4,28 @@
 <html>
 <head>
 <%-- css경로	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">	--%>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" charset="utf-8"></script>
+
+<script type="text/javascript">
+	$(document).ready(function (){
+
+		$("#loginbtn").click(function(){
+			if($("#member_id").val() == ""){
+				alert("로그인 아이디를 입력해주세요");
+				$("#member_id").focus();
+			}else if($("#password").val() == ""){
+				alert("로그인 비밀번호를 입력해주세요");
+				$("#password").focus();
+			}else{
+				$("#loginfrm").attr("action", "<c:url value='/j_spring_security_check' />");
+				$("#loginfrm").submit();
+			}
+		});
+
+	});
+</script>   
+
 <title>Login Page</title>
 <style>
 .error {
@@ -40,7 +62,7 @@
 
 
 </head>
-<body onload='document.loginForm.username.focus();'>
+<body onload='document.loginfrm.member_id.focus();'>
 
 	<img src="/resources/image/mainlogo.png"/>
 
@@ -48,29 +70,38 @@
 
 		<h3>Login with Username and Password</h3>
 
-		<c:if test="${not empty error}">
+<%--		<c:if test="${not empty error}">
 			<div class="error">${error}</div>
 		</c:if>
 		<c:if test="${not empty msg}">
 			<div class="msg">${msg}</div>
-		</c:if>
+		</c:if>--%>
 
-		<form name='loginForm'
-			  action="<c:url value='/j_spring_security_check' />" method='POST'>
+		<form id="loginfrm" name="loginfrm" action="<c:url value='/j_spring_security_check' />" method='POST'>
 
 			<table>
 				<tr>
-					<td>User:</td>
-					<td><input type='text' name='j_username' value="${member_id}"></td>
+					<td>아이디</td>
+					<td><input type="text" id="member_id" name="member_id" value="${member_id}"></td>
 				</tr>
 				<tr>
 					<td>Password:</td>
-					<td><input type='password' name='j_password' /></td>
+					<td><input type="password" id="password" name="password" /></td>
 				</tr>
 				<tr>
-					<td colspan='2'><input name="submit" type="submit"
-										   value="로그인" /></td>
+					<td colspan='2'><input type="button" id="loginbtn" name="loginbtn" value="로그인" /></td>
 				</tr>
+		        <c:if test="${not empty param.fail}">
+		        <tr>
+		            <td colspan="2">
+		                <font color="red">
+		                <p>Your login attempt was not successful, try again.</p>
+		                <p>Reason: ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
+		                </font>
+		                <c:remove scope="session" var="SPRING_SECURITY_LAST_EXCEPTION"/>
+		            </td>
+		        </tr>
+		        </c:if>
 			</table>
 
 			<input type="hidden" name="${_csrf.parameterName}"
