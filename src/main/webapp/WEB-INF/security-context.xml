@@ -25,9 +25,11 @@
         <security:access-denied-handler error-page="/403" />
 
         <security:form-login
+                username-parameter="member_id"
+                password-parameter="password"
                 login-page="/login"
                 default-target-url="/main"
-                authentication-failure-url="/login?error=true"/>
+                authentication-failure-url="/login?fail=true"/>
 
         <security:logout invalidate-session="true" logout-success-url="/login?logout"  />
 
@@ -39,24 +41,15 @@
 
     <!-- Select users and user_roles from database -->
 
-    <security:authentication-manager erase-credentials="false">
+    <security:authentication-manager>
         <security:authentication-provider>
             <security:jdbc-user-service data-source-ref="dataSource1"
                                         users-by-username-query=
                                                 "select member_id, password, enabled from member where member_id = ?"
                                         authorities-by-username-query=
-                                                "select member_id, role from member_roles where member_id = ?  " />
+                                                "select member_id, role from member_role where member_id = ?  " />
         </security:authentication-provider>
     </security:authentication-manager>
-
-<!--    <bean id="dataSource1"
-          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-
-        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost:3306/tobbyland" />
-        <property name="username" value="root" />
-        <property name="password" value="" />
-    </bean>-->
 
     <bean id="dataSource1" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
         <constructor-arg ref="pooledDataSource1"/>
@@ -87,4 +80,3 @@
     </bean>
 
 </beans>
-
