@@ -24,13 +24,39 @@
             <props>
                 <prop key="mail.smtp.auth">true</prop>
                 <prop key="mail.smtp.starttls.enable">true</prop>
-
             </props>
         </property>
     </bean>
 
     <bean id="mailMail" class="kr.ac.kpu.ebiz.spring.tobbyproject.mail.MailMail">
         <property name="mailSender" ref="mailSender" />
+    </bean>
+
+
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+           <property name="basenames">
+
+               <list>
+
+                   <value>/WEB-INF/messages/spring_security_messages</value>
+                   <value>classpath:/spring_security_messages.properties</value>
+
+                   <value>/WEB-INF/config.properties</value>                  
+                   <value>/messages/spring_security_messages</value>
+                   <value>/spring_security_messages</value>
+                   <value>spring_security_messages.properties</value>
+                   <value>classpath:/WEB-INF/messages/spring_security_messages</value>
+                   <value>classpath:/messages/spring_security_messages</value>                                 
+                   <value>classpath:/resources/messages/spring_security_messages</value>                  
+                   <value>classpath:/resources/messages/spring_security_messages</value>
+                   <value>classpath:/resources/messages/spring_security_messages</value>
+                   <value>classpath:/messages/spring_security_messages</value>
+
+               </list>
+
+           </property>
+           <property name="defaultEncoding" value="UTF-8"/>
+           <property name="cacheSeconds" value="5"/>
     </bean>
 
 </beans>
