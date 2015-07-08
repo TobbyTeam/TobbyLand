@@ -27,6 +27,8 @@ CREATE TABLE member (
   task varchar(10) DEFAULT NULL,
   exam varchar(10) DEFAULT NULL,
   enabled tinyint(4) unsigned DEFAULT '0',
+  enabled tinyint(4) unsigned DEFAULT '1',
+
   PRIMARY KEY (member_id),
   KEY FK_member_method (method),
   KEY FK_member_task (task),

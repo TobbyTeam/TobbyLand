@@ -26,6 +26,9 @@ public class CustomJdbcDaoImpl extends JdbcDaoImpl {
                 logger.debug("Query returned no results for user '" + username + "'");
 
                 UsernameNotFoundException ue = new UsernameNotFoundException(messages.getMessage("JdbcDaoImpl.notFound", new Object[]{username}, "Username {0} not found"));
+
+            System.out.println(ue+"확인");
+
                 throw ue;
             }
 
@@ -48,6 +51,9 @@ public class CustomJdbcDaoImpl extends JdbcDaoImpl {
                 logger.debug("User '" + username + "' has no authorities and will be treated as 'not found'");
 
                 UsernameNotFoundException ue = new UsernameNotFoundException(messages.getMessage("JdbcDaoImpl.noAuthority", new Object[] {username}, "User {0} has no GrantedAuthority"));
+
+            System.out.println(ue+"확인");
+
                 throw ue;
             }
 
@@ -62,8 +68,9 @@ public class CustomJdbcDaoImpl extends JdbcDaoImpl {
                         String username = rs.getString(1);
                         String password = rs.getString(2);
                         boolean enabled = rs.getBoolean(3);
-                        String nickname = rs.getString(4);
-                        return new MemberInfo(username, password, enabled, nickname, AuthorityUtils.NO_AUTHORITIES);
+                        boolean nonLocked = rs.getBoolean(4);
+                        String nickname = rs.getString(5);
+                        return new MemberInfo(username, password, enabled, nonLocked, nickname, AuthorityUtils.NO_AUTHORITIES);
                     }
 
                     });

@@ -15,13 +15,15 @@ private static final long serialVersionUID = -4086869747130410600L;
     private String member_id;
     private String password;
     private boolean enabled;
+    private boolean nonLocked;
     private String nickname;
     private Set<GrantedAuthority> authorities;
 
-    public MemberInfo(String member_id, String password, boolean enabled, String nickname, Collection<? extends GrantedAuthority> authorities){
+    public MemberInfo(String member_id, String password, boolean enabled, boolean nonLocked, String nickname, Collection<? extends GrantedAuthority> authorities){
         this.member_id = member_id;
         this.password = password;
         this.enabled = enabled;
+        this.nonLocked = nonLocked;
         this.nickname = nickname;
         this.authorities = Collections.unmodifiableSet(sortAuthorities(authorities));
     }
@@ -41,6 +43,14 @@ return member_id;
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
+
+    public boolean getNonLocked() {
+        return nonLocked;
+    }
+
+    public void setNonLocked(boolean nonLocked) {
+        this.nonLocked = nonLocked;
+    }
  
     public String getNickname() {
         return nickname;
@@ -58,7 +68,7 @@ return member_id;
         // TODO Auto-generated method stub
         return authorities;
     }
-     
+
     public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
         this.authorities = Collections.unmodifiableSet(sortAuthorities(authorities));
     }
@@ -80,7 +90,7 @@ return member_id;
 
     public boolean isAccountNonLocked() {
         // TODO Auto-generated method stub
-        return true;
+        return nonLocked;
     }
 
     public boolean isCredentialsNonExpired() {
@@ -90,7 +100,7 @@ return member_id;
 
     public boolean isEnabled() {
         // TODO Auto-generated method stub
-        return getEnabled();
+        return enabled;
     }
 
     private static SortedSet<GrantedAuthority> sortAuthorities(Collection<? extends GrantedAuthority> authorities) {

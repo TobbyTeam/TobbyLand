@@ -96,7 +96,7 @@
 		        <tr>
 		            <td colspan="2">
 		                <font color="red">
-		                <p>Your login attempt was not successful, try again.</p>
+		                <p>로그인에 실패했습니다. 다시 시도 해주세요.</p>
 		                <p>${securityexceptionmsg}</p>
 		                </font>
 		            </td>
