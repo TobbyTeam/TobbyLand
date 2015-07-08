@@ -84,37 +84,37 @@
 
 	<!-- ========================= BEAN DEFINITION ========================= -->
 
-	<bean id="memberRepository" class="kr.ac.kpu.ebiz.spring.tobbyproject.member.MemberRepositoryImpl">
+	<bean id="memberRepository" class="kr.ac.kpu.ebiz.spring.tobbyproject.repository.MemberRepositoryImpl">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 
-	<bean id="evaluationRepository" class="kr.ac.kpu.ebiz.spring.tobbyproject.evaluation.EvaluationRepositoryImpl">
+	<bean id="evaluationRepository" class="kr.ac.kpu.ebiz.spring.tobbyproject.repository.EvaluationRepositoryImpl">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 
-	<bean id="lectureRepository" class="kr.ac.kpu.ebiz.spring.tobbyproject.lecture.LectureRepositoryImpl">
+	<bean id="lectureRepository" class="kr.ac.kpu.ebiz.spring.tobbyproject.repository.LectureRepositoryImpl">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 
-	<bean id="departmentRepository" class="kr.ac.kpu.ebiz.spring.tobbyproject.department.DepartmentRepositoryImpl">
+	<bean id="departmentRepository" class="kr.ac.kpu.ebiz.spring.tobbyproject.repository.DepartmentRepositoryImpl">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 
-	<bean id="semesterRepository" class="kr.ac.kpu.ebiz.spring.tobbyproject.semester.SemesterRepositoryImpl">
+	<bean id="semesterRepository" class="kr.ac.kpu.ebiz.spring.tobbyproject.repository.SemesterRepositoryImpl">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 
 	<!-- ========================= SERVICE DEFINITION ========================= -->
 
-	<bean id="memberService" class="kr.ac.kpu.ebiz.spring.tobbyproject.member.MemberServiceImpl"/>
+	<bean id="memberService" class="kr.ac.kpu.ebiz.spring.tobbyproject.service.MemberServiceImpl"/>
 
-	<bean id="lectureService" class="kr.ac.kpu.ebiz.spring.tobbyproject.lecture.LectureServiceImpl"/>
+	<bean id="lectureService" class="kr.ac.kpu.ebiz.spring.tobbyproject.service.LectureServiceImpl"/>
 
-	<bean id="evaluationService" class="kr.ac.kpu.ebiz.spring.tobbyproject.evaluation.EvaluationServiceImpl"/>
+	<bean id="evaluationService" class="kr.ac.kpu.ebiz.spring.tobbyproject.service.EvaluationServiceImpl"/>
 
 </beans>

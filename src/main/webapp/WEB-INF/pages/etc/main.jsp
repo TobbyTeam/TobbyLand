@@ -3,7 +3,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/security/tags" %>
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@ page import="org.springframework.security.core.Authentication" %>
-<%@ page import="kr.ac.kpu.ebiz.spring.tobbyproject.member.MemberInfo" %>
+<%@ page import="kr.ac.kpu.ebiz.spring.tobbyproject.security.MemberInfo" %>
 <html>
 <head>
     <title></title>

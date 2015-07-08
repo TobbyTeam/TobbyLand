@@ -79,7 +79,7 @@ $(document).ready(function() {
 		return this.optional(element) || /(\W|^)[\w.+\-]{0,25}@(kpu)\.ac.kr(\W|$)/.test(value);
 	});
 
-	$.validator.addMethod("space", function(value, element) {
+	$.validator.addMethod("space", function (value, element) {
 		return value.indexOf(" ") < 0 && value != "";
 	});
 
@@ -99,7 +99,7 @@ $(document).ready(function() {
 				}
 			}, password: {
 				required: true,
-				space : true,
+				space: true,
 				rangelength: [5, 12]
 			}, password_check: {
 				required: true,
@@ -118,7 +118,7 @@ $(document).ready(function() {
 				}
 			}, nickname: {
 				required: true,
-				space : true,
+				space: true,
 				remote: {
 					type: "post", url: "/member/nickCheck", data: {
 						nickname: function () {
@@ -175,20 +175,14 @@ $(document).ready(function() {
 			});
 		}
 	})
-})
 
-$(document).ready(function() {
-
-	$.validator.addMethod("space", function(value, element) {
-		return value.indexOf(" ") < 0 && value != "";
-	});
 
 	$("#mod_frm").validate({
 		onfocusout: false,
 		rules: {
 			password: {
 				required: true,
-				space :true,
+				space: true,
 				rangelength: [5, 12]
 			}, password_check: {
 				required: true,
@@ -196,7 +190,7 @@ $(document).ready(function() {
 				equalTo: '#password'
 			}, nickname: {
 				required: true,
-				space : true,
+				space: true,
 				remote: {
 					type: "post", url: "/member/modNickCheck", data: {
 						nickname: function () {
@@ -208,7 +202,7 @@ $(document).ready(function() {
 		}, messages: {
 			password: {
 				required: "패스워드를 입력하세요.",
-				space : "공백은 불가능합니다.",
+				space: "공백은 불가능합니다.",
 				rangelength: $.validator.format("패스워드 5글자 이상 12글자 이하로 입력하세요.")
 			}, password_check: {
 				required: "패스워드 확인 입력하세요.",
@@ -243,13 +237,6 @@ $(document).ready(function() {
 			});
 		}
 	})
-})
-
-$(document).ready(function() {
-
-	$.validator.addMethod("space", function(value, element) {
-		return value.indexOf(" ") < 0 && value != "";
-	});
 
 	$("#pw_mod_frm").validate({
 		onfocusout: false,
@@ -265,7 +252,7 @@ $(document).ready(function() {
 				}
 			}, password: {
 				required: true,
-				space :true,
+				space: true,
 				rangelength: [5, 12]
 			}, password_check: {
 				required: true,
@@ -278,7 +265,7 @@ $(document).ready(function() {
 				remote: "비밀번호가 틀립니다."
 			}, password: {
 				required: "패스워드를 입력하세요.",
-				space : "공백은 불가능합니다.",
+				space: "공백은 불가능합니다.",
 				rangelength: $.validator.format("패스워드 5글자 이상 12글자 이하로 입력하세요.")
 			}, password_check: {
 				required: "패스워드 확인 입력하세요.",
@@ -303,4 +290,23 @@ $(document).ready(function() {
 			});
 		}
 	})
+
+	$("#pwConfirm").click(function () {
+		$.ajax({
+			type: "POST",
+			url: "/member/pwCheck",
+			dataType: "json",
+			data: {exPassword: $("#exPassword").val()},
+			success: function (result) {
+
+				if (result) {
+					window.open("/member/modView", "_self");
+				} else {
+					alert("비밀번호가 틀립니다");
+				}
+
+			}
+		})
+	})
+
 })

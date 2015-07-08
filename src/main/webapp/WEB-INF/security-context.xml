@@ -9,6 +9,7 @@
 
     <!-- enable use-expressions -->
     <http pattern="/resources/**" security="none"/>
+    <http pattern="/favicon.ico" security="none" />
 
     <http auto-config="false" use-expressions="true">
 <!--        <intercept-url pattern="/" access="permitAll" />
@@ -52,7 +53,7 @@
             </authentication-provider>
     </authentication-manager>
 
-    <beans:bean id="customJdbcDaoImpl" class="kr.ac.kpu.ebiz.spring.tobbyproject.member.CustomJdbcDaoImpl">
+    <beans:bean id="customJdbcDaoImpl" class="kr.ac.kpu.ebiz.spring.tobbyproject.security.CustomJdbcDaoImpl">
             <beans:property name="dataSource" ref="dataSource1"/>
             <beans:property name="rolePrefix" value="" />
             <beans:property name="usersByUsernameQuery" value="SELECT MEMBER_ID, PASSWORD, ENABLED, NICKNAME FROM MEMBER WHERE MEMBER_ID = ?" />
@@ -88,13 +89,13 @@
         </beans:property>
     </beans:bean>
 
-    <beans:bean id="customAuthenticationSuccessHandler" class="kr.ac.kpu.ebiz.spring.tobbyproject.member.CustomAuthenticationSuccessHandler">
+    <beans:bean id="customAuthenticationSuccessHandler" class="kr.ac.kpu.ebiz.spring.tobbyproject.security.CustomAuthenticationSuccessHandler">
         <beans:property name="targetUrlParameter" value="loginRedirect" />
         <beans:property name="useReferer" value="false" />
         <beans:property name="defaultUrl" value="/main" />
     </beans:bean>
 
-    <beans:bean id="customAuthenticationFailureHandler" class="kr.ac.kpu.ebiz.spring.tobbyproject.member.CustomAuthenticationFailureHandler">
+    <beans:bean id="customAuthenticationFailureHandler" class="kr.ac.kpu.ebiz.spring.tobbyproject.security.CustomAuthenticationFailureHandler">
         <beans:property name="loginidname" value="loginid" />
         <beans:property name="loginpasswdname" value="loginpwd" />
         <beans:property name="loginredirectname" value="loginRedirect" />
