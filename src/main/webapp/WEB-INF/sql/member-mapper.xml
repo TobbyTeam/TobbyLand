@@ -4,7 +4,7 @@
 <mapper namespace="MemberRepository">
 
   <select id="select" resultType="map">
-    SELECT * FROM MEMBER WHERE MEMBER_ID = #{value}
+    SELECT member_id, nickname, email, reg_date, method, task, exam FROM MEMBER WHERE MEMBER_ID = #{value}
   </select>
 
   <select id="selectMember" resultType="int">
@@ -59,7 +59,7 @@
   </insert>
 
   <insert id="insert_role" parameterType="String">
-    INSERT INTO MEMBER_ROLES (member_id) VALUES (#{member_id})
+    INSERT INTO MEMBER_ROLE (member_id) VALUES (#{member_id})
   </insert>
 
   <update id="update" parameterType="map">

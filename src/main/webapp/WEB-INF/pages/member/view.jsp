@@ -36,7 +36,9 @@
 
 <br/><br/>
 
-    <a href="/member/password">정보수정</a><br/><br/>
+    <a href="/member/pwConfirm">정보수정</a><br/><br/>
+
+    <a href="/member/pwChange">비밀번호수정</a><br/><br/>
 
     <a href="/member/deleteEnabled">회원탈퇴</a> <br /><br/>
 

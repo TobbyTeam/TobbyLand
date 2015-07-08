@@ -17,8 +17,6 @@
 <form id="mod_frm" action="/member/mod">
 
   아이디: <text>${member.member_id}</text><br>
-  패스워드:<input type="password" id="password" name="password" value="${member.password}"><br>
-  패스워드확인:<input type="password" id="password_check" name="password_check" value="${member.password}"><br/>
   별명: <input type="text" id="nickname" name="nickname" value="${member.nickname}"><br>
   이메일: <text>${member.email}</text><br>
   수업방식:

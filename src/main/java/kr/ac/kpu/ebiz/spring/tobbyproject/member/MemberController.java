@@ -80,10 +80,10 @@ public class MemberController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/password", method = RequestMethod.GET)
-	public String password() {
+	@RequestMapping(value = "/pwConfirm", method = RequestMethod.GET)
+	public String pwConfirm() {
 
-		return "member/password";
+		return "member/pwConfirm";
 	}
 
 	@RequestMapping(value = "/modView", method = RequestMethod.POST)
@@ -95,13 +95,18 @@ public class MemberController {
 		memberService.modViewService(password, mav);
 
 		return mav;
-
 	}
 
 	@RequestMapping(value = "/mod", method = RequestMethod.POST)
 	public @ResponseBody boolean modify(@RequestParam Map<String, String> member) {
 
 		return memberService.modService(member);
+	}
+
+	@RequestMapping(value = "/pwChange", method = RequestMethod.GET)
+	public String pwChange() {
+
+		return "member/pwChange";
 	}
 
 	@RequestMapping(value = "/deleteEnabled", method = RequestMethod.GET)

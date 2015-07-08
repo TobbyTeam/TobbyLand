@@ -11,17 +11,18 @@
     <http pattern="/resources/**" security="none"/>
 
     <http auto-config="false" use-expressions="true">
-        <intercept-url pattern="/" access="permitAll" />
+<!--        <intercept-url pattern="/" access="permitAll" />
         <intercept-url pattern="/login" access="isAnonymous()" />
         <intercept-url pattern="/main" access="permitAll" />
         <intercept-url pattern="/member/view" access="hasRole('ROLE_USER')" />
-        <intercept-url pattern="/member/password" access="hasRole('ROLE_USER')" />
+        <intercept-url pattern="/member/pwConfirm" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/member/modView" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/member/mod" access="hasRole('ROLE_USER')" />
+        <intercept-url pattern="/member/pwConfirm" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/member/modNickCheck" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/member/**" access="isAnonymous()" />
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
-        <intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
+        <intercept-url pattern="/**" access="hasRole('ROLE_USER')" />-->
 
         <!-- access denied page -->
         <access-denied-handler error-page="/403" />
@@ -43,8 +44,12 @@
 
     </http>
 
+    <beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />   
+     
     <authentication-manager>
-        <authentication-provider user-service-ref="customJdbcDaoImpl" />
+            <authentication-provider user-service-ref="customJdbcDaoImpl">
+                <password-encoder ref="bcryptPasswordEncoder" />
+            </authentication-provider>
     </authentication-manager>
 
     <beans:bean id="customJdbcDaoImpl" class="kr.ac.kpu.ebiz.spring.tobbyproject.member.CustomJdbcDaoImpl">

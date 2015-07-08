@@ -3,6 +3,7 @@ package kr.ac.kpu.ebiz.spring.tobbyproject.member;
 import kr.ac.kpu.ebiz.spring.tobbyproject.mail.MailMail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
@@ -16,12 +17,19 @@ public class MemberServiceImpl implements MemberService{
     @Autowired
     MailMail mailMail;
 
+    @Autowired
+    BCryptPasswordEncoder passwordEncoder;
+
     public boolean regService(Map member) {
 
         String member_id = (String) member.get("member_id");
+        String password = (String) member.get("password");
         String email = (String) member.get("email");
 
         boolean result = false;
+
+        member.remove(password);
+        member.put("password", passwordEncoder.encode(password));
 
         if(memberRepository.insert(member) && memberRepository.insert_role(member_id)) {
             result = true;
@@ -112,13 +120,11 @@ public class MemberServiceImpl implements MemberService{
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
-        String member_pw = memberRepository.selectPw(member_id);
-
-        if(member_pw.equals(password)){
+        if (passwordEncoder.matches(password, memberRepository.selectPw(member_id))){
             Map member = memberRepository.select(member_id);
             mav.addObject("member", member);
         } else {
-            mav.setViewName("/member/password");
+            mav.setViewName("member/pwConfirm");
             mav.addObject("error", "비밀번호가 틀립니다");
         }
 

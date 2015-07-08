@@ -19,7 +19,7 @@ CREATE TABLE tendency (
 
 CREATE TABLE member (
   member_id varchar(45) NOT NULL,
-  password varchar(45) DEFAULT NULL,
+  password varchar(100) DEFAULT NULL,
   nickname varchar(45) DEFAULT NULL,
   email varchar(45) DEFAULT NULL,
   reg_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
