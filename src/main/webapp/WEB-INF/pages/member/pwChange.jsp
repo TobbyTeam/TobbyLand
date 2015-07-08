@@ -14,7 +14,7 @@
 
 <jsp:include page="/top" flush="true"/> <br />
 
-<form id="mod_frm" action="/member/mod">
+<form id="pw_mod_frm" action="/member/pwMod">
 
     기존 비밀번호 : <input type="password" id="exPassword" name="exPassword" ><br>
     새 비밀번호: <input type="password" id="password" name="password" ><br>

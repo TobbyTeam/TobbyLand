@@ -112,22 +112,15 @@ public class MemberServiceImpl implements MemberService{
         String member_id = user.getUsername();
 
         mav.addObject("member", memberRepository.select(member_id));
-
     }
 
-    public void modViewService(String password, ModelAndView mav) {
+    public void modViewService(ModelAndView mav) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
-        if (passwordEncoder.matches(password, memberRepository.selectPw(member_id))){
             Map member = memberRepository.select(member_id);
             mav.addObject("member", member);
-        } else {
-            mav.setViewName("member/pwConfirm");
-            mav.addObject("error", "비밀번호가 틀립니다");
-        }
-
     }
 
     public boolean modService(Map member) {
@@ -142,6 +135,38 @@ public class MemberServiceImpl implements MemberService{
         if(memberRepository.update(member)){
             result = true;
         }
+        return result;
+    }
+
+    public boolean pwCheckService(String password) {
+
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String member_id = user.getUsername();
+
+        boolean result = false;
+
+        if (passwordEncoder.matches(password, memberRepository.selectPw(member_id))){
+            result = true;
+        }
+
+        return result;
+    }
+
+    public boolean pwModService(String password) {
+
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String member_id = user.getUsername();
+
+        Map member = new HashMap();
+        member.put("member_id", member_id);
+        member.put("password", passwordEncoder.encode(password));
+
+        boolean result = false;
+
+        if(memberRepository.updatePw(member)){
+            result = true;
+        }
+
         return result;
     }
 

@@ -23,9 +23,13 @@ public interface MemberService {
 
     void viewService(ModelAndView mav);
 
-    void modViewService(String password, ModelAndView mav);
+    void modViewService(ModelAndView mav);
 
     boolean modService(Map member);
+
+    boolean pwCheckService(String password);
+
+    boolean pwModService(String password);
 
     void deleteEnabledService();
 

@@ -4,35 +4,49 @@ USE tobbyland;
 -- tendency table data
 --
 
-INSERT INTO tendency (tendency_id, title)
-values ('a1', '독고다이형');
+INSERT INTO TENDENCY (TENDENCY_ID, TITLE)
+VALUES ('a1', '독고다이형');
 
-insert into tendency
-values ('a2', '토론형');
+INSERT INTO TENDENCY (TENDENCY_ID, TITLE)
+VALUES ('a2', '토론형');
 
-insert into tendency
-values ('a3', '실습형');
+INSERT INTO TENDENCY (TENDENCY_ID, TITLE)
+VALUES ('a3', '실습형');
 
-insert into tendency
-values ('b1', '텀프로젝트');
+INSERT INTO TENDENCY (TENDENCY_ID, TITLE)
+VALUES ('b1', '텀프로젝트');
 
-insert into tendency
-values ('b2', '팀플레이');
+INSERT INTO TENDENCY (TENDENCY_ID, TITLE)
+VALUES ('b2', '팀플레이');
 
-insert into tendency
-values ('b3', '개인과제');
+INSERT INTO TENDENCY (TENDENCY_ID, TITLE)
+VALUES ('b3', '개인과제');
 
-insert into tendency
-values ('c1', '서술형');
+INSERT INTO TENDENCY (TENDENCY_ID, TITLE)
+VALUES ('c1', '서술형');
 
-insert into tendency
-values ('c2', '혼합형');
+INSERT INTO TENDENCY (TENDENCY_ID, TITLE)
+VALUES ('c2', '혼합형');
 
-insert into tendency
-values ('c3', '오픈북');
+INSERT INTO TENDENCY (TENDENCY_ID, TITLE)
+VALUES ('c3', '오픈북');
 
-insert into tendency
-values ('c4', '실습');
+INSERT INTO TENDENCY (TENDENCY_ID, TITLE)
+VALUES ('c4', '실습');
+
+
+--
+-- role table data
+--
+
+INSERT INTO ROLE (role, role_name)
+VALUES ('ROLE_ADMIN', '운영자');
+
+INSERT INTO ROLE (role, role_name)
+VALUES ('ROLE_USER', '일반유저');
+
+INSERT INTO ROLE (role, role_name)
+VALUES ('ROLE_MANAGER', '관리자');
 
 
 --
@@ -47,10 +61,10 @@ VALUES ('admin','1234','ADMIN','babsang24@hanmail.net','a1','b1','c1', 1);
 -- member_roles table data
 --
 
-INSERT INTO MEMBER_ROLES (member_id, ROLE)
+INSERT INTO MEMBER_ROLE (member_id, ROLE)
 VALUES ('admin','ROLE_ADMIN');
 
-INSERT INTO MEMBER_ROLES (member_id, ROLE)
+INSERT INTO MEMBER_ROLE (member_id, ROLE)
 VALUES ('admin','ROLE_USER');
 
 
@@ -125,31 +139,7 @@ VALUES ('15-2학기');
 -- lecture table data
 --
 
-/*INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
-VALUES ('admin','시스템분석설계','기계공학과','임홍순', 10);
-
-INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
-VALUES ('admin','데이터베이스','기계설계공학과','이충석', 10);
-
-INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
-VALUES ('admin','기업데이터','메카트로닉스공학과','이영석', 10);
-
-INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
-VALUES ('admin','물리학','전자공학부','나경상', 10);
-
-INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
-VALUES ('admin','전기회로','게임공학부','박준규', 10);
-
-INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
-VALUES ('admin','C언어','나노광공학과','이영호', 10);
-
-INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
-VALUES ('admin','제어학','경영학부','장진영', 10);*/
-
-
-
-
--- 기계공학과 data
+--  기계공학과 data
 
 INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
 VALUES ('admin','정역학','기계공학과','박승철', 10);

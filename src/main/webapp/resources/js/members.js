@@ -196,6 +196,7 @@ $(document).ready(function() {
 				equalTo: '#password'
 			}, nickname: {
 				required: true,
+				space : true,
 				remote: {
 					type: "post", url: "/member/modNickCheck", data: {
 						nickname: function () {
@@ -215,6 +216,7 @@ $(document).ready(function() {
 				equalTo: "패스워드와 일치하지 않습니다."
 			}, nickname: {
 				required: "닉네임을 입력하세요.",
+				space: "공백은 불가능합니다",
 				remote: "닉네임 중복입니다."
 			}
 			/*        }, invalidHandler: function (form, validator) {
@@ -233,6 +235,66 @@ $(document).ready(function() {
 				success: function (result) {
 					if (result) {
 						alert("회원정보 수정을 완료 하였습니다.");
+						window.open("/member/view", "_self");
+					} else {
+						alert("죄송합니다 다시 시도해주세요.")
+					}
+				}
+			});
+		}
+	})
+})
+
+$(document).ready(function() {
+
+	$.validator.addMethod("space", function(value, element) {
+		return value.indexOf(" ") < 0 && value != "";
+	});
+
+	$("#pw_mod_frm").validate({
+		onfocusout: false,
+		rules: {
+			exPassword: {
+				required: true,
+				remote: {
+					type: "post", url: "/member/pwCheck", data: {
+						exPassword: function () {
+							return $("#exPassword").val();
+						}
+					}
+				}
+			}, password: {
+				required: true,
+				space :true,
+				rangelength: [5, 12]
+			}, password_check: {
+				required: true,
+				rangelength: [5, 12],
+				equalTo: '#password'
+			}
+		}, messages: {
+			exPassword: {
+				required: "기존 비밀번호를 입력하세요.",
+				remote: "비밀번호가 틀립니다."
+			}, password: {
+				required: "패스워드를 입력하세요.",
+				space : "공백은 불가능합니다.",
+				rangelength: $.validator.format("패스워드 5글자 이상 12글자 이하로 입력하세요.")
+			}, password_check: {
+				required: "패스워드 확인 입력하세요.",
+				rangelength: $.validator.format("패스워드확인은 최소 5글자 이상 12글자 이하로 입력하세요."),
+				equalTo: "패스워드와 일치하지 않습니다."
+			}
+		}, submitHandler: function (form) {
+			$.ajax({
+				type: "POST",
+				url: "/member/pwMod",
+				data: $(form).serialize(),
+				dataType: "json",
+				/*                contentType: "application/x-www-form-urlencoded; charset=utf-8",*/
+				success: function (result) {
+					if (result) {
+						alert("비밀번호 수정이 완료되었습니다.");
 						window.open("/member/view", "_self");
 					} else {
 						alert("죄송합니다 다시 시도해주세요.")

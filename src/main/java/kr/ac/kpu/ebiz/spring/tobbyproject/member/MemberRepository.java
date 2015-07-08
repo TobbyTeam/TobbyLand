@@ -32,5 +32,7 @@ public interface MemberRepository {
 	boolean insert_role(String memberId);
 
 	boolean update(Map member);
+
+	boolean updatePw(Map member);
 }
 

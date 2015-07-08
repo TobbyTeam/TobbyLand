@@ -65,11 +65,17 @@
   <update id="update" parameterType="map">
     UPDATE MEMBER
     SET
-    password = #{password},
     nickname = #{nickname},
     method = #{method},
     task = #{task},
     exam = #{exam}
+    WHERE MEMBER_ID = #{member_id}
+  </update>
+
+  <update id="updatePw" parameterType="map">
+    UPDATE MEMBER
+    SET
+    password = #{password}
     WHERE MEMBER_ID = #{member_id}
   </update>
 

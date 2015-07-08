@@ -86,13 +86,13 @@ public class MemberController {
 		return "member/pwConfirm";
 	}
 
-	@RequestMapping(value = "/modView", method = RequestMethod.POST)
-	public ModelAndView modView(@RequestParam ("password")String password) {
+	@RequestMapping(value = "/modView", method = RequestMethod.GET)
+	public ModelAndView modView() {
 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/member/modify");
 
-		memberService.modViewService(password, mav);
+		memberService.modViewService(mav);
 
 		return mav;
 	}
@@ -104,9 +104,21 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/pwChange", method = RequestMethod.GET)
-	public String pwChange() {
+	public String pwMod() {
 
 		return "member/pwChange";
+	}
+
+	@RequestMapping(value = "/pwCheck", method = RequestMethod.POST)
+	public @ResponseBody boolean pwCheck(@RequestParam ("exPassword")String password) {
+
+		return memberService.pwCheckService(password);
+	}
+
+	@RequestMapping(value = "/pwMod", method = RequestMethod.POST)
+	public @ResponseBody boolean pwChange(@RequestParam ("password")String password) {
+
+		return memberService.pwModService(password);
 	}
 
 	@RequestMapping(value = "/deleteEnabled", method = RequestMethod.GET)

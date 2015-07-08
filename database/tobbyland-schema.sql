@@ -38,17 +38,30 @@ CREATE TABLE member (
 
 
 --
+-- Table structure for table `role`
+--
+
+CREATE TABLE role (
+  role varchar(45) NOT NULL,
+  role_name VARCHAR(45) NOT NULL,
+  PRIMARY KEY (role)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+--
 -- Table structure for table `member_role`
 --
 
 CREATE TABLE member_role (
   member_role_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   member_id VARCHAR(45) NOT NULL,
-  ROLE VARCHAR(45) DEFAULT 'ROLE_USER',
+  role VARCHAR(45) DEFAULT 'ROLE_USER',
   PRIMARY KEY (member_role_id),
   UNIQUE KEY uni_member_id_role (ROLE,member_id),
-  KEY fk_member_id_idx (member_id),
-  CONSTRAINT fk_member_id FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY fk_member_id (member_id),
+  KEY fk_role (role),
+  CONSTRAINT fk_member_id FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT fk_role FOREIGN KEY (role) REFERENCES role (role) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
