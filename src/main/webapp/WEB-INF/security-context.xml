@@ -18,6 +18,7 @@
         <intercept-url pattern="/member/password" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/member/modView" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/member/mod" access="hasRole('ROLE_USER')" />
+        <intercept-url pattern="/member/modNickCheck" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/member/**" access="isAnonymous()" />
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/**" access="hasRole('ROLE_USER')" />

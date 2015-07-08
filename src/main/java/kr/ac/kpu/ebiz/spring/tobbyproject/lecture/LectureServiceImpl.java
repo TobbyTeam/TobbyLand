@@ -1,9 +1,9 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.lecture;
 
 import kr.ac.kpu.ebiz.spring.tobbyproject.department.DepartmentRepository;
+import kr.ac.kpu.ebiz.spring.tobbyproject.member.MemberInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collection;
@@ -36,7 +36,7 @@ public class LectureServiceImpl implements LectureService{
 
     public void regService(Map lecture, ModelAndView mav) {
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
         lecture.put("member_id", member_id);
@@ -48,7 +48,7 @@ public class LectureServiceImpl implements LectureService{
 
     public boolean confirmService(int lecture_id) {
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
         String writer = lectureRepository.selectMember(lecture_id);
@@ -66,7 +66,7 @@ public class LectureServiceImpl implements LectureService{
 
     public void viewService(int lecture_id, ModelAndView mav) {
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
         String writer = lectureRepository.selectMember(lecture_id);
@@ -105,7 +105,7 @@ public class LectureServiceImpl implements LectureService{
 
     public boolean likesService(int lecture_id) {
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
         Map lecture = new HashMap();

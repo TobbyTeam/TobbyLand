@@ -121,7 +121,7 @@ $(document).ready(function() {
 				space : true,
 				remote: {
 					type: "post", url: "/member/nickCheck", data: {
-						email: function () {
+						nickname: function () {
 							return $("#nickname").val();
 						}
 					}
@@ -198,7 +198,7 @@ $(document).ready(function() {
 				required: true,
 				remote: {
 					type: "post", url: "/member/modNickCheck", data: {
-						email: function () {
+						nickname: function () {
 							return $("#nickname").val();
 						}
 					}

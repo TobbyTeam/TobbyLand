@@ -1,10 +1,10 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.evaluation;
 
 import kr.ac.kpu.ebiz.spring.tobbyproject.lecture.LectureRepository;
+import kr.ac.kpu.ebiz.spring.tobbyproject.member.MemberInfo;
 import kr.ac.kpu.ebiz.spring.tobbyproject.semester.SemesterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.*;
@@ -35,7 +35,7 @@ public class EvaluationServiceImpl implements EvaluationService {
 
     public boolean regChechService(int lecture_id) {
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
         HashMap check = new HashMap();
@@ -55,7 +55,7 @@ public class EvaluationServiceImpl implements EvaluationService {
 
     public void regFormService(int lecture_id, ModelAndView mav) {
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
         HashMap check = new HashMap();
@@ -99,7 +99,7 @@ public class EvaluationServiceImpl implements EvaluationService {
 
     public void regService(Map evaluation, ModelAndView mav) {
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
         evaluation.put("member_id", member_id);
@@ -113,7 +113,7 @@ public class EvaluationServiceImpl implements EvaluationService {
 
     public boolean confirmService(int evaluation_id) {
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
         String writer = evaluationRepository.selectMember(evaluation_id);
@@ -131,7 +131,7 @@ public class EvaluationServiceImpl implements EvaluationService {
 
     public void viewService(int lecture_id, int evaluation_id, ModelAndView mav) {
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
         String writer = evaluationRepository.selectMember(evaluation_id);
@@ -165,7 +165,7 @@ public class EvaluationServiceImpl implements EvaluationService {
 
     public int likesService(int evaluation_id) {
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
         HashMap evaluationSub = new HashMap();
@@ -191,7 +191,7 @@ public class EvaluationServiceImpl implements EvaluationService {
 
     public int dislikeService(int evaluation_id) {
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
         HashMap evaluationSub = new HashMap();
@@ -218,7 +218,7 @@ public class EvaluationServiceImpl implements EvaluationService {
 
     public int reportService(int evaluation_id) {
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
         HashMap evaluationSub = new HashMap();
@@ -281,7 +281,7 @@ public class EvaluationServiceImpl implements EvaluationService {
 
     public void replyRegService(Map evaluationSub, ModelAndView mav) {
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
         evaluationSub.put("member_id", member_id);

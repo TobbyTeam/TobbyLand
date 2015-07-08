@@ -3,7 +3,6 @@ package kr.ac.kpu.ebiz.spring.tobbyproject.member;
 import kr.ac.kpu.ebiz.spring.tobbyproject.mail.MailMail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
@@ -71,7 +70,7 @@ public class MemberServiceImpl implements MemberService{
 
     public boolean modNickCheckService(String nickname) {
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
         Map member = new HashMap();
@@ -101,7 +100,7 @@ public class MemberServiceImpl implements MemberService{
 
     public void viewService(ModelAndView mav) {
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
         mav.addObject("member", memberRepository.select(member_id));
@@ -110,7 +109,7 @@ public class MemberServiceImpl implements MemberService{
 
     public void modViewService(String password, ModelAndView mav) {
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
         String member_pw = memberRepository.selectPw(member_id);
@@ -127,7 +126,7 @@ public class MemberServiceImpl implements MemberService{
 
     public boolean modService(Map member) {
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
         member.put("member_id",member_id);
@@ -142,7 +141,7 @@ public class MemberServiceImpl implements MemberService{
 
     public void deleteEnabledService() {
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
         SecurityContextHolder.clearContext();
