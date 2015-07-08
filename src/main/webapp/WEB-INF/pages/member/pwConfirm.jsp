@@ -3,7 +3,7 @@
 <html>
 <head>
 
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" charset="utf-8"></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="<c:url value="/resources/js/members.js" />"></script>
 
     <title></title>
