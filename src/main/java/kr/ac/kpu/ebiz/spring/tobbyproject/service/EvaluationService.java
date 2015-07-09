@@ -17,13 +17,13 @@ public interface EvaluationService {
 
     void regFormService(int lecture_id, ModelAndView mav);
 
-    void regService(Map evaluation, ModelAndView mav);
+    boolean regService(Map evaluation);
 
     boolean confirmService(int evaluation_id);
 
     void viewService(int lecture_id, int evaluation_id,  ModelAndView mav);
 
-    void modService(Map evaluation, ModelAndView mav);
+    boolean modService(Map evaluation);
 
     int likesService(int evaluation_id);
 

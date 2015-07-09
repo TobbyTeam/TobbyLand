@@ -98,18 +98,20 @@ public class EvaluationServiceImpl implements EvaluationService {
 
     }
 
-    public void regService(Map evaluation, ModelAndView mav) {
+    public boolean regService(Map evaluation) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
         evaluation.put("member_id", member_id);
 
-        int lecture_id =  Integer.parseInt(evaluation.get("lecture_id").toString());
+        boolean result = false;
 
-        evaluationRepository.insert(evaluation);
+        if(evaluationRepository.insert(evaluation)){
+            result = true;
+        }
 
-        mav.setViewName("redirect:/evaluation/list?lecture_id="+lecture_id);
+       return result;
     }
 
     public boolean confirmService(int evaluation_id) {
@@ -154,14 +156,17 @@ public class EvaluationServiceImpl implements EvaluationService {
 
     }
 
-    public void modService(Map evaluation, ModelAndView mav) {
+    public boolean modService(Map evaluation) {
 
         int lecture_id =  Integer.parseInt(evaluation.get("lecture_id").toString());
 
-        evaluationRepository.update(evaluation);
+        boolean result = false;
 
-        mav.setViewName("redirect:/evaluation/list?lecture_id=" + lecture_id);
+        if(evaluationRepository.update(evaluation)){
+            result = true;
+        }
 
+        return result;
     }
 
     public int likesService(int evaluation_id) {

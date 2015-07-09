@@ -56,13 +56,9 @@ public class EvaluationController {
 	}
 
 	@RequestMapping(value = "/reg", method = RequestMethod.POST)
-	public ModelAndView register(@RequestParam Map<String, Serializable> evaluation) {
+	public @ResponseBody boolean register(@RequestParam Map<String, Serializable> evaluation) {
 
-		ModelAndView mav = new ModelAndView();
-
-		evaluationService.regService(evaluation, mav);
-
-		return mav;
+		return evaluationService.regService(evaluation);
 	}
 
 	@RequestMapping(value = "/confirm", method = RequestMethod.POST)
@@ -82,13 +78,9 @@ public class EvaluationController {
 	}
 
 	@RequestMapping(value = "/mod", method = RequestMethod.POST)
-	public ModelAndView modify(@RequestParam Map<String, Serializable> evaluation) {
+	public @ResponseBody boolean modify(@RequestParam Map<String, Serializable> evaluation) {
 
-		ModelAndView mav = new ModelAndView();
-
-		evaluationService.modService(evaluation, mav);
-
-		return mav;
+		return evaluationService.modService(evaluation);
 	}
 
 	@RequestMapping(value = "/likes", method = RequestMethod.POST)

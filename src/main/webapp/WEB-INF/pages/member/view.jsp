@@ -27,9 +27,48 @@
       <td>${member.member_id}</td>
       <td>${member.nickname}</td>
       <td>${member.email}</td>
-      <td>${member.method}</td>
-      <td>${member.task}</td>
-      <td>${member.exam}</td>
+      <td>
+          <c:choose>
+              <c:when test="${member.method eq 'a1'}">
+                  독고다이형
+              </c:when>
+              <c:when test="${member.method eq 'a2'}">
+                  토론형
+              </c:when>
+              <c:otherwise>
+                  실습형
+              </c:otherwise>
+          </c:choose>
+      </td>
+      <td>
+          <c:choose>
+              <c:when test="${member.task eq 'b1'}">
+                  텀프로젝트
+              </c:when>
+              <c:when test="${member.task eq 'b2'}">
+                  팀과제
+              </c:when>
+              <c:otherwise>
+                  개인과제
+              </c:otherwise>
+          </c:choose>
+      </td>
+      <td>
+          <c:choose>
+              <c:when test="${member.exam eq 'c1'}">
+                  서술형
+              </c:when>
+              <c:when test="${member.exam eq 'c2'}">
+                  혼합형
+              </c:when>
+              <c:when test="${member.exam eq 'c3'}">
+                  오픈북
+              </c:when>
+              <c:otherwise>
+                  실습
+              </c:otherwise>
+          </c:choose>
+      </td>
   </tr>
 
 </table>

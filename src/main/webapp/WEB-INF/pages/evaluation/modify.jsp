@@ -4,6 +4,8 @@
 <head>
 
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="<c:url value="/resources/js/jquery.validate.min.js" />"></script>
+    <script src="<c:url value="/resources/js/evaluation_validate.js" />"></script>
 
     <title></title>
 </head>
@@ -11,7 +13,7 @@
 
 <jsp:include page="/top" flush="true"/> <br />
 
-<form action="/evaluation/mod" method="post">
+<form id="mod_frm" method="post">
 
     학기:
     <select name="semester">
@@ -33,7 +35,7 @@
     총평: <input type="text" name="comment" value="${evaluation.comment}"><br>
     점수: <input type="text" name="score" value="${evaluation.score}"><br>
         <input type="hidden" name="evaluation_id" value="${evaluation.evaluation_id}">
-        <input type="hidden" name="lecture_id" value="${evaluation.lecture_id}">
+        <input type="hidden" id="lecture_id" name="lecture_id" value="${evaluation.lecture_id}">
         <input type="submit" value="전송">
 
 </form>

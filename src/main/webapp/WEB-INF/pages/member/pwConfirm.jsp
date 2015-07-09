@@ -12,7 +12,7 @@
 
 
 패스워드:<input type="password" id="exPassword" name="exPassword"/><br>
-         <input type="button" id ="pwConfirm" value="확인"/>
+         <input type="button" id ="pw_btn" value="확인"/>
 
 </body>
 </html>
