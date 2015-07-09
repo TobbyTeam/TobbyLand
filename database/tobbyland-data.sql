@@ -54,7 +54,7 @@ VALUES ('ROLE_MANAGER', '관리자');
 --
 
 INSERT INTO MEMBER (member_id, password, nickname, email, method, task, exam, enabled)
-VALUES ('admin','1234','ADMIN','babsang24@hanmail.net','a1','b1','c1', 1);
+VALUES ('admin','$2a$10$sp5fhJ6mjqapitptq.mzxehukY.2.6WLsZ1M4fpGgtr9L/8oI7vwe','운영자','babsang24@hanmail.net','a1','b1','c1', 1);
 
 
 --

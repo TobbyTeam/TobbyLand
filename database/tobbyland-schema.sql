@@ -27,8 +27,7 @@ CREATE TABLE member (
   task varchar(10) DEFAULT NULL,
   exam varchar(10) DEFAULT NULL,
   enabled tinyint(4) unsigned DEFAULT '0',
-  enabled tinyint(4) unsigned DEFAULT '1',
-
+  nonLocked tinyint(4) unsigned DEFAULT '1',
   PRIMARY KEY (member_id),
   KEY FK_member_method (method),
   KEY FK_member_task (task),
@@ -148,11 +147,16 @@ CREATE TABLE lecturesub (
   ls_id int(10) unsigned NOT NULL AUTO_INCREMENT,
   lecture_id int(10) unsigned DEFAULT NULL,
   member_id varchar(45) DEFAULT NULL,
+  kind int(10) unsigned DEFAULT '0',
+  title varchar(45) DEFAULT NULL,
+  contents varchar(45) DEFAULT NULL,
+  write_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  is_delete tinyint(4) unsigned DEFAULT '1',
   PRIMARY KEY (ls_id),
   UNIQUE KEY uni_lecture_id_member_id (lecture_id,member_id),
   KEY FK_lecturesub_lecture (lecture_id),
   KEY FK_lecturesub_member (member_id),
-  CONSTRAINT FK_lecturesub_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT FK_lecturesub_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT FK_lecturesub_lecture FOREIGN KEY (lecture_id) REFERENCES lecture (lecture_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
