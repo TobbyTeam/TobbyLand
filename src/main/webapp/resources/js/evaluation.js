@@ -155,3 +155,49 @@ function evalDeleteAjax(evaluation_id) {
 	})
 }
 
+function reDeleteAjax(es_id) {
+	$.ajax({
+		type: "POST",
+		url: "/evaluation/reConfirm",
+		dataType: "json",
+		data: {es_id: es_id},
+		success: function (result) {
+
+			if (result) {
+				if (confirm("정말 삭제하시겠습니까?")) {
+					$.ajax({
+						type: "POST",
+						url: "/evaluation/reIsDelete",
+						dataType: "json",
+						data: {es_id: es_id},
+						success: function (data) {
+							if (data) {
+								alert("삭제되었습니다.");
+								location.reload();
+							} else {
+								alert("다시 시도 하세요.");
+							}
+						}
+					})
+				}
+			} else {
+				alert("본인이 작성하신 글이 아닙니다.");
+			}
+		}
+	})
+}
+
+
+/*맨위로 이동*/
+
+$(document).ready(function() {
+	var bd = $("body");
+
+	bd.on("dblclick", function () {
+
+		window.scrollTo(0, 0);
+
+	})
+})
+
+

@@ -84,25 +84,25 @@ public class EvaluationController {
 	}
 
 	@RequestMapping(value = "/likes", method = RequestMethod.POST)
-	public @ResponseBody int likes(@RequestParam("evaluation_id")int evaluation_id) {
+	public @ResponseBody int likes(@RequestParam("evaluation_id") int evaluation_id) {
 
 		return evaluationService.likesService(evaluation_id);
 	}
 
 	@RequestMapping(value = "/dislike", method = RequestMethod.POST)
-	public @ResponseBody int dislike(@RequestParam("evaluation_id")int evaluation_id) {
+	public @ResponseBody int dislike(@RequestParam("evaluation_id") int evaluation_id) {
 
 		return evaluationService.dislikeService(evaluation_id);
 	}
 
 	@RequestMapping(value = "/report", method = RequestMethod.POST)
-	public @ResponseBody int report(@RequestParam("evaluation_id")int evaluation_id) {
+	public @ResponseBody int report(@RequestParam("evaluation_id") int evaluation_id) {
 
 		return evaluationService.reportService(evaluation_id);
 	}
 
 	@RequestMapping(value = "/isDelete", method = RequestMethod.POST)
-	public @ResponseBody Boolean isDelete(@RequestParam("evaluation_id")int evaluation_id) {
+	public @ResponseBody Boolean isDelete(@RequestParam("evaluation_id") int evaluation_id) {
 
 		return evaluationService.isDeleteService(evaluation_id);
 	}
@@ -118,7 +118,6 @@ public class EvaluationController {
 
 	}
 
-
 	@RequestMapping(value = "/replyList", method = RequestMethod.GET)
 	public ModelAndView replyList(@RequestParam("evaluation_id") int evaluation_id) {
 
@@ -133,5 +132,19 @@ public class EvaluationController {
 	public @ResponseBody boolean replyReg(@RequestParam Map<String, Serializable> evaluationSub) {
 
 		return evaluationService.replyRegService(evaluationSub);
+	}
+
+	@RequestMapping(value = "/reConfirm", method = RequestMethod.POST)
+	public @ResponseBody boolean reConfirm(@RequestParam("es_id") int es_id) {
+
+		return evaluationService.reConfirmService(es_id);
+	}
+
+	@RequestMapping(value = "/reIsDelete", method = RequestMethod.POST)
+	public @ResponseBody boolean reIsDelete(@RequestParam("es_id") int es_id) {
+
+		System.out.println(es_id+"확인확인확인확인확인");
+
+		return evaluationService.reIsDeleteService(es_id);
 	}
 }

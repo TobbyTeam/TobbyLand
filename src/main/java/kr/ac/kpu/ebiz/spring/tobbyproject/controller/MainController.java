@@ -87,4 +87,10 @@ public class MainController {
         return "/etc/top";
     }
 
+    @RequestMapping(value = "/test")
+    public String test() {
+
+        return "/test";
+    }
+
 }

@@ -158,7 +158,7 @@ public class EvaluationServiceImpl implements EvaluationService {
 
     public boolean modService(Map evaluation) {
 
-        int lecture_id =  Integer.parseInt(evaluation.get("lecture_id").toString());
+/*        int lecture_id =  Integer.parseInt(evaluation.get("lecture_id").toString());*/
 
         boolean result = false;
 
@@ -307,4 +307,33 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         return result;
     }
+
+    public boolean reConfirmService(int es_id) {
+
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String member_id = user.getUsername();
+
+        String writer = evaluationRepository.selectReMember(es_id);
+
+        Collection authorities = user.getAuthorities();
+
+        boolean result = false;
+
+        if(member_id.equals(writer) == true || authorities.toString().contains("ROLE_ADMIN")){
+            result = true;
+        }
+
+        return result;
+    }
+
+    public boolean reIsDeleteService(int es_id) {
+        boolean data = false;
+
+        if(evaluationRepository.reIsDelete(es_id)){
+            data = true;
+        }
+
+        return data;
+    }
+
 }

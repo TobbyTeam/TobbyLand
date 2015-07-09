@@ -104,8 +104,4 @@
     SELECT Count(LS_ID) FROM LECTURESUB WHERE LECTURE_ID = #{lecture_id} AND MEMBER_ID = #{member_id}
   </select>
 
-  <!--  <select id="selectSub" parameterType="map" resultType="map" >
-      SELECT * FROM LECTURESUB WHERE LECTURE_ID = #{lecture_id} AND MEMBER_ID = #{member_id}
-    </select>-->
-
 </mapper>

@@ -166,6 +166,8 @@ CREATE TABLE evaluationsub (
   member_id varchar(45) DEFAULT NULL,
   kind int(10) unsigned DEFAULT '0',
   contents varchar(45) DEFAULT NULL,
+  write_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  is_delete tinyint(4) unsigned DEFAULT '1',
   PRIMARY KEY (es_id),
 /*  UNIQUE KEY uni_evaluation_id_member_id (evaluation_id,member_id),*/
   KEY FK_evaluationsub_evaluation (evaluation_id),

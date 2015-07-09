@@ -9,7 +9,7 @@ public interface EvaluationRepository {
 
 	int selectCount(Map evaluation);
 
-	String selectMember(Integer lectureId);
+	String selectMember(Integer evaluationId);
 
 	List<Map> selectAll();
 
@@ -43,12 +43,17 @@ public interface EvaluationRepository {
 
 	boolean updateReport(Integer evaluationId);
 
-	boolean insertSub(Map lecture);
+	boolean insertSub(Map Sub);
 
-	int selectSubCount(Map lecture);
+	int selectSubCount(Map Sub);
 
-	int selectSubType(Map lecture);
+	int selectSubType(Map Sub);
 
 	List<Map> selectRe(Integer evaluationId);
+
+	String selectReMember(Integer es_id);
+
+	boolean reIsDelete(Integer es_id);
+
 }
 

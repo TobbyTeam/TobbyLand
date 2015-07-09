@@ -4,6 +4,7 @@
 <head>
 
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="<c:url value="/resources/js/evaluation.js" />"></script>
 
     <title></title>
 </head>
@@ -12,18 +13,22 @@
 <table border="1">
     <tr>
         <td>내용</td>
+        <td>작성일</td>
+        <td>삭제</td>
     </tr>
     <c:forEach var="reply" items="${replys}" varStatus="status">
         <tr>
             <td>${reply.contents}</td>
+            <td>${reply.write_date}</td>
+            <td><input type="button" value="삭제" onclick="reDeleteAjax(${reply.es_id})"></td>
         </tr>
     </c:forEach>
 </table>
 
 <form id="re_frm" method="post">
 
-    내용: <input type="text" name="contents"><br/>
-    <input type="hidden" id="re_con" name="evaluation_id" value="${evaluation_id}"/>
+    내용: <input type="text" id="re_con" name="contents"><br/>
+    <input type="hidden" name="evaluation_id" value="${evaluation_id}"/>
     <input type="button" id="re_btn" value="등록">
 
 </form>

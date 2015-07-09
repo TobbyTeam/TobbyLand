@@ -6,7 +6,7 @@
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="<c:url value="/resources/js/evaluation.js" />"></script>
 
-	<title>헬로 월드</title></head>
+<title>헬로 월드</title></head>
 <body>
 
 <jsp:include page="/top" flush="true"/> <br />
@@ -141,23 +141,23 @@
 
 	</tr>
 	<c:forEach var="evaluation" items="${evaluations}" varStatus="status">
-		<tr>
-			<td><a href="/evaluation/replyList?evaluation_id=${evaluation.evaluation_id}">${evaluation.evaluation_id}</a></td>
-			<td>${evaluation.member_id}</td>
-			<td>${evaluation.lecture_id}</td>
-			<td>${evaluation.semester}</td>
-			<td>${evaluation.method}</td>
-			<td>${evaluation.task}</td>
-			<td>${evaluation.exam}</td>
-			<td>${evaluation.comment}</td>
-			<td>${evaluation.score}</td>
-			<td>${evaluation.write_date}</td>
-			<td><input type="button" value="추천(${evaluation.likes})" onclick="evalLikeAjax(${evaluation.evaluation_id})"></td>
-			<td><input type="button" value="비공감(${evaluation.dislike})" onclick="evalDislikeAjax(${evaluation.evaluation_id})"></td>
-			<td><input type="button" value="신고(${evaluation.report})" onclick="evalReportAjax(${evaluation.evaluation_id})"></td>
-			<td><input type="button" value="수정" onclick="evalModAjax(${evaluation.evaluation_id})"></td>
-			<td><input type="button" value="삭제" onclick="evalDeleteAjax(${evaluation.evaluation_id})"></td>
-		</tr>
+	<tr>
+		<td><a href="/evaluation/replyList?evaluation_id=${evaluation.evaluation_id}">${evaluation.evaluation_id}</a></td>
+		<td>${evaluation.member_id}</td>
+		<td>${evaluation.lecture_id}</td>
+		<td>${evaluation.semester}</td>
+		<td>${evaluation.method}</td>
+		<td>${evaluation.task}</td>
+		<td>${evaluation.exam}</td>
+		<td>${evaluation.comment}</td>
+		<td>${evaluation.score}</td>
+		<td>${evaluation.write_date}</td>
+		<td><input type="button" value="추천(${evaluation.likes})" onclick="evalLikeAjax(${evaluation.evaluation_id})"></td>
+		<td><input type="button" value="비공감(${evaluation.dislike})" onclick="evalDislikeAjax(${evaluation.evaluation_id})"></td>
+		<td><input type="button" value="신고(${evaluation.report})" onclick="evalReportAjax(${evaluation.evaluation_id})"></td>
+		<td><input type="button" value="수정" onclick="evalModAjax(${evaluation.evaluation_id})"></td>
+		<td><input type="button" value="삭제" onclick="evalDeleteAjax(${evaluation.evaluation_id})"></td>
+	</tr>
 	</c:forEach>
 </table>
 

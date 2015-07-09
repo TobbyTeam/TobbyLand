@@ -38,4 +38,8 @@ public interface EvaluationService {
     void replyService(int evaluation_id, ModelAndView mav);
 
     boolean replyRegService(Map evaluationSub);
+
+    boolean reConfirmService(int es_id);
+
+    boolean reIsDeleteService(int es_id);
 }
