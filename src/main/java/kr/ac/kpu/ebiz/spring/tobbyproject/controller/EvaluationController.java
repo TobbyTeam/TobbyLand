@@ -138,13 +138,8 @@ public class EvaluationController {
 	}
 
 	@RequestMapping(value = "/replyReg", method = RequestMethod.POST)
-	public ModelAndView replyReg(@RequestParam Map<String, Serializable> evaluationSub) {
+	public @ResponseBody boolean replyReg(@RequestParam Map<String, Serializable> evaluationSub) {
 
-		ModelAndView mav = new ModelAndView();
-
-		evaluationService.replyRegService(evaluationSub, mav);
-
-		return mav;
+		return evaluationService.replyRegService(evaluationSub);
 	}
-
 }

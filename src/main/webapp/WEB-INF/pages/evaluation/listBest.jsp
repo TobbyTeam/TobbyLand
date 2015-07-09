@@ -3,8 +3,8 @@
 <html>
 <head>
 
-	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="<c:url value="/resources/js/evaluation.js" />"></script>
+
+	<script src="<c:url value="/resources/js/evaluation.js" />"></script>
 
 <title>헬로 월드</title></head>
 <body>

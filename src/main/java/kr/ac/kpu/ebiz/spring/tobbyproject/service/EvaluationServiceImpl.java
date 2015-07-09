@@ -177,11 +177,12 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         int result;
 
+        int kind = 1;
+
         if(count !=0) {
-            int kind = evaluationRepository.selectSubType(evaluationSub);
-            result = kind;
+            result = evaluationRepository.selectSubType(evaluationSub);
         } else {
-            evaluationSub.put("kind", 1);
+            evaluationSub.put("kind", kind);
             evaluationRepository.insertSub(evaluationSub);
             evaluationRepository.updateLike(evaluation_id);
             result = 0;
@@ -203,11 +204,12 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         int result;
 
+        int kind = 2;
+
         if(count !=0) {
-            int kind = evaluationRepository.selectSubType(evaluationSub);
-            result = kind;
+            result = evaluationRepository.selectSubType(evaluationSub);
         } else {
-            evaluationSub.put("kind", 2);
+            evaluationSub.put("kind", kind);
             evaluationRepository.insertSub(evaluationSub);
             evaluationRepository.updateDislike(evaluation_id);
             result = 0;
@@ -230,11 +232,12 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         int result;
 
+        int kind = 3;
+
         if(count !=0) {
-            int kind = evaluationRepository.selectSubType(evaluationSub);
-            result = kind;
+            result = evaluationRepository.selectSubType(evaluationSub);
         } else {
-            evaluationSub.put("kind", 3);
+            evaluationSub.put("kind", kind);
             evaluationRepository.insertSub(evaluationSub);
             evaluationRepository.updateReport(evaluation_id);
             result = 0;
@@ -280,22 +283,23 @@ public class EvaluationServiceImpl implements EvaluationService {
 
     }
 
-    public void replyRegService(Map evaluationSub, ModelAndView mav) {
+    public boolean replyRegService(Map evaluationSub) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
+        int kind = 4;
+
         evaluationSub.put("member_id", member_id);
+        evaluationSub.put("kind", kind);
 
-        evaluationRepository.insertSub(evaluationSub);
+        boolean result = false;
 
-        int evaluation_id = Integer.parseInt(evaluationSub.get("evaluation_id").toString());
+        if(evaluationRepository.insertSub(evaluationSub)){
 
-        StringBuilder page = new StringBuilder("redirect:/evaluation/replyList?evaluation_id=");
-        StringBuilder id = new StringBuilder(String.valueOf(evaluation_id));
-        page.append(id);
+            result = true;
+        }
 
-        mav.setViewName(page.toString());
-
+        return result;
     }
 }

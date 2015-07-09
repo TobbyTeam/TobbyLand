@@ -154,3 +154,4 @@ function evalDeleteAjax(evaluation_id) {
 		}
 	})
 }
+

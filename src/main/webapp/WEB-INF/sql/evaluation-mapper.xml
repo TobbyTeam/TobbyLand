@@ -167,7 +167,7 @@
   </select>
 
   <select id="selectRe" resultType="map">
-    SELECT contents FROM EVALUATIONSUB WHERE EVALUATION_ID = #{evaluation_id} AND CONTENTS IS NOT NULL
+    SELECT contents FROM EVALUATIONSUB WHERE EVALUATION_ID = #{evaluation_id} AND KIND = 4
   </select>
 
 </mapper>

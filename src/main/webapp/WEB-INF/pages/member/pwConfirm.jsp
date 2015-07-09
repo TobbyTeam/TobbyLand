@@ -4,7 +4,7 @@
 <head>
 
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="<c:url value="/resources/js/members.js" />"></script>
+    <script src="<c:url value="/resources/js/member.js" />"></script>
 
     <title></title>
 </head>

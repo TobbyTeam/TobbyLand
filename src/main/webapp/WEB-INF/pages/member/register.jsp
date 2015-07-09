@@ -6,12 +6,12 @@
 <head>
     <title></title>
 
-<%--    <script src="${pageContext.request.contextPath}/resources/js/members.js"></script>--%>
-<%--    <spring:url value="/resources/js/members.js" var="membersJs" />--%>
+<%--    <script src="${pageContext.request.contextPath}/resources/js/member.js"></script>--%>
+<%--    <spring:url value="/resources/js/member.js" var="membersJs" />--%>
 
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="<c:url value="/resources/js/jquery.validate.min.js" />"></script>
-    <script src="<c:url value="/resources/js/members.js" />"></script>
+    <script src="<c:url value="/resources/js/member.js" />"></script>
 
 </head>
 

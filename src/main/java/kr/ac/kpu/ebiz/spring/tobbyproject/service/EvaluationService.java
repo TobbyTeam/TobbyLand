@@ -37,5 +37,5 @@ public interface EvaluationService {
 
     void replyService(int evaluation_id, ModelAndView mav);
 
-    void replyRegService(Map evaluationSub, ModelAndView mav);
+    boolean replyRegService(Map evaluationSub);
 }
