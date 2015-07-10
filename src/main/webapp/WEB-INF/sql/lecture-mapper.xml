@@ -106,8 +106,16 @@
 
   <select id="boardAll" parameterType="map" resultType="map" >
     SELECT * FROM LECTURESUB
-    WHERE LECTURE_ID = #{lecture_id} AND KIND = #{kind} AND IS_DELETE = 1
-    ORDER BY WRITE_DATE DESC
+    <choose>
+      <when test="title != null">
+        WHERE TITLE = #{title} AND KIND = #{kind} AND IS_DELETE = 1
+        ORDER BY WRITE_DATE
+      </when>
+      <otherwise>
+        WHERE LECTURE_ID = #{lecture_id} AND KIND = #{kind} AND IS_DELETE = 1
+        ORDER BY WRITE_DATE DESC
+      </otherwise>
+    </choose>
   </select>
 
   <select id="boardOne" resultType="map" >

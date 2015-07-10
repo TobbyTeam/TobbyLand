@@ -116,7 +116,7 @@ public class LectureController {
 	}
 
 	@RequestMapping(value = "/boardView", method = RequestMethod.GET)
-	public ModelAndView boardView(@RequestParam int ls_id) {
+	public ModelAndView boardView(@RequestParam("ls_id") int ls_id) {
 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/lecture/boardView");
@@ -153,6 +153,12 @@ public class LectureController {
 	public @ResponseBody boolean boardIsDelete(@RequestParam("ls_id") int ls_id)	{
 
 		return lectureService.boardIsDeleteService(ls_id);
+	}
+
+	@RequestMapping(value = "/boardReplyReg", method = RequestMethod.POST)
+	public @ResponseBody boolean boardReplyReg(@RequestParam Map<String, java.io.Serializable> lectureSub) {
+
+		return lectureService.boardReplyRegService(lectureSub);
 	}
 
 }

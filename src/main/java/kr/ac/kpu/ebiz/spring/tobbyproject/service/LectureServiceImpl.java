@@ -181,8 +181,14 @@ public class LectureServiceImpl implements LectureService{
 
     public void boardViewService(int ls_id, ModelAndView mav) {
 
-        mav.addObject("board", lectureRepository.boardOne(ls_id));
+        int kind = 3;
 
+        Map lectureSub = new HashMap();
+        lectureSub.put("kind", kind);
+        lectureSub.put("title", ls_id);
+
+        mav.addObject("board", lectureRepository.boardOne(ls_id));
+        mav.addObject("replys", lectureRepository.boardAll(lectureSub));
 
     }
 
@@ -229,13 +235,13 @@ public class LectureServiceImpl implements LectureService{
 
     public boolean boardModService(Map lectureSub) {
 
-            boolean result = false;
+        boolean result = false;
 
-            if (lectureRepository.boardMod(lectureSub)) {
-                result = true;
-            }
+        if (lectureRepository.boardMod(lectureSub)) {
+            result = true;
+        }
 
-            return result;
+        return result;
     }
 
     public boolean boardIsDeleteService(int ls_id) {
@@ -247,6 +253,25 @@ public class LectureServiceImpl implements LectureService{
         }
 
         return data;
+    }
+
+    public boolean boardReplyRegService(Map lectureSub) {
+
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String member_id = user.getUsername();
+
+        int kind = 3;
+
+        lectureSub.put("member_id", member_id);
+        lectureSub.put("kind", kind);
+
+        boolean result = false;
+
+        if(lectureRepository.insertSub(lectureSub)){
+            result =true;
+        }
+
+        return result;
     }
 
 }

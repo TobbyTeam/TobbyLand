@@ -76,7 +76,49 @@ function deleteAjax(lecture_id) {
 	})
 }
 
+function reDeleteAjax(ls_id) {
+	$.ajax({
+		type: "POST",
+		url: "/lecture/boardConfirm",
+		dataType: "json",
+		data: {ls_id: ls_id},
+		success: function (result) {
+
+			if (result) {
+				if (confirm("정말 삭제하시겠습니까?")) {
+					$.ajax({
+						type: "POST",
+						url: "/lecture/boardIsDelete",
+						dataType: "json",
+						data: {ls_id: ls_id},
+						success: function (data) {
+							if (data) {
+								alert("삭제되었습니다.");
+								location.reload();
+							} else {
+								alert("다시 시도 하세요.");
+							}
+						}
+					})
+				}
+			} else {
+				alert("본인이 작성하신 글이 아닙니다.");
+			}
+		}
+	})
+}
+
+
+
 $(document).ready(function() {
+
+	var bd = $("body");
+
+	bd.on("dblclick", function () {
+
+		window.scrollTo(0, 0);
+
+	})
 
 
 	$(document).off('click', '#boardMod_btn').on('click', '#boardMod_btn', function() {

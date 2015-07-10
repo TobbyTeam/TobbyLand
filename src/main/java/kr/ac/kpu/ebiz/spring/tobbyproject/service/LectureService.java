@@ -40,4 +40,6 @@ public interface LectureService {
     boolean boardModService(Map lectureSub);
 
     boolean boardIsDeleteService(int lecture_id);
+
+    boolean boardReplyRegService(Map lectureSub);
 }

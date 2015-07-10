@@ -187,7 +187,6 @@ function reDeleteAjax(es_id) {
 	})
 }
 
-
 /*맨위로 이동*/
 
 $(document).ready(function() {

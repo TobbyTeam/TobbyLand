@@ -29,12 +29,12 @@
 
     내용: <input type="text" id="re_con" name="contents"><br/>
     <input type="hidden" name="evaluation_id" value="${evaluation_id}"/>
-    <input type="button" id="re_btn" value="등록">
+    <input type="button" id="reReg_btn" value="등록">
 
 </form>
 
 <script>
-    $("#re_btn").click(function(){
+    $("#reReg_btn").click(function(){
 
         if($("#re_con").val().length===0){
             alert("내용을 입력해주세요");
@@ -59,7 +59,6 @@
 
     })
 </script>
-
 
 </body>
 </html>
