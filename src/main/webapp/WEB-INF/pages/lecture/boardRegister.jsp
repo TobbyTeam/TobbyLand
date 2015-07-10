@@ -17,10 +17,15 @@
 
     <form id="reg_board_frm" name="reg_board_frm" method="post">
 
-      제목: <input type="text" id="title" name="title"/><br/>
-      내용: <input type="text" id="contents" name="contents"/><br/>
-              <input type="hidden" id="lecture_id" name="lecture_id" value="${lecture_id}"/>
-              <input type="button" value="강의생성" onclick="$(this.form).submit()"/>&nbsp;&nbsp;&nbsp; <input type="reset" value="취소" onclick="javascript:window.location='/lecture/list'"/>
+      제목:
+        <input type="text" id="title" name="title"/><br/>
+
+      내용:<br/>
+        <textarea name="contents" rows="20" cols="40" wrap="hard" placeholder="내용을 입력해주세요"></textarea><br/>
+
+        <input type="hidden" id="lecture_id" name="lecture_id" value="${lecture_id}"/>
+        <input type="button" value="작성" onclick="$(this.form).submit()"/>&nbsp;&nbsp;&nbsp;
+        <input type="reset" value="취소" onclick="javascript:window.location='/lecture/boardList?lecture_id=${lecture_id}'"/>
     </form>
 
 </body>

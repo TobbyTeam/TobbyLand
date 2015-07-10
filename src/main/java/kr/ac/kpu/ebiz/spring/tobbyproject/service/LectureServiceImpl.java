@@ -179,4 +179,74 @@ public class LectureServiceImpl implements LectureService{
         return result;
     }
 
+    public void boardViewService(int ls_id, ModelAndView mav) {
+
+        mav.addObject("board", lectureRepository.boardOne(ls_id));
+
+
+    }
+
+    public boolean boardConfirmService(int ls_id) {
+
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String member_id = user.getUsername();
+
+        String writer = lectureRepository.boardMember(ls_id);
+
+        Collection authorities = user.getAuthorities();
+
+        System.out.println(writer+"확인확인확인인");
+
+        boolean result = false;
+
+        if(member_id.equals(writer) == true || authorities.toString().contains("ROLE_ADMIN")){
+            result = true;
+        }
+
+        return result;
+
+    }
+
+    public void boardModViewService(int ls_id, ModelAndView mav) {
+
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String member_id = user.getUsername();
+
+        String writer = lectureRepository.boardMember(ls_id);
+
+        Collection authorities = user.getAuthorities();
+
+        if(member_id.equals(writer) == true || authorities.toString().contains("ROLE_ADMIN")){
+
+            mav.addObject("board", lectureRepository.boardOne(ls_id));
+
+        } else {
+
+            mav.setViewName("redirect:/lecture/boardView?ls_id="+ls_id);
+        }
+
+    }
+
+    public boolean boardModService(Map lectureSub) {
+
+            boolean result = false;
+
+            if (lectureRepository.boardMod(lectureSub)) {
+                result = true;
+            }
+
+            return result;
+    }
+
+    public boolean boardIsDeleteService(int ls_id) {
+
+        boolean data = false;
+
+        if(lectureRepository.boardIsDelete(ls_id)) {
+            data = true;
+        }
+
+        return data;
+    }
+
 }

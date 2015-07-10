@@ -92,9 +92,9 @@ $(document).ready(function() {
 			}
 		}, messages: {
 			title: {
-				required: "학기를 입력하세요."
+				required: "제목를 입력하세요."
 			}, contents: {
-				required: "수업코멘트를 입력하세요."
+				required: "내용을 입력하세요."
 			}
 		}, submitHandler: function (form) {
 			$.ajax({
@@ -106,6 +106,39 @@ $(document).ready(function() {
 					if (result) {
 						alert("글 작성이 완료 되었습니다.")
 						window.open("/lecture/boardList?lecture_id="+$("#lecture_id").val(), "_self");
+					} else {
+						alert("죄송합니다 다시 시도해주세요.");
+					}
+
+				}
+			})
+		}
+	})
+
+	$("#mod_board_frm").validate({
+		onfocusout: false,
+		rules: {
+			title: {
+				required: true
+			},contents: {
+				required: true
+			}
+		}, messages: {
+			title: {
+				required: "제목을 입력하세요."
+			}, contents: {
+				required: "내용을 입력하세요."
+			}
+		}, submitHandler: function (form) {
+			$.ajax({
+				type: "POST",
+				url: "/lecture/boardMod",
+				dataType: "json",
+				data: $(form).serialize(),
+				success: function (result) {
+					if (result) {
+						alert("글 수정이 완료 되었습니다.")
+						window.open("/lecture//boardView?ls_id="+$("#ls_id").val(), "_self");
 					} else {
 						alert("죄송합니다 다시 시도해주세요.");
 					}

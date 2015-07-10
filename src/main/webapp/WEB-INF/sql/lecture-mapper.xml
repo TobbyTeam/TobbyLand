@@ -110,4 +110,28 @@
     ORDER BY WRITE_DATE DESC
   </select>
 
+  <select id="boardOne" resultType="map" >
+    SELECT * FROM LECTURESUB
+    WHERE LS_ID = #{ls_id}
+  </select>
+
+  <select id="boardMember" resultType="String">
+    SELECT member_id FROM LECTURESUB WHERE LS_ID = #{ls_id}
+  </select>
+
+  <update id="boardMod" parameterType="map">
+    UPDATE LECTURESUB
+    SET
+    title = #{title},
+    contents = #{contents}
+    WHERE LS_ID = #{ls_id}
+  </update>
+
+  <update id="boardIsDelete" parameterType="map">
+    UPDATE LECTURESUB
+    SET
+    IS_DELETE = 0
+    WHERE LS_ID = #{ls_id}
+  </update>
+
 </mapper>

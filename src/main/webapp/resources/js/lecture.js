@@ -75,3 +75,66 @@ function deleteAjax(lecture_id) {
 		}
 	})
 }
+
+$(document).ready(function() {
+
+
+	$(document).off('click', '#boardMod_btn').on('click', '#boardMod_btn', function() {
+/*	$("#boardMod_btn").unbind("click").on("click", function() {*/
+
+		var ls_id = $("#ls_id").val();
+
+		$.ajax({
+			type: "POST",
+			url: "/lecture/boardConfirm",
+			dataType: "json",
+			data: {ls_id: ls_id},
+			success: function (result) {
+
+				if (result) {
+					window.open('/lecture/boardModView?ls_id=' + ls_id, '_self');
+
+				} else {
+					alert("본인이 작성하신 글이 아닙니다.");
+				}
+			}
+		})
+	})
+
+	$(document).off('click', '#boardDel_btn').on('click', '#boardDel_btn', function() {
+/*	$("#boardDel_btn").unbind("click").on("click", function() {*/
+
+		var ls_id = $("#ls_id").val();
+
+		$.ajax({
+			type: "POST",
+			url: "/lecture/boardConfirm",
+			dataType: "json",
+			data: {ls_id: ls_id},
+			success: function (result) {
+
+				if (result) {
+					if (confirm("정말 삭제하시겠습니까?")) {
+						$.ajax({
+							type: "POST",
+							url: "/lecture/boardIsDelete",
+							dataType: "json",
+							data: {ls_id: ls_id},
+							success: function (data) {
+								if (data) {
+									alert("삭제되었습니다.");
+									window.open("/lecture/boardList?lecture_id=" + $("#lecture_id").val(), "_self");
+								} else {
+									alert("다시 시도 하세요.");
+								}
+							}
+						})
+					}
+				} else {
+					alert("본인이 작성하신 글이 아닙니다.");
+				}
+			}
+		})
+	})
+
+})

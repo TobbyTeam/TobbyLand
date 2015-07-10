@@ -45,7 +45,7 @@ public class LectureController {
 	}
 
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
-	public ModelAndView view(@RequestParam int lecture_id) {
+	public ModelAndView view(@RequestParam("lecture_id") int lecture_id) {
 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/lecture/modify");
@@ -115,5 +115,44 @@ public class LectureController {
 		return lectureService.boardRegService(lectureSub);
 	}
 
+	@RequestMapping(value = "/boardView", method = RequestMethod.GET)
+	public ModelAndView boardView(@RequestParam int ls_id) {
+
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/lecture/boardView");
+
+		lectureService.boardViewService(ls_id, mav);
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/boardConfirm", method = RequestMethod.POST)
+	public @ResponseBody boolean boardConfirm(@RequestParam int ls_id) {
+
+		return lectureService.boardConfirmService(ls_id);
+	}
+
+	@RequestMapping(value = "/boardModView", method = RequestMethod.GET)
+	public ModelAndView boardModView(@RequestParam("ls_id") int ls_id) {
+
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/lecture/boardModify");
+
+		lectureService.boardModViewService(ls_id, mav);
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/boardMod", method = RequestMethod.POST)
+	public @ResponseBody boolean boardMod(@RequestParam Map<String, java.io.Serializable> lectureSub) {
+
+		return lectureService.boardModService(lectureSub);
+	}
+
+	@RequestMapping(value = "/boardIsDelete", method = RequestMethod.POST)
+	public @ResponseBody boolean boardIsDelete(@RequestParam("ls_id") int ls_id)	{
+
+		return lectureService.boardIsDeleteService(ls_id);
+	}
 
 }
