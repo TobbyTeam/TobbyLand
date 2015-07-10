@@ -33,8 +33,10 @@ public interface LectureRepository {
 
 	boolean updateLike(int lectureId);
 
-	boolean insertSub(Map lecture);
+	boolean insertSub(Map lectureSub);
 
-	int selectSub(Map lecture);
+	int selectSub(Map lectureSub);
+
+	List<Map> boardAll(Map lectureSub);
 }
 

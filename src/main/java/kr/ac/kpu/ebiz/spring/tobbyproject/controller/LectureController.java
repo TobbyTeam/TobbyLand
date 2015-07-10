@@ -89,4 +89,31 @@ public class LectureController {
 		return lectureService.isDeleteService(lecture_id);
 	}
 
+	@RequestMapping(value = "/boardList", method = RequestMethod.GET)
+	public ModelAndView boardList(@RequestParam("lecture_id") int lecture_id) {
+
+		ModelAndView mav = new ModelAndView("/lecture/boardList");
+
+		lectureService.bodListService(lecture_id, mav);
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/boardRegForm", method = RequestMethod.GET)
+	public ModelAndView boardRegForm(@RequestParam("lecture_id") int lecture_id) {
+
+		ModelAndView mav = new ModelAndView("/lecture/boardRegister");
+
+		mav.addObject("lecture_id", lecture_id);
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/boardReg", method = RequestMethod.POST)
+		 public @ResponseBody boolean boardReg(@RequestParam Map<String, String> lectureSub) {
+
+		return lectureService.boardRegService(lectureSub);
+	}
+
+
 }

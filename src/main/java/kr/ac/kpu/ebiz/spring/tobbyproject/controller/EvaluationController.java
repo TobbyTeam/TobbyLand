@@ -39,6 +39,16 @@ public class EvaluationController {
 		return mav;
 	}
 
+	@RequestMapping(value = "/lecture", method = RequestMethod.GET)
+	public ModelAndView lecture(@RequestParam("lecture_id") int lecture_id) {
+
+		ModelAndView mav = new ModelAndView("/evaluation/lecture");
+
+		evaluationService.lectureService(lecture_id, mav);
+
+		return mav;
+	}
+
 	@RequestMapping(value = "/regChech", method = RequestMethod.POST)
 	public @ResponseBody boolean regChech(@RequestParam("lecture_id") int lecture_id) {
 

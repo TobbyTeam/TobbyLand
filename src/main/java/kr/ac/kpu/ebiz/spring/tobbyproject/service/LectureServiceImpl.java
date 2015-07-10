@@ -116,16 +116,19 @@ public class LectureServiceImpl implements LectureService{
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
-        Map lecture = new HashMap();
-        lecture.put("lecture_id", lecture_id);
-        lecture.put("member_id", member_id);
+        int kind = 1;
 
-        int count = lectureRepository.selectSub(lecture);
+        Map lectureSub = new HashMap();
+        lectureSub.put("lecture_id", lecture_id);
+        lectureSub.put("member_id", member_id);
+        lectureSub.put("kind", kind);
+
+        int count = lectureRepository.selectSub(lectureSub);
 
         boolean result = false;
 
         if(count == 0) {
-            lectureRepository.insertSub(lecture);
+            lectureRepository.insertSub(lectureSub);
             lectureRepository.updateLike(lecture_id);
             result = true;
         }
@@ -142,6 +145,38 @@ public class LectureServiceImpl implements LectureService{
         }
 
         return data;
+    }
+
+    public void bodListService(int lecture_id, ModelAndView mav) {
+
+        int kind = 2;
+
+        Map lectureSub = new HashMap();
+        lectureSub.put("lecture_id", lecture_id);
+        lectureSub.put("kind", kind);
+
+        mav.addObject("boards", lectureRepository.boardAll(lectureSub));
+        mav.addObject("lecture_id", lecture_id);
+
+    }
+
+    public boolean boardRegService(Map lectureSub) {
+
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String member_id = user.getUsername();
+
+        int kind = 2;
+
+        lectureSub.put("member_id", member_id);
+        lectureSub.put("kind", kind);
+
+        boolean result = false;
+
+        if(lectureRepository.insertSub(lectureSub)){
+            result =true;
+        }
+
+        return result;
     }
 
 }

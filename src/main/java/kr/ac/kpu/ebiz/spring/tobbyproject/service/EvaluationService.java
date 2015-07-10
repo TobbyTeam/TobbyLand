@@ -13,6 +13,8 @@ public interface EvaluationService {
 
     void listBestService(int lecture_id, ModelAndView mav);
 
+    void lectureService(int lecture_id, ModelAndView mav);
+
     boolean regChechService(int lecture_id);
 
     void regFormService(int lecture_id, ModelAndView mav);

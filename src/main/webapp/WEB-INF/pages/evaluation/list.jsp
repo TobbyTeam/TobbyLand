@@ -9,14 +9,14 @@
 	<title>헬로 월드</title></head>
 <body>
 
-<jsp:include page="/top" flush="true"/> <br />
+<jsp:include page="/top" flush="true"/>
 
-</br>
-강의명 : ${lecture.lecture_name}</br>
-학과명 : ${lecture.dept}</br>
-교수명 : ${lecture.prof}</br>
-강의평가 수: ${lecture.count}</br>
-</br></br>
+<br /> <br />
+
+<jsp:include page="/evaluation/lecture?lecture_id=${lecture_id}" flush="true"/> <br />
+
+<a href="/evaluation/list?lecture_id=${lecture_id}">강의평가</a>&nbsp;&nbsp;<a href="/lecture/boardList?lecture_id=${lecture_id}">강의게시판</a>
+<br /> <br />
 
 <form action="/evaluation/searchPrefer" method="get">
 
@@ -115,7 +115,7 @@
 		</c:otherwise>
 	</c:choose>
 
-	<input type="hidden" id="lecture_id" name="lecture_id" value="${lecture.lecture_id}">
+	<input type="hidden" id="lecture_id" name="lecture_id" value="${lecture_id}">
 	<input type="submit" value="검색">
 </form>
 <br/>

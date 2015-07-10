@@ -153,7 +153,6 @@ CREATE TABLE lecturesub (
   write_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   is_delete tinyint(4) unsigned DEFAULT '1',
   PRIMARY KEY (ls_id),
-  UNIQUE KEY uni_lecture_id_member_id (lecture_id,member_id),
   KEY FK_lecturesub_lecture (lecture_id),
   KEY FK_lecturesub_member (member_id),
   CONSTRAINT FK_lecturesub_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE NO ACTION ON UPDATE NO ACTION,
