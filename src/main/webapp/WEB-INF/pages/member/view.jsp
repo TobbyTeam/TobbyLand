@@ -21,6 +21,8 @@
     <td>수업방식</td>
     <td>과제방식</td>
     <td>시험방식</td>
+    <td>가입일</td>
+
   </tr>
 
   <tr>
@@ -68,6 +70,9 @@
                   실습
               </c:otherwise>
           </c:choose>
+      </td>
+      <td>
+          ${member.reg_date}
       </td>
   </tr>
 

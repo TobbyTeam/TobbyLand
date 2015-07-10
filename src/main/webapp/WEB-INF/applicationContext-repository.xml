@@ -109,12 +109,4 @@
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 
-	<!-- ========================= SERVICE DEFINITION ========================= -->
-
-	<bean id="memberService" class="kr.ac.kpu.ebiz.spring.tobbyproject.service.MemberServiceImpl"/>
-
-	<bean id="lectureService" class="kr.ac.kpu.ebiz.spring.tobbyproject.service.LectureServiceImpl"/>
-
-	<bean id="evaluationService" class="kr.ac.kpu.ebiz.spring.tobbyproject.service.EvaluationServiceImpl"/>
-
 </beans>

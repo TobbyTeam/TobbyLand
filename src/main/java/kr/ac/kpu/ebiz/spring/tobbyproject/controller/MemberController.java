@@ -63,11 +63,11 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/enabled", method = RequestMethod.GET)
-	public ModelAndView enabled(@RequestParam("member_id") String member_id) {
+	public ModelAndView enabled(@RequestParam("member_id") String enSt) {
 
 		ModelAndView mav = new ModelAndView("/member/enabled");
 
-		memberService.enabledService(member_id, mav);
+		memberService.enabledService(enSt, mav);
 
 		return mav;
 	}

@@ -86,7 +86,7 @@
 					<td><input type="text" id="loginid" name="loginid" value="${loginid}" /></td>
 				</tr>
 				<tr>
-					<td>loginpwd:</td>
+					<td>비밀번호</td>
 					<td><input type="password" id="loginpwd" name="loginpwd" value="${loginpwd}" /></td>
 				</tr>
 				<tr>

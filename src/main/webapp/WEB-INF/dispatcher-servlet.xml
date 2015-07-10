@@ -128,4 +128,35 @@
 		</property>
 	</bean>
 
+	<!-- ========================= SERVICE DEFINITION ========================= -->
+
+	<bean id="memberService" class="kr.ac.kpu.ebiz.spring.tobbyproject.service.MemberServiceImpl"/>
+
+	<bean id="lectureService" class="kr.ac.kpu.ebiz.spring.tobbyproject.service.LectureServiceImpl"/>
+
+	<bean id="evaluationService" class="kr.ac.kpu.ebiz.spring.tobbyproject.service.EvaluationServiceImpl"/>
+
+	<!-- ========================= ENCRYPTOR DEFINITION ========================= -->
+
+	<bean id="aes128Cipher" class="kr.ac.kpu.ebiz.spring.tobbyproject.encryptor.AES128Cipher"/>
+
+	<!-- ========================= GMAIL DEFINITION ========================= -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="kputobbyland" />
+		<property name="password" value="tobby1234" />
+
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="mailMail" class="kr.ac.kpu.ebiz.spring.tobbyproject.mail.MailMail">
+		<property name="mailSender" ref="mailSender" />
+	</bean>
+
 </beans>

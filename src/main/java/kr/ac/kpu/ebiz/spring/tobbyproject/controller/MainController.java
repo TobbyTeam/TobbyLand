@@ -1,5 +1,6 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.controller;
 
+import kr.ac.kpu.ebiz.spring.tobbyproject.encryptor.AES128Cipher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -16,6 +17,9 @@ public class MainController {
 
     @Autowired
     MessageSource messageSource;
+
+    @Autowired
+    AES128Cipher aes128Cipher;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home() {
@@ -88,7 +92,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/test")
-    public String test() {
+    public String test() throws Exception{
 
         return "/test";
     }

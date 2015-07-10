@@ -80,7 +80,7 @@ $(document).ready(function() {
 
 
 	$(document).off('click', '#boardMod_btn').on('click', '#boardMod_btn', function() {
-/*	$("#boardMod_btn").unbind("click").on("click", function() {*/
+/*	$("#boardMod_btn").unbind("click").on("click", function() {  스크립트 두번 뜨는거 다른 방법*/
 
 		var ls_id = $("#ls_id").val();
 
