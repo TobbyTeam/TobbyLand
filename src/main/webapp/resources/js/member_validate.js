@@ -79,6 +79,10 @@ $(document).ready(function() {
 		return this.optional(element) || /(\W|^)[\w.+\-]{0,25}@(kpu)\.ac.kr(\W|$)/.test(value);
 	});
 
+	$.validator.addMethod("mix", function (value, element) {
+		return this.optional(element) || /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/.test(value);
+	});
+
 	$.validator.addMethod("space", function (value, element) {
 		return value.indexOf(" ") < 0 && value != "";
 	});
@@ -100,10 +104,10 @@ $(document).ready(function() {
 			}, password: {
 				required: true,
 				space: true,
-				rangelength: [5, 12]
+				rangelength: [8, 12],
+				mix: true
 			}, password_check: {
 				required: true,
-				rangelength: [5, 12],
 				equalTo: '#password'
 			}, email: {
 				required: true,
@@ -136,10 +140,10 @@ $(document).ready(function() {
 			}, password: {
 				required: "패스워드를 입력하세요.",
 				space: "공백은 불가능합니다.",
-				rangelength: $.validator.format("패스워드 5글자 이상 12글자 이하로 입력하세요."),
+				rangelength: $.validator.format("패스워드 8글자 이상 12글자 이하로 입력하세요."),
+				mix: "비밀번호는 문자, 숫자, 특수문자(!@#$%^*+=-)의 조합으로 입력해주세요."
 			}, password_check: {
 				required: "패스워드 확인 입력하세요.",
-				rangelength: $.validator.format("패스워드확인은 최소 5글자 이상 12글자 이하로 입력하세요."),
 				equalTo: "패스워드와 일치하지 않습니다."
 			}, nickname: {
 				required: "닉네임을 입력하세요.",
