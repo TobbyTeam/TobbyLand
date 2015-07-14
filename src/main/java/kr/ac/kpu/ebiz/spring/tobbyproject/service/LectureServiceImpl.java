@@ -1,5 +1,6 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.service;
 
+import kr.ac.kpu.ebiz.spring.tobbyproject.paging.Paging;
 import kr.ac.kpu.ebiz.spring.tobbyproject.repository.DepartmentRepository;
 import kr.ac.kpu.ebiz.spring.tobbyproject.repository.LectureRepository;
 import kr.ac.kpu.ebiz.spring.tobbyproject.security.MemberInfo;
@@ -22,6 +23,9 @@ public class LectureServiceImpl implements LectureService{
 
     @Autowired
     DepartmentRepository departmentRepository;
+
+    @Autowired
+    Paging paging;
 
     public void listService(ModelAndView mav) {
 
@@ -155,7 +159,16 @@ public class LectureServiceImpl implements LectureService{
         lectureSub.put("lecture_id", lecture_id);
         lectureSub.put("kind", kind);
 
-        mav.addObject("boards", lectureRepository.boardAll(lectureSub));
+        List<Map> boards = lectureRepository.boardAll(lectureSub);
+
+        System.out.println(boards.size()+"게시글 수 확인");
+
+        paging.setPageNo(1);
+        paging.setPageSize(10);
+        paging.setTotalCount(boards.size());
+
+        mav.addObject("boards", boards);
+        mav.addObject("lecture_id", lecture_id);
         mav.addObject("lecture_id", lecture_id);
 
     }
@@ -181,11 +194,8 @@ public class LectureServiceImpl implements LectureService{
 
     public void boardViewService(int ls_id, ModelAndView mav) {
 
-        int kind = 3;
-
         Map lectureSub = new HashMap();
-        lectureSub.put("kind", kind);
-        lectureSub.put("title", ls_id);
+        lectureSub.put("reply", ls_id);
 
         mav.addObject("board", lectureRepository.boardOne(ls_id));
         mav.addObject("replys", lectureRepository.boardAll(lectureSub));

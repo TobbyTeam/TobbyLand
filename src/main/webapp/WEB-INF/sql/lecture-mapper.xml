@@ -96,8 +96,8 @@
   </update>
 
   <insert id="insertSub" parameterType="map">
-    INSERT INTO LECTURESUB (lecture_id, member_id, kind, title, contents)
-    VALUES (#{lecture_id},#{member_id},#{kind},#{title},#{contents})
+    INSERT INTO LECTURESUB (lecture_id, member_id, kind, title, contents, reply)
+    VALUES (#{lecture_id},#{member_id},#{kind},#{title},#{contents}, #{reply})
   </insert>
 
   <select id="selectSub" parameterType="map" resultType="int" >
@@ -107,8 +107,8 @@
   <select id="boardAll" parameterType="map" resultType="map" >
     SELECT * FROM LECTURESUB
     <choose>
-      <when test="title != null">
-        WHERE TITLE = #{title} AND KIND = #{kind} AND IS_DELETE = 1
+      <when test="reply != null">
+        WHERE REPLY = #{reply} AND IS_DELETE = 1
         ORDER BY WRITE_DATE
       </when>
       <otherwise>

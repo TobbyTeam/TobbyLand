@@ -127,7 +127,7 @@ public class LectureController {
 	}
 
 	@RequestMapping(value = "/boardConfirm", method = RequestMethod.POST)
-	public @ResponseBody boolean boardConfirm(@RequestParam int ls_id) {
+	public @ResponseBody boolean boardConfirm(@RequestParam("ls_id") int ls_id) {
 
 		return lectureService.boardConfirmService(ls_id);
 	}
@@ -159,6 +159,12 @@ public class LectureController {
 	public @ResponseBody boolean boardReplyReg(@RequestParam Map<String, java.io.Serializable> lectureSub) {
 
 		return lectureService.boardReplyRegService(lectureSub);
+	}
+
+	@RequestMapping(value = "/paging")
+	public String paging(@RequestParam Map<String, java.io.Serializable> param) throws Exception{
+
+		return "/paging";
 	}
 
 }

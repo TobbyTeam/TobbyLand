@@ -51,7 +51,7 @@
   <textarea name="contents" id="re_con" rows="3" cols="40" wrap="hard" placeholder="내용을 입력해주세요"></textarea><br/>
 
   <input type="hidden" name="lecture_id" value="${board.lecture_id}"/>
-  <input type="hidden" name="title" value="${board.ls_id}" />
+  <input type="hidden" name="reply" value="${board.ls_id}" />
   <input type="button" id="reReg_btn" value="등록">
 
 </form>

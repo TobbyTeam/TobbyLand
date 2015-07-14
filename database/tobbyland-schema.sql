@@ -150,6 +150,7 @@ CREATE TABLE lecturesub (
   kind int(10) unsigned DEFAULT '0',
   title varchar(45) DEFAULT NULL,
   contents varchar(45) DEFAULT NULL,
+  reply int(10) unsigned DEFAULT NULL,
   write_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   is_delete tinyint(4) unsigned DEFAULT '1',
   PRIMARY KEY (ls_id),

@@ -159,4 +159,7 @@
 		<property name="mailSender" ref="mailSender" />
 	</bean>
 
+	<!-- ========================= PAGING DEFINITION ========================= -->
+	<bean id="paging" class="kr.ac.kpu.ebiz.spring.tobbyproject.paging.Paging"/>
+
 </beans>
