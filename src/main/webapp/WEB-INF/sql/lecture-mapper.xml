@@ -113,7 +113,7 @@
       </when>
       <otherwise>
         WHERE LECTURE_ID = #{lecture_id} AND KIND = #{kind} AND IS_DELETE = 1
-        ORDER BY WRITE_DATE DESC
+        ORDER BY WRITE_DATE DESC LIMIT 15 OFFSET #{page}
       </otherwise>
     </choose>
   </select>
@@ -141,5 +141,9 @@
     IS_DELETE = 0
     WHERE LS_ID = #{ls_id}
   </update>
+
+  <select id="boardCount" parameterType="int" resultType="int" >
+    SELECT Count(LS_ID) FROM LECTURESUB WHERE LECTURE_ID = #{lecture_id} AND KIND = 2 AND IS_DELETE = 1
+  </select>
 
 </mapper>

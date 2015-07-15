@@ -3,10 +3,7 @@ package kr.ac.kpu.ebiz.spring.tobbyproject.controller;
 import kr.ac.kpu.ebiz.spring.tobbyproject.service.LectureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
@@ -89,12 +86,13 @@ public class LectureController {
 		return lectureService.isDeleteService(lecture_id);
 	}
 
-	@RequestMapping(value = "/boardList", method = RequestMethod.GET)
-	public ModelAndView boardList(@RequestParam("lecture_id") int lecture_id) {
+	@RequestMapping(value = "/boardList/{lecture_id}/{seq}", method = RequestMethod.GET)
 
-		ModelAndView mav = new ModelAndView("/lecture/boardList");
+	public ModelAndView board2(@PathVariable int lecture_id, @PathVariable String seq) {
 
-		lectureService.bodListService(lecture_id, mav);
+		ModelAndView mav = new ModelAndView();
+
+		lectureService.boardListService(lecture_id, seq, mav);
 
 		return mav;
 	}

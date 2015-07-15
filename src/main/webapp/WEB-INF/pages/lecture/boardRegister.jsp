@@ -25,7 +25,7 @@
 
         <input type="hidden" id="lecture_id" name="lecture_id" value="${lecture_id}"/>
         <input type="button" value="작성" onclick="$(this.form).submit()"/>&nbsp;&nbsp;&nbsp;
-        <input type="reset" value="취소" onclick="javascript:window.location='/lecture/boardList?lecture_id=${lecture_id}'"/>
+        <input type="reset" value="취소" onclick="javascript:window.location='/lecture/boardList/${lecture_id}/1'"/>
     </form>
 
 </body>

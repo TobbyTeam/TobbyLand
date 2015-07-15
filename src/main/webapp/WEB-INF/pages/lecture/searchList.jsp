@@ -1,6 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+
+	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
 <head><title>헬로 월드</title></head>
 <body>
 

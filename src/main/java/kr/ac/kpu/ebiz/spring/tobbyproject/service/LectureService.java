@@ -27,7 +27,7 @@ public interface LectureService {
 
     boolean isDeleteService(int lecture_id);
 
-    void bodListService(int lecture_id, ModelAndView mav);
+    void boardListService(int lecture_id, String seq, ModelAndView mav);
 
     boolean boardRegService(Map lectureSub);
 

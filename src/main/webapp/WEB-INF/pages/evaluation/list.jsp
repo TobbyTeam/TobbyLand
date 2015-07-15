@@ -15,7 +15,7 @@
 
 <jsp:include page="/evaluation/lecture?lecture_id=${lecture_id}" flush="true"/> <br />
 
-<a href="/evaluation/list?lecture_id=${lecture_id}">강의평가</a>&nbsp;&nbsp;<a href="/lecture/boardList?lecture_id=${lecture_id}">강의게시판</a>
+<a href="/evaluation/list?lecture_id=${lecture_id}">강의평가</a>&nbsp;&nbsp;<a href="/lecture/boardList/${lecture_id}/1">강의게시판</a>
 <br /> <br />
 
 <form action="/evaluation/searchPrefer" method="get">

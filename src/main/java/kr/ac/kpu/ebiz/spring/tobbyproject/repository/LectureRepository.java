@@ -46,5 +46,7 @@ public interface LectureRepository {
 	boolean boardMod(Map lectureSub);
 
 	boolean boardIsDelete(int ls_id);
+
+	int boardCount(int lectureId);
 }
 

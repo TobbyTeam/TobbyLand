@@ -86,4 +86,9 @@ public class LectureRepositoryImpl extends SqlSessionDaoSupport implements Lectu
 	public boolean boardIsDelete(int ls_id) {
 		return getSqlSession().update("LectureRepository.boardIsDelete", ls_id) > 0;
 	}
+
+	public int boardCount(int lectureId) {
+		return getSqlSession().selectOne("LectureRepository.boardCount", lectureId);
+	}
+
 }
