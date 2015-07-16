@@ -101,21 +101,24 @@
   </insert>
 
   <select id="selectSub" parameterType="map" resultType="int" >
-    SELECT Count(LS_ID) FROM LECTURESUB WHERE LECTURE_ID = #{lecture_id} AND MEMBER_ID = #{member_id} AND KIND = #{kind}
+    SELECT Count(LS_ID) FROM LECTURESUB WHERE LECTURE_ID = #{lecture_id} AND MEMBER_ID = #{member_id} AND KIND = 1
   </select>
 
   <select id="boardAll" parameterType="map" resultType="map" >
-    SELECT * FROM LECTURESUB
-    <choose>
-      <when test="reply != null">
-        WHERE REPLY = #{reply} AND IS_DELETE = 1
+        SELECT B.*
+        FROM (
+        SELECT @RNUM:=@RNUM-1 as rnum , A.ls_id, A.title, A.write_date
+        FROM (SELECT @RNUM:= #{total}+1) R,
+        (SELECT * FROM LECTURESUB
+        WHERE LECTURE_ID = #{lecture_id} AND KIND = 2 AND IS_DELETE = 1
+        ORDER BY WRITE_DATE DESC) AS A) AS B
+        LIMIT 15 OFFSET #{page}
+  </select>
+
+  <select id="boardReplyAll" parameterType="int" resultType="map" >
+        SELECT * FROM LECTURESUB
+        WHERE REPLY = #{ls_id} AND IS_DELETE = 1
         ORDER BY WRITE_DATE
-      </when>
-      <otherwise>
-        WHERE LECTURE_ID = #{lecture_id} AND KIND = #{kind} AND IS_DELETE = 1
-        ORDER BY WRITE_DATE DESC LIMIT 15 OFFSET #{page}
-      </otherwise>
-    </choose>
   </select>
 
   <select id="boardOne" resultType="map" >

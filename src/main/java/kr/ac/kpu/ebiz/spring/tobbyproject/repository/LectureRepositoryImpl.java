@@ -75,6 +75,10 @@ public class LectureRepositoryImpl extends SqlSessionDaoSupport implements Lectu
 		return getSqlSession().selectOne("LectureRepository.boardOne", ls_id);
 	}
 
+	public List<Map> boardReplyAll(int ls_id) {
+		return getSqlSession().selectList("LectureRepository.boardReplyAll", ls_id);
+	}
+
 	public String boardMember(int ls_id) {
 		return getSqlSession().selectOne("LectureRepository.boardMember", ls_id);
 	}

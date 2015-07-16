@@ -25,11 +25,13 @@
 
 	<table border="1">
 		<tr>
+			<td>글번호</td>
 			<td>제목</td>
 			<td>작성일</td>
 		</tr>
 		<c:forEach var="board" items="${boards}" varStatus="status">
 		<tr>
+			<td>${board.rnum}</td>
 			<td><a href="/lecture/boardView?ls_id=${board.ls_id}">${board.title}</a></td>
 			<td>${board.write_date}</td>
 		</tr>
@@ -38,71 +40,60 @@
 
 	<a href="/lecture/boardRegForm?lecture_id=${lecture_id}">글작성</a><br/><br/>
 
-<div class="col-xs-8">
+<c:out value="${current}"/><br />
 
-	<c:if test="${not empty boards}">
+	<div class="paginate">
 
-	<ul class="pagination pagination-sm" style="margin-top:0px;">
+		<c:if test="${not empty boards}">
 
+			<a href="/lecture/boardList/${lecture_id}/1" class="first">처음&nbsp;</a>
 
-		<li style="float: left"><a href="/lecture/boardList/${lecture_id}/1">처음&nbsp;</a></li>
+			<!-- 시작페이지가 1부터면 이전 표시("<<") ​ 안함 -->
 
+			<c:if test="${start-1 ==0 }">
 
-		<!-- 시작페이지가 1부터면 이전 표시("<<") ​ 안함 -->
+			</c:if>
 
-		<c:if test="${start-1 ==0 }">
+			<!-- 시작페이지가 1이 아니면 << 이전 표시.  링크는 시작페이지가 6부터 10까지일 경우 5페이지를 가르킴 -->​
 
+			<c:if test="${start-1!=0 }">
 
+				<a href="/lecture/boardList/${lecture_id}/${start-1}" class="prev">&laquo;&nbsp;</a>
 
-		</c:if>
+			</c:if>
 
-		<!-- 시작페이지가 1이 아니면 << 이전 표시.  링크는 시작페이지가 6부터 10까지일 경우 5페이지를 가르킴 -->​
+			<!-- 10개씩 페이지 표시-->​
+			<span>
+				<c:forEach var="i" begin="${start}" end="${end}" step="1">
+					<c:choose>
+						<c:when test="${i eq current}">
+							<a href="/lecture/boardList/${lecture_id}/${i}" style="color:#00FF00">${i}&nbsp;</a>
+						</c:when>
+						<c:otherwise>
+							<a href="/lecture/boardList/${lecture_id}/${i}">${i}&nbsp;</a>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</span>
 
+			<!-- end페이지 번호가 5, 10 인데 전체 페이지 갯수가 end페이지 보다 크면 다음 페이징 바로가기 표시  (">>")​ .-->​
 
+			<c:if test="${end % 5 == 0 && pageNum > end}">
 
-		<c:if test="${start-1!=0 }">
+				<a href="/lecture/boardList/${lecture_id}/${end+1}" class="next">&nbsp;&raquo;</a>
 
-			<li style="float: left"><a href="/lecture/boardList/${lecture_id}/${start-1}">&laquo;&nbsp;</a></li>
+			</c:if>
 
-		</c:if>
+			<!-- 마지막 페이지 번호와 전체 페이지 번호가 같으면서 5개 단위가 아니면 다음바로가기 표시 않함 -->​​
 
-		<!-- 5개씩 페이지 표시-->​
+			<c:if test="${end % 5 != 0 && end == pageNum }">
 
+			</c:if>
 
-
-		<c:forEach var="i" begin="${start }" end="${end }">
-
-			<li style="float: left" id="page${i }"><a href="/lecture/boardList/${lecture_id}/${i}">${i}&nbsp;</a> </li>
-
-		</c:forEach>
-
-		<!-- end페이지 번호가 5, 10 인데 전체 페이지 갯수가 end페이지 보다 크면 다음 페이징 바로가기 표시  (">>")​ .-->​
-
-
-
-		<c:if test="${end % 5 == 0 && pageNum > end}">
-
-			<li style="float: left"><a href="/lecture/boardList/${lecture_id}/${end+1}">&nbsp;&raquo;</a></li>
-
-		</c:if>
-
-		<!-- 마지막 페이지 번호와 전체 페이지 번호가 같으면서 5개 단위가 아니면 다음바로가기 표시 않함 -->​​
-
-
-
-		<c:if test="${end % 5 != 0 && end == pageNum }">
-
-
+			<a href="/lecture/boardList/${lecture_id}/${finalEnd}" class="last">&nbsp;마지막</a>
 
 		</c:if>
-
-		<li style="float: left"><a href="/lecture/boardList/${lecture_id}/${finalEnd}">&nbsp;마지막</a></li>
-
-	</ul>
-
-	</c:if>
-
-</div>
+	</div>
 
 </body>
 </html>

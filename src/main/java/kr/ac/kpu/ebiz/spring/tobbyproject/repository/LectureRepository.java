@@ -41,6 +41,8 @@ public interface LectureRepository {
 
 	Map boardOne(int ls_id);
 
+	List<Map> boardReplyAll(int ls_id);
+
 	String boardMember(int ls_id);
 
 	boolean boardMod(Map lectureSub);

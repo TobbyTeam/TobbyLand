@@ -117,12 +117,10 @@ public class LectureServiceImpl implements LectureService{
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
-        int kind = 1;
 
         Map lectureSub = new HashMap();
         lectureSub.put("lecture_id", lecture_id);
         lectureSub.put("member_id", member_id);
-        lectureSub.put("kind", kind);
 
         int count = lectureRepository.selectSub(lectureSub);
 
@@ -160,10 +158,10 @@ public class LectureServiceImpl implements LectureService{
 
         try{
             // 시작페이지 설정 1~5 페이지 일경우 1​​
-            startPage = (Integer.parseInt(seq) - 1) / 5 * 5 + 1;
+            startPage = (Integer.parseInt(seq) - 1) / 10 * 10 + 1;
 
             //ex) 현재 6페이지 일경우 (6-1) /5 * 5 +1 = 1 -> 6 페이지 부터 시작​​
-            endPage = startPage + 5 - 1;
+            endPage = startPage + 10 - 1;
 
             if (seq != null && seq != "") {
                 if (!seq.equals("1")) {
@@ -201,14 +199,14 @@ public class LectureServiceImpl implements LectureService{
             endPage = pageNum;
         }
 
-        mav.setViewName("/lecture/boardList");
+        int current = Integer.parseInt(seq);
 
-        int kind = 2;
+        mav.setViewName("/lecture/boardList");
 
         Map lectureSub = new HashMap();
         lectureSub.put("lecture_id", lecture_id);
-        lectureSub.put("kind", kind);
         lectureSub.put("page", page);
+        lectureSub.put("total", rownum);
 
         List<Map> boards = lectureRepository.boardAll(lectureSub);
 
@@ -217,6 +215,8 @@ public class LectureServiceImpl implements LectureService{
         mav.addObject("start", startPage);
         mav.addObject("end", endPage);
         mav.addObject("finalEnd", finalEndPage);
+        mav.addObject("current", current);
+        System.out.println(seq+"페이지확인");
 
     }
 
@@ -241,11 +241,8 @@ public class LectureServiceImpl implements LectureService{
 
     public void boardViewService(int ls_id, ModelAndView mav) {
 
-        Map lectureSub = new HashMap();
-        lectureSub.put("reply", ls_id);
-
         mav.addObject("board", lectureRepository.boardOne(ls_id));
-        mav.addObject("replys", lectureRepository.boardAll(lectureSub));
+        mav.addObject("replys", lectureRepository.boardReplyAll(ls_id));
 
     }
 
