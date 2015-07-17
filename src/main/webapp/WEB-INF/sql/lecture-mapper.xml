@@ -107,11 +107,11 @@
   <select id="boardAll" parameterType="map" resultType="map" >
         SELECT B.*
         FROM (
-        SELECT @RNUM:=@RNUM-1 as rnum , A.ls_id, A.title, A.write_date
+        SELECT @RNUM:=@RNUM-1 AS rnum , A.ls_id, A.title, A.write_date
         FROM (SELECT @RNUM:= #{total}+1) R,
         (SELECT * FROM LECTURESUB
         WHERE LECTURE_ID = #{lecture_id} AND KIND = 2 AND IS_DELETE = 1
-        ORDER BY WRITE_DATE DESC) AS A) AS B
+        ORDER BY WRITE_DATE DESC) A) B
         LIMIT 15 OFFSET #{page}
   </select>
 
