@@ -50,5 +50,8 @@ public interface LectureRepository {
 	boolean boardIsDelete(int ls_id);
 
 	int boardCount(int lectureId);
+
+	String boardRnum(int lectureId);
+
 }
 

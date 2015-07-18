@@ -148,6 +148,7 @@ CREATE TABLE lecturesub (
   lecture_id int(10) unsigned DEFAULT NULL,
   member_id varchar(45) DEFAULT NULL,
   kind int(10) unsigned DEFAULT '0',
+  rnum int(10) unsigned DEFAULT NULL,
   title varchar(45) DEFAULT NULL,
   contents varchar(45) DEFAULT NULL,
   reply int(10) unsigned DEFAULT NULL,

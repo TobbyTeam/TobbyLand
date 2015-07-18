@@ -225,10 +225,29 @@ public class LectureServiceImpl implements LectureService{
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String member_id = user.getUsername();
 
+        int lecture_id = Integer.parseInt((String)lectureSub.get("lecture_id"));
+
+        System.out.println(lecture_id+"강의아이디 확인");
+
         int kind = 2;
+
+        String maxRnum = lectureRepository.boardRnum(lecture_id);
+
+        System.out.println(maxRnum+"기존 로넘버 확인");
+
+        int rnum;
+
+        if(maxRnum == null){
+            rnum = 1;
+        } else {
+            rnum = Integer.parseInt(maxRnum) +1;
+        }
+
+        System.out.println(rnum+"새로운 로넘버 확인");
 
         lectureSub.put("member_id", member_id);
         lectureSub.put("kind", kind);
+        lectureSub.put("rnum", rnum);
 
         boolean result = false;
 

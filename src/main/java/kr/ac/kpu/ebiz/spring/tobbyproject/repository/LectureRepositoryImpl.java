@@ -95,4 +95,8 @@ public class LectureRepositoryImpl extends SqlSessionDaoSupport implements Lectu
 		return getSqlSession().selectOne("LectureRepository.boardCount", lectureId);
 	}
 
+	public String boardRnum(int lectureId) {
+		return getSqlSession().selectOne("LectureRepository.boardRnum", lectureId);
+	}
+
 }

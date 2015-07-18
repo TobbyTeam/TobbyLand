@@ -96,15 +96,15 @@
   </update>
 
   <insert id="insertSub" parameterType="map">
-    INSERT INTO LECTURESUB (lecture_id, member_id, kind, title, contents, reply)
-    VALUES (#{lecture_id},#{member_id},#{kind},#{title},#{contents}, #{reply})
+    INSERT INTO LECTURESUB (lecture_id, member_id, kind, rnum, title, contents, reply)
+    VALUES (#{lecture_id},#{member_id},#{kind},#{rnum},#{title},#{contents}, #{reply})
   </insert>
 
   <select id="selectSub" parameterType="map" resultType="int" >
     SELECT Count(LS_ID) FROM LECTURESUB WHERE LECTURE_ID = #{lecture_id} AND MEMBER_ID = #{member_id} AND KIND = 1
   </select>
 
-  <select id="boardAll" parameterType="map" resultType="map" >
+<!--  <select id="boardAll" parameterType="map" resultType="map" >
         SELECT B.*
         FROM (
         SELECT @RNUM:=@RNUM-1 AS rnum , A.ls_id, A.title, A.write_date
@@ -113,6 +113,14 @@
         WHERE LECTURE_ID = #{lecture_id} AND KIND = 2 AND IS_DELETE = 1
         ORDER BY WRITE_DATE DESC) A) B
         LIMIT 15 OFFSET #{page}
+  </select>-->
+
+  <select id="boardAll" parameterType="map" resultType="map" >
+    SELECT rnum , ls_id, title, write_date
+    FROM LECTURESUB
+    WHERE LECTURE_ID = #{lecture_id} AND KIND = 2 AND IS_DELETE = 1
+    ORDER BY RNUM DESC
+    LIMIT 15 OFFSET #{page}
   </select>
 
   <select id="boardReplyAll" parameterType="int" resultType="map" >
@@ -147,6 +155,12 @@
 
   <select id="boardCount" parameterType="int" resultType="int" >
     SELECT Count(LS_ID) FROM LECTURESUB WHERE LECTURE_ID = #{lecture_id} AND KIND = 2 AND IS_DELETE = 1
+  </select>
+
+  <select id="boardRnum" parameterType="int" resultType="String" >
+    SELECT MAX(rnum) AS rnum
+    FROM LECTURESUB
+    WHERE LECTURE_ID = #{lecture_id} AND KIND = 2 AND IS_DELETE = 1
   </select>
 
 </mapper>
