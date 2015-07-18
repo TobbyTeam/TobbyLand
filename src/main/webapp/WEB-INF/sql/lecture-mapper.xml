@@ -9,9 +9,9 @@
 
   <select id="selectIAN" resultType="map">
 
-    SELECT L.LECTURE_ID as lecture_id, L.LECTURE_NAME as lecture_name, L.DEPT as dept, L.PROF as prof, Count(IF(E.IS_DELETE = 1,1,NULL)) as count
+    SELECT L.*, Count(IF(E.IS_DELETE = 1,1,NULL)) as count
     FROM LECTURE L LEFT OUTER JOIN EVALUATION E ON E.LECTURE_ID = L.LECTURE_ID
-    WHERE L.LECTURE_ID = #{lecture_id}/* AND (E.IS_DELETE <![CDATA[ = ]]> 1 OR E.IS_DELETE iS NULL)*/
+    WHERE L.LECTURE_ID = #{lecture_id}
     GROUP BY L.LECTURE_ID
 
   </select>
@@ -29,7 +29,7 @@
   </select>
 
   <select id="selectSearch" parameterType="map" resultType="map">
-    SELECT L.LECTURE_ID as lecture_id, L.LECTURE_NAME as lecture_name, L.DEPT as dept, L.PROF as prof, SUM(IF(E.IS_DELETE = 1,1,0)) as count
+    SELECT L.*, SUM(IF(E.IS_DELETE = 1,1,0)) as count
     FROM LECTURE L LEFT OUTER JOIN EVALUATION E ON E.LECTURE_ID = L.LECTURE_ID
     WHERE L.LIKES <![CDATA[ >= ]]> 10 AND L.IS_DELETE = 1
     <choose><when test="searchType != null and searchType.equalsIgnoreCase('lecture_name')">AND L.LECTURE_NAME LIKE CONCAT('%', #{searchWord}, '%')</when>

@@ -135,10 +135,10 @@
 		<td>총평</td>
 		<td>점수</td>
 		<td>작성일</td>
+		<td>댓글수</td>
 		<td>추천수</td>
 		<td>비공감수</td>
 		<td>신고수</td>
-
 	</tr>
 	<c:forEach var="evaluation" items="${evaluations}" varStatus="status">
 		<tr>
@@ -152,6 +152,7 @@
 			<td>${evaluation.comment}</td>
 			<td>${evaluation.score}</td>
 			<td>${evaluation.write_date}</td>
+			<td>${evaluation.count}</td>
 			<td><input type="button" value="추천(${evaluation.likes})" onclick="evalLikeAjax(${evaluation.evaluation_id})"></td>
 			<td><input type="button" value="비공감(${evaluation.dislike})" onclick="evalDislikeAjax(${evaluation.evaluation_id})"></td>
 			<td><input type="button" value="신고(${evaluation.report})" onclick="evalReportAjax(${evaluation.evaluation_id})"></td>

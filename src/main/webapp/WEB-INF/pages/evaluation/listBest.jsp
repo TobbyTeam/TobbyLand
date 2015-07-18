@@ -22,6 +22,7 @@
 		<td>총평</td>
 		<td>점수</td>
 		<td>작성일</td>
+		<td>댓글수</td>
 		<td>추천수</td>
 		<td>비공감수</td>
 		<td>신고수</td>
@@ -39,6 +40,7 @@
 			<td>${best.comment}</td>
 			<td>${best.score}</td>
 			<td>${best.write_date}</td>
+			<td>${best.count}</td>
 			<td><input type="button" value="추천(${best.likes})" onclick="evalLikeAjax(${best.evaluation_id})"></td>
 			<td><input type="button" value="비공감(${best.dislike})" onclick="evalDislikeAjax(${best.evaluation_id})"></td>
 			<td><input type="button" value="신고(${best.report})" onclick="evalReportAjax(${best.evaluation_id})"></td>
