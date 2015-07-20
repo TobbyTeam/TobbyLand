@@ -316,7 +316,7 @@ public class LectureServiceImpl implements LectureService{
         return result;
     }
 
-    public boolean boardIsDeleteService(int ls_id) {
+    public boolean subIsDeleteService(int ls_id) {
 
         boolean data = false;
 

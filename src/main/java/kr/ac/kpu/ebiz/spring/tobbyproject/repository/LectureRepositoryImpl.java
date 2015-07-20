@@ -48,6 +48,11 @@ public class LectureRepositoryImpl extends SqlSessionDaoSupport implements Lectu
 		return getSqlSession().selectOne("LectureRepository.selectBoardMember_id", ls_id);
 	}
 
+	public Map selectLecture_E(int lecture_id) {
+		return getSqlSession().selectOne("LectureRepository.selectLecture_E", lecture_id);
+	}
+
+
 
 	/*insert*/
 
@@ -88,9 +93,6 @@ public class LectureRepositoryImpl extends SqlSessionDaoSupport implements Lectu
 
 
 
-	public Map selectIAN(int lecture_id) {
-		return getSqlSession().selectOne("LectureRepository.selectIAN", lecture_id);
-	}
 
 	public List<Map> selectAdmin() {
 		return getSqlSession().selectList("LectureRepository.selectAdmin");

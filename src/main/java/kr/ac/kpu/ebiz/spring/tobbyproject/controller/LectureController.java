@@ -147,10 +147,10 @@ public class LectureController {
 		return lectureService.boardModService(lectureSub);
 	}
 
-	@RequestMapping(value = "/boardIsDelete", method = RequestMethod.POST)
+	@RequestMapping(value = "/subIsDelete", method = RequestMethod.POST)
 	public @ResponseBody boolean boardIsDelete(@RequestParam("ls_id") int ls_id)	{
 
-		return lectureService.boardIsDeleteService(ls_id);
+		return lectureService.subIsDeleteService(ls_id);
 	}
 
 	@RequestMapping(value = "/boardReplyReg", method = RequestMethod.POST)

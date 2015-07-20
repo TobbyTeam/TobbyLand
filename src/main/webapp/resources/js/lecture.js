@@ -88,7 +88,7 @@ function reDeleteAjax(ls_id) {
 				if (confirm("정말 삭제하시겠습니까?")) {
 					$.ajax({
 						type: "POST",
-						url: "/lecture/boardIsDelete",
+						url: "/lecture/subIsDelete",
 						dataType: "json",
 						data: {ls_id: ls_id},
 						success: function (data) {
@@ -159,7 +159,7 @@ $(document).ready(function() {
 					if (confirm("정말 삭제하시겠습니까?")) {
 						$.ajax({
 							type: "POST",
-							url: "/lecture/boardIsDelete",
+							url: "/lecture/subIsDelete",
 							dataType: "json",
 							data: {ls_id: ls_id},
 							success: function (data) {

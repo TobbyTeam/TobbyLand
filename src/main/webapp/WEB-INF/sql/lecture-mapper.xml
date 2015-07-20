@@ -72,6 +72,13 @@
     SELECT member_id FROM LECTURESUB WHERE LS_ID = #{ls_id}
   </select>
 
+  <select id="selectLecture_E" parameterType="int" resultType="map">
+    SELECT L.*, Count(IF(E.IS_DELETE = 1,1,NULL)) as count
+    FROM LECTURE L LEFT OUTER JOIN EVALUATION E ON E.LECTURE_ID = L.LECTURE_ID
+    WHERE L.LECTURE_ID = #{lecture_id}
+    GROUP BY L.LECTURE_ID
+  </select>
+
 
   <!--insert-->
 
@@ -135,14 +142,6 @@
 
 
 
-
-
-  <select id="selectIAN" parameterType="int" resultType="map">
-    SELECT L.*, Count(IF(E.IS_DELETE = 1,1,NULL)) as count
-    FROM LECTURE L LEFT OUTER JOIN EVALUATION E ON E.LECTURE_ID = L.LECTURE_ID
-    WHERE L.LECTURE_ID = #{lecture_id}
-    GROUP BY L.LECTURE_ID
-  </select>
 
   <select id="selectAdmin" resultType="map">
     SELECT * FROM LECTURE ORDER BY WRITE_DATE DESC

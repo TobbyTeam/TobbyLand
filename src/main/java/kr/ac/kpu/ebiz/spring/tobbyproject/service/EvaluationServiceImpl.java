@@ -36,7 +36,7 @@ public class EvaluationServiceImpl implements EvaluationService {
 
     public void lectureService(int lecture_id, ModelAndView mav) {
 
-        mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
+        mav.addObject("lecture", lectureRepository.selectLecture_E(lecture_id));
 
     }
 
@@ -277,7 +277,7 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         mav.addObject("search", search);
         mav.addObject("evaluations", result);
-        mav.addObject("lecture", lectureRepository.selectIAN(lecture_id));
+        mav.addObject("lecture", lectureRepository.selectLecture_E(lecture_id));
         mav.addObject("lecture_id", lecture_id);
 
         if(result.isEmpty() == true){

@@ -27,6 +27,7 @@ public interface LectureRepository {
 
 	int selectBoardMember_id(int ls_id);
 
+	Map selectLecture_E(int lecture_id);
 
 
 
@@ -56,7 +57,6 @@ public interface LectureRepository {
 
 
 
-	Map selectIAN(int lecture_id);
 
 	List<Map> selectAdmin();
 
