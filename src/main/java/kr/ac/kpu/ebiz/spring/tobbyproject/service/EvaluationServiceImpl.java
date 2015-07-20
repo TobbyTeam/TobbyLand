@@ -23,14 +23,14 @@ public class EvaluationServiceImpl implements EvaluationService {
 
     public void listService(int lecture_id, ModelAndView mav) {
 
-        mav.addObject("evaluations", evaluationRepository.selectL(lecture_id));
+        mav.addObject("evaluations", evaluationRepository.selectEvaluationAll(lecture_id));
         mav.addObject("lecture_id", lecture_id);
 
     }
 
     public void listBestService(int lecture_id, ModelAndView mav) {
 
-        mav.addObject("best", evaluationRepository.selectBest(lecture_id));
+        mav.addObject("best", evaluationRepository.selectEvaluationBest(lecture_id));
 
     }
 
@@ -43,13 +43,13 @@ public class EvaluationServiceImpl implements EvaluationService {
     public boolean regChechService(int lecture_id) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String member_id = user.getUsername();
+        int member_id = user.getMember_id();
 
-        HashMap check = new HashMap();
-        check.put("lecture_id", lecture_id);
-        check.put("member_id", member_id);
+        HashMap evaluation = new HashMap();
+        evaluation.put("lecture_id", lecture_id);
+        evaluation.put("member_id", member_id);
 
-        int count = evaluationRepository.selectCount(check);
+        int count = evaluationRepository.selectEvaluationCount(evaluation);
 
         boolean result = false;
 
@@ -63,13 +63,13 @@ public class EvaluationServiceImpl implements EvaluationService {
     public void regFormService(int lecture_id, ModelAndView mav) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String member_id = user.getUsername();
+        int member_id = user.getMember_id();
 
-        HashMap check = new HashMap();
-        check.put("lecture_id", lecture_id);
-        check.put("member_id", member_id);
+        HashMap evaluation = new HashMap();
+        evaluation.put("lecture_id", lecture_id);
+        evaluation.put("member_id", member_id);
 
-        int count = evaluationRepository.selectCount(check);
+        int count = evaluationRepository.selectEvaluationCount(evaluation);
 
         if(count != 0) {
 
@@ -94,10 +94,7 @@ public class EvaluationServiceImpl implements EvaluationService {
 
             mav.setViewName("/evaluation/register");
 
-            HashMap evaluation = new HashMap();
-            evaluation.put("lecture_id", lecture_id);
-
-            mav.addObject("evaluation", evaluation);
+            mav.addObject("lecture_id", lecture_id);
             mav.addObject("semesters", semesterRepository.selectAll());
             mav.addObject("current", current);
         }
@@ -107,13 +104,13 @@ public class EvaluationServiceImpl implements EvaluationService {
     public boolean regService(Map evaluation) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String member_id = user.getUsername();
+        int member_id = user.getMember_id();
 
         evaluation.put("member_id", member_id);
 
         boolean result = false;
 
-        if(evaluationRepository.insert(evaluation)){
+        if(evaluationRepository.insertEvaluation(evaluation)){
             result = true;
         }
 
@@ -123,15 +120,15 @@ public class EvaluationServiceImpl implements EvaluationService {
     public boolean confirmService(int evaluation_id) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String member_id = user.getUsername();
+        int member_id = user.getMember_id();
 
-        String writer = evaluationRepository.selectMember(evaluation_id);
+        int writer = evaluationRepository.selectMember_id(evaluation_id);
 
         Collection authorities = user.getAuthorities();
 
         boolean result = false;
 
-        if(member_id.equals(writer) == true || authorities.toString().contains("ROLE_ADMIN")){
+        if(member_id == writer || authorities.toString().contains("ROLE_ADMIN")){
             result = true;
         }
 
@@ -141,17 +138,16 @@ public class EvaluationServiceImpl implements EvaluationService {
     public void viewService(int lecture_id, int evaluation_id, ModelAndView mav) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String member_id = user.getUsername();
+        int member_id = user.getMember_id();
 
-        String writer = evaluationRepository.selectMember(evaluation_id);
+        int writer = evaluationRepository.selectMember_id(evaluation_id);
 
         Collection authorities = user.getAuthorities();
 
-        if(member_id.equals(writer) == true || authorities.toString().contains("ROLE_ADMIN")){
+        if(member_id == writer || authorities.toString().contains("ROLE_ADMIN")){
 
             mav.setViewName("/evaluation/modify");
-            Map evaluation = evaluationRepository.select(evaluation_id);
-            mav.addObject("evaluation", evaluation);
+            mav.addObject("evaluation", evaluationRepository.selectEvaluation(evaluation_id));
             mav.addObject("semesters", semesterRepository.selectAll());
 
         } else {
@@ -164,11 +160,9 @@ public class EvaluationServiceImpl implements EvaluationService {
 
     public boolean modService(Map evaluation) {
 
-/*        int lecture_id =  Integer.parseInt(evaluation.get("lecture_id").toString());*/
-
         boolean result = false;
 
-        if(evaluationRepository.update(evaluation)){
+        if(evaluationRepository.updateEvaluation(evaluation)){
             result = true;
         }
 
@@ -178,7 +172,7 @@ public class EvaluationServiceImpl implements EvaluationService {
     public int likesService(int evaluation_id) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String member_id = user.getUsername();
+        int member_id = user.getMember_id();
 
         HashMap evaluationSub = new HashMap();
         evaluationSub.put("evaluation_id", evaluation_id);
@@ -195,7 +189,7 @@ public class EvaluationServiceImpl implements EvaluationService {
         } else {
             evaluationSub.put("kind", kind);
             evaluationRepository.insertSub(evaluationSub);
-            evaluationRepository.updateLike(evaluation_id);
+            evaluationRepository.updateEvaluationLike(evaluation_id);
             result = 0;
         }
 
@@ -205,7 +199,7 @@ public class EvaluationServiceImpl implements EvaluationService {
     public int dislikeService(int evaluation_id) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String member_id = user.getUsername();
+        int member_id = user.getMember_id();
 
         HashMap evaluationSub = new HashMap();
         evaluationSub.put("evaluation_id", evaluation_id);
@@ -222,7 +216,7 @@ public class EvaluationServiceImpl implements EvaluationService {
         } else {
             evaluationSub.put("kind", kind);
             evaluationRepository.insertSub(evaluationSub);
-            evaluationRepository.updateDislike(evaluation_id);
+            evaluationRepository.updateEvaluationDislike(evaluation_id);
             result = 0;
         }
 
@@ -233,7 +227,7 @@ public class EvaluationServiceImpl implements EvaluationService {
     public int reportService(int evaluation_id) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String member_id = user.getUsername();
+        int member_id = user.getMember_id();
 
         HashMap evaluationSub = new HashMap();
         evaluationSub.put("evaluation_id", evaluation_id);
@@ -250,7 +244,7 @@ public class EvaluationServiceImpl implements EvaluationService {
         } else {
             evaluationSub.put("kind", kind);
             evaluationRepository.insertSub(evaluationSub);
-            evaluationRepository.updateReport(evaluation_id);
+            evaluationRepository.updateEvaluationReport(evaluation_id);
             result = 0;
         }
 
@@ -262,7 +256,7 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         boolean data = false;
 
-        if(evaluationRepository.isDelete(evaluation_id)){
+        if(evaluationRepository.updateUnisDelete(evaluation_id)){
             data = true;
         }
 
@@ -271,7 +265,7 @@ public class EvaluationServiceImpl implements EvaluationService {
 
     public void searchPreferService(Map search, ModelAndView mav) {
 
-        List<Map> result = evaluationRepository.SearchPrefer(search);
+        List<Map> result = evaluationRepository.SearchEvaluationPrefer(search);
 
         int lecture_id =  Integer.parseInt(search.get("lecture_id").toString());
 
@@ -289,7 +283,7 @@ public class EvaluationServiceImpl implements EvaluationService {
 
     public void replyService(int evaluation_id, ModelAndView mav) {
 
-        mav.addObject("replys", evaluationRepository.selectRe(evaluation_id));
+        mav.addObject("replys", evaluationRepository.selectReplyAll(evaluation_id));
         mav.addObject("evaluation_id", evaluation_id);
 
     }
@@ -297,7 +291,7 @@ public class EvaluationServiceImpl implements EvaluationService {
     public boolean replyRegService(Map evaluationSub) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String member_id = user.getUsername();
+        int member_id = user.getMember_id();
 
         int kind = 4;
 
@@ -317,15 +311,15 @@ public class EvaluationServiceImpl implements EvaluationService {
     public boolean reConfirmService(int es_id) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String member_id = user.getUsername();
+        int member_id = user.getMember_id();
 
-        String writer = evaluationRepository.selectReMember(es_id);
+        int writer = evaluationRepository.selectReplyMember_id(es_id);
 
         Collection authorities = user.getAuthorities();
 
         boolean result = false;
 
-        if(member_id.equals(writer) == true || authorities.toString().contains("ROLE_ADMIN")){
+        if(member_id == writer || authorities.toString().contains("ROLE_ADMIN")){
             result = true;
         }
 
@@ -335,7 +329,7 @@ public class EvaluationServiceImpl implements EvaluationService {
     public boolean reIsDeleteService(int es_id) {
         boolean data = false;
 
-        if(evaluationRepository.reIsDelete(es_id)){
+        if(evaluationRepository.updateReplyUnisDelete(es_id)){
             data = true;
         }
 

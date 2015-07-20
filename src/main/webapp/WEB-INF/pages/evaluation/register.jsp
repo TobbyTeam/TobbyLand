@@ -35,7 +35,7 @@
     시험: <input type="text" name="exam"><br/>
     총평: <input type="text" name="comment"><br/>
     점수: <input type="text" name="score"><br/>
-          <input type="hidden" id="lecture_id" name="lecture_id" value="${evaluation.lecture_id}"/>
+          <input type="hidden" id="lecture_id" name="lecture_id" value="${lecture_id}"/>
           <input type="submit" value="등록">
 
 </form>

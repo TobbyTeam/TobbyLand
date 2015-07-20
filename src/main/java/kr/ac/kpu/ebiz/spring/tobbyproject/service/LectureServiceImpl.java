@@ -232,6 +232,8 @@ public class LectureServiceImpl implements LectureService{
 
         int lecture_id = Integer.parseInt((String)lectureSub.get("lecture_id"));
 
+/*        int lecture_id =  Integer.parseInt(lectureSub.get("lecture_id").toString());*/
+
         String maxRnum = lectureRepository.selectBoardMaxRnum(lecture_id);
 
         int rnum;

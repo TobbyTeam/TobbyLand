@@ -5,11 +5,64 @@ import java.util.Map;
 
 public interface EvaluationRepository {
 
-	Map select(Integer evaluationId);
+	/*select*/
 
-	int selectCount(Map evaluation);
+	List<Map> selectEvaluationAll(int lecture_id);
 
-	String selectMember(Integer evaluationId);
+	List<Map> selectEvaluationBest(int lecture_id);
+
+	int selectEvaluationCount(Map evaluation);
+
+	int selectMember_id(int evaluation_id);
+
+	Map selectEvaluation(int evaluation_id);
+
+	int selectSubCount(Map evaluationSub);
+
+	int selectSubType(Map evaluationSub);
+
+	List<Map> SearchEvaluationPrefer(Map search);
+
+	List<Map> selectReplyAll(int evaluation_id);
+
+	int selectReplyMember_id(int es_id);
+
+
+
+
+	/*insert*/
+
+	boolean insertEvaluation(Map evaluation);
+
+	boolean insertSub(Map Sub);
+
+
+
+
+	/*update*/
+
+	boolean updateEvaluation(Map evaluation);
+
+	boolean updateEvaluationLike(int evaluation_id);
+
+	boolean updateEvaluationDislike(int evaluation_id);
+
+	boolean updateEvaluationReport(int evaluation_id);
+
+	boolean updateUnisDelete(int evaluation_id);
+
+	boolean updateReplyUnisDelete(int es_id);
+
+
+
+	/*delete*/
+
+	boolean delete(int evaluation_id);
+
+
+
+
+
 
 	List<Map> selectAll();
 
@@ -17,43 +70,11 @@ public interface EvaluationRepository {
 
 	List<Map> selectReport();
 
-	List<Map> selectL(Integer lectureId);
-
-	List<Map> selectBest(Integer lectureId);
-
 	List<Map> selectSearchAdmin(Map search);
-
-	List<Map> SearchPrefer(Map search);
-
-	boolean delete(Integer evaluationId);
-
-	boolean isDelete(Integer evaluationId);
 
 	boolean isUndelete(Integer evaluationId);
 
-	boolean insert(Map evaluation);
-
-	boolean update(Map evaluation);
-
 	boolean updateAdmin(Map evaluation);
-
-	boolean updateLike(Integer evaluationId);
-
-	boolean updateDislike(Integer evaluationId);
-
-	boolean updateReport(Integer evaluationId);
-
-	boolean insertSub(Map Sub);
-
-	int selectSubCount(Map Sub);
-
-	int selectSubType(Map Sub);
-
-	List<Map> selectRe(Integer evaluationId);
-
-	String selectReMember(Integer es_id);
-
-	boolean reIsDelete(Integer es_id);
 
 }
 

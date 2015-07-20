@@ -175,8 +175,8 @@ public class AdminController {
 	public ModelAndView evaluationView(@RequestParam int evaluation_id) {
 
 		ModelAndView mav = new ModelAndView("/admin/evaluationModForm");
-		Map evaluation = evaluationRepository.select(evaluation_id);
-		mav.addObject("evaluation", evaluation);
+/*		Map evaluation = evaluationRepository.select(evaluation_id);
+		mav.addObject("evaluation", evaluation);*/
 
 		return mav;
 	}
@@ -209,7 +209,7 @@ public class AdminController {
 
 		ModelAndView mav = new ModelAndView("/admin/evaluationList");
 
-		evaluationRepository.isDelete(evaluation_id);
+/*		evaluationRepository.isDelete(evaluation_id);*/
 
 		mav.addObject("evaluations", evaluationRepository.selectReport());
 

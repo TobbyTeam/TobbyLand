@@ -25,9 +25,11 @@
     </c:forEach>
 </table>
 
-<form id="re_frm" method="post">
+<form id="re_frm">
 
-    내용: <input type="text" id="re_con" name="contents"><br/>
+    내용: <br />
+
+    <textarea name="contents" id="re_con" rows="3" cols="40" wrap="hard" placeholder="내용을 입력해주세요"></textarea><br/>
     <input type="hidden" name="evaluation_id" value="${evaluation_id}"/>
     <input type="button" id="reReg_btn" value="등록">
 

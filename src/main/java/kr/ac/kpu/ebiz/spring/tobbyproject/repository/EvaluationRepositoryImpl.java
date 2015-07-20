@@ -7,17 +7,98 @@ import java.util.Map;
 
 public class EvaluationRepositoryImpl extends SqlSessionDaoSupport implements EvaluationRepository {
 
-	public Map select(Integer evaluationId) {
-		return getSqlSession().selectOne("EvaluationRepository.select", evaluationId);
+
+	/*select*/
+
+	public List<Map> selectEvaluationAll(int lecture_id) {
+		return getSqlSession().selectList("EvaluationRepository.selectEvaluationAll", lecture_id);
 	}
 
-	public int selectCount(Map evaluation) {
-		return getSqlSession().selectOne("EvaluationRepository.selectCount", evaluation);
+	public List<Map> selectEvaluationBest(int lecture_id) {
+		return getSqlSession().selectList("EvaluationRepository.selectEvaluationBest", lecture_id);
 	}
 
-	public String selectMember(Integer evaluationId) {
-		return getSqlSession().selectOne("EvaluationRepository.selectMember", evaluationId);
+	public int selectEvaluationCount(Map evaluation) {
+		return getSqlSession().selectOne("EvaluationRepository.selectEvaluationCount", evaluation);
 	}
+
+	public int selectMember_id(int evaluation_id) {
+		return getSqlSession().selectOne("EvaluationRepository.selectMember_id", evaluation_id);
+	}
+
+	public Map selectEvaluation(int evaluation_id) {
+		return getSqlSession().selectOne("EvaluationRepository.selectEvaluation", evaluation_id);
+	}
+
+	public int selectSubCount(Map evaluationSub) {
+		return getSqlSession().selectOne("EvaluationRepository.selectSubCount", evaluationSub);
+	}
+
+	public int selectSubType(Map evaluationSub) {
+		return getSqlSession().selectOne("EvaluationRepository.selectSubType", evaluationSub);
+	}
+
+	public List<Map> SearchEvaluationPrefer(Map search) { return getSqlSession().selectList("EvaluationRepository.SearchEvaluationPrefer", search); }
+
+	public List<Map> selectReplyAll(int evaluation_id) {
+		return getSqlSession().selectList("EvaluationRepository.selectReplyAll", evaluation_id);
+	}
+
+	public int selectReplyMember_id(int es_id) {
+		return getSqlSession().selectOne("EvaluationRepository.selectReplyMember_id", es_id);
+	}
+
+
+	/*insert*/
+
+	public boolean insertEvaluation(Map evaluation) {
+		return getSqlSession().insert("EvaluationRepository.insertEvaluation", evaluation) > 0;
+	}
+
+	public boolean insertSub(Map Sub) {
+		return getSqlSession().insert("EvaluationRepository.insertSub", Sub) > 0;
+	}
+
+
+
+	/*update*/
+
+
+	public boolean updateEvaluation(Map evaluation) {
+		return getSqlSession().update("EvaluationRepository.updateEvaluation", evaluation) > 0;
+	}
+
+	public boolean updateEvaluationLike(int evaluation_id) {
+		return getSqlSession().update("EvaluationRepository.updateEvaluationLike", evaluation_id) > 0;
+	}
+
+	public boolean updateEvaluationDislike(int evaluation_id) {
+		return getSqlSession().update("EvaluationRepository.updateEvaluationDislike", evaluation_id) > 0;
+	}
+
+	public boolean updateEvaluationReport(int evaluation_id) {
+		return getSqlSession().update("EvaluationRepository.updateEvaluationReport", evaluation_id) > 0;
+	}
+
+	public boolean updateUnisDelete(int evaluation_id) {
+		return getSqlSession().update("EvaluationRepository.updateUnisDelete", evaluation_id) > 0;
+	}
+
+	public boolean updateReplyUnisDelete(int es_id) {
+		return getSqlSession().update("EvaluationRepository.updateReplyUnisDelete", es_id) > 0;
+	}
+
+
+
+	/*delete*/
+
+	public boolean delete(int evaluation_id) {
+		return getSqlSession().delete("EvaluationRepository.delete", evaluation_id) > 0;
+	}
+
+
+
+
 
 	public List<Map> selectAll() {
 		return getSqlSession().selectList("EvaluationRepository.selectAll");
@@ -31,78 +112,14 @@ public class EvaluationRepositoryImpl extends SqlSessionDaoSupport implements Ev
 		return getSqlSession().selectList("EvaluationRepository.selectReport");
 	}
 
-	public List<Map> selectL(Integer lectureId) {
-		return getSqlSession().selectList("EvaluationRepository.selectL", lectureId);
-	}
-
-	public List<Map> selectBest(Integer lectureId) {
-		return getSqlSession().selectList("EvaluationRepository.selectBest", lectureId);
-	}
-
 	public List<Map> selectSearchAdmin(Map search) { return getSqlSession().selectList("EvaluationRepository.selectSearchAdmin", search); }
-
-	public List<Map> SearchPrefer(Map search) { return getSqlSession().selectList("EvaluationRepository.SearchPrefer", search); }
-
-	public boolean delete(Integer evaluationId) {
-		return getSqlSession().delete("EvaluationRepository.delete", evaluationId) > 0;
-	}
-
-	public boolean isDelete(Integer evaluationId) {
-		return getSqlSession().update("EvaluationRepository.isDelete", evaluationId) > 0;
-	}
 
 	public boolean isUndelete(Integer evaluationId) {
 		return getSqlSession().update("EvaluationRepository.isUndelete", evaluationId) > 0;
 	}
 
-	public boolean insert(Map evaluation) {
-		return getSqlSession().insert("EvaluationRepository.insert", evaluation) > 0;
-	}
-
-	public boolean update(Map evaluation) {
-		return getSqlSession().update("EvaluationRepository.update", evaluation) > 0;
-	}
-
 	public boolean updateAdmin(Map evaluation) {
 		return getSqlSession().update("EvaluationRepository.updateAdmin", evaluation) > 0;
-	}
-
-
-	public boolean updateLike(Integer evaluationId) {
-		return getSqlSession().update("EvaluationRepository.updateLike", evaluationId) > 0;
-	}
-
-	public boolean updateDislike(Integer evaluationId) {
-		return getSqlSession().update("EvaluationRepository.updateDislike", evaluationId) > 0;
-	}
-
-	public boolean updateReport(Integer evaluationId) {
-		return getSqlSession().update("EvaluationRepository.updateReport", evaluationId) > 0;
-	}
-
-
-	public boolean insertSub(Map Sub) {
-		return getSqlSession().insert("EvaluationRepository.insertSub", Sub) > 0;
-	}
-
-	public int selectSubCount(Map Sub) {
-		return getSqlSession().selectOne("EvaluationRepository.selectSubCount", Sub);
-	}
-
-	public int selectSubType(Map Sub) {
-		return getSqlSession().selectOne("EvaluationRepository.selectSubType", Sub);
-	}
-
-	public List<Map> selectRe(Integer evaluationId) {
-		return getSqlSession().selectList("EvaluationRepository.selectRe", evaluationId);
-	}
-
-	public String selectReMember(Integer es_id) {
-		return getSqlSession().selectOne("EvaluationRepository.selectReMember", es_id);
-	}
-
-	public boolean reIsDelete(Integer es_id) {
-		return getSqlSession().update("EvaluationRepository.reIsDelete", es_id) > 0;
 	}
 
 }
