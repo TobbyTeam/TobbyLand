@@ -39,13 +39,13 @@ public class LectureServiceImpl implements LectureService{
     public boolean regService(Map lecture) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String member_id = user.getUsername();
+        int member_id = user.getMember_id();
 
         lecture.put("member_id", member_id);
 
         boolean result = false;
 
-        if (lectureRepository.insert(lecture)) {
+        if (lectureRepository.insertLecture(lecture)) {
             result = true;
         }
 
@@ -55,15 +55,15 @@ public class LectureServiceImpl implements LectureService{
     public boolean confirmService(int lecture_id) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String member_id = user.getUsername();
+        int member_id = user.getMember_id();
 
-        String writer = lectureRepository.selectMember(lecture_id);
+        int writer = lectureRepository.selectMember_id(lecture_id);
 
         Collection authorities = user.getAuthorities();
 
         boolean result = false;
 
-        if(member_id.equals(writer) == true || authorities.toString().contains("ROLE_ADMIN")){
+        if(member_id == writer || authorities.toString().contains("ROLE_ADMIN")){
             result = true;
         }
 
@@ -73,15 +73,15 @@ public class LectureServiceImpl implements LectureService{
     public void viewService(int lecture_id, ModelAndView mav) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String member_id = user.getUsername();
+        int member_id = user.getMember_id();
 
-        String writer = lectureRepository.selectMember(lecture_id);
+        int writer = lectureRepository.selectMember_id(lecture_id);
 
         Collection authorities = user.getAuthorities();
 
-        if(member_id.equals(writer) == true || authorities.toString().contains("ROLE_ADMIN")){
+        if(member_id == writer || authorities.toString().contains("ROLE_ADMIN")){
 
-            mav.addObject("lecture", lectureRepository.select(lecture_id));
+            mav.addObject("lecture", lectureRepository.selectLecture(lecture_id));
             mav.addObject("departments", departmentRepository.selectAll());
 
         } else {
@@ -94,7 +94,7 @@ public class LectureServiceImpl implements LectureService{
 
         boolean result = false;
 
-        if (lectureRepository.update(lecture)) {
+        if (lectureRepository.updateLecture(lecture)) {
             result = true;
         }
 
@@ -103,10 +103,8 @@ public class LectureServiceImpl implements LectureService{
 
     public void searchService(Map search, ModelAndView mav) {
 
-        List<Map> result = lectureRepository.selectSearch(search);
+        List<Map> result = lectureRepository.selectSearchLecture(search);
         mav.addObject("lectures", result);
-
-        System.out.println(lectureRepository.selectSearch(search));
 
         if(result.isEmpty() == true){
             mav.addObject("error", "검색 결과가 없습니다.");
@@ -117,7 +115,7 @@ public class LectureServiceImpl implements LectureService{
     public boolean likesService(int lecture_id) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String member_id = user.getUsername();
+        int member_id = user.getMember_id();
 
 
         Map lectureSub = new HashMap();
@@ -125,13 +123,13 @@ public class LectureServiceImpl implements LectureService{
         lectureSub.put("member_id", member_id);
         lectureSub.put("kind", 1);
 
-        int count = lectureRepository.selectSub(lectureSub);
+        int count = lectureRepository.selectSubCount(lectureSub);
 
         boolean result = false;
 
         if(count == 0) {
             lectureRepository.insertSub(lectureSub);
-            lectureRepository.updateLike(lecture_id);
+            lectureRepository.updateLectureLike(lecture_id);
             result = true;
         }
 
@@ -142,7 +140,7 @@ public class LectureServiceImpl implements LectureService{
 
         boolean data = false;
 
-        if(lectureRepository.isDelete(lecture_id)){
+        if(lectureRepository.updateUnisDelete(lecture_id)){
             data = true;
         }
 
@@ -185,7 +183,12 @@ public class LectureServiceImpl implements LectureService{
         }
 
         //  전체 게시물 갯수 뽑아옴 ​
-        int rownum = lectureRepository.boardCount(lecture_id);
+
+        Map lectureSub1 = new HashMap();
+        lectureSub1.put("lecture_id", lecture_id);
+        lectureSub1.put("kind", 2);
+
+        int rownum = lectureRepository.selectSubCount(lectureSub1);
 
         //pageNum 변수는 전체 페이지의 수​
         int pageNum = rownum / 15 + 1;
@@ -206,12 +209,12 @@ public class LectureServiceImpl implements LectureService{
 
         mav.setViewName("/lecture/boardList");
 
-        Map lectureSub = new HashMap();
-        lectureSub.put("lecture_id", lecture_id);
-        lectureSub.put("page", page);
-        lectureSub.put("total", rownum);
+        Map lectureSub2 = new HashMap();
+        lectureSub2.put("lecture_id", lecture_id);
+        lectureSub2.put("page", page);
+        lectureSub2.put("total", rownum);
 
-        List<Map> boards = lectureRepository.boardAll(lectureSub);
+        List<Map> boards = lectureRepository.selectBoardAll(lectureSub2);
 
         mav.addObject("boards", boards);
         mav.addObject("pageNum", pageNum);
@@ -219,24 +222,17 @@ public class LectureServiceImpl implements LectureService{
         mav.addObject("end", endPage);
         mav.addObject("finalEnd", finalEndPage);
         mav.addObject("current", current);
-        System.out.println(seq+"페이지확인");
 
     }
 
     public boolean boardRegService(Map lectureSub) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String member_id = user.getUsername();
+        int member_id = user.getMember_id();
 
         int lecture_id = Integer.parseInt((String)lectureSub.get("lecture_id"));
 
-        System.out.println(lecture_id+"강의아이디 확인");
-
-        int kind = 2;
-
-        String maxRnum = lectureRepository.boardRnum(lecture_id);
-
-        System.out.println(maxRnum+"기존 로넘버 확인");
+        String maxRnum = lectureRepository.selectBoardMaxRnum(lecture_id);
 
         int rnum;
 
@@ -246,7 +242,9 @@ public class LectureServiceImpl implements LectureService{
             rnum = Integer.parseInt(maxRnum) +1;
         }
 
-        System.out.println(rnum+"새로운 로넘버 확인");
+        System.out.println(rnum+"로넘버 확인");
+
+        int kind = 2;
 
         lectureSub.put("member_id", member_id);
         lectureSub.put("kind", kind);
@@ -263,25 +261,23 @@ public class LectureServiceImpl implements LectureService{
 
     public void boardViewService(int ls_id, ModelAndView mav) {
 
-        mav.addObject("board", lectureRepository.boardOne(ls_id));
-        mav.addObject("replys", lectureRepository.boardReplyAll(ls_id));
+        mav.addObject("board", lectureRepository.selectBoard(ls_id));
+        mav.addObject("replys", lectureRepository.selectBoardReplyAll(ls_id));
 
     }
 
     public boolean boardConfirmService(int ls_id) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String member_id = user.getUsername();
+        int member_id = user.getMember_id();
 
-        String writer = lectureRepository.boardMember(ls_id);
+        int writer = lectureRepository.selectBoardMember_id(ls_id);
 
         Collection authorities = user.getAuthorities();
 
-        System.out.println(writer+"확인확인확인인");
-
         boolean result = false;
 
-        if(member_id.equals(writer) == true || authorities.toString().contains("ROLE_ADMIN")){
+        if(member_id == writer || authorities.toString().contains("ROLE_ADMIN")){
             result = true;
         }
 
@@ -292,15 +288,15 @@ public class LectureServiceImpl implements LectureService{
     public void boardModViewService(int ls_id, ModelAndView mav) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String member_id = user.getUsername();
+        int member_id = user.getMember_id();
 
-        String writer = lectureRepository.boardMember(ls_id);
+        int writer = lectureRepository.selectBoardMember_id(ls_id);
 
         Collection authorities = user.getAuthorities();
 
-        if(member_id.equals(writer) == true || authorities.toString().contains("ROLE_ADMIN")){
+        if(member_id == writer || authorities.toString().contains("ROLE_ADMIN")){
 
-            mav.addObject("board", lectureRepository.boardOne(ls_id));
+            mav.addObject("board", lectureRepository.selectBoard(ls_id));
 
         } else {
 
@@ -313,7 +309,7 @@ public class LectureServiceImpl implements LectureService{
 
         boolean result = false;
 
-        if (lectureRepository.boardMod(lectureSub)) {
+        if (lectureRepository.updateBoard(lectureSub)) {
             result = true;
         }
 
@@ -324,7 +320,7 @@ public class LectureServiceImpl implements LectureService{
 
         boolean data = false;
 
-        if(lectureRepository.boardIsDelete(ls_id)) {
+        if(lectureRepository.updateSubUnisDelete(ls_id)) {
             data = true;
         }
 
@@ -334,7 +330,7 @@ public class LectureServiceImpl implements LectureService{
     public boolean boardReplyRegService(Map lectureSub) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String member_id = user.getUsername();
+        int member_id = user.getMember_id();
 
         int kind = 3;
 

@@ -65,8 +65,8 @@ public class AdminController {
 	public ModelAndView lectureView(@RequestParam int lecture_id) {
 
 		ModelAndView mav = new ModelAndView("/admin/lectureModForm");
-		Map lecture = lectureRepository.select(lecture_id);
-		mav.addObject("lecture", lecture);
+/*		Map lecture = lectureRepository.select(lecture_id);
+		mav.addObject("lecture", lecture);*/
 
 		return mav;
 	}
@@ -81,7 +81,7 @@ public class AdminController {
 		lecture.put("lecture_name",lecture_name);
 		lecture.put("dept",dept);
 		lecture.put("prof",prof);
-		lectureRepository.update(lecture);
+/*		lectureRepository.update(lecture);*/
 		mav.addObject("lectures", lectureRepository.selectAdmin());
 
 		return mav;
@@ -91,7 +91,7 @@ public class AdminController {
 	public ModelAndView lectureIsDelete(@RequestParam("lecture_id") int lecture_id)	{
 
 		ModelAndView mav = new ModelAndView("/admin/lectureList");
-		lectureRepository.isDelete(lecture_id);
+/*		lectureRepository.isDelete(lecture_id);*/
 
 		mav.addObject("lectures", lectureRepository.selectAdmin());
 

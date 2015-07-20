@@ -10,75 +10,51 @@
 </head>
 <body>
 
-<jsp:include page="/top" flush="true"/> <br />
+  <jsp:include page="/top" flush="true"/> <br />
 
-제목 : <text>${board.title}</text> &nbsp;&nbsp; 작성일 : <text>${board.write_date}</text>
-<br />
-내용 : <br />
+  제목 : <text>${board.title}</text> &nbsp;&nbsp; 작성일 : <text>${board.write_date}</text>
+  <br />
+  내용 : <br />
 
-<textarea name="contents" rows="20" cols="40" wrap="hard" readonly="readonly">${board.contents}</textarea><br/>
-
-
-<br/>
-<input type="hidden" id="ls_id" value="${board.ls_id}" />
-<input type="hidden" id="lecture_id" value="${board.lecture_id}" />
-
-<input type="button" id="boardMod_btn" value="수정" /> &nbsp;&nbsp;
-<input type="button" id="boardDel_btn" value="삭제" /> &nbsp;&nbsp;
-<a href="/lecture/boardList/${board.lecture_id}/1">목록</a>
-
-<br /><br />
+  <textarea name="contents" rows="20" cols="40" wrap="hard" readonly="readonly">${board.contents}</textarea><br/>
 
 
-  댓글 <br />
+  <br/>
+  <input type="hidden" id="ls_id" value="${board.ls_id}" />
+  <input type="hidden" id="lecture_id" value="${board.lecture_id}" />
 
-  <c:forEach var="reply" items="${replys}" varStatus="status">
+  <input type="button" id="boardMod_btn" value="수정" /> &nbsp;&nbsp;
+  <input type="button" id="boardDel_btn" value="삭제" /> &nbsp;&nbsp;
+  <a href="/lecture/boardList/${board.lecture_id}/1">목록</a>
 
-    작성일 : ${reply.write_date} &nbsp;&nbsp; <input type="button" value="삭제" onclick="reDeleteAjax(${reply.ls_id})">
-    <br />
-    내용 :
-    <br />
-    <textarea name="contents" rows="3" cols="40" readonly="readonly">${reply.contents}</textarea><br/>
+  <br /><br />
 
-  </c:forEach>
 
-<br />
+    댓글 <br />
 
-<form id="re_frm" method="post">
+    <c:forEach var="reply" items="${replys}" varStatus="status">
 
-  내용: <br />
+      작성일 : ${reply.write_date} &nbsp;&nbsp; <input type="button" value="삭제" onclick="reDeleteAjax(${reply.ls_id})">
+      <br />
+      내용 :
+      <br />
+      <textarea name="contents" rows="3" cols="40" readonly="readonly">${reply.contents}</textarea><br/>
 
-  <textarea name="contents" id="re_con" rows="3" cols="40" wrap="hard" placeholder="내용을 입력해주세요"></textarea><br/>
+    </c:forEach>
 
-  <input type="hidden" name="lecture_id" value="${board.lecture_id}"/>
-  <input type="hidden" name="reply" value="${board.ls_id}" />
-  <input type="button" id="reReg_btn" value="등록">
+  <br />
 
-</form>
-<script>
-  $("#reReg_btn").on("click", function(){
+  <form id="re_frm" method="post">
 
-    if($("#re_con").val().length===0){
-      alert("내용을 입력해주세요");
-      $("#re_con").focus();
-    } else {
+    내용: <br />
 
-      $.ajax({
-        type: "POST",
-        url: "/lecture/boardReplyReg",
-        data: $("#re_frm").serialize(),
-        dataType: "json",
-        success: function (result) {
-          if (result) {
-            location.reload();
-          } else {
-            alert("죄송합니다 다시 시도해주세요.")
-          }
-        }
-      });
+    <textarea name="contents" id="re_con" rows="3" cols="40" wrap="hard" placeholder="내용을 입력해주세요"></textarea><br/>
 
-    }
-  })
-</script>
+    <input type="hidden" name="lecture_id" value="${board.lecture_id}"/>
+    <input type="hidden" name="reply" value="${board.ls_id}" />
+    <input type="button" id="reReg_btn" value="등록">
+
+  </form>
+
 </body>
 </html>

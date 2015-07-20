@@ -3,41 +3,149 @@
 
 <mapper namespace="LectureRepository">
 
-  <select id="select" resultType="map">
-    SELECT * FROM LECTURE WHERE LECTURE_ID = #{lecture_id}
-  </select>
-
-  <select id="selectIAN" resultType="map">
-
-    SELECT L.*, Count(IF(E.IS_DELETE = 1,1,NULL)) as count
-    FROM LECTURE L LEFT OUTER JOIN EVALUATION E ON E.LECTURE_ID = L.LECTURE_ID
-    WHERE L.LECTURE_ID = #{lecture_id}
-    GROUP BY L.LECTURE_ID
-
-  </select>
-
-  <select id="selectMember" resultType="String">
-    SELECT member_id FROM LECTURE WHERE LECTURE_ID = #{lecture_id}
-  </select>
+  <!--select-->
 
   <select id="selectAll" resultType="map">
     SELECT * FROM LECTURE WHERE likes <![CDATA[ < ]]> 10 AND IS_DELETE = 1 ORDER BY WRITE_DATE DESC
   </select>
 
-  <select id="selectAdmin" resultType="map">
-    SELECT * FROM LECTURE ORDER BY WRITE_DATE DESC
+  <select id="selectMember_id" parameterType="int" resultType="int">
+    SELECT member_id FROM LECTURE WHERE LECTURE_ID = #{lecture_id}
   </select>
 
-  <select id="selectSearch" parameterType="map" resultType="map">
+  <select id="selectLecture" parameterType="int" resultType="map">
+    SELECT * FROM LECTURE WHERE LECTURE_ID = #{lecture_id}
+  </select>
+
+  <select id="selectSearchLecture" parameterType="map" resultType="map">
     SELECT L.*, SUM(IF(E.IS_DELETE = 1,1,0)) as count
     FROM LECTURE L LEFT OUTER JOIN EVALUATION E ON E.LECTURE_ID = L.LECTURE_ID
     WHERE L.LIKES <![CDATA[ >= ]]> 10 AND L.IS_DELETE = 1
     <choose><when test="searchType != null and searchType.equalsIgnoreCase('lecture_name')">AND L.LECTURE_NAME LIKE CONCAT('%', #{searchWord}, '%')</when>
-            <when test="searchType != null and searchType.equalsIgnoreCase('dept')">AND L.DEPT LIKE CONCAT('%', #{searchWord}, '%')</when>
-            <otherwise> AND L.PROF LIKE CONCAT('%', #{searchWord}, '%')</otherwise>
+      <when test="searchType != null and searchType.equalsIgnoreCase('dept')">AND L.DEPT LIKE CONCAT('%', #{searchWord}, '%')</when>
+      <otherwise> AND L.PROF LIKE CONCAT('%', #{searchWord}, '%')</otherwise>
     </choose>
     GROUP BY L.LECTURE_ID
     ORDER BY L.WRITE_DATE DESC
+  </select>
+
+  <select id="selectSubCount" parameterType="map" resultType="int" >
+    SELECT Count(LS_ID)
+    FROM LECTURESUB
+    WHERE
+    <choose>
+      <when test="member_id != null">
+        LECTURE_ID = #{lecture_id} AND MEMBER_ID = #{member_id} AND KIND = #{kind}
+      </when>
+      <otherwise>
+        LECTURE_ID = #{lecture_id} AND KIND = #{kind} AND IS_DELETE = 1
+      </otherwise>
+    </choose>
+  </select>
+
+  <select id="selectBoardAll" parameterType="map" resultType="map" >
+    SELECT rnum , ls_id, title, write_date
+    FROM LECTURESUB
+    WHERE LECTURE_ID = #{lecture_id} AND KIND = 2 AND IS_DELETE = 1
+    ORDER BY RNUM DESC
+    LIMIT 15 OFFSET #{page}
+  </select>
+
+  <select id="selectBoardMaxRnum" parameterType="int" resultType="String" >
+    SELECT MAX(rnum) AS rnum
+    FROM LECTURESUB
+    WHERE LECTURE_ID = #{lecture_id} AND KIND = 2 AND IS_DELETE = 1
+  </select>
+
+  <select id="selectBoard" parameterType="int" resultType="map" >
+    SELECT * FROM LECTURESUB
+    WHERE LS_ID = #{ls_id}
+  </select>
+
+  <select id="selectBoardReplyAll" parameterType="int" resultType="map" >
+    SELECT * FROM LECTURESUB
+    WHERE REPLY = #{ls_id} AND IS_DELETE = 1
+    ORDER BY WRITE_DATE
+  </select>
+
+  <select id="selectBoardMember_id" parameterType="int" resultType="int">
+    SELECT member_id FROM LECTURESUB WHERE LS_ID = #{ls_id}
+  </select>
+
+
+  <!--insert-->
+
+  <insert id="insertLecture" parameterType="map">
+    INSERT INTO LECTURE (member_id, lecture_name, dept, prof)
+    VALUES (#{member_id},#{lecture_name},#{dept},#{prof})
+  </insert>
+
+  <insert id="insertSub" parameterType="map">
+    INSERT INTO LECTURESUB (lecture_id, member_id, kind, rnum, title, contents, reply)
+    VALUES (#{lecture_id},#{member_id},#{kind},#{rnum},#{title},#{contents}, #{reply})
+  </insert>
+
+
+  <!--update-->
+
+  <update id="updateLecture" parameterType="map">
+    UPDATE LECTURE
+    SET
+    lecture_name = #{lecture_name},
+    dept = #{dept},
+    prof = #{prof}
+    WHERE LECTURE_ID = #{lecture_id}
+  </update>
+
+  <update id="updateLectureLike" parameterType="map">
+    UPDATE LECTURE
+    SET
+    likes = likes + 1
+    WHERE LECTURE_ID = #{lecture_id}
+  </update>
+
+  <update id="updateUnisDelete" parameterType="map">
+    UPDATE LECTURE
+    SET
+    IS_DELETE = 0
+    WHERE LECTURE_ID = #{lecture_id}
+  </update>
+
+  <update id="updateBoard" parameterType="map">
+    UPDATE LECTURESUB
+    SET
+    title = #{title},
+    contents = #{contents}
+    WHERE LS_ID = #{ls_id}
+  </update>
+
+  <update id="updateSubUnisDelete" parameterType="int">
+    UPDATE LECTURESUB
+    SET
+    IS_DELETE = 0
+    WHERE LS_ID = #{ls_id}
+  </update>
+
+
+  <!--delete-->
+
+  <delete id="delete" parameterType="int">
+    DELETE FROM LECTURE WHERE LECTURE_ID = #{value}
+  </delete>
+
+
+
+
+
+  <select id="selectIAN" parameterType="int" resultType="map">
+    SELECT L.*, Count(IF(E.IS_DELETE = 1,1,NULL)) as count
+    FROM LECTURE L LEFT OUTER JOIN EVALUATION E ON E.LECTURE_ID = L.LECTURE_ID
+    WHERE L.LECTURE_ID = #{lecture_id}
+    GROUP BY L.LECTURE_ID
+  </select>
+
+  <select id="selectAdmin" resultType="map">
+    SELECT * FROM LECTURE ORDER BY WRITE_DATE DESC
   </select>
 
   <select id="selectSearchAdmin" parameterType="map" resultType="map">
@@ -51,17 +159,6 @@
     ORDER BY WRITE_DATE DESC
   </select>
 
-  <delete id="delete" parameterType="int">
-    DELETE FROM LECTURE WHERE LECTURE_ID = #{value}
-  </delete>
-
-  <update id="isDelete" parameterType="map">
-    UPDATE LECTURE
-    SET
-    IS_DELETE = 0
-    WHERE LECTURE_ID = #{lecture_id}
-  </update>
-
   <update id="isUndelete" parameterType="map">
     UPDATE LECTURE
     SET
@@ -69,40 +166,10 @@
     WHERE LECTURE_ID = #{lecture_id}
   </update>
 
-  <insert id="insert" parameterType="map">
-    INSERT INTO LECTURE (member_id, lecture_name, dept, prof)
-    VALUES (#{member_id},#{lecture_name},#{dept},#{prof})
-  </insert>
-
   <insert id="insertAdmin" parameterType="map">
     INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
     VALUES (#{member_id},#{lecture_name},#{dept},#{prof}, 10)
   </insert>
-
-  <update id="update" parameterType="map">
-    UPDATE LECTURE
-    SET
-    lecture_name = #{lecture_name},
-    dept = #{dept},
-    prof = #{prof}
-    WHERE LECTURE_ID = #{lecture_id}
-  </update>
-
-  <update id="updateLike" parameterType="map">
-    UPDATE LECTURE
-    SET
-    likes = likes + 1
-    WHERE LECTURE_ID = #{lecture_id}
-  </update>
-
-  <insert id="insertSub" parameterType="map">
-    INSERT INTO LECTURESUB (lecture_id, member_id, kind, rnum, title, contents, reply)
-    VALUES (#{lecture_id},#{member_id},#{kind},#{rnum},#{title},#{contents}, #{reply})
-  </insert>
-
-  <select id="selectSub" parameterType="map" resultType="int" >
-    SELECT Count(LS_ID) FROM LECTURESUB WHERE LECTURE_ID = #{lecture_id} AND MEMBER_ID = #{member_id} AND KIND = #{kind}
-  </select>
 
 <!--  <select id="boardAll" parameterType="map" resultType="map" >
         SELECT B.*
@@ -114,53 +181,5 @@
         ORDER BY WRITE_DATE DESC) A) B
         LIMIT 15 OFFSET #{page}
   </select>-->
-
-  <select id="boardAll" parameterType="map" resultType="map" >
-    SELECT rnum , ls_id, title, write_date
-    FROM LECTURESUB
-    WHERE LECTURE_ID = #{lecture_id} AND KIND = 2 AND IS_DELETE = 1
-    ORDER BY RNUM DESC
-    LIMIT 15 OFFSET #{page}
-  </select>
-
-  <select id="boardReplyAll" parameterType="int" resultType="map" >
-        SELECT * FROM LECTURESUB
-        WHERE REPLY = #{ls_id} AND IS_DELETE = 1
-        ORDER BY WRITE_DATE
-  </select>
-
-  <select id="boardOne" resultType="map" >
-    SELECT * FROM LECTURESUB
-    WHERE LS_ID = #{ls_id}
-  </select>
-
-  <select id="boardMember" resultType="String">
-    SELECT member_id FROM LECTURESUB WHERE LS_ID = #{ls_id}
-  </select>
-
-  <update id="boardMod" parameterType="map">
-    UPDATE LECTURESUB
-    SET
-    title = #{title},
-    contents = #{contents}
-    WHERE LS_ID = #{ls_id}
-  </update>
-
-  <update id="boardIsDelete" parameterType="map">
-    UPDATE LECTURESUB
-    SET
-    IS_DELETE = 0
-    WHERE LS_ID = #{ls_id}
-  </update>
-
-  <select id="boardCount" parameterType="int" resultType="int" >
-    SELECT Count(LS_ID) FROM LECTURESUB WHERE LECTURE_ID = #{lecture_id} AND KIND = 2 AND IS_DELETE = 1
-  </select>
-
-  <select id="boardRnum" parameterType="int" resultType="String" >
-    SELECT MAX(rnum) AS rnum
-    FROM LECTURESUB
-    WHERE LECTURE_ID = #{lecture_id} AND KIND = 2 AND IS_DELETE = 1
-  </select>
 
 </mapper>

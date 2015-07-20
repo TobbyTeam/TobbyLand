@@ -5,53 +5,67 @@ import java.util.Map;
 
 public interface LectureRepository {
 
-	Map select(Integer lectureId);
-
-	Map selectIAN(Integer lectureId);
-
-	String selectMember(Integer lectureId);
+	/*select*/
 
 	List<Map> selectAll();
 
-	List<Map> selectAdmin();
+	int selectMember_id(int lecture_id);
 
-	List<Map> selectSearch(Map search);
+	Map selectLecture(int lecture_id);
 
-	List<Map> selectSearchAdmin(Map search);
+	List<Map> selectSearchLecture(Map search);
+
+	int selectSubCount(Map lectureSub);
+
+	List<Map> selectBoardAll(Map lectureSub);
+
+	String selectBoardMaxRnum(int lecture_id);
+
+	Map selectBoard(int ls_id);
+
+	List<Map> selectBoardReplyAll(int ls_id);
+
+	int selectBoardMember_id(int ls_id);
+
+
+
+
+	/*insert*/
+
+	boolean insertLecture(Map lecture);
+
+
+	/*update*/
+
+	boolean updateLecture(Map lecture);
+
+	boolean updateLectureLike(int lecture_id);
+
+	boolean updateUnisDelete(int lecture_id);
+
+	boolean updateBoard(Map lectureSub);
+
+	boolean updateSubUnisDelete(int ls_id);
+
+
+	/*delete*/
 
 	boolean delete(int lectureId);
 
-	boolean isDelete(int lectureId);
+
+
+
+
+	Map selectIAN(int lecture_id);
+
+	List<Map> selectAdmin();
+
+	List<Map> selectSearchAdmin(Map search);
 
 	boolean isUndelete(int lectureId);
 
-	boolean insert(Map lecture);
-
 	boolean insertAdmin(Map lecture);
 
-	boolean update(Map lecture);
-
-	boolean updateLike(int lectureId);
-
 	boolean insertSub(Map lectureSub);
-
-	int selectSub(Map lectureSub);
-
-	List<Map> boardAll(Map lectureSub);
-
-	Map boardOne(int ls_id);
-
-	List<Map> boardReplyAll(int ls_id);
-
-	String boardMember(int ls_id);
-
-	boolean boardMod(Map lectureSub);
-
-	boolean boardIsDelete(int ls_id);
-
-	int boardCount(int lectureId);
-
-	String boardRnum(int lectureId);
-
 }
 

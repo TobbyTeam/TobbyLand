@@ -165,7 +165,7 @@ $(document).ready(function() {
 							success: function (data) {
 								if (data) {
 									alert("삭제되었습니다.");
-									window.open("/lecture/boardList?lecture_id=" + $("#lecture_id").val(), "_self");
+									window.open("/lecture/boardList/"+$("#lecture_id").val()+"/1", "_self");
 								} else {
 									alert("다시 시도 하세요.");
 								}
@@ -177,6 +177,28 @@ $(document).ready(function() {
 				}
 			}
 		})
+	})
+	$(document).off('click', '#reReg_btn').on('click', '#reReg_btn', function() {
+
+		if($("#re_con").val().length===0){
+			alert("내용을 입력해주세요");
+			$("#re_con").focus();
+		} else {
+
+			$.ajax({
+				type: "POST",
+				url: "/lecture/boardReplyReg",
+				data: $("#re_frm").serialize(),
+				dataType: "json",
+				success: function (result) {
+					if (result) {
+						location.reload();
+					} else {
+						alert("죄송합니다 다시 시도해주세요.")
+					}
+				}
+			})
+		}
 	})
 
 })
