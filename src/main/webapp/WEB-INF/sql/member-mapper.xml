@@ -84,10 +84,10 @@
     WHERE MEMBER_ID = #{member_id}
   </update>
 
-  <update id="updateUnEnabled" parameterType="int">
+  <update id="updateLocked" parameterType="int">
     UPDATE MEMBER
     SET
-    enabled = 0
+    nonLocked = 0
     WHERE MEMBER_ID = #{member_id}
   </update>
 

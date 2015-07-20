@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ef39bd55-c5a4-43ad-bf23-0a0b224e2f8b" name="Default" comment="멤버테이블 수정에따른 다른것들 수정 중">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/security/CustomJdbcDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/security/CustomJdbcDaoImpl.java" />
+    <list default="true" id="ef39bd55-c5a4-43ad-bf23-0a0b224e2f8b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/controller/MemberController.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/controller/MemberController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/security/MemberInfo.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/security/MemberInfo.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/MemberRepository.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/MemberRepository.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/MemberRepositoryImpl.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/MemberRepositoryImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/service/MemberService.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/service/MemberService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/service/MemberServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/service/MemberServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/etc/MemberThread.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/etc/MemberThread.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/member-mapper.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/member-mapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/js/member.js" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/member.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/js/member_validate.js" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/member_validate.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/member/pwChange.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/member/pwChange.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/security-context.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/security-context.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/member/view.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/member/view.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -109,17 +103,17 @@
         <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/security/CustomJdbcDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/security-context.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/lecture-mapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/MemberRepositoryImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/MemberRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/etc/MemberThread.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/member-mapper.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/js/member_validate.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/member/pwChange.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/resources/js/member.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/member-mapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/MemberRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/MemberRepositoryImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/service/MemberService.java" />
         <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/service/MemberServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/controller/MemberController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/member/view.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/resources/js/member.js" />
       </list>
     </option>
   </component>
@@ -1559,13 +1553,7 @@
       <workItem from="1437200181118" duration="2932000" />
       <workItem from="1437203173665" duration="9990000" />
       <workItem from="1437391482735" duration="7863000" />
-      <workItem from="1437401796980" duration="14749000" />
-    </task>
-    <task id="LOCAL-00027" summary="이미지 확인 및 데베 수정">
-      <created>1435360234778</created>
-      <option name="number" value="00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1435360234778</updated>
+      <workItem from="1437401796980" duration="15299000" />
     </task>
     <task id="LOCAL-00028" summary="강의평가에 학기 추가&#10;학기 데베도 생성">
       <created>1435395366956</created>
@@ -1855,11 +1843,17 @@
       <option name="project" value="LOCAL" />
       <updated>1437406003900</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="멤버 테이블 변경 관련해 회원에 관련된거 모두 수정">
+      <created>1437416683307</created>
+      <option name="number" value="00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1437416683307</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="543679000" />
+    <option name="totallyTimeSpent" value="544229000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1919,7 +1913,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="강의평가 수정, 삭제 ajax 처리" />
     <MESSAGE value="회원가입, 정보수정 공백불가능 처리" />
     <MESSAGE value="강의평가 수정" />
     <MESSAGE value="시큐리티 다시시작" />
@@ -1944,7 +1937,8 @@
     <MESSAGE value="회원 질문, 대답 추가///&#10;그리고 벙커 디비 받음" />
     <MESSAGE value="멤버 테이블 수정&#10;기본키를 member_id 오토인크리먼트로&#10;원래 member_id를 user_id로" />
     <MESSAGE value="멤버테이블 수정에따른 다른것들 수정 중" />
-    <option name="LAST_COMMIT_MESSAGE" value="멤버테이블 수정에따른 다른것들 수정 중" />
+    <MESSAGE value="멤버 테이블 변경 관련해 회원에 관련된거 모두 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="멤버 테이블 변경 관련해 회원에 관련된거 모두 수정" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2288,55 +2282,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/member-mapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5792683">
-          <caret line="43" column="11" selection-start-line="43" selection-start-column="11" selection-end-line="43" selection-end-column="11" />
-          <folding>
-            <marker date="1437413938343" expanded="true" signature="-1:-1" placeholder="SELECT Count..MEMBER..." />
-            <marker date="1437413938343" expanded="true" signature="-1:-1" placeholder="SELECT Count..MEMBER..." />
-            <marker date="1437413938343" expanded="true" signature="-1:-1" placeholder="SELECT membe..MEMBER..." />
-            <marker date="1437413938343" expanded="true" signature="-1:-1" placeholder="SELECT Enabl..MEMBER..." />
-            <marker date="1437413938343" expanded="true" signature="-1:-1" placeholder="SELECT membe..MEMBER..." />
-            <marker date="1437413938343" expanded="true" signature="-1:-1" placeholder="SELECT passw..MEMBER..." />
-            <marker date="1437413938343" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..MEMBER..." />
-            <marker date="1437413938343" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1437413938343" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1437413938343" expanded="true" signature="-1:-1" placeholder="UPDATE MEMBE..." />
-            <marker date="1437413938343" expanded="true" signature="-1:-1" placeholder="UPDATE MEMBE..." />
-            <marker date="1437413938343" expanded="true" signature="-1:-1" placeholder="UPDATE MEMBE..." />
-            <marker date="1437413938343" expanded="true" signature="-1:-1" placeholder="UPDATE MEMBE..." />
-            <marker date="1437413938343" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/MemberRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.325431">
-          <caret line="41" column="43" selection-start-line="41" selection-start-column="43" selection-end-line="41" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/MemberRepositoryImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75609756">
-          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/member/pwConfirm.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1923077">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/member/pwChange.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.1923077">
@@ -2353,42 +2298,78 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/service/MemberService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/MemberRepositoryImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="1" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.5945946">
+          <caret line="70" column="68" selection-start-line="70" selection-start-column="68" selection-end-line="70" selection-end-column="68" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/controller/MemberController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/MemberRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.5">
-          <caret line="137" column="48" selection-start-line="137" selection-start-column="48" selection-end-line="137" selection-end-column="48" />
-          <folding />
+        <state vertical-scroll-proportion="0.6199324">
+          <caret line="41" column="24" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/service/MemberServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="214" column="40" selection-start-line="214" selection-start-column="40" selection-end-line="214" selection-end-column="40" />
+          <caret line="205" column="30" selection-start-line="205" selection-start-column="30" selection-end-line="205" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/member.js">
+    <entry file="file://$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/controller/MemberController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.821428">
-          <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="88" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="132" column="5" selection-start-line="132" selection-start-column="5" selection-end-line="132" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/member/pwConfirm.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15845071">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="69" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/member/view.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31837606">
-          <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+        <state vertical-scroll-proportion="-4.375">
+          <caret line="7" column="69" selection-start-line="7" selection-start-column="69" selection-end-line="7" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/member-mapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="86" column="34" selection-start-line="86" selection-start-column="34" selection-end-line="86" selection-end-column="34" />
+          <folding>
+            <marker date="1437416793006" expanded="true" signature="-1:-1" placeholder="UPDATE MEMBE..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/member.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2819149">
+          <caret line="95" column="20" selection-start-line="95" selection-start-column="20" selection-end-line="95" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/service/MemberService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7719595">
+          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
           <folding />
         </state>
       </provider>

@@ -89,5 +89,29 @@ $(document).ready(function() {
 		})
 	})
 
+	$("#withdrawal").click(function () {
+
+		if (confirm("정말 탈퇴하시겠습니까?")) {
+
+			$.ajax({
+				type: "POST",
+				url: "/member/withdrawal",
+				dataType: "json",
+				success: function (result) {
+
+					if (result) {
+						window.open("/login", "_self");
+						alert("탈퇴 되었습니다.");
+					} else {
+						alert("죄송합니다. 다시 시도해주세요.");
+					}
+
+				}
+			})
+
+		}
+
+	})
+
 
 })

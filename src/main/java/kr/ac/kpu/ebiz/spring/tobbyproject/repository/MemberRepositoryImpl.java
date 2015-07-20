@@ -67,8 +67,8 @@ public class MemberRepositoryImpl extends SqlSessionDaoSupport implements Member
 		return getSqlSession().update("MemberRepository.updatePassword", member) > 0;
 	}
 
-	public boolean updateUnEnabled(int member_id) {
-		return getSqlSession().update("MemberRepository.updateUnEnabled", member_id) > 0;
+	public boolean updateLocked(int member_id) {
+		return getSqlSession().update("MemberRepository.updateLocked", member_id) > 0;
 	}
 
 

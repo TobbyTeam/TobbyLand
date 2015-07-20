@@ -203,14 +203,14 @@ public class MemberServiceImpl implements MemberService{
         return result;
     }
 
-    public boolean unEnabledService() {
+    public boolean lockService() {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int member_id = user.getMember_id();
 
         boolean result = false;
 
-        if(memberRepository.updateUnEnabled(member_id)){
+        if(memberRepository.updateLocked(member_id)){
             result = true;
             SecurityContextHolder.clearContext();
         }

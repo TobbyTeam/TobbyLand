@@ -132,10 +132,10 @@ public class MemberController {
 		return memberService.pwModService(password);
 	}
 
-	@RequestMapping(value = "/deleteEnabled", method = RequestMethod.POST)
-	public @ResponseBody boolean deleteEnabled() {
+	@RequestMapping(value = "/withdrawal", method = RequestMethod.POST)
+	public @ResponseBody boolean lock() {
 
-		return memberService.unEnabledService();
+		return memberService.lockService();
 	}
 
 }

@@ -31,6 +31,6 @@ public interface MemberService {
 
     boolean pwModService(String password);
 
-    boolean unEnabledService();
+    boolean lockService();
 
 }

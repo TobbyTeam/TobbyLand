@@ -5,8 +5,7 @@
     <title></title>
 
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="<c:url value="/resources/js/jquery.validate.min.js" />"></script>
-    <script src="<c:url value="/resources/js/member_validate.js" />"></script>
+    <script src="<c:url value="/resources/js/member.js" />"></script>
 
 </head>
 <body>
@@ -92,33 +91,6 @@
     <a href="/member/pwChange">비밀번호수정</a><br/><br/>
 
     <a id="withdrawal" href="">회원탈퇴</a> <br /><br/>
-
-<script>
-
-    $("#withdrawal").click(function () {
-
-        if (confirm("정말 탈퇴하시겠습니까?")) {
-
-            $.ajax({
-                type: "POST",
-                url: "/member/deleteEnabled",
-                dataType: "json",
-                success: function (result) {
-
-                    if (result) {
-                        window.open("/login", "_self");
-                    } else {
-                        alert("죄송합니다. 다시 시도해주세요.");
-                    }
-
-                }
-            })
-
-        }
-
-    })
-
-</script>
 
 </body>
 </html>

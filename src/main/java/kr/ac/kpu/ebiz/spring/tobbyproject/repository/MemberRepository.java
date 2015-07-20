@@ -39,7 +39,7 @@ public interface MemberRepository {
 
 	boolean updatePassword(Map member);
 
-	boolean updateUnEnabled(int member_id);
+	boolean updateLocked(int member_id);
 
 
 	/*delete*/
