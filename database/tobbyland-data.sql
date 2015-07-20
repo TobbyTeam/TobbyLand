@@ -35,6 +35,50 @@ INSERT INTO TENDENCY (TENDENCY_ID, TITLE)
 VALUES ('c4', '실습');
 
 
+/*--
+-- question table data
+--
+
+INSERT INTO QUESTION (TITLE)
+VALUES ('가장 기억에 남는 장소는?');
+
+INSERT INTO QUESTION (TITLE)
+VALUES ('내가 가장 존경하는 인물은?');
+
+INSERT INTO QUESTION (TITLE)
+VALUES ('다른 이메일 주소는?');
+
+INSERT INTO QUESTION (TITLE)
+VALUES ('나의 보물 1호는?');
+
+INSERT INTO QUESTION (TITLE)
+VALUES ('나의 출신 초등학교는?');
+
+INSERT INTO QUESTION (TITLE)
+VALUES ('나의 출신 고향은?');
+
+INSERT INTO QUESTION (TITLE)
+VALUES ('나의 어머니 성함은?');
+
+INSERT INTO QUESTION (TITLE)
+VALUES ('나의 아버지 성함은?');
+
+INSERT INTO QUESTION (TITLE)
+VALUES ('나의 첫사랑 이름은?');
+
+INSERT INTO QUESTION (TITLE)
+VALUES ('가장 친한친구 이름은?');
+
+INSERT INTO QUESTION (TITLE)
+VALUES ('가장 좋아하는 색깔은?');
+
+INSERT INTO QUESTION (TITLE)
+VALUES ('가장 좋아하는 운동은?');
+
+INSERT INTO QUESTION (TITLE)
+VALUES ('가장 좋아하는 음식은?');*/
+
+
 --
 -- role table data
 --
@@ -53,8 +97,8 @@ VALUES ('ROLE_MANAGER', '관리자');
 -- member table data
 --
 
-INSERT INTO MEMBER (member_id, password, nickname, email, method, task, exam, enabled)
-VALUES ('admin','$2a$10$sp5fhJ6mjqapitptq.mzxehukY.2.6WLsZ1M4fpGgtr9L/8oI7vwe','운영자','babsang24@hanmail.net','a1','b1','c1', 1);
+INSERT INTO MEMBER (member_id, password, nickname, email, answer, method, task, exam, enabled)
+VALUES ('admin','$2a$10$sp5fhJ6mjqapitptq.mzxehukY.2.6WLsZ1M4fpGgtr9L/8oI7vwe','운영자','babsang24@hanmail.net','보라','a1','b1','c1', 1);
 
 
 --

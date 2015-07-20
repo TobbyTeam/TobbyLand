@@ -1,5 +1,6 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.controller;
 
+import kr.ac.kpu.ebiz.spring.tobbyproject.etc.Question;
 import kr.ac.kpu.ebiz.spring.tobbyproject.mail.MailMail;
 import kr.ac.kpu.ebiz.spring.tobbyproject.repository.MemberRepository;
 import kr.ac.kpu.ebiz.spring.tobbyproject.service.MemberService;
@@ -27,9 +28,19 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 
+	@Autowired
+	Question question;
+
 	@RequestMapping(value = "/regForm", method = RequestMethod.GET)
-	public String regForm() {
-		return "/member/register";
+	public ModelAndView regForm() {
+
+		ModelAndView mav = new ModelAndView("/member/register");
+
+		mav.addObject("questions", question.question());
+
+		System.out.println(question.question());
+
+		return mav;
 	}
 
 	@RequestMapping(value = "/idCheck", method = RequestMethod.POST)

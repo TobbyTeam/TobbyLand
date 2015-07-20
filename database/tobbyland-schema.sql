@@ -12,6 +12,16 @@ CREATE TABLE tendency (
   PRIMARY KEY (tendency_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+/*--
+-- Table structure for table `question`
+--
+
+CREATE TABLE question (
+  question_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  title varchar(45) DEFAULT NULL,
+  PRIMARY KEY (question_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;*/
+
 
 --
 -- Table structure for table `member`
@@ -22,6 +32,8 @@ CREATE TABLE member (
   password varchar(100) DEFAULT NULL,
   nickname varchar(45) DEFAULT NULL,
   email varchar(45) DEFAULT NULL,
+  question int(2) unsigned DEFAULT '0',
+  answer varchar(10) DEFAULT NULL,
   reg_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   method varchar(10) DEFAULT NULL,
   task varchar(10) DEFAULT NULL,

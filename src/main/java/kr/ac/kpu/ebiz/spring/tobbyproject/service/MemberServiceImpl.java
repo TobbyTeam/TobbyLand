@@ -1,6 +1,7 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.service;
 
 import kr.ac.kpu.ebiz.spring.tobbyproject.encryptor.AES128Cipher;
+import kr.ac.kpu.ebiz.spring.tobbyproject.etc.Question;
 import kr.ac.kpu.ebiz.spring.tobbyproject.mail.MailMail;
 import kr.ac.kpu.ebiz.spring.tobbyproject.repository.MemberRepository;
 import kr.ac.kpu.ebiz.spring.tobbyproject.security.MemberInfo;
@@ -26,6 +27,9 @@ public class MemberServiceImpl implements MemberService{
     @Autowired
     AES128Cipher aes128Cipher;
 
+    @Autowired
+    Question question;
+
     public boolean regService(Map member) {
 
         String member_id = (String) member.get("member_id");
@@ -50,11 +54,12 @@ public class MemberServiceImpl implements MemberService{
         if(memberRepository.insert(member) && memberRepository.insert_role(member_id)) {
             result = true;
         }
-            mailMail.sendMail(
-                    "kpytobbyland@google.com", email,
-                    "TOBBYLAND 인증 메일입니다.",
-                    member_id+"님 회원가입을 축하드립니다. \n\n" +
-                            "http://localhost:8080/member/enabled?member_id="+enSt);
+
+/*        mailMail.sendMail(
+                "kpytobbyland@google.com", email,
+                "TOBBYLAND 인증 메일입니다.",
+                member_id+"님 회원가입을 축하드립니다. \n\n" +
+                        "http://localhost:8080/member/enabled?member_id="+enSt);*/
 
 /*            MemberThread thread = new MemberThread(member_id);
             thread.start();*/

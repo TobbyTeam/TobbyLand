@@ -3,8 +3,7 @@ package kr.ac.kpu.ebiz.spring.tobbyproject.mail;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 
-public class MailMail
-{
+public class MailMail {
     private MailSender mailSender;
 
     public void setMailSender(MailSender mailSender) {

@@ -159,4 +159,8 @@
 		<property name="mailSender" ref="mailSender" />
 	</bean>
 
+
+
+	<bean id="question" class="kr.ac.kpu.ebiz.spring.tobbyproject.etc.Question"/>
+
 </beans>

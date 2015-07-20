@@ -106,6 +106,8 @@ public class LectureServiceImpl implements LectureService{
         List<Map> result = lectureRepository.selectSearch(search);
         mav.addObject("lectures", result);
 
+        System.out.println(lectureRepository.selectSearch(search));
+
         if(result.isEmpty() == true){
             mav.addObject("error", "검색 결과가 없습니다.");
         }
