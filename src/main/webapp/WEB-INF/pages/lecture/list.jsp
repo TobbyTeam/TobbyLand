@@ -16,6 +16,8 @@
 
 	<table border="1">
 		<tr>
+			<td>강의아이디</td>
+			<td>멤버아이디</td>
 			<td>강의명</td>
 			<td>학과명</td>
 			<td>교수명</td>
@@ -25,6 +27,8 @@
 		</tr>
 		<c:forEach var="lecture" items="${lectures}" varStatus="status">
 		<tr>
+			<td>${lecture.lecture_id}</td>
+			<td>${lecture.member_id}</td>
 			<td>${lecture.lecture_name}</td>
 			<td>${lecture.dept}</td>
 			<td>${lecture.prof}</td>

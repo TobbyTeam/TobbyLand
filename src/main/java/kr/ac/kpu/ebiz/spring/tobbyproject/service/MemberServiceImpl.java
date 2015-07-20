@@ -32,26 +32,24 @@ public class MemberServiceImpl implements MemberService{
 
     public boolean regService(Map member) {
 
-        String member_id = (String) member.get("member_id");
+        String user_id = (String) member.get("user_id");
         String password = (String) member.get("password");
         String email = (String) member.get("email");
 
         String enSt = "";
 
         try {
-            enSt = aes128Cipher.encode(member_id);
+            enSt = aes128Cipher.encode(user_id);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
 
         boolean result = false;
 
         member.remove(password);
         member.put("password", passwordEncoder.encode(password));
 
-        if(memberRepository.insert(member) && memberRepository.insert_role(member_id)) {
+        if(memberRepository.insert(member) && memberRepository.insert_role(memberRepository.selectId(user_id))) {
             result = true;
         }
 
@@ -67,10 +65,10 @@ public class MemberServiceImpl implements MemberService{
         return result;
     }
 
-    public boolean idCheckService(String member_id) {
+    public boolean idCheckService(String user_id) {
 
         boolean result = false;
-        if(memberRepository.selectMember(member_id) == 0){
+        if(memberRepository.selectMember(user_id) == 0){
             result = true;
         }
 

@@ -123,6 +123,7 @@ public class LectureServiceImpl implements LectureService{
         Map lectureSub = new HashMap();
         lectureSub.put("lecture_id", lecture_id);
         lectureSub.put("member_id", member_id);
+        lectureSub.put("kind", 1);
 
         int count = lectureRepository.selectSub(lectureSub);
 

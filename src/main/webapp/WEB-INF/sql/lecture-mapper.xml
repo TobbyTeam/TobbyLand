@@ -101,7 +101,7 @@
   </insert>
 
   <select id="selectSub" parameterType="map" resultType="int" >
-    SELECT Count(LS_ID) FROM LECTURESUB WHERE LECTURE_ID = #{lecture_id} AND MEMBER_ID = #{member_id} AND KIND = 1
+    SELECT Count(LS_ID) FROM LECTURESUB WHERE LECTURE_ID = #{lecture_id} AND MEMBER_ID = #{member_id} AND KIND = #{kind}
   </select>
 
 <!--  <select id="boardAll" parameterType="map" resultType="map" >

@@ -23,6 +23,10 @@ public class MemberRepositoryImpl extends SqlSessionDaoSupport implements Member
 		return getSqlSession().selectOne("MemberRepository.selectNick", nickname);
 	}
 
+	public String selectId(String user_id) {
+		return getSqlSession().selectOne("MemberRepository.selectId", user_id);
+	}
+
 	public int selectModNick(Map member) {
 		return getSqlSession().selectOne("MemberRepository.selectModNick", member);
 	}

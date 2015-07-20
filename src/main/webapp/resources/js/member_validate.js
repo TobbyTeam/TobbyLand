@@ -90,14 +90,14 @@ $(document).ready(function() {
 	$("#reg_frm").validate({
 		onfocusout: false,
 		rules: {
-			member_id: {
+			user_id: {
 				required: true,
 				rangelength: [5, 12],
 				alphanumeric: true,
 				remote: {
 					type: "post", url: "/member/idCheck", data: {
-						member_id: function () {
-							return $("#member_id").val();
+						user_id: function () {
+							return $("#user_id").val();
 						}
 					}
 				}
@@ -132,7 +132,7 @@ $(document).ready(function() {
 				}
 			}
 		}, messages: {
-			member_id: {
+			user_id: {
 				required: "아이디를 입력하세요.",
 				rangelength: $.validator.format("아이디는 5 글자 이상 12글자 이하로 입력하세요."),
 				alphanumeric: "알파벳과 숫자만 사용가능하고 공백은 불가능합니다.",

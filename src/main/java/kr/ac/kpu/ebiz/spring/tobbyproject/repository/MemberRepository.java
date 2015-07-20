@@ -13,6 +13,8 @@ public interface MemberRepository {
 
 	int selectNick(String nickname);
 
+	String selectId(String user_id);
+
 	int selectModNick(Map member);
 
 	String selectPw(String memberId);

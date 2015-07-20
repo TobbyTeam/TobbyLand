@@ -63,6 +63,6 @@
 </s:authorize>
 
 
-USER ID : <s:authentication property="name"/><br/>
+MEMBER_ID : <s:authentication property="name"/><br/>
 </body>
 </html>

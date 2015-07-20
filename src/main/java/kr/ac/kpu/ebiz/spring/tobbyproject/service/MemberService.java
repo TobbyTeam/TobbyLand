@@ -11,7 +11,7 @@ public interface MemberService {
 
     boolean regService(Map member);
 
-    boolean idCheckService(String member_id);
+    boolean idCheckService(String user_id);
 
     boolean emailCheckService(String email);
 

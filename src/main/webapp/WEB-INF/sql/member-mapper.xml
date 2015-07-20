@@ -8,7 +8,7 @@
   </select>
 
   <select id="selectMember" resultType="int">
-    SELECT Count(MEMBER_ID) FROM MEMBER WHERE MEMBER_ID = #{member_id}
+    SELECT Count(MEMBER_ID) FROM MEMBER WHERE USER_ID = #{user_id}
   </select>
 
   <select id="selectEmail" resultType="int">
@@ -17,6 +17,10 @@
 
   <select id="selectNick" resultType="int">
     SELECT Count(MEMBER_ID) FROM MEMBER WHERE NICKNAME = #{nickname}
+  </select>
+
+  <select id="selectId" resultType="String">
+    SELECT member_id FROM MEMBER WHERE USER_ID = #{user_id}
   </select>
 
   <select id="selectModNick" parameterType="map" resultType="int">
@@ -54,8 +58,8 @@
   </update>
 
   <insert id="insert" parameterType="map">
-    INSERT INTO MEMBER (member_id, password, nickname, email, question, answer, method, task, exam)
-    VALUES (#{member_id},#{password},#{nickname},#{email},#{question},#{answer},#{method},#{task},#{exam})
+    INSERT INTO MEMBER (user_id, password, nickname, email, question, answer, method, task, exam)
+    VALUES (#{user_id},#{password},#{nickname},#{email},#{question},#{answer},#{method},#{task},#{exam})
   </insert>
 
   <insert id="insert_role" parameterType="String">

@@ -20,7 +20,7 @@
 
 <form id="reg_frm" name="reg_frm">
 
-    아이디: <input type="text" id="member_id" name="member_id"><br/>
+    아이디: <input type="text" id="user_id" name="user_id"><br/>
     패스워드:<input type="password" id = "password" name="password"><br/>
     패스워드확인:<input type="password" id = "password_check" name="password_check"><br/>
     별명: <input type="text" id= "nickname" name="nickname"><br/>

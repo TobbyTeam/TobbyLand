@@ -44,9 +44,9 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
-	public @ResponseBody boolean member_id(@RequestParam("member_id") String member_id) {
+	public @ResponseBody boolean member_id(@RequestParam("member_id") String user_id) {
 
-		return memberService.idCheckService(member_id);
+		return memberService.idCheckService(user_id);
 	}
 
 	@RequestMapping(value = "/emailCheck", method = RequestMethod.POST)
