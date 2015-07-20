@@ -4,7 +4,7 @@
 <mapper namespace="MemberRepository">
 
   <select id="select" resultType="map">
-    SELECT member_id, nickname, email, reg_date, method, task, exam FROM MEMBER WHERE MEMBER_ID = #{value}
+    SELECT member_id, nickname, email, question, answer, method, task, exam, reg_date FROM MEMBER WHERE MEMBER_ID = #{value}
   </select>
 
   <select id="selectMember" resultType="int">
@@ -70,6 +70,8 @@
     UPDATE MEMBER
     SET
     nickname = #{nickname},
+    question = #{question},
+    answer = #{answer},
     method = #{method},
     task = #{task},
     exam = #{exam}

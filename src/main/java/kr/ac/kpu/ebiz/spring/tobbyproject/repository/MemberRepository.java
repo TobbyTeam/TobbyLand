@@ -7,7 +7,7 @@ public interface MemberRepository {
 
 	Map select(String memberId);
 
-	int selectMember(String memberId);
+	int selectMember(String user_id);
 
 	int selectEmail(String email);
 

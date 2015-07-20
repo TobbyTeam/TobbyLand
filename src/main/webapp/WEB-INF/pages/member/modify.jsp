@@ -16,10 +16,26 @@
 
 <form id="mod_frm" action="/member/mod">
 
-  아이디: <text>${member.member_id}</text><br>
-  별명: <input type="text" id="nickname" name="nickname" value="${member.nickname}"><br>
-  이메일: <text>${member.email}</text><br>
-  수업방식:
+    아이디: <text>${member.member_id}</text><br>
+    별명: <input type="text" id="nickname" name="nickname" value="${member.nickname}"><br>
+    이메일: <text>${member.email}</text><br>
+    비밀번호 찾기 질문:
+    <select name="question">
+    <c:forEach var="question" items="${questions}" varStatus="status">
+        <c:choose>
+            <c:when test="${member.question eq question.id}">
+                <option value="${question.id}" selected="selected">${question.title}</option>
+            </c:when>
+            <c:otherwise>
+                <option value="${question.id}">${question.title}</option>
+            </c:otherwise>
+        </c:choose>
+        <option value="${question.id}">${question.title}</option>
+    </c:forEach>
+    </select>
+    <br />
+    비밀번호 찾기 답변: <input type="text" id="answer" name="answer" value="${member.answer}"><br />
+    수업방식:
     <c:choose>
         <c:when test="${member.method eq 'a1' }">
             독고다이형<input type="radio" name="method" value="a1" checked>
@@ -38,7 +54,7 @@
         </c:otherwise>
     </c:choose>
 
-  과제방식:
+    과제방식:
     <c:choose>
         <c:when test="${member.task eq 'b1'}">
             텀프로젝트<input type="radio" name="task" value="b1" checked>
@@ -57,7 +73,7 @@
         </c:otherwise>
     </c:choose>
 
-  시험방식:
+    시험방식:
     <c:choose>
         <c:when test="${member.exam eq 'c1'}">
             서술형<input type="radio" name="exam" value="c1" checked>

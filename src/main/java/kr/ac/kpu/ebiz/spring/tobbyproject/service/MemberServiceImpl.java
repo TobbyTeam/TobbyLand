@@ -148,6 +148,8 @@ public class MemberServiceImpl implements MemberService{
 
             Map member = memberRepository.select(member_id);
             mav.addObject("member", member);
+            mav.addObject("questions", question.question());
+
     }
 
     public boolean modService(Map member) {

@@ -38,13 +38,11 @@ public class MemberController {
 
 		mav.addObject("questions", question.question());
 
-		System.out.println(question.question());
-
 		return mav;
 	}
 
 	@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
-	public @ResponseBody boolean member_id(@RequestParam("member_id") String user_id) {
+	public @ResponseBody boolean member_id(@RequestParam("user_id") String user_id) {
 
 		return memberService.idCheckService(user_id);
 	}

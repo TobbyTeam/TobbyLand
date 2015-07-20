@@ -109,6 +109,16 @@ $(document).ready(function() {
 			}, password_check: {
 				required: true,
 				equalTo: '#password'
+			}, nickname: {
+				required: true,
+				space: true,
+				remote: {
+					type: "post", url: "/member/nickCheck", data: {
+						nickname: function () {
+							return $("#nickname").val();
+						}
+					}
+				}
 			}, email: {
 				required: true,
 				email: true,
@@ -120,16 +130,9 @@ $(document).ready(function() {
 						}
 					}
 				}
-			}, nickname: {
+			}, answer: {
 				required: true,
-				space: true,
-				remote: {
-					type: "post", url: "/member/nickCheck", data: {
-						nickname: function () {
-							return $("#nickname").val();
-						}
-					}
-				}
+				space: true
 			}
 		}, messages: {
 			user_id: {
@@ -154,6 +157,9 @@ $(document).ready(function() {
 				email: "올바른 이메일 주소가 아닙니다.",
 				kpumail: "kpu메일을 입력해주세요.(kpu@ac.kr)",
 				remote: "이메일 중복입니다."
+			}, answer: {
+				required: "닉네임을 입력하세요.",
+				space: "공백은 불가능합니다."
 			}
 			/*        }, invalidHandler: function (form, validator) {
 			 var errors = validator.numberOfInvalids();
@@ -202,6 +208,9 @@ $(document).ready(function() {
 						}
 					}
 				}
+			}, answer: {
+				required: true,
+				space: true
 			}
 		}, messages: {
 			password: {
@@ -216,6 +225,9 @@ $(document).ready(function() {
 				required: "닉네임을 입력하세요.",
 				space: "공백은 불가능합니다",
 				remote: "닉네임 중복입니다."
+			}, answer: {
+				required: "닉네임을 입력하세요.",
+				space: "공백은 불가능합니다."
 			}
 			/*        }, invalidHandler: function (form, validator) {
 			 var errors = validator.numberOfInvalids();
