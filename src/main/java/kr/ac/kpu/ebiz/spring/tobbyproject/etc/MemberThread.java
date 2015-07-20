@@ -11,9 +11,9 @@ public class MemberThread extends Thread{
     @Autowired
     MemberRepository memberRepository;
 
-    private String member_id;
+    private int member_id;
 
-    public MemberThread(String member_id) {
+    public MemberThread(int member_id) {
         this.member_id = member_id;
 
     }
@@ -24,7 +24,7 @@ public class MemberThread extends Thread{
 
         catch (Exception e){}
 
-        int i = memberRepository.selectEn(member_id);
+        int i = memberRepository.selectEnabled(member_id);
 
         System.out.println(i+"++++확인");
 

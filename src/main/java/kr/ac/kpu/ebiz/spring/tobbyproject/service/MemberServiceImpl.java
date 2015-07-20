@@ -30,6 +30,39 @@ public class MemberServiceImpl implements MemberService{
     @Autowired
     Question question;
 
+    public boolean idCheckService(String user_id) {
+
+        boolean result = false;
+        if(memberRepository.selectCountId(user_id) == 0){
+            result = true;
+        }
+
+        return result;
+    }
+
+    public boolean emailCheckService(String email) {
+
+        boolean result = false;
+        if(memberRepository.selectCountEmail(email) == 0){
+            result = true;
+        }
+
+        return result;
+    }
+
+    public boolean nickCheckService(String nickname) {
+
+        Map member = new HashMap();
+        member.put("nickname", nickname);
+
+        boolean result = false;
+        if(memberRepository.selectCountNick(member) == 0){
+            result = true;
+        }
+
+        return result;
+    }
+
     public boolean regService(Map member) {
 
         String user_id = (String) member.get("user_id");
@@ -49,84 +82,38 @@ public class MemberServiceImpl implements MemberService{
         member.remove(password);
         member.put("password", passwordEncoder.encode(password));
 
-        if(memberRepository.insert(member) && memberRepository.insert_role(memberRepository.selectId(user_id))) {
+        if(memberRepository.insertMember(member) && memberRepository.insertRole(memberRepository.selectId(user_id))) {
             result = true;
         }
 
 /*        mailMail.sendMail(
                 "kpytobbyland@google.com", email,
                 "TOBBYLAND 인증 메일입니다.",
-                member_id+"님 회원가입을 축하드립니다. \n\n" +
-                        "http://localhost:8080/member/enabled?member_id="+enSt);*/
-
-/*            MemberThread thread = new MemberThread(member_id);
+                user_id+"님 회원가입을 축하드립니다. \n\n" +
+                        "http://localhost:8080/member/enabled?enSt="+enSt);*/
+/*
+            MemberThread thread = new MemberThread(member_id);
             thread.start();*/
-
-        return result;
-    }
-
-    public boolean idCheckService(String user_id) {
-
-        boolean result = false;
-        if(memberRepository.selectMember(user_id) == 0){
-            result = true;
-        }
-
-        return result;
-    }
-
-    public boolean emailCheckService(String email) {
-
-        boolean result = false;
-        if(memberRepository.selectEmail(email) == 0){
-            result = true;
-        }
-
-        return result;
-    }
-
-    public boolean nickCheckService(String nickname) {
-
-        boolean result = false;
-        if(memberRepository.selectNick(nickname) == 0){
-            result = true;
-        }
-
-        return result;
-    }
-
-    public boolean modNickCheckService(String nickname) {
-
-        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String member_id = user.getUsername();
-
-        Map member = new HashMap();
-        member.put("nickname", nickname);
-        member.put("member_id", member_id);
-
-        boolean result = false;
-
-        if(memberRepository.selectModNick(member) == 0){
-            result = true;
-        }
 
         return result;
     }
 
     public void enabledService(String enSt, ModelAndView mav) {
 
+        String user_id = "";
 
-        String member_id = "";
         try {
-            member_id = aes128Cipher.decode(enSt);
+            user_id = aes128Cipher.decode(enSt);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        int enabled = memberRepository.selectEn(member_id);
+        int member_id = memberRepository.selectId(user_id);
+
+        int enabled = memberRepository.selectEnabled(member_id);
 
         if(enabled ==0){
-            memberRepository.enabled(member_id);
+            memberRepository.updateEnabled(member_id);
             mav.addObject("message", "인증 되셨습니다.");
         } else {
             mav.addObject("message", "이미 인증이 된 회원입니다.");
@@ -136,55 +123,72 @@ public class MemberServiceImpl implements MemberService{
     public void viewService(ModelAndView mav) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String member_id = user.getUsername();
+        int member_id = user.getMember_id();
 
-        mav.addObject("member", memberRepository.select(member_id));
-    }
-
-    public void modViewService(ModelAndView mav) {
-
-        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String member_id = user.getUsername();
-
-            Map member = memberRepository.select(member_id);
-            mav.addObject("member", member);
-            mav.addObject("questions", question.question());
-
-    }
-
-    public boolean modService(Map member) {
-
-        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String member_id = user.getUsername();
-
-        member.put("member_id",member_id);
-
-        boolean result = false;
-
-        if(memberRepository.update(member)){
-            result = true;
-        }
-        return result;
+        mav.addObject("member", memberRepository.selectMember(member_id));
     }
 
     public boolean pwCheckService(String password) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String member_id = user.getUsername();
+        int member_id = user.getMember_id();
 
         boolean result = false;
 
-        if (passwordEncoder.matches(password, memberRepository.selectPw(member_id))){
+        if (passwordEncoder.matches(password, memberRepository.selectPassword(member_id))){
             result = true;
         }
 
+        return result;
+    }
+
+    public void modViewService(ModelAndView mav) {
+
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        int member_id = user.getMember_id();
+
+        mav.addObject("member", memberRepository.selectMember(member_id));
+        mav.addObject("questions", question.question());
+
+    }
+
+    public boolean modNickCheckService(String nickname) {
+
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        int member_id = user.getMember_id();
+
+        Map member = new HashMap();
+        member.put("nickname", nickname);
+        member.put("member_id", member_id);
+
+        boolean result = false;
+
+        if(memberRepository.selectCountNick(member) == 0){
+            result = true;
+        }
+
+        return result;
+    }
+
+    public boolean modService(Map member) {
+
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        int member_id = user.getMember_id();
+
+        member.put("member_id",member_id);
+
+        boolean result = false;
+
+        if(memberRepository.updateMember(member)){
+            result = true;
+        }
         return result;
     }
 
     public boolean pwModService(String password) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String member_id = user.getUsername();
+        int member_id = user.getMember_id();
 
         Map member = new HashMap();
         member.put("member_id", member_id);
@@ -192,21 +196,26 @@ public class MemberServiceImpl implements MemberService{
 
         boolean result = false;
 
-        if(memberRepository.updatePw(member)){
+        if(memberRepository.updatePassword(member)){
             result = true;
         }
 
         return result;
     }
 
-    public void deleteEnabledService() {
+    public boolean unEnabledService() {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String member_id = user.getUsername();
+        int member_id = user.getMember_id();
 
-        SecurityContextHolder.clearContext();
+        boolean result = false;
 
-        memberRepository.deleteEnabled(member_id);
+        if(memberRepository.updateUnEnabled(member_id)){
+            result = true;
+            SecurityContextHolder.clearContext();
+        }
+
+        return result;
 
     }
 }

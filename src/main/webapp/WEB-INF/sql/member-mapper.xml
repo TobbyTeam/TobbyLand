@@ -3,70 +3,69 @@
 
 <mapper namespace="MemberRepository">
 
-  <select id="select" resultType="map">
-    SELECT member_id, nickname, email, question, answer, method, task, exam, reg_date FROM MEMBER WHERE MEMBER_ID = #{value}
-  </select>
+  <!--select-->
 
-  <select id="selectMember" resultType="int">
+  <select id="selectCountId" parameterType="String" resultType="int">
     SELECT Count(MEMBER_ID) FROM MEMBER WHERE USER_ID = #{user_id}
   </select>
 
-  <select id="selectEmail" resultType="int">
+  <select id="selectCountEmail" parameterType="String" resultType="int">
     SELECT Count(MEMBER_ID) FROM MEMBER WHERE EMAIL = #{email}
   </select>
 
-  <select id="selectNick" resultType="int">
-    SELECT Count(MEMBER_ID) FROM MEMBER WHERE NICKNAME = #{nickname}
+  <select id="selectCountNick" parameterType="map" resultType="int">
+    SELECT Count(MEMBER_ID)
+    FROM MEMBER
+    WHERE
+    <choose>
+      <when test="member_id != null">NICKNAME = #{nickname} AND MEMBER_ID != #{member_id}</when>
+      <otherwise>NICKNAME = #{nickname}</otherwise>
+    </choose>
   </select>
 
-  <select id="selectId" resultType="String">
+  <select id="selectId" parameterType="String" resultType="int">
     SELECT member_id FROM MEMBER WHERE USER_ID = #{user_id}
   </select>
 
-  <select id="selectModNick" parameterType="map" resultType="int">
-    SELECT Count(MEMBER_ID) FROM MEMBER WHERE NICKNAME = #{nickname} AND MEMBER_ID != #{member_id}
-  </select>
-
-  <select id="selectPw" resultType="String">
-    SELECT password FROM MEMBER WHERE MEMBER_ID = #{member_id}
-  </select>
-
-  <select id="selectEn" resultType="int">
+  <select id="selectEnabled" parameterType="int" resultType="int">
     SELECT Enabled FROM MEMBER WHERE MEMBER_ID = #{member_id}
+  </select>
+
+  <select id="selectMember" parameterType="int" resultType="map">
+    SELECT member_id, user_id, nickname, email, question, answer, method, task, exam, reg_date FROM MEMBER WHERE MEMBER_ID = #{member_id}
+  </select>
+
+  <select id="selectPassword" parameterType="int" resultType="String">
+    SELECT password FROM MEMBER WHERE MEMBER_ID = #{member_id}
   </select>
 
   <select id="selectAll" resultType="map">
     SELECT * FROM MEMBER
   </select>
 
-  <delete id="delete" parameterType="String">
-    DELETE FROM MEMBER WHERE MEMBER_ID = #{value}
-  </delete>
 
-  <update id="deleteEnabled" parameterType="String">
-    UPDATE MEMBER
-    SET
-    enabled = 0
-    WHERE MEMBER_ID = #{member_id}
-  </update>
+  <!--insert-->
 
-  <update id="enabled" parameterType="String">
+  <insert id="insertMember" parameterType="map">
+    INSERT INTO MEMBER (user_id, password, nickname, email, question, answer, method, task, exam)
+    VALUES (#{user_id},#{password},#{nickname},#{email},#{question},#{answer},#{method},#{task},#{exam})
+  </insert>
+
+  <insert id="insertRole" parameterType="int">
+    INSERT INTO MEMBER_ROLE (member_id) VALUES (#{member_id})
+  </insert>
+
+
+  <!--update-->
+
+  <update id="updateEnabled" parameterType="int">
     UPDATE MEMBER
     SET
     enabled = 1
     WHERE MEMBER_ID = #{member_id}
   </update>
 
-  <insert id="insert" parameterType="map">
-    INSERT INTO MEMBER (user_id, password, nickname, email, question, answer, method, task, exam)
-    VALUES (#{user_id},#{password},#{nickname},#{email},#{question},#{answer},#{method},#{task},#{exam})
-  </insert>
-
-  <insert id="insert_role" parameterType="String">
-    INSERT INTO MEMBER_ROLE (member_id) VALUES (#{member_id})
-  </insert>
-
-  <update id="update" parameterType="map">
+  <update id="updateMember" parameterType="map">
     UPDATE MEMBER
     SET
     nickname = #{nickname},
@@ -78,11 +77,25 @@
     WHERE MEMBER_ID = #{member_id}
   </update>
 
-  <update id="updatePw" parameterType="map">
+  <update id="updatePassword" parameterType="map">
     UPDATE MEMBER
     SET
     password = #{password}
     WHERE MEMBER_ID = #{member_id}
   </update>
+
+  <update id="updateUnEnabled" parameterType="int">
+    UPDATE MEMBER
+    SET
+    enabled = 0
+    WHERE MEMBER_ID = #{member_id}
+  </update>
+
+
+  <!--delete-->
+
+  <delete id="delete" parameterType="int">
+    DELETE FROM MEMBER WHERE MEMBER_ID = #{member_id}
+  </delete>
 
 </mapper>

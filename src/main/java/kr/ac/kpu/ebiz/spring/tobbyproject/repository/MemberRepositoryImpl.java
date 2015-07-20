@@ -7,67 +7,74 @@ import java.util.Map;
 
 public class MemberRepositoryImpl extends SqlSessionDaoSupport implements MemberRepository {
 
-	public Map select(String memberId) {
-		return getSqlSession().selectOne("MemberRepository.select", memberId);
+	/*select*/
+
+	public int selectCountId(String user_id) {
+		return getSqlSession().selectOne("MemberRepository.selectCountId", user_id);
 	}
 
-	public int selectMember(String user_id) {
-		return getSqlSession().selectOne("MemberRepository.selectMember", user_id);
+	public int selectCountEmail(String email) {
+		return getSqlSession().selectOne("MemberRepository.selectCountEmail", email);
 	}
 
-	public int selectEmail(String email) {
-		return getSqlSession().selectOne("MemberRepository.selectEmail", email);
+	public int selectCountNick(Map member) {
+		return getSqlSession().selectOne("MemberRepository.selectCountNick", member);
 	}
 
-	public int selectNick(String nickname) {
-		return getSqlSession().selectOne("MemberRepository.selectNick", nickname);
-	}
-
-	public String selectId(String user_id) {
+	public int selectId(String user_id) {
 		return getSqlSession().selectOne("MemberRepository.selectId", user_id);
 	}
 
-	public int selectModNick(Map member) {
-		return getSqlSession().selectOne("MemberRepository.selectModNick", member);
+	public int selectEnabled(int member_id) {
+		return getSqlSession().selectOne("MemberRepository.selectEnabled", member_id);
 	}
 
-	public String selectPw(String memberId) {
-		return getSqlSession().selectOne("MemberRepository.selectPw", memberId);
+	public Map selectMember(int member_id) {
+		return getSqlSession().selectOne("MemberRepository.selectMember", member_id);
 	}
 
-	public int selectEn(String memberId) {
-		return getSqlSession().selectOne("MemberRepository.selectEn", memberId);
+	public String selectPassword(int member_id) {
+		return getSqlSession().selectOne("MemberRepository.selectPassword", member_id);
 	}
 
 	public List<Map> selectAll() {
 		return getSqlSession().selectList("MemberRepository.selectAll");
 	}
 
-	public boolean delete(String memberId) { return getSqlSession().delete("MemberRepository.delete", memberId) > 0;
+
+	/*insert*/
+
+	public boolean insertMember(Map member) {
+		return getSqlSession().insert("MemberRepository.insertMember", member) > 0;
 	}
 
-	public boolean deleteEnabled(String memberId) {
-		return getSqlSession().update("MemberRepository.deleteEnabled", memberId) > 0;
+	public boolean insertRole(int member_id) {
+		return getSqlSession().insert("MemberRepository.insertRole", member_id) > 0;
 	}
 
-	public boolean enabled(String memberId) {
-		return getSqlSession().update("MemberRepository.enabled", memberId) > 0;
+
+	/*update*/
+
+	public boolean updateEnabled(int member_id) {
+		return getSqlSession().update("MemberRepository.updateEnabled", member_id) > 0;
 	}
 
-	public boolean insert(Map member) {
-		return getSqlSession().insert("MemberRepository.insert", member) > 0;
+	public boolean updateMember(Map member) {
+		return getSqlSession().update("MemberRepository.updateMember", member) > 0;
 	}
 
-	public boolean insert_role(String memberId) {
-		return getSqlSession().insert("MemberRepository.insert_role", memberId) > 0;
+	public boolean updatePassword(Map member) {
+		return getSqlSession().update("MemberRepository.updatePassword", member) > 0;
 	}
 
-	public boolean update(Map member) {
-		return getSqlSession().update("MemberRepository.update", member) > 0;
+	public boolean updateUnEnabled(int member_id) {
+		return getSqlSession().update("MemberRepository.updateUnEnabled", member_id) > 0;
 	}
 
-	public boolean updatePw(Map member) {
-		return getSqlSession().update("MemberRepository.updatePw", member) > 0;
+
+	/*delete*/
+
+	public boolean delete(int member_id) { return getSqlSession().delete("MemberRepository.delete", member_id) > 0;
 	}
 
 }

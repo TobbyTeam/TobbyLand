@@ -66,13 +66,13 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/reg", method = RequestMethod.POST)
-	public @ResponseBody boolean register(@RequestParam Map<String, String> member) {
+	public @ResponseBody boolean register(@RequestParam Map<String, java.io.Serializable> member) {
 
 		return memberService.regService(member);
 	}
 
 	@RequestMapping(value = "/enabled", method = RequestMethod.GET)
-	public ModelAndView enabled(@RequestParam("member_id") String enSt) {
+	public ModelAndView enabled(@RequestParam("enSt") String enSt) {
 
 		ModelAndView mav = new ModelAndView("/member/enabled");
 
@@ -115,7 +115,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/pwChange", method = RequestMethod.GET)
-	public String pwMod() {
+	public String pwChange() {
 
 		return "member/pwChange";
 	}
@@ -127,17 +127,15 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/pwMod", method = RequestMethod.POST)
-	public @ResponseBody boolean pwChange(@RequestParam ("password")String password) {
+	public @ResponseBody boolean pwModify(@RequestParam ("password")String password) {
 
 		return memberService.pwModService(password);
 	}
 
-	@RequestMapping(value = "/deleteEnabled", method = RequestMethod.GET)
-	public String deleteEnabled()	{
+	@RequestMapping(value = "/deleteEnabled", method = RequestMethod.POST)
+	public @ResponseBody boolean deleteEnabled() {
 
-		memberService.deleteEnabledService();
-
-		return "etc/login";
+		return memberService.unEnabledService();
 	}
 
 }

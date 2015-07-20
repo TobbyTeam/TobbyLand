@@ -3,6 +3,11 @@
 <html>
 <head>
     <title></title>
+
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="<c:url value="/resources/js/jquery.validate.min.js" />"></script>
+    <script src="<c:url value="/resources/js/member_validate.js" />"></script>
+
 </head>
 <body>
 
@@ -15,7 +20,8 @@
 <table border="1">
 
   <tr>
-    <td>아이디</td>
+    <td>멤버아이디</td>
+    <td>유저아이디</td>
     <td>닉네임</td>
     <td>이메일</td>
     <td>수업방식</td>
@@ -27,6 +33,7 @@
 
   <tr>
       <td>${member.member_id}</td>
+      <td>${member.user_id}</td>
       <td>${member.nickname}</td>
       <td>${member.email}</td>
       <td>
@@ -84,7 +91,34 @@
 
     <a href="/member/pwChange">비밀번호수정</a><br/><br/>
 
-    <a href="/member/deleteEnabled">회원탈퇴</a> <br /><br/>
+    <a id="withdrawal" href="">회원탈퇴</a> <br /><br/>
+
+<script>
+
+    $("#withdrawal").click(function () {
+
+        if (confirm("정말 탈퇴하시겠습니까?")) {
+
+            $.ajax({
+                type: "POST",
+                url: "/member/deleteEnabled",
+                dataType: "json",
+                success: function (result) {
+
+                    if (result) {
+                        window.open("/login", "_self");
+                    } else {
+                        alert("죄송합니다. 다시 시도해주세요.");
+                    }
+
+                }
+            })
+
+        }
+
+    })
+
+</script>
 
 </body>
 </html>

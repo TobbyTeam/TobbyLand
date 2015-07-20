@@ -57,23 +57,24 @@ public class CustomJdbcDaoImpl extends JdbcDaoImpl {
                 throw ue;
             }
 
-        return user;
-    }
+    return user;
+}
 
     @Override
     protected List<UserDetails> loadUsersByUsername(String username) {
         // TODO Auto-generated method stub
         return getJdbcTemplate().query(getUsersByUsernameQuery(), new String[] {username}, new RowMapper<UserDetails>() {
-                public UserDetails mapRow(ResultSet rs, int rowNum) throws SQLException {
-                        String username = rs.getString(1);
-                        String password = rs.getString(2);
-                        boolean enabled = rs.getBoolean(3);
-                        boolean nonLocked = rs.getBoolean(4);
-                        String nickname = rs.getString(5);
-                        return new MemberInfo(username, password, enabled, nonLocked, nickname, AuthorityUtils.NO_AUTHORITIES);
-                    }
+            public UserDetails mapRow(ResultSet rs, int rowNum) throws SQLException {
+                int member_id = rs.getInt(1);
+                String user_id = rs.getString(2);
+                String password = rs.getString(3);
+                boolean enabled = rs.getBoolean(4);
+                boolean nonLocked = rs.getBoolean(5);
+                String nickname = rs.getString(6);
+                return new MemberInfo(member_id, user_id, password, enabled, nonLocked, nickname, AuthorityUtils.NO_AUTHORITIES);
+            }
 
-                    });
+        });
     }
 
     @Override

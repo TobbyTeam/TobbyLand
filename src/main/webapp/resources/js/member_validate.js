@@ -254,6 +254,7 @@ $(document).ready(function() {
 		}
 	})
 
+
 	$("#pw_mod_frm").validate({
 		onfocusout: false,
 		rules: {
@@ -269,7 +270,8 @@ $(document).ready(function() {
 			}, password: {
 				required: true,
 				space: true,
-				rangelength: [5, 12]
+				rangelength: [5, 12],
+				mix: true
 			}, password_check: {
 				required: true,
 				rangelength: [5, 12],
@@ -282,7 +284,8 @@ $(document).ready(function() {
 			}, password: {
 				required: "패스워드를 입력하세요.",
 				space: "공백은 불가능합니다.",
-				rangelength: $.validator.format("패스워드 5글자 이상 12글자 이하로 입력하세요.")
+				rangelength: $.validator.format("패스워드 5글자 이상 12글자 이하로 입력하세요."),
+				mix: "비밀번호는 문자, 숫자, 특수문자(!@#$%^*+=-)의 조합으로 입력해주세요."
 			}, password_check: {
 				required: "패스워드 확인 입력하세요.",
 				rangelength: $.validator.format("패스워드확인은 최소 5글자 이상 12글자 이하로 입력하세요."),

@@ -12,15 +12,17 @@ public class MemberInfo implements UserDetails {
 
 private static final long serialVersionUID = -4086869747130410600L;
 
-    private String member_id;
+    private int member_id;
+    private String user_id;
     private String password;
     private boolean enabled;
     private boolean nonLocked;
     private String nickname;
     private Set<GrantedAuthority> authorities;
 
-    public MemberInfo(String member_id, String password, boolean enabled, boolean nonLocked, String nickname, Collection<? extends GrantedAuthority> authorities){
+    public MemberInfo(int member_id, String user_id, String password, boolean enabled, boolean nonLocked, String nickname, Collection<? extends GrantedAuthority> authorities){
         this.member_id = member_id;
+        this.user_id = user_id;
         this.password = password;
         this.enabled = enabled;
         this.nonLocked = nonLocked;
@@ -28,11 +30,11 @@ private static final long serialVersionUID = -4086869747130410600L;
         this.authorities = Collections.unmodifiableSet(sortAuthorities(authorities));
     }
 
-    public String getMember_id() {
-return member_id;
+    public int getMember_id() {
+        return member_id;
     }
  
-    public void setMember_id(String member_id) {
+    public void setMember_id(int member_id) {
         this.member_id = member_id;
     }
 
@@ -64,6 +66,10 @@ return member_id;
         this.password = password;
     }
 
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
     public Collection<? extends GrantedAuthority> getAuthorities() {
         // TODO Auto-generated method stub
         return authorities;
@@ -78,9 +84,14 @@ return member_id;
         return password;
     }
 
+    public String getUser_id() {
+        // TODO Auto-generated method stub
+        return user_id;
+    }
+
     public String getUsername() {
         // TODO Auto-generated method stub
-        return getMember_id();
+        return getUser_id();
     }
 
     public boolean isAccountNonExpired() {

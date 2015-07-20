@@ -5,36 +5,46 @@ import java.util.Map;
 
 public interface MemberRepository {
 
-	Map select(String memberId);
+	/*select*/
 
-	int selectMember(String user_id);
+	int selectCountId(String user_id);
 
-	int selectEmail(String email);
+	int selectCountEmail(String email);
 
-	int selectNick(String nickname);
+	int selectCountNick(Map member);
 
-	String selectId(String user_id);
+	int selectId(String user_id);
 
-	int selectModNick(Map member);
+	int selectEnabled(int member_id);
 
-	String selectPw(String memberId);
+	Map selectMember(int member_id);
 
-	int selectEn(String memberId);
+	String selectPassword(int member_id);
 
 	List<Map> selectAll();
 
-	boolean delete(String memberId);
 
-	boolean deleteEnabled(String memberId);
+	/*insert*/
 
-	boolean enabled(String memberId);
+	boolean insertMember(Map member);
 
-	boolean insert(Map member);
+	boolean insertRole(int member_id);
 
-	boolean insert_role(String memberId);
 
-	boolean update(Map member);
+	/*update*/
 
-	boolean updatePw(Map member);
+	boolean updateEnabled(int member_id);
+
+	boolean updateMember(Map member);
+
+	boolean updatePassword(Map member);
+
+	boolean updateUnEnabled(int member_id);
+
+
+	/*delete*/
+
+	boolean delete(int member_id);
+
 }
 
