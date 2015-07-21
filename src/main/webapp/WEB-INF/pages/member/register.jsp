@@ -34,20 +34,38 @@
     <br />
     비밀번호 찾기 답변: <input type="text" id="answer" name="answer"><br />
     수업방식:
-            독고다이형<input type="radio" name="method" value="a1" checked>
-            토론형<input type="radio" name="method" value="a2">
-            실습형<input type="radio" name="method" value="a3"><br>
-
+        <c:forEach var="tendency" items="${tendencys}" varStatus="status" begin="0" end="2">
+            <c:choose>
+                <c:when test="${tendency.tendency_id eq 1}">
+                    ${tendency.tendency_title}<input type="radio" name="method" value="${tendency.tendency_id}" checked>
+                </c:when>
+                <c:otherwise>
+                    ${tendency.tendency_title}<input type="radio" name="method" value="${tendency.tendency_id}">
+                </c:otherwise>
+            </c:choose>
+        </c:forEach><br />
     과제방식:
-            텀프로젝트<input type="radio" name="task" value="b1" checked>
-            팀과제<input type="radio" name="task" value="b2">
-            개인과제<input type="radio" name="task" value="b3"><br>
-
+        <c:forEach var="tendency" items="${tendencys}" varStatus="status" begin="3" end="5">
+            <c:choose>
+                <c:when test="${tendency.tendency_id eq 4}">
+                    ${tendency.tendency_title}<input type="radio" name="task" value="${tendency.tendency_id}" checked>
+                </c:when>
+                <c:otherwise>
+                    ${tendency.tendency_title}<input type="radio" name="task" value="${tendency.tendency_id}">
+                </c:otherwise>
+            </c:choose>
+        </c:forEach><br />
     시험방식:
-            서술형<input type="radio" name="exam" value="c1" checked>
-            혼합형<input type="radio" name="exam" value="c2">
-            오픈북<input type="radio" name="exam" value="c3">
-            실습<input type="radio" name="exam" value="c4"><br>
+        <c:forEach var="tendency" items="${tendencys}" varStatus="status" begin="6" end="9">
+            <c:choose>
+                <c:when test="${tendency.tendency_id eq 7}">
+                    ${tendency.tendency_title}<input type="radio" name="exam" value="${tendency.tendency_id}" checked>
+                </c:when>
+                <c:otherwise>
+                    ${tendency.tendency_title}<input type="radio" name="exam" value="${tendency.tendency_id}" >
+                </c:otherwise>
+            </c:choose>
+        </c:forEach><br />
     <br />
     <button type="button" onclick="$(this.form).submit()">회원가입</button>&nbsp;&nbsp;&nbsp; <input type="reset" value="취소" onclick="javascript:window.location='/login'">
 </form>

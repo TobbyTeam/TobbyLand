@@ -36,6 +36,7 @@ public class MemberController {
 
 		ModelAndView mav = new ModelAndView("/member/register");
 
+		mav.addObject("tendencys", memberRepository.selectTendencyAll());
 		mav.addObject("questions", question.question());
 
 		return mav;

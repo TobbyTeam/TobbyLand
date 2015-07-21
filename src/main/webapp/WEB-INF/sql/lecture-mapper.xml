@@ -6,7 +6,9 @@
   <!--select-->
 
   <select id="selectAll" resultType="map">
-    SELECT * FROM LECTURE WHERE likes <![CDATA[ < ]]> 10 AND IS_DELETE = 1 ORDER BY WRITE_DATE DESC
+    SELECT L.*, D.department_name
+    FROM LECTURE L LEFT OUTER JOIN DEPARTMENT D ON L.DEPT = D.DEPARTMENT_ID
+    WHERE likes <![CDATA[ < ]]> 10 AND IS_DELETE = 1 ORDER BY WRITE_DATE DESC
   </select>
 
   <select id="selectMember_id" parameterType="int" resultType="int">
@@ -14,16 +16,25 @@
   </select>
 
   <select id="selectLecture" parameterType="int" resultType="map">
-    SELECT * FROM LECTURE WHERE LECTURE_ID = #{lecture_id}
+    SELECT L.*, D.department_name
+    FROM LECTURE L LEFT OUTER JOIN DEPARTMENT D ON L.DEPT = D.DEPARTMENT_ID
+    WHERE L.LECTURE_ID = #{lecture_id}
   </select>
 
   <select id="selectSearchLecture" parameterType="map" resultType="map">
-    SELECT L.*, SUM(IF(E.IS_DELETE = 1,1,0)) as count
-    FROM LECTURE L LEFT OUTER JOIN EVALUATION E ON E.LECTURE_ID = L.LECTURE_ID
+    SELECT L.lecture_id, L.lecture_name, L.prof, D.department_name, SUM(IF(E.IS_DELETE = 1,1,0)) as count, IFNULL(AVG(IF(E.IS_DELETE = 1,E.SCORE,NULL)),0) as avg
+    FROM LECTURE L LEFT OUTER JOIN EVALUATION E ON L.LECTURE_ID = E.LECTURE_ID LEFT OUTER JOIN DEPARTMENT D ON L.DEPT = D.DEPARTMENT_ID
     WHERE L.LIKES <![CDATA[ >= ]]> 10 AND L.IS_DELETE = 1
-    <choose><when test="searchType != null and searchType.equalsIgnoreCase('lecture_name')">AND L.LECTURE_NAME LIKE CONCAT('%', #{searchWord}, '%')</when>
-      <when test="searchType != null and searchType.equalsIgnoreCase('dept')">AND L.DEPT LIKE CONCAT('%', #{searchWord}, '%')</when>
-      <otherwise> AND L.PROF LIKE CONCAT('%', #{searchWord}, '%')</otherwise>
+    <choose>
+      <when test="searchType != null and searchType.equalsIgnoreCase('lecture_name')">
+        AND L.LECTURE_NAME LIKE CONCAT('%', #{searchWord}, '%')
+      </when>
+      <when test="searchType != null and searchType.equalsIgnoreCase('dept')">
+        AND D.DEPARTMENT_NAME LIKE CONCAT('%', #{searchWord}, '%')
+      </when>
+      <otherwise>
+        AND L.PROF LIKE CONCAT('%', #{searchWord}, '%')
+      </otherwise>
     </choose>
     GROUP BY L.LECTURE_ID
     ORDER BY L.WRITE_DATE DESC
@@ -73,8 +84,8 @@
   </select>
 
   <select id="selectLecture_E" parameterType="int" resultType="map">
-    SELECT L.*, Count(IF(E.IS_DELETE = 1,1,NULL)) as count
-    FROM LECTURE L LEFT OUTER JOIN EVALUATION E ON E.LECTURE_ID = L.LECTURE_ID
+    SELECT L.lecture_name, L.prof, D.department_name, Count(IF(E.IS_DELETE = 1,1,NULL)) as count,  AVG(IF(E.IS_DELETE = 1,E.SCORE,NULL)) as avg
+    FROM LECTURE L LEFT OUTER JOIN EVALUATION E ON L.LECTURE_ID = E.LECTURE_ID LEFT OUTER JOIN DEPARTMENT D ON L.DEPT = D.DEPARTMENT_ID
     WHERE L.LECTURE_ID = #{lecture_id}
     GROUP BY L.LECTURE_ID
   </select>

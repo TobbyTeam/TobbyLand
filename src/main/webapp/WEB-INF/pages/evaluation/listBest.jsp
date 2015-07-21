@@ -33,7 +33,7 @@
 			<td><a href="/evaluation/replyList?evaluation_id=${best.evaluation_id}">${best.evaluation_id}</a></td>
 			<td>${best.member_id}</td>
 			<td>${best.lecture_id}</td>
-			<td>${best.semester}</td>
+			<td>${best.semester_title}</td>
 			<td>${best.method}</td>
 			<td>${best.task}</td>
 			<td>${best.exam}</td>

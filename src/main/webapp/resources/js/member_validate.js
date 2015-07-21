@@ -158,7 +158,7 @@ $(document).ready(function() {
 				kpumail: "kpu메일을 입력해주세요.(kpu@ac.kr)",
 				remote: "이메일 중복입니다."
 			}, answer: {
-				required: "닉네임을 입력하세요.",
+				required: "답변을 입력하세요.",
 				space: "공백은 불가능합니다."
 			}
 			/*        }, invalidHandler: function (form, validator) {

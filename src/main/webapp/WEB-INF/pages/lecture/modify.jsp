@@ -22,11 +22,11 @@
             <select id="dept" name="dept">
               <c:forEach var="department" items="${departments}" varStatus="status">
                 <c:choose>
-                <c:when test="${department.department_name eq lecture.dept}">
-                <option value="${department.department_name}" selected="selected">${department.department_name}</option>
+                <c:when test="${department.department_id eq lecture.dept}">
+                <option value="${department.department_id}" selected="selected">${department.department_name}</option>
                 </c:when>
                 <c:otherwise>
-                <option value="${department.department_name}">${department.department_name}</option>
+                <option value="${department.department_id}">${department.department_name}</option>
                 </c:otherwise>
                 </c:choose>
               </c:forEach>

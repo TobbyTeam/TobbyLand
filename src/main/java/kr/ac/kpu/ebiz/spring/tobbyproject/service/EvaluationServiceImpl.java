@@ -274,7 +274,7 @@ public class EvaluationServiceImpl implements EvaluationService {
         mav.addObject("lecture", lectureRepository.selectLecture_E(lecture_id));
         mav.addObject("lecture_id", lecture_id);
 
-        if(result.isEmpty() == true){
+        if(result.isEmpty() == true) {
             mav.addObject("error", "검색 결과가 없습니다.");
         }
 

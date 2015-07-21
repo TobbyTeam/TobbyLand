@@ -22,96 +22,96 @@
 
 	수업방식:
 	<c:choose>
-		<c:when test="${search.method eq 'a1'}">
+		<c:when test="${search.method eq '1'}">
 			전체<input type="radio" name="method" value="all">
-			독고다이형<input type="radio" name="method" value="a1" checked>
-			토론형<input type="radio" name="method" value="a2">
-			실습형<input type="radio" name="method" value="a3"><br>
+			독고다이형<input type="radio" name="method" value="1" checked>
+			토론형<input type="radio" name="method" value="2">
+			실습형<input type="radio" name="method" value="3"><br>
 		</c:when>
-		<c:when test="${search.method eq 'a2'}">
+		<c:when test="${search.method eq '2'}">
 			전체<input type="radio" name="method" value="all">
-			독고다이형<input type="radio" name="method" value="a1" >
-			토론형<input type="radio" name="method" value="a2" checked>
-			실습형<input type="radio" name="method" value="a3"><br>
+			독고다이형<input type="radio" name="method" value="1" >
+			토론형<input type="radio" name="method" value="2" checked>
+			실습형<input type="radio" name="method" value="3"><br>
 		</c:when>
-		<c:when test="${search.method eq 'a3'}">
+		<c:when test="${search.method eq '3'}">
 			전체<input type="radio" name="method" value="all">
-			독고다이형<input type="radio" name="method" value="a1" >
-			토론형<input type="radio" name="method" value="a2">
-			실습형<input type="radio" name="method" value="a3" checked><br>
+			독고다이형<input type="radio" name="method" value="1" >
+			토론형<input type="radio" name="method" value="2">
+			실습형<input type="radio" name="method" value="3" checked><br>
 		</c:when>
 		<c:otherwise>
 			전체<input type="radio" name="method" value="all" checked>
-			독고다이형<input type="radio" name="method" value="a1">
-			토론형<input type="radio" name="method" value="a2">
-			실습형<input type="radio" name="method" value="a3"><br>
+			독고다이형<input type="radio" name="method" value="1">
+			토론형<input type="radio" name="method" value="2">
+			실습형<input type="radio" name="method" value="3"><br>
 		</c:otherwise>
 	</c:choose>
 
 	과제방식:
 	<c:choose>
-		<c:when test="${search.task eq 'b1'}">
+		<c:when test="${search.task eq '4'}">
 			전체<input type="radio" name="task" value="all">
-			텀프로젝트<input type="radio" name="task" value="b1" checked>
-			팀과제<input type="radio" name="task" value="b2">
-			개인과제<input type="radio" name="task" value="b3"><br>
+			텀프로젝트<input type="radio" name="task" value="4" checked>
+			팀과제<input type="radio" name="task" value="5">
+			개인과제<input type="radio" name="task" value="6"><br>
 		</c:when>
-		<c:when test="${search.task eq 'b2'}">
+		<c:when test="${search.task eq '5'}">
 			전체<input type="radio" name="task" value="all">
-			텀프로젝트<input type="radio" name="task" value="b1">
-			팀과제<input type="radio" name="task" value="b2" checked>
-			개인과제<input type="radio" name="task" value="b3"><br>
+			텀프로젝트<input type="radio" name="task" value="4">
+			팀과제<input type="radio" name="task" value="5" checked>
+			개인과제<input type="radio" name="task" value="6"><br>
 		</c:when>
-		<c:when test="${search.task eq 'b3'}">
+		<c:when test="${search.task eq '6'}">
 			전체<input type="radio" name="task" value="all">
-			텀프로젝트<input type="radio" name="task" value="b1">
-			팀과제<input type="radio" name="task" value="b2">
-			개인과제<input type="radio" name="task" value="b3" checked><br>
+			텀프로젝트<input type="radio" name="task" value="4">
+			팀과제<input type="radio" name="task" value="5">
+			개인과제<input type="radio" name="task" value="6" checked><br>
 		</c:when>
 		<c:otherwise>
 			전체<input type="radio" name="task" value="all" checked>
-			텀프로젝트<input type="radio" name="task" value="b1">
-			팀과제<input type="radio" name="task" value="b2">
-			개인과제<input type="radio" name="task" value="b3"><br>
+			텀프로젝트<input type="radio" name="task" value="4">
+			팀과제<input type="radio" name="task" value="5">
+			개인과제<input type="radio" name="task" value="6"><br>
 		</c:otherwise>
 	</c:choose>
 
 	시험방식:
 	<c:choose>
-		<c:when test="${search.exam eq 'c1'}">
+		<c:when test="${search.exam eq '7'}">
 			전체<input type="radio" name="exam" value="all">
-			서술형<input type="radio" name="exam" value="c1" checked>
-			혼합형<input type="radio" name="exam" value="c2">
-			오픈북<input type="radio" name="exam" value="c3">
-			실습<input type="radio" name="exam" value="c4"><br>
+			서술형<input type="radio" name="exam" value="7" checked>
+			혼합형<input type="radio" name="exam" value="8">
+			오픈북<input type="radio" name="exam" value="9">
+			실습<input type="radio" name="exam" value="10"><br>
 		</c:when>
-		<c:when test="${search.exam eq 'c2'}">
+		<c:when test="${search.exam eq '8'}">
 			전체<input type="radio" name="exam" value="all">
-			서술형<input type="radio" name="exam" value="c1">
-			혼합형<input type="radio" name="exam" value="c2" checked>
-			오픈북<input type="radio" name="exam" value="c3">
-			실습<input type="radio" name="exam" value="c4"><br>
+			서술형<input type="radio" name="exam" value="7">
+			혼합형<input type="radio" name="exam" value="8" checked>
+			오픈북<input type="radio" name="exam" value="9">
+			실습<input type="radio" name="exam" value="10"><br>
 		</c:when>
-		<c:when test="${search.exam eq 'c3'}">
+		<c:when test="${search.exam eq '9'}">
 			전체<input type="radio" name="exam" value="all">
-			서술형<input type="radio" name="exam" value="c1">
-			혼합형<input type="radio" name="exam" value="c2">
-			오픈북<input type="radio" name="exam" value="c3" checked>
-			실습<input type="radio" name="exam" value="c4"><br>
+			서술형<input type="radio" name="exam" value="7">
+			혼합형<input type="radio" name="exam" value="8">
+			오픈북<input type="radio" name="exam" value="9" checked>
+			실습<input type="radio" name="exam" value="10"><br>
 		</c:when>
-		<c:when test="${search.exam eq 'c4'}">
+		<c:when test="${search.exam eq '10'}">
 			전체<input type="radio" name="exam" value="all">
-			서술형<input type="radio" name="exam" value="c1">
-			혼합형<input type="radio" name="exam" value="c2">
-			오픈북<input type="radio" name="exam" value="c3">
-			실습<input type="radio" name="exam" value="c4" checked><br>
+			서술형<input type="radio" name="exam" value="7">
+			혼합형<input type="radio" name="exam" value="8">
+			오픈북<input type="radio" name="exam" value="9">
+			실습<input type="radio" name="exam" value="10" checked><br>
 		</c:when>
 		<c:otherwise>
 			전체<input type="radio" name="exam" value="all" checked>
-			서술형<input type="radio" name="exam" value="c1">
-			혼합형<input type="radio" name="exam" value="c2">
-			오픈북<input type="radio" name="exam" value="c3">
-			실습<input type="radio" name="exam" value="c4"><br>
+			서술형<input type="radio" name="exam" value="7">
+			혼합형<input type="radio" name="exam" value="8">
+			오픈북<input type="radio" name="exam" value="9">
+			실습<input type="radio" name="exam" value="10"><br>
 		</c:otherwise>
 	</c:choose>
 
@@ -145,7 +145,7 @@
 			<td><a href="/evaluation/replyList?evaluation_id=${evaluation.evaluation_id}">${evaluation.evaluation_id}</a></td>
 			<td>${evaluation.member_id}</td>
 			<td>${evaluation.lecture_id}</td>
-			<td>${evaluation.semester}</td>
+			<td>${evaluation.semester_title}</td>
 			<td>${evaluation.method}</td>
 			<td>${evaluation.task}</td>
 			<td>${evaluation.exam}</td>

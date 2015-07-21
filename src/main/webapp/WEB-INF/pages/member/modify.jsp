@@ -36,75 +36,40 @@
     <br />
     비밀번호 찾기 답변: <input type="text" id="answer" name="answer" value="${member.answer}"><br />
     수업방식:
-    <c:choose>
-        <c:when test="${member.method eq 'a1' }">
-            독고다이형<input type="radio" name="method" value="a1" checked>
-            토론형<input type="radio" name="method" value="a2">
-            실습형<input type="radio" name="method" value="a3"><br>
-        </c:when>
-        <c:when test="${member.method eq 'a2'}">
-            독고다이형<input type="radio" name="method" value="a1" >
-            토론형<input type="radio" name="method" value="a2" checked>
-            실습형<input type="radio" name="method" value="a3"><br>
-        </c:when>
-        <c:otherwise>
-            독고다이형<input type="radio" name="method" value="a1" >
-            토론형<input type="radio" name="method" value="a2">
-            실습형<input type="radio" name="method" value="a3" checked><br>
-        </c:otherwise>
-    </c:choose>
-
+    <c:forEach var="tendency" items="${tendencys}" varStatus="status" begin="0" end="2">
+        <c:choose>
+            <c:when test="${tendency.tendency_id eq member.method}">
+                ${tendency.tendency_title}<input type="radio" name="method" value="${tendency.tendency_id}" checked>
+            </c:when>
+            <c:otherwise>
+                ${tendency.tendency_title}<input type="radio" name="method" value="${tendency.tendency_id}">
+            </c:otherwise>
+        </c:choose>
+    </c:forEach><br />
     과제방식:
-    <c:choose>
-        <c:when test="${member.task eq 'b1'}">
-            텀프로젝트<input type="radio" name="task" value="b1" checked>
-            팀과제<input type="radio" name="task" value="b2">
-            개인과제<input type="radio" name="task" value="b3"><br>
-        </c:when>
-        <c:when test="${member.task eq 'b2'}">
-            텀프로젝트<input type="radio" name="task" value="b1">
-            팀과제<input type="radio" name="task" value="b2" checked>
-            개인과제<input type="radio" name="task" value="b3"><br>
-        </c:when>
-        <c:otherwise>
-            텀프로젝트<input type="radio" name="task" value="b1">
-            팀과제<input type="radio" name="task" value="b2">
-            개인과제<input type="radio" name="task" value="b3" checked><br>
-        </c:otherwise>
-    </c:choose>
-
+    <c:forEach var="tendency" items="${tendencys}" varStatus="status" begin="3" end="5">
+        <c:choose>
+            <c:when test="${tendency.tendency_id eq member.task}">
+                ${tendency.tendency_title}<input type="radio" name="task" value="${tendency.tendency_id}" checked>
+            </c:when>
+            <c:otherwise>
+                ${tendency.tendency_title}<input type="radio" name="task" value="${tendency.tendency_id}">
+            </c:otherwise>
+        </c:choose>
+    </c:forEach><br />
     시험방식:
-    <c:choose>
-        <c:when test="${member.exam eq 'c1'}">
-            서술형<input type="radio" name="exam" value="c1" checked>
-            혼합형<input type="radio" name="exam" value="c2">
-            오픈북<input type="radio" name="exam" value="c3">
-            실습<input type="radio" name="exam" value="c4"><br>
-        </c:when>
-        <c:when test="${member.exam eq 'c2'}">
-            서술형<input type="radio" name="exam" value="c1">
-            혼합형<input type="radio" name="exam" value="c2" checked>
-            오픈북<input type="radio" name="exam" value="c3">
-            실습<input type="radio" name="exam" value="c4"><br>
-        </c:when>
-        <c:when test="${member.exam eq 'c3'}">
-            서술형<input type="radio" name="exam" value="c1">
-            혼합형<input type="radio" name="exam" value="c2">
-            오픈북<input type="radio" name="exam" value="c3" checked>
-            실습<input type="radio" name="exam" value="c4"><br>
-        </c:when>
-        <c:otherwise>
-            서술형<input type="radio" name="exam" value="c1">
-            혼합형<input type="radio" name="exam" value="c2">
-            오픈북<input type="radio" name="exam" value="c3">
-            실습<input type="radio" name="exam" value="c4" checked><br>
-        </c:otherwise>
-    </c:choose>
-
-    <br />
+    <c:forEach var="tendency" items="${tendencys}" varStatus="status" begin="6" end="9">
+        <c:choose>
+            <c:when test="${tendency.tendency_id eq member.exam}">
+                ${tendency.tendency_title}<input type="radio" name="exam" value="${tendency.tendency_id}" checked>
+            </c:when>
+            <c:otherwise>
+                ${tendency.tendency_title}<input type="radio" name="exam" value="${tendency.tendency_id}" >
+            </c:otherwise>
+        </c:choose>
+    </c:forEach><br />
 
     <button type="button" onclick="$(this.form).submit()">수정</button>&nbsp;&nbsp;&nbsp; <input type="reset" value="취소" onclick="javascript:window.location='/member/view'">
-
 
 </form>
 

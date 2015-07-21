@@ -7,20 +7,10 @@ USE tobbyland;
 --
 
 CREATE TABLE tendency (
-  tendency_id varchar(10) NOT NULL,
-  title varchar(45) DEFAULT NULL,
+  tendency_id int(2) UNSIGNED NOT NULL AUTO_INCREMENT,
+  tendency_title varchar(45) DEFAULT NULL,
   PRIMARY KEY (tendency_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*--
--- Table structure for table `question`
---
-
-CREATE TABLE question (
-  question_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  title varchar(45) DEFAULT NULL,
-  PRIMARY KEY (question_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;*/
 
 
 --
@@ -36,9 +26,9 @@ CREATE TABLE member (
   question int(2) UNSIGNED DEFAULT '1',
   answer varchar(10) DEFAULT NULL,
   reg_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  method varchar(10) DEFAULT NULL,
-  task varchar(10) DEFAULT NULL,
-  exam varchar(10) DEFAULT NULL,
+  method int(2) UNSIGNED DEFAULT '1',
+  task int(2) UNSIGNED DEFAULT '4',
+  exam int(2) UNSIGNED DEFAULT '7',
   enabled tinyint(4) UNSIGNED DEFAULT '0',
   nonLocked tinyint(4) UNSIGNED DEFAULT '1',
   PRIMARY KEY (member_id),
@@ -84,18 +74,9 @@ CREATE TABLE member_role (
 --
 
 CREATE TABLE department (
+  department_id int(2) UNSIGNED NOT NULL AUTO_INCREMENT,
   department_name varchar(45) DEFAULT NULL,
-  PRIMARY KEY (department_name)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
---
--- Table structure for table `semester`
---
-
-CREATE TABLE semester (
-  semester varchar(45) DEFAULT NULL,
-  PRIMARY KEY (semester)
+  PRIMARY KEY (department_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -107,7 +88,7 @@ CREATE TABLE lecture (
   lecture_id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   member_id int(10) UNSIGNED DEFAULT NULL,
   lecture_name varchar(45) DEFAULT NULL,
-  dept varchar(45) DEFAULT NULL,
+  dept int(2) UNSIGNED DEFAULT '1',
   prof varchar(45) DEFAULT NULL,
   likes int(10) UNSIGNED DEFAULT '0',
   write_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -116,7 +97,18 @@ CREATE TABLE lecture (
   KEY FK_lecture_member (member_id),
   KEY FK_lecture_department (dept),
   CONSTRAINT FK_lecture_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT FK_lecture_department FOREIGN KEY (dept) REFERENCES department (department_name) ON DELETE NO ACTION ON UPDATE CASCADE
+  CONSTRAINT FK_lecture_department FOREIGN KEY (dept) REFERENCES department (department_id) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+--
+-- Table structure for table `semester`
+--
+
+CREATE TABLE semester (
+  semester_id int(2) UNSIGNED NOT NULL AUTO_INCREMENT,
+  semester_title varchar(45) DEFAULT NULL,
+  PRIMARY KEY (semester_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -134,7 +126,7 @@ CREATE TABLE evaluation (
   comment varchar(45) DEFAULT NULL,
   score int(10) UNSIGNED DEFAULT NULL,
   write_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  semester varchar(20) DEFAULT NULL,
+  semester int(2) UNSIGNED DEFAULT NULL,
   is_delete tinyint(4) UNSIGNED DEFAULT '1',
   is_reply tinyint(4) UNSIGNED DEFAULT NULL,
   upper_id int(10) UNSIGNED DEFAULT NULL,
@@ -146,7 +138,7 @@ CREATE TABLE evaluation (
   KEY FK_evaluation_lecture (lecture_id),
   KEY FK_evaluation_member (member_id),
   KEY FK_evaluation_semester (semester),
-  CONSTRAINT FK_evaluation_semester FOREIGN KEY (semester) REFERENCES semester (semester) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT FK_evaluation_semester FOREIGN KEY (semester) REFERENCES semester (semester_id) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT FK_evaluation_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT FK_evaluation_lecture FOREIGN KEY (lecture_id) REFERENCES lecture (lecture_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

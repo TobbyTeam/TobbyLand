@@ -23,14 +23,13 @@
 			<td>교수명</td>
 			<td>추천수</td>
 			<td>작성일</td>
-
 		</tr>
 		<c:forEach var="lecture" items="${lectures}" varStatus="status">
 		<tr>
 			<td>${lecture.lecture_id}</td>
 			<td>${lecture.member_id}</td>
 			<td>${lecture.lecture_name}</td>
-			<td>${lecture.dept}</td>
+			<td>${lecture.department_name}</td>
 			<td>${lecture.prof}</td>
 			<td><input type="button" value="추천(${lecture.likes})" onclick="likeAjax(${lecture.lecture_id})"></td>
 			<td>${lecture.write_date}</td>

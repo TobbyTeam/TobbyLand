@@ -21,7 +21,7 @@
       학과명:
               <select id="dept" name="dept">
                   <c:forEach var="department" items="${departments}" varStatus="status">
-                    <option value="${department.department_name}">${department.department_name}</option>
+                    <option value="${department.department_id}">${department.department_name}</option>
                   </c:forEach>
               </select>  <br/>
       교수명: <input type="text" id="prof" name="prof"/><br/>

@@ -39,8 +39,8 @@
     SELECT password FROM MEMBER WHERE MEMBER_ID = #{member_id}
   </select>
 
-  <select id="selectAll" resultType="map">
-    SELECT * FROM MEMBER
+  <select id="selectTendencyAll" resultType="map">
+    SELECT * FROM TENDENCY
   </select>
 
 

@@ -20,11 +20,11 @@
     <select name="semester">
         <c:forEach var="semester" items="${semesters}" varStatus="status">
             <c:choose>
-                <c:when test="${semester.semester eq current}">
-                    <option value="${semester.semester}" selected="selected">${semester.semester}</option>
+                <c:when test="${semester.semester_title eq current}">
+                    <option value="${semester.semester_id}" selected="selected">${semester.semester_title}</option>
                 </c:when>
                 <c:otherwise>
-                    <option value="${semester.semester}">${semester.semester}</option>
+                    <option value="${semester.semester_id}">${semester.semester_title}</option>
                 </c:otherwise>
             </c:choose>
         </c:forEach>

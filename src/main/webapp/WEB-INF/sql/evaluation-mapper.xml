@@ -6,16 +6,16 @@
   <!--select-->
 
   <select id="selectEvaluationAll" parameterType="int" resultType="map">
-    SELECT E.*, SUM(IF(S.IS_DELETE = 1, 1,0)) AS count
-    FROM EVALUATION E LEFT OUTER JOIN EVALUATIONSUB S ON E.EVALUATION_ID = S.EVALUATION_ID
+    SELECT E.*, S.semester_title, SUM(IF(ES.IS_DELETE = 1 AND ES.KIND=4,1,0)) as count
+    FROM EVALUATION E LEFT OUTER JOIN EVALUATIONSUB ES ON E.EVALUATION_ID = ES.EVALUATION_ID LEFT OUTER JOIN SEMESTER S ON E.SEMESTER = S.SEMESTER_ID
     WHERE E.LECTURE_ID = #{lecture_id} AND E.IS_DELETE = 1
     GROUP BY E.EVALUATION_ID
     ORDER BY SEMESTER DESC, WRITE_DATE DESC
   </select>
 
   <select id="selectEvaluationBest" parameterType="int" resultType="map">
-    SELECT E.*, SUM(IF(S.IS_DELETE = 1, 1,0)) AS count
-    FROM EVALUATION E LEFT OUTER JOIN EVALUATIONSUB S ON E.EVALUATION_ID = S.EVALUATION_ID
+    SELECT E.*, S.semester_title, SUM(IF(ES.IS_DELETE = 1 AND ES.KIND=4,1,0)) as count
+    FROM EVALUATION E LEFT OUTER JOIN EVALUATIONSUB ES ON E.EVALUATION_ID = ES.EVALUATION_ID LEFT OUTER JOIN SEMESTER S ON E.SEMESTER = S.SEMESTER_ID
     WHERE E.LECTURE_ID = #{lecture_id} AND E.IS_DELETE = 1
     GROUP BY E.EVALUATION_ID
     ORDER BY LIKES DESC, SEMESTER DESC, WRITE_DATE DESC LIMIT 3
@@ -30,7 +30,9 @@
   </select>
 
   <select id="selectEvaluation" parameterType="int" resultType="map">
-    SELECT * FROM EVALUATION WHERE Evaluation_ID = #{evaluation_id}
+    SELECT E.*, S.semester_title
+    FROM EVALUATION E LEFT OUTER JOIN SEMESTER S ON E.SEMESTER = S.SEMESTER_ID
+    WHERE Evaluation_ID = #{evaluation_id}
   </select>
 
   <select id="selectSubCount" parameterType="map" resultType="int">
@@ -77,7 +79,7 @@
   </insert>
 
   <insert id="insertSub" parameterType="map">
-    INSERT INTO EVALUATIONSUB (evaluation_id, member_id, kind, contents)
+    INSERT INTO EVALUATIONSUB (evaluation_id, member_id, kind, contents, )
     VALUES (#{evaluation_id},#{member_id},#{kind},#{contents})
   </insert>
 
