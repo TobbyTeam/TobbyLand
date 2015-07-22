@@ -28,12 +28,14 @@
 			<td>글번호</td>
 			<td>제목</td>
 			<td>작성일</td>
+			<td>조회수</td>
 		</tr>
 		<c:forEach var="board" items="${boards}" varStatus="status">
 		<tr>
 			<td>${board.rnum}</td>
 			<td><a href="/lecture/boardView?lb_id=${board.lb_id}">${board.title}(${board.count})</a></td>
 			<td>${board.write_date}</td>
+			<td>${board.hit}</td>
 		</tr>
 		</c:forEach>
 	</table><br /><br />

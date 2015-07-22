@@ -53,6 +53,8 @@ public interface LectureRepository {
 
 	boolean updateUnisDelete(int lecture_id);
 
+	boolean updateBoardHit(int lb_id);
+
 	boolean updateBoard(Map lectureSub);
 
 	boolean updateBoardIsDelete(int lb_id);

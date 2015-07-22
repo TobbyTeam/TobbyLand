@@ -12,7 +12,8 @@
 
   <jsp:include page="/top" flush="true"/> <br />
 
-  제목 : <text>${board.title}</text> &nbsp;&nbsp; 작성일 : <text>${board.write_date}</text>
+  제목 : <text>${board.title}</text> <br />
+  작성일 : <text>${board.write_date}</text> &nbsp; 조회수 : <text>${board.hit}</text>
   <br />
   내용 : <br />
 

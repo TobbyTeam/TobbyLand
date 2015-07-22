@@ -258,6 +258,8 @@ public class LectureServiceImpl implements LectureService{
 
     public void boardViewService(int lb_id, ModelAndView mav) {
 
+        lectureRepository.updateBoardHit(lb_id);
+
         mav.addObject("board", lectureRepository.selectBoard(lb_id));
         mav.addObject("replys", lectureRepository.selectBoardReplyAll(lb_id));
 
