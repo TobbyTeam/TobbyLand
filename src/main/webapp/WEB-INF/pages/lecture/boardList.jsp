@@ -32,7 +32,7 @@
 		<c:forEach var="board" items="${boards}" varStatus="status">
 		<tr>
 			<td>${board.rnum}</td>
-			<td><a href="/lecture/boardView?lb_id=${board.lb_id}">${board.title}</a></td>
+			<td><a href="/lecture/boardView?lb_id=${board.lb_id}">${board.title}(${board.count})</a></td>
 			<td>${board.write_date}</td>
 		</tr>
 		</c:forEach>
