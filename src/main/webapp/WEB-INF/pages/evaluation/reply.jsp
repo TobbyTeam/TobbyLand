@@ -14,13 +14,15 @@
     <tr>
         <td>내용</td>
         <td>작성일</td>
+        <td>신고수</td>
         <td>삭제</td>
     </tr>
     <c:forEach var="reply" items="${replys}" varStatus="status">
         <tr>
-            <td>${reply.contents}</td>
+            <td>${reply.comment}</td>
             <td>${reply.write_date}</td>
-            <td><input type="button" value="삭제" onclick="reDeleteAjax(${reply.es_id})"></td>
+            <td><input type="button" value="신고(${reply.report})" onclick="evalReportAjax(${reply.evaluation_id})"></td>
+            <td><input type="button" value="삭제" onclick="reDeleteAjax(${reply.evaluation_id})"></td>
         </tr>
     </c:forEach>
 </table>
@@ -29,8 +31,9 @@
 
     내용: <br />
 
-    <textarea name="contents" id="re_con" rows="3" cols="40" wrap="hard" placeholder="내용을 입력해주세요"></textarea><br/>
-    <input type="hidden" name="evaluation_id" value="${evaluation_id}"/>
+    <textarea name="comment" id="re_con" rows="3" cols="40" wrap="hard" placeholder="내용을 입력해주세요"></textarea><br/>
+    <input type="hidden" name="lecture_id" value="${lecture_id}"/>
+    <input type="hidden" name="upper_id" value="${evaluation_id}"/>
     <input type="button" id="reReg_btn" value="등록">
 
 </form>

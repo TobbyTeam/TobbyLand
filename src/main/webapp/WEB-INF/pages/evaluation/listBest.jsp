@@ -30,7 +30,7 @@
 	</tr>
 	<c:forEach var="best" items="${best}" varStatus="status">
 		<tr>
-			<td><a href="/evaluation/replyList?evaluation_id=${best.evaluation_id}">${best.evaluation_id}</a></td>
+			<td><a href="/evaluation/replyList?lecture_id=${best.lecture_id}&evaluation_id=${best.evaluation_id}">${best.evaluation_id}</a></td>
 			<td>${best.member_id}</td>
 			<td>${best.lecture_id}</td>
 			<td>${best.semester_title}</td>

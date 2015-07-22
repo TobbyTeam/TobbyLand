@@ -142,7 +142,7 @@
 	</tr>
 	<c:forEach var="evaluation" items="${evaluations}" varStatus="status">
 		<tr>
-			<td><a href="/evaluation/replyList?evaluation_id=${evaluation.evaluation_id}">${evaluation.evaluation_id}</a></td>
+			<td><a href="/evaluation/replyList?lecture_id=${evaluation.lecture_id}&evaluation_id=${evaluation.evaluation_id}">${evaluation.evaluation_id}</a></td>
 			<td>${evaluation.member_id}</td>
 			<td>${evaluation.lecture_id}</td>
 			<td>${evaluation.semester_title}</td>

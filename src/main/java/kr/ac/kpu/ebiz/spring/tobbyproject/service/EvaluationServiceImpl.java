@@ -283,7 +283,6 @@ public class EvaluationServiceImpl implements EvaluationService {
             mav.addObject("error", "검색 결과가 없습니다.");
         }
 
-
     }
 
     public void replyService(int evaluation_id, ModelAndView mav) {
@@ -298,33 +297,12 @@ public class EvaluationServiceImpl implements EvaluationService {
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int member_id = user.getMember_id();
 
-        int kind = 4;
-
         evaluationSub.put("member_id", member_id);
-        evaluationSub.put("kind", kind);
 
         boolean result = false;
 
-        if(evaluationRepository.insertSub(evaluationSub)){
+        if(evaluationRepository.insertEvaluation(evaluationSub)){
 
-            result = true;
-        }
-
-        return result;
-    }
-
-    public boolean reConfirmService(int es_id) {
-
-        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        int member_id = user.getMember_id();
-
-        int writer = evaluationRepository.selectReplyMember_id(es_id);
-
-        Collection authorities = user.getAuthorities();
-
-        boolean result = false;
-
-        if(member_id == writer || authorities.toString().contains("ROLE_ADMIN")){
             result = true;
         }
 

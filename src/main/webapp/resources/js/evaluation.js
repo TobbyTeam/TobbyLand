@@ -155,21 +155,21 @@ function evalDeleteAjax(evaluation_id) {
 	})
 }
 
-function reDeleteAjax(es_id) {
+function reDeleteAjax(evaluation_id) {
 	$.ajax({
 		type: "POST",
-		url: "/evaluation/reConfirm",
+		url: "/evaluation/confirm",
 		dataType: "json",
-		data: {es_id: es_id},
+		data: {evaluation_id: evaluation_id},
 		success: function (result) {
 
 			if (result) {
 				if (confirm("정말 삭제하시겠습니까?")) {
 					$.ajax({
 						type: "POST",
-						url: "/evaluation/reIsDelete",
+						url: "/evaluation/isDelete",
 						dataType: "json",
-						data: {es_id: es_id},
+						data: {evaluation_id: evaluation_id},
 						success: function (data) {
 							if (data) {
 								alert("삭제되었습니다.");

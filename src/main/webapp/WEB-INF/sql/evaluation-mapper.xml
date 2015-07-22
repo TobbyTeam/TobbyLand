@@ -6,17 +6,17 @@
   <!--select-->
 
   <select id="selectEvaluationAll" parameterType="int" resultType="map">
-    SELECT E.*, S.semester_title, SUM(IF(ES.IS_DELETE = 1 AND ES.KIND=4,1,0)) as count
-    FROM EVALUATION E LEFT OUTER JOIN EVALUATIONSUB ES ON E.EVALUATION_ID = ES.EVALUATION_ID LEFT OUTER JOIN SEMESTER S ON E.SEMESTER = S.SEMESTER_ID
-    WHERE E.LECTURE_ID = #{lecture_id} AND E.IS_DELETE = 1
+    SELECT E.*, S.semester_title, SUM(IF(E2.IS_DELETE = 1,1,0)) as count
+    FROM EVALUATION E LEFT OUTER JOIN SEMESTER S ON E.SEMESTER = S.SEMESTER_ID LEFT OUTER JOIN EVALUATION E2 ON E.EVALUATION_ID = E2.UPPER_ID
+    WHERE E.LECTURE_ID = #{lecture_id} AND E.IS_DELETE = 1 AND E.IS_REPLY = 1
     GROUP BY E.EVALUATION_ID
     ORDER BY SEMESTER DESC, WRITE_DATE DESC
   </select>
 
   <select id="selectEvaluationBest" parameterType="int" resultType="map">
-    SELECT E.*, S.semester_title, SUM(IF(ES.IS_DELETE = 1 AND ES.KIND=4,1,0)) as count
-    FROM EVALUATION E LEFT OUTER JOIN EVALUATIONSUB ES ON E.EVALUATION_ID = ES.EVALUATION_ID LEFT OUTER JOIN SEMESTER S ON E.SEMESTER = S.SEMESTER_ID
-    WHERE E.LECTURE_ID = #{lecture_id} AND E.IS_DELETE = 1
+    SELECT E.*, S.semester_title, SUM(IF(E2.IS_DELETE = 1,1,0)) as count
+    FROM EVALUATION E LEFT OUTER JOIN SEMESTER S ON E.SEMESTER = S.SEMESTER_ID LEFT OUTER JOIN EVALUATION E2 ON E.EVALUATION_ID = E2.UPPER_ID
+    WHERE E.LECTURE_ID = #{lecture_id} AND E.IS_DELETE = 1 AND E.IS_REPLY = 1
     GROUP BY E.EVALUATION_ID
     ORDER BY LIKES DESC, SEMESTER DESC, WRITE_DATE DESC LIMIT 3
   </select>
@@ -36,35 +36,44 @@
   </select>
 
   <select id="selectSubCount" parameterType="map" resultType="int">
-    SELECT count(es_id) FROM EVALUATIONSUB WHERE EVALUATION_ID = #{evaluation_id} AND MEMBER_ID = #{member_id} AND CONTENTS IS NULL
+    SELECT count(es_id) FROM EVALUATIONSUB WHERE EVALUATION_ID = #{evaluation_id} AND MEMBER_ID = #{member_id} AND KIND BETWEEN 1 AND 3
   </select>
 
   <select id="selectSubType" parameterType="map" resultType="int">
-    SELECT kind FROM EVALUATIONSUB WHERE EVALUATION_ID = #{evaluation_id} AND MEMBER_ID = #{member_id} AND CONTENTS IS NULL
+    SELECT kind FROM EVALUATIONSUB WHERE EVALUATION_ID = #{evaluation_id} AND MEMBER_ID = #{member_id} AND KIND BETWEEN 1 AND 3
   </select>
 
   <select id="SearchEvaluationPrefer" parameterType="map" resultType="map">
     SELECT E.*, S.semester_title, SUM(IF(ES.IS_DELETE = 1 AND ES.KIND=4,1,0)) as count
     FROM EVALUATION E LEFT OUTER JOIN EVALUATIONSUB ES ON E.EVALUATION_ID = ES.EVALUATION_ID LEFT OUTER JOIN SEMESTER S ON E.SEMESTER = S.SEMESTER_ID
-    WHERE E.LECTURE_ID = #{lecture_id} AND E.IS_DELETE = 1
+    WHERE E.LECTURE_ID = #{lecture_id} AND E.IS_DELETE = 1 AND E.IS_REPLY = 1
     <choose>
       <when test="method != null and method.equalsIgnoreCase('all')"> </when>
-      <otherwise> AND MEMBER_METHOD = #{method}</otherwise>
+      <otherwise>
+        AND MEMBER_METHOD = #{method}
+      </otherwise>
     </choose>
     <choose>
       <when test="task != null and task.equalsIgnoreCase('all')"> </when>
-      <otherwise> AND MEMBER_TASK = #{task}</otherwise>
+      <otherwise>
+        AND MEMBER_TASK = #{task}
+      </otherwise>
     </choose>
     <choose>
       <when test="exam != null and exam.equalsIgnoreCase('all')"> </when>
-      <otherwise> AND MEMBER_EXAM = #{exam}</otherwise>
+      <otherwise>
+        AND MEMBER_EXAM = #{exam}
+      </otherwise>
     </choose>
     GROUP BY E.EVALUATION_ID
     ORDER BY SEMESTER DESC, WRITE_DATE DESC
   </select>
 
   <select id="selectReplyAll" parameterType="int" resultType="map">
-    SELECT es_id, contents, write_date FROM EVALUATIONSUB WHERE EVALUATION_ID = #{evaluation_id} AND KIND = 4 AND IS_DELETE = 1
+    SELECT evaluation_id, comment, write_date, report
+    FROM EVALUATION
+    WHERE upper_id = #{evaluation_id} AND IS_DELETE = 1
+    ORDER BY WRITE_DATE
   </select>
 
   <select id="selectReplyMember_id" parameterType="int" resultType="int">
@@ -75,13 +84,21 @@
   <!--insert-->
 
   <insert id="insertEvaluation" parameterType="map">
-    INSERT INTO EVALUATION (lecture_id, member_id, method, task, exam, comment, score, semester, member_method, member_task, member_exam)
-    VALUES (#{lecture_id},#{member_id},#{method},#{task},#{exam},#{comment},#{score},#{semester},#{member_method},#{member_task},#{member_exam})
+    <choose>
+      <when test="upper_id != null">
+        INSERT INTO EVALUATION (lecture_id, member_id, comment, is_reply, upper_id)
+        VALUES (#{lecture_id},#{member_id},#{comment},0,#{upper_id})
+      </when>
+      <otherwise>
+        INSERT INTO EVALUATION (lecture_id, member_id, method, task, exam, comment, score, semester, member_method, member_task, member_exam)
+        VALUES (#{lecture_id},#{member_id},#{method},#{task},#{exam},#{comment},#{score},#{semester},#{member_method},#{member_task},#{member_exam})
+      </otherwise>
+    </choose>
   </insert>
 
   <insert id="insertSub" parameterType="map">
-    INSERT INTO EVALUATIONSUB (evaluation_id, member_id, kind, contents, )
-    VALUES (#{evaluation_id},#{member_id},#{kind},#{contents})
+    INSERT INTO EVALUATIONSUB (evaluation_id, member_id, kind)
+    VALUES (#{evaluation_id},#{member_id},#{kind})
   </insert>
 
 

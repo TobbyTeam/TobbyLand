@@ -129,9 +129,10 @@ public class EvaluationController {
 	}
 
 	@RequestMapping(value = "/replyList", method = RequestMethod.GET)
-	public ModelAndView replyList(@RequestParam("evaluation_id") int evaluation_id) {
+	public ModelAndView replyList(@RequestParam("lecture_id") int lecture_id, @RequestParam("evaluation_id") int evaluation_id) {
 
 		ModelAndView mav = new ModelAndView("/evaluation/reply");
+		mav.addObject("lecture_id", lecture_id);
 
 		evaluationService.replyService(evaluation_id, mav);
 
@@ -142,12 +143,6 @@ public class EvaluationController {
 	public @ResponseBody boolean replyReg(@RequestParam Map<String, Serializable> evaluationSub) {
 
 		return evaluationService.replyRegService(evaluationSub);
-	}
-
-	@RequestMapping(value = "/reConfirm", method = RequestMethod.POST)
-	public @ResponseBody boolean reConfirm(@RequestParam("es_id") int es_id) {
-
-		return evaluationService.reConfirmService(es_id);
 	}
 
 	@RequestMapping(value = "/reIsDelete", method = RequestMethod.POST)
