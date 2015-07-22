@@ -17,23 +17,33 @@ public interface LectureRepository {
 
 	int selectSubCount(Map lectureSub);
 
+	int selectBoardCount(int lecture_id);
+
 	List<Map> selectBoardAll(Map lectureSub);
 
 	String selectBoardMaxRnum(int lecture_id);
 
-	Map selectBoard(int ls_id);
+	Map selectBoard(int lb_id);
 
-	List<Map> selectBoardReplyAll(int ls_id);
+	List<Map> selectBoardReplyAll(int lb_id);
 
-	int selectBoardMember_id(int ls_id);
+	int selectBoardMember_id(int lb_id);
 
 	Map selectLecture_E(int lecture_id);
+
+	int selectBoardSubCount(Map lectureBoardSub);
 
 
 
 	/*insert*/
 
 	boolean insertLecture(Map lecture);
+
+	boolean insertSub(Map lectureSub);
+
+	boolean insertBoard(Map lectureBoard);
+
+	boolean insertBoardSub(Map lectureBoardSub);
 
 
 	/*update*/
@@ -46,7 +56,10 @@ public interface LectureRepository {
 
 	boolean updateBoard(Map lectureSub);
 
-	boolean updateSubUnisDelete(int ls_id);
+	boolean updateBoardIsDelete(int lb_id);
+
+	boolean updateBoardReport(int lb_id);
+
 
 
 	/*delete*/
@@ -66,6 +79,6 @@ public interface LectureRepository {
 
 	boolean insertAdmin(Map lecture);
 
-	boolean insertSub(Map lectureSub);
+
 }
 

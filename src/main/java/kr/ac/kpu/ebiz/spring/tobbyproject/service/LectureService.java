@@ -29,17 +29,19 @@ public interface LectureService {
 
     void boardListService(int lecture_id, String seq, ModelAndView mav);
 
-    boolean boardRegService(Map lectureSub);
+    boolean boardRegService(Map lectureBoard);
 
-    void boardViewService(int ls_id, ModelAndView mav);
+    void boardViewService(int lb_id, ModelAndView mav);
 
-    boolean boardConfirmService(int ls_id);
+    boolean boardConfirmService(int lb_id);
 
-    void boardModViewService(int ls_id, ModelAndView mav);
+    void boardModViewService(int lb_id, ModelAndView mav);
 
-    boolean boardModService(Map lectureSub);
+    boolean boardModService(Map lectureBoard);
 
-    boolean subIsDeleteService(int lecture_id);
+    boolean boardIsDeleteService(int lecture_id);
 
-    boolean boardReplyRegService(Map lectureSub);
+    boolean boardSubConfirmService(int lb_id);
+
+    boolean boardReplyRegService(Map lectureBoard);
 }

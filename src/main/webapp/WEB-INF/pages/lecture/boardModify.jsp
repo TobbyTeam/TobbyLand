@@ -23,10 +23,10 @@
     내용:<br/>
     <textarea name="contents" rows="20" cols="40" wrap="hard">${board.contents}</textarea><br/>
 
-    <input type="hidden" id="ls_id" name="ls_id" value="${board.ls_id}" />
+    <input type="hidden" id="lb_id" name="lb_id" value="${board.lb_id}" />
 
     <input type="button" value="수정" onclick="$(this.form).submit()"/>&nbsp;&nbsp;&nbsp;
-    <input type="reset" value="취소" onclick="javascript:window.location='/lecture/boardView?ls_id=${board.ls_id}'"/>
+    <input type="reset" value="취소" onclick="javascript:window.location='/lecture/boardView?lb_id=${board.lb_id}'"/>
   </form>
 
 

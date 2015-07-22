@@ -27,6 +27,10 @@ public class LectureRepositoryImpl extends SqlSessionDaoSupport implements Lectu
 		return getSqlSession().selectOne("LectureRepository.selectSubCount", lectureSub);
 	}
 
+	public int selectBoardCount(int lecture_id) {
+		return getSqlSession().selectOne("LectureRepository.selectBoardCount", lecture_id);
+	}
+
 	public List<Map> selectBoardAll(Map lectureSub) {
 		return getSqlSession().selectList("LectureRepository.selectBoardAll", lectureSub);
 	}
@@ -35,23 +39,26 @@ public class LectureRepositoryImpl extends SqlSessionDaoSupport implements Lectu
 		return getSqlSession().selectOne("LectureRepository.selectBoardMaxRnum", lecture_id);
 	}
 
-	public Map selectBoard(int ls_id) {
-		return getSqlSession().selectOne("LectureRepository.selectBoard", ls_id);
+	public Map selectBoard(int lb_id) {
+		return getSqlSession().selectOne("LectureRepository.selectBoard", lb_id);
 	}
 
 
-	public List<Map> selectBoardReplyAll(int ls_id) {
-		return getSqlSession().selectList("LectureRepository.selectBoardReplyAll", ls_id);
+	public List<Map> selectBoardReplyAll(int lb_id) {
+		return getSqlSession().selectList("LectureRepository.selectBoardReplyAll", lb_id);
 	}
 
-	public int selectBoardMember_id(int ls_id) {
-		return getSqlSession().selectOne("LectureRepository.selectBoardMember_id", ls_id);
+	public int selectBoardMember_id(int lb_id) {
+		return getSqlSession().selectOne("LectureRepository.selectBoardMember_id", lb_id);
 	}
 
 	public Map selectLecture_E(int lecture_id) {
 		return getSqlSession().selectOne("LectureRepository.selectLecture_E", lecture_id);
 	}
 
+	public int selectBoardSubCount(Map lectureBoardSub) {
+		return getSqlSession().selectOne("LectureRepository.selectBoardSubCount", lectureBoardSub);
+	}
 
 
 	/*insert*/
@@ -59,6 +66,19 @@ public class LectureRepositoryImpl extends SqlSessionDaoSupport implements Lectu
 	public boolean insertLecture(Map lecture) {
 		return getSqlSession().insert("LectureRepository.insertLecture", lecture) > 0;
 	}
+
+	public boolean insertSub(Map lectureSub) {
+		return getSqlSession().insert("LectureRepository.insertSub", lectureSub) > 0;
+	}
+
+	public boolean insertBoard(Map lectureBoard) {
+		return getSqlSession().insert("LectureRepository.insertBoard", lectureBoard) > 0;
+	}
+
+	public boolean insertBoardSub(Map lectureBoardSub) {
+		return getSqlSession().insert("LectureRepository.insertBoardSub", lectureBoardSub) > 0;
+	}
+
 
 
 	/*update*/
@@ -79,8 +99,12 @@ public class LectureRepositoryImpl extends SqlSessionDaoSupport implements Lectu
 		return getSqlSession().update("LectureRepository.updateBoard", lectureSub) > 0;
 	}
 
-	public boolean updateSubUnisDelete(int ls_id) {
-		return getSqlSession().update("LectureRepository.updateSubUnisDelete", ls_id) > 0;
+	public boolean updateBoardIsDelete(int lb_id) {
+		return getSqlSession().update("LectureRepository.updateBoardIsDelete", lb_id) > 0;
+	}
+
+	public boolean updateBoardReport(int lb_id) {
+		return getSqlSession().update("LectureRepository.updateBoardReport", lb_id) > 0;
 	}
 
 
@@ -108,7 +132,4 @@ public class LectureRepositoryImpl extends SqlSessionDaoSupport implements Lectu
 		return getSqlSession().insert("LectureRepository.insertAdmin", lecture) > 0;
 	}
 
-	public boolean insertSub(Map lectureSub) {
-		return getSqlSession().insert("LectureRepository.insertSub", lectureSub) > 0;
-	}
 }

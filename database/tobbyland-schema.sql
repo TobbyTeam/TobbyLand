@@ -102,6 +102,64 @@ CREATE TABLE lecture (
 
 
 --
+-- Table structure for table `lecture_sub`
+--
+
+CREATE TABLE lecture_sub (
+  ls_id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  lecture_id int(10) UNSIGNED DEFAULT NULL,
+  member_id int(10) UNSIGNED DEFAULT NULL,
+  PRIMARY KEY (ls_id),
+  KEY FK_lecturesub_lecture (lecture_id),
+  KEY FK_lecturesub_member (member_id),
+  CONSTRAINT FK_lecturesub_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT FK_lecturesub_lecture FOREIGN KEY (lecture_id) REFERENCES lecture (lecture_id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+--
+-- Table structure for table `lecture_board`
+--
+
+CREATE TABLE lecture_board (
+  lb_id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  lecture_id int(10) UNSIGNED DEFAULT NULL,
+  member_id int(10) UNSIGNED DEFAULT NULL,
+  rnum int(10) UNSIGNED DEFAULT NULL,
+  title varchar(45) DEFAULT NULL,
+  contents varchar(45) DEFAULT NULL,
+  write_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  is_delete tinyint(4) UNSIGNED DEFAULT '1',
+  is_reply tinyint(4) UNSIGNED DEFAULT '1',
+  upper_id int(10) UNSIGNED DEFAULT NULL,
+  report int(10) UNSIGNED DEFAULT '0',
+  PRIMARY KEY (lb_id),
+  KEY FK_lecture_board_lecture (lecture_id),
+  KEY FK_lecture_board_member (member_id),
+  KEY FK_lecture_board_reply (upper_id),
+  CONSTRAINT FK_lecture_board_reply FOREIGN KEY (upper_id) REFERENCES lecture_board (lb_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT FK_lecture_board_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT FK_lecture_board_lecture FOREIGN KEY (lecture_id) REFERENCES lecture (lecture_id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+--
+-- Table structure for table `lecture_board_sub`
+--
+
+CREATE TABLE lecture_board_sub (
+  lbs_id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  lb_id int(10) UNSIGNED DEFAULT NULL,
+  member_id int(10) UNSIGNED DEFAULT NULL,
+  PRIMARY KEY (lbs_id),
+  KEY FK_lecture_board_sub_lecture_board (lb_id),
+  KEY FK_lecture_board_sub_member (member_id),
+  CONSTRAINT FK_lecture_board_sub_lecture_board FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT FK_lecture_board_sub_member FOREIGN KEY (lb_id) REFERENCES lecture_board (lb_id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+--
 -- Table structure for table `semester`
 --
 
@@ -146,29 +204,6 @@ CREATE TABLE evaluation (
   CONSTRAINT FK_evaluation_semester FOREIGN KEY (semester) REFERENCES semester (semester_id) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT FK_evaluation_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT FK_evaluation_lecture FOREIGN KEY (lecture_id) REFERENCES lecture (lecture_id) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
---
--- Table structure for table `lecturesub`
---
-
-CREATE TABLE lecturesub (
-  ls_id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  lecture_id int(10) UNSIGNED DEFAULT NULL,
-  member_id int(10) UNSIGNED DEFAULT NULL,
-  kind int(10) UNSIGNED DEFAULT '0',
-  rnum int(10) UNSIGNED DEFAULT NULL,
-  title varchar(45) DEFAULT NULL,
-  contents varchar(45) DEFAULT NULL,
-  reply int(10) UNSIGNED DEFAULT NULL,
-  write_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  is_delete tinyint(4) UNSIGNED DEFAULT '1',
-  PRIMARY KEY (ls_id),
-  KEY FK_lecturesub_lecture (lecture_id),
-  KEY FK_lecturesub_member (member_id),
-  CONSTRAINT FK_lecturesub_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT FK_lecturesub_lecture FOREIGN KEY (lecture_id) REFERENCES lecture (lecture_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

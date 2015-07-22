@@ -121,7 +121,6 @@ public class LectureServiceImpl implements LectureService{
         Map lectureSub = new HashMap();
         lectureSub.put("lecture_id", lecture_id);
         lectureSub.put("member_id", member_id);
-        lectureSub.put("kind", 1);
 
         int count = lectureRepository.selectSubCount(lectureSub);
 
@@ -184,11 +183,7 @@ public class LectureServiceImpl implements LectureService{
 
         //  전체 게시물 갯수 뽑아옴 ​
 
-        Map lectureSub1 = new HashMap();
-        lectureSub1.put("lecture_id", lecture_id);
-        lectureSub1.put("kind", 2);
-
-        int rownum = lectureRepository.selectSubCount(lectureSub1);
+        int rownum = lectureRepository.selectBoardCount(lecture_id);
 
         //pageNum 변수는 전체 페이지의 수​
         int pageNum = rownum / 15 + 1;
@@ -212,7 +207,6 @@ public class LectureServiceImpl implements LectureService{
         Map lectureSub2 = new HashMap();
         lectureSub2.put("lecture_id", lecture_id);
         lectureSub2.put("page", page);
-        lectureSub2.put("total", rownum);
 
         List<Map> boards = lectureRepository.selectBoardAll(lectureSub2);
 
@@ -225,12 +219,12 @@ public class LectureServiceImpl implements LectureService{
 
     }
 
-    public boolean boardRegService(Map lectureSub) {
+    public boolean boardRegService(Map lectureBoard) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int member_id = user.getMember_id();
 
-        int lecture_id = Integer.parseInt((String)lectureSub.get("lecture_id"));
+        int lecture_id = Integer.parseInt((String)lectureBoard.get("lecture_id"));
 
 /*        int lecture_id =  Integer.parseInt(lectureSub.get("lecture_id").toString());*/
 
@@ -246,34 +240,31 @@ public class LectureServiceImpl implements LectureService{
 
         System.out.println(rnum+"로넘버 확인");
 
-        int kind = 2;
-
-        lectureSub.put("member_id", member_id);
-        lectureSub.put("kind", kind);
-        lectureSub.put("rnum", rnum);
+        lectureBoard.put("member_id", member_id);
+        lectureBoard.put("rnum", rnum);
 
         boolean result = false;
 
-        if(lectureRepository.insertSub(lectureSub)){
+        if(lectureRepository.insertBoard(lectureBoard)){
             result =true;
         }
 
         return result;
     }
 
-    public void boardViewService(int ls_id, ModelAndView mav) {
+    public void boardViewService(int lb_id, ModelAndView mav) {
 
-        mav.addObject("board", lectureRepository.selectBoard(ls_id));
-        mav.addObject("replys", lectureRepository.selectBoardReplyAll(ls_id));
+        mav.addObject("board", lectureRepository.selectBoard(lb_id));
+        mav.addObject("replys", lectureRepository.selectBoardReplyAll(lb_id));
 
     }
 
-    public boolean boardConfirmService(int ls_id) {
+    public boolean boardConfirmService(int lb_id) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int member_id = user.getMember_id();
 
-        int writer = lectureRepository.selectBoardMember_id(ls_id);
+        int writer = lectureRepository.selectBoardMember_id(lb_id);
 
         Collection authorities = user.getAuthorities();
 
@@ -287,61 +278,82 @@ public class LectureServiceImpl implements LectureService{
 
     }
 
-    public void boardModViewService(int ls_id, ModelAndView mav) {
+    public void boardModViewService(int lb_id, ModelAndView mav) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int member_id = user.getMember_id();
 
-        int writer = lectureRepository.selectBoardMember_id(ls_id);
+        int writer = lectureRepository.selectBoardMember_id(lb_id);
 
         Collection authorities = user.getAuthorities();
 
         if(member_id == writer || authorities.toString().contains("ROLE_ADMIN")){
 
-            mav.addObject("board", lectureRepository.selectBoard(ls_id));
+            mav.addObject("board", lectureRepository.selectBoard(lb_id));
 
         } else {
 
-            mav.setViewName("redirect:/lecture/boardView?ls_id="+ls_id);
+            mav.setViewName("redirect:/lecture/boardView?lb_id="+lb_id);
         }
 
     }
 
-    public boolean boardModService(Map lectureSub) {
+    public boolean boardModService(Map lectureBoard) {
 
         boolean result = false;
 
-        if (lectureRepository.updateBoard(lectureSub)) {
+        if (lectureRepository.updateBoard(lectureBoard)) {
             result = true;
         }
 
         return result;
     }
 
-    public boolean subIsDeleteService(int ls_id) {
+    public boolean boardIsDeleteService(int lb_id) {
 
         boolean data = false;
 
-        if(lectureRepository.updateSubUnisDelete(ls_id)) {
+        if(lectureRepository.updateBoardIsDelete(lb_id)) {
             data = true;
         }
 
         return data;
     }
 
-    public boolean boardReplyRegService(Map lectureSub) {
+    public boolean boardSubConfirmService(int lb_id) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int member_id = user.getMember_id();
 
-        int kind = 3;
 
-        lectureSub.put("member_id", member_id);
-        lectureSub.put("kind", kind);
+        Map lectureBoardSub = new HashMap();
+        lectureBoardSub.put("lb_id", lb_id);
+        lectureBoardSub.put("member_id", member_id);
+
+        int count = lectureRepository.selectBoardSubCount(lectureBoardSub);
 
         boolean result = false;
 
-        if(lectureRepository.insertSub(lectureSub)){
+        if(count == 0) {
+            lectureRepository.insertBoardSub(lectureBoardSub);
+            lectureRepository.updateBoardReport(lb_id);
+            result = true;
+        }
+
+        return result;
+
+    }
+
+    public boolean boardReplyRegService(Map lectureBoard) {
+
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        int member_id = user.getMember_id();
+
+        lectureBoard.put("member_id", member_id);
+
+        boolean result = false;
+
+        if(lectureRepository.insertBoard(lectureBoard)){
             result =true;
         }
 

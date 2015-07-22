@@ -76,21 +76,21 @@ function deleteAjax(lecture_id) {
 	})
 }
 
-function reDeleteAjax(ls_id) {
+function reDeleteAjax(lb_id) {
 	$.ajax({
 		type: "POST",
 		url: "/lecture/boardConfirm",
 		dataType: "json",
-		data: {ls_id: ls_id},
+		data: {lb_id: lb_id},
 		success: function (result) {
 
 			if (result) {
 				if (confirm("정말 삭제하시겠습니까?")) {
 					$.ajax({
 						type: "POST",
-						url: "/lecture/subIsDelete",
+						url: "/lecture/boardIsDelete",
 						dataType: "json",
-						data: {ls_id: ls_id},
+						data: {lb_id: lb_id},
 						success: function (data) {
 							if (data) {
 								alert("삭제되었습니다.");
@@ -106,6 +106,24 @@ function reDeleteAjax(ls_id) {
 			}
 		}
 	})
+}
+
+function reReportAjax(lb_id) {
+	$.ajax({
+		type     : "POST",
+		url      : "/lecture/boardSubConfirm",
+		dataType : "json",
+		data     : {lb_id:lb_id},
+		success  : function(result) {
+
+			if(result){
+				alert("신고 되었습니다");
+				location.reload();
+			}else{
+				alert("이미 신고하였습니다.");
+			}
+		}
+	});
 }
 
 
@@ -124,17 +142,17 @@ $(document).ready(function() {
 	$(document).off('click', '#boardMod_btn').on('click', '#boardMod_btn', function() {
 /*	$("#boardMod_btn").unbind("click").on("click", function() {  스크립트 두번 뜨는거 다른 방법*/
 
-		var ls_id = $("#ls_id").val();
+		var lb_id = $("#lb_id").val();
 
 		$.ajax({
 			type: "POST",
 			url: "/lecture/boardConfirm",
 			dataType: "json",
-			data: {ls_id: ls_id},
+			data: {lb_id: lb_id},
 			success: function (result) {
 
 				if (result) {
-					window.open('/lecture/boardModView?ls_id=' + ls_id, '_self');
+					window.open('/lecture/boardModView?lb_id=' + lb_id, '_self');
 
 				} else {
 					alert("본인이 작성하신 글이 아닙니다.");
@@ -146,22 +164,22 @@ $(document).ready(function() {
 	$(document).off('click', '#boardDel_btn').on('click', '#boardDel_btn', function() {
 /*	$("#boardDel_btn").unbind("click").on("click", function() {*/
 
-		var ls_id = $("#ls_id").val();
+		var lb_id = $("#lb_id").val();
 
 		$.ajax({
 			type: "POST",
 			url: "/lecture/boardConfirm",
 			dataType: "json",
-			data: {ls_id: ls_id},
+			data: {lb_id: lb_id},
 			success: function (result) {
 
 				if (result) {
 					if (confirm("정말 삭제하시겠습니까?")) {
 						$.ajax({
 							type: "POST",
-							url: "/lecture/subIsDelete",
+							url: "/lecture/boardIsDelete",
 							dataType: "json",
-							data: {ls_id: ls_id},
+							data: {lb_id: lb_id},
 							success: function (data) {
 								if (data) {
 									alert("삭제되었습니다.");
@@ -178,6 +196,29 @@ $(document).ready(function() {
 			}
 		})
 	})
+
+	$(document).off('click', '#boardRep_btn').on('click', '#boardRep_btn', function() {
+		/*	$("#boardDel_btn").unbind("click").on("click", function() {*/
+
+		var lb_id = $("#lb_id").val();
+
+		$.ajax({
+			type     : "POST",
+			url      : "/lecture/boardSubConfirm",
+			dataType : "json",
+			data     : {lb_id:lb_id},
+			success  : function(result) {
+
+				if(result){
+					alert("신고 되었습니다");
+					location.reload();
+				}else{
+					alert("이미 신고하였습니다.");
+				}
+			}
+		});
+	})
+
 	$(document).off('click', '#reReg_btn').on('click', '#reReg_btn', function() {
 
 		if($("#re_con").val().length===0){

@@ -108,55 +108,61 @@ public class LectureController {
 	}
 
 	@RequestMapping(value = "/boardReg", method = RequestMethod.POST)
-		 public @ResponseBody boolean boardReg(@RequestParam Map<String, String> lectureSub) {
+		 public @ResponseBody boolean boardReg(@RequestParam Map<String, String> lectureBoard) {
 
-		return lectureService.boardRegService(lectureSub);
+		return lectureService.boardRegService(lectureBoard);
 	}
 
 	@RequestMapping(value = "/boardView", method = RequestMethod.GET)
-	public ModelAndView boardView(@RequestParam("ls_id") int ls_id) {
+	public ModelAndView boardView(@RequestParam("lb_id") int lb_id) {
 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/lecture/boardView");
 
-		lectureService.boardViewService(ls_id, mav);
+		lectureService.boardViewService(lb_id, mav);
 
 		return mav;
 	}
 
 	@RequestMapping(value = "/boardConfirm", method = RequestMethod.POST)
-	public @ResponseBody boolean boardConfirm(@RequestParam("ls_id") int ls_id) {
+	public @ResponseBody boolean boardConfirm(@RequestParam("lb_id") int lb_id) {
 
-		return lectureService.boardConfirmService(ls_id);
+		return lectureService.boardConfirmService(lb_id);
 	}
 
 	@RequestMapping(value = "/boardModView", method = RequestMethod.GET)
-	public ModelAndView boardModView(@RequestParam("ls_id") int ls_id) {
+	public ModelAndView boardModView(@RequestParam("lb_id") int lb_id) {
 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/lecture/boardModify");
 
-		lectureService.boardModViewService(ls_id, mav);
+		lectureService.boardModViewService(lb_id, mav);
 
 		return mav;
 	}
 
 	@RequestMapping(value = "/boardMod", method = RequestMethod.POST)
-	public @ResponseBody boolean boardMod(@RequestParam Map<String, java.io.Serializable> lectureSub) {
+	public @ResponseBody boolean boardMod(@RequestParam Map<String, java.io.Serializable> lectureBoard) {
 
-		return lectureService.boardModService(lectureSub);
+		return lectureService.boardModService(lectureBoard);
 	}
 
-	@RequestMapping(value = "/subIsDelete", method = RequestMethod.POST)
-	public @ResponseBody boolean boardIsDelete(@RequestParam("ls_id") int ls_id)	{
+	@RequestMapping(value = "/boardIsDelete", method = RequestMethod.POST)
+	public @ResponseBody boolean boardIsDelete(@RequestParam("lb_id") int lb_id)	{
 
-		return lectureService.subIsDeleteService(ls_id);
+		return lectureService.boardIsDeleteService(lb_id);
+	}
+
+	@RequestMapping(value = "/boardSubConfirm", method = RequestMethod.POST)
+	public @ResponseBody boolean boardSubConfirm(@RequestParam("lb_id") int lb_id) {
+
+		return lectureService.boardSubConfirmService(lb_id);
 	}
 
 	@RequestMapping(value = "/boardReplyReg", method = RequestMethod.POST)
-	public @ResponseBody boolean boardReplyReg(@RequestParam Map<String, java.io.Serializable> lectureSub) {
+	public @ResponseBody boolean boardReplyReg(@RequestParam Map<String, java.io.Serializable> lectureBoard) {
 
-		return lectureService.boardReplyRegService(lectureSub);
+		return lectureService.boardReplyRegService(lectureBoard);
 	}
 
 	@RequestMapping(value = "/paging")

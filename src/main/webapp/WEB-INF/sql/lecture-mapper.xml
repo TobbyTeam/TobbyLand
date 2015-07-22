@@ -8,7 +8,7 @@
   <select id="selectAll" resultType="map">
     SELECT L.*, D.department_name
     FROM LECTURE L LEFT OUTER JOIN DEPARTMENT D ON L.DEPT = D.DEPARTMENT_ID
-    WHERE likes <![CDATA[ < ]]> 10 AND IS_DELETE = 1 ORDER BY WRITE_DATE DESC
+    WHERE likes <![CDATA[ < ]]> 10 AND IS_DELETE = 1 ORDER BY LECTURE_ID DESC
   </select>
 
   <select id="selectMember_id" parameterType="int" resultType="int">
@@ -42,45 +42,43 @@
 
   <select id="selectSubCount" parameterType="map" resultType="int" >
     SELECT Count(LS_ID)
-    FROM LECTURESUB
-    WHERE
-    <choose>
-      <when test="member_id != null">
-        LECTURE_ID = #{lecture_id} AND MEMBER_ID = #{member_id} AND KIND = #{kind}
-      </when>
-      <otherwise>
-        LECTURE_ID = #{lecture_id} AND KIND = #{kind} AND IS_DELETE = 1
-      </otherwise>
-    </choose>
+    FROM LECTURE_SUB
+    WHERE LECTURE_ID = #{lecture_id} AND MEMBER_ID = #{member_id}
+  </select>
+
+  <select id="selectBoardCount" parameterType="int" resultType="int" >
+    SELECT Count(LB_ID)
+    FROM LECTURE_BOARD
+    WHERE LECTURE_ID = #{lecture_id} AND IS_DELETE = 1 AND IS_REPLY = 1
   </select>
 
   <select id="selectBoardAll" parameterType="map" resultType="map" >
-    SELECT rnum , ls_id, title, write_date
-    FROM LECTURESUB
-    WHERE LECTURE_ID = #{lecture_id} AND KIND = 2 AND IS_DELETE = 1
+    SELECT rnum, lb_id, title, write_date, report
+    FROM LECTURE_BOARD
+    WHERE LECTURE_ID = #{lecture_id} AND IS_DELETE = 1 AND IS_REPLY = 1
     ORDER BY RNUM DESC
     LIMIT 15 OFFSET #{page}
   </select>
 
   <select id="selectBoardMaxRnum" parameterType="int" resultType="String" >
     SELECT MAX(rnum) AS rnum
-    FROM LECTURESUB
-    WHERE LECTURE_ID = #{lecture_id} AND KIND = 2 AND IS_DELETE = 1
+    FROM LECTURE_BOARD
+    WHERE LECTURE_ID = #{lecture_id} AND IS_REPLY = 1
   </select>
 
   <select id="selectBoard" parameterType="int" resultType="map" >
-    SELECT * FROM LECTURESUB
-    WHERE LS_ID = #{ls_id}
+    SELECT * FROM LECTURE_BOARD
+    WHERE LB_ID = #{lb_id}
   </select>
 
   <select id="selectBoardReplyAll" parameterType="int" resultType="map" >
-    SELECT * FROM LECTURESUB
-    WHERE REPLY = #{ls_id} AND IS_DELETE = 1
+    SELECT * FROM LECTURE_BOARD
+    WHERE UPPER_ID = #{lb_id} AND IS_DELETE = 1
     ORDER BY WRITE_DATE
   </select>
 
   <select id="selectBoardMember_id" parameterType="int" resultType="int">
-    SELECT member_id FROM LECTURESUB WHERE LS_ID = #{ls_id}
+    SELECT member_id FROM LECTURE_BOARD WHERE LB_ID = #{lb_id}
   </select>
 
   <select id="selectLecture_E" parameterType="int" resultType="map">
@@ -88,6 +86,12 @@
     FROM LECTURE L LEFT OUTER JOIN EVALUATION E ON L.LECTURE_ID = E.LECTURE_ID LEFT OUTER JOIN DEPARTMENT D ON L.DEPT = D.DEPARTMENT_ID
     WHERE L.LECTURE_ID = #{lecture_id}
     GROUP BY L.LECTURE_ID
+  </select>
+
+  <select id="selectBoardSubCount" parameterType="map" resultType="int" >
+    SELECT Count(LB_ID)
+    FROM LECTURE_BOARD_SUB
+    WHERE LB_ID = #{lb_id} AND MEMBER_ID = #{member_id}
   </select>
 
 
@@ -99,10 +103,41 @@
   </insert>
 
   <insert id="insertSub" parameterType="map">
-    INSERT INTO LECTURESUB (lecture_id, member_id, kind, rnum, title, contents, reply)
-    VALUES (#{lecture_id},#{member_id},#{kind},#{rnum},#{title},#{contents}, #{reply})
+    INSERT INTO LECTURE_SUB (lecture_id, member_id)
+    VALUES (#{lecture_id},#{member_id})
   </insert>
 
+  <insert id="insertBoard" parameterType="map">
+    <choose>
+      <when test="upper_id != null">
+        INSERT INTO LECTURE_BOARD (lecture_id, member_id, contents, is_reply, upper_id)
+        VALUES (#{lecture_id},#{member_id},#{contents},0,#{upper_id})
+      </when>
+      <otherwise>
+        INSERT INTO LECTURE_BOARD (lecture_id, member_id, rnum, title, contents)
+        VALUES (#{lecture_id},#{member_id},#{rnum},#{title},#{contents})
+      </otherwise>
+    </choose>
+
+  </insert>
+
+  <insert id="insertEvaluation" parameterType="map">
+    <choose>
+      <when test="upper_id != null">
+        INSERT INTO EVALUATION (lecture_id, member_id, comment, is_reply, upper_id)
+        VALUES (#{lecture_id},#{member_id},#{comment},0,#{upper_id})
+      </when>
+      <otherwise>
+        INSERT INTO EVALUATION (lecture_id, member_id, method, task, exam, comment, score, semester, member_method, member_task, member_exam)
+        VALUES (#{lecture_id},#{member_id},#{method},#{task},#{exam},#{comment},#{score},#{semester},#{member_method},#{member_task},#{member_exam})
+      </otherwise>
+    </choose>
+  </insert>
+
+  <insert id="insertBoardSub" parameterType="map">
+    INSERT INTO LECTURE_BOARD_SUB (lb_id, member_id)
+    VALUES (#{lb_id},#{member_id})
+  </insert>
 
   <!--update-->
 
@@ -130,18 +165,25 @@
   </update>
 
   <update id="updateBoard" parameterType="map">
-    UPDATE LECTURESUB
+    UPDATE LECTURE_BOARD
     SET
     title = #{title},
     contents = #{contents}
-    WHERE LS_ID = #{ls_id}
+    WHERE LB_ID = #{lb_id}
   </update>
 
-  <update id="updateSubUnisDelete" parameterType="int">
-    UPDATE LECTURESUB
+  <update id="updateBoardIsDelete" parameterType="int">
+    UPDATE LECTURE_BOARD
     SET
     IS_DELETE = 0
-    WHERE LS_ID = #{ls_id}
+    WHERE LB_ID = #{lb_id}
+  </update>
+
+  <update id="updateBoardReport" parameterType="map">
+    UPDATE LECTURE_BOARD
+    SET
+    report = report + 1
+    WHERE LB_ID = #{lb_id}
   </update>
 
 
@@ -186,7 +228,7 @@
         FROM (
         SELECT @RNUM:=@RNUM-1 AS rnum , A.ls_id, A.title, A.write_date
         FROM (SELECT @RNUM:= #{total}+1) R,
-        (SELECT * FROM LECTURESUB
+        (SELECT * FROM LECTURE_SUB
         WHERE LECTURE_ID = #{lecture_id} AND KIND = 2 AND IS_DELETE = 1
         ORDER BY WRITE_DATE DESC) A) B
         LIMIT 15 OFFSET #{page}
