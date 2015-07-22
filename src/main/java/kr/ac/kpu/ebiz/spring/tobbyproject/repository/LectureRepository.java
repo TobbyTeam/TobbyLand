@@ -21,7 +21,7 @@ public interface LectureRepository {
 
 	List<Map> selectBoardAll(Map lectureSub);
 
-	String selectBoardMaxRnum(int lecture_id);
+	int selectBoardMaxRnum(int lecture_id);
 
 	Map selectBoard(int lb_id);
 
@@ -32,7 +32,6 @@ public interface LectureRepository {
 	Map selectLecture_E(int lecture_id);
 
 	int selectBoardSubCount(Map lectureBoardSub);
-
 
 
 	/*insert*/
@@ -59,7 +58,6 @@ public interface LectureRepository {
 	boolean updateBoardIsDelete(int lb_id);
 
 	boolean updateBoardReport(int lb_id);
-
 
 
 	/*delete*/

@@ -69,7 +69,7 @@
         </c:choose>
     </c:forEach><br />
 
-    <button type="button" onclick="$(this.form).submit()">수정</button>&nbsp;&nbsp;&nbsp; <input type="reset" value="취소" onclick="javascript:window.location='/member/view'">
+    <button type="button" onclick="$(this.form).submit()">수정</button>&nbsp;&nbsp;&nbsp; <input type="reset" value="취소" onclick="history.back()"/>
 
 </form>
 

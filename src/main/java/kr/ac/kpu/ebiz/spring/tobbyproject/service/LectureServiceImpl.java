@@ -103,11 +103,15 @@ public class LectureServiceImpl implements LectureService{
 
     public void searchService(Map search, ModelAndView mav) {
 
+        String searchWord = (String) search.get("searchWord");
+
+        System.out.println(searchWord+"검색어 확인");
+
         List<Map> result = lectureRepository.selectSearchLecture(search);
         mav.addObject("lectures", result);
 
         if(result.isEmpty() == true){
-            mav.addObject("error", "검색 결과가 없습니다.");
+            mav.addObject("error", searchWord+"에 대한 검색 결과가 없습니다.");
         }
 
     }
@@ -228,14 +232,14 @@ public class LectureServiceImpl implements LectureService{
 
 /*        int lecture_id =  Integer.parseInt(lectureSub.get("lecture_id").toString());*/
 
-        String maxRnum = lectureRepository.selectBoardMaxRnum(lecture_id);
+        int maxRnum = lectureRepository.selectBoardMaxRnum(lecture_id);
 
         int rnum;
 
-        if(maxRnum == null){
+        if(maxRnum == 0){
             rnum = 1;
         } else {
-            rnum = Integer.parseInt(maxRnum) +1;
+            rnum = maxRnum + 1;
         }
 
         System.out.println(rnum+"로넘버 확인");

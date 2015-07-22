@@ -86,9 +86,20 @@ public class LectureController {
 		return lectureService.isDeleteService(lecture_id);
 	}
 
-	@RequestMapping(value = "/boardList/{lecture_id}/{seq}", method = RequestMethod.GET)
+/*	@RequestMapping(value = "/boardList/{lecture_id}/{seq}", method = RequestMethod.GET)
 
 	public ModelAndView board2(@PathVariable int lecture_id, @PathVariable String seq) {
+
+		ModelAndView mav = new ModelAndView();
+
+		lectureService.boardListService(lecture_id, seq, mav);
+
+		return mav;
+	}*/
+
+	@RequestMapping(value = "/boardList/{lecture_id}/", method = RequestMethod.GET)
+
+	public ModelAndView board2(@PathVariable int lecture_id, @RequestParam(value="seq", required = false, defaultValue="1") String seq) {
 
 		ModelAndView mav = new ModelAndView();
 

@@ -26,7 +26,7 @@
     <input type="hidden" id="lb_id" name="lb_id" value="${board.lb_id}" />
 
     <input type="button" value="수정" onclick="$(this.form).submit()"/>&nbsp;&nbsp;&nbsp;
-    <input type="reset" value="취소" onclick="javascript:window.location='/lecture/boardView?lb_id=${board.lb_id}'"/>
+    <input type="reset" value="취소" onclick="history.back()"/>
   </form>
 
 

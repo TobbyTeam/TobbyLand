@@ -20,7 +20,7 @@
     새 비밀번호: <input type="password" id="password" name="password" ><br />
     새 비밀번호 확인: <input type="password" id="password_check" name="password_check" ><br /><br />
 
-    <button type="button" onclick="$(this.form).submit()">수정</button>&nbsp;&nbsp;&nbsp; <input type="reset" value="취소" onclick="javascript:window.location='/member/view'">
+    <button type="button" onclick="$(this.form).submit()">수정</button>&nbsp;&nbsp;&nbsp; <input type="reset" value="취소" onclick="history.back()"/>
 
 </form>
 

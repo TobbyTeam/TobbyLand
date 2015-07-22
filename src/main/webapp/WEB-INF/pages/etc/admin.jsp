@@ -2,7 +2,7 @@
 <%@page session="true"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<body>
+<>
 	<h1>Title : ${title}</h1>
 	<h1>Message : ${message}</h1>
 
@@ -23,6 +23,9 @@
 				href="javascript:formSubmit()"> Logout</a>
 		</h2>
 	</c:if>
+
+	<br />
+	<a href="#" onClick="history.go(-2);">이전페이지로</a>
 
 </body>
 </html>

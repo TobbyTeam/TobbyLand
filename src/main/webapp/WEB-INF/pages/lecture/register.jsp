@@ -25,7 +25,7 @@
                   </c:forEach>
               </select>  <br/>
       교수명: <input type="text" id="prof" name="prof"/><br/>
-              <input type="button" value="강의생성" onclick="$(this.form).submit()"/>&nbsp;&nbsp;&nbsp; <input type="reset" value="취소" onclick="javascript:window.location='/lecture/list'"/>
+              <input type="button" value="강의생성" onclick="$(this.form).submit()"/>&nbsp;&nbsp;&nbsp; <input type="reset" value="취소" onclick="history.back()"/>
 
     </form>
 

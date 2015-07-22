@@ -36,7 +36,7 @@
     총평: <input type="text" name="comment"><br/>
     점수: <input type="text" name="score"><br/>
           <input type="hidden" id="lecture_id" name="lecture_id" value="${lecture_id}"/>
-          <input type="submit" value="등록">
+          <input type="submit" value="등록">&nbsp;&nbsp;&nbsp; <input type="reset" value="취소" onclick="history.back()"/>
 
 </form>
 

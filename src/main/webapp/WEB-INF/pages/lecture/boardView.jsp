@@ -26,7 +26,8 @@
   <input type="button" id="boardMod_btn" value="수정" /> &nbsp;&nbsp;
   <input type="button" id="boardDel_btn" value="삭제" /> &nbsp;&nbsp;
   <input type="button" id="boardRep_btn" value="신고(${board.report})" /> &nbsp;&nbsp;
-  <a href="/lecture/boardList/${board.lecture_id}/1">목록</a>
+  <a href="/lecture/boardList/${board.lecture_id}/">최신목록</a> &nbsp;&nbsp;
+  <button onclick="history.back()" >이전페이지로</button>
 
   <br /><br />
 

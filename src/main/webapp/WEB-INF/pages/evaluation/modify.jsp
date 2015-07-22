@@ -36,7 +36,7 @@
     점수: <input type="text" name="score" value="${evaluation.score}"><br>
         <input type="hidden" name="evaluation_id" value="${evaluation.evaluation_id}">
         <input type="hidden" id="lecture_id" name="lecture_id" value="${evaluation.lecture_id}">
-        <input type="submit" value="전송">
+        <input type="submit" value="수정">&nbsp;&nbsp;&nbsp; <input type="reset" value="취소" onclick="history.back()"/>
 
 </form>
 

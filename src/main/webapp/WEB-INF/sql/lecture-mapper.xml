@@ -60,8 +60,8 @@
     LIMIT 15 OFFSET #{page}
   </select>
 
-  <select id="selectBoardMaxRnum" parameterType="int" resultType="String" >
-    SELECT MAX(rnum) AS rnum
+  <select id="selectBoardMaxRnum" parameterType="int" resultType="int" >
+    SELECT IFNULL(MAX(rnum),0) AS rnum
     FROM LECTURE_BOARD
     WHERE LECTURE_ID = #{lecture_id} AND IS_REPLY = 1
   </select>
