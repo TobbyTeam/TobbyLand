@@ -37,6 +37,10 @@ public class MemberRepositoryImpl extends SqlSessionDaoSupport implements Member
 		return getSqlSession().selectOne("MemberRepository.selectPassword", member_id);
 	}
 
+	public Map selectMemberTendency(int member_id) {
+		return getSqlSession().selectOne("MemberRepository.selectMemberTendency", member_id);
+	}
+
 	public List<Map> selectTendencyAll() {
 		return getSqlSession().selectList("MemberRepository.selectTendencyAll");
 	}

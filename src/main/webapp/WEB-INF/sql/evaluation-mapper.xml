@@ -44,21 +44,22 @@
   </select>
 
   <select id="SearchEvaluationPrefer" parameterType="map" resultType="map">
-    SELECT *
-    FROM EVALUATION E LEFT OUTER JOIN MEMBER M ON E.MEMBER_ID = M.MEMBER_ID
+    SELECT E.*, S.semester_title, SUM(IF(ES.IS_DELETE = 1 AND ES.KIND=4,1,0)) as count
+    FROM EVALUATION E LEFT OUTER JOIN EVALUATIONSUB ES ON E.EVALUATION_ID = ES.EVALUATION_ID LEFT OUTER JOIN SEMESTER S ON E.SEMESTER = S.SEMESTER_ID
     WHERE E.LECTURE_ID = #{lecture_id} AND E.IS_DELETE = 1
     <choose>
       <when test="method != null and method.equalsIgnoreCase('all')"> </when>
-      <otherwise> AND M.METHOD = #{method}</otherwise>
+      <otherwise> AND MEMBER_METHOD = #{method}</otherwise>
     </choose>
     <choose>
       <when test="task != null and task.equalsIgnoreCase('all')"> </when>
-      <otherwise> AND M.TASK = #{task}</otherwise>
+      <otherwise> AND MEMBER_TASK = #{task}</otherwise>
     </choose>
     <choose>
       <when test="exam != null and exam.equalsIgnoreCase('all')"> </when>
-      <otherwise> AND M.EXAM = #{exam}</otherwise>
+      <otherwise> AND MEMBER_EXAM = #{exam}</otherwise>
     </choose>
+    GROUP BY E.EVALUATION_ID
     ORDER BY SEMESTER DESC, WRITE_DATE DESC
   </select>
 
@@ -74,8 +75,8 @@
   <!--insert-->
 
   <insert id="insertEvaluation" parameterType="map">
-    INSERT INTO EVALUATION (lecture_id, member_id, method, task, exam, comment, score, semester)
-    VALUES (#{lecture_id},#{member_id},#{method},#{task},#{exam},#{comment},#{score},#{semester})
+    INSERT INTO EVALUATION (lecture_id, member_id, method, task, exam, comment, score, semester, member_method, member_task, member_exam)
+    VALUES (#{lecture_id},#{member_id},#{method},#{task},#{exam},#{comment},#{score},#{semester},#{member_method},#{member_task},#{member_exam})
   </insert>
 
   <insert id="insertSub" parameterType="map">
@@ -186,10 +187,6 @@
     ORDER BY L.LECTURE_ID, E.WRITE_DATE DESC
   </select>
 
-
-
-
-
   <select id="selectSearch" parameterType="map" resultType="map">
     SELECT L.LECTURE_ID AS lecture_id, L.LECTURE_NAME AS lecture_name, L.DEPT AS dept, L.PROF AS prof, SUM(IF(E.IS_DELETE = 1,1,0)) AS count
     FROM LECTURE L LEFT OUTER JOIN EVALUATION E ON E.LECTURE_ID = L.LECTURE_ID
@@ -198,23 +195,12 @@
     ORDER BY L.WRITE_DATE DESC
   </select>
 
-
-
-
-
-
-
-
   <update id="isUndelete" parameterType="int">
     UPDATE EVALUATION
     SET
     IS_DELETE = 1
     WHERE EVALUATION_ID = #{evaluation_id}
   </update>
-
-
-
-
 
   <update id="updateAdmin" parameterType="map">
     UPDATE EVALUATION
@@ -227,22 +213,5 @@
     report = #{report}
     WHERE EVALUATION_ID = #{evaluation_id}
   </update>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </mapper>

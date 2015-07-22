@@ -2,6 +2,7 @@ package kr.ac.kpu.ebiz.spring.tobbyproject.service;
 
 import kr.ac.kpu.ebiz.spring.tobbyproject.repository.EvaluationRepository;
 import kr.ac.kpu.ebiz.spring.tobbyproject.repository.LectureRepository;
+import kr.ac.kpu.ebiz.spring.tobbyproject.repository.MemberRepository;
 import kr.ac.kpu.ebiz.spring.tobbyproject.security.MemberInfo;
 import kr.ac.kpu.ebiz.spring.tobbyproject.repository.SemesterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class EvaluationServiceImpl implements EvaluationService {
 
     @Autowired
     SemesterRepository semesterRepository;
+
+    @Autowired
+    MemberRepository memberRepository;
 
     public void listService(int lecture_id, ModelAndView mav) {
 
@@ -107,6 +111,7 @@ public class EvaluationServiceImpl implements EvaluationService {
         int member_id = user.getMember_id();
 
         evaluation.put("member_id", member_id);
+        evaluation.putAll(memberRepository.selectMemberTendency(member_id));
 
         boolean result = false;
 

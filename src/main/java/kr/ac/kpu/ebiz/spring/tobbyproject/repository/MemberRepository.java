@@ -21,6 +21,8 @@ public interface MemberRepository {
 
 	String selectPassword(int member_id);
 
+	Map selectMemberTendency(int member_id);
+
 	List<Map> selectTendencyAll();
 
 

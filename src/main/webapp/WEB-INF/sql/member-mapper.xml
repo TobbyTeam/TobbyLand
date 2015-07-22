@@ -39,6 +39,10 @@
     SELECT password FROM MEMBER WHERE MEMBER_ID = #{member_id}
   </select>
 
+  <select id="selectMemberTendency" parameterType="int" resultType="map">
+    SELECT method AS member_method, task AS member_task, exam AS member_exam FROM MEMBER WHERE MEMBER_ID = #{member_id}
+  </select>
+
   <select id="selectTendencyAll" resultType="map">
     SELECT * FROM TENDENCY
   </select>
