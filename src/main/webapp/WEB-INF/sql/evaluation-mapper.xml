@@ -6,19 +6,21 @@
   <!--select-->
 
   <select id="selectEvaluationAll" parameterType="int" resultType="map">
-    SELECT E.*, S.semester_title, SUM(IF(E2.IS_DELETE = 1,1,0)) as count
+    SELECT E.evaluation_id, E.lecture_id, E.method, E.task, E.exam, E.comment, E.score, DATE_FORMAT(E.write_date, '%Y.%m.%d') AS write_date,
+           E.likes, E.dislike, E.report, S.semester_title, SUM(IF(E2.IS_DELETE = 1,1,0)) as count
     FROM EVALUATION E LEFT OUTER JOIN SEMESTER S ON E.SEMESTER = S.SEMESTER_ID LEFT OUTER JOIN EVALUATION E2 ON E.EVALUATION_ID = E2.UPPER_ID
     WHERE E.LECTURE_ID = #{lecture_id} AND E.IS_DELETE = 1 AND E.IS_REPLY = 1
     GROUP BY E.EVALUATION_ID
-    ORDER BY SEMESTER DESC, WRITE_DATE DESC
+    ORDER BY E.SEMESTER DESC, WRITE_DATE DESC
   </select>
 
   <select id="selectEvaluationBest" parameterType="int" resultType="map">
-    SELECT E.*, S.semester_title, SUM(IF(E2.IS_DELETE = 1,1,0)) as count
+    SELECT E.evaluation_id, E.lecture_id, E.method, E.task, E.exam, E.comment, E.score, DATE_FORMAT(E.write_date, '%Y.%m.%d') AS write_date,
+           E.likes, E.dislike, E.report, S.semester_title, SUM(IF(E2.IS_DELETE = 1,1,0)) as count
     FROM EVALUATION E LEFT OUTER JOIN SEMESTER S ON E.SEMESTER = S.SEMESTER_ID LEFT OUTER JOIN EVALUATION E2 ON E.EVALUATION_ID = E2.UPPER_ID
     WHERE E.LECTURE_ID = #{lecture_id} AND E.IS_DELETE = 1 AND E.IS_REPLY = 1
     GROUP BY E.EVALUATION_ID
-    ORDER BY LIKES DESC, SEMESTER DESC, WRITE_DATE DESC LIMIT 3
+    ORDER BY E.LIKES DESC, E.SEMESTER DESC, E.WRITE_DATE DESC LIMIT 3
   </select>
 
   <select id="selectEvaluationCount" parameterType="map" resultType="int">
@@ -70,7 +72,7 @@
   </select>
 
   <select id="selectReplyAll" parameterType="int" resultType="map">
-    SELECT evaluation_id, comment, write_date, report
+    SELECT evaluation_id, comment, DATE_FORMAT(write_date, '%Y.%m.%d %T') AS write_date, report
     FROM EVALUATION
     WHERE upper_id = #{evaluation_id} AND IS_DELETE = 1
     ORDER BY WRITE_DATE

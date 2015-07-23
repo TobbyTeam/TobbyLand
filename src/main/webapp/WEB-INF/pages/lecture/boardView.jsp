@@ -15,12 +15,13 @@
   제목 : <text>${board.title}</text> <br />
   작성일 : <text>${board.write_date}</text> &nbsp; 조회수 : <text>${board.hit}</text>
   <br />
-  내용 : <br />
+  <br />
 
-  <textarea name="contents" rows="20" cols="40" wrap="hard" readonly="readonly">${board.contents}</textarea><br/>
-
+  <textarea name="contents" rows="20" cols="50" wrap="hard" readonly="readonly">${board.contents}</textarea><br/>
 
   <br/>
+
+
   <input type="hidden" id="lb_id" value="${board.lb_id}" />
   <input type="hidden" id="lecture_id" value="${board.lecture_id}" />
 
@@ -32,25 +33,28 @@
 
   <br /><br />
 
+  --------------------------------------------------------<br />
 
-    댓글 <br />
+  <c:forEach var="reply" items="${replys}" varStatus="status">
 
-    <c:forEach var="reply" items="${replys}" varStatus="status">
-
-      작성일 : ${reply.write_date} &nbsp;&nbsp; <input type="button" value="삭제" onclick="reDeleteAjax(${reply.lb_id})"> &nbsp;&nbsp; <input type="button" value="신고(${reply.report})" onclick="reReportAjax(${reply.lb_id})">
-      <br />
-      내용 :
-      <br />
-      <textarea name="contents" rows="3" cols="40" readonly="readonly">${reply.contents}</textarea><br/>
-    </c:forEach>
+    ${reply.write_date} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="button" value="삭제" onclick="reDeleteAjax(${reply.lb_id})"> &nbsp;&nbsp;
+    <input type="button" value="신고(${reply.report})" onclick="reReportAjax(${reply.lb_id})">
+    <br />
+    내용 :
+    <br />
+    <textarea name="contents" rows="3" cols="50" readonly="readonly">${reply.contents}</textarea><br/><br/>
+  </c:forEach>
 
   <br />
 
+  --------------------------------------------------------<br />
+
   <form id="re_frm" method="post">
 
-    내용: <br />
+    댓글입력 <br />
 
-    <textarea name="contents" id="re_con" rows="3" cols="40" wrap="hard" placeholder="내용을 입력해주세요"></textarea><br/>
+    <textarea name="contents" id="re_con" rows="3" cols="50" wrap="hard" placeholder="내용을 입력해주세요"></textarea><br/>
 
     <input type="hidden" name="lecture_id" value="${board.lecture_id}"/>
     <input type="hidden" name="upper_id" value="${board.lb_id}" />

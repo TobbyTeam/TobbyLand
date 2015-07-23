@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ef39bd55-c5a4-43ad-bf23-0a0b224e2f8b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/LectureRepository.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/LectureRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/LectureRepositoryImpl.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/LectureRepositoryImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/service/LectureServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/service/LectureServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/boardList.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/boardList.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/boardView.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/boardView.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/evaluation-mapper.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/evaluation-mapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/lecture-mapper.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/lecture-mapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/tobbyland-schema.sql" afterPath="$PROJECT_DIR$/database/tobbyland-schema.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/evaluation/list.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/evaluation/list.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/list.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/list.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/evaluation/listBest.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/evaluation/listBest.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/member-mapper.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/member-mapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="tobby.iws" />
@@ -74,24 +75,19 @@
         <option value="$PROJECT_DIR$/src/main/webapp/resources/js/member_validate.js" />
         <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/service/MemberServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/member/view.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/list.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/searchList.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/evaluation/lecture.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/MemberRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/MemberRepositoryImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/member-mapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/evaluation/listBest.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/service/EvaluationService.java" />
         <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/service/EvaluationServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/controller/EvaluationController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/js/evaluation.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/evaluation/reply.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/evaluation-mapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/service/LectureService.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/js/lecture.js" />
         <option value="$PROJECT_DIR$/database/tobbyland-data.sql" />
         <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/controller/LectureController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/evaluation/list.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/js/lecture_validate.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/boardRegister.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/boardModify.jsp" />
@@ -110,9 +106,14 @@
         <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/LectureRepositoryImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/service/LectureServiceImpl.java" />
         <option value="$PROJECT_DIR$/database/tobbyland-schema.sql" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/boardList.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/list.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/lecture-mapper.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/boardView.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/boardList.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/member-mapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/evaluation/list.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/evaluation-mapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/evaluation/listBest.jsp" />
       </list>
     </option>
   </component>
@@ -682,7 +683,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="lecture" />
+              <option name="myItemId" value="evaluation" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -723,110 +724,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tobby" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TobbyLand" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tobbyproject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tobby" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TobbyLand" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tobbyproject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tobby" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TobbyLand" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tobbyproject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="repository" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tobby" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TobbyLand" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1428,13 +1325,7 @@
       <workItem from="1437428679277" duration="18840000" />
       <workItem from="1437579682636" duration="9671000" />
       <workItem from="1437590568198" duration="2641000" />
-      <workItem from="1437593884917" duration="13468000" />
-    </task>
-    <task id="LOCAL-00037" summary="database lecture data 추가&#10;멤버 서비스 시작">
-      <created>1435730288487</created>
-      <option name="number" value="00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1435730288487</updated>
+      <workItem from="1437593884917" duration="17541000" />
     </task>
     <task id="LOCAL-00038" summary="강의검색 자스 추가">
       <created>1435731444214</created>
@@ -1724,11 +1615,17 @@
       <option name="project" value="LOCAL" />
       <updated>1437606739450</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="강의게시판 조회수 추가&#10;">
+      <created>1437607609855</created>
+      <option name="number" value="00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1437607609855</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="593600000" />
+    <option name="totallyTimeSpent" value="597673000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1760,7 +1657,7 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295063" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295063" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.174269" sideWeight="0.48046398" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32748538" sideWeight="0.48046398" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295063" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
@@ -1788,7 +1685,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="전 오류 마저 수정 및 리플 ajax" />
     <MESSAGE value="자스 테스트" />
     <MESSAGE value="강의 게시판 시작&#10;///db 수정" />
     <MESSAGE value="강의 게시판 리스트/ 작성" />
@@ -1813,7 +1709,8 @@
     <MESSAGE value="강의 게시판 변경&#10;기존 = lecturesub에 강의글과 그 글에 대한 댓글 모두 처리하였다&#10;변경 = lecture_board, lecture_board_sub 테이블 생성하여 처리" />
     <MESSAGE value="페이징 이전페이지, 다음페이지 추가&#10;" />
     <MESSAGE value="강의게시판 댓글수 추가&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="강의게시판 댓글수 추가&#10;" />
+    <MESSAGE value="강의게시판 조회수 추가&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="강의게시판 조회수 추가&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1846,13 +1743,6 @@
         <state vertical-scroll-proportion="-15.0">
           <caret line="91" column="19" selection-start-line="91" selection-start-column="19" selection-end-line="91" selection-end-column="19" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/member/view.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.80226904">
-          <caret line="57" column="11" selection-start-line="57" selection-start-column="11" selection-end-line="57" selection-end-column="11" />
         </state>
       </provider>
     </entry>
@@ -1923,14 +1813,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/evaluation/listBest.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.875">
-          <caret line="32" column="76" selection-start-line="32" selection-start-column="76" selection-end-line="32" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/service/EvaluationService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.9403748">
@@ -1981,22 +1863,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/list.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6064815">
-          <caret line="33" column="108" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="108" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/lecture.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6875">
-          <caret line="126" column="1" selection-start-line="126" selection-start-column="1" selection-end-line="126" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.53571427">
@@ -2036,14 +1902,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.321428">
           <caret line="105" column="62" selection-start-line="105" selection-start-column="62" selection-end-line="105" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/evaluation/list.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.60101">
-          <caret line="20" column="53" selection-start-line="20" selection-start-column="53" selection-end-line="20" selection-end-column="53" />
           <folding />
         </state>
       </provider>
@@ -2104,22 +1962,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/modify.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5925">
-          <caret line="36" column="153" selection-start-line="36" selection-start-column="153" selection-end-line="36" selection-end-column="153" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/boardModify.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6">
-          <caret line="28" column="61" selection-start-line="28" selection-start-column="61" selection-end-line="28" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/register.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5525">
@@ -2163,69 +2005,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/evaluation-mapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="28" />
-          <folding>
-            <marker date="1437590559239" expanded="true" signature="-1:-1" placeholder="SELECT E.*, ..." />
-            <marker date="1437590559239" expanded="true" signature="-1:-1" placeholder="SELECT E.*, ..." />
-            <marker date="1437590559239" expanded="true" signature="-1:-1" placeholder="SELECT Count..EVALUATION..." />
-            <marker date="1437590559239" expanded="true" signature="-1:-1" placeholder="SELECT membe..EVALUATION..." />
-            <marker date="1437590559239" expanded="true" signature="-1:-1" placeholder="SELECT E.*, ..EVALUATION..." />
-            <marker date="1437590559239" expanded="true" signature="-1:-1" placeholder="SELECT count..EVALUATIONSUB..." />
-            <marker date="1437590559239" expanded="true" signature="-1:-1" placeholder="SELECT kind ..EVALUATIONSUB..." />
-            <marker date="1437590559239" expanded="true" signature="-1:-1" placeholder="SELECT E.*, ..." />
-            <marker date="1437590559239" expanded="true" signature="-1:-1" placeholder="SELECT evalu..EVALUATION..." />
-            <marker date="1437590559239" expanded="true" signature="-1:-1" placeholder="SELECT membe..EVALUATIONSUB..." />
-            <marker date="1437590559239" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1437590559239" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
-            <marker date="1437590559239" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
-            <marker date="1437590559239" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
-            <marker date="1437590559239" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
-            <marker date="1437590559239" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
-            <marker date="1437590559239" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
-            <marker date="1437590559239" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-            <marker date="1437590559239" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..EVALUATION..." />
-            <marker date="1437590559239" expanded="true" signature="-1:-1" placeholder="SELECT E.EVA..LECTURE..." />
-            <marker date="1437590559239" expanded="true" signature="-1:-1" placeholder="SELECT E.EVA..EVALUATION..." />
-            <marker date="1437590559239" expanded="true" signature="-1:-1" placeholder="SELECT E.EVA..LECTURE..." />
-            <marker date="1437590559239" expanded="true" signature="-1:-1" placeholder="SELECT L.LEC..." />
-            <marker date="1437590559239" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
-            <marker date="1437590559239" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/sakila-schema.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.27126807">
           <caret line="97" column="34" selection-start-line="97" selection-start-column="34" selection-end-line="97" selection-end-column="34" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/member-mapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="91" column="17" selection-start-line="91" selection-start-column="17" selection-end-line="91" selection-end-column="17" />
-          <folding>
-            <marker date="1437590559242" expanded="true" signature="-1:-1" placeholder="SELECT Count..MEMBER..." />
-            <marker date="1437590559242" expanded="true" signature="-1:-1" placeholder="SELECT Count..MEMBER..." />
-            <marker date="1437590559242" expanded="true" signature="-1:-1" placeholder="SELECT membe..MEMBER..." />
-            <marker date="1437590559242" expanded="true" signature="-1:-1" placeholder="SELECT Enabl..MEMBER..." />
-            <marker date="1437590559242" expanded="true" signature="-1:-1" placeholder="SELECT membe..MEMBER..." />
-            <marker date="1437590559242" expanded="true" signature="-1:-1" placeholder="SELECT passw..MEMBER..." />
-            <marker date="1437590559242" expanded="true" signature="-1:-1" placeholder="SELECT metho..MEMBER..." />
-            <marker date="1437590559242" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..TENDENCY..." />
-            <marker date="1437590559242" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1437590559242" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1437590559242" expanded="true" signature="-1:-1" placeholder="UPDATE MEMBE..." />
-            <marker date="1437590559242" expanded="true" signature="-1:-1" placeholder="UPDATE MEMBE..." />
-            <marker date="1437590559242" expanded="true" signature="-1:-1" placeholder="UPDATE MEMBE..." />
-            <marker date="1437590559242" expanded="true" signature="-1:-1" placeholder="UPDATE MEMBE..." />
-            <marker date="1437590559242" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2261,56 +2045,143 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/lecture-mapper.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/lecture.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.142857">
-          <caret line="156" column="21" selection-start-line="156" selection-start-column="21" selection-end-line="156" selection-end-column="21" />
-          <folding>
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="SELECT L.*, ..LECTURE..." />
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="SELECT membe..LECTURE..." />
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="SELECT L.*, ..LECTURE..." />
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="SELECT L.lec..." />
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="SELECT Count..LECTURE_SUB..." />
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="SELECT Count..LECTURE_BOARD..." />
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="SELECT B.rnu..." />
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="SELECT IFNUL..LECTURE_BOARD..." />
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..LECTURE_BOARD..." />
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..LECTURE_BOARD..." />
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="SELECT membe..LECTURE_BOARD..." />
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="SELECT L.lec..." />
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="SELECT Count..LECTURE_BOARD_SUB..." />
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="UPDATE LECTU..." />
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="UPDATE LECTU..." />
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="UPDATE LECTU..." />
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="UPDATE LECTU..." />
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="UPDATE LECTU..." />
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="UPDATE LECTU..." />
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="UPDATE LECTU..." />
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..LECTURE..." />
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..LECTURE..." />
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="UPDATE LECTU..." />
-            <marker date="1437607434069" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="185" column="84" selection-start-line="185" selection-start-column="73" selection-end-line="185" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/boardModify.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.73282444">
+          <caret line="32" column="7" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/list.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.291666">
+          <caret line="30" column="26" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/boardView.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.430622">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        <state vertical-scroll-proportion="-11.25">
+          <caret line="39" column="76" selection-start-line="39" selection-start-column="76" selection-end-line="39" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/modify.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.875">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="30" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/member-mapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41058394">
+          <caret line="30" column="61" selection-start-line="30" selection-start-column="61" selection-end-line="30" selection-end-column="61" />
+          <folding>
+            <marker date="1437611313569" expanded="true" signature="-1:-1" placeholder="SELECT Count..MEMBER..." />
+            <marker date="1437611313569" expanded="true" signature="-1:-1" placeholder="SELECT Count..MEMBER..." />
+            <marker date="1437611313569" expanded="true" signature="-1:-1" placeholder="SELECT membe..MEMBER..." />
+            <marker date="1437611313569" expanded="true" signature="-1:-1" placeholder="SELECT Enabl..MEMBER..." />
+            <marker date="1437611313569" expanded="true" signature="-1:-1" placeholder="SELECT membe..MEMBER..." />
+            <marker date="1437611313569" expanded="true" signature="-1:-1" placeholder="SELECT passw..MEMBER..." />
+            <marker date="1437611313569" expanded="true" signature="-1:-1" placeholder="SELECT metho..MEMBER..." />
+            <marker date="1437611313569" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..TENDENCY..." />
+            <marker date="1437611313569" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1437611313569" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1437611313569" expanded="true" signature="-1:-1" placeholder="UPDATE MEMBE..." />
+            <marker date="1437611313569" expanded="true" signature="-1:-1" placeholder="UPDATE MEMBE..." />
+            <marker date="1437611313569" expanded="true" signature="-1:-1" placeholder="UPDATE MEMBE..." />
+            <marker date="1437611313569" expanded="true" signature="-1:-1" placeholder="UPDATE MEMBE..." />
+            <marker date="1437611313569" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/member/view.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5248092">
+          <caret line="46" column="48" selection-start-line="46" selection-start-column="48" selection-end-line="46" selection-end-column="48" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lecture/boardList.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34290272">
-          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.54435486">
+          <caret line="18" column="6" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/evaluation/list.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.5125">
+          <caret line="148" column="111" selection-start-line="148" selection-start-column="111" selection-end-line="148" selection-end-column="111" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/evaluation-mapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="46" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
+          <folding>
+            <marker date="1437611525917" expanded="true" signature="-1:-1" placeholder="SELECT E.*, ..." />
+            <marker date="1437611525917" expanded="true" signature="-1:-1" placeholder="SELECT E.*, ..." />
+            <marker date="1437611525917" expanded="true" signature="-1:-1" placeholder="SELECT Count..EVALUATION..." />
+            <marker date="1437611525917" expanded="true" signature="-1:-1" placeholder="SELECT membe..EVALUATION..." />
+            <marker date="1437611525917" expanded="true" signature="-1:-1" placeholder="SELECT E.*, ..EVALUATION..." />
+            <marker date="1437611525917" expanded="true" signature="-1:-1" placeholder="SELECT count..EVALUATIONSUB..." />
+            <marker date="1437611525917" expanded="true" signature="-1:-1" placeholder="SELECT kind ..EVALUATIONSUB..." />
+            <marker date="1437611525917" expanded="true" signature="-1:-1" placeholder="SELECT E.*, ..." />
+            <marker date="1437611525917" expanded="true" signature="-1:-1" placeholder="SELECT evalu..EVALUATION..." />
+            <marker date="1437611525917" expanded="true" signature="-1:-1" placeholder="SELECT membe..EVALUATIONSUB..." />
+            <marker date="1437611525917" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1437611525917" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
+            <marker date="1437611525917" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
+            <marker date="1437611525917" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
+            <marker date="1437611525917" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
+            <marker date="1437611525917" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
+            <marker date="1437611525917" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
+            <marker date="1437611525917" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+            <marker date="1437611525917" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..EVALUATION..." />
+            <marker date="1437611525917" expanded="true" signature="-1:-1" placeholder="SELECT E.EVA..LECTURE..." />
+            <marker date="1437611525917" expanded="true" signature="-1:-1" placeholder="SELECT E.EVA..EVALUATION..." />
+            <marker date="1437611525917" expanded="true" signature="-1:-1" placeholder="SELECT E.EVA..LECTURE..." />
+            <marker date="1437611525917" expanded="true" signature="-1:-1" placeholder="SELECT L.LEC..." />
+            <marker date="1437611525917" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
+            <marker date="1437611525917" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/evaluation/listBest.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16733871">
+          <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/lecture-mapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.027372263">
+          <caret line="8" column="58" selection-start-line="8" selection-start-column="58" selection-end-line="8" selection-end-column="112" />
+          <folding>
+            <marker date="1437609992837" expanded="true" signature="-1:-1" placeholder="SELECT L.lec..LECTURE..." />
+          </folding>
         </state>
       </provider>
     </entry>

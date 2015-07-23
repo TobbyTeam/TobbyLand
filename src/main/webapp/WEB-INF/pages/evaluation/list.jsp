@@ -125,9 +125,6 @@
 모든 강의평가
 <table border="1">
 	<tr>
-		<td>강의평가아이디</td>
-		<td>멤버아이디</td>
-		<td>강의아이디</td>
 		<td>수강학기</td>
 		<td>수업방식</td>
 		<td>과제</td>
@@ -142,9 +139,6 @@
 	</tr>
 	<c:forEach var="evaluation" items="${evaluations}" varStatus="status">
 		<tr>
-			<td><a href="/evaluation/replyList?lecture_id=${evaluation.lecture_id}&evaluation_id=${evaluation.evaluation_id}">${evaluation.evaluation_id}</a></td>
-			<td>${evaluation.member_id}</td>
-			<td>${evaluation.lecture_id}</td>
 			<td>${evaluation.semester_title}</td>
 			<td>${evaluation.method}</td>
 			<td>${evaluation.task}</td>
@@ -152,7 +146,7 @@
 			<td>${evaluation.comment}</td>
 			<td>${evaluation.score}</td>
 			<td>${evaluation.write_date}</td>
-			<td>${evaluation.count}</td>
+			<td><a href="/evaluation/replyList?lecture_id=${evaluation.lecture_id}&evaluation_id=${evaluation.evaluation_id}">${evaluation.count}</a></td>
 			<td><input type="button" value="추천(${evaluation.likes})" onclick="evalLikeAjax(${evaluation.evaluation_id})"></td>
 			<td><input type="button" value="비공감(${evaluation.dislike})" onclick="evalDislikeAjax(${evaluation.evaluation_id})"></td>
 			<td><input type="button" value="신고(${evaluation.report})" onclick="evalReportAjax(${evaluation.evaluation_id})"></td>

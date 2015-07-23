@@ -32,7 +32,7 @@
   </select>
 
   <select id="selectMember" parameterType="int" resultType="map">
-    SELECT member_id, user_id, nickname, email, question, answer, method, task, exam, reg_date FROM MEMBER WHERE MEMBER_ID = #{member_id}
+    SELECT member_id, user_id, nickname, email, question, answer, method, task, exam, DATE_FORMAT(reg_date, '%Y.%m.%d %T') AS reg_date FROM MEMBER WHERE MEMBER_ID = #{member_id}
   </select>
 
   <select id="selectPassword" parameterType="int" resultType="String">

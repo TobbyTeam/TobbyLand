@@ -6,7 +6,7 @@
   <!--select-->
 
   <select id="selectAll" resultType="map">
-    SELECT L.*, D.department_name
+    SELECT L.lecture_id, L.lecture_name, L.prof, L.likes, DATE_FORMAT(L.write_date, '%Y.%m.%d %T') AS write_date, D.department_name
     FROM LECTURE L LEFT OUTER JOIN DEPARTMENT D ON L.DEPT = D.DEPARTMENT_ID
     WHERE likes <![CDATA[ < ]]> 10 AND IS_DELETE = 1 ORDER BY LECTURE_ID DESC
   </select>
@@ -16,9 +16,9 @@
   </select>
 
   <select id="selectLecture" parameterType="int" resultType="map">
-    SELECT L.*, D.department_name
-    FROM LECTURE L LEFT OUTER JOIN DEPARTMENT D ON L.DEPT = D.DEPARTMENT_ID
-    WHERE L.LECTURE_ID = #{lecture_id}
+    SELECT lecture_id, lecture_name, dept, prof
+    FROM LECTURE
+    WHERE LECTURE_ID = #{lecture_id}
   </select>
 
   <select id="selectSearchLecture" parameterType="map" resultType="map">
@@ -53,7 +53,7 @@
   </select>
 
   <select id="selectBoardAll" parameterType="map" resultType="map" >
-    SELECT B.rnum, B.lb_id, B.title, B.write_date, B.hit, B.report, SUM(IF(B2.IS_DELETE = 1,1,0)) as count
+    SELECT B.rnum, B.lb_id, B.title, DATE_FORMAT(B.write_date, '%Y.%m.%d') AS write_date, B.hit, B.report, SUM(IF(B2.IS_DELETE = 1,1,0)) as count
     FROM LECTURE_BOARD B LEFT OUTER JOIN LECTURE_BOARD B2 ON B.LB_ID = B2.UPPER_ID
     WHERE B.LECTURE_ID = #{lecture_id} AND B.IS_DELETE = 1 AND B.IS_REPLY = 1
     GROUP BY B.LB_ID
@@ -68,12 +68,14 @@
   </select>
 
   <select id="selectBoard" parameterType="int" resultType="map" >
-    SELECT * FROM LECTURE_BOARD
+    SELECT lb_id, lecture_id, title, contents, DATE_FORMAT(write_date, '%Y.%m.%d %T') AS write_date, hit, report
+    FROM LECTURE_BOARD
     WHERE LB_ID = #{lb_id}
   </select>
 
   <select id="selectBoardReplyAll" parameterType="int" resultType="map" >
-    SELECT * FROM LECTURE_BOARD
+    SELECT lb_id, contents, DATE_FORMAT(write_date, '%Y.%m.%d %T') AS write_date, report
+    FROM LECTURE_BOARD
     WHERE UPPER_ID = #{lb_id} AND IS_DELETE = 1
     ORDER BY WRITE_DATE
   </select>
