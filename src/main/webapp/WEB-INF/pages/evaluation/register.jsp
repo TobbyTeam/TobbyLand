@@ -12,6 +12,14 @@
 </head>
 <body>
 
+<jsp:include page="/top" flush="true"/>
+
+<br /><br />
+
+<jsp:include page="/lecture/search_form" flush="true"/>
+
+<br /><br />
+
 <form id="reg_frm" method="post">
 
     학기:

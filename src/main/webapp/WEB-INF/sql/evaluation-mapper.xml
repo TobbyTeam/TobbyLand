@@ -46,29 +46,30 @@
   </select>
 
   <select id="SearchEvaluationPrefer" parameterType="map" resultType="map">
-    SELECT E.*, S.semester_title, SUM(IF(ES.IS_DELETE = 1 AND ES.KIND=4,1,0)) as count
-    FROM EVALUATION E LEFT OUTER JOIN EVALUATIONSUB ES ON E.EVALUATION_ID = ES.EVALUATION_ID LEFT OUTER JOIN SEMESTER S ON E.SEMESTER = S.SEMESTER_ID
+    SELECT E.evaluation_id, E.lecture_id, E.method, E.task, E.exam, E.comment, E.score, DATE_FORMAT(E.write_date, '%Y.%m.%d') AS write_date,
+    E.likes, E.dislike, E.report, S.semester_title, SUM(IF(E2.IS_DELETE = 1,1,0)) as count
+    FROM EVALUATION E LEFT OUTER JOIN SEMESTER S ON E.SEMESTER = S.SEMESTER_ID LEFT OUTER JOIN EVALUATION E2 ON E.EVALUATION_ID = E2.UPPER_ID
     WHERE E.LECTURE_ID = #{lecture_id} AND E.IS_DELETE = 1 AND E.IS_REPLY = 1
     <choose>
       <when test="method != null and method.equalsIgnoreCase('all')"> </when>
       <otherwise>
-        AND MEMBER_METHOD = #{method}
+        AND E.MEMBER_METHOD = #{method}
       </otherwise>
     </choose>
     <choose>
       <when test="task != null and task.equalsIgnoreCase('all')"> </when>
       <otherwise>
-        AND MEMBER_TASK = #{task}
+        AND E.MEMBER_TASK = #{task}
       </otherwise>
     </choose>
     <choose>
       <when test="exam != null and exam.equalsIgnoreCase('all')"> </when>
       <otherwise>
-        AND MEMBER_EXAM = #{exam}
+        AND E.MEMBER_EXAM = #{exam}
       </otherwise>
     </choose>
     GROUP BY E.EVALUATION_ID
-    ORDER BY SEMESTER DESC, WRITE_DATE DESC
+    ORDER BY E.SEMESTER DESC, E.WRITE_DATE DESC
   </select>
 
   <select id="selectReplyAll" parameterType="int" resultType="map">

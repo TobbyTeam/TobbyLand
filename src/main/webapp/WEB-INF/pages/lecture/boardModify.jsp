@@ -13,6 +13,16 @@
 </head>
 <body>
 
+<jsp:include page="/top" flush="true"/>
+
+<br /><br />
+
+<jsp:include page="/lecture/search_form" flush="true"/>
+
+<br /><br />
+
+<jsp:include page="/evaluation/lecture?lecture_id=${lecture_id}" flush="true"/> <br />
+
   <form id="mod_board_frm" name="mod_board_frm" method="post">
 
     제목:

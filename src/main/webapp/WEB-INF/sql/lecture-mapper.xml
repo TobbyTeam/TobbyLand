@@ -85,7 +85,7 @@
   </select>
 
   <select id="selectLecture_E" parameterType="int" resultType="map">
-    SELECT L.lecture_name, L.prof, D.department_name, Count(IF(E.IS_DELETE = 1 AND E.IS_REPLY=1,1,NULL)) as count,  IFNULL(AVG(IF(E.IS_DELETE = 1 AND E.IS_REPLY=1,E.SCORE,NULL)),0) as avg
+    SELECT L.lecture_id, L.lecture_name, L.prof, D.department_name, Count(IF(E.IS_DELETE = 1 AND E.IS_REPLY=1,1,NULL)) as count,  IFNULL(AVG(IF(E.IS_DELETE = 1 AND E.IS_REPLY=1,E.SCORE,NULL)),0) as avg
     FROM LECTURE L LEFT OUTER JOIN EVALUATION E ON L.LECTURE_ID = E.LECTURE_ID LEFT OUTER JOIN DEPARTMENT D ON L.DEPT = D.DEPARTMENT_ID
     WHERE L.LECTURE_ID = #{lecture_id}
     GROUP BY L.LECTURE_ID

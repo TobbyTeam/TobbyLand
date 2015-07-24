@@ -88,7 +88,7 @@ public class LectureController {
 	}
 
 	@RequestMapping(value = "/boardList/{lecture_id}/", method = RequestMethod.GET)
-	public ModelAndView board(@PathVariable int lecture_id, @RequestParam(value="page", required = false, defaultValue="1") String page,
+	public ModelAndView boardList(@PathVariable int lecture_id, @RequestParam(value="page", required = false, defaultValue="1") String page,
 							  @RequestParam(value="searchType", required = false, defaultValue="") String searchType, @RequestParam(value="searchWord", required = false, defaultValue="") String searchWord) {
 
 		ModelAndView mav = new ModelAndView();
@@ -99,8 +99,33 @@ public class LectureController {
 			search.put("searchWord", searchWord);
 			search.put("lecture_id", lecture_id);
 			lectureService.boardSearchService(search, page, mav);
+			mav.setViewName("/lecture/boardSearchList");
+
 		} else {
 			lectureService.boardListService(lecture_id, page, mav);
+			mav.setViewName("/lecture/boardList");
+
+		}
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/boardList2/{lecture_id}/", method = RequestMethod.GET)
+	public ModelAndView boardList2(@PathVariable int lecture_id, @RequestParam(value="page", required = false, defaultValue="1") String page,
+							  @RequestParam(value="searchType", required = false, defaultValue="") String searchType, @RequestParam(value="searchWord", required = false, defaultValue="") String searchWord) {
+
+		ModelAndView mav = new ModelAndView();
+
+		if(!searchType.isEmpty()){
+			Map search = new HashMap();
+			search.put("searchType", searchType);
+			search.put("searchWord", searchWord);
+			search.put("lecture_id", lecture_id);
+			lectureService.boardSearchService(search, page, mav);
+			mav.setViewName("/lecture/boardSearchList2");
+		} else {
+			lectureService.boardListService(lecture_id, page, mav);
+			mav.setViewName("/lecture/boardList2");
 		}
 
 		return mav;

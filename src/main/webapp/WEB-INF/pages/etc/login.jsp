@@ -65,18 +65,15 @@
 </head>
 <body onload='document.loginfrm.loginid.focus();'>
 
+	<jsp:include page="/top" flush="true"/>
+
+	<br /><br />
+
 	<img src="/resources/image/mainlogo.png"/>
 
 	<div id="login-box">
 
 		<h3>Login with Username and loginpwd</h3>
-
-<%--		<c:if test="${not empty error}">
-			<div class="error">${error}</div>
-		</c:if>
-		<c:if test="${not empty msg}">
-			<div class="msg">${msg}</div>
-		</c:if>--%>
 
 		<form id="loginfrm" name="loginfrm" action="<c:url value='${pageContext.request.contextPath}/j_spring_security_check'/>" method='POST'>
 

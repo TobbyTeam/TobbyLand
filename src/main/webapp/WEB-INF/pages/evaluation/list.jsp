@@ -7,13 +7,20 @@
 	<script src="<c:url value="/resources/js/evaluation.js" />"></script>
 
 	<title>헬로 월드</title></head>
+
 <body>
 
-<br /> <br />
+<jsp:include page="/top" flush="true"/>
 
-<jsp:include page="/evaluation/lecture?lecture_id=${lecture_id}" flush="true"/> <br />
+<br /><br />
 
-<a href="/evaluation/list?lecture_id=${lecture_id}">강의평가</a>&nbsp;&nbsp;<a href="/lecture/boardList/${lecture_id}/">강의게시판</a>
+<jsp:include page="/lecture/search_form" flush="true"/>
+
+<br /><br />
+
+<jsp:include page="/evaluation/lecture?lecture_id=${lecture_id}" flush="true"/>
+
+
 <br /> <br />
 
 <form action="/evaluation/searchPrefer" method="get">

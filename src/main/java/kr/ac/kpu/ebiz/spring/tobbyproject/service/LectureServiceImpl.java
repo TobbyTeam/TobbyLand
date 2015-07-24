@@ -200,8 +200,6 @@ public class LectureServiceImpl implements LectureService{
 
         int current = Integer.parseInt(page);
 
-        mav.setViewName("/lecture/boardList");
-
         Map lectureBoard = new HashMap();
         lectureBoard.put("lecture_id", lecture_id);
         lectureBoard.put("start", start);
@@ -411,9 +409,6 @@ public class LectureServiceImpl implements LectureService{
         }
 
         int current = Integer.parseInt(page);
-
-        mav.setViewName("/lecture/boardSearchList");
-
 
         search.put("start", start);
 

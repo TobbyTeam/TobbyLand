@@ -10,6 +10,18 @@
 </head>
 <body>
 
+<jsp:include page="/top" flush="true"/>
+
+<br /><br />
+
+<jsp:include page="/lecture/search_form" flush="true"/>
+
+<br /><br />
+
+<jsp:include page="/evaluation/lecture?lecture_id=${board.lecture_id}" flush="true"/>
+
+<br /><br />
+
   제목 : <text>${board.title}</text> <br />
   작성일 : <text>${board.write_date}</text> &nbsp; 조회수 : <text>${board.hit}</text>
   <br />
@@ -18,7 +30,6 @@
   <textarea name="contents" rows="20" cols="50" wrap="hard" readonly="readonly">${board.contents}</textarea><br/>
 
   <br/>
-
 
   <input type="hidden" id="lb_id" value="${board.lb_id}" />
   <input type="hidden" id="lecture_id" value="${board.lecture_id}" />
@@ -62,7 +73,7 @@
 
 <br />
 
-  <jsp:include page="/lecture/boardList/${board.lecture_id}/" flush="true"/>
+  <jsp:include page="/lecture/boardList2/${board.lecture_id}/" flush="true"/>
 
 </body>
 </html>

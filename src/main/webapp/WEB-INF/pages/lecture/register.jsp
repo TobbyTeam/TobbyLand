@@ -4,7 +4,6 @@
 
 <html>
 <head>
-
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="<c:url value="/resources/js/jquery.validate.min.js" />"></script>
     <script src="<c:url value="/resources/js/lecture_validate.js" />"></script>
@@ -12,6 +11,14 @@
     <title></title>
 </head>
 <body>
+
+<jsp:include page="/top" flush="true"/>
+
+<br /><br />
+
+<jsp:include page="/lecture/search_form" flush="true"/>
+
+<br /><br />
 
     <form id="reg_frm" name="reg_frm" method="post">
 
