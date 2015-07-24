@@ -14,7 +14,7 @@
 
 <br /> <br />
 
-<jsp:include page="/evaluation/lecture" flush="true"/>
+<jsp:include page="/evaluation/lecture?lecture_id=${lecture_id}" flush="true"/> <br />
 
 <br />
 
@@ -58,16 +58,16 @@
 
 		<c:if test="${not empty boards}">
 
-			<!-- 전체 페이지가 10페이지 이하면 첫페이지로 이동 표시 안함-->
+			<!-- 전체 페이지가 10페이지 이하면 맨처음로 이동 표시 안함-->
 
 			<c:if test="${pageNum-10 <= 0}">
 
 			</c:if>
 
-			<!-- 전체 페이지가 10페이지 초과고 시작페이지가 1이 아니면 첫페이지로 이동 표시 -->
+			<!-- 전체 페이지가 10페이지 초과고 시작페이지가 1이 아니면 맨처음로 이동 표시 -->
 
 			<c:if test="${pageNum-10 > 0 && start-1 !=0}">
-				<a href="/lecture/boardList/${lecture_id}/?seq=1&searchType=${search.searchType}&searchWord=${search.searchWord}" class="first">처음&nbsp;</a>
+				<a href="/lecture/boardList/${lecture_id}/?seq=1&searchType=${search.searchType}&searchWord=${search.searchWord}" class="first">맨처음&nbsp;</a>
 			</c:if>
 
 			<!-- 시작페이지가 1부터면 이전 표시("<<") ​ 안함 -->
@@ -94,7 +94,7 @@
 
 			<c:if test="${current != 1}">
 
-				<a href="/lecture/boardList/${lecture_id}/?seq=${current-1}&searchType=${search.searchType}&searchWord=${search.searchWord}" class="prevPage">이전페이지&nbsp;</a>
+				<a href="/lecture/boardList/${lecture_id}/?seq=${current-1}&searchType=${search.searchType}&searchWord=${search.searchWord}" class="prevPage">&lt;&nbsp;</a>
 
 			</c:if>
 
@@ -114,15 +114,15 @@
 
 			<!-- 현재 페이지가 마지막페이지면 다음페이지 표시(">") ​ 안함 -->
 
-			<c:if test="${current == end}">
+			<c:if test="${current == pageNum}">
 
 			</c:if>
 
 			<!-- 현재 페이지가 마지막페이지가 아니면 아니면 다음페이지 표시(">") ​ -->
 
-			<c:if test="${current != end}">
+			<c:if test="${current != pageNum}">
 
-				<a href="/lecture/boardList/${lecture_id}/?seq=${current+1}&searchType=${search.searchType}&searchWord=${search.searchWord}" class="prevPage">&nbsp;다음페이지</a>
+				<a href="/lecture/boardList/${lecture_id}/?seq=${current+1}&searchType=${search.searchType}&searchWord=${search.searchWord}" class="prevPage">&nbsp;&gt;</a>
 
 			</c:if>
 
@@ -140,17 +140,17 @@
 
 			</c:if>
 
-			<!-- 전체 페이지가 10페이지 이하면 마지막페이지로 이동 표시 안함 -->
+			<!-- 전체 페이지가 10페이지 이하면 맨뒤로 이동 표시 안함 -->
 
 			<c:if test="${pageNum-10 <= 0}">
 
 			</c:if>
 
-			<!-- 전체 페이지가 10페이지 초과고 마지막 페이지 번호와 전체 페이지 번호가 같지 않으면 마지막페이지로 이동 표시 안함 -->
+			<!-- 전체 페이지가 10페이지 초과고 마지막 페이지 번호와 전체 페이지 번호가 같지 않으면 맨뒤 이동 표시 -->
 
 			<c:if test="${pageNum-10 > 0 && end != pageNum}">
 
-				<a href="/lecture/boardList/${lecture_id}/?seq=${pageNum}&searchType=${search.searchType}&searchWord=${search.searchWord}" class="last">&nbsp;마지막</a>
+				<a href="/lecture/boardList/${lecture_id}/?seq=${pageNum}" class="last">&nbsp;맨뒤</a>
 
 			</c:if>
 

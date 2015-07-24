@@ -208,6 +208,7 @@ public class LectureServiceImpl implements LectureService{
 
         List<Map> boards = lectureRepository.selectBoardAll(lectureBoard);
 
+        mav.addObject("lecture_id", lecture_id);
         mav.addObject("boards", boards);
         mav.addObject("pageNum", pageNum);
         mav.addObject("start", startPage);
@@ -365,6 +366,8 @@ public class LectureServiceImpl implements LectureService{
 
         int page = 0;
 
+        int lecture_id =  Integer.parseInt(search.get("lecture_id").toString());
+
         try{
             // 시작페이지 설정 1~5 페이지 일경우 1​​
             startPage = (Integer.parseInt(seq) - 1) / 10 * 10 + 1;
@@ -386,7 +389,6 @@ public class LectureServiceImpl implements LectureService{
         }catch(Exception e){
 
             // 이상한 페이지 번호 들어오면 해당 게시판 처음으로 리다이렉트​
-            int lecture_id =  Integer.parseInt(search.get("lecture_id").toString());
             mav.setViewName("redirect:/lecture/boardList/" + lecture_id + "/1");
 
         }
@@ -417,6 +419,7 @@ public class LectureServiceImpl implements LectureService{
 
         List<Map> boards = lectureRepository.selectBoardSearch(search);
 
+        mav.addObject("lecture_id", lecture_id);
         mav.addObject("search", search);
         mav.addObject("boards", boards);
         mav.addObject("pageNum", pageNum);
