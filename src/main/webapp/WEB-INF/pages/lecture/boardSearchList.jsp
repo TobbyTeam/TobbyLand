@@ -67,7 +67,7 @@
 			<!-- 전체 페이지가 10페이지 초과고 시작페이지가 1이 아니면 첫페이지로 이동 표시 -->
 
 			<c:if test="${pageNum-10 > 0 && start-1 !=0}">
-				<a href="/lecture/boardList/${lecture_id}/?seq=1" class="first">처음&nbsp;</a>
+				<a href="/lecture/boardList/${lecture_id}/?seq=1&searchType=${search.searchType}&searchWord=${search.searchWord}" class="first">처음&nbsp;</a>
 			</c:if>
 
 			<!-- 시작페이지가 1부터면 이전 표시("<<") ​ 안함 -->
@@ -80,7 +80,7 @@
 
 			<c:if test="${start-1!=0 }">
 
-				<a href="/lecture/boardList/${lecture_id}/?seq=${start-1}" class="prev">&laquo;&nbsp;</a>
+				<a href="/lecture/boardList/${lecture_id}/?seq=${start-1}&searchType=${search.searchType}&searchWord=${search.searchWord}" class="prev">&laquo;&nbsp;</a>
 
 			</c:if>
 
@@ -94,23 +94,23 @@
 
 			<c:if test="${current != 1}">
 
-				<a href="/lecture/boardList/${lecture_id}/?seq=${current-1}" class="prevPage">이전페이지&nbsp;</a>
+				<a href="/lecture/boardList/${lecture_id}/?seq=${current-1}&searchType=${search.searchType}&searchWord=${search.searchWord}" class="prevPage">이전페이지&nbsp;</a>
 
 			</c:if>
 
 			<!-- 10개씩 페이지 표시-->​
-			<span>
-				<c:forEach var="i" begin="${start}" end="${end}" step="1">
-					<c:choose>
-						<c:when test="${i eq current}">
-							<a href="/lecture/boardList/${lecture_id}/?seq=${i}" style="color:#00FF00">${i}&nbsp;</a>
-						</c:when>
-						<c:otherwise>
-							<a href="/lecture/boardList/${lecture_id}/?seq=${i}">${i}&nbsp;</a>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-			</span>
+				<span>
+					<c:forEach var="i" begin="${start}" end="${end}" step="1">
+						<c:choose>
+							<c:when test="${i eq current}">
+								<a href="/lecture/boardList/${lecture_id}/?seq=${i}&searchType=${search.searchType}&searchWord=${search.searchWord}" style="color:#00FF00">${i}&nbsp;</a>
+							</c:when>
+							<c:otherwise>
+								<a href="/lecture/boardList/${lecture_id}/?seq=${i}&searchType=${search.searchType}&searchWord=${search.searchWord}">${i}&nbsp;</a>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+				</span>
 
 			<!-- 현재 페이지가 마지막페이지면 다음페이지 표시(">") ​ 안함 -->
 
@@ -122,7 +122,7 @@
 
 			<c:if test="${current != end}">
 
-				<a href="/lecture/boardList/${lecture_id}/?seq=${current+1}" class="prevPage">&nbsp;다음페이지</a>
+				<a href="/lecture/boardList/${lecture_id}/?seq=${current+1}&searchType=${search.searchType}&searchWord=${search.searchWord}" class="prevPage">&nbsp;다음페이지</a>
 
 			</c:if>
 
@@ -136,7 +136,7 @@
 
 			<c:if test="${end % 10 == 0 && pageNum > end}">
 
-				<a href="/lecture/boardList/${lecture_id}/?seq=${end+1}" class="next">&nbsp;&raquo;</a>
+				<a href="/lecture/boardList/${lecture_id}/?seq=${end+1}&searchType=${search.searchType}&searchWord=${search.searchWord}" class="next">&nbsp;&raquo;</a>
 
 			</c:if>
 
@@ -150,7 +150,7 @@
 
 			<c:if test="${pageNum-10 > 0 && end != pageNum}">
 
-				<a href="/lecture/boardList/${lecture_id}/?seq=${pageNum}" class="last">&nbsp;마지막</a>
+				<a href="/lecture/boardList/${lecture_id}/?seq=${pageNum}&searchType=${search.searchType}&searchWord=${search.searchWord}" class="last">&nbsp;마지막</a>
 
 			</c:if>
 
@@ -162,12 +162,12 @@
 
 	<select name="searchType">
 		<c:choose>
-			<c:when test="${search.searchWord eq 'contents'}">
+			<c:when test="${search.searchType eq 'contents'}">
 					<option value="title">제목</option>
 					<option value="contents" selected="selected">내용</option>
 					<option value="title_contents">제목+내용</option>
 			</c:when>
-			<c:when test="${search.searchWord eq 'title_contents'}">
+			<c:when test="${search.searchType eq 'title_contents'}">
 					<option value="title">제목</option>
 					<option value="contents">내용</option>
 					<option value="title_contents" selected="selected">제목+내용</option>

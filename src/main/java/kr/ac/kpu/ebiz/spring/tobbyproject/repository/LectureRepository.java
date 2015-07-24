@@ -13,7 +13,7 @@ public interface LectureRepository {
 
 	Map selectLecture(int lecture_id);
 
-	List<Map> selectSearchLecture(Map search);
+	List<Map> selectLectureSearch(Map search);
 
 	int selectSubCount(Map lectureSub);
 
@@ -32,6 +32,11 @@ public interface LectureRepository {
 	Map selectLecture_E(int lecture_id);
 
 	int selectBoardSubCount(Map lectureBoardSub);
+
+	int selectBoardSearchCount(Map lectureBoard);
+
+	List<Map> selectBoardSearch(Map lectureBoard);
+
 
 
 	/*insert*/

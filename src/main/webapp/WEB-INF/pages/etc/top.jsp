@@ -28,9 +28,9 @@
 <form action="/lecture/search" method="get" name="search_frm">
 
     <select name="searchType">
-    <option value="lecture_name">강의명</option>
-    <option value="dept">학과명</option>
-    <option value="prof">교수명</option>
+        <option value="lecture_name">강의명</option>
+        <option value="dept">학과명</option>
+        <option value="prof">교수명</option>
     </select>
 
     <input type="text" name="searchWord">

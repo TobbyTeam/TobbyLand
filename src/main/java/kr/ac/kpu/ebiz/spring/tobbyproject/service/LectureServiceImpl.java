@@ -105,9 +105,7 @@ public class LectureServiceImpl implements LectureService{
 
         String searchWord = (String) search.get("searchWord");
 
-        System.out.println(searchWord+"검색어 확인");
-
-        List<Map> result = lectureRepository.selectSearchLecture(search);
+        List<Map> result = lectureRepository.selectLectureSearch(search);
         mav.addObject("lectures", result);
 
         if(result.isEmpty() == true){
@@ -152,8 +150,6 @@ public class LectureServiceImpl implements LectureService{
 
     public void boardListService(int lecture_id, String seq, ModelAndView mav) {
 
-        mav.addObject("pnum", seq);         // 현재 페이지 번호 모델로 넘김
-
         int startPage = 0;
 
         int endPage = 0;
@@ -181,7 +177,7 @@ public class LectureServiceImpl implements LectureService{
         }catch(Exception e){
 
             // 이상한 페이지 번호 들어오면 해당 게시판 처음으로 리다이렉트​
-            mav.setViewName("redirect:/lecture/boardList/" + lecture_id + "/1");
+            mav.setViewName("redirect:/lecture/boardList/" + lecture_id + "/");
 
         }
 
@@ -197,8 +193,6 @@ public class LectureServiceImpl implements LectureService{
             pageNum--;
         }
 
-        int finalEndPage = pageNum;
-
         if (endPage > pageNum) {
             // 예를 들어 마지막페이지가 12페이지인 경우 endPage가 15페이지 까지 출력되기때문에 12페이지로 바꿔줌​
             endPage = pageNum;
@@ -208,18 +202,17 @@ public class LectureServiceImpl implements LectureService{
 
         mav.setViewName("/lecture/boardList");
 
-        Map lectureSub2 = new HashMap();
-        lectureSub2.put("lecture_id", lecture_id);
-        lectureSub2.put("page", page);
+        Map lectureBoard = new HashMap();
+        lectureBoard.put("lecture_id", lecture_id);
+        lectureBoard.put("page", page);
 
-        List<Map> boards = lectureRepository.selectBoardAll(lectureSub2);
+        List<Map> boards = lectureRepository.selectBoardAll(lectureBoard);
 
         mav.addObject("boards", boards);
         mav.addObject("pageNum", pageNum);
         mav.addObject("start", startPage);
         mav.addObject("end", endPage);
-        mav.addObject("finalEnd", finalEndPage);
-        mav.addObject("current", current);
+        mav.addObject("current", current);   // 현재 페이지 번호 모델로 넘김
 
     }
 
@@ -241,8 +234,6 @@ public class LectureServiceImpl implements LectureService{
         } else {
             rnum = maxRnum + 1;
         }
-
-        System.out.println(rnum+"로넘버 확인");
 
         lectureBoard.put("member_id", member_id);
         lectureBoard.put("rnum", rnum);
@@ -364,6 +355,75 @@ public class LectureServiceImpl implements LectureService{
         }
 
         return result;
+    }
+
+    public void boardSearchService(Map search, String seq, ModelAndView mav) {
+
+        int startPage = 0;
+
+        int endPage = 0;
+
+        int page = 0;
+
+        try{
+            // 시작페이지 설정 1~5 페이지 일경우 1​​
+            startPage = (Integer.parseInt(seq) - 1) / 10 * 10 + 1;
+
+            //ex) 현재 6페이지 일경우 (6-1) /5 * 5 +1 = 1 -> 6 페이지 부터 시작​​
+            endPage = startPage + 10 - 1;
+
+            if (seq != null && seq != "") {
+                if (!seq.equals("1")) {
+                    // 첫페이지가 아닐경우 그 페이지에 맞는 목록 뽑아옴​
+                    int temp = (Integer.parseInt(seq) - 1) * 15;
+                    page = temp;
+                } else if (seq.equals("1")) {
+                    // 페이지 번호가 1이면 처음부터 15개​
+                    page = 0;
+                }
+            }
+
+        }catch(Exception e){
+
+            // 이상한 페이지 번호 들어오면 해당 게시판 처음으로 리다이렉트​
+            int lecture_id =  Integer.parseInt(search.get("lecture_id").toString());
+            mav.setViewName("redirect:/lecture/boardList/" + lecture_id + "/1");
+
+        }
+
+        //  전체 게시물 갯수 뽑아옴 ​
+
+        int rownum = lectureRepository.selectBoardSearchCount(search);
+
+        //pageNum 변수는 전체 페이지의 수​
+        int pageNum = rownum / 15 + 1;
+
+        // 게시물이 딱 15개일 경우 다음페이지가 생기지 않게 -1 해줌​
+        if (rownum % 15 == 0) {
+            pageNum--;
+        }
+
+        if (endPage > pageNum) {
+            // 예를 들어 마지막페이지가 12페이지인 경우 endPage가 15페이지 까지 출력되기때문에 12페이지로 바꿔줌​
+            endPage = pageNum;
+        }
+
+        int current = Integer.parseInt(seq);
+
+        mav.setViewName("/lecture/boardSearchList");
+
+
+        search.put("page", page);
+
+        List<Map> boards = lectureRepository.selectBoardSearch(search);
+
+        mav.addObject("search", search);
+        mav.addObject("boards", boards);
+        mav.addObject("pageNum", pageNum);
+        mav.addObject("start", startPage);
+        mav.addObject("end", endPage);
+        mav.addObject("current", current);   // 현재 페이지 번호 모델로 넘김
+
     }
 
 }

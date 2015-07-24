@@ -44,4 +44,7 @@ public interface LectureService {
     boolean boardSubConfirmService(int lb_id);
 
     boolean boardReplyRegService(Map lectureBoard);
+
+    void boardSearchService(Map search, String seq, ModelAndView mav);
+
 }

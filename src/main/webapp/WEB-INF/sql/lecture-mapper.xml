@@ -21,7 +21,7 @@
     WHERE LECTURE_ID = #{lecture_id}
   </select>
 
-  <select id="selectSearchLecture" parameterType="map" resultType="map">
+  <select id="selectLectureSearch" parameterType="map" resultType="map">
     SELECT L.lecture_id, L.lecture_name, L.prof, D.department_name, SUM(IF(E.IS_DELETE = 1 AND E.IS_REPLY=1,1,0)) as count, IFNULL(AVG(IF(E.IS_DELETE = 1 AND E.IS_REPLY=1,E.SCORE,NULL)),0) as avg
     FROM LECTURE L LEFT OUTER JOIN EVALUATION E ON L.LECTURE_ID = E.LECTURE_ID LEFT OUTER JOIN DEPARTMENT D ON L.DEPT = D.DEPARTMENT_ID
     WHERE L.LIKES <![CDATA[ >= ]]> 10 AND L.IS_DELETE = 1
@@ -61,7 +61,7 @@
     LIMIT 15 OFFSET #{page}
   </select>
 
-  <select id="selectBoardMaxRnum" parameterType="int" resultType="String" >
+  <select id="selectBoardMaxRnum" parameterType="int" resultType="int" >
     SELECT IFNULL(MAX(rnum),0) AS rnum
     FROM LECTURE_BOARD
     WHERE LECTURE_ID = #{lecture_id} AND IS_REPLY = 1
@@ -95,6 +95,43 @@
     SELECT Count(LB_ID)
     FROM LECTURE_BOARD_SUB
     WHERE LB_ID = #{lb_id} AND MEMBER_ID = #{member_id}
+  </select>
+
+  <select id="selectBoardSearchCount" parameterType="map" resultType="int" >
+    SELECT Count(LB_ID)
+    FROM LECTURE_BOARD
+    WHERE LECTURE_ID = #{lecture_id} AND IS_DELETE = 1 AND IS_REPLY = 1
+    <choose>
+      <when test="searchType != null and searchType.equalsIgnoreCase('title')">
+        AND TITLE LIKE CONCAT('%', #{searchWord}, '%')
+      </when>
+      <when test="searchType != null and searchType.equalsIgnoreCase('contents')">
+        AND CONTENTS LIKE CONCAT('%', #{searchWord}, '%')
+      </when>
+      <otherwise>
+        AND (TITLE LIKE CONCAT('%', #{searchWord}, '%') OR CONTENTS LIKE CONCAT('%', #{searchWord}, '%'))
+      </otherwise>
+    </choose>
+  </select>
+
+  <select id="selectBoardSearch" parameterType="map" resultType="map">
+    SELECT B.rnum, B.lb_id, B.title, DATE_FORMAT(B.write_date, '%Y.%m.%d') AS write_date, B.hit, B.report, SUM(IF(B2.IS_DELETE = 1,1,0)) as count
+    FROM LECTURE_BOARD B LEFT OUTER JOIN LECTURE_BOARD B2 ON B.LB_ID = B2.UPPER_ID
+    WHERE B.LECTURE_ID = #{lecture_id} AND B.IS_DELETE = 1 AND B.IS_REPLY = 1
+    <choose>
+      <when test="searchType != null and searchType.equalsIgnoreCase('title')">
+        AND B.TITLE LIKE CONCAT('%', #{searchWord}, '%')
+      </when>
+      <when test="searchType != null and searchType.equalsIgnoreCase('contents')">
+        AND B.CONTENTS LIKE CONCAT('%', #{searchWord}, '%')
+      </when>
+      <otherwise>
+        AND (B.TITLE LIKE CONCAT('%', #{searchWord}, '%') OR B.CONTENTS LIKE CONCAT('%', #{searchWord}, '%'))
+      </otherwise>
+    </choose>
+    GROUP BY B.LB_ID
+    ORDER BY B.RNUM DESC
+    LIMIT 15 OFFSET #{page}
   </select>
 
 

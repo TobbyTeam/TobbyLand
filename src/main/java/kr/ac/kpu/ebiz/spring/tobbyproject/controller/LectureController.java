@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -86,24 +87,21 @@ public class LectureController {
 		return lectureService.isDeleteService(lecture_id);
 	}
 
-/*	@RequestMapping(value = "/boardList/{lecture_id}/{seq}", method = RequestMethod.GET)
-
-	public ModelAndView board2(@PathVariable int lecture_id, @PathVariable String seq) {
-
-		ModelAndView mav = new ModelAndView();
-
-		lectureService.boardListService(lecture_id, seq, mav);
-
-		return mav;
-	}*/
-
 	@RequestMapping(value = "/boardList/{lecture_id}/", method = RequestMethod.GET)
-
-	public ModelAndView board2(@PathVariable int lecture_id, @RequestParam(value="seq", required = false, defaultValue="1") String seq) {
+	public ModelAndView board(@PathVariable int lecture_id, @RequestParam(value="seq", required = false, defaultValue="1") String seq,
+							  @RequestParam(value="searchType", required = false, defaultValue="") String searchType, @RequestParam(value="searchWord", required = false, defaultValue="") String searchWord) {
 
 		ModelAndView mav = new ModelAndView();
 
-		lectureService.boardListService(lecture_id, seq, mav);
+		if(!searchType.isEmpty()){
+			Map search = new HashMap();
+			search.put("searchType", searchType);
+			search.put("searchWord", searchWord);
+			search.put("lecture_id", lecture_id);
+			lectureService.boardSearchService(search, seq, mav);
+		} else {
+			lectureService.boardListService(lecture_id, seq, mav);
+		}
 
 		return mav;
 	}
@@ -175,6 +173,16 @@ public class LectureController {
 
 		return lectureService.boardReplyRegService(lectureBoard);
 	}
+
+/*	@RequestMapping(value = "/boardSearch", method = RequestMethod.GET)
+	public ModelAndView boardSearch(@RequestParam Map<String, String> search) {
+
+		ModelAndView mav = new ModelAndView();
+
+
+		return mav;
+
+	}*/
 
 	@RequestMapping(value = "/paging")
 	public String paging(@RequestParam Map<String, java.io.Serializable> param) throws Exception{

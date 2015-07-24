@@ -21,7 +21,7 @@ public class LectureRepositoryImpl extends SqlSessionDaoSupport implements Lectu
 		return getSqlSession().selectOne("LectureRepository.selectLecture", lecture_id);
 	}
 
-	public List<Map> selectSearchLecture(Map search) { return getSqlSession().selectList("LectureRepository.selectSearchLecture", search); }
+	public List<Map> selectLectureSearch(Map search) { return getSqlSession().selectList("LectureRepository.selectLectureSearch", search); }
 
 	public int selectSubCount(Map lectureSub) {
 		return getSqlSession().selectOne("LectureRepository.selectSubCount", lectureSub);
@@ -31,8 +31,8 @@ public class LectureRepositoryImpl extends SqlSessionDaoSupport implements Lectu
 		return getSqlSession().selectOne("LectureRepository.selectBoardCount", lecture_id);
 	}
 
-	public List<Map> selectBoardAll(Map lectureSub) {
-		return getSqlSession().selectList("LectureRepository.selectBoardAll", lectureSub);
+	public List<Map> selectBoardAll(Map lectureBoard) {
+		return getSqlSession().selectList("LectureRepository.selectBoardAll", lectureBoard);
 	}
 
 	public int selectBoardMaxRnum(int lecture_id) {
@@ -58,6 +58,14 @@ public class LectureRepositoryImpl extends SqlSessionDaoSupport implements Lectu
 
 	public int selectBoardSubCount(Map lectureBoardSub) {
 		return getSqlSession().selectOne("LectureRepository.selectBoardSubCount", lectureBoardSub);
+	}
+
+	public int selectBoardSearchCount(Map lectureBoard) {
+		return getSqlSession().selectOne("LectureRepository.selectBoardSearchCount", lectureBoard);
+	}
+
+	public List<Map> selectBoardSearch(Map lectureBoard) {
+		return getSqlSession().selectList("LectureRepository.selectBoardSearch", lectureBoard);
 	}
 
 
