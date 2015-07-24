@@ -76,6 +76,7 @@ CREATE TABLE member_role (
 CREATE TABLE department (
   department_id int(2) UNSIGNED NOT NULL AUTO_INCREMENT,
   department_name varchar(45) DEFAULT NULL,
+  kind varchar(45) DEFAULT NULL,
   PRIMARY KEY (department_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -224,4 +225,51 @@ CREATE TABLE evaluationsub (
   KEY FK_evaluationsub_member (member_id),
   CONSTRAINT FK_evaluationsub_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT FK_evaluationsub_evaluation FOREIGN KEY (evaluation_id) REFERENCES evaluation (evaluation_id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+--
+-- Table structure for table `board`
+--
+
+CREATE TABLE board (
+  board_id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  department_id int(10) UNSIGNED DEFAULT NULL,
+  member_id int(10) UNSIGNED DEFAULT NULL,
+  anonymity varchar(45) DEFAULT NULL,
+  rnum int(10) UNSIGNED DEFAULT NULL,
+  title varchar(45) DEFAULT NULL,
+  contents varchar(45) DEFAULT NULL,
+  hit int(10) UNSIGNED DEFAULT '0',
+  likes int(10) UNSIGNED DEFAULT '0',
+  dislike int(10) UNSIGNED DEFAULT '0',
+  report int(10) UNSIGNED DEFAULT '0',
+  write_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  is_delete tinyint(4) UNSIGNED DEFAULT '1',
+  is_reply tinyint(4) UNSIGNED DEFAULT '1',
+  upper_id int(10) UNSIGNED DEFAULT NULL,
+  PRIMARY KEY (board_id),
+  KEY FK_board_department (department_id),
+  KEY FK_board_member (member_id),
+  KEY FK_board_reply (upper_id),
+  CONSTRAINT FK_board_reply FOREIGN KEY (upper_id) REFERENCES board (board_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT FK_board_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT FK_board_department FOREIGN KEY (department_id) REFERENCES department (department_id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+--
+-- Table structure for table `board_sub`
+--
+
+CREATE TABLE board_sub (
+  bs_id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  board_id int(10) UNSIGNED DEFAULT NULL,
+  member_id int(10) UNSIGNED DEFAULT NULL,
+  anonymity varchar(45) DEFAULT NULL,
+  PRIMARY KEY (bs_id),
+  KEY FK_board_sub_board (board_id),
+  KEY FK_board_sub_member (member_id),
+  CONSTRAINT FK_board_sub_board FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT FK_board_sub_member FOREIGN KEY (board_id) REFERENCES board (board_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -109,4 +109,9 @@
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 
+	<bean id="boardRepository" class="kr.ac.kpu.ebiz.spring.tobbyproject.repository.BoardRepositoryImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+
 </beans>

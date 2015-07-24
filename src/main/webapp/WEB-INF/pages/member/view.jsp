@@ -14,7 +14,7 @@
     ${error}
 </c:if>
 
-<jsp:include page="/top" flush="true"/> <br />
+<jsp:include page="/evaluation/top" flush="true"/> <br />
 
 <table border="1">
 

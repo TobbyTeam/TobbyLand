@@ -13,8 +13,6 @@
 </head>
 <body>
 
-  <jsp:include page="/top" flush="true"/> <br />
-
   <form id="mod_board_frm" name="mod_board_frm" method="post">
 
     제목:

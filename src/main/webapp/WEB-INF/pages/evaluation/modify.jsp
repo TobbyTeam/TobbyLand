@@ -11,8 +11,6 @@
 </head>
 <body>
 
-<jsp:include page="/top" flush="true"/> <br />
-
 <form id="mod_frm" method="post">
 
     학기:

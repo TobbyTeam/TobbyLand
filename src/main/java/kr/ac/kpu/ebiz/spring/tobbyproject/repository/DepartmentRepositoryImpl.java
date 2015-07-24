@@ -15,6 +15,10 @@ public class DepartmentRepositoryImpl extends SqlSessionDaoSupport implements De
 		return getSqlSession().selectList("DepartmentRepository.selectAll");
 	}
 
+	public List<Map> selectDeptAll() {
+		return getSqlSession().selectList("DepartmentRepository.selectDeptAll");
+	}
+
 	public boolean delete(int departmentId) {
 		return getSqlSession().delete("DepartmentRepository.delete", departmentId) > 0;
 	}

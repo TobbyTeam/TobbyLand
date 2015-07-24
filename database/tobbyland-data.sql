@@ -72,44 +72,74 @@ VALUES (1,'ROLE_USER');
 -- department table data
 --
 
-INSERT INTO DEPARTMENT (department_name)
-VALUES ('기계공학과');
+INSERT INTO DEPARTMENT (department_name, kind)
+VALUES ('기계공학과', 'dept');
 
-INSERT INTO DEPARTMENT (department_name)
-VALUES ('기계설계공학과');
+INSERT INTO DEPARTMENT (department_name, kind)
+VALUES ('기계설계공학과', 'dept');
 
-INSERT INTO DEPARTMENT (department_name)
-VALUES ('메카트로닉스공학과');
+INSERT INTO DEPARTMENT (department_name, kind)
+VALUES ('메카트로닉스공학과', 'dept');
 
-INSERT INTO DEPARTMENT (department_name)
-VALUES ('전자공학부');
+INSERT INTO DEPARTMENT (department_name, kind)
+VALUES ('전자공학부', 'dept');
 
-INSERT INTO DEPARTMENT (department_name)
-VALUES ('컴퓨터공학부');
+INSERT INTO DEPARTMENT (department_name, kind)
+VALUES ('컴퓨터공학부', 'dept');
 
-INSERT INTO DEPARTMENT (department_name)
-VALUES ('게임공학부');
+INSERT INTO DEPARTMENT (department_name, kind)
+VALUES ('게임공학부', 'dept');
 
-INSERT INTO DEPARTMENT (department_name)
-VALUES ('신소재공학과');
+INSERT INTO DEPARTMENT (department_name, kind)
+VALUES ('신소재공학과', 'dept');
 
-INSERT INTO DEPARTMENT (department_name)
-VALUES ('생명화학공학과');
+INSERT INTO DEPARTMENT (department_name, kind)
+VALUES ('생명화학공학과', 'dept');
 
-INSERT INTO DEPARTMENT (department_name)
-VALUES ('디자인학부');
+INSERT INTO DEPARTMENT (department_name, kind)
+VALUES ('디자인학부', 'dept');
 
-INSERT INTO DEPARTMENT (department_name)
-VALUES ('경영학부');
+INSERT INTO DEPARTMENT (department_name, kind)
+VALUES ('경영학부', 'dept');
 
-INSERT INTO DEPARTMENT (department_name)
-VALUES ('나노-광공학과');
+INSERT INTO DEPARTMENT (department_name, kind)
+VALUES ('나노-광공학과', 'dept');
 
-INSERT INTO DEPARTMENT (department_name)
-VALUES ('에너지·전기공학과');
+INSERT INTO DEPARTMENT (department_name, kind)
+VALUES ('에너지·전기공학과', 'dept');
 
-INSERT INTO DEPARTMENT (department_name)
-VALUES ('지식융합학부');
+INSERT INTO DEPARTMENT (department_name, kind)
+VALUES ('지식융합학부', 'dept');
+
+INSERT INTO DEPARTMENT (department_name, kind)
+VALUES ('사이트공지사항', 'notice');
+
+INSERT INTO DEPARTMENT (department_name, kind)
+VALUES ('학교 공지사항', 'notice');
+
+INSERT INTO DEPARTMENT (department_name, kind)
+VALUES ('익명게시판', 'etc');
+
+INSERT INTO DEPARTMENT (department_name, kind)
+VALUES ('일기장', 'etc');
+
+INSERT INTO DEPARTMENT (department_name, kind)
+VALUES ('중고장터', 'etc');
+
+INSERT INTO DEPARTMENT (department_name, kind)
+VALUES ('복덕방', 'etc');
+
+INSERT INTO DEPARTMENT (department_name, kind)
+VALUES ('소비자포럼', 'etc');
+
+INSERT INTO DEPARTMENT (department_name, kind)
+VALUES ('스터디', 'etc');
+
+INSERT INTO DEPARTMENT (department_name, kind)
+VALUES ('과목교환', 'etc');
+
+INSERT INTO DEPARTMENT (department_name, kind)
+VALUES ('취업상담', 'etc');
 
 
 --

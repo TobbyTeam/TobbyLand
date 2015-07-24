@@ -37,7 +37,7 @@
                 authentication-failure-handler-ref="customAuthenticationFailureHandler"
         />
 
-        <logout invalidate-session="true" logout-success-url="/login"  />
+        <logout invalidate-session="true" logout-success-url="/main"  />
 
         <session-management>
             <concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />

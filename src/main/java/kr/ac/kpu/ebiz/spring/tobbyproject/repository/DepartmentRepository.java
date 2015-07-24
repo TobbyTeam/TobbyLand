@@ -10,5 +10,7 @@ public interface DepartmentRepository {
 
 	List<Map> selectAll();
 
+	List<Map> selectDeptAll();
+
 	boolean delete(int departmentId);
 }

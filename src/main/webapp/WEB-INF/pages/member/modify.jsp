@@ -11,9 +11,6 @@
 </head>
 <body>
 
-
-<jsp:include page="/top" flush="true"/> <br />
-
 <form id="mod_frm" action="/member/mod">
 
     아이디: <text>${member.member_id}</text><br>

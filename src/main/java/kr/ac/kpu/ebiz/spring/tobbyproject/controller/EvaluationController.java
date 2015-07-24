@@ -19,6 +19,18 @@ public class EvaluationController {
 	@Autowired
 	EvaluationService evaluationService;
 
+	@RequestMapping(value = "/main")
+	public String main() {
+
+		return "/evaluation/main";
+	}
+
+	@RequestMapping(value = "/top")
+	public String top() {
+
+		return "/evaluation/top";
+	}
+
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list(@RequestParam("lecture_id") int lecture_id) {
 

@@ -11,9 +11,6 @@
 </head>
 <body>
 
-
-<jsp:include page="/top" flush="true"/> <br />
-
 <form id="pw_mod_frm" name="pw_mod_frm">
 
     기존 비밀번호 : <input type="password" id="exPassword" name="exPassword" ><br />

@@ -9,8 +9,6 @@
 <title>헬로 월드</title></head>
 <body>
 
-<jsp:include page="/top" flush="true"/> <br />
-
 </br>
 강의명 : ${lecture.lecture_name}</br>
 학과명 : ${lecture.dept}</br>

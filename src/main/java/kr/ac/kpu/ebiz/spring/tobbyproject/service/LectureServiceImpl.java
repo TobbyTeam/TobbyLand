@@ -32,7 +32,7 @@ public class LectureServiceImpl implements LectureService{
 
     public void regFormService(ModelAndView mav) {
 
-        mav.addObject("departments", departmentRepository.selectAll());
+        mav.addObject("departments", departmentRepository.selectDeptAll());
 
     }
 
@@ -82,7 +82,7 @@ public class LectureServiceImpl implements LectureService{
         if(member_id == writer || authorities.toString().contains("ROLE_ADMIN")){
 
             mav.addObject("lecture", lectureRepository.selectLecture(lecture_id));
-            mav.addObject("departments", departmentRepository.selectAll());
+            mav.addObject("departments", departmentRepository.selectDeptAll());
 
         } else {
             mav.setViewName("redirect:/lecture/list");

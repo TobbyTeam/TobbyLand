@@ -9,8 +9,6 @@
 	<title>헬로 월드</title></head>
 <body>
 
-<jsp:include page="/top" flush="true"/>
-
 <br /> <br />
 
 <jsp:include page="/evaluation/lecture?lecture_id=${lecture_id}" flush="true"/> <br />

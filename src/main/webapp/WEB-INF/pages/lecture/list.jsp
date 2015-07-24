@@ -9,9 +9,6 @@
 <title>헬로 월드</title></head>
 <body>
 
-
-<jsp:include page="/top" flush="true"/> <br />
-
 <br /><br />
 
 	<table border="1">

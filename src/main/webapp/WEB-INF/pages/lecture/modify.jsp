@@ -13,8 +13,6 @@
 </head>
 <body>
 
-  <jsp:include page="/top" flush="true"/> <br />
-
   <form id="mod_frm" name="mod_frm" method="post">
 
     강의명: <input type="text" id="lecture_name" name="lecture_name" value="${lecture.lecture_name}"/><br>

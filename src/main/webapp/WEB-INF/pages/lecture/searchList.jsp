@@ -11,8 +11,6 @@
 
 <c:if test="${ false == noResult}"> ${error} </c:if>--%>
 
-<jsp:include page="/top" flush="true"/> <br />
-
 <c:if test="${not empty error}">
 	${error}
 </c:if>

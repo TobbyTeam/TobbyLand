@@ -1,8 +1,5 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.controller;
 
-import kr.ac.kpu.ebiz.spring.tobbyproject.encryptor.AES128Cipher;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,15 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MainController {
 
-    @Autowired
-    MessageSource messageSource;
-
-    @Autowired
-    AES128Cipher aes128Cipher;
-
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = {"", "/", "/main"}, method = RequestMethod.GET)
     public String home() {
-        return "etc/login";
+        return "etc/main";
     }
 
     @RequestMapping(value = "/admin**", method = RequestMethod.GET)
@@ -79,22 +70,22 @@ public class MainController {
 
     }
 
-    @RequestMapping(value = "/main")
-    public String main() {
-
-        return "/etc/main";
-    }
-
-    @RequestMapping(value = "/top")
-    public String top() {
-
-        return "/etc/top";
-    }
-
     @RequestMapping(value = "/test")
     public String test() throws Exception{
 
         return "/test";
+    }
+
+    @RequestMapping(value = "/top", method = RequestMethod.GET)
+    public ModelAndView top() {
+
+        ModelAndView mav = new ModelAndView("/etc/top");
+
+/*        mav.addObject("depts", department);
+
+        System.out.println(department.toString());*/
+
+        return mav;
     }
 
 }
