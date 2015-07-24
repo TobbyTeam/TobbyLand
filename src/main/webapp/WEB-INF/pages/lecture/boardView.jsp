@@ -62,5 +62,9 @@
 
   </form>
 
+<br />
+
+  <jsp:include page="/lecture/boardList/${board.lecture_id}/" flush="true"/>
+
 </body>
 </html>

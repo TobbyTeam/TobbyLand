@@ -88,7 +88,7 @@ public class LectureController {
 	}
 
 	@RequestMapping(value = "/boardList/{lecture_id}/", method = RequestMethod.GET)
-	public ModelAndView board(@PathVariable int lecture_id, @RequestParam(value="seq", required = false, defaultValue="1") String seq,
+	public ModelAndView board(@PathVariable int lecture_id, @RequestParam(value="page", required = false, defaultValue="1") String page,
 							  @RequestParam(value="searchType", required = false, defaultValue="") String searchType, @RequestParam(value="searchWord", required = false, defaultValue="") String searchWord) {
 
 		ModelAndView mav = new ModelAndView();
@@ -98,9 +98,9 @@ public class LectureController {
 			search.put("searchType", searchType);
 			search.put("searchWord", searchWord);
 			search.put("lecture_id", lecture_id);
-			lectureService.boardSearchService(search, seq, mav);
+			lectureService.boardSearchService(search, page, mav);
 		} else {
-			lectureService.boardListService(lecture_id, seq, mav);
+			lectureService.boardListService(lecture_id, page, mav);
 		}
 
 		return mav;

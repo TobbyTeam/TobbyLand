@@ -148,29 +148,29 @@ public class LectureServiceImpl implements LectureService{
         return data;
     }
 
-    public void boardListService(int lecture_id, String seq, ModelAndView mav) {
+    public void boardListService(int lecture_id, String page, ModelAndView mav) {
 
         int startPage = 0;
 
         int endPage = 0;
 
-        int page = 0;
+        int start = 0;
 
         try{
             // 시작페이지 설정 1~5 페이지 일경우 1​​
-            startPage = (Integer.parseInt(seq) - 1) / 10 * 10 + 1;
+            startPage = (Integer.parseInt(page) - 1) / 10 * 10 + 1;
 
             //ex) 현재 6페이지 일경우 (6-1) /5 * 5 +1 = 1 -> 6 페이지 부터 시작​​
             endPage = startPage + 10 - 1;
 
-            if (seq != null && seq != "") {
-                if (!seq.equals("1")) {
+            if (page != null && page != "") {
+                if (!page.equals("1")) {
                     // 첫페이지가 아닐경우 그 페이지에 맞는 목록 뽑아옴​
-                    int temp = (Integer.parseInt(seq) - 1) * 15;
-                    page = temp;
-                } else if (seq.equals("1")) {
+                    int temp = (Integer.parseInt(page) - 1) * 15;
+                    start = temp;
+                } else if (page.equals("1")) {
                     // 페이지 번호가 1이면 처음부터 15개​
-                    page = 0;
+                    start = 0;
                 }
             }
 
@@ -198,13 +198,13 @@ public class LectureServiceImpl implements LectureService{
             endPage = pageNum;
         }
 
-        int current = Integer.parseInt(seq);
+        int current = Integer.parseInt(page);
 
         mav.setViewName("/lecture/boardList");
 
         Map lectureBoard = new HashMap();
         lectureBoard.put("lecture_id", lecture_id);
-        lectureBoard.put("page", page);
+        lectureBoard.put("start", start);
 
         List<Map> boards = lectureRepository.selectBoardAll(lectureBoard);
 
@@ -358,31 +358,31 @@ public class LectureServiceImpl implements LectureService{
         return result;
     }
 
-    public void boardSearchService(Map search, String seq, ModelAndView mav) {
+    public void boardSearchService(Map search, String page, ModelAndView mav) {
 
         int startPage = 0;
 
         int endPage = 0;
 
-        int page = 0;
+        int start = 0;
 
         int lecture_id =  Integer.parseInt(search.get("lecture_id").toString());
 
         try{
             // 시작페이지 설정 1~5 페이지 일경우 1​​
-            startPage = (Integer.parseInt(seq) - 1) / 10 * 10 + 1;
+            startPage = (Integer.parseInt(page) - 1) / 10 * 10 + 1;
 
             //ex) 현재 6페이지 일경우 (6-1) /5 * 5 +1 = 1 -> 6 페이지 부터 시작​​
             endPage = startPage + 10 - 1;
 
-            if (seq != null && seq != "") {
-                if (!seq.equals("1")) {
+            if (page != null && page != "") {
+                if (!page.equals("1")) {
                     // 첫페이지가 아닐경우 그 페이지에 맞는 목록 뽑아옴​
-                    int temp = (Integer.parseInt(seq) - 1) * 15;
-                    page = temp;
-                } else if (seq.equals("1")) {
+                    int temp = (Integer.parseInt(page) - 1) * 15;
+                    start = temp;
+                } else if (page.equals("1")) {
                     // 페이지 번호가 1이면 처음부터 15개​
-                    page = 0;
+                    start = 0;
                 }
             }
 
@@ -410,12 +410,12 @@ public class LectureServiceImpl implements LectureService{
             endPage = pageNum;
         }
 
-        int current = Integer.parseInt(seq);
+        int current = Integer.parseInt(page);
 
         mav.setViewName("/lecture/boardSearchList");
 
 
-        search.put("page", page);
+        search.put("start", start);
 
         List<Map> boards = lectureRepository.selectBoardSearch(search);
 

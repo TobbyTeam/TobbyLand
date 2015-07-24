@@ -58,7 +58,7 @@
     WHERE B.LECTURE_ID = #{lecture_id} AND B.IS_DELETE = 1 AND B.IS_REPLY = 1
     GROUP BY B.LB_ID
     ORDER BY B.RNUM DESC
-    LIMIT 15 OFFSET #{page}
+    LIMIT 15 OFFSET #{start}
   </select>
 
   <select id="selectBoardMaxRnum" parameterType="int" resultType="int" >
@@ -131,7 +131,7 @@
     </choose>
     GROUP BY B.LB_ID
     ORDER BY B.RNUM DESC
-    LIMIT 15 OFFSET #{page}
+    LIMIT 15 OFFSET #{start}
   </select>
 
 
