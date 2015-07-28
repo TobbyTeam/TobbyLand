@@ -261,7 +261,7 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         boolean data = false;
 
-        if(evaluationRepository.updateUnisDelete(evaluation_id)){
+        if(evaluationRepository.updateIsDelete(evaluation_id)){
             data = true;
         }
 
@@ -307,16 +307,6 @@ public class EvaluationServiceImpl implements EvaluationService {
         }
 
         return result;
-    }
-
-    public boolean reIsDeleteService(int es_id) {
-        boolean data = false;
-
-        if(evaluationRepository.updateReplyUnisDelete(es_id)){
-            data = true;
-        }
-
-        return data;
     }
 
 }

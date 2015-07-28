@@ -145,7 +145,7 @@ public class LectureServiceImpl implements LectureService{
 
         boolean data = false;
 
-        if(lectureRepository.updateUnisDelete(lecture_id)){
+        if(lectureRepository.updateIsDelete(lecture_id)){
             data = true;
         }
 

@@ -41,5 +41,4 @@ public interface EvaluationService {
 
     boolean replyRegService(Map evaluationSub);
 
-    boolean reIsDeleteService(int es_id);
 }

@@ -49,9 +49,7 @@ public interface EvaluationRepository {
 
 	boolean updateEvaluationReport(int evaluation_id);
 
-	boolean updateUnisDelete(int evaluation_id);
-
-	boolean updateReplyUnisDelete(int es_id);
+	boolean updateIsDelete(int evaluation_id);
 
 
 

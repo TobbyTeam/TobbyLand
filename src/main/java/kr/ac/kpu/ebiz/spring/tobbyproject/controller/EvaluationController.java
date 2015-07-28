@@ -157,11 +157,4 @@ public class EvaluationController {
 		return evaluationService.replyRegService(evaluationSub);
 	}
 
-	@RequestMapping(value = "/reIsDelete", method = RequestMethod.POST)
-	public @ResponseBody boolean reIsDelete(@RequestParam("es_id") int es_id) {
-
-		System.out.println(es_id+"확인확인확인확인확인");
-
-		return evaluationService.reIsDeleteService(es_id);
-	}
 }

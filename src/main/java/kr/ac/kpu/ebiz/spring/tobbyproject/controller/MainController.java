@@ -1,5 +1,7 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.controller;
 
+import kr.ac.kpu.ebiz.spring.tobbyproject.repository.DepartmentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,6 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MainController {
+
+    @Autowired
+    DepartmentRepository departmentRepository;
 
     @RequestMapping(value = {"", "/", "/main"}, method = RequestMethod.GET)
     public String home() {
@@ -81,9 +86,7 @@ public class MainController {
 
         ModelAndView mav = new ModelAndView("/etc/top");
 
-/*        mav.addObject("depts", department);
-
-        System.out.println(department.toString());*/
+        mav.addObject("depts", departmentRepository.selectAll());
 
         return mav;
     }

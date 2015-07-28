@@ -8,7 +8,7 @@
   <select id="selectAll" resultType="map">
     SELECT L.lecture_id, L.lecture_name, L.prof, L.likes, DATE_FORMAT(L.write_date, '%Y.%m.%d %T') AS write_date, D.department_name
     FROM LECTURE L LEFT OUTER JOIN DEPARTMENT D ON L.DEPT = D.DEPARTMENT_ID
-    WHERE likes <![CDATA[ < ]]> 10 AND IS_DELETE = 1 ORDER BY LECTURE_ID DESC
+    WHERE likes <![CDATA[ < ]]> 10 AND IS_DELETE = 0 ORDER BY LECTURE_ID DESC
   </select>
 
   <select id="selectMember_id" parameterType="int" resultType="int">
@@ -22,9 +22,9 @@
   </select>
 
   <select id="selectLectureSearch" parameterType="map" resultType="map">
-    SELECT L.lecture_id, L.lecture_name, L.prof, D.department_name, SUM(IF(E.IS_DELETE = 1 AND E.IS_REPLY=1,1,0)) as count, IFNULL(AVG(IF(E.IS_DELETE = 1 AND E.IS_REPLY=1,E.SCORE,NULL)),0) as avg
+    SELECT L.lecture_id, L.lecture_name, L.prof, D.department_name, SUM(IF(E.IS_DELETE = 0 AND E.IS_REPLY=0,1,0)) as count, IFNULL(AVG(IF(E.IS_DELETE = 0 AND E.IS_REPLY=0,E.SCORE,NULL)),0) as avg
     FROM LECTURE L LEFT OUTER JOIN EVALUATION E ON L.LECTURE_ID = E.LECTURE_ID LEFT OUTER JOIN DEPARTMENT D ON L.DEPT = D.DEPARTMENT_ID
-    WHERE L.LIKES <![CDATA[ >= ]]> 10 AND L.IS_DELETE = 1
+    WHERE L.LIKES <![CDATA[ >= ]]> 10 AND L.IS_DELETE = 0
     <choose>
       <when test="searchType != null and searchType.equalsIgnoreCase('lecture_name')">
         AND L.LECTURE_NAME LIKE CONCAT('%', #{searchWord}, '%')
@@ -49,13 +49,13 @@
   <select id="selectBoardCount" parameterType="int" resultType="int" >
     SELECT Count(LB_ID)
     FROM LECTURE_BOARD
-    WHERE LECTURE_ID = #{lecture_id} AND IS_DELETE = 1 AND IS_REPLY = 1
+    WHERE LECTURE_ID = #{lecture_id} AND IS_DELETE = 0 AND IS_REPLY = 0
   </select>
 
   <select id="selectBoardAll" parameterType="map" resultType="map" >
-    SELECT B.rnum, B.lb_id, B.lecture_id, B.title, DATE_FORMAT(B.write_date, '%Y.%m.%d') AS write_date, B.hit, B.report, SUM(IF(B2.IS_DELETE = 1,1,0)) as count
+    SELECT B.rnum, B.lb_id, B.lecture_id, B.title, DATE_FORMAT(B.write_date, '%Y.%m.%d') AS write_date, B.hit, B.report, SUM(IF(B2.IS_DELETE = 0,1,0)) as count
     FROM LECTURE_BOARD B LEFT OUTER JOIN LECTURE_BOARD B2 ON B.LB_ID = B2.UPPER_ID
-    WHERE B.LECTURE_ID = #{lecture_id} AND B.IS_DELETE = 1 AND B.IS_REPLY = 1
+    WHERE B.LECTURE_ID = #{lecture_id} AND B.IS_DELETE = 0 AND B.IS_REPLY = 0
     GROUP BY B.LB_ID
     ORDER BY B.RNUM DESC
     LIMIT 15 OFFSET #{start}
@@ -64,7 +64,7 @@
   <select id="selectBoardMaxRnum" parameterType="int" resultType="int" >
     SELECT IFNULL(MAX(rnum),0) AS rnum
     FROM LECTURE_BOARD
-    WHERE LECTURE_ID = #{lecture_id} AND IS_REPLY = 1
+    WHERE LECTURE_ID = #{lecture_id}
   </select>
 
   <select id="selectBoard" parameterType="int" resultType="map" >
@@ -76,7 +76,7 @@
   <select id="selectBoardReplyAll" parameterType="int" resultType="map" >
     SELECT lb_id, contents, DATE_FORMAT(write_date, '%Y.%m.%d %T') AS write_date, report
     FROM LECTURE_BOARD
-    WHERE UPPER_ID = #{lb_id} AND IS_DELETE = 1
+    WHERE UPPER_ID = #{lb_id} AND IS_DELETE = 0
     ORDER BY WRITE_DATE
   </select>
 
@@ -85,7 +85,7 @@
   </select>
 
   <select id="selectLecture_E" parameterType="int" resultType="map">
-    SELECT L.lecture_id, L.lecture_name, L.prof, D.department_name, Count(IF(E.IS_DELETE = 1 AND E.IS_REPLY=1,1,NULL)) as count,  IFNULL(AVG(IF(E.IS_DELETE = 1 AND E.IS_REPLY=1,E.SCORE,NULL)),0) as avg
+    SELECT L.lecture_id, L.lecture_name, L.prof, D.department_name, Count(IF(E.IS_DELETE = 0 AND E.IS_REPLY=0,1,NULL)) as count,  IFNULL(AVG(IF(E.IS_DELETE = 0 AND E.IS_REPLY=0,E.SCORE,NULL)),0) as avg
     FROM LECTURE L LEFT OUTER JOIN EVALUATION E ON L.LECTURE_ID = E.LECTURE_ID LEFT OUTER JOIN DEPARTMENT D ON L.DEPT = D.DEPARTMENT_ID
     WHERE L.LECTURE_ID = #{lecture_id}
     GROUP BY L.LECTURE_ID
@@ -100,7 +100,7 @@
   <select id="selectBoardSearchCount" parameterType="map" resultType="int" >
     SELECT Count(LB_ID)
     FROM LECTURE_BOARD
-    WHERE LECTURE_ID = #{lecture_id} AND IS_DELETE = 1 AND IS_REPLY = 1
+    WHERE LECTURE_ID = #{lecture_id} AND IS_DELETE = 0 AND IS_REPLY = 0
     <choose>
       <when test="searchType != null and searchType.equalsIgnoreCase('title')">
         AND TITLE LIKE CONCAT('%', #{searchWord}, '%')
@@ -115,9 +115,9 @@
   </select>
 
   <select id="selectBoardSearch" parameterType="map" resultType="map">
-    SELECT B.rnum, B.lb_id, B.lecture_id, B.title, DATE_FORMAT(B.write_date, '%Y.%m.%d') AS write_date, B.hit, B.report, SUM(IF(B2.IS_DELETE = 1,1,0)) as count
+    SELECT B.rnum, B.lb_id, B.lecture_id, B.title, DATE_FORMAT(B.write_date, '%Y.%m.%d') AS write_date, B.hit, B.report, SUM(IF(B2.IS_DELETE = 0,1,0)) as count
     FROM LECTURE_BOARD B LEFT OUTER JOIN LECTURE_BOARD B2 ON B.LB_ID = B2.UPPER_ID
-    WHERE B.LECTURE_ID = #{lecture_id} AND B.IS_DELETE = 1 AND B.IS_REPLY = 1
+    WHERE B.LECTURE_ID = #{lecture_id} AND B.IS_DELETE = 0 AND B.IS_REPLY = 0
     <choose>
       <when test="searchType != null and searchType.equalsIgnoreCase('title')">
         AND B.TITLE LIKE CONCAT('%', #{searchWord}, '%')
@@ -151,7 +151,7 @@
     <choose>
       <when test="upper_id != null">
         INSERT INTO LECTURE_BOARD (lecture_id, member_id, contents, is_reply, upper_id)
-        VALUES (#{lecture_id},#{member_id},#{contents},0,#{upper_id})
+        VALUES (#{lecture_id},#{member_id},#{contents},1,#{upper_id})
       </when>
       <otherwise>
         INSERT INTO LECTURE_BOARD (lecture_id, member_id, rnum, title, contents)
@@ -159,19 +159,6 @@
       </otherwise>
     </choose>
 
-  </insert>
-
-  <insert id="insertEvaluation" parameterType="map">
-    <choose>
-      <when test="upper_id != null">
-        INSERT INTO EVALUATION (lecture_id, member_id, comment, is_reply, upper_id)
-        VALUES (#{lecture_id},#{member_id},#{comment},0,#{upper_id})
-      </when>
-      <otherwise>
-        INSERT INTO EVALUATION (lecture_id, member_id, method, task, exam, comment, score, semester, member_method, member_task, member_exam)
-        VALUES (#{lecture_id},#{member_id},#{method},#{task},#{exam},#{comment},#{score},#{semester},#{member_method},#{member_task},#{member_exam})
-      </otherwise>
-    </choose>
   </insert>
 
   <insert id="insertBoardSub" parameterType="map">
@@ -197,10 +184,10 @@
     WHERE LECTURE_ID = #{lecture_id}
   </update>
 
-  <update id="updateUnisDelete" parameterType="map">
+  <update id="updateIsDelete" parameterType="map">
     UPDATE LECTURE
     SET
-    IS_DELETE = 0
+    IS_DELETE = 1
     WHERE LECTURE_ID = #{lecture_id}
   </update>
 
@@ -222,7 +209,7 @@
   <update id="updateBoardIsDelete" parameterType="int">
     UPDATE LECTURE_BOARD
     SET
-    IS_DELETE = 0
+    IS_DELETE = 1
     WHERE LB_ID = #{lb_id}
   </update>
 

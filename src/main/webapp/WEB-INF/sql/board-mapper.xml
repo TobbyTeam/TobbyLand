@@ -3,16 +3,163 @@
 
 <mapper namespace="BoardRepository">
 
-  <select id="select" resultType="map">
-    SELECT * FROM SEMESTER WHERE SEMESTER = #{value}
+  <select id="selectBoardCount" parameterType="int" resultType="int" >
+    SELECT Count(BOARD_ID)
+    FROM BOARD
+    WHERE DEPARTMENT_ID = #{department_id} AND IS_DELETE = 0 AND IS_REPLY = 0
   </select>
 
-  <select id="selectAll" resultType="map">
-    SELECT * FROM SEMESTER
+  <select id="selectBoardAll" parameterType="map" resultType="map" >
+    SELECT B.rnum, B.board_id, B.department_id, B.title, DATE_FORMAT(B.write_date, '%Y.%m.%d') AS write_date, B.hit, B.likes, SUM(IF(B2.IS_DELETE = 0,1,0)) as count
+    FROM BOARD B LEFT OUTER JOIN BOARD B2 ON B.BOARD_ID = B2.UPPER_ID
+    WHERE B.DEPARTMENT_ID = #{department_id} AND B.IS_DELETE = 0 AND B.IS_REPLY = 0
+    GROUP BY B.BOARD_ID
+    ORDER BY B.RNUM DESC
+    LIMIT 15 OFFSET #{start}
   </select>
+
+  <select id="selectBoardMaxRnum" parameterType="int" resultType="int" >
+    SELECT IFNULL(MAX(rnum),0) AS rnum
+    FROM BOARD
+    WHERE DEPARTMENT_ID = #{department_id}
+  </select>
+
+  <select id="selectBoard" parameterType="int" resultType="map" >
+    SELECT board_id, department_id, title, contents, DATE_FORMAT(write_date, '%Y.%m.%d %T') AS write_date, hit, likes, dislike, report
+    FROM BOARD
+    WHERE BOARD_ID = #{board_id}
+  </select>
+
+  <select id="selectBoardReplyAll" parameterType="int" resultType="map" >
+    SELECT board_id, contents, DATE_FORMAT(write_date, '%Y.%m.%d %T') AS write_date, report
+    FROM BOARD
+    WHERE UPPER_ID = #{board_id} AND IS_DELETE = 0
+    ORDER BY WRITE_DATE
+  </select>
+
+  <select id="selectBoardMember_id" parameterType="int" resultType="int">
+    SELECT member_id FROM BOARD WHERE BOARD_ID = #{board_id}
+  </select>
+
+  <select id="selectBoardSubCount" parameterType="map" resultType="int" >
+    SELECT Count(BS_ID)
+    FROM BOARD_SUB
+    WHERE BOARD_ID = #{board_id} AND MEMBER_ID = #{member_id}
+  </select>
+
+  <select id="selectBoardSubType" parameterType="map" resultType="int">
+    SELECT kind FROM BOARD_SUB WHERE BOARD_ID = #{board_id} AND MEMBER_ID = #{member_id}
+  </select>
+
+  <select id="selectBoardSearchCount" parameterType="map" resultType="int" >
+    SELECT Count(BOARD_ID)
+    FROM BOARD
+    WHERE DEPARTMENT_ID = #{department_id} AND IS_DELETE = 0 AND IS_REPLY = 0
+    <choose>
+      <when test="searchType != null and searchType.equalsIgnoreCase('title')">
+        AND TITLE LIKE CONCAT('%', #{searchWord}, '%')
+      </when>
+      <when test="searchType != null and searchType.equalsIgnoreCase('contents')">
+        AND CONTENTS LIKE CONCAT('%', #{searchWord}, '%')
+      </when>
+      <otherwise>
+        AND (TITLE LIKE CONCAT('%', #{searchWord}, '%') OR CONTENTS LIKE CONCAT('%', #{searchWord}, '%'))
+      </otherwise>
+    </choose>
+  </select>
+
+  <select id="selectBoardSearch" parameterType="map" resultType="map">
+    SELECT B.rnum, B.board_id, B.department_id, B.title, DATE_FORMAT(B.write_date, '%Y.%m.%d') AS write_date, B.hit, B.likes, SUM(IF(B2.IS_DELETE = 0,1,0)) as count
+    FROM BOARD B LEFT OUTER JOIN BOARD B2 ON B.BOARD_ID = B2.UPPER_ID
+    WHERE B.DEPARTMENT_ID = #{department_id} AND B.IS_DELETE = 0 AND B.IS_REPLY = 0
+    <choose>
+      <when test="searchType != null and searchType.equalsIgnoreCase('title')">
+        AND B.TITLE LIKE CONCAT('%', #{searchWord}, '%')
+      </when>
+      <when test="searchType != null and searchType.equalsIgnoreCase('contents')">
+        AND B.CONTENTS LIKE CONCAT('%', #{searchWord}, '%')
+      </when>
+      <otherwise>
+        AND (B.TITLE LIKE CONCAT('%', #{searchWord}, '%') OR B.CONTENTS LIKE CONCAT('%', #{searchWord}, '%'))
+      </otherwise>
+    </choose>
+    GROUP BY B.BOARD_ID
+    ORDER BY B.RNUM DESC
+    LIMIT 15 OFFSET #{start}
+  </select>
+
+
+  <!--insert-->
+
+  <insert id="insertBoard" parameterType="map">
+    <choose>
+      <when test="upper_id != null">
+        INSERT INTO BOARD (department_id, member_id, contents, is_reply, upper_id)
+        VALUES (#{department_id},#{member_id},#{contents},1,#{upper_id})
+      </when>
+      <otherwise>
+        INSERT INTO BOARD (department_id, member_id, rnum, title, contents)
+        VALUES (#{department_id},#{member_id},#{rnum},#{title},#{contents})
+      </otherwise>
+    </choose>
+
+  </insert>
+
+  <insert id="insertBoardSub" parameterType="map">
+    INSERT INTO BOARD_SUB (board_id, member_id, kind)
+    VALUES (#{board_id},#{member_id},#{kind})
+  </insert>
+  
+  <!--update-->
+  
+  <update id="updateBoardHit" parameterType="int">
+    UPDATE BOARD
+    SET
+    hit = hit + 1
+    WHERE BOARD_ID = #{board_id}
+  </update>
+
+  <update id="updateBoard" parameterType="map">
+    UPDATE BOARD
+    SET
+    title = #{title},
+    contents = #{contents}
+    WHERE BOARD_ID = #{board_id}
+  </update>
+
+  <update id="updateBoardLike" parameterType="int">
+    UPDATE BOARD
+    SET
+    LIKES = LIKES + 1
+    WHERE BOARD_ID = #{board_id}
+  </update>
+
+  <update id="updateBoardDislike" parameterType="int">
+    UPDATE BOARD
+    SET
+    DISLIKE = DISLIKE + 1
+    WHERE BOARD_ID = #{board_id}
+  </update>
+
+  <update id="updateBoardReport" parameterType="int">
+    UPDATE BOARD
+    SET
+    REPORT = REPORT + 1
+    WHERE BOARD_ID = #{board_id}
+  </update>
+
+  <update id="updateBoardIsDelete" parameterType="int">
+    UPDATE BOARD
+    SET
+    IS_DELETE = 1
+    WHERE BOARD_ID = #{board_id}
+  </update>
+
+
+  <!--delete-->
 
   <delete id="delete" parameterType="int">
-    DELETE FROM SEMESTER WHERE SEMESTER = #{value}
+    DELETE FROM BOARD WHERE BOARD_ID = #{board_id}
   </delete>
 
 </mapper>

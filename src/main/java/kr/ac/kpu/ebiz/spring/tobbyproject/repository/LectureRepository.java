@@ -56,7 +56,7 @@ public interface LectureRepository {
 
 	boolean updateLectureLike(int lecture_id);
 
-	boolean updateUnisDelete(int lecture_id);
+	boolean updateIsDelete(int lecture_id);
 
 	boolean updateBoardHit(int lb_id);
 

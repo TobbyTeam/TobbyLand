@@ -193,7 +193,7 @@ $(document).ready(function() {
 							success: function (data) {
 								if (data) {
 									alert("삭제되었습니다.");
-									window.open("/lecture/boardList/"+$("#lecture_id").val()+"/1", "_self");
+									window.open("/lecture/boardList/"+$("#lecture_id").val()+"/", "_self");
 								} else {
 									alert("다시 시도 하세요.");
 								}

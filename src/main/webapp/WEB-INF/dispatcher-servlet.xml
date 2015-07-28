@@ -136,6 +136,9 @@
 
 	<bean id="evaluationService" class="kr.ac.kpu.ebiz.spring.tobbyproject.service.EvaluationServiceImpl"/>
 
+	<bean id="boardService" class="kr.ac.kpu.ebiz.spring.tobbyproject.service.BoardServiceImpl"/>
+
+
 	<!-- ========================= ENCRYPTOR DEFINITION ========================= -->
 
 	<bean id="aes128Cipher" class="kr.ac.kpu.ebiz.spring.tobbyproject.encryptor.AES128Cipher"/>

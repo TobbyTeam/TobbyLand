@@ -1,8 +1,11 @@
-/*
 package kr.ac.kpu.ebiz.spring.tobbyproject.controller;
 
-import kr.ac.kpu.ebiz.spring.tobbyproject.service.LectureService;
+
+import kr.ac.kpu.ebiz.spring.tobbyproject.repository.BoardRepository;
+import kr.ac.kpu.ebiz.spring.tobbyproject.security.MemberInfo;
+import kr.ac.kpu.ebiz.spring.tobbyproject.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,81 +18,13 @@ import java.util.Map;
 public class BoardController {
 
 	@Autowired
-	LectureService lectureService;
+	BoardService boardService;
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list() {
-		ModelAndView mav = new ModelAndView("/lecture/list");
-		lectureService.listService(mav);
-		return mav;
-	}
+	@Autowired
+	BoardRepository boardRepository;
 
-	@RequestMapping(value = "/regForm", method = RequestMethod.GET)
-	public ModelAndView regForm() {
-		ModelAndView mav = new ModelAndView("/lecture/register");
-		lectureService.regFormService(mav);
-		return mav;
-	}
-
-	@RequestMapping(value = "/reg", method = RequestMethod.POST)
-	public @ResponseBody boolean register(@RequestParam Map<String, String> lecture) {
-
-		return lectureService.regService(lecture);
-	}
-
-	@RequestMapping(value = "/confirm", method = RequestMethod.POST)
-	public @ResponseBody boolean confirm(@RequestParam int lecture_id) {
-
-		return lectureService.confirmService(lecture_id);
-	}
-
-	@RequestMapping(value = "/view", method = RequestMethod.GET)
-	public ModelAndView view(@RequestParam("lecture_id") int lecture_id) {
-
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/lecture/modify");
-
-		lectureService.viewService(lecture_id, mav);
-
-		return mav;
-	}
-
-	@RequestMapping(value = "/mod", method = RequestMethod.POST)
-	public @ResponseBody boolean modify(@RequestParam Map<String, java.io.Serializable> lecture)	{
-
-		return lectureService.modService(lecture);
-	}
-
-	@RequestMapping(value = "/search_form", method = RequestMethod.GET)
-	public String search_form() {
-		return "/lecture/search";
-	}
-
-	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public ModelAndView search(@RequestParam Map<String, String> search) {
-
-		ModelAndView mav = new ModelAndView("lecture/searchList");
-
-		lectureService.searchService(search, mav);
-
-		return mav;
-
-	}
-
-	@RequestMapping(value = "/likes", method = RequestMethod.POST)
-	public @ResponseBody boolean likes(@RequestParam("lecture_id") int lecture_id) {
-
-		return lectureService.likesService(lecture_id);
-	}
-
-	@RequestMapping(value = "/isDelete", method = RequestMethod.POST)
-	public @ResponseBody boolean isDelete(@RequestParam("lecture_id") int lecture_id)	{
-
-		return lectureService.isDeleteService(lecture_id);
-	}
-
-	@RequestMapping(value = "/boardList/{lecture_id}/", method = RequestMethod.GET)
-	public ModelAndView board(@PathVariable int lecture_id, @RequestParam(value="page", required = false, defaultValue="1") String page,
+	@RequestMapping(value = "/list/{department_id}/", method = RequestMethod.GET)
+	public ModelAndView board(@PathVariable int department_id, @RequestParam(value="page", required = false, defaultValue="1") int page,
 							  @RequestParam(value="searchType", required = false, defaultValue="") String searchType, @RequestParam(value="searchWord", required = false, defaultValue="") String searchWord) {
 
 		ModelAndView mav = new ModelAndView();
@@ -98,82 +33,137 @@ public class BoardController {
 			Map search = new HashMap();
 			search.put("searchType", searchType);
 			search.put("searchWord", searchWord);
-			search.put("lecture_id", lecture_id);
-			lectureService.boardSearchService(search, page, mav);
+			search.put("department_id", department_id);
+			boardService.searchService(search, page, mav);
+			mav.setViewName("/board/searchList");
 		} else {
-			lectureService.boardListService(lecture_id, page, mav);
+			boardService.listService(department_id, page, mav);
+			mav.setViewName("/board/list");
 		}
 
 		return mav;
 	}
 
-	@RequestMapping(value = "/boardRegForm", method = RequestMethod.GET)
-	public ModelAndView boardRegForm(@RequestParam("lecture_id") int lecture_id) {
+	@RequestMapping(value = "/regForm", method = RequestMethod.GET)
+	public ModelAndView regForm(@RequestParam("department_id") int department_id) {
 
-		ModelAndView mav = new ModelAndView("/lecture/boardRegister");
+		ModelAndView mav = new ModelAndView("/board/register");
 
-		mav.addObject("lecture_id", lecture_id);
+		mav.addObject("department_id", department_id);
 
 		return mav;
 	}
 
-	@RequestMapping(value = "/boardReg", method = RequestMethod.POST)
-		 public @ResponseBody boolean boardReg(@RequestParam Map<String, String> lectureBoard) {
+	@RequestMapping(value = "/reg", method = RequestMethod.POST)
+		 public @ResponseBody boolean reg(@RequestParam Map<String, String> board) {
 
-		return lectureService.boardRegService(lectureBoard);
+		return boardService.regService(board);
 	}
 
-	@RequestMapping(value = "/boardView", method = RequestMethod.GET)
-	public ModelAndView boardView(@RequestParam("lb_id") int lb_id) {
+	@RequestMapping(value = "/view/{department_id}/", method = RequestMethod.GET)
+	public ModelAndView boardView(@PathVariable int department_id, @RequestParam("board_id") int board_id, @RequestParam(value="page", required = false, defaultValue="1") int page,
+								  @RequestParam(value="searchType", required = false, defaultValue="") String searchType,
+								  @RequestParam(value="searchWord", required = false, defaultValue="") String searchWord) {
 
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/lecture/boardView");
 
-		lectureService.boardViewService(lb_id, mav);
+		boardService.viewService(board_id, mav);
+
+		if(!searchType.isEmpty()){
+			Map search = new HashMap();
+			search.put("searchType", searchType);
+			search.put("searchWord", searchWord);
+			search.put("department_id", department_id);
+			boardService.searchService(search, page, mav);
+			mav.setViewName("/board/searchView");
+
+		} else {
+			boardService.listService(department_id, page, mav);
+			mav.setViewName("/board/view");
+
+		}
 
 		return mav;
 	}
 
-	@RequestMapping(value = "/boardConfirm", method = RequestMethod.POST)
-	public @ResponseBody boolean boardConfirm(@RequestParam("lb_id") int lb_id) {
+	@RequestMapping(value = "/confirm", method = RequestMethod.POST)
+	public @ResponseBody boolean confirm(@RequestParam("board_id") int board_id) {
 
-		return lectureService.boardConfirmService(lb_id);
+		return boardService.confirmService(board_id);
 	}
 
-	@RequestMapping(value = "/boardModView", method = RequestMethod.GET)
-	public ModelAndView boardModView(@RequestParam("lb_id") int lb_id) {
+	@RequestMapping(value = "/modView", method = RequestMethod.GET)
+	public ModelAndView modView(@RequestParam("board_id") int board_id) {
 
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/lecture/boardModify");
+		mav.setViewName("/board/modify");
 
-		lectureService.boardModViewService(lb_id, mav);
+		boardService.modViewService(board_id, mav);
 
 		return mav;
 	}
 
-	@RequestMapping(value = "/boardMod", method = RequestMethod.POST)
-	public @ResponseBody boolean boardMod(@RequestParam Map<String, java.io.Serializable> lectureBoard) {
+	@RequestMapping(value = "/mod", method = RequestMethod.POST)
+	public @ResponseBody boolean mod(@RequestParam Map<String, java.io.Serializable> board) {
 
-		return lectureService.boardModService(lectureBoard);
+		return boardService.modService(board);
 	}
 
-	@RequestMapping(value = "/boardIsDelete", method = RequestMethod.POST)
-	public @ResponseBody boolean boardIsDelete(@RequestParam("lb_id") int lb_id)	{
+	@RequestMapping(value = "/like", method = RequestMethod.POST)
+	public @ResponseBody int like(@RequestParam("board_id") int board_id) {
 
-		return lectureService.boardIsDeleteService(lb_id);
+		return boardService.likeService(board_id);
 	}
 
-	@RequestMapping(value = "/boardSubConfirm", method = RequestMethod.POST)
-	public @ResponseBody boolean boardSubConfirm(@RequestParam("lb_id") int lb_id) {
+	@RequestMapping(value = "/dislike", method = RequestMethod.POST)
+	public @ResponseBody int dislike(@RequestParam("board_id") int board_id) {
 
-		return lectureService.boardSubConfirmService(lb_id);
+		return boardService.dislikeService(board_id);
 	}
 
-	@RequestMapping(value = "/boardReplyReg", method = RequestMethod.POST)
-	public @ResponseBody boolean boardReplyReg(@RequestParam Map<String, java.io.Serializable> lectureBoard) {
+	@RequestMapping(value = "/report", method = RequestMethod.POST)
+	public @ResponseBody int report(@RequestParam("board_id") int board_id) {
 
-		return lectureService.boardReplyRegService(lectureBoard);
+		return boardService.reportService(board_id);
+	}
+
+	@RequestMapping(value = "/isDelete", method = RequestMethod.POST)
+	public @ResponseBody boolean isDelete(@RequestParam("board_id") int board_id)	{
+
+		return boardService.isDeleteService(board_id);
+	}
+
+	@RequestMapping(value = "/replyReg", method = RequestMethod.POST)
+	public @ResponseBody boolean replyReg(@RequestParam Map<String, java.io.Serializable> board) {
+
+		return boardService.replyRegService(board);
+	}
+
+	@RequestMapping(value = "/regTest", method = RequestMethod.GET)
+	public String boardRegTest(@RequestParam("department_id") int department_id) {
+
+		MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		int member_id = user.getMember_id();
+
+		Map board = new HashMap();
+		board.put("department_id", department_id);
+		board.put("member_id", member_id);
+
+		for(int i=1; i<301; i++){
+
+			int rnum = i;
+
+			String test = "테스트"+i;
+
+			board.put("rnum", rnum);
+			board.put("title", test);
+			board.put("contents", test);
+
+			boardRepository.insertBoard(board);
+
+		}
+
+		return "redirect:/board/list/"+department_id+"/";
 	}
 
 }
-*/

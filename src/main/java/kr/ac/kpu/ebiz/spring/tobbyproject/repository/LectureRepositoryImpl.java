@@ -99,8 +99,8 @@ public class LectureRepositoryImpl extends SqlSessionDaoSupport implements Lectu
 		return getSqlSession().update("LectureRepository.updateLectureLike", lecture_id) > 0;
 	}
 
-	public boolean updateUnisDelete(int lecture_id) {
-		return getSqlSession().update("LectureRepository.updateUnisDelete", lecture_id) > 0;
+	public boolean updateIsDelete(int lecture_id) {
+		return getSqlSession().update("LectureRepository.updateIsDelete", lecture_id) > 0;
 	}
 
 	public boolean updateBoardHit(int lb_id) {

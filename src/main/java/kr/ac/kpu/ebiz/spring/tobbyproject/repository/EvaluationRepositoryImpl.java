@@ -80,12 +80,8 @@ public class EvaluationRepositoryImpl extends SqlSessionDaoSupport implements Ev
 		return getSqlSession().update("EvaluationRepository.updateEvaluationReport", evaluation_id) > 0;
 	}
 
-	public boolean updateUnisDelete(int evaluation_id) {
-		return getSqlSession().update("EvaluationRepository.updateUnisDelete", evaluation_id) > 0;
-	}
-
-	public boolean updateReplyUnisDelete(int es_id) {
-		return getSqlSession().update("EvaluationRepository.updateReplyUnisDelete", es_id) > 0;
+	public boolean updateIsDelete(int evaluation_id) {
+		return getSqlSession().update("EvaluationRepository.updateIsDelete", evaluation_id) > 0;
 	}
 
 
