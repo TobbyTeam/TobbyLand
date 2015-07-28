@@ -2,39 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ef39bd55-c5a4-43ad-bf23-0a0b224e2f8b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/service/BoardService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/service/BoardServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/board.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/board_validate.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/board/list.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/board/register.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/board/searchList.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/board/searchView.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/board/view.jsp" />
-      <change type="DELETED" beforePath="C:\Users\happy\TobbyLand\src\main\webapp\WEB-INF\pages\lecture\boardList2.jsp" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/controller/BoardController.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/controller/BoardController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/BoardRepository.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/BoardRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/BoardRepositoryImpl.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/BoardRepositoryImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/controller/EvaluationController.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/controller/EvaluationController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/EvaluationRepository.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/EvaluationRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/EvaluationRepositoryImpl.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/EvaluationRepositoryImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/service/EvaluationService.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/service/EvaluationService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/service/EvaluationServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/service/EvaluationServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/LectureRepository.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/LectureRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/LectureRepositoryImpl.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/LectureRepositoryImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/service/LectureServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/service/LectureServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/controller/MainController.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/controller/MainController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/board-mapper.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/board-mapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/dispatcher-servlet.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/dispatcher-servlet.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/evaluation-mapper.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/evaluation-mapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/js/evaluation.js" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/evaluation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/findbugs-idea.xml" afterPath="$PROJECT_DIR$/.idea/findbugs-idea.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/lecture-mapper.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/lecture-mapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/js/lecture.js" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/lecture.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/js/lecture_validate.js" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/lecture_validate.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/etc/main.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/etc/main.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/tobbyland-schema.sql" afterPath="$PROJECT_DIR$/database/tobbyland-schema.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/etc/top.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/etc/top.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/board/modify.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="tobby.iws" />
@@ -57,7 +25,18 @@
     <favorites_list name="tobby" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="modify.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/board/modify.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -575,8 +554,8 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1848,6 +1827,7 @@
       <workItem from="1438017073024" duration="12096000" />
       <workItem from="1438043842839" duration="12037000" />
       <workItem from="1438056605822" duration="17454000" />
+      <workItem from="1438074591552" duration="138000" />
     </task>
     <task id="LOCAL-00045" summary="강의 수정, 삭제 ajax">
       <created>1436177499827</created>
@@ -2147,7 +2127,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="682981000" />
+    <option name="totallyTimeSpent" value="683119000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2163,36 +2143,36 @@
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295063" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295063" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295063" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42135477" sideWeight="0.52442" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3283582" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962963" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295063" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295063" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
+      <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26739928" sideWeight="0.47646382" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22466423" sideWeight="0.52353615" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24922119" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4707233" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295063" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3283582" sideWeight="0.497558" order="15" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295063" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295063" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21699196" sideWeight="0.47557998" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295063" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
-      <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26739928" sideWeight="0.47646382" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22466423" sideWeight="0.52353615" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3283582" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4707233" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3283582" sideWeight="0.497558" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21699196" sideWeight="0.47557998" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3283582" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -2379,12 +2359,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1437707729596" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..DEPARTMENT..." />
-            <marker date="1437707729596" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..DEPARTMENT..." />
-            <marker date="1437707729596" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..DEPARTMENT..." />
-            <marker date="1437707729596" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2432,7 +2407,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.03950954">
           <caret line="214" column="16" selection-start-line="214" selection-start-column="16" selection-end-line="214" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2440,7 +2414,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6321526">
           <caret line="124" column="13" selection-start-line="124" selection-start-column="13" selection-end-line="124" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2448,7 +2421,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5408805">
           <caret line="43" column="22" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2495,7 +2467,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.23584905">
           <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2511,37 +2482,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3895184">
           <caret line="186" column="50" selection-start-line="186" selection-start-column="50" selection-end-line="186" selection-end-column="50" />
-          <folding>
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="SELECT L.lec..LECTURE..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="SELECT membe..LECTURE..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="SELECT lectu..LECTURE..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="SELECT L.lec..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="SELECT Count..LECTURE_SUB..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="SELECT Count..LECTURE_BOARD..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="SELECT B.rnu..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="SELECT IFNUL..LECTURE_BOARD..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="SELECT lb_id..LECTURE_BOARD..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="SELECT lb_id..LECTURE_BOARD..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="SELECT membe..LECTURE_BOARD..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="SELECT L.lec..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="SELECT Count..LECTURE_BOARD_SUB..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="SELECT B.rnu..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="UPDATE LECTU..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="UPDATE LECTU..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="UPDATE LECTU..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="UPDATE LECTU..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="UPDATE LECTU..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="UPDATE LECTU..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="UPDATE LECTU..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..LECTURE..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..LECTURE..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="UPDATE LECTU..." />
-            <marker date="1438068847550" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2565,7 +2506,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.039660055">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2573,7 +2513,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="26.214285">
           <caret line="79" column="34" selection-start-line="79" selection-start-column="34" selection-end-line="79" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2621,32 +2560,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5184591">
           <caret line="47" column="55" selection-start-line="47" selection-start-column="55" selection-end-line="47" selection-end-column="55" />
-          <folding>
-            <marker date="1438069827955" expanded="true" signature="-1:-1" placeholder="SELECT E.eva..." />
-            <marker date="1438069827955" expanded="true" signature="-1:-1" placeholder="SELECT E.eva..." />
-            <marker date="1438069827955" expanded="true" signature="-1:-1" placeholder="SELECT Count..EVALUATION..." />
-            <marker date="1438069827955" expanded="true" signature="-1:-1" placeholder="SELECT membe..EVALUATION..." />
-            <marker date="1438069827955" expanded="true" signature="-1:-1" placeholder="SELECT E.*, ..EVALUATION..." />
-            <marker date="1438069827955" expanded="true" signature="-1:-1" placeholder="SELECT count..EVALUATIONSUB..." />
-            <marker date="1438069827955" expanded="true" signature="-1:-1" placeholder="SELECT kind ..EVALUATIONSUB..." />
-            <marker date="1438069827955" expanded="true" signature="-1:-1" placeholder="SELECT E.eva..." />
-            <marker date="1438069827955" expanded="true" signature="-1:-1" placeholder="SELECT evalu..EVALUATION..." />
-            <marker date="1438069827955" expanded="true" signature="-1:-1" placeholder="SELECT membe..EVALUATIONSUB..." />
-            <marker date="1438069827955" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1438069827955" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
-            <marker date="1438069827955" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
-            <marker date="1438069827955" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
-            <marker date="1438069827955" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
-            <marker date="1438069827955" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
-            <marker date="1438069827955" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-            <marker date="1438069827955" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..EVALUATION..." />
-            <marker date="1438069827955" expanded="true" signature="-1:-1" placeholder="SELECT E.EVA..LECTURE..." />
-            <marker date="1438069827955" expanded="true" signature="-1:-1" placeholder="SELECT E.EVA..EVALUATION..." />
-            <marker date="1438069827955" expanded="true" signature="-1:-1" placeholder="SELECT E.EVA..LECTURE..." />
-            <marker date="1438069827955" expanded="true" signature="-1:-1" placeholder="SELECT L.LEC..." />
-            <marker date="1438069827955" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
-            <marker date="1438069827955" expanded="true" signature="-1:-1" placeholder="UPDATE EVALU..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2662,25 +2576,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.40669855">
           <caret line="76" column="34" selection-start-line="76" selection-start-column="34" selection-end-line="76" selection-end-column="34" />
-          <folding>
-            <marker date="1438073324661" expanded="true" signature="-1:-1" placeholder="SELECT Count..BOARD..." />
-            <marker date="1438073324661" expanded="true" signature="-1:-1" placeholder="SELECT B.rnu..." />
-            <marker date="1438073324661" expanded="true" signature="-1:-1" placeholder="SELECT IFNUL..BOARD..." />
-            <marker date="1438073324661" expanded="true" signature="-1:-1" placeholder="SELECT board..BOARD..." />
-            <marker date="1438073324661" expanded="true" signature="-1:-1" placeholder="SELECT board..BOARD..." />
-            <marker date="1438073324661" expanded="true" signature="-1:-1" placeholder="SELECT membe..BOARD..." />
-            <marker date="1438073324661" expanded="true" signature="-1:-1" placeholder="SELECT Count..BOARD_SUB..." />
-            <marker date="1438073324661" expanded="true" signature="-1:-1" placeholder="SELECT kind ..BOARD_SUB..." />
-            <marker date="1438073324661" expanded="true" signature="-1:-1" placeholder="SELECT B.rnu..." />
-            <marker date="1438073324661" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1438073324661" expanded="true" signature="-1:-1" placeholder="UPDATE BOARD..." />
-            <marker date="1438073324661" expanded="true" signature="-1:-1" placeholder="UPDATE BOARD..." />
-            <marker date="1438073324661" expanded="true" signature="-1:-1" placeholder="UPDATE BOARD..." />
-            <marker date="1438073324661" expanded="true" signature="-1:-1" placeholder="UPDATE BOARD..." />
-            <marker date="1438073324661" expanded="true" signature="-1:-1" placeholder="UPDATE BOARD..." />
-            <marker date="1438073324661" expanded="true" signature="-1:-1" placeholder="UPDATE BOARD..." />
-            <marker date="1438073324661" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2724,7 +2620,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.24732825">
           <caret line="46" column="9" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2732,7 +2627,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5869219">
           <caret line="259" column="39" selection-start-line="259" selection-start-column="39" selection-end-line="259" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2754,8 +2648,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/board/modify.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2814259">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
