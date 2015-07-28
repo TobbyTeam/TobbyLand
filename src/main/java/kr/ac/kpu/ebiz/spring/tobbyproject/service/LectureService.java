@@ -27,7 +27,7 @@ public interface LectureService {
 
     boolean isDeleteService(int lecture_id);
 
-    void boardListService(int lecture_id, String page, ModelAndView mav);
+    void boardListService(int lecture_id, int page, ModelAndView mav);
 
     boolean boardRegService(Map lectureBoard);
 
@@ -45,6 +45,6 @@ public interface LectureService {
 
     boolean boardReplyRegService(Map lectureBoard);
 
-    void boardSearchService(Map search, String page, ModelAndView mav);
+    void boardSearchService(Map search, int page, ModelAndView mav);
 
 }

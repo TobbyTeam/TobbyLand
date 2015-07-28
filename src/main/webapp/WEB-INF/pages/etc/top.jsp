@@ -85,17 +85,5 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<c:forEach var="board" items="${boards}" varStatus="status">
-
-        <c:choose>
-          <c:when test="${board.count == 0}">
-          </c:when>
-          <c:otherwise>
-            [${board.count}]
-          </c:otherwise>
-        </c:choose>
-      </a>
-</c:forEach>
-
 </body>
 </html>

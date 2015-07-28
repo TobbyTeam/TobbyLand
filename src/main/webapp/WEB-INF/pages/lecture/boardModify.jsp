@@ -21,8 +21,6 @@
 
 <br /><br />
 
-<jsp:include page="/evaluation/lecture?lecture_id=${lecture_id}" flush="true"/> <br />
-
   <form id="mod_board_frm" name="mod_board_frm" method="post">
 
     제목:
@@ -36,6 +34,8 @@
     <input type="button" value="수정" onclick="$(this.form).submit()"/>&nbsp;&nbsp;&nbsp;
     <input type="reset" value="취소" onclick="history.back()"/>
   </form>
+
+<input type="hidden" id="lecture_id" value="${board.lecture_id}"/>
 
 
 </body>

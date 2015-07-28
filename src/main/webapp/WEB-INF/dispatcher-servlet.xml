@@ -141,6 +141,7 @@
 	<bean id="aes128Cipher" class="kr.ac.kpu.ebiz.spring.tobbyproject.encryptor.AES128Cipher"/>
 
 	<!-- ========================= GMAIL DEFINITION ========================= -->
+
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
@@ -160,7 +161,10 @@
 	</bean>
 
 
+	<!-- ========================= ETC DEFINITION ========================= -->
 
 	<bean id="question" class="kr.ac.kpu.ebiz.spring.tobbyproject.etc.Question"/>
+
+	<bean id="paging" class="kr.ac.kpu.ebiz.spring.tobbyproject.paging.Paging"/>
 
 </beans>

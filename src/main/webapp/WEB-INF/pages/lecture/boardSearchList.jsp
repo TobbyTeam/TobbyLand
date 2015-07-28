@@ -32,7 +32,7 @@
 		<tr>
 			<td>${board.rnum}</td>
 			<td>
-				<a href="/lecture/boardView?lb_id=${board.lb_id}&page=${current}&searchType=${search.searchType}&searchWord=${search.searchWord}">${board.title}
+				<a href="/lecture/boardView/${board.lecture_id}/?lb_id=${board.lb_id}&page=${paging.pageNo}&searchType=${search.searchType}&searchWord=${search.searchWord}">${board.title}
 				<c:choose>
 					<c:when test="${board.count == 0}">
 					</c:when>
@@ -48,113 +48,22 @@
 		</c:forEach>
 	</table><br /><br />
 
-<a href="/lecture/boardList/${lecture_id}/">전체목록</a>&nbsp;&nbsp;<a href="/lecture/boardRegForm?lecture_id=${lecture_id}">글작성</a><br/><br/>
+<a href="/lecture/boardList/${lecture_id}/">전체목록</a>&nbsp;&nbsp;<a href="/lecture/boardRegForm?lecture_id=${lecture_id}">글작성</a>
 
-<c:out value="${current}"/><br />
+<br/><br/>
 
-	<div class="paginate">
-
-		<c:if test="${not empty boards}">
-
-			<!-- 전체 페이지가 10페이지 이하면 맨처음로 이동 표시 안함-->
-
-			<c:if test="${pageNum-10 <= 0}">
-
-			</c:if>
-
-			<!-- 전체 페이지가 10페이지 초과고 시작페이지가 1이 아니면 맨처음로 이동 표시 -->
-
-			<c:if test="${pageNum-10 > 0 && start-1 !=0}">
-				<a href="/lecture/boardList/${lecture_id}/?page=1&searchType=${search.searchType}&searchWord=${search.searchWord}" class="first">맨처음&nbsp;</a>
-			</c:if>
-
-			<!-- 시작페이지가 1부터면 이전 표시("<<") ​ 안함 -->
-
-			<c:if test="${start-1 ==0 }">
-
-			</c:if>
-
-			<!-- 시작페이지가 1이 아니면 << 이전 표시.  링크는 시작페이지가 6부터 10까지일 경우 5페이지를 가르킴 -->​
-
-			<c:if test="${start-1!=0 }">
-
-				<a href="/lecture/boardList/${lecture_id}/?page=${start-1}&searchType=${search.searchType}&searchWord=${search.searchWord}" class="prev">&laquo;&nbsp;</a>
-
-			</c:if>
-
-			<!-- 현재 페이지가 1페이지면 이전페이지 표시("<") ​ 안함 -->
-
-			<c:if test="${current == 1}">
-
-			</c:if>
-
-			<!-- 현재 페이지가 1페이지가 아니면 이전페이지 표시("<") ​ -->
-
-			<c:if test="${current != 1}">
-
-				<a href="/lecture/boardList/${lecture_id}/?page=${current-1}&searchType=${search.searchType}&searchWord=${search.searchWord}" class="prevPage">&lt;&nbsp;</a>
-
-			</c:if>
-
-			<!-- 10개씩 페이지 표시-->​
-				<span>
-					<c:forEach var="i" begin="${start}" end="${end}" step="1">
-						<c:choose>
-							<c:when test="${i eq current}">
-								<a href="/lecture/boardList/${lecture_id}/?page=${i}&searchType=${search.searchType}&searchWord=${search.searchWord}" style="color:#00FF00">${i}&nbsp;</a>
-							</c:when>
-							<c:otherwise>
-								<a href="/lecture/boardList/${lecture_id}/?page=${i}&searchType=${search.searchType}&searchWord=${search.searchWord}">${i}&nbsp;</a>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-				</span>
-
-			<!-- 현재 페이지가 마지막페이지면 다음페이지 표시(">") ​ 안함 -->
-
-			<c:if test="${current == pageNum}">
-
-			</c:if>
-
-			<!-- 현재 페이지가 마지막페이지가 아니면 아니면 다음페이지 표시(">") ​ -->
-
-			<c:if test="${current != pageNum}">
-
-				<a href="/lecture/boardList/${lecture_id}/?page=${current+1}&searchType=${search.searchType}&searchWord=${search.searchWord}" class="prevPage">&nbsp;&gt;</a>
-
-			</c:if>
-
-			<!-- 마지막 페이지 번호와 전체 페이지 번호가 같으면서 10개 단위가 아니면 다음바로가기 표시 않함 -->​​
-
-			<c:if test="${end % 10 != 0 && end == pageNum }">
-
-			</c:if>
-
-			<!-- 마지막 페이지 번호가 10, 20 인데 전체 페이지 갯수가 end페이지 보다 크면 다음 페이징 바로가기 표시  (">>")​ .-->​
-
-			<c:if test="${end % 10 == 0 && pageNum > end}">
-
-				<a href="/lecture/boardList/${lecture_id}/?page=${end+1}&searchType=${search.searchType}&searchWord=${search.searchWord}" class="next">&nbsp;&raquo;</a>
-
-			</c:if>
-
-			<!-- 전체 페이지가 10페이지 이하면 맨뒤로 이동 표시 안함 -->
-
-			<c:if test="${pageNum-10 <= 0}">
-
-			</c:if>
-
-			<!-- 전체 페이지가 10페이지 초과고 마지막 페이지 번호와 전체 페이지 번호가 같지 않으면 맨뒤 이동 표시 -->
-
-			<c:if test="${pageNum-10 > 0 && end != pageNum}">
-
-				<a href="/lecture/boardList/${lecture_id}/?page=${pageNum}" class="last">&nbsp;맨뒤</a>
-
-			</c:if>
-
-		</c:if>
-	</div>
-<br /><br /><br />
+<jsp:include page="/paging" flush="true">
+	<jsp:param name="url" value="/lecture/boardList/${lecture_id}/?page=" />
+	<jsp:param name="search" value="&searchType=${search.searchType}&searchWord=${search.searchWord}" />
+	<jsp:param name="totalCount" value="${paging.totalCount}" />
+	<jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
+	<jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
+	<jsp:param name="startPageNo" value="${paging.startPageNo}" />
+	<jsp:param name="pageNo" value="${paging.pageNo}" />
+	<jsp:param name="endPageNo" value="${paging.endPageNo}" />
+	<jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
+	<jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
+</jsp:include>
 
 <form action="/lecture/boardList/${lecture_id}/" method="get" name="board_search_frm">
 
@@ -183,6 +92,12 @@
 
 </form>
 
+현재 페이지 : <c:out value="${paging.pageNo}"/><br />
+전체게시글수 : <c:out value="${paging.totalCount}"/><br />
+전체시작페이지 : <c:out value="${paging.firstPageNo}"/><br />
+페이징시작페이지 : <c:out value="${paging.startPageNo}"/><br />
+페이징끝페이지 : <c:out value="${paging.endPageNo}"/><br />
+전체끝페이지 : <c:out value="${paging.finalPageNo}"/><br />
 
 </body>
 </html>

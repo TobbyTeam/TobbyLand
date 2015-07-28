@@ -1,7 +1,11 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.controller;
 
+import kr.ac.kpu.ebiz.spring.tobbyproject.paging.Paging;
+import kr.ac.kpu.ebiz.spring.tobbyproject.repository.LectureRepository;
+import kr.ac.kpu.ebiz.spring.tobbyproject.security.MemberInfo;
 import kr.ac.kpu.ebiz.spring.tobbyproject.service.LectureService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,6 +19,12 @@ public class LectureController {
 
 	@Autowired
 	LectureService lectureService;
+
+	@Autowired
+	Paging paging;
+
+	@Autowired
+	LectureRepository lectureRepository;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
@@ -88,7 +98,7 @@ public class LectureController {
 	}
 
 	@RequestMapping(value = "/boardList/{lecture_id}/", method = RequestMethod.GET)
-	public ModelAndView boardList(@PathVariable int lecture_id, @RequestParam(value="page", required = false, defaultValue="1") String page,
+	public ModelAndView boardList(@PathVariable int lecture_id, @RequestParam(value="page", required = false, defaultValue="1") int page,
 							  @RequestParam(value="searchType", required = false, defaultValue="") String searchType, @RequestParam(value="searchWord", required = false, defaultValue="") String searchWord) {
 
 		ModelAndView mav = new ModelAndView();
@@ -110,8 +120,8 @@ public class LectureController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/boardList2/{lecture_id}/", method = RequestMethod.GET)
-	public ModelAndView boardList2(@PathVariable int lecture_id, @RequestParam(value="page", required = false, defaultValue="1") String page,
+/*	@RequestMapping(value = "/boardList2/{lecture_id}/", method = RequestMethod.GET)
+	public ModelAndView boardList2(@PathVariable int lecture_id, @RequestParam(value="page", required = false, defaultValue="1") int page,
 							  @RequestParam(value="searchType", required = false, defaultValue="") String searchType, @RequestParam(value="searchWord", required = false, defaultValue="") String searchWord) {
 
 		ModelAndView mav = new ModelAndView();
@@ -129,7 +139,7 @@ public class LectureController {
 		}
 
 		return mav;
-	}
+	}*/
 
 	@RequestMapping(value = "/boardRegForm", method = RequestMethod.GET)
 	public ModelAndView boardRegForm(@RequestParam("lecture_id") int lecture_id) {
@@ -147,13 +157,28 @@ public class LectureController {
 		return lectureService.boardRegService(lectureBoard);
 	}
 
-	@RequestMapping(value = "/boardView", method = RequestMethod.GET)
-	public ModelAndView boardView(@RequestParam("lb_id") int lb_id) {
+	@RequestMapping(value = "/boardView/{lecture_id}/", method = RequestMethod.GET)
+	public ModelAndView boardView(@PathVariable int lecture_id, @RequestParam("lb_id") int lb_id, @RequestParam(value="page", required = false, defaultValue="1") int page,
+								  @RequestParam(value="searchType", required = false, defaultValue="") String searchType,
+								  @RequestParam(value="searchWord", required = false, defaultValue="") String searchWord) {
 
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/lecture/boardView");
 
 		lectureService.boardViewService(lb_id, mav);
+
+		if(!searchType.isEmpty()){
+			Map search = new HashMap();
+			search.put("searchType", searchType);
+			search.put("searchWord", searchWord);
+			search.put("lecture_id", lecture_id);
+			lectureService.boardSearchService(search, page, mav);
+			mav.setViewName("/lecture/boardSearchView");
+
+		} else {
+			lectureService.boardListService(lecture_id, page, mav);
+			mav.setViewName("/lecture/boardView");
+
+		}
 
 		return mav;
 	}
@@ -209,10 +234,31 @@ public class LectureController {
 
 	}*/
 
-	@RequestMapping(value = "/paging")
-	public String paging(@RequestParam Map<String, java.io.Serializable> param) throws Exception{
+	@RequestMapping(value = "/boardRegTest", method = RequestMethod.GET)
+	public String boardRegTest(@RequestParam("lecture_id") int lecture_id) {
 
-		return "/paging";
+		MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		int member_id = user.getMember_id();
+
+		Map lectureBoard = new HashMap();
+		lectureBoard.put("lecture_id", lecture_id);
+		lectureBoard.put("member_id", member_id);
+
+		for(int i=1; i<301; i++){
+
+			int rnum = i;
+
+			String test = "테스트"+i;
+
+			lectureBoard.put("rnum", rnum);
+			lectureBoard.put("title", test);
+			lectureBoard.put("contents", test);
+
+			lectureRepository.insertBoard(lectureBoard);
+
+		}
+
+		return "redirect:/lecture//boardList/"+lecture_id+"/";
 	}
 
 }

@@ -53,7 +53,7 @@
   </select>
 
   <select id="selectBoardAll" parameterType="map" resultType="map" >
-    SELECT B.rnum, B.lb_id, B.title, DATE_FORMAT(B.write_date, '%Y.%m.%d') AS write_date, B.hit, B.report, SUM(IF(B2.IS_DELETE = 1,1,0)) as count
+    SELECT B.rnum, B.lb_id, B.lecture_id, B.title, DATE_FORMAT(B.write_date, '%Y.%m.%d') AS write_date, B.hit, B.report, SUM(IF(B2.IS_DELETE = 1,1,0)) as count
     FROM LECTURE_BOARD B LEFT OUTER JOIN LECTURE_BOARD B2 ON B.LB_ID = B2.UPPER_ID
     WHERE B.LECTURE_ID = #{lecture_id} AND B.IS_DELETE = 1 AND B.IS_REPLY = 1
     GROUP BY B.LB_ID
@@ -115,7 +115,7 @@
   </select>
 
   <select id="selectBoardSearch" parameterType="map" resultType="map">
-    SELECT B.rnum, B.lb_id, B.title, DATE_FORMAT(B.write_date, '%Y.%m.%d') AS write_date, B.hit, B.report, SUM(IF(B2.IS_DELETE = 1,1,0)) as count
+    SELECT B.rnum, B.lb_id, B.lecture_id, B.title, DATE_FORMAT(B.write_date, '%Y.%m.%d') AS write_date, B.hit, B.report, SUM(IF(B2.IS_DELETE = 1,1,0)) as count
     FROM LECTURE_BOARD B LEFT OUTER JOIN LECTURE_BOARD B2 ON B.LB_ID = B2.UPPER_ID
     WHERE B.LECTURE_ID = #{lecture_id} AND B.IS_DELETE = 1 AND B.IS_REPLY = 1
     <choose>

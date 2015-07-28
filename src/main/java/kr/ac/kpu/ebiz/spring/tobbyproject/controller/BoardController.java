@@ -1,3 +1,4 @@
+/*
 package kr.ac.kpu.ebiz.spring.tobbyproject.controller;
 
 import kr.ac.kpu.ebiz.spring.tobbyproject.service.LectureService;
@@ -174,20 +175,5 @@ public class BoardController {
 		return lectureService.boardReplyRegService(lectureBoard);
 	}
 
-/*	@RequestMapping(value = "/boardSearch", method = RequestMethod.GET)
-	public ModelAndView boardSearch(@RequestParam Map<String, String> search) {
-
-		ModelAndView mav = new ModelAndView();
-
-
-		return mav;
-
-	}*/
-
-	@RequestMapping(value = "/paging")
-	public String paging(@RequestParam Map<String, java.io.Serializable> param) throws Exception{
-
-		return "/paging";
-	}
-
 }
+*/

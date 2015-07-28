@@ -1,5 +1,6 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.service;
 
+import kr.ac.kpu.ebiz.spring.tobbyproject.paging.Paging;
 import kr.ac.kpu.ebiz.spring.tobbyproject.repository.DepartmentRepository;
 import kr.ac.kpu.ebiz.spring.tobbyproject.repository.LectureRepository;
 import kr.ac.kpu.ebiz.spring.tobbyproject.security.MemberInfo;
@@ -22,6 +23,9 @@ public class LectureServiceImpl implements LectureService{
 
     @Autowired
     DepartmentRepository departmentRepository;
+
+    @Autowired
+    Paging paging;
 
 
     public void listService(ModelAndView mav) {
@@ -148,7 +152,7 @@ public class LectureServiceImpl implements LectureService{
         return data;
     }
 
-    public void boardListService(int lecture_id, String page, ModelAndView mav) {
+/*    public void boardListService(int lecture_id, int page, ModelAndView mav) {
 
         int startPage = 0;
 
@@ -157,10 +161,10 @@ public class LectureServiceImpl implements LectureService{
         int start = 0;
 
         try{
-            // 시작페이지 설정 1~5 페이지 일경우 1​​
+            // 시작페이지 설정 1~10 페이지 일경우 1​​
             startPage = (Integer.parseInt(page) - 1) / 10 * 10 + 1;
 
-            //ex) 현재 6페이지 일경우 (6-1) /5 * 5 +1 = 1 -> 6 페이지 부터 시작​​
+            //ex) 현재 11페이지 일경우 (11-1) /10 * 10 +1 = 1 -> 11 페이지 부터 시작​​
             endPage = startPage + 10 - 1;
 
             if (page != null && page != "") {
@@ -213,6 +217,33 @@ public class LectureServiceImpl implements LectureService{
         mav.addObject("end", endPage);
         mav.addObject("current", current);   // 현재 페이지 번호 모델로 넘김
 
+    }*/
+
+    public void boardListService(int lecture_id, int page, ModelAndView mav) {
+
+        paging.setPageNo(page);
+        paging.setPageSize(15);
+        paging.setTotalCount(lectureRepository.selectBoardCount(lecture_id));
+
+        mav.addObject("paging", paging);
+
+        int start = 0;
+
+        if (!(page == 1)) {
+            // 첫페이지가 아닐경우 그 페이지에 맞는 목록 뽑아옴​
+            int temp = (page - 1) * 15;
+            start = temp;
+        } else if (page==1) {
+            // 페이지 번호가 1이면 처음부터 15개​
+            start = 0;
+        }
+
+        Map lectureBoard = new HashMap();
+        lectureBoard.put("lecture_id", lecture_id);
+        lectureBoard.put("start", start);
+
+        mav.addObject("lecture_id", lecture_id);
+        mav.addObject("boards", lectureRepository.selectBoardAll(lectureBoard));
     }
 
     public boolean boardRegService(Map lectureBoard) {
@@ -240,7 +271,7 @@ public class LectureServiceImpl implements LectureService{
         boolean result = false;
 
         if(lectureRepository.insertBoard(lectureBoard)){
-            result =true;
+            result = true;
         }
 
         return result;
@@ -356,72 +387,32 @@ public class LectureServiceImpl implements LectureService{
         return result;
     }
 
-    public void boardSearchService(Map search, String page, ModelAndView mav) {
-
-        int startPage = 0;
-
-        int endPage = 0;
-
-        int start = 0;
+    public void boardSearchService(Map search, int page, ModelAndView mav) {
 
         int lecture_id =  Integer.parseInt(search.get("lecture_id").toString());
 
-        try{
-            // 시작페이지 설정 1~5 페이지 일경우 1​​
-            startPage = (Integer.parseInt(page) - 1) / 10 * 10 + 1;
+        paging.setPageNo(page);
+        paging.setPageSize(15);
+        paging.setTotalCount(lectureRepository.selectBoardSearchCount(search));
 
-            //ex) 현재 6페이지 일경우 (6-1) /5 * 5 +1 = 1 -> 6 페이지 부터 시작​​
-            endPage = startPage + 10 - 1;
+        mav.addObject("paging", paging);
+        mav.addObject("lecture_id", lecture_id);
+        mav.addObject("search", search);
 
-            if (page != null && page != "") {
-                if (!page.equals("1")) {
-                    // 첫페이지가 아닐경우 그 페이지에 맞는 목록 뽑아옴​
-                    int temp = (Integer.parseInt(page) - 1) * 15;
-                    start = temp;
-                } else if (page.equals("1")) {
-                    // 페이지 번호가 1이면 처음부터 15개​
-                    start = 0;
-                }
-            }
+        int start = 0;
 
-        }catch(Exception e){
-
-            // 이상한 페이지 번호 들어오면 해당 게시판 처음으로 리다이렉트​
-            mav.setViewName("redirect:/lecture/boardList/" + lecture_id + "/1");
-
+        if (!(page == 1)) {
+            // 첫페이지가 아닐경우 그 페이지에 맞는 목록 뽑아옴​
+            int temp = (page - 1) * 15;
+            start = temp;
+        } else if (page==1) {
+            // 페이지 번호가 1이면 처음부터 15개​
+            start = 0;
         }
-
-        //  전체 게시물 갯수 뽑아옴 ​
-
-        int rownum = lectureRepository.selectBoardSearchCount(search);
-
-        //pageNum 변수는 전체 페이지의 수​
-        int pageNum = rownum / 15 + 1;
-
-        // 게시물이 딱 15개일 경우 다음페이지가 생기지 않게 -1 해줌​
-        if (rownum % 15 == 0) {
-            pageNum--;
-        }
-
-        if (endPage > pageNum) {
-            // 예를 들어 마지막페이지가 12페이지인 경우 endPage가 15페이지 까지 출력되기때문에 12페이지로 바꿔줌​
-            endPage = pageNum;
-        }
-
-        int current = Integer.parseInt(page);
 
         search.put("start", start);
 
-        List<Map> boards = lectureRepository.selectBoardSearch(search);
-
-        mav.addObject("lecture_id", lecture_id);
-        mav.addObject("search", search);
-        mav.addObject("boards", boards);
-        mav.addObject("pageNum", pageNum);
-        mav.addObject("start", startPage);
-        mav.addObject("end", endPage);
-        mav.addObject("current", current);   // 현재 페이지 번호 모델로 넘김
-
+        mav.addObject("boards", lectureRepository.selectBoardSearch(search));
     }
 
 }

@@ -138,7 +138,7 @@ $(document).ready(function() {
 				success: function (result) {
 					if (result) {
 						alert("글 수정이 완료 되었습니다.")
-						window.open("/lecture//boardView?lb_id="+$("#lb_id").val(), "_self");
+						window.open("/lecture/boardView/"+$("#lecture_id").val()+"/?lb_id="+$("#lb_id").val(), "_self");
 					} else {
 						alert("죄송합니다 다시 시도해주세요.");
 					}

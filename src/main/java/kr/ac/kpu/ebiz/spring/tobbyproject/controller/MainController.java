@@ -73,7 +73,7 @@ public class MainController {
     @RequestMapping(value = "/test")
     public String test() throws Exception{
 
-        return "/test";
+        return "test/test";
     }
 
     @RequestMapping(value = "/top", method = RequestMethod.GET)
@@ -86,6 +86,12 @@ public class MainController {
         System.out.println(department.toString());*/
 
         return mav;
+    }
+
+    @RequestMapping(value = "/paging")
+    public String paging() throws Exception{
+
+        return "/etc/paging";
     }
 
 }
