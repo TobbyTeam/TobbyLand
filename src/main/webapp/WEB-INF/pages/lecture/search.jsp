@@ -10,6 +10,8 @@
 </head>
 <body>
 
+<a href="/lecture/list">강의생성게시판</a><br /><br />
+
 <form action="/lecture/search" method="get" name="search_frm">
 
     검색

@@ -105,7 +105,7 @@
   </select>
 
   <select id="selectLatestAll" resultType="map" >
-    SELECT D.department_name, B.board_id, B.writer, B.department_id, B.title, DATE_FORMAT(write_date, '%Y.%m.%d %T') AS write_date, B.is_anonymity
+    SELECT D.department_name, B.board_id, B.writer, B.department_id, B.title, DATE_FORMAT(B.WRITE_DATE, '%Y.%m.%d %T') AS write_date, B.is_anonymity
     FROM BOARD B LEFT OUTER JOIN DEPARTMENT D ON B.DEPARTMENT_ID = D.DEPARTMENT_ID
     WHERE D.KIND IN ('dept', 'etc') AND B.IS_DELETE = 0 AND B.IS_REPLY = 0
     GROUP BY B.BOARD_ID
@@ -117,7 +117,7 @@
     FROM BOARD B LEFT OUTER JOIN BOARD B2 ON B.BOARD_ID = B2.UPPER_ID LEFT OUTER JOIN DEPARTMENT D ON B.DEPARTMENT_ID = D.DEPARTMENT_ID
     WHERE D.KIND IN ('dept', 'etc') AND B.IS_DELETE = 0 AND B.IS_REPLY = 0 AND B.LIKES <![CDATA[ >= ]]> 10
     GROUP BY B.BOARD_ID
-    ORDER BY B.WRITE_DATE DESC, B.LIKES DESC, B.HIT DESC, COUNT DESC LIMIT 15
+    ORDER BY DATE_FORMAT(B.WRITE_DATE, '%Y.%m.%d') DESC, B.LIKES DESC, B.HIT DESC, COUNT DESC, B.BOARD_ID DESC LIMIT 15
   </select>
 
 
