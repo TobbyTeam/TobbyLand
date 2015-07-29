@@ -1,6 +1,7 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.controller;
 
 import kr.ac.kpu.ebiz.spring.tobbyproject.repository.DepartmentRepository;
+import kr.ac.kpu.ebiz.spring.tobbyproject.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,9 +18,18 @@ public class MainController {
     @Autowired
     DepartmentRepository departmentRepository;
 
+    @Autowired
+    BoardService boardService;
+
+
     @RequestMapping(value = {"", "/", "/main"}, method = RequestMethod.GET)
-    public String home() {
-        return "etc/main";
+    public ModelAndView home() {
+
+        ModelAndView mav = new ModelAndView("/etc/main");
+
+        boardService.mainService(mav);
+
+        return mav;
     }
 
     @RequestMapping(value = "/admin**", method = RequestMethod.GET)

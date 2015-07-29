@@ -49,6 +49,23 @@ public class BoardRepositoryImpl extends SqlSessionDaoSupport implements BoardRe
 		return getSqlSession().selectList("BoardRepository.selectBoardSearch", board);
 	}
 
+	public List<Map> selectSiteNoticeAll() {
+		return getSqlSession().selectList("BoardRepository.selectSiteNoticeAll");
+	}
+
+	public List<Map> selectKpuNoticeAll() {
+		return getSqlSession().selectList("BoardRepository.selectKpuNoticeAll");
+	}
+
+	public List<Map> selectLatestAll() {
+		return getSqlSession().selectList("BoardRepository.selectLatestAll");
+	}
+
+	public List<Map> selectHotAll() {
+		return getSqlSession().selectList("BoardRepository.selectHotAll");
+	}
+
+
 
 	/*insert*/
 	

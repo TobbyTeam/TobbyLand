@@ -33,4 +33,7 @@ public interface BoardService {
 
     void searchService(Map search, int page, ModelAndView mav);
 
+    void mainService(ModelAndView mav);
+
+
 }

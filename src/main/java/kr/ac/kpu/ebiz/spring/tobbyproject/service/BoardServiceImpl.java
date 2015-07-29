@@ -289,4 +289,14 @@ public class BoardServiceImpl implements BoardService{
         mav.addObject("boards", boardRepository.selectBoardSearch(search));
     }
 
+    public void mainService(ModelAndView mav) {
+
+        mav.addObject("sites",boardRepository.selectSiteNoticeAll());
+        mav.addObject("kpus",boardRepository.selectKpuNoticeAll());
+        mav.addObject("latests",boardRepository.selectLatestAll());
+        mav.addObject("hots",boardRepository.selectHotAll());
+
+
+    }
+
 }

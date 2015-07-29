@@ -27,6 +27,14 @@ public interface BoardRepository {
 
 	List<Map> selectBoardSearch(Map board);
 
+	List<Map> selectSiteNoticeAll();
+
+	List<Map> selectKpuNoticeAll();
+
+	List<Map> selectLatestAll();
+
+	List<Map> selectHotAll();
+
 
 
 	/*insert*/
