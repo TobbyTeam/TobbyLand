@@ -14,8 +14,14 @@
 
 <br /><br />
 
-  제목 : <text>${board.title}</text> <br />
-  작성일 : <text>${board.write_date}</text> &nbsp; 조회수 : <text>${board.hit}</text>
+  제목 : <text>${board.title}</text> <br /> &nbsp; 조회수 : <text>${board.hit}</text>
+  작성자 :
+    <text>${board.writer}
+      <c:if test="${board.is_anonymity == 1}">
+        (익명)
+      </c:if>
+    </text>&nbsp;
+  작성일 : <text>${board.write_date}</text>
   <br />
   <br />
 
@@ -38,11 +44,11 @@
 
   <c:forEach var="reply" items="${replys}" varStatus="status">
 
-    ${reply.write_date} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    ${reply.writer}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <input type="button" value="삭제" onclick="reDeleteAjax(${reply.board_id})"> &nbsp;&nbsp;
     <input type="button" value="신고(${reply.report})" onclick="reReportAjax(${reply.board_id})">
     <br />
-    내용 :
+    ${reply.write_date}
     <br />
     <textarea name="contents" rows="3" cols="50" readonly="readonly">${reply.contents}</textarea><br/><br/>
   </c:forEach>
@@ -70,6 +76,7 @@
   <tr>
     <td>글번호</td>
     <td>제목</td>
+    <td>작성자</td>
     <td>작성일</td>
     <td>조회수</td>
     <td>추천수</td>
@@ -79,14 +86,15 @@
       <td>${board.rnum}</td>
       <td>
         <a href="/board/view/${board.department_id}/?board_id=${board.board_id}&page=${paging.pageNo}&searchType=${search.searchType}&searchWord=${search.searchWord}">${board.title}
-          <c:choose>
-            <c:when test="${board.count == 0}">
-            </c:when>
-            <c:otherwise>
-              [${board.count}]
-            </c:otherwise>
-          </c:choose>
+          <c:if test="${board.count != 0}">
+            [${board.count}]
+          </c:if>
         </a>
+      </td>
+      <td>${board.writer}
+        <c:if test="${board.is_anonymity == 1}">
+          (익명)
+        </c:if>
       </td>
       <td>${board.write_date}</td>
       <td>${board.hit}</td>

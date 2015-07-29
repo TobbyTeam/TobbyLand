@@ -10,7 +10,8 @@
   </select>
 
   <select id="selectBoardAll" parameterType="map" resultType="map" >
-    SELECT B.rnum, B.board_id, B.department_id, B.title, DATE_FORMAT(B.write_date, '%Y.%m.%d') AS write_date, B.hit, B.likes, SUM(IF(B2.IS_DELETE = 0,1,0)) as count
+    SELECT B.rnum, B.board_id, B.writer, B.department_id, B.title, DATE_FORMAT(B.write_date, '%Y.%m.%d') AS write_date,
+           B.hit, B.likes, B.is_anonymity, SUM(IF(B2.IS_DELETE = 0,1,0)) as count
     FROM BOARD B LEFT OUTER JOIN BOARD B2 ON B.BOARD_ID = B2.UPPER_ID
     WHERE B.DEPARTMENT_ID = #{department_id} AND B.IS_DELETE = 0 AND B.IS_REPLY = 0
     GROUP BY B.BOARD_ID
@@ -25,13 +26,13 @@
   </select>
 
   <select id="selectBoard" parameterType="int" resultType="map" >
-    SELECT board_id, department_id, title, contents, DATE_FORMAT(write_date, '%Y.%m.%d %T') AS write_date, hit, likes, dislike, report
+    SELECT board_id, department_id, writer, title, contents, DATE_FORMAT(write_date, '%Y.%m.%d %T') AS write_date, hit, likes, dislike, report, is_anonymity
     FROM BOARD
     WHERE BOARD_ID = #{board_id}
   </select>
 
   <select id="selectBoardReplyAll" parameterType="int" resultType="map" >
-    SELECT board_id, contents, DATE_FORMAT(write_date, '%Y.%m.%d %T') AS write_date, report
+    SELECT board_id, writer, contents, DATE_FORMAT(write_date, '%Y.%m.%d %T') AS write_date, report
     FROM BOARD
     WHERE UPPER_ID = #{board_id} AND IS_DELETE = 0
     ORDER BY WRITE_DATE
@@ -69,7 +70,8 @@
   </select>
 
   <select id="selectBoardSearch" parameterType="map" resultType="map">
-    SELECT B.rnum, B.board_id, B.department_id, B.title, DATE_FORMAT(B.write_date, '%Y.%m.%d') AS write_date, B.hit, B.likes, SUM(IF(B2.IS_DELETE = 0,1,0)) as count
+    SELECT B.rnum, B.board_id, B.writer, B.department_id, B.title, DATE_FORMAT(B.write_date, '%Y.%m.%d') AS write_date,
+           B.hit, B.likes, B.is_anonymity, SUM(IF(B2.IS_DELETE = 0,1,0)) as count
     FROM BOARD B LEFT OUTER JOIN BOARD B2 ON B.BOARD_ID = B2.UPPER_ID
     WHERE B.DEPARTMENT_ID = #{department_id} AND B.IS_DELETE = 0 AND B.IS_REPLY = 0
     <choose>
@@ -94,12 +96,16 @@
   <insert id="insertBoard" parameterType="map">
     <choose>
       <when test="upper_id != null">
-        INSERT INTO BOARD (department_id, member_id, contents, is_reply, upper_id)
-        VALUES (#{department_id},#{member_id},#{contents},1,#{upper_id})
+        INSERT INTO BOARD (department_id, member_id, writer, contents, is_reply, upper_id)
+        VALUES (#{department_id},#{member_id},#{writer},#{contents},1,#{upper_id})
+      </when>
+      <when test="is_anonymity != null">
+        INSERT INTO BOARD (department_id, member_id, writer, rnum, title, contents, is_anonymity)
+        VALUES (#{department_id},#{member_id},#{writer},#{rnum},#{title},#{contents},#{is_anonymity})
       </when>
       <otherwise>
-        INSERT INTO BOARD (department_id, member_id, rnum, title, contents)
-        VALUES (#{department_id},#{member_id},#{rnum},#{title},#{contents})
+        INSERT INTO BOARD (department_id, member_id, writer, rnum, title, contents)
+        VALUES (#{department_id},#{member_id},#{writer},#{rnum},#{title},#{contents})
       </otherwise>
     </choose>
 

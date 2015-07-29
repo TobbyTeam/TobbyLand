@@ -58,10 +58,9 @@ public class BoardServiceImpl implements BoardService{
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int member_id = user.getMember_id();
+        String writer = user.getNickname();
 
         int department_id = Integer.parseInt((String)board.get("department_id"));
-
-/*        int department_id =  Integer.parseInt(lectureSub.get("department_id").toString());*/
 
         int maxRnum = boardRepository.selectBoardMaxRnum(department_id);
 
@@ -75,6 +74,12 @@ public class BoardServiceImpl implements BoardService{
 
         board.put("member_id", member_id);
         board.put("rnum", rnum);
+
+
+        if(board.get("is_anonymity")==null){
+            board.remove("writer");
+            board.put("writer", writer);
+        }
 
         boolean result = false;
 
@@ -242,8 +247,10 @@ public class BoardServiceImpl implements BoardService{
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int member_id = user.getMember_id();
+        String writer = user.getNickname();
 
         board.put("member_id", member_id);
+        board.put("writer", writer);
 
         boolean result = false;
 

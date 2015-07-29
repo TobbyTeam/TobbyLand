@@ -17,6 +17,7 @@
 		<tr>
 			<td>글번호</td>
 			<td>제목</td>
+			<td>작성자</td>
 			<td>작성일</td>
 			<td>조회수</td>
 			<td>추천</td>
@@ -26,14 +27,15 @@
 			<td>${board.rnum}</td>
 			<td>
 				<a href="/board/view/${board.department_id}/?board_id=${board.board_id}&page=${paging.pageNo}&searchType=${search.searchType}&searchWord=${search.searchWord}">${board.title}
-				<c:choose>
-					<c:when test="${board.count == 0}">
-					</c:when>
-					<c:otherwise>
+					<c:if test="${board.count != 0}">
 						[${board.count}]
-					</c:otherwise>
-				</c:choose>
+					</c:if>
 				</a>
+			</td>
+			<td>${board.writer}
+				<c:if test="${board.is_anonymity == 1}">
+					(익명)
+				</c:if>
 			</td>
 			<td>${board.write_date}</td>
 			<td>${board.hit}</td>
