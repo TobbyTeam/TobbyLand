@@ -67,7 +67,11 @@ public class MemberServiceImpl implements MemberService{
     public boolean regService(Member member) {
 
         String user_id = member.getUser_id();
-        String email = member.getEmail();
+
+        String from = "kpytobbyland@google.com";
+        String to = member.getEmail();
+        String subject = "TOBBYLAND 인증 메일입니다.";
+
 
         String enSt = "";
 
@@ -80,11 +84,9 @@ public class MemberServiceImpl implements MemberService{
             result = false;
         }
 
-        mailMail.sendMail(
-                "kpytobbyland@google.com", email,
-                "TOBBYLAND 인증 메일입니다.",
-                user_id+"님 회원가입을 축하드립니다. \n\n" +
-                        "http://localhost:8080/member/enabled?enSt="+enSt);
+        String content = user_id+"님 회원가입을 축하드립니다. 아래 링크를 누르시면 메일인증이 됩니다.<br />" + "<a href=\"http://localhost:8080/member/enabled?enSt="+enSt+"\">메일인증</a>";
+
+        mailMail.sendMail( from, to, subject, content);
 
         return result;
     }

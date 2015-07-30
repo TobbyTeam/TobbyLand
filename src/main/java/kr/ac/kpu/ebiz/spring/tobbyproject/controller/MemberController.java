@@ -3,7 +3,6 @@ package kr.ac.kpu.ebiz.spring.tobbyproject.controller;
 import kr.ac.kpu.ebiz.spring.tobbyproject.command.Member;
 import kr.ac.kpu.ebiz.spring.tobbyproject.encryptor.AES128Cipher;
 import kr.ac.kpu.ebiz.spring.tobbyproject.etc.Question;
-import kr.ac.kpu.ebiz.spring.tobbyproject.mail.MailMail;
 import kr.ac.kpu.ebiz.spring.tobbyproject.repository.MemberRepository;
 import kr.ac.kpu.ebiz.spring.tobbyproject.service.MemberService;
 import org.apache.commons.beanutils.PropertyUtils;
@@ -28,9 +27,6 @@ public class MemberController {
 
 	@Autowired
 	MemberRepository memberRepository;
-
-	@Autowired
-	MailMail mailMail;
 
 	@Autowired
 	MemberService memberService;
