@@ -2,13 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ef39bd55-c5a4-43ad-bf23-0a0b224e2f8b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/board-mapper.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/board-mapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/js/board_validate.js" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/board_validate.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/board/list.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/board/list.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/board/register.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/board/register.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/board/searchList.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/board/searchList.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/board/searchView.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/board/searchView.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/board/view.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/board/view.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="tobby.iws" />
@@ -1856,13 +1849,7 @@
       <workItem from="1438143380405" duration="13178000" />
       <workItem from="1438158056061" duration="7035000" />
       <workItem from="1438174367479" duration="1662000" />
-      <workItem from="1438235213318" duration="2907000" />
-    </task>
-    <task id="LOCAL-00050" summary="회원정보 수정 자신 닉네임 중복처리되던거 수정">
-      <created>1436210467169</created>
-      <option name="number" value="00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1436210467244</updated>
+      <workItem from="1438235213318" duration="2921000" />
     </task>
     <task id="LOCAL-00051" summary="강의평가 수정, 삭제 ajax 처리">
       <created>1436213675531</created>
@@ -2152,11 +2139,17 @@
       <option name="project" value="LOCAL" />
       <updated>1438176795246</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="메인페이지 인기글 수정&#10;">
+      <created>1438238179437</created>
+      <option name="number" value="00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1438238179448</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="708097000" />
+    <option name="totallyTimeSpent" value="708111000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
