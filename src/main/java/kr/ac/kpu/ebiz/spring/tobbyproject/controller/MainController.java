@@ -43,22 +43,8 @@ public class MainController {
         return model;
     }
 
-/*    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = {RequestMethod.GET, RequestMethod.POST })
     public String login() {
-
-        return "etc/login";
-
-    }*/
-
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login() {
-
-        return "etc/login";
-
-    }
-
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login2() {
 
         return "etc/login";
 

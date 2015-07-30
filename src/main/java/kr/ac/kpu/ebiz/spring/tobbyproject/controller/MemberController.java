@@ -1,21 +1,28 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.controller;
 
+import kr.ac.kpu.ebiz.spring.tobbyproject.command.Member;
+import kr.ac.kpu.ebiz.spring.tobbyproject.encryptor.AES128Cipher;
 import kr.ac.kpu.ebiz.spring.tobbyproject.etc.Question;
 import kr.ac.kpu.ebiz.spring.tobbyproject.mail.MailMail;
 import kr.ac.kpu.ebiz.spring.tobbyproject.repository.MemberRepository;
 import kr.ac.kpu.ebiz.spring.tobbyproject.service.MemberService;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 
 @Controller
+
+@SessionAttributes("member")
+
 @RequestMapping("/member")
 public class MemberController {
 
@@ -30,6 +37,22 @@ public class MemberController {
 
 	@Autowired
 	Question question;
+
+	@Autowired
+	AES128Cipher aes128Cipher;
+
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
+
+
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public String test(Member member) {
+
+		System.out.println("아이디 확인" + member.getUser_id());
+		System.out.println("닉네임 확인" + member.getNickname());
+
+		return "/etc/main";
+	}
 
 	@RequestMapping(value = "/regForm", method = RequestMethod.GET)
 	public ModelAndView regForm() {
@@ -67,17 +90,26 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/reg", method = RequestMethod.POST)
-	public @ResponseBody boolean register(@RequestParam Map<String, java.io.Serializable> member) {
+	public @ResponseBody boolean register(Member member, Model model) {
+
+		model.addAttribute("member", member);
 
 		return memberService.regService(member);
 	}
 
 	@RequestMapping(value = "/enabled", method = RequestMethod.GET)
-	public ModelAndView enabled(@RequestParam("enSt") String enSt) {
+	public ModelAndView enabled(@RequestParam("enSt") String enSt, @ModelAttribute Member member, SessionStatus sessionStatus) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
 
 		ModelAndView mav = new ModelAndView("/member/enabled");
 
-		memberService.enabledService(enSt, mav);
+		Map member1 = PropertyUtils.describe(member);
+
+		if(memberService.enabledService(enSt, member1)){
+			mav.addObject("message", "메일인증에 성공하셨습니다.");
+			sessionStatus.setComplete();
+		} else {
+			mav.addObject("message", "잘못된 접근입니다.");
+		}
 
 		return mav;
 	}

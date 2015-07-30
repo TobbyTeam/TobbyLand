@@ -5,20 +5,22 @@ package kr.ac.kpu.ebiz.spring.tobbyproject.command;
  */
 public class Member{
 
-    private String member_id;
+    private String user_id;
     private String password;
     private String nickname;
     private String email;
-    private String method;
-    private String task;
-    private String exam;
+    private int question;
+    private String answer;
+    private int method;
+    private int task;
+    private int exam;
 
-    public String getMember_id() {
-        return member_id;
+    public String getUser_id() {
+        return user_id;
     }
 
-    public void setMember_id(String member_id) {
-        this.member_id = member_id;
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 
     public String getPassword() {
@@ -45,28 +47,43 @@ public class Member{
         this.email = email;
     }
 
-    public String getMethod() {
+    public int getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(int question) {
+        this.question = question;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    public int getMethod() {
         return method;
     }
 
-    public void setMethod(String method) {
+    public void setMethod(int method) {
         this.method = method;
     }
 
-    public String getTask() {
+    public int getTask() {
         return task;
     }
 
-    public void setTask(String task) {
+    public void setTask(int task) {
         this.task = task;
     }
 
-    public String getExam() {
+    public int getExam() {
         return exam;
     }
 
-    public void setExam(String exam) {
+    public void setExam(int exam) {
         this.exam = exam;
     }
-
 }

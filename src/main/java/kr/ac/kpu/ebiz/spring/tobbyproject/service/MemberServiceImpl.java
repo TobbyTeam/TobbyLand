@@ -1,5 +1,6 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.service;
 
+import kr.ac.kpu.ebiz.spring.tobbyproject.command.Member;
 import kr.ac.kpu.ebiz.spring.tobbyproject.encryptor.AES128Cipher;
 import kr.ac.kpu.ebiz.spring.tobbyproject.etc.Question;
 import kr.ac.kpu.ebiz.spring.tobbyproject.mail.MailMail;
@@ -63,42 +64,34 @@ public class MemberServiceImpl implements MemberService{
         return result;
     }
 
-    public boolean regService(Map member) {
+    public boolean regService(Member member) {
 
-        String user_id = (String) member.get("user_id");
-        String password = (String) member.get("password");
-        String email = (String) member.get("email");
+        String user_id = member.getUser_id();
+        String email = member.getEmail();
 
         String enSt = "";
+
+        boolean result = true;
 
         try {
             enSt = aes128Cipher.encode(user_id);
         } catch (Exception e) {
             e.printStackTrace();
+            result = false;
         }
 
-        boolean result = false;
-
-        member.remove(password);
-        member.put("password", passwordEncoder.encode(password));
-
-        if(memberRepository.insertMember(member) && memberRepository.insertRole(memberRepository.selectId(user_id))) {
-            result = true;
-        }
-
-/*        mailMail.sendMail(
+        mailMail.sendMail(
                 "kpytobbyland@google.com", email,
                 "TOBBYLAND 인증 메일입니다.",
                 user_id+"님 회원가입을 축하드립니다. \n\n" +
-                        "http://localhost:8080/member/enabled?enSt="+enSt);*/
-/*
-            MemberThread thread = new MemberThread(member_id);
-            thread.start();*/
+                        "http://localhost:8080/member/enabled?enSt="+enSt);
 
         return result;
     }
 
-    public void enabledService(String enSt, ModelAndView mav) {
+    public boolean enabledService(String enSt, Map member) {
+
+        boolean result = false;
 
         String user_id = "";
 
@@ -108,16 +101,21 @@ public class MemberServiceImpl implements MemberService{
             e.printStackTrace();
         }
 
-        int member_id = memberRepository.selectId(user_id);
+        String user_id2= (String) member.get("user_id");
 
-        int enabled = memberRepository.selectEnabled(member_id);
+        if (user_id.equals(user_id2)) {
 
-        if(enabled ==0){
-            memberRepository.updateEnabled(member_id);
-            mav.addObject("message", "인증 되셨습니다.");
-        } else {
-            mav.addObject("message", "이미 인증이 된 회원입니다.");
+            String password = (String) member.get("password");
+            member.remove("password");
+            member.put("password", passwordEncoder.encode(password));
+            memberRepository.insertMember(member);
+            memberRepository.insertRole(memberRepository.selectId(user_id));
+
+            result = true;
+
         }
+
+        return result;
     }
 
     public void viewService(ModelAndView mav) {

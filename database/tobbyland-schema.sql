@@ -29,7 +29,7 @@ CREATE TABLE member (
   method int(2) UNSIGNED DEFAULT '1',
   task int(2) UNSIGNED DEFAULT '4',
   exam int(2) UNSIGNED DEFAULT '7',
-  enabled tinyint(4) UNSIGNED DEFAULT '0',
+  enabled tinyint(4) UNSIGNED DEFAULT '1',
   nonLocked tinyint(4) UNSIGNED DEFAULT '1',
   PRIMARY KEY (member_id),
   KEY FK_member_method (method),

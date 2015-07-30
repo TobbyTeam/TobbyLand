@@ -1,5 +1,6 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.service;
 
+import kr.ac.kpu.ebiz.spring.tobbyproject.command.Member;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
@@ -15,9 +16,9 @@ public interface MemberService {
 
     boolean nickCheckService(String nickname);
 
-    boolean regService(Map member);
+    boolean regService(Member member);
 
-    void enabledService(String enSt, ModelAndView mav);
+    boolean enabledService(String enSt, Map member);
 
     void viewService(ModelAndView mav);
 
