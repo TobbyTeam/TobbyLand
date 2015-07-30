@@ -22,8 +22,15 @@
 
     <form id="reg_frm" name="reg_frm" method="post">
 
-      익명으로 작성 <input type="checkbox" id="anonymity" name="is_anonymity" value="1"><br/>
-
+      <c:choose>
+        <c:when test="${department_id == 16}">
+          닉네임: <input type="text" name="writer" id="writer"/>
+            <input type="hidden" name="is_anonymity" value="1"/><br />
+        </c:when>
+        <c:otherwise>
+            익명으로 작성 <input type="checkbox" id="anonymity" name="is_anonymity" value="1"><br/>
+        </c:otherwise>
+      </c:choose>
       제목:
         <input type="text" id="title" name="title"/><br/>
 

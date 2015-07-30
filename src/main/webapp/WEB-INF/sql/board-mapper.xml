@@ -63,8 +63,14 @@
       <when test="searchType != null and searchType.equalsIgnoreCase('contents')">
         AND CONTENTS LIKE CONCAT('%', #{searchWord}, '%')
       </when>
-      <otherwise>
+      <when test="searchType != null and searchType.equalsIgnoreCase('title_contents')">
         AND (TITLE LIKE CONCAT('%', #{searchWord}, '%') OR CONTENTS LIKE CONCAT('%', #{searchWord}, '%'))
+      </when>
+      <when test="searchType != null and searchType.equalsIgnoreCase('writer')">
+        AND WRITER LIKE CONCAT('%', #{searchWord}, '%')
+      </when>
+      <otherwise>
+        AND (TITLE LIKE CONCAT('%', #{searchWord}, '%') OR CONTENTS LIKE CONCAT('%', #{searchWord}, '%') OR WRITER LIKE CONCAT('%', #{searchWord}, '%'))
       </otherwise>
     </choose>
   </select>
@@ -81,8 +87,14 @@
       <when test="searchType != null and searchType.equalsIgnoreCase('contents')">
         AND B.CONTENTS LIKE CONCAT('%', #{searchWord}, '%')
       </when>
-      <otherwise>
+      <when test="searchType != null and searchType.equalsIgnoreCase('title_contents')">
         AND (B.TITLE LIKE CONCAT('%', #{searchWord}, '%') OR B.CONTENTS LIKE CONCAT('%', #{searchWord}, '%'))
+      </when>
+      <when test="searchType != null and searchType.equalsIgnoreCase('writer')">
+        AND B.WRITER LIKE CONCAT('%', #{searchWord}, '%')
+      </when>
+      <otherwise>
+        AND (B.TITLE LIKE CONCAT('%', #{searchWord}, '%') OR B.CONTENTS LIKE CONCAT('%', #{searchWord}, '%') OR B.WRITER LIKE CONCAT('%', #{searchWord}, '%'))
       </otherwise>
     </choose>
     GROUP BY B.BOARD_ID

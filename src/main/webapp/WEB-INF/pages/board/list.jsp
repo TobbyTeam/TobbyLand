@@ -65,6 +65,8 @@
 		<option value="title" selected="selected">제목</option>
 		<option value="contents">내용</option>
 		<option value="title_contents">제목+내용</option>
+		<option value="writer">글쓴이</option>
+		<option value="all">전체</option>
 	</select>
 
 	<input type="text" name="searchWord">

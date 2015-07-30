@@ -69,16 +69,36 @@
 					<option value="title">제목</option>
 					<option value="contents" selected="selected">내용</option>
 					<option value="title_contents">제목+내용</option>
+					<option value="writer">글쓴이</option>
+					<option value="all">전체</option>
 			</c:when>
 			<c:when test="${search.searchType eq 'title_contents'}">
 					<option value="title">제목</option>
 					<option value="contents">내용</option>
 					<option value="title_contents" selected="selected">제목+내용</option>
+					<option value="writer">글쓴이</option>
+					<option value="all">전체</option>
+			</c:when>
+			<c:when test="${search.searchType eq 'writer'}">
+				<option value="title">제목</option>
+				<option value="contents">내용</option>
+				<option value="title_contents">제목+내용</option>
+				<option value="writer" selected="selected">글쓴이</option>
+				<option value="all">전체</option>
+			</c:when>
+			<c:when test="${search.searchType eq 'all'}">
+				<option value="title">제목</option>
+				<option value="contents">내용</option>
+				<option value="title_contents">제목+내용</option>
+				<option value="writer">글쓴이</option>
+				<option value="all" selected="selected">전체</option>
 			</c:when>
 			<c:otherwise>
 					<option value="title" selected="selected">제목</option>
 					<option value="contents">내용</option>
 					<option value="title_contents">제목+내용</option>
+					<option value="writer">글쓴이</option>
+					<option value="all">전체</option>
 			</c:otherwise>
 		</c:choose>
 	</select>

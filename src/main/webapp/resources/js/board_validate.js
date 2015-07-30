@@ -7,12 +7,16 @@ $(document).ready(function() {
 				required: true
 			},contents: {
 				required: true
+			},writer: {
+				required: true
 			}
 		}, messages: {
 			title: {
 				required: "제목를 입력하세요."
 			}, contents: {
 				required: "내용을 입력하세요."
+			}, writer: {
+				required: "닉네임을 입력하세요."
 			}
 		}, submitHandler: function (form) {
 			$.ajax({
