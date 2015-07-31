@@ -107,7 +107,7 @@
 
 		</form>
 
-		<a href="/member/regForm">sign up</a>
+		<a href="/member/regForm">sign up</a>&nbsp;&nbsp;<a href="/member/searchForm">아이디/비밀번호 찾기</a>
 	</div>
 
 </body>

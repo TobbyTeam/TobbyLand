@@ -32,6 +32,10 @@ public interface MemberService {
 
     boolean pwModService(String password);
 
+    boolean pwModService(String enSt, String password);
+
     boolean lockService();
+
+    int searchService(String email);
 
 }

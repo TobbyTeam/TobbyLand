@@ -13,13 +13,19 @@ public interface MemberRepository {
 
 	int selectCountNick(Map member);
 
-	int selectId(String user_id);
+	int selectMemberId(String user_id);
 
 	int selectEnabled(int member_id);
 
 	Map selectMember(int member_id);
 
 	String selectPassword(int member_id);
+
+	Map selectId(String email);
+
+	int selectCountSearch(Map member);
+
+	int selectSearch(int member_id);
 
 	Map selectMemberTendency(int member_id);
 
@@ -32,6 +38,8 @@ public interface MemberRepository {
 
 	boolean insertRole(int member_id);
 
+	boolean insertSearch(Map member);
+
 
 	/*update*/
 
@@ -42,6 +50,11 @@ public interface MemberRepository {
 	boolean updatePassword(Map member);
 
 	boolean updateLocked(int member_id);
+
+	boolean updateSearch(int member_id);
+
+	boolean updateSearchZero(int member_id);
+
 
 
 	/*delete*/

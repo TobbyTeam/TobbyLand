@@ -3,14 +3,18 @@ package kr.ac.kpu.ebiz.spring.tobbyproject.service;
 import kr.ac.kpu.ebiz.spring.tobbyproject.command.Member;
 import kr.ac.kpu.ebiz.spring.tobbyproject.encryptor.AES128Cipher;
 import kr.ac.kpu.ebiz.spring.tobbyproject.etc.Question;
+import kr.ac.kpu.ebiz.spring.tobbyproject.etc.TemporaryPassword;
 import kr.ac.kpu.ebiz.spring.tobbyproject.mail.MailMail;
 import kr.ac.kpu.ebiz.spring.tobbyproject.repository.MemberRepository;
 import kr.ac.kpu.ebiz.spring.tobbyproject.security.MemberInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,6 +34,9 @@ public class MemberServiceImpl implements MemberService{
 
     @Autowired
     Question question;
+
+    @Autowired
+    TemporaryPassword temporaryPassword;
 
     public boolean idCheckService(String user_id) {
 
@@ -111,7 +118,7 @@ public class MemberServiceImpl implements MemberService{
             member.remove("password");
             member.put("password", passwordEncoder.encode(password));
             memberRepository.insertMember(member);
-            memberRepository.insertRole(memberRepository.selectId(user_id));
+            memberRepository.insertRole(memberRepository.selectMemberId(user_id));
 
             result = true;
 
@@ -206,6 +213,38 @@ public class MemberServiceImpl implements MemberService{
         return result;
     }
 
+    public boolean pwModService(String enSt, String password) {
+
+        boolean result = false;
+
+        String id = "";
+
+        try {
+            id = aes128Cipher.decode(enSt);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        int member_id = Integer.parseInt(id);
+
+        System.out.println(member_id+"멤버아이디 확인");
+
+        if(memberRepository.selectSearch(member_id) !=0) {
+
+            Map member = new HashMap();
+            member.put("member_id", member_id);
+            member.put("password", password);
+
+            memberRepository.updatePassword(member);
+            memberRepository.updateSearchZero(member_id);
+
+            result = true;
+
+        }
+
+        return result;
+    }
+
     public boolean lockService() {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -220,5 +259,73 @@ public class MemberServiceImpl implements MemberService{
 
         return result;
 
+    }
+
+    public int searchService(String email) {
+
+        HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+
+        String ip = req.getHeader("X-FORWARDED-FOR");
+
+        if (ip == null) {
+            ip = req.getRemoteAddr();
+        }
+
+        System.out.println("ip확인"+ip);
+
+        int result = 0;
+
+        if(memberRepository.selectCountEmail(email) != 0){
+
+            Map member = memberRepository.selectId(email);
+
+            String user_id = (String) member.get("user_id");
+
+            member.put("ip", ip);
+            member.remove("user_id");
+
+            if(memberRepository.selectCountSearch(member) < 5) {
+
+                String member_id = member.get("member_id").toString();
+
+                System.out.println(member_id+"멤버아이디 확인");
+
+                String newPassword = temporaryPassword.temporaryPassword(10);
+
+                String password = passwordEncoder.encode(newPassword);
+
+                memberRepository.insertSearch(member);
+
+                memberRepository.updateSearch(Integer.parseInt(member_id));
+
+                String enSt = "";
+
+                try {
+                    enSt = aes128Cipher.encode(member_id);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                System.out.println(enSt);
+
+                String from = "kpytobbyland@google.com";
+                String subject = "TOBBYLAND 회원정보 메일";
+                String content = "안녕하세요"+user_id+"님 요청하신 회원정보 입니다.<br /> <ul><li>아이디 : "+user_id+"</li>" +
+                    "<li>새로운 비밀번호 : "+newPassword+"</li></ul><br />아래 링크를 클릭 하시면 회원님의 비밀번호가 새로운 비밀번호로 변경됩니다.<br />" +
+                    "<a href=\"http://localhost:8080/member/pwMod?enSt="+enSt+"&key="+password+"\">비밀번호변경</a><br />" +
+                    "만약 토비랜드에서 이런 요청을 하신적이 없다면 이 이메일을 무시하셔도 됩니다.<br />" +
+                    "링크를 클릭하여 새로운 비밀번호를 설정하기 전까지는 비밀번호가 변경되지 않습니다.";
+
+                mailMail.sendMail( from, email, subject, content);
+
+                result = 1;
+
+            } else {
+
+                result = 2;
+            }
+        }
+
+        return result;
     }
 }

@@ -21,8 +21,8 @@ public class MemberRepositoryImpl extends SqlSessionDaoSupport implements Member
 		return getSqlSession().selectOne("MemberRepository.selectCountNick", member);
 	}
 
-	public int selectId(String user_id) {
-		return getSqlSession().selectOne("MemberRepository.selectId", user_id);
+	public int selectMemberId(String user_id) {
+		return getSqlSession().selectOne("MemberRepository.selectMemberId", user_id);
 	}
 
 	public int selectEnabled(int member_id) {
@@ -35,6 +35,18 @@ public class MemberRepositoryImpl extends SqlSessionDaoSupport implements Member
 
 	public String selectPassword(int member_id) {
 		return getSqlSession().selectOne("MemberRepository.selectPassword", member_id);
+	}
+
+	public Map selectId(String email) {
+		return getSqlSession().selectOne("MemberRepository.selectId", email);
+	}
+
+	public int selectCountSearch(Map member) {
+		return getSqlSession().selectOne("MemberRepository.selectCountSearch", member);
+	}
+
+	public int selectSearch(int member_id) {
+		return getSqlSession().selectOne("MemberRepository.selectSearch", member_id);
 	}
 
 	public Map selectMemberTendency(int member_id) {
@@ -56,6 +68,11 @@ public class MemberRepositoryImpl extends SqlSessionDaoSupport implements Member
 		return getSqlSession().insert("MemberRepository.insertRole", member_id) > 0;
 	}
 
+	public boolean insertSearch(Map member) {
+		return getSqlSession().insert("MemberRepository.insertSearch", member) > 0;
+	}
+
+
 
 	/*update*/
 
@@ -73,6 +90,14 @@ public class MemberRepositoryImpl extends SqlSessionDaoSupport implements Member
 
 	public boolean updateLocked(int member_id) {
 		return getSqlSession().update("MemberRepository.updateLocked", member_id) > 0;
+	}
+
+	public boolean updateSearch(int member_id) {
+		return getSqlSession().update("MemberRepository.updateSearch", member_id) > 0;
+	}
+
+	public boolean updateSearchZero(int member_id) {
+		return getSqlSession().update("MemberRepository.updateSearchZero", member_id) > 0;
 	}
 
 

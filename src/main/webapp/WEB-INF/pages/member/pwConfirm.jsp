@@ -11,7 +11,7 @@
 <body>
 
 
-패스워드:<input type="password" id="exPassword" name="exPassword"/><br>
+패스워드:<input type="password" id="password" name="password"/><br>
          <input type="button" id ="pw_btn" value="확인"/>&nbsp;&nbsp;&nbsp; <input type="reset" value="취소" onclick="history.back()"/>
 
 </body>

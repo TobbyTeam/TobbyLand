@@ -76,7 +76,7 @@ $(document).ready(function() {
 			type: "POST",
 			url: "/member/pwCheck",
 			dataType: "json",
-			data: {exPassword: $("#exPassword").val()},
+			data: {password: $("#password").val()},
 			success: function (result) {
 
 				if (result) {
@@ -113,5 +113,25 @@ $(document).ready(function() {
 
 	})
 
+	$("#research_btn").click(function () {
+		$.ajax({
+			type: "POST",
+			url: "/member/search",
+			dataType: "json",
+			data: {email: $("#email").val()},
+			success: function (result) {
+
+				if (result === 1 ) {
+					alert("메일이 전송 되었습니다. 확인해주세요.");
+					window.open("/login", "_self");
+				} else if (result === 0){
+					alert("등록되지 않은 메일입니다.");
+				} else {
+					alert("1일 메일요청 횟수 5회를 초과하셨습니다.");
+				}
+
+			}
+		})
+	})
 
 })

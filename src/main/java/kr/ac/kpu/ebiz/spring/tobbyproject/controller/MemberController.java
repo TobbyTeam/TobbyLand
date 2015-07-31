@@ -150,7 +150,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/pwCheck", method = RequestMethod.POST)
-	public @ResponseBody boolean pwCheck(@RequestParam ("exPassword")String password) {
+	public @ResponseBody boolean pwCheck(@RequestParam ("password")String password) {
 
 		return memberService.pwCheckService(password);
 	}
@@ -161,10 +161,44 @@ public class MemberController {
 		return memberService.pwModService(password);
 	}
 
+	@RequestMapping(value = "/pwMod", method = RequestMethod.GET)
+	public ModelAndView pwModify(@RequestParam ("enSt")String enSt, @RequestParam ("key")String password) {
+
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("/member/pwChangeOk");
+
+		if(memberService.pwModService(enSt, password)){
+			mav.addObject("message", "비밀번호가 정상적으로 변경되었습니다. 꼭 로그인 후 새로운 비밀번호로 수정하시기 바랍니다.");
+		} else {
+			mav.addObject("message", "잘못된 접근입니다.");
+		}
+
+		return mav;
+	}
+
 	@RequestMapping(value = "/withdrawal", method = RequestMethod.POST)
 	public @ResponseBody boolean lock() {
 
 		return memberService.lockService();
+	}
+
+	@RequestMapping(value = "/searchForm", method = RequestMethod.GET)
+	public String searchForm() {
+
+		return "member/search";
+	}
+
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public @ResponseBody int research(@RequestParam ("email") String email) {
+
+		return memberService.searchService(email);
+	}
+
+	@RequestMapping(value = "/researchAfter", method = RequestMethod.GET)
+	public String researchAfter() {
+
+		return "member/search";
 	}
 
 }

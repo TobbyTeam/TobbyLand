@@ -31,6 +31,7 @@ CREATE TABLE member (
   exam int(2) UNSIGNED DEFAULT '7',
   enabled tinyint(4) UNSIGNED DEFAULT '1',
   nonLocked tinyint(4) UNSIGNED DEFAULT '1',
+  search int(3) UNSIGNED DEFAULT '0',
   PRIMARY KEY (member_id),
   KEY FK_member_method (method),
   KEY FK_member_task (task),
@@ -66,6 +67,21 @@ CREATE TABLE member_role (
   KEY fk_role (role),
   CONSTRAINT fk_member_id FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT fk_role FOREIGN KEY (role) REFERENCES role (role) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+--
+-- Table structure for table `member_role`
+--
+
+CREATE TABLE member_search (
+  member_search_id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  member_id int(10) UNSIGNED NOT NULL,
+  ip int(10) UNSIGNED NOT NULL DEFAULT '0',
+  date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (member_search_id),
+  KEY fk_member_search_member (member_id),
+  CONSTRAINT fk_member_search_member FOREIGN KEY (member_id) REFERENCES member (member_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

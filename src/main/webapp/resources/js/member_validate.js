@@ -262,7 +262,7 @@ $(document).ready(function() {
 				required: true,
 				remote: {
 					type: "post", url: "/member/pwCheck", data: {
-						exPassword: function () {
+						password: function () {
 							return $("#exPassword").val();
 						}
 					}

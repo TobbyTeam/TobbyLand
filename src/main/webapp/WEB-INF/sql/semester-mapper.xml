@@ -8,7 +8,7 @@
   </select>
 
   <select id="selectAll" resultType="map">
-    SELECT * FROM SEMESTER
+    SELECT * FROM SEMESTER WHERE SEMESTER_ID NOT IN(1)
   </select>
 
   <delete id="delete" parameterType="int">

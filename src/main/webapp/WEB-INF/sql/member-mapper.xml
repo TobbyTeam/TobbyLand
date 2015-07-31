@@ -23,7 +23,7 @@
     </choose>
   </select>
 
-  <select id="selectId" parameterType="String" resultType="int">
+  <select id="selectMemberId" parameterType="String" resultType="int">
     SELECT member_id FROM MEMBER WHERE USER_ID = #{user_id}
   </select>
 
@@ -39,6 +39,20 @@
     SELECT password FROM MEMBER WHERE MEMBER_ID = #{member_id}
   </select>
 
+  <select id="selectId" parameterType="String" resultType="map">
+    SELECT member_id, user_id FROM MEMBER WHERE EMAIL = #{email}
+  </select>
+
+  <select id="selectCountSearch" parameterType="map" resultType="int">
+    SELECT Count(MEMBER_SEARCH_ID)
+    FROM MEMBER_SEARCH
+    WHERE MEMBER_ID = #{member_id} AND ip = INET_ATON(#{ip}) AND DATE(search_date) = curdate()
+  </select>
+
+  <select id="selectSearch" parameterType="int" resultType="int">
+    SELECT search FROM MEMBER WHERE MEMBER_ID = #{member_id}
+  </select>
+
   <select id="selectMemberTendency" parameterType="int" resultType="map">
     SELECT method AS member_method, task AS member_task, exam AS member_exam FROM MEMBER WHERE MEMBER_ID = #{member_id}
   </select>
@@ -46,7 +60,6 @@
   <select id="selectTendencyAll" resultType="map">
     SELECT * FROM TENDENCY
   </select>
-
 
   <!--insert-->
 
@@ -57,6 +70,10 @@
 
   <insert id="insertRole" parameterType="int">
     INSERT INTO MEMBER_ROLE (member_id) VALUES (#{member_id})
+  </insert>
+
+  <insert id="insertSearch" parameterType="map">
+    INSERT INTO MEMBER_SEARCH (member_id, ip) VALUES (#{member_id},INET_ATON(#{ip}))
   </insert>
 
 
@@ -94,6 +111,21 @@
     nonLocked = 0
     WHERE MEMBER_ID = #{member_id}
   </update>
+
+  <update id="updateSearch" parameterType="int">
+    UPDATE MEMBER
+    SET
+    SEARCH = SEARCH + 1
+    WHERE MEMBER_ID = #{member_id}
+  </update>
+
+  <update id="updateSearchZero" parameterType="int">
+    UPDATE MEMBER
+    SET
+    SEARCH = 0
+    WHERE MEMBER_ID = #{member_id}
+  </update>
+
 
 
   <!--delete-->
