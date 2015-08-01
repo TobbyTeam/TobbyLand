@@ -1,5 +1,6 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.service;
 
+import com.googlecode.ehcache.annotations.Cacheable;
 import kr.ac.kpu.ebiz.spring.tobbyproject.paging.Paging;
 import kr.ac.kpu.ebiz.spring.tobbyproject.repository.BoardRepository;
 import kr.ac.kpu.ebiz.spring.tobbyproject.repository.DepartmentRepository;
@@ -10,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -296,7 +298,12 @@ public class BoardServiceImpl implements BoardService{
         mav.addObject("latests",boardRepository.selectLatestAll());
         mav.addObject("hots",boardRepository.selectHotAll());
 
+    }
 
+    @Cacheable(cacheName = "topCache")
+    public List<Map> topService(){
+
+        return departmentRepository.selectAll();
     }
 
 }

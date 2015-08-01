@@ -2,6 +2,7 @@ package kr.ac.kpu.ebiz.spring.tobbyproject.service;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -34,6 +35,8 @@ public interface BoardService {
     void searchService(Map search, int page, ModelAndView mav);
 
     void mainService(ModelAndView mav);
+
+    List<Map> topService();
 
 
 }

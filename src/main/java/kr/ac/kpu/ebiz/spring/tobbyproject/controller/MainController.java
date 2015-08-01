@@ -82,7 +82,7 @@ public class MainController {
 
         ModelAndView mav = new ModelAndView("/etc/top");
 
-        mav.addObject("depts", departmentRepository.selectAll());
+        mav.addObject("depts", boardService.topService());
 
         return mav;
     }
