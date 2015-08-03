@@ -18,17 +18,57 @@
                overflowToDisk="false"
                diskPersistent="false"
                timeToIdleSeconds="0"
-               timeToLiveSeconds="300"
+               timeToLiveSeconds="3600"
                memoryStoreEvictionPolicy="LRU" />
 
+        <cache
+                name="siteCache"
+                eternal="false"
+                maxElementsInMemory="1000"
+                overflowToDisk="false"
+                diskPersistent="false"
+                timeToIdleSeconds="0"
+                timeToLiveSeconds="3600"
+                memoryStoreEvictionPolicy="LRU" />
+
+        <cache
+                name="kpuCache"
+                eternal="false"
+                maxElementsInMemory="1000"
+                overflowToDisk="false"
+                diskPersistent="false"
+                timeToIdleSeconds="0"
+                timeToLiveSeconds="3600"
+                memoryStoreEvictionPolicy="LRU" />
+
+        <cache
+                name="latestCache"
+                eternal="false"
+                maxElementsInMemory="1000"
+                overflowToDisk="false"
+                diskPersistent="false"
+                timeToIdleSeconds="0"
+                timeToLiveSeconds="60"
+                memoryStoreEvictionPolicy="LRU" />
+
+        <cache
+                name="hotCache"
+                eternal="false"
+                maxElementsInMemory="1000"
+                overflowToDisk="false"
+                diskPersistent="false"
+                timeToIdleSeconds="600"
+                timeToLiveSeconds="3600"
+                memoryStoreEvictionPolicy="LRU" />
+
        <cache
-               name="accountCache"
+               name="listCache"
                eternal="false"
-               maxElementsInMemory="100"
+               maxElementsInMemory="1000"
                overflowToDisk="false"
                diskPersistent="false"
                timeToIdleSeconds="0"
-               timeToLiveSeconds="300"
+               timeToLiveSeconds="0"
                memoryStoreEvictionPolicy="LRU" />
 
 </ehcache>

@@ -27,7 +27,21 @@ public class MainController {
 
         ModelAndView mav = new ModelAndView("/etc/main");
 
-        boardService.mainService(mav);
+        mav.addObject("sites", boardService.siteService());
+        mav.addObject("kpus", boardService.kpuService());
+        mav.addObject("latests", boardService.latestService());
+        mav.addObject("hots", boardService.hotService());
+
+        return mav;
+
+    }
+
+    @RequestMapping(value = "/top", method = RequestMethod.GET)
+    public ModelAndView top() {
+
+        ModelAndView mav = new ModelAndView("/etc/top");
+
+        mav.addObject("depts", boardService.topService());
 
         return mav;
     }
@@ -75,16 +89,6 @@ public class MainController {
     public String test() throws Exception{
 
         return "test/test";
-    }
-
-    @RequestMapping(value = "/top", method = RequestMethod.GET)
-    public ModelAndView top() {
-
-        ModelAndView mav = new ModelAndView("/etc/top");
-
-        mav.addObject("depts", boardService.topService());
-
-        return mav;
     }
 
     @RequestMapping(value = "/paging")

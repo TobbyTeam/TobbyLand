@@ -104,7 +104,7 @@ CREATE TABLE department (
 CREATE TABLE lecture (
   lecture_id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   member_id int(10) UNSIGNED DEFAULT NULL,
-  lecture_name varchar(45) DEFAULT NULL,
+  lecture_name varchar(70) DEFAULT NULL,
   dept int(2) UNSIGNED DEFAULT '1',
   prof varchar(45) DEFAULT NULL,
   likes int(10) UNSIGNED DEFAULT '0',
@@ -199,7 +199,7 @@ CREATE TABLE evaluation (
   method varchar(45) DEFAULT NULL,
   task varchar(45) DEFAULT NULL,
   exam varchar(45) DEFAULT NULL,
-  comment varchar(45) DEFAULT NULL,
+  comment text DEFAULT NULL,
   score int(10) UNSIGNED DEFAULT NULL,
   write_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   semester int(2) UNSIGNED DEFAULT NULL,

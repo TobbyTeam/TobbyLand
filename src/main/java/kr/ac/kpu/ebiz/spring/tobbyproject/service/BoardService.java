@@ -34,9 +34,17 @@ public interface BoardService {
 
     void searchService(Map search, int page, ModelAndView mav);
 
-    void mainService(ModelAndView mav);
+    ModelAndView mainService();
 
     List<Map> topService();
+
+    List<Map> siteService();
+
+    List<Map> kpuService();
+
+    List<Map> latestService();
+
+    List<Map> hotService();
 
 
 }

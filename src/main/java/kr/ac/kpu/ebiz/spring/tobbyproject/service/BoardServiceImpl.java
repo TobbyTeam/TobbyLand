@@ -29,6 +29,7 @@ public class BoardServiceImpl implements BoardService{
     Paging paging;
 
 
+    @Cacheable(cacheName = "listCache")
     public void listService(int department_id, int page, ModelAndView mav) {
 
         paging.setPageNo(page);
@@ -291,19 +292,48 @@ public class BoardServiceImpl implements BoardService{
         mav.addObject("boards", boardRepository.selectBoardSearch(search));
     }
 
-    public void mainService(ModelAndView mav) {
+    @Cacheable(cacheName = "mainCache")
+    public ModelAndView mainService() {
 
-        mav.addObject("sites",boardRepository.selectSiteNoticeAll());
-        mav.addObject("kpus",boardRepository.selectKpuNoticeAll());
-        mav.addObject("latests",boardRepository.selectLatestAll());
-        mav.addObject("hots",boardRepository.selectHotAll());
+        ModelAndView mav = new ModelAndView("/etc/main");
 
+/*        model.addAttribute("sites", boardRepository.selectSiteNoticeAll());
+        model.addAttribute("kpus", boardRepository.selectKpuNoticeAll());
+        model.addAttribute("latests", boardRepository.selectLatestAll());
+        model.addAttribute("hots", boardRepository.selectHotAll());*/
+
+        mav.addObject("sites", boardRepository.selectSiteNoticeAll());
+        mav.addObject("kpus", boardRepository.selectKpuNoticeAll());
+        mav.addObject("latests", boardRepository.selectLatestAll());
+        mav.addObject("hots", boardRepository.selectHotAll());
+
+        return mav;
     }
 
     @Cacheable(cacheName = "topCache")
     public List<Map> topService(){
 
         return departmentRepository.selectAll();
+    }
+
+    @Cacheable(cacheName = "siteCache")
+    public List<Map> siteService() {
+        return boardRepository.selectSiteNoticeAll();
+    }
+
+    @Cacheable(cacheName = "kpuCache")
+    public List<Map> kpuService() {
+        return boardRepository.selectKpuNoticeAll();
+    }
+
+    @Cacheable(cacheName = "latestCache")
+    public List<Map> latestService() {
+        return boardRepository.selectLatestAll();
+    }
+
+    @Cacheable(cacheName = "hotCache")
+    public List<Map> hotService() {
+        return boardRepository.selectHotAll();
     }
 
 }
