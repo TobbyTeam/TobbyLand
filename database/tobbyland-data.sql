@@ -2396,3 +2396,893 @@ VALUES (1,'일반생물학',13,'이준경',10);
 
 INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
 VALUES (1,'일반생물학',13,'신흥섭',10);
+
+
+
+--2학기
+
+--  기계공학과 data
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'공업수학2',1,'이진교',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'측정공학',1,'박문수',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'측정공학',1,'유택인',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'창의공학설계',1,'조언정',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'Introduction to Modern Physical Science',1,'이규용',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'기계제작실습',1,'김덕기',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'기계제작실습',1,'김덕기',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'기계재료학',1,'박철우',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'재료역학2',1,'이종길',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'열역학2',1,'한진호',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'유체역학1',1,'김경엽',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'2D CAD실용설계',1,'홍미경',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'2D CAD실용설계',1,'김찬우',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'기계진동학',1,'서진성',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'공학전산해석',1,'이강원',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'재료실험',1,'이진교',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'3D CAD응용설계',1,'심진형',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'열유체실험',1,'이응호',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'메카트로닉스',1,'윤원수',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'생산제조공학',1,'이종항',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'생산관리',1,'정찬우',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'공기조화',1,'박승철',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'CFD 응용',1,'이응호',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'열유체시스템설계',1,'김택영',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'TOPICS in　ME',1,'김주형',10);
+--  기계설계공학과 data
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'공업수학2',2,'장태익',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'EH전공(전산 공학해석 및 응용',2,'이택성',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'EH전공(전산 공학해석 및 응용',2,'이택성',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'기구학 및 해석',2,'이경원',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'정역학',2,'이택성',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'마이크로컨트롤러응용설계',2,'황달연',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'유체역학',2,'장태익',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'3D CAD(Solidworks)',2,'채호석',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'기계제작실습',2,'양해정',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'재료역학2',2,'이재학',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'재료역학2',2,'최원석',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'기계요소설계',2,'김욱배',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'플라스틱MOD설계',2,'최재훈',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'플라스틱MOD설계',2,'김욱배',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'창의적설계',2,'조용호',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'전자제품기구설계',2,'김광',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'전자제품기구설계',2,'이국환',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'기계진동학',2,'신형철',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'3D CAD(CATIA)',2,'채호석',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'최적설계',2,'강병훈',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'공차설계',2,'서정환',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'3D CAD(Pro E)',2,'김창식',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'품질과 표준',2,'정동호',10);
+--  메카트로닉스공학과 data
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'공업수학2',3,'박경원',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'공업수학2',3,'최종배',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'컴퓨터응용설계',3,'신문균',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'전기회로1',3,'황상연',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'전기회로1',3,'김경덕',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'전기회로2',3,'김영중',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'PLC제어',3,'남대훈',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'재료역학',3,'심재홍',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'디지털회로',3,'이양희',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'디지털회로실험',3,'허헌',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'디지털회로실험',3,'이양희',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'디지털회로실험',3,'남윤석',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'신호및시스템',3,'허헌',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'시스템제어공학',3,'정명진',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'시스템제어공학',3,'김기현',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'마이크로컴퓨터응용',3,'남윤석',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'C 프로그래밍2',3,'이석원',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'C 프로그래밍2',3,'한진현',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'계측공학',3,'임상성',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'기계요소설계',3,'이원봉',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'PC제어응용',3,'이경재',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'서보전동기2',3,'주형길',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'제어용통신',3,'차동혁',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'창의설계기법',3,'유진희',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'메카트로닉스시스템',3,'김기현',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'EH전공(로봇을 하용한 시스템설계 및 제어)',3,'황상연',10);
+--  전자공학전공 data
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'EH전공(디지털방송시스템)',4,'김응태',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'EH전공(센서활용)',4,'이응혁',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'객체지향언어',4,'최정훈',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'객체지향언어',4,'이재명',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'기초전자공학',4,'이종락',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'기초전자공학',4,'최성연',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'기초전자공학',4,'신수현',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'Introduction to Modern Electrical and Electronics Engineering',4,'김수민',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'확률및통계학',4,'김수민',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'확률및통계학',4,'전철항',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'확률및통계학',4,'이제호',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'선형대수학',4,'김승남',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'선형대수학',4,'이종락',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'전자기학',4,'남충모',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'통신이론',4,'이제호',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'통신이론',4,'한진수',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'통신이론',4,'류영권',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'통신이론',4,'이재명',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'통신이론',4,'최성연',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'회로이론2',4,'정계택',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'회로이론2',4,'박상규',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'회로이론2',4,'정두희',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'전자회로 및 실습2',4,'최웅세',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'전자회로 및 실습2',4,'박상규',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'디지털시스템및실습',4,'엄수홍',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'디지털시스템및실습',4,'윤완오',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'디지털시스템및실습',4,'김성용',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'Professional Practice Seminar',4,'이유진',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'디지털통신2',4,'김정곤',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'정보통신프로토콜설계',4,'김양중',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'정보통신프로토콜설계',4,'권선준',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'마이크로프로세서2',4,'김완중',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'마이크로프로세서2',4,'송창헌',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'System on Chip 설계실습',4,'최종성',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'System on Chip 설계실습',4,'윤호근',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'RF기초 및 회로설계',4,'정인호',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'영상신호처리',4,'김문철',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'영상신호처리',4,'김응태',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'DSP시스템및실습',4,'김수민',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'DSP시스템및실습',4,'김준수',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'차세대통신시스템',4,'김광훈',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'임베디드응용SW',4,'박진성',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'차세대디스플레이',4,'김문철',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'임베디드 응용프로그래밍',4,'김평수',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'임베디드 소프트웨어',4,'김수민',10);
+--  컴퓨터공학부 data
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'EH융합(공학적난제 해결방안 설계)',5,'전광일',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'EH융합(공학적난제 해결방안 설계',5,'전광일',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'창의적공학설계',5,'장창기',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'창의적공학설계',5,'이영남',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'창의적공학설계',5,'김명준',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'프로그래밍',5,'한익주',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'프로그래밍',5,'박정민',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'프로그래밍',5,'나보균',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'프로그래밍',5,'최종필',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'프로그래밍',5,'김명준',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'프로그래밍',5,'정의훈',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'Introduction to Modern Computer Science',5,'서대영',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'자료구조',5,'박정민',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'자료구조',5,'방영철',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'자료구조',5,'나보균',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'자료구조',5,'이상호',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'자료구조',5,'노영주',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'확률 및 통계학',5,'정성택',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'확률 및 통계학',5,'배유석',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'확률 및 통계학',5,'김경엽',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'확률 및 통계학',5,'최종필',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'웹 프로그래밍',5,'한경숙',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'웹 프로그래밍',5,'정의훈',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'웹 프로그래밍',5,'허훈식',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'컴퓨터구조',5,'김명준',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'컴퓨터구조',5,'오세춘',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'컴퓨터구조',5,'최진구',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'컴퓨터구조',5,'최종필',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'클라우드컴퓨팅',5,'이정준',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'클라우드컴퓨팅',5,'맹상영',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'데이터베이스',5,'이정준',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'데이터베이스',5,'이상호',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'데이터베이스',5,'김경엽',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'데이터베이스',5,'이창헌',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'정보보안개론',5,'조병철',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'알고리즘',5,'서대영',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'알고리즘',5,'방영철',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'알고리즘',5,'차봉상',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'고급프로그래밍',5,'공기석',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'고급프로그래밍',5,'나보균',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'고급프로그래밍',5,'전광일',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'윈도우프로그래밍',5,'허훈식',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'윈도우프로그래밍',5,'한웅진',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'자바',5,'공기석',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'자바',5,'노영주',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'자바',5,'한경숙',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'자바',5,'이상호',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'객체지향분석설계',5,'박정민',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'객체지향분석설계',5,'이영남',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'객체지향분석설계',5,'한익주',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'영상처리',5,'정성택',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'영상처리',5,'배유석',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'컴퓨터네트워크',5,'이보경',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'컴퓨터네트워크',5,'정의훈',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'컴퓨터네트워크',5,'김경엽',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'인공지능',5,'배유석',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'임베디드시스템',5,'공기석',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'임베디드시스템',5,'전광일',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'경영정보',5,'노영주',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'경영정보',5,'허훈식',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'트리즈기법',5,'이영남',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'트리즈기법',5,'이정준',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'네트워크보안',5,'이보경',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'임베디드시스템',5,'이창우',10);
+-- 게임공학부 data
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'전산학개론',6,'문혜경',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'창의적공학설계',6,'김경철',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'게임설계기초',6,'김태환',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'운영체제기초',6,'오황석',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'C프로그래밍',6,'임창주',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'C프로그래밍',6,'고병수',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'C++프로그래밍',6,'이형구',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'C++프로그래밍',6,'윤정현',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'JAVA프로그래밍',6,'김영식',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'그래픽저작도구',6,'이현기',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'이산수학',6,'이용희',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'운영체제',6,'오황석',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'운영체제',6,'문혜경',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'게임수학',6,'김영식',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'알고리즘',6,'이재영',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'알고리즘',6,'천일용',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'2D게임프로그래밍',6,'이대현',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'컴퓨터 그래픽스',6,'송인희',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'3D모델링2',6,'김현',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'융합게임설계및제작1',6,'손기훈',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'융합게임설계및제작1',6,'조성혜',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'게임소프트웨어공학',6,'김상일',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'게임소프트웨어공학',6,'박진호',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'게임기획',6,'손기훈',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'인공지능',6,'이형구',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'네트워크 게임 프로그래밍',6,'김재경',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'3D게임프로그래밍2',6,'이용희',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'데이터베이스',6,'장지웅',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'융합게임설계및제작2',6,'이용희',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'가상현실게임',6,'임창주',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'게임사운드',6,'배진택',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'게임설계2',6,'손기훈',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'게임엔진2',6,'이용희',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'모바일프로그래밍2',6,'김영식',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'3D애니메이션2',6,'김현',10);
+-- 신소재공학과 data
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'EH전공(금속제조공정모사)',7,'박현균',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'EH전공(리튬이온전지)',7,'강찬형',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'신소재공학개론2',7,'강찬형',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'신소재공학개론2',7,'이성의',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'창의적 공학설계',7,'신용균',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'창의적 공학설계',7,'이희철',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'재료열역학',7,'구명회',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'재료강도학',7,'김휘준',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'재료강도학',7,'박현균',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'반응속도공학 및 실습',7,'정용석',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'전자소자재료공학',7,'문제도',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'현대물리',7,'강찬형',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'현대물리',7,'박훈',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'재료조직분석',7,'정걸채',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'표면개질공학 및 실습',7,'정걸채',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'분말공정',7,'이희균',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'박막재료공학',7,'임실묵',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'반도체제조공정및실습',7,'최진성',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'디스플레이 제조공정',7,'고재준',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'디스플레이 제조공정',7,'이성의',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'전자세라믹스 및 실습',7,'최우석',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'X선회절론및실습',7,'조진기',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'마이크로나노시스템',7,'이희철',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'물리야금학',7,'김경민',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'에너지-환경재료',7,'임실묵',10);
+-- 생명화학공학과 data
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'공업수학2',8,'조영상',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'EH전공(진단 생화학)',8,'신흥섭',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'EH전공(기능성분말)',8,'조영상',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'창의적 공학설계',8,'송수석',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'Introduction to Modern Chemical Science & Biotechnology',8,'신흥섭',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'유기화학2',8,'정혜전',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'유기화학2',8,'한신호',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'분석화학',8,'서만철',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'분석화학',8,'신흥섭',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'분석화학실험',8,'서만철',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'무기화학',8,'류지헌',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'생화학실험',8,'신흥섭',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'열 및 물질전달',8,'조영상',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'열 및 물질전달',8,'박승준',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'반응공학',8,'최기섭',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'분자생물학',8,'이강문',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'생명화공수치해석',8,'박승준',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'환경공학',8,'길인섭',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'기능성 식품',8,'임재각',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'발효공학',8,'김정근',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'화공양론',8,'임재각',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'공업화학',8,'김승언',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'생명화학공학실습',8,'김승언',10);
+-- 디자인학부 data
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'CAD',9,'정동원',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'컴퓨터그래픽스1',9,'고영미',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'3D조형',9,'전진용',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'디자인방법론',9,'박희면',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'디자인재료및가공',9,'전명섭',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1, '응용제품디자인',9,'장영주',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'생활문화디자인',9,'김경수',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'생활문화디자인',9,'윤지원',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'디지털정보디자인 2',9,'강은정',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'디자인트렌드연구',9,'고영미',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'디자인트렌드연구',9,'전진용',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'유니버셜디자인',9,'신상영',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'제품시스템디자인',9,'장영주',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'제품시스템디자인',9,'구기설',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'디지털사진기법',9,'이원철',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'제품3D설계응용',9,'정동원',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'디자인매니지먼트',9,'박희면',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'인터페이스디자인',9,'권오재',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'디자인역학',9,'한민섭',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'3D그래픽스',9,'이진승',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'CAID',9,'정동원',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'구조드로잉',9,'전진용',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'디자인방법전략',9,'홍성수',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'인간공학디자인',9,'박노섭',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'응용제품디자인',9,'구기설',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'상세설계디자인',9,'한민섭',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'디자인융합공학',9,'윤상영',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'설계디자인실무',9,'한민섭',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'VR시뮬레이션',9,'백성실',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'3D정보디자인',9,'민경택',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'발상과 표현',9,'강아영',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'2D디지털디자인',9,'강은정',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'스케치실무',9,'박노섭',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'제품서비스디자인',9,'김억',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'UX디자인개론',9,'권오재',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'콘텐츠융합디자인',9,'강아영',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'응용제품디자인',9,'박노섭',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'IT융합디자인실무',9,'류제성',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'인터랙션디자인',9,'권오재',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'공공서비스디자인',9,'김억',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'제품3D설계응용',9,'손동섭',10);
+-- 경영학부 data
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'EH융합(스마트환경하의 창업과 기술경영/MOT)',10,'김용범',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'경영학원론',10,'김성수',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'경영통계학',10,'서종현',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'회계원리',10,'류석종',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'회계원리',10,'박성화',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'회계원리',10,'이광숙',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'경제학원론',10,'노성호',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'경제학원론',10,'김영록',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'프로그래밍응용',10,'이충석',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'프로그래밍응용',10,'김덕은',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'생성/운영관리',10,'정세현',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'생성/운영관리',10,'류옥현',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'인적자원관리',10,'백낙기',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'인적자원관리',10,'류석종',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'경영정보시스템',10,'정세현',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'경영정보시스템',10,'김성수',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'웹프로그래밍응용',10,'박주철',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'웹프로그래밍응용',10,'이영곤',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'데이터베이스운영',10,'공재근',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'인터넷마케팅',10,'이재광',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'서버운영관리',10,'강동현',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'TRIZ경영',10,'이경원',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'창업론',10,'고혁진',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'무역실무',10,'김용재',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'경영세미나',10,'이충석',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'비즈니스 커뮤니케이션',10,'황순귀',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'지식서비스디자인',10,'이영곤',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'비즈니스영어2',10,'이금희',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'무역학원론',10,'김용재',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'무역학원론',10,'이규현',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'마케팅조사론',10,'염난영',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'중급회계',10,'이광숙',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'품질관리실무',10,'서종현',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'제조프로세스',10,'류옥현',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'기술창업실무',10,'고혁진',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'국제마케팅',10,'김용재',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'중남미상관습',10,'김용재',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'경영전략론',10,'백낙기',10);
+-- 나노-광공학과 data
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'EH전공(첨단박막 기술개발)',11,'송용원',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'광학물리학',11,'박상배',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'C프로그래밍언어실습',11,'한진현',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'창의성공학설계',11,'김영일',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'수리물리',11,'김영일',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'파동광학',11,'이덕희',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'초정밀금형설계',11,'유경선',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'광전자회로실습',11,'안승언',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'나노열역학',11,'김경국',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'나노전자물성론',11,'이성남',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'재료물성학',11,'송용원',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'광학생산시스템공학',11,'현동훈',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'박막공학',11,'황상호',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'광계측실험',11,'서정철',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'나노반도체공학',11,'신종언',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'광전자공학',11,'신종언',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'제어계측공학',11,'김창규',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'광반도체실험',11,'장종진',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'창의적연구방법론',11,'유인규',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'창의적연구방법론',11,'송용원',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'연구과제수행법',11,'박병우',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'광학계측정평가',11,'현동훈',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'디스플레이공학',11,'안승언',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'조명광학계설계',11,'정미숙',10);
+-- 에너지·전기공학과 data
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'공업수학2',12,'이형용',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'공업수학2',12,'장정환',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'EH전공(전력에너지저감 기술 및 응용)',12,'이동건',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'EH전공(고효율 초전도 응용기술)',12,'홍계원',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'신재생에너지개론',12,'이동건',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'C프로그래밍',12,'장두원',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'C프로그래밍',12,'임관수',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'전기전자회로실습2',12,'송길호',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'회로이론2',12,'김우석',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'전자기학2',12,'최경달',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'신재생에너지실습2',12,'김철진',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'에너지전기재료1',12,'홍계원',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'마이크로프로세서',12,'김경덕',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'전력전자',12,'이경수',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'에너지변환실습',12,'박상호',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'전력계통',12,'김성수',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'제어공학2',12,'임계영',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'태양광시스템',12,'이경수',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'전력설비',12,'김우석',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'통신공학',12,'송길호',10);
+-- 지식융합학부 data
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'미적분학2',13,'강창헌',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'미적분학2',13,'김기택',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'미적분학2',13,'박혜형',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'미적분학2',13,'변희영',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'미적분학2',13,'심호진',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'미적분학2',13,'이영수',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'미적분학2',13,'이형용',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'미적분학2',13,'조영경',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'미적분학2',13,'최숙자',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'미적분학2',13,'한광희',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'일반물리학2',13,'강남화',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'일반물리학2',13,'김형식',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'일반물리학2',13,'송호식',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'일반물리학2',13,'신동훈',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'일반물리학2',13,'유순유',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'일반물리학2',13,'이규용',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'물리학실험2',13,'김남화',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'물리학실험2',13,'김형식',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'물리학실험2',13,'류영선',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'물리학실험2',13,'송호식',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'물리학실험2',13,'신동훈',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'물리학실험2',13,'용남식',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'물리학실험2',13,'유병수',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'물리학실험2',13,'유순유',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'물리학실험2',13,'정부성',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'영어2',13,'강문애',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'영어2',13,'김문숙',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'영어2',13,'김소연',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'영어2',13,'이수길',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'영어2',13,'이정현',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'영어2',13,'정에스더',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'영어2',13,'한현숙',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'고급영어2',13,'한현숙',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'고급영어2',13,'이수길',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'고급영어2',13,'김문숙',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'고급영어2',13,'강문애',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'대학영어2',13,'남지영',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'대학영어2',13,'류경호',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'대학영어2',13,'박우영',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'대학영어2',13,'정에스더',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'대학영어2',13,'지난영',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'대학영어2',13,'허숙',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'일반화학2',13,'박종현',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'일반화학2',13,'김호진',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'일반화학실험2',13,'김호진',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'경영수학2',13,'최숙자',10);
+INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
+VALUES (1,'경영수학2',13,'장정환',10);
