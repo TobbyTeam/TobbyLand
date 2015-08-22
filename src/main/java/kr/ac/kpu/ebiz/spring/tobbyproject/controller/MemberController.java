@@ -40,23 +40,13 @@ public class MemberController {
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
 
-
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
-	public String test(Member member) {
-
-		System.out.println("아이디 확인" + member.getUser_id());
-		System.out.println("닉네임 확인" + member.getNickname());
-
-		return "/etc/main";
-	}
-
 	@RequestMapping(value = "/regForm", method = RequestMethod.GET)
 	public ModelAndView regForm() {
 
 		ModelAndView mav = new ModelAndView("/member/register");
 
 		mav.addObject("tendencys", memberRepository.selectTendencyAll());
-		mav.addObject("questions", question.question());
+/*		mav.addObject("questions", question.question());*/
 
 		return mav;
 	}
@@ -94,7 +84,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/enabled", method = RequestMethod.GET)
-	public ModelAndView enabled(@RequestParam("enSt") String enSt, @ModelAttribute Member member, SessionStatus sessionStatus) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+	public ModelAndView enabled(@RequestParam("enSt") String enSt, @ModelAttribute("member") Member member, SessionStatus sessionStatus) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
 
 		ModelAndView mav = new ModelAndView("/member/enabled");
 

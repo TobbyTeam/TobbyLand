@@ -2,17 +2,39 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="<c:url value="/resources/js/member.js" />"></script>
+    <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/login.css" />">
+    <script src="<c:url value="${ctx}/resources/js/member.js" />"></script>
 
-    <title></title>
+    <title>토비랜드</title>
+
 </head>
 <body>
 
+<jsp:include page="/top" flush="true"/>
 
-패스워드:<input type="password" id="password" name="password"/><br>
-         <input type="button" id ="pw_btn" value="확인"/>&nbsp;&nbsp;&nbsp; <input type="reset" value="취소" onclick="history.back()"/>
+<div class="container">
+    <div class="row" id="pwd-container">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <section class="frame" id="id">
+                <form role="login">
+                    <input type="password" id="password" name="password" placeholder="Password" class="form-control input-lg">
+                    <button type="button" id="pw_btn" class="btn btn-lg btn-primary btn-block">확인</button>
+                    <button type="reset" onclick="history.back()" class="btn btn-lg btn-primary btn-block">취소</button>
+                </form>
+            </section>
+        </div>
+    </div>
+
+</div>
+
+<br />
+<jsp:include page="/bottom" flush="true"/>
 
 </body>
 </html>

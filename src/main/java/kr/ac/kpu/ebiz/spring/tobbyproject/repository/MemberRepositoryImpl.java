@@ -84,6 +84,14 @@ public class MemberRepositoryImpl extends SqlSessionDaoSupport implements Member
 		return getSqlSession().update("MemberRepository.updateMember", member) > 0;
 	}
 
+	public boolean updateEvaluationCount(int member_id) {
+		return getSqlSession().update("MemberRepository.updateEvaluationCount", member_id) > 0;
+	}
+
+	public boolean updateUnEvaluationCount(int member_id) {
+		return getSqlSession().update("MemberRepository.updateUnEvaluationCount", member_id) > 0;
+	}
+
 	public boolean updatePassword(Map member) {
 		return getSqlSession().update("MemberRepository.updatePassword", member) > 0;
 	}

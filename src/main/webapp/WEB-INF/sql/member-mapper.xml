@@ -32,7 +32,9 @@
   </select>
 
   <select id="selectMember" parameterType="int" resultType="map">
-    SELECT member_id, user_id, nickname, email, question, answer, method, task, exam, DATE_FORMAT(reg_date, '%Y.%m.%d %T') AS reg_date FROM MEMBER WHERE MEMBER_ID = #{member_id}
+    SELECT member_id, user_id, nickname, email, method, task, exam, DATE_FORMAT(reg_date, '%Y.%m.%d %T') AS reg_date, evaluation_count
+    FROM MEMBER
+    WHERE MEMBER_ID = #{member_id}
   </select>
 
   <select id="selectPassword" parameterType="int" resultType="String">
@@ -64,8 +66,8 @@
   <!--insert-->
 
   <insert id="insertMember" parameterType="map">
-    INSERT INTO MEMBER (user_id, password, nickname, email, question, answer, method, task, exam)
-    VALUES (#{user_id},#{password},#{nickname},#{email},#{question},#{answer},#{method},#{task},#{exam})
+    INSERT INTO MEMBER (user_id, password, nickname, email, method, task, exam)
+    VALUES (#{user_id},#{password},#{nickname},#{email},#{method},#{task},#{exam})
   </insert>
 
   <insert id="insertRole" parameterType="int">
@@ -95,6 +97,18 @@
     method = #{method},
     task = #{task},
     exam = #{exam}
+    WHERE MEMBER_ID = #{member_id}
+  </update>
+
+  <update id="updateEvaluationCount" parameterType="int">
+    UPDATE MEMBER
+    SET EVALUATION_COUNT = EVALUATION_COUNT + 1
+    WHERE MEMBER_ID = #{member_id}
+  </update>
+
+  <update id="updateUnEvaluationCount" parameterType="int">
+    UPDATE MEMBER
+    SET EVALUATION_COUNT = EVALUATION_COUNT - 1
     WHERE MEMBER_ID = #{member_id}
   </update>
 

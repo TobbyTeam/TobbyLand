@@ -36,7 +36,7 @@ public class MainController {
 
     }
 
-    @RequestMapping(value = "/top", method = RequestMethod.GET)
+    @RequestMapping(value = "/top", method = {RequestMethod.GET, RequestMethod.POST })
     public ModelAndView top() {
 
         ModelAndView mav = new ModelAndView("/etc/top");
@@ -44,6 +44,12 @@ public class MainController {
         mav.addObject("depts", boardService.topService());
 
         return mav;
+    }
+
+    @RequestMapping(value = "/bottom", method = {RequestMethod.GET, RequestMethod.POST })
+    public String bottom() {
+
+        return "/etc/bottom";
     }
 
     @RequestMapping(value = "/admin**", method = RequestMethod.GET)
@@ -82,6 +88,19 @@ public class MainController {
 
         model.setViewName("etc/403");
         return model;
+
+    }
+
+    @RequestMapping(value = "/500", method = RequestMethod.GET)
+    public ModelAndView enabledError() {
+
+        ModelAndView mav = new ModelAndView();
+
+        mav.setViewName("etc/500");
+
+        mav.addObject("message", "잘못된 접근입니다.");
+
+        return mav;
 
     }
 

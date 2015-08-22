@@ -115,7 +115,7 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         boolean result = false;
 
-        if(evaluationRepository.insertEvaluation(evaluation)){
+        if(evaluationRepository.insertEvaluation(evaluation)&&memberRepository.updateEvaluationCount(member_id)){
             result = true;
         }
 
@@ -259,9 +259,12 @@ public class EvaluationServiceImpl implements EvaluationService {
 
     public boolean isDeleteService(int evaluation_id) {
 
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        int member_id = user.getMember_id();
+
         boolean data = false;
 
-        if(evaluationRepository.updateIsDelete(evaluation_id)){
+        if(evaluationRepository.updateIsDelete(evaluation_id)&&memberRepository.updateUnEvaluationCount(member_id)){
             data = true;
         }
 

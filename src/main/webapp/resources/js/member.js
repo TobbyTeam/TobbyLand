@@ -71,22 +71,39 @@ function updateInfoConfirm() {
 
 $(document).ready(function() {
 
+	$("#loginbtn").click(function(){
+		if($("#loginid").val() == ""){
+			alert("로그인 아이디를 입력해주세요");
+			$("#loginid").focus();
+		}else if($("#loginpwd").val() == ""){
+			alert("로그인 비밀번호를 입력해주세요");
+			$("#loginpwd").focus();
+		}else{
+/*			$("#loginfrm").attr("action", "<c:url value='${ctx}/j_spring_security_check' />");*/
+			$("#loginfrm").submit();
+		}
+	});
+
 	$("#pw_btn").click(function () {
-		$.ajax({
-			type: "POST",
-			url: "/member/pwCheck",
-			dataType: "json",
-			data: {password: $("#password").val()},
-			success: function (result) {
+		if($("#password").val() == "") {
+			alert("비밀번호를 입력해주세요");
+		}else{
+			$.ajax({
+				type: "POST",
+				url: "/member/pwCheck",
+				dataType: "json",
+				data: {password: $("#password").val()},
+				success: function (result) {
 
-				if (result) {
-					window.open("/member/modView", "_self");
-				} else {
-					alert("비밀번호가 틀립니다");
+					if (result) {
+						window.open("/member/modView", "_self");
+					} else {
+						alert("비밀번호가 틀립니다");
+					}
+
 				}
-
-			}
-		})
+			})
+		}
 	})
 
 	$("#withdrawal").click(function () {

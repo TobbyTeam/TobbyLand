@@ -47,6 +47,10 @@ public interface MemberRepository {
 
 	boolean updateMember(Map member);
 
+	boolean updateEvaluationCount(int member_id);
+
+	boolean updateUnEvaluationCount(int member_id);
+
 	boolean updatePassword(Map member);
 
 	boolean updateLocked(int member_id);

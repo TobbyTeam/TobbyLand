@@ -144,10 +144,12 @@ public class BoardController {
 
 		MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		int member_id = user.getMember_id();
+		String writer = user.getNickname();
 
 		Map board = new HashMap();
 		board.put("department_id", department_id);
 		board.put("member_id", member_id);
+		board.put("writer", writer);
 
 		for(int i=1; i<301; i++){
 

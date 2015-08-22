@@ -24,7 +24,7 @@
   </select>
 
   <select id="selectEvaluationCount" parameterType="map" resultType="int">
-    SELECT Count(evaluation_id) FROM EVALUATION WHERE MEMBER_ID = #{member_id} AND LECTURE_ID = #{lecture_id}
+    SELECT Count(evaluation_id) FROM EVALUATION WHERE MEMBER_ID = #{member_id} AND LECTURE_ID = #{lecture_id} AND IS_DELETE = 0
   </select>
 
   <select id="selectMember_id" parameterType="int" resultType="int">

@@ -53,8 +53,8 @@ VALUES ('ROLE_MANAGER', '관리자');
 -- member table data
 --
 
-INSERT INTO MEMBER (user_id, password, nickname, email, answer, method, task, exam, enabled)
-VALUES ('admin','$2a$10$sp5fhJ6mjqapitptq.mzxehukY.2.6WLsZ1M4fpGgtr9L/8oI7vwe','운영자','babsang24@hanmail.net','보라',1,4,7,1);
+INSERT INTO MEMBER (user_id, password, nickname, email, method, task, exam, enabled)
+VALUES ('admin','$2a$10$sp5fhJ6mjqapitptq.mzxehukY.2.6WLsZ1M4fpGgtr9L/8oI7vwe','운영자','babsang24@hanmail.net',1,4,7,1);
 
 
 --
