@@ -130,7 +130,7 @@ $(document).ready(function() {
 
 	})
 
-	$("#research_btn").click(function () {
+/*	$("#research_btn").click(function () {
 		if($("#email").val() == ""){
 			alert("이메일주소를 입력해주세요");
 		}else{
@@ -153,6 +153,6 @@ $(document).ready(function() {
 			}
 		})
 		}
-	})
+	})*/
 
 })

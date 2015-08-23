@@ -10,7 +10,8 @@
 
     <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/memberregister.css" />">
 
-    <script src="<c:url value="/resources/js/member.js" />"></script>
+    <script src="<c:url value="${ctx}/resources/js/jquery.validate.min.js" />"></script>
+    <script src="<c:url value="${ctx}/resources/js/member_validate.js" />"></script>
 
     <title>토비랜드</title>
 </head>
@@ -29,7 +30,7 @@
             <br />
             <h5>회원가입시 입력한 KPU 메일 주소를 입력해주세요.</h5>
             <hr />
-            <form class="form-horizontal">
+            <form id=search_frm class="form-horizontal">
                 <div class="form-group">
                     <label class="col-sm-3 control-label">
                         KPU 메일 주소
@@ -40,7 +41,7 @@
                 </div>
                 <div class="form-group">
                     <div align="center">
-                        <button type="button" id ="research_btn" class="btn btn-primary">찾기</button>
+                        <button type="button" onclick="$(this.form).submit()" class="btn btn-primary">찾기</button>
                         <button type="reset" onclick="history.back()" class="btn btn-default">취소</button>
                     </div>
                 </div>

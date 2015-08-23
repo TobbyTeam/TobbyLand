@@ -109,6 +109,8 @@ public class LectureServiceImpl implements LectureService{
 
         String searchWord = (String) search.get("searchWord");
 
+        System.out.println(search.toString()+"+++++++검색 확인");
+
         List<Map> result = lectureRepository.selectLectureSearch(search);
         mav.addObject("lectures", result);
         mav.addObject("message", searchWord+"(으)로 검색한 결과");

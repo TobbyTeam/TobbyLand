@@ -168,6 +168,7 @@ $(document).ready(function() {
 			 validator.errorList[0].element.focus();
 			 }*/
 		}, submitHandler: function (form) {
+			alert("처리 중입니다. 시간이 조금 걸리니 잠시만 기다려주세요.");
 			$.ajax({
 				type: "POST",
 				url: "/member/reg",
@@ -305,6 +306,42 @@ $(document).ready(function() {
 					} else {
 						alert("죄송합니다 다시 시도해주세요.")
 					}
+				}
+			});
+		}
+	})
+
+	$("#search_frm").validate({
+		onfocusout: false,
+		rules: {
+			email: {
+				required: true,
+				email: true,
+				kpumail: true
+			}
+		}, messages: {
+			email: {
+				required: "이메일을 입력하세요",
+				email: "올바른 이메일 주소가 아닙니다.",
+				kpumail: "kpu메일을 입력해주세요.(kpu@ac.kr)"
+			}
+		}, submitHandler: function (form) {
+			alert("처리 중입니다. 시간이 조금 걸리니 잠시만 기다려주세요.");
+			$.ajax({
+				type: "POST",
+				url: "/member/search",
+				dataType: "json",
+				data: {email: $("#email").val()},
+				success: function (result) {
+					if (result === 1 ) {
+						alert("메일이 전송 되었습니다. 확인해주세요.");
+						window.open("/member/searchOk", "_self");
+					} else if (result === 0){
+						alert("등록되지 않은 메일입니다.");
+					} else {
+						alert("1일 메일요청 횟수 5회를 초과하셨습니다.");
+					}
+
 				}
 			});
 		}
