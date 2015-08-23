@@ -5,38 +5,75 @@
 <html>
 <head>
 
-  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-  <script src="<c:url value="/resources/js/jquery.validate.min.js" />"></script>
-  <script src="<c:url value="/resources/js/lecture_validate.js" />"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/boardregister.css" />">
+
+  <script src="<c:url value="${ctx}/resources/js/jquery.validate.min.js" />"></script>
+  <script src="<c:url value="${ctx}/resources/js/lecture_validate.js" />"></script>
+  <script src="<c:url value="${ctx}/resources/js/evaluation.js" />"></script>
+
 
   <title></title>
+
 </head>
+
 <body>
 
 <jsp:include page="/top" flush="true"/>
 
-<br /><br />
-
 <jsp:include page="/lecture/search_form" flush="true"/>
 
-<br /><br />
+<jsp:include page="/evaluation/lecture?lecture_id=${board.lecture_id}" flush="true"/>
 
-  <form id="mod_board_frm" name="mod_board_frm" method="post">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-9">
+      <form id="mod_board_frm" name="mod_board_frm" method="post" class="form-horizontal" role="form">
+        <div class="form-group">
+          <label class="col-sm-2 control-label">
+            제목
+          </label>
+          <div class="col-sm-10">
+            <input type="text" id="title" name="title" value="${board.title}" class="form-control" />
+          </div>
+        </div>
+        <br />
 
-    제목:
-    <input type="text" id="title" name="title" value="${board.title} "/><br/>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">
+            내용
+          </label>
+          <div class="col-sm-10">
+            <textarea name="contents" rows="20" placeholder="내용을 입력해주세요" class="form-control">${board.contents}</textarea>
+          </div>
+        </div>
 
-    내용:<br/>
-    <textarea name="contents" rows="20" cols="40" wrap="hard">${board.contents}</textarea><br/>
+        <div class="form-group">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-10" align="right">
+            <button type="button" onclick="$(this.form).submit()" class="btn btn-primary">수정</button>
+            <button type="reset" onclick="history.back()" class="btn btn-default">취소 </button>
+          </div>
+        </div>
 
-    <input type="hidden" id="lb_id" name="lb_id" value="${board.lb_id}" />
+        <input type="hidden" id="lb_id" name="lb_id" value="${board.lb_id}" />
 
-    <input type="button" value="수정" onclick="$(this.form).submit()"/>&nbsp;&nbsp;&nbsp;
-    <input type="reset" value="취소" onclick="history.back()"/>
-  </form>
+      </form>
+    </div>
+    <div class="col-md-2">
+    </div>
+  </div>
+</div>
 
 <input type="hidden" id="lecture_id" value="${board.lecture_id}"/>
 
+<jsp:include page="/bottom" flush="true"/>
 
 </body>
 </html>

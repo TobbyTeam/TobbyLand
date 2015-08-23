@@ -55,7 +55,7 @@
                     </a>
                 </td>
                 <td width="90%"></td>
-                <td><button type="button" onclick="evalRegAjax()" class="btn btn-primary">평가작성</button></td>
+                <td><button type="button" onclick="evalRegAjax(${lecture.lecture_id})" class="btn btn-primary">평가작성</button></td>
             <tr>
         </table>
     </div>

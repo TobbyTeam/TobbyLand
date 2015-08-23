@@ -1,6 +1,6 @@
 var lecture_id = $("#lecture_id").val();
 
-function evalRegAjax() {
+function evalRegAjax(lecture_id) {
 	$.ajax({
 		type: "POST",
 		url: "/evaluation/regChech",

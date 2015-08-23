@@ -157,7 +157,7 @@ public class LectureController {
 		return lectureService.boardRegService(lectureBoard);
 	}
 
-	@RequestMapping(value = "/boardView/{lecture_id}/", method = RequestMethod.GET)
+	@RequestMapping(value = "/boardView/{lecture_id}/", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView boardView(@PathVariable int lecture_id, @RequestParam("lb_id") int lb_id, @RequestParam(value="page", required = false, defaultValue="1") int page,
 								  @RequestParam(value="searchType", required = false, defaultValue="") String searchType,
 								  @RequestParam(value="searchWord", required = false, defaultValue="") String searchWord) {
