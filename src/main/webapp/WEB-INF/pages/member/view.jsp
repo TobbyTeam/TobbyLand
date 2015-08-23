@@ -15,7 +15,7 @@
     <title>토비랜드</title>
 
 </head>
-<body>
+<body>차
 
 <jsp:include page="/top" flush="true"/>
 
@@ -26,9 +26,9 @@
         <div class="col-md-8 rgframe">
             <br /><div class="form-group">
             <div align="right">
-                <a href="/member/pwConfirm"><button type="button" class="btn btn-default littlebtn" >정보변경</button></a>
-                <a href="/member/pwChange"><button type="button" class="btn btn-default littlebtn" >비밀번호변경</button></a>
-                <a id="withdrawal" href=""><button type="button" class="btn btn-danger littlebtn" >회원탈퇴</button></a>
+                <button type="button" onclick="location.href='/member/pwConfirm'" class="btn btn-default littlebtn" >정보변경</button>
+                <button type="button" onclick="location.href='/member/pwChange'" class="btn btn-default littlebtn" >비밀번호변경</button>
+                <button type="button" id="withdrawal" class="btn btn-danger littlebtn" >회원탈퇴</button>
             </div>
         </div>
             <h3>회원정보</h3>

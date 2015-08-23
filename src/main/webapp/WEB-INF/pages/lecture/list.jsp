@@ -55,7 +55,7 @@
 				</tbody>
 			</table>
 			<div class="col-lg-0">
-				<a href="/lecture/regForm"><button class="btn btn-primary">강의생성</button></a>
+				<button type="button" onclick="location.href='/lecture/regForm'" class="btn btn-primary">강의생성</button>
 			</div>
 			<br />
 		</div>

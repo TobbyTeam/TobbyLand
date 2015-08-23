@@ -32,7 +32,7 @@
 			<br />
 			<div align="center">
 				<button type="button" onclick="history.back()"  class="btn btn-default">이전 페이지</button>
-				<a href="/main"><button type="submit" class="btn btn-default">메인 페이지</button></a>
+				<button type="submit" onclick="location.href='/main'" class="btn btn-default">메인 페이지</button>
 			</div>
 			<br />
 		</div>

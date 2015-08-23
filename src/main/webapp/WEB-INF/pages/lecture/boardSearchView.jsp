@@ -160,8 +160,8 @@
         </tbody>
       </table>
       <div class="col-lg-0">
-        <a href="/lecture/boardList/${lecture_id}/"><button class="btn btn-default">전체목록</button></a>
-        <a href="/lecture/boardRegForm?lecture_id=${lecture_id}"><button class="btn btn-primary">글작성</button></a>
+        <button type="button" onclick="location.href='/lecture/boardList/${lecture_id}/'" class="btn btn-default">전체목록</button>
+		<button type="button" onclick="location.href='/lecture/boardRegForm?lecture_id=${lecture_id}'" class="btn btn-primary">글작성</button>
         <a href="/lecture/boardRegTest?lecture_id=${lecture_id}">테스트</a>
       </div>
       <br />

@@ -92,8 +92,6 @@
     UPDATE MEMBER
     SET
     nickname = #{nickname},
-    question = #{question},
-    answer = #{answer},
     method = #{method},
     task = #{task},
     exam = #{exam}

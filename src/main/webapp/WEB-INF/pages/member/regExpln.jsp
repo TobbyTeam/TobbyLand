@@ -66,7 +66,7 @@
                 </div>
                 <div class="form-group">
                     <div align="center">
-                        <a href="/member/regForm"><button type="button" class="btn btn-primary">다음</button></a>
+                        <button type="button" onclick="location.href='/member/regForm'" class="btn btn-primary">다음</button>
                         <button type="submit" onclick="history.back()" class="btn btn-default">취소</button>
                     </div>
                 </div>

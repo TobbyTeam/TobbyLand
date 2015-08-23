@@ -13,8 +13,9 @@
 
     <http auto-config="false" use-expressions="true">
 <!--        <intercept-url pattern="/" access="permitAll" />
-        <intercept-url pattern="/login" access="isAnonymous()" />
         <intercept-url pattern="/main" access="permitAll" />
+        <intercept-url pattern="" access="permitAll" />
+        <intercept-url pattern="/login" access="isAnonymous()" />
         <intercept-url pattern="/member/view" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/member/pwConfirm" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/member/modView" access="hasRole('ROLE_USER')" />

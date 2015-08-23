@@ -45,14 +45,10 @@
         <table class="table">
             <tr>
                 <td>
-                    <a href="/evaluation/list?lecture_id=${lecture.lecture_id}">
-                        <button type="button" class="btn btn-default littlebtn">강의평가</button>
-                    </a>
+                    <button type="button" onclick="location.href='/evaluation/list?lecture_id=${lecture.lecture_id}'" class="btn btn-default littlebtn">강의평가</button>
                 </td>
                 <td>
-                    <a href="/lecture/boardList/${lecture.lecture_id}/">
-                        <button type="button" class="btn btn-default littlebtn">강의게시판</button>
-                    </a>
+                    <button type="button" onclick="location.href='/lecture/boardList/${lecture.lecture_id}/'" class="btn btn-default littlebtn">강의게시판</button>
                 </td>
                 <td width="90%"></td>
                 <td><button type="button" onclick="evalRegAjax(${lecture.lecture_id})" class="btn btn-primary">평가작성</button></td>
