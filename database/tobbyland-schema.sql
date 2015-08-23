@@ -7,8 +7,8 @@ USE tobbyland;
 --
 
 CREATE TABLE tendency (
-  tendency_id int(2) UNSIGNED NOT NULL AUTO_INCREMENT,
-  tendency_title varchar(45) DEFAULT NULL,
+  tendency_id tinyint(2) UNSIGNED NOT NULL AUTO_INCREMENT,
+  tendency_title varchar(10) DEFAULT NULL,
   PRIMARY KEY (tendency_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -18,21 +18,21 @@ CREATE TABLE tendency (
 --
 
 CREATE TABLE member (
-  member_id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  user_id varchar(45) NOT NULL,
+  member_id int(5) UNSIGNED NOT NULL AUTO_INCREMENT,
+  user_id varchar(20) NOT NULL,
   password varchar(100) DEFAULT NULL,
-  nickname varchar(45) DEFAULT NULL,
-  email varchar(45) DEFAULT NULL,
+  nickname varchar(20) DEFAULT NULL,
+  email varchar(22) DEFAULT NULL,
 /*  question int(2) UNSIGNED DEFAULT '1',
   answer varchar(10) DEFAULT NULL,*/
   reg_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  method int(2) UNSIGNED DEFAULT '1',
-  task int(2) UNSIGNED DEFAULT '4',
-  exam int(2) UNSIGNED DEFAULT '7',
-  enabled tinyint(4) UNSIGNED DEFAULT '1',
-  nonLocked tinyint(4) UNSIGNED DEFAULT '1',
-  evaluation_count int(4) UNSIGNED DEFAULT '0',
-  search int(3) UNSIGNED DEFAULT '0',
+  method tinyint(2) UNSIGNED DEFAULT '1',
+  task tinyint(2) UNSIGNED DEFAULT '4',
+  exam tinyint(2) UNSIGNED DEFAULT '7',
+  enabled tinyint(1) UNSIGNED DEFAULT '1',
+  nonLocked tinyint(1) UNSIGNED DEFAULT '1',
+  evaluation_count smallint(4) UNSIGNED DEFAULT '0',
+  search tinyint(1) UNSIGNED DEFAULT '0',
   PRIMARY KEY (member_id),
   KEY FK_member_method (method),
   KEY FK_member_task (task),
@@ -48,8 +48,8 @@ CREATE TABLE member (
 --
 
 CREATE TABLE role (
-  role varchar(45) NOT NULL,
-  role_name varchar(45) NOT NULL,
+  role varchar(15) NOT NULL,
+  role_name varchar(10) NOT NULL,
   PRIMARY KEY (role)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -59,9 +59,9 @@ CREATE TABLE role (
 --
 
 CREATE TABLE member_role (
-  member_role_id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  member_id int(10) UNSIGNED NOT NULL,
-  role varchar(45) DEFAULT 'ROLE_USER',
+  member_role_id int(5) UNSIGNED NOT NULL AUTO_INCREMENT,
+  member_id int(5) UNSIGNED NOT NULL,
+  role varchar(15) DEFAULT 'ROLE_USER',
   PRIMARY KEY (member_role_id),
   UNIQUE KEY uni_member_id_role (ROLE,member_id),
   KEY fk_member_id (member_id),
@@ -76,8 +76,8 @@ CREATE TABLE member_role (
 --
 
 CREATE TABLE member_search (
-  member_search_id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  member_id int(10) UNSIGNED NOT NULL,
+  member_search_id int(6) UNSIGNED NOT NULL AUTO_INCREMENT,
+  member_id int(5) UNSIGNED NOT NULL,
   ip int(10) UNSIGNED NOT NULL DEFAULT '0',
   search_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (member_search_id),
@@ -91,9 +91,9 @@ CREATE TABLE member_search (
 --
 
 CREATE TABLE department (
-  department_id int(2) UNSIGNED NOT NULL AUTO_INCREMENT,
-  department_name varchar(45) DEFAULT NULL,
-  kind varchar(45) DEFAULT NULL,
+  department_id tinyint(2) UNSIGNED NOT NULL AUTO_INCREMENT,
+  department_name varchar(15) DEFAULT NULL,
+  kind varchar(10) DEFAULT NULL,
   PRIMARY KEY (department_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -103,14 +103,14 @@ CREATE TABLE department (
 --
 
 CREATE TABLE lecture (
-  lecture_id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  member_id int(10) UNSIGNED DEFAULT NULL,
-  lecture_name varchar(70) DEFAULT NULL,
-  dept int(2) UNSIGNED DEFAULT '1',
-  prof varchar(45) DEFAULT NULL,
-  likes int(10) UNSIGNED DEFAULT '0',
-  write_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  is_delete tinyint(4) UNSIGNED DEFAULT '0',
+  lecture_id smallint(4) UNSIGNED NOT NULL AUTO_INCREMENT,
+  member_id int(5) UNSIGNED DEFAULT NULL,
+  lecture_name varchar(100) DEFAULT NULL,
+  dept tinyint(2) UNSIGNED DEFAULT '1',
+  prof varchar(20) DEFAULT NULL,
+  likes tinyint(2) UNSIGNED DEFAULT '0',
+  write_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP /*ON UPDATE CURRENT_TIMESTAMP*/,
+  is_delete tinyint(1) UNSIGNED DEFAULT '0',
   PRIMARY KEY (lecture_id),
   KEY FK_lecture_member (member_id),
   KEY FK_lecture_department (dept),
@@ -124,9 +124,9 @@ CREATE TABLE lecture (
 --
 
 CREATE TABLE lecture_sub (
-  ls_id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  lecture_id int(10) UNSIGNED DEFAULT NULL,
-  member_id int(10) UNSIGNED DEFAULT NULL,
+  ls_id smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,
+  lecture_id smallint(4) UNSIGNED DEFAULT NULL,
+  member_id int(5) UNSIGNED DEFAULT NULL,
   PRIMARY KEY (ls_id),
   KEY FK_lecturesub_lecture (lecture_id),
   KEY FK_lecturesub_member (member_id),
@@ -141,17 +141,17 @@ CREATE TABLE lecture_sub (
 
 CREATE TABLE lecture_board (
   lb_id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  lecture_id int(10) UNSIGNED DEFAULT NULL,
-  member_id int(10) UNSIGNED DEFAULT NULL,
-  rnum int(10) UNSIGNED DEFAULT NULL,
-  title varchar(45) DEFAULT NULL,
+  lecture_id smallint(4) UNSIGNED DEFAULT NULL,
+  member_id int(5) UNSIGNED DEFAULT NULL,
+  rnum smallint(5) UNSIGNED DEFAULT NULL,
+  title varchar(100) DEFAULT NULL,
   contents text DEFAULT NULL,
-  hit int(10) UNSIGNED DEFAULT '0',
-  report int(10) UNSIGNED DEFAULT '0',
+  hit smallint(5) UNSIGNED DEFAULT '0',
+  report smallint(4) UNSIGNED DEFAULT '0',
   write_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  is_delete tinyint(4) UNSIGNED DEFAULT '0',
-  is_reply tinyint(4) UNSIGNED DEFAULT '0',
-  upper_id int(10) UNSIGNED DEFAULT NULL,
+  is_delete tinyint(1) UNSIGNED DEFAULT '0',
+  is_reply tinyint(1) UNSIGNED DEFAULT '0',
+  upper_id int(6) UNSIGNED DEFAULT NULL,
   PRIMARY KEY (lb_id),
   KEY FK_lecture_board_lecture (lecture_id),
   KEY FK_lecture_board_member (member_id),
@@ -169,7 +169,7 @@ CREATE TABLE lecture_board (
 CREATE TABLE lecture_board_sub (
   lbs_id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   lb_id int(10) UNSIGNED DEFAULT NULL,
-  member_id int(10) UNSIGNED DEFAULT NULL,
+  member_id int(5) UNSIGNED DEFAULT NULL,
   PRIMARY KEY (lbs_id),
   KEY FK_lecture_board_sub_lecture_board (lb_id),
   KEY FK_lecture_board_sub_member (member_id),
@@ -183,8 +183,8 @@ CREATE TABLE lecture_board_sub (
 --
 
 CREATE TABLE semester (
-  semester_id int(2) UNSIGNED NOT NULL AUTO_INCREMENT,
-  semester_title varchar(45) DEFAULT NULL,
+  semester_id tinyint(2) UNSIGNED NOT NULL AUTO_INCREMENT,
+  semester_title varchar(6) DEFAULT NULL,
   PRIMARY KEY (semester_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -195,24 +195,24 @@ CREATE TABLE semester (
 
 CREATE TABLE evaluation (
   evaluation_id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  lecture_id int(10) UNSIGNED DEFAULT NULL,
-  member_id int(10) UNSIGNED DEFAULT NULL,
-  method varchar(45) DEFAULT NULL,
-  task varchar(45) DEFAULT NULL,
-  exam varchar(45) DEFAULT NULL,
+  lecture_id smallint(4) UNSIGNED DEFAULT NULL,
+  member_id int(5) UNSIGNED DEFAULT NULL,
+  method varchar(150) DEFAULT NULL,
+  task varchar(150) DEFAULT NULL,
+  exam varchar(150) DEFAULT NULL,
   comment text DEFAULT NULL,
-  score int(10) UNSIGNED DEFAULT NULL,
+  score tinyint(2) UNSIGNED DEFAULT NULL,
   write_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  semester int(2) UNSIGNED DEFAULT '1',
-  member_method int(2) UNSIGNED DEFAULT '0',
-  member_task int(2) UNSIGNED DEFAULT '0',
-  member_exam int(2) UNSIGNED DEFAULT '0',
-  is_delete tinyint(4) UNSIGNED DEFAULT '0',
-  is_reply tinyint(4) UNSIGNED DEFAULT '0',
+  semester tinyint(2) UNSIGNED DEFAULT '1',
+  member_method tinyint(2) UNSIGNED DEFAULT '0',
+  member_task tinyint(2) UNSIGNED DEFAULT '0',
+  member_exam tinyint(2) UNSIGNED DEFAULT '0',
+  is_delete tinyint(1) UNSIGNED DEFAULT '0',
+  is_reply tinyint(1) UNSIGNED DEFAULT '0',
   upper_id int(10) UNSIGNED DEFAULT NULL,
-  likes int(10) UNSIGNED DEFAULT '0',
-  dislike int(10) UNSIGNED DEFAULT '0',
-  report int(10) UNSIGNED DEFAULT '0',
+  likes smallint(4) UNSIGNED DEFAULT '0',
+  dislike smallint(4) UNSIGNED DEFAULT '0',
+  report smallint(4) UNSIGNED DEFAULT '0',
   PRIMARY KEY (evaluation_id),
 /*  UNIQUE KEY uni_lecture_id_member_id (lecture_id,member_id),*/
   KEY FK_evaluation_lecture (lecture_id),
@@ -232,8 +232,8 @@ CREATE TABLE evaluation (
 CREATE TABLE evaluationsub (
   es_id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   evaluation_id int(10) UNSIGNED DEFAULT NULL,
-  member_id int(10) UNSIGNED DEFAULT NULL,
-  kind int(10) UNSIGNED DEFAULT '0',
+  member_id int(5) UNSIGNED DEFAULT NULL,
+  kind tinyint(1) UNSIGNED DEFAULT '0',
   PRIMARY KEY (es_id),
 /*  UNIQUE KEY uni_evaluation_id_member_id (evaluation_id,member_id),*/
   KEY FK_evaluationsub_evaluation (evaluation_id),
@@ -249,20 +249,20 @@ CREATE TABLE evaluationsub (
 
 CREATE TABLE board (
   board_id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  department_id int(10) UNSIGNED DEFAULT NULL,
-  member_id int(10) UNSIGNED DEFAULT NULL,
-  writer varchar(45) DEFAULT NULL,
-  rnum int(10) UNSIGNED DEFAULT NULL,
-  title varchar(45) DEFAULT NULL,
+  department_id tinyint(2) UNSIGNED DEFAULT NULL,
+  member_id int(5) UNSIGNED DEFAULT NULL,
+  writer varchar(20) DEFAULT NULL,
+  rnum smallint(5) UNSIGNED DEFAULT NULL,
+  title varchar(100) DEFAULT NULL,
   contents text DEFAULT NULL,
-  hit int(10) UNSIGNED DEFAULT '0',
-  likes int(10) UNSIGNED DEFAULT '0',
-  dislike int(10) UNSIGNED DEFAULT '0',
-  report int(10) UNSIGNED DEFAULT '0',
+  hit smallint(5) UNSIGNED DEFAULT '0',
+  likes smallint(4) UNSIGNED DEFAULT '0',
+  dislike smallint(4) UNSIGNED DEFAULT '0',
+  report smallint(4) UNSIGNED DEFAULT '0',
   write_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   is_anonymity tinyint(4) UNSIGNED DEFAULT '0',
-  is_delete tinyint(4) UNSIGNED DEFAULT '0',
-  is_reply tinyint(4) UNSIGNED DEFAULT '0',
+  is_delete tinyint(1) UNSIGNED DEFAULT '0',
+  is_reply tinyint(1) UNSIGNED DEFAULT '0',
   upper_id int(10) UNSIGNED DEFAULT NULL,
   PRIMARY KEY (board_id),
   KEY FK_board_department (department_id),
@@ -281,8 +281,8 @@ CREATE TABLE board (
 CREATE TABLE board_sub (
   bs_id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   board_id int(10) UNSIGNED DEFAULT NULL,
-  member_id int(10) UNSIGNED DEFAULT NULL,
-  kind int(10) UNSIGNED DEFAULT '0',
+  member_id int(5) UNSIGNED DEFAULT NULL,
+  kind tinyint(1) UNSIGNED DEFAULT '0',
   PRIMARY KEY (bs_id),
   KEY FK_board_sub_board (board_id),
   KEY FK_board_sub_member (member_id),

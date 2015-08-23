@@ -80,7 +80,7 @@ $(document).ready(function() {
 	});
 
 	$.validator.addMethod("mix", function (value, element) {
-		return this.optional(element) || /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/.test(value);
+		return this.optional(element) || /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{7,20}$/.test(value);
 	});
 
 	$.validator.addMethod("space", function (value, element) {
@@ -92,7 +92,7 @@ $(document).ready(function() {
 		rules: {
 			user_id: {
 				required: true,
-				rangelength: [5, 12],
+				rangelength: [5, 20],
 				alphanumeric: true,
 				remote: {
 					type: "post", url: "/member/idCheck", data: {
@@ -104,7 +104,7 @@ $(document).ready(function() {
 			}, password: {
 				required: true,
 				space: true,
-				rangelength: [8, 12],
+				rangelength: [7, 20],
 				mix: true
 			}, password_check: {
 				required: true,
@@ -112,6 +112,7 @@ $(document).ready(function() {
 			}, nickname: {
 				required: true,
 				space: true,
+				rangelength: [2, 20],
 				remote: {
 					type: "post", url: "/member/nickCheck", data: {
 						nickname: function () {
@@ -123,6 +124,7 @@ $(document).ready(function() {
 				required: true,
 				email: true,
 				kpumail: true,
+				rangelength: [11, 22],
 				remote: {
 					type: "post", url: "/member/emailCheck", data: {
 						email: function () {
@@ -137,13 +139,13 @@ $(document).ready(function() {
 		}, messages: {
 			user_id: {
 				required: "아이디를 입력하세요.",
-				rangelength: $.validator.format("아이디는 5 글자 이상 12글자 이하로 입력하세요."),
+				rangelength: $.validator.format("아이디는 5 글자 이상 20글자 이하로 입력하세요."),
 				alphanumeric: "알파벳과 숫자만 사용가능하고 공백은 불가능합니다.",
 				remote: "아이디 중복입니다."
 			}, password: {
 				required: "패스워드를 입력하세요.",
 				space: "공백은 불가능합니다.",
-				rangelength: $.validator.format("패스워드 8글자 이상 12글자 이하로 입력하세요."),
+				rangelength: $.validator.format("패스워드 7글자 이상 20글자 이하로 입력하세요."),
 				mix: "비밀번호는 문자, 숫자, 특수문자(!@#$%^*+=-)의 조합으로 입력해주세요."
 			}, password_check: {
 				required: "패스워드 확인 입력하세요.",
@@ -151,11 +153,13 @@ $(document).ready(function() {
 			}, nickname: {
 				required: "닉네임을 입력하세요.",
 				space: "공백은 불가능합니다.",
+				rangelength: $.validator.format("닉네임은 2 글자 이상 20글자 이하로 입력하세요."),
 				remote: "닉네임 중복입니다."
 			}, email: {
 				required: "이메일을 입력하세요",
 				email: "올바른 이메일 주소가 아닙니다.",
-				kpumail: "kpu메일을 입력해주세요.(kpu@ac.kr)",
+				kpumail: "kpu메일을 입력해주세요.(@kpu.ac.kr)",
+				rangelength: $.validator.format("이메일주소는 11 글자 이상 22글자 이하로 입력하세요."),
 				remote: "이메일 중복입니다."
 			}, answer: {
 				required: "답변을 입력하세요.",
@@ -194,14 +198,14 @@ $(document).ready(function() {
 			password: {
 				required: true,
 				space: true,
-				rangelength: [5, 12]
+				rangelength: [7, 20],
 			}, password_check: {
 				required: true,
-				rangelength: [5, 12],
 				equalTo: '#password'
 			}, nickname: {
 				required: true,
 				space: true,
+				rangelength: [2, 20],
 				remote: {
 					type: "post", url: "/member/modNickCheck", data: {
 						nickname: function () {
@@ -217,14 +221,14 @@ $(document).ready(function() {
 			password: {
 				required: "패스워드를 입력하세요.",
 				space: "공백은 불가능합니다.",
-				rangelength: $.validator.format("패스워드 5글자 이상 12글자 이하로 입력하세요.")
+				rangelength: $.validator.format("패스워드 7글자 이상 20글자 이하로 입력하세요.")
 			}, password_check: {
 				required: "패스워드 확인 입력하세요.",
-				rangelength: $.validator.format("패스워드확인은 최소 5글자 이상 12글자 이하로 입력하세요."),
 				equalTo: "패스워드와 일치하지 않습니다."
 			}, nickname: {
 				required: "닉네임을 입력하세요.",
 				space: "공백은 불가능합니다",
+				rangelength: $.validator.format("닉네임은 2 글자 이상 20글자 이하로 입력하세요."),
 				remote: "닉네임 중복입니다."
 			}, answer: {
 				required: "닉네임을 입력하세요.",
@@ -271,11 +275,10 @@ $(document).ready(function() {
 			}, password: {
 				required: true,
 				space: true,
-				rangelength: [5, 12],
+				rangelength: [7, 20],
 				mix: true
 			}, password_check: {
 				required: true,
-				rangelength: [5, 12],
 				equalTo: '#password'
 			}
 		}, messages: {
@@ -285,11 +288,10 @@ $(document).ready(function() {
 			}, password: {
 				required: "패스워드를 입력하세요.",
 				space: "공백은 불가능합니다.",
-				rangelength: $.validator.format("패스워드 5글자 이상 12글자 이하로 입력하세요."),
+				rangelength: $.validator.format("패스워드 7글자 이상 20글자 이하로 입력하세요."),
 				mix: "비밀번호는 문자, 숫자, 특수문자(!@#$%^*+=-)의 조합으로 입력해주세요."
 			}, password_check: {
 				required: "패스워드 확인 입력하세요.",
-				rangelength: $.validator.format("패스워드확인은 최소 5글자 이상 12글자 이하로 입력하세요."),
 				equalTo: "패스워드와 일치하지 않습니다."
 			}
 		}, submitHandler: function (form) {
@@ -323,7 +325,7 @@ $(document).ready(function() {
 			email: {
 				required: "이메일을 입력하세요",
 				email: "올바른 이메일 주소가 아닙니다.",
-				kpumail: "kpu메일을 입력해주세요.(kpu@ac.kr)"
+				kpumail: "kpu메일을 입력해주세요.(@kpu.ac.kr)"
 			}
 		}, submitHandler: function (form) {
 			alert("처리 중입니다. 시간이 조금 걸리니 잠시만 기다려주세요.");

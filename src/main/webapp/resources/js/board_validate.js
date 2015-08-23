@@ -1,22 +1,32 @@
 $(document).ready(function() {
 
+	$.validator.addMethod("space", function (value, element) {
+		return value.indexOf(" ") < 0 && value != "";
+	});
+
 	$("#reg_frm").validate({
 		onfocusout: false,
 		rules: {
 			title: {
-				required: true
+				required: true,
+				maxlength: 100
 			},contents: {
 				required: true
 			},writer: {
-				required: true
+				required: true,
+				space: true,
+				rangelength: [2, 20]
 			}
 		}, messages: {
 			title: {
-				required: "제목를 입력하세요."
+				required: "제목를 입력하세요.",
+				maxlength: $.validator.format("제목은 100글자 이하로 입력하세요.")
 			}, contents: {
 				required: "내용을 입력하세요."
 			}, writer: {
-				required: "닉네임을 입력하세요."
+				required: "닉네임을 입력하세요.",
+				space: "공백은 불가능합니다.",
+				rangelength: $.validator.format("닉네임은 2 글자 이상 20글자 이하로 입력하세요.")
 			}
 		}, submitHandler: function (form) {
 			$.ajax({
@@ -41,13 +51,15 @@ $(document).ready(function() {
 		onfocusout: false,
 		rules: {
 			title: {
-				required: true
+				required: true,
+				maxlength: 100
 			},contents: {
 				required: true
 			}
 		}, messages: {
 			title: {
-				required: "제목을 입력하세요."
+				required: "제목을 입력하세요.",
+				maxlength: $.validator.format("제목은 100글자 이하로 입력하세요.")
 			}, contents: {
 				required: "내용을 입력하세요."
 			}

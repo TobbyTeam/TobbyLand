@@ -9,18 +9,18 @@ $(document).ready(function() {
 		rules: {
 			lecture_name: {
 				required: true,
-				space: true
+				maxlength: 100
 			}, prof: {
 				required: true,
-				space: true
+				maxlength: 20
 			}
 		}, messages: {
 			lecture_name: {
 				required: "강의명을 입력하세요.",
-				space: "공백은 불가능합니다."
+				maxlength: $.validator.format("강의명은 100글자 이하로 입력하세요.")
 			}, prof: {
 				required: "교수명을 입력하세요.",
-				space: "공백은 불가능합니다."
+				maxlength: $.validator.format("교수명은 20글자 이하로 입력하세요.")
 			}
 		}, submitHandler: function (form) {
 			if(confirm("정확하게 입력하셨나요?. 정말 등록하시겠습니까?")){
@@ -44,22 +44,21 @@ $(document).ready(function() {
 	})
 
 	$("#mod_frm").validate({
-		onfocusout: false,
 		rules: {
 			lecture_name: {
 				required: true,
-				space: true
+				maxlength: 100
 			}, prof: {
 				required: true,
-				space: true
+				maxlength: 20
 			}
 		}, messages: {
 			lecture_name: {
 				required: "강의명을 입력하세요.",
-				space: "공백은 불가능합니다."
+				maxlength: $.validator.format("강의명은 100글자 이하로 입력하세요.")
 			}, prof: {
 				required: "교수명을 입력하세요.",
-				space: "공백은 불가능합니다."
+				maxlength: $.validator.format("교수명은 20글자 이하로 입력하세요.")
 			}
 		}, submitHandler: function (form) {
 			if(confirm("정확하게 입력하셨나요?. 수정하시겠습니까??")){
@@ -86,13 +85,15 @@ $(document).ready(function() {
 		onfocusout: false,
 		rules: {
 			title: {
-				required: true
+				required: true,
+				maxlength: 100
 			},contents: {
 				required: true
 			}
 		}, messages: {
 			title: {
-				required: "제목를 입력하세요."
+				required: "제목를 입력하세요.",
+				maxlength: $.validator.format("제목은 100글자 이하로 입력하세요.")
 			}, contents: {
 				required: "내용을 입력하세요."
 			}
@@ -119,13 +120,15 @@ $(document).ready(function() {
 		onfocusout: false,
 		rules: {
 			title: {
-				required: true
+				required: true,
+				maxlength: 100
 			},contents: {
 				required: true
 			}
 		}, messages: {
 			title: {
-				required: "제목을 입력하세요."
+				required: "제목를 입력하세요.",
+				maxlength: $.validator.format("제목은 100글자 이하로 입력하세요.")
 			}, contents: {
 				required: "내용을 입력하세요."
 			}

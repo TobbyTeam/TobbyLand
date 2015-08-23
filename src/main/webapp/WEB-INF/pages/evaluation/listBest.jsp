@@ -32,7 +32,7 @@
 			<div class="col-md-8 bigframe" align="right">
 					${best.write_date}
 				<hr />
-				<table class="col-md-12 table-condensed">
+				<table class="col-md-12 table-condensed tablemargin">
 					<tr class="reframe">
 						<td width="30%" class="title" align="center">수강학기</td>
 						<td width="70%">${best.semester_title}</td>
