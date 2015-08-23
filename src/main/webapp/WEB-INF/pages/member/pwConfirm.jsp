@@ -25,7 +25,7 @@
                 <form role="login">
                     <input type="password" id="password" name="password" placeholder="Password" class="form-control input-lg">
                     <button type="button" id="pw_btn" class="btn btn-lg btn-primary btn-block">확인</button>
-                    <button type="reset" onclick="history.back()" class="btn btn-lg btn-primary btn-block">취소</button>
+                    <button type="reset" onclick="history.back()" class="btn btn-lg btn-danger btn-block">취소</button>
                 </form>
             </section>
         </div>

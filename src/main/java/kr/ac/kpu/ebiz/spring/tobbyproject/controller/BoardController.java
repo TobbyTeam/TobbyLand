@@ -60,7 +60,7 @@ public class BoardController {
 		return boardService.regService(board);
 	}
 
-	@RequestMapping(value = "/view/{department_id}/", method = RequestMethod.GET)
+	@RequestMapping(value = "/view/{department_id}/", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView boardView(@PathVariable int department_id, @RequestParam("board_id") int board_id, @RequestParam(value="page", required = false, defaultValue="1") int page,
 								  @RequestParam(value="searchType", required = false, defaultValue="") String searchType,
 								  @RequestParam(value="searchWord", required = false, defaultValue="") String searchWord) {
@@ -135,6 +135,8 @@ public class BoardController {
 
 	@RequestMapping(value = "/replyReg", method = RequestMethod.POST)
 	public @ResponseBody boolean replyReg(@RequestParam Map<String, java.io.Serializable> board) {
+
+		System.out.println(board.toString()+"++++++++++확인");
 
 		return boardService.replyRegService(board);
 	}

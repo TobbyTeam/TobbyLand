@@ -131,6 +131,9 @@ $(document).ready(function() {
 	})
 
 	$("#research_btn").click(function () {
+		if($("#email").val() == ""){
+			alert("이메일주소를 입력해주세요");
+		}else{
 		$.ajax({
 			type: "POST",
 			url: "/member/search",
@@ -140,7 +143,7 @@ $(document).ready(function() {
 
 				if (result === 1 ) {
 					alert("메일이 전송 되었습니다. 확인해주세요.");
-					window.open("/login", "_self");
+					window.open("/member/searchOk", "_self");
 				} else if (result === 0){
 					alert("등록되지 않은 메일입니다.");
 				} else {
@@ -149,6 +152,7 @@ $(document).ready(function() {
 
 			}
 		})
+		}
 	})
 
 })

@@ -5,61 +5,87 @@
 <html>
 <head>
 
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="<c:url value="/resources/js/jquery.validate.min.js" />"></script>
-    <script src="<c:url value="/resources/js/board_validate.js" />"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/boardregister.css" />">
+
+    <script src="<c:url value="${ctx}/resources/js/nickname.js" />"></script>
+
+    <script src="<c:url value="${ctx}/resources/js/jquery.validate.min.js" />"></script>
+    <script src="<c:url value="${ctx}/resources/js/board_validate.js" />"></script>
 
     <title></title>
 
-
-
 </head>
+
 <body>
 
 <jsp:include page="/top" flush="true"/>
 
-<br /><br />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-9">
+            <form id="reg_frm" name="reg_frm" method="post" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">
+                        닉네임
+                    </label>
+                    <div class="col-sm-3">
+                        <c:choose>
+                            <c:when test="${department_id == 16}">
+                                <input type="text" name="writer" class="form-control" />
+                                <input type="hidden" name="is_anonymity" value="1"/><br />
+                            </c:when>
+                            <c:otherwise>
+                                <input type="text" name="writer" id="writer" class="form-control" disabled="disabled" />
+                                <input type="checkbox" id="anonymity" name="is_anonymity" value="1" onclick="check(this.form)"/><span class="sf">익명으로 작성</span>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                </div>
 
-    <form id="reg_frm" name="reg_frm" method="post">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">
+                        제목
+                    </label>
+                    <div class="col-sm-10">
+                        <input type="text" id="title" name="title" class="form-control"/>
+                    </div>
+                </div>
+                <br />
 
-      <c:choose>
-        <c:when test="${department_id == 16}">
-          닉네임: <input type="text" name="writer" id="writer"/>
-            <input type="hidden" name="is_anonymity" value="1"/><br />
-        </c:when>
-        <c:otherwise>
-            익명으로 작성 <input type="checkbox" id="anonymity" name="is_anonymity" value="1"><br/>
-        </c:otherwise>
-      </c:choose>
-      제목:
-        <input type="text" id="title" name="title"/><br/>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">
+                        내용
+                    </label>
+                    <div class="col-sm-10">
+                        <textarea name="contents" rows="20" placeholder="내용을 입력해주세요" class="form-control"></textarea>
+                    </div>
+                </div>
 
-      내용:<br/>
-        <textarea name="contents" rows="20" cols="40" wrap="hard" placeholder="내용을 입력해주세요"></textarea><br/>
+                <div class="form-group">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-10" align="right">
+                        <button type="button" onclick="$(this.form).submit()" class="btn btn-primary">작성</button>
+                        <button type="reset" onclick="history.back()" class="btn btn-default">취소 </button>
+                    </div>
+                </div>
 
-        <input type="hidden" id="department_id" name="department_id" value="${department_id}"/>
-        <input type="button" value="작성" onclick="$(this.form).submit()"/>&nbsp;&nbsp;&nbsp;
-        <input type="reset" value="취소" onclick="history.back()"/>
-    </form>
+                <input type="hidden" id="department_id" name="department_id" value="${department_id}"/>
 
-<script>
+            </form>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+</div>
 
-    $("#anonymity").click(function(){
-
-        var ischecked = $(this).is(":checked");
-
-        if(ischecked){
-            $('#anonymity').after('<br id="ss"/><text id="nickname">닉네임:<text><input type="text" name="writer" id="writer"/>');
-        }else{
-            $('#ss').remove();
-            $('#writer').remove();
-            $('#nickname').remove();
-        }
-
-    })
-
-</script>
-
+<jsp:include page="/bottom" flush="true"/>
 
 </body>
 </html>

@@ -11,8 +11,8 @@
 
     <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/memberregister.css" />">
 
-    <script src="<c:url value="/resources/js/jquery.validate.min.js" />"></script>
-    <script src="<c:url value="/resources/js/member_validate.js" />"></script>
+    <script src="<c:url value="${ctx}/resources/js/jquery.validate.min.js" />"></script>
+    <script src="<c:url value="${ctx}/resources/js/member_validate.js" />"></script>
 
     <title>토비랜드</title>
 
@@ -26,7 +26,7 @@
     <div class="row">
         <div class="col-md-2">
         </div>
-        <div class="col-md-8" id="rgframe">
+        <div class="col-md-8 rgframe">
             <br />
             <h3>기본입력사항</h3>
             <hr />
@@ -137,7 +137,7 @@
                 <div class="form-group">
                     <div align="center">
                         <button type="button" onclick="$(this.form).submit()" class="btn btn-primary">회원가입</button>
-                        <button type="submit" onclick="history.back()" class="btn btn-default">취소</button>
+                        <button type="reset" onclick="history.back()" class="btn btn-default">취소</button>
                     </div>
                 </div>
             </form>

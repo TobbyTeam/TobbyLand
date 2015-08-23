@@ -24,8 +24,8 @@
     <div class="row">
         <div class="col-md-2">
         </div>
-        <div class="col-md-8" id="rgframe">
-            <br />
+        <div class="col-md-8 rgframe">
+        <br />
             <h3>회원정보수정</h3>
             <hr />
             <form id="mod_frm" action="/member/mod" class="form-horizontal">

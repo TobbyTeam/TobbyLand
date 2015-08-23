@@ -40,6 +40,12 @@ public class MemberController {
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
 
+	@RequestMapping(value = "/regExpln", method = RequestMethod.GET)
+	public String regExplanation() {
+
+		return "/member/regExpln";
+	}
+
 	@RequestMapping(value = "/regForm", method = RequestMethod.GET)
 	public ModelAndView regForm() {
 
@@ -81,6 +87,12 @@ public class MemberController {
 		model.addAttribute("member", member);
 
 		return memberService.regService(member);
+	}
+
+	@RequestMapping(value = "/regOk", method = RequestMethod.GET)
+	public String regOk() {
+
+		return "/member/regOk";
 	}
 
 	@RequestMapping(value = "/enabled", method = RequestMethod.GET)
@@ -185,10 +197,10 @@ public class MemberController {
 		return memberService.searchService(email);
 	}
 
-	@RequestMapping(value = "/researchAfter", method = RequestMethod.GET)
-	public String researchAfter() {
+	@RequestMapping(value = "/searchOk", method = RequestMethod.GET)
+	public String searchOk() {
 
-		return "member/search";
+		return "member/searchOk";
 	}
 
 }

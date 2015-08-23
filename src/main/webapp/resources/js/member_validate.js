@@ -177,7 +177,7 @@ $(document).ready(function() {
 				success: function (result) {
 					if (result) {
 						alert("회원가입을 축하합니다. 메일인증을 꼭 받아주세요.");
-						window.open("/login", "_self");
+						window.open("/member/regOk", "_self");
 					} else {
 						alert("죄송합니다 다시 시도해주세요.")
 					}

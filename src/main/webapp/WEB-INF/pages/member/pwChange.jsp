@@ -26,7 +26,7 @@
     <div class="row">
         <div class="col-md-2">
         </div>
-        <div class="col-md-8" id="rgframe">
+        <div class="col-md-8 rgframe">
             <br />
             <h3>비밀번호변경</h3>
             <hr />

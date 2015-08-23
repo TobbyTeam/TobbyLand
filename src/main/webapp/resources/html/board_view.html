@@ -22,16 +22,16 @@
 		</div>
 		<div class="col-md-10">
 			<table class="table">
-				<tr id="titleframe">
+				<tr class="titleframe">
 					<td width="5%">제목</td>
-					<td width="50%"><a href="#" id="title">글제목</a></td>
+					<td width="50%"><a href="#" class="title">글제목</a></td>
 					<td width="25%"></td>
 					<td width="10%">작성일</td>
 					<td width="10%">yyyy/mm/dd</td>
 				</tr>
-				<tr id="titleframe">
+				<tr class="titleframe">
 					<td width="10%">작성자</td>
-					<td width="45%"><a href="#" id="title">닉네임</a></td>
+					<td width="45%"><a href="#" class="title">닉네임</a></td>
 					<td width="25%"></td>
 					<td width="10%">조회</td>
 					<td width="10%">0</td>
@@ -57,7 +57,7 @@
             <br />
             <br />
             <br />
-            <br />                                               
+            <br />
 		</div>
 		<div class="col-md-1">
 		</div>
@@ -71,11 +71,11 @@
         <button class="btn"><span class="glyphicon glyphicon-thumbs-down"></span><br />비추천<br />0</button>
         <br />
         <br />
-        <br />                
-        	<div class="col-xs-offset-10">
-        		<button class="btn btn-default" id="littlebtn">수정</button>
-        		<button class="btn btn-default" id="littlebtn">삭제</button>               
-        		<button class="btn btn-danger" id="littlebtn">신고</button>                
+        <br />
+			<div class="col-xs-offset-8" align="right">
+        		<button class="btn btn-default littlebtn">수정</button>
+        		<button class="btn btn-default littlebtn">삭제</button>               
+        		<button class="btn btn-danger littlebtn">신고</button>                
             </div>
             <hr />
             <br /> 
@@ -89,26 +89,28 @@
         <div class="col-md-10">
         	<br />
 			<div class="input-group col-md-12">
-				<input type="text" class="form-control"/>
-					<span class="input-group-btn">
-						<button class="form-control">
-							등록하기
-                        </button>
-                    </span>
-            </div>
+				<table class="col-md-12 table-condensed">
+					<form method="post" action="#">
+						<tr>
+							<td width="70%"><input type="text" class="form-control"/></td>
+							<td width="10%" align="right"><input type="button" class="form-control" value="등록하기"/>   </td>
+						</tr>
+					</form>
+				</table>
+			</div>
             <br />
             <table class="col-md-12 table-striped table-condensed">
-        			<tr id="reframe">
-        				<td width="20%" id="title" align="center">Username</td>
+        			<tr class="reframe">
+        				<td width="20%" class="title" align="center">Username</td>
         				<td width="70%">댓글내용</td>
-        				<td width="10%" align="right" id="littlebtn">yyyy/mm/dd</td>                        
+        				<td width="10%" align="right" class="littlebtn">yyyy/mm/dd</td>                        
         			</tr>
-                    <tr id="reframe">
-        				<td width="20%" id="title" align="center">Username</td>
+                    <tr class="reframe">
+        				<td width="20%" class="title" align="center">Username</td>
         				<td width="70%">댓글내용</td>
-        				<td width="10%" align="right" id="littlebtn">yyyy/mm/dd</td>                        
+        				<td width="10%" align="right" class="littlebtn">yyyy/mm/dd</td>                        
         			</tr>
-            </table>
+			</table>
             <br />
 			<br />
 			<br />
@@ -141,7 +143,7 @@
 				<tbody>	
 					<tr>
 						<td>0</td>
-						<td><a href="#" id="title">게시글 제목</a></td>	
+						<td><a href="#" class="title">게시글 제목</a></td>	
 						<td>닉네임</td>
 						<td>yyyy/mm/dd</td>
                         <td>0</td>
@@ -149,7 +151,7 @@
 					</tr>
                     <tr>
 						<td>0</td>
-						<td><a href="#" id="title">게시글 제목</a></td>	
+						<td><a href="#" class="title">게시글 제목</a></td>	
 						<td>닉네임</td>
 						<td>yyyy/mm/dd</td>
                         <td>0</td>
@@ -164,7 +166,7 @@
             <br />        
             <div class="col-md-3"></div>
             <div class="col-md-2">
-            	<div id="search">
+            	<div id="select">
             		<select type="text" class="form-control">          
 					<option value="title" selected="selected">제목</option>          
 					<option value="contents">내용</option>

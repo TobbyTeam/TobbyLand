@@ -41,7 +41,7 @@
 					</div>
 				</c:if>
 					<div>
-						<p><a href="/member/regForm">회원가입</a></p>
+						<p><a href="/member/regExpln">회원가입</a></p>
 						<p><a href="/member/searchForm">아이디/비밀번호 찾기</a></p>
 					</div>
 

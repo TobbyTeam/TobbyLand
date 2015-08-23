@@ -98,7 +98,7 @@ public class MainController {
 
         mav.setViewName("etc/500");
 
-        mav.addObject("message", "잘못된 접근입니다.");
+        /*mav.addObject("message", "잘못된 접근입니다.");*/
 
         return mav;
 

@@ -4,13 +4,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-<style type="text/css">
-.sf {
-	font-size: 12px;
-}
-</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="nickname.js"></script>
+<link rel="stylesheet" href="boardregister.css">
 
 <title>무제 문서</title>
 </head>
@@ -28,8 +25,8 @@
 					닉네임
 					</label>
 					<div class="col-sm-3">
-						<input type="text" class="form-control"/>
-                        <input type="checkbox" /><span class="sf"> 익명으로 작성</span></div>
+						<input type="text" class="form-control" name="textbox" disabled="disabled" />
+                        <input type="checkbox" name="chkbox" onclick="check(this.form)"/><span class="sf"> 익명으로 작성</span></div>
 				</div>
                 
 				<div class="form-group">		 

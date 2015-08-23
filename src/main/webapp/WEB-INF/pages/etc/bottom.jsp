@@ -9,15 +9,16 @@
 </head>
 
 <body>
-<footer>
-  <div class="col-md-12" id="bottom" align="center">
-    <br />
-    문의메일 : babsang24@hanmail.net
-    <br />
-    copyright by TobbyTeam. all right reserved
-    <br />
-    <br />
-  </div>
-</footer>
+<br />
+<br />
+<br />
+<div class="col-md-12" id="bottom" align="center">
+  <br />
+  문의메일 : babsang24@hanmail.net
+  <br />
+  copyright by TobbyTeam. all right reserved
+  <br />
+  <br />
+</div>
 </body>
 </html>

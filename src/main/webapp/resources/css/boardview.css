@@ -1,18 +1,18 @@
-#titleframe{
+.titleframe{
 	background-color:#F5F5F5;
 
 }
-# viewtitle {
+#viewtitle {
 	color:#000;
 	font-weight:bold;
 }
 h1 {
 	font-size:13px;
 }
-#littlebtn{
+.littlebtn{
 	font-size:10px;
 }
-#reframe{
+.reframe{
 	font-size:13px;
 	border-top:solid #CCC 1px;
 	border-bottom:solid #CCC 1px;

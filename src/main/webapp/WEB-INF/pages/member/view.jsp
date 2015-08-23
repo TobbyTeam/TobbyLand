@@ -23,12 +23,12 @@
     <div class="row">
         <div class="col-md-2">
         </div>
-        <div class="col-md-8" id="rgframe">
+        <div class="col-md-8 rgframe">
             <br /><div class="form-group">
             <div align="right">
-                <a href="/member/pwConfirm"><button type="button" class="btn btn-default" >정보변경</button></a>
-                <a href="/member/pwChange"><button type="button" class="btn btn-default" >비밀번호변경</button></a>
-                <a id="withdrawal" href=""><button type="button" class="btn btn-danger" >회원탈퇴</button></a>
+                <a href="/member/pwConfirm"><button type="button" class="btn btn-default littlebtn" >정보변경</button></a>
+                <a href="/member/pwChange"><button type="button" class="btn btn-default littlebtn" >비밀번호변경</button></a>
+                <a id="withdrawal" href=""><button type="button" class="btn btn-danger littlebtn" >회원탈퇴</button></a>
             </div>
         </div>
             <h3>회원정보</h3>

@@ -8,8 +8,9 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="memberregister.css">
+<script src="waitevent.js"></script>
 
-<title>토비랜드</title>
+<title>무제 문서</title>
 </head>
 
 <body>
@@ -18,8 +19,8 @@
 	<div class="row">
 		<div class="col-md-2">
 		</div>
-		<div class="col-md-8" id="rgframe">
-        	<br />
+		<div class="col-md-8 rgframe">
+        	<br />              
             <h3>기본입력사항</h3>
             <hr />
 			<form class="form-horizontal">
@@ -150,9 +151,10 @@
                     <br />                    
 		        </div>                                                          	                                   
                 <div class="form-group">				 
-					<div align="center">
-						<button type="submit" class="btn btn-primary">가입</button>
-						<button type="submit" class="btn btn-default">취소</button>                        
+					<div align="center">               
+						<input type="button" class="btn btn-primary btn_action" value="가입">
+						<button type="submit" class="btn btn-default">취소</button>       
+						<div class="btn_word" hidden="true">처리중입니다. 잠시만 기다려주세요.</div>              
 					</div>
                 </div> 
 			</form>

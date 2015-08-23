@@ -58,10 +58,7 @@
       </li>
       <li>
         <s:authorize access="isAnonymous()">
-          <a href="/member/regForm">회원가입</a>
-        </s:authorize>
-        <s:authorize access="">
-          <a href="/member/regForm">테스트</a>
+          <a href="/member/regExpln">회원가입</a>
         </s:authorize>
         <s:authorize access="isAuthenticated()">
           <a href="/member/view">회원정보</a>

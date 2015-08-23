@@ -8,12 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
-    <style type="text/css">
-        .boardname {
-            color: #666;
-            font-size: 220%;
-        }
-    </style>
+    <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/main.css" />">
 
     <title>토비랜드</title>
 </head>
@@ -31,72 +26,20 @@
             <table class="table">
                 <thead align="center">
                 <tr>
-                    <th width="80%">제목</th>
-                    <th width="20%">등록일</th>
+                    <th width="70%">제목</th>
+                    <th width="30%">등록일</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach var="site" items="${sites}" varStatus="status">
-                    <tr>
-                        <td>
-                            <a href="/board/view/${site.department_id}/?board_id=${site.board_id}">${site.title}</a>
-                        </td>
+                    <tr class="boardtext">
+                        <td><a href="/board/view/${site.department_id}/?board_id=${site.board_id}"><span class="title">${site.title}</span></a></td>
                         <td>${site.write_date}</td>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
-            <br />
-            <span class="boardname">최신글</span>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th width="20%">게시판</th>
-                    <th width="50%">제목</th>
-                    <th width="15%">작성자</th>
-                    <th width="15%">작성일</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="latest" items="${latests}" varStatus="status">
-                    <tr>
-                        <td>${latest.department_name}</td>
-                        <td>
-                            <a href="/board/view/${latest.department_id}/?board_id=${latest.board_id}">${latest.title}</a>
-                        </td>
-                        <td>${latest.writer}
-                            <c:if test="${latest.is_anonymity == 1}">
-                                (익명)
-                            </c:if>
-                        </td>
-                        <td>${latest.write_date}</td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-            <br />
-        </div>
-        <div class="col-md-5">
-            <span class="boardname">학교 공지사항</span>
-            <table class="table">
-                <thead align="center">
-                <tr>
-                    <th width="80%">제목</th>
-                    <th width="20%">등록일</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="kpu" items="${kpus}" varStatus="status">
-                    <tr>
-                        <td>
-                            <a href="/board/view/${kpu.department_id}/?board_id=${kpu.board_id}">${kpu.title}</a>
-                        </td>
-                        <td>${kpu.write_date}</td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-            <br />
+            <br /><br />
             <span class="boardname">핫 게시글</span>
             <table class="table">
                 <thead>
@@ -110,13 +53,16 @@
                 </thead>
                 <tbody>
                 <c:forEach var="hot" items="${hots}" varStatus="status">
-                    <tr>
+                    <tr class="boardtext">
                         <td>${hot.department_name}</td>
                         <td>
-                            <a href="/board/view/${hot.department_id}/?board_id=${hot.board_id}">${hot.title}</a>
+                            <a href="/board/view/${hot.department_id}/?board_id=${hot.board_id}">
+                            <span class="title">${hot.title}
                             <c:if test="${hot.count != 0}">
                                 [${hot.count}]
                             </c:if>
+                            </span>
+                            </a>
                         </td>
                         <td>${hot.writer}
                             <c:if test="${hot.is_anonymity == 1}">
@@ -127,8 +73,55 @@
                         <td>${hot.likes}</td>
                     </tr>
                 </c:forEach>
+
                 </tbody>
             </table>
+        </div>
+        <div class="col-md-5">
+            <span class="boardname">학교 공지사항</span>
+            <table class="table">
+                <thead align="center">
+                <tr>
+                    <th width="70%">제목</th>
+                    <th width="30%">등록일</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="kpu" items="${kpus}" varStatus="status">
+                    <tr class="boardtext">
+                        <td><a href="/board/view/${kpu.department_id}/?board_id=${kpu.board_id}"><span class="title">${kpu.title}</span></a></td>
+                        <td>${kpu.write_date}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+            <br /><br />
+            <span class="boardname">최신글</span>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th width="20%">게시판</th>
+                    <th width="50%">제목</th>
+                    <th width="15%">작성자</th>
+                    <th width="15%">작성일</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="latest" items="${latests}" varStatus="status">
+                    <tr class="boardtext">
+                        <td>${latest.department_name}</td>
+                        <td><a href="/board/view/${latest.department_id}/?board_id=${latest.board_id}"><span class="title">${latest.title}</span></a></td>
+                        <td>${latest.writer}
+                            <c:if test="${latest.is_anonymity == 1}">
+                                (익명)
+                            </c:if>
+                        </td>
+                        <td>${latest.write_date}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+            <br /><br />
         </div>
     </div>
 </div>

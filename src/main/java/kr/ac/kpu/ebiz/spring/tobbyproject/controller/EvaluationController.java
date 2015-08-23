@@ -123,8 +123,15 @@ public class EvaluationController {
 		return evaluationService.isDeleteService(evaluation_id);
 	}
 
+	@RequestMapping(value = "/search")
+	public String search() {
+
+		return "/evaluation/search";
+	}
+
+
 	@RequestMapping(value = "/searchPrefer", method = RequestMethod.GET)
-	public ModelAndView search(@RequestParam Map<String, Serializable> search) {
+	public ModelAndView searchPrefer(@RequestParam Map<String, Serializable> search) {
 
 		ModelAndView mav = new ModelAndView("/evaluation/list");
 

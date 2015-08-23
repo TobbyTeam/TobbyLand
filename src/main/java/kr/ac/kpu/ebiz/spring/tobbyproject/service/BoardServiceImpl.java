@@ -53,7 +53,7 @@ public class BoardServiceImpl implements BoardService{
         board.put("department_id", department_id);
         board.put("start", start);
 
-        mav.addObject("department_id", department_id);
+        mav.addObject("department", departmentRepository.select(department_id));
         mav.addObject("boards", boardRepository.selectBoardAll(board));
     }
 
@@ -273,7 +273,7 @@ public class BoardServiceImpl implements BoardService{
         paging.setTotalCount(boardRepository.selectBoardSearchCount(search));
 
         mav.addObject("paging", paging);
-        mav.addObject("department_id", department_id);
+        mav.addObject("department", departmentRepository.select(department_id));
         mav.addObject("search", search);
 
         int start = 0;

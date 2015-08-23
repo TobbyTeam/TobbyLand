@@ -33,12 +33,12 @@ function reDeleteAjax(board_id) {
 function reReportAjax(board_id) {
 	$.ajax({
 		type     : "POST",
-		url      : "/lecture/boardSubConfirm",
+		url      : "/board/report",
 		dataType : "json",
 		data     : {board_id:board_id},
 		success  : function(result) {
 
-			if(result){
+			if(result === 0){
 				alert("신고 되었습니다");
 				location.reload();
 			}else{
