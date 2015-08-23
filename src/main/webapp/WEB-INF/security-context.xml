@@ -12,30 +12,41 @@
     <http pattern="/favicon.ico" security="none" />
 
     <http auto-config="false" use-expressions="true">
-<!--        <intercept-url pattern="/" access="permitAll" />
+        <intercept-url pattern="/" access="permitAll" />
         <intercept-url pattern="/main" access="permitAll" />
-        <intercept-url pattern="" access="permitAll" />
+        <intercept-url pattern="/top" access="permitAll" />
+        <intercept-url pattern="/bottom" access="permitAll" />
+        <intercept-url pattern="/403" access="permitAll" />
+        <intercept-url pattern="/500" access="permitAll" />
+        <intercept-url pattern="/paging" access="permitAll" />
         <intercept-url pattern="/login" access="isAnonymous()" />
         <intercept-url pattern="/member/view" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/member/pwConfirm" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/member/modView" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/member/mod" access="hasRole('ROLE_USER')" />
-        <intercept-url pattern="/member/pwConfirm" access="hasRole('ROLE_USER')" />
+        <intercept-url pattern="/member/pwChange" access="hasRole('ROLE_USER')" />
+        <intercept-url pattern="/member/pwCheck" access="hasRole('ROLE_USER')" />
+        <intercept-url pattern="/member/pwMod" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/member/modNickCheck" access="hasRole('ROLE_USER')" />
+        <intercept-url pattern="/member/withdrawal" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/member/**" access="isAnonymous()" />
+        <intercept-url pattern="/evaluation/**" access="hasRole('ROLE_USER')" />
+        <intercept-url pattern="/lecture/**" access="hasRole('ROLE_USER')" />
+        <intercept-url pattern="/board/list/**" access="permitAll" />
+        <intercept-url pattern="/board/**" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
-        <intercept-url pattern="/**" access="hasRole('ROLE_USER')" />-->
+        <intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
 
         <!-- access denied page -->
         <access-denied-handler error-page="/403" />
 
         <form-login
-                username-parameter="loginid"
-                password-parameter="loginpwd"
-                login-page="/login"
-                default-target-url="/main"
-                authentication-success-handler-ref="customAuthenticationSuccessHandler"
-                authentication-failure-handler-ref="customAuthenticationFailureHandler"
+            username-parameter="loginid"
+            password-parameter="loginpwd"
+            login-page="/login"
+            default-target-url="/main"
+            authentication-success-handler-ref="customAuthenticationSuccessHandler"
+            authentication-failure-handler-ref="customAuthenticationFailureHandler"
         />
 
         <logout invalidate-session="true" logout-success-url="/main"  />

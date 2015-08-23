@@ -163,7 +163,7 @@ public class MemberController {
 		return memberService.pwModService(password);
 	}
 
-	@RequestMapping(value = "/pwMod", method = RequestMethod.GET)
+	@RequestMapping(value = "/pwModMail", method = RequestMethod.GET)
 	public ModelAndView pwModify(@RequestParam ("enSt")String enSt, @RequestParam ("key")String password) {
 
 		ModelAndView mav = new ModelAndView();
@@ -171,7 +171,7 @@ public class MemberController {
 		mav.setViewName("/member/pwChangeOk");
 
 		if(memberService.pwModService(enSt, password)){
-			mav.addObject("message", "비밀번호가 정상적으로 변경되었습니다. 꼭 로그인 후 새로운 비밀번호로 수정하시기 바랍니다.");
+			mav.addObject("message", "비밀번호가 정상적으로 변경되었습니다. <br>꼭 로그인 후 새로운 비밀번호로 수정하시기 바랍니다.");
 		} else {
 			mav.addObject("message", "잘못된 접근입니다.");
 		}
