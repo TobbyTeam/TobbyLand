@@ -127,7 +127,7 @@
   <select id="selectHotAll" parameterType="map" resultType="map" >
     select d.department_name, b.board_id, b.writer, b.department_id, b.title, b.hit, b.likes, b.is_anonymity, sum(if(b2.is_delete = 0,1,0)) as count
     from board b left outer join board b2 on b.board_id = b2.upper_id left outer join department d on b.department_id = d.department_id
-    where d.kind in ('dept', 'etc') and b.is_delete = 0 and b.is_reply = 0 and b.likes <![cdata[ >= ]]> 10
+    where d.kind in ('dept', 'etc') and b.is_delete = 0 and b.is_reply = 0 and b.likes <![CDATA[ >= ]]> 10
     group by b.board_id
     order by date_format(b.write_date, '%y.%m.%d') desc, b.likes desc, b.hit desc, count desc, b.board_id desc limit 15
   </select>

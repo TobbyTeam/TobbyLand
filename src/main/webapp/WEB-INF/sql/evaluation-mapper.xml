@@ -203,7 +203,7 @@
   <select id="selectSearch" parameterType="map" resultType="map">
     select l.lecture_id as lecture_id, l.lecture_name as lecture_name, l.dept as dept, l.prof as prof, sum(if(e.is_delete = 1,1,0)) as count
     from lecture l left outer join evaluation e on e.lecture_id = l.lecture_id
-    where l.likes <![cdata[ >= ]]> 10 and l.is_delete = 1 and l.prof like concat('%', #{searchword}, '%')
+    where l.likes <![CDATA[ >= ]]> 10 and l.is_delete = 1 and l.prof like concat('%', #{searchword}, '%')
     group by l.lecture_id
     order by l.write_date desc
   </select>
