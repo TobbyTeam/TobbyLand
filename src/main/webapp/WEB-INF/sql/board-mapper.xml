@@ -4,132 +4,132 @@
 <mapper namespace="BoardRepository">
 
   <select id="selectBoardCount" parameterType="int" resultType="int" >
-    SELECT Count(BOARD_ID)
-    FROM BOARD
-    WHERE DEPARTMENT_ID = #{department_id} AND IS_DELETE = 0 AND IS_REPLY = 0
+    select count(board_id)
+    from board
+    where department_id = #{department_id} and is_delete = 0 and is_reply = 0
   </select>
 
   <select id="selectBoardAll" parameterType="map" resultType="map" >
-    SELECT B.rnum, B.board_id, B.writer, B.department_id, B.title, DATE_FORMAT(B.write_date, '%Y.%m.%d') AS write_date,
-           B.hit, B.likes, B.is_anonymity, SUM(IF(B2.IS_DELETE = 0,1,0)) as count
-    FROM BOARD B LEFT OUTER JOIN BOARD B2 ON B.BOARD_ID = B2.UPPER_ID
-    WHERE B.DEPARTMENT_ID = #{department_id} AND B.IS_DELETE = 0 AND B.IS_REPLY = 0
-    GROUP BY B.BOARD_ID
-    ORDER BY B.RNUM DESC
-    LIMIT 15 OFFSET #{start}
+    select b.rnum, b.board_id, b.writer, b.department_id, b.title, date_format(b.write_date, '%y.%m.%d') as write_date,
+           b.hit, b.likes, b.is_anonymity, sum(if(b2.is_delete = 0,1,0)) as count
+    from board b left outer join board b2 on b.board_id = b2.upper_id
+    where b.department_id = #{department_id} and b.is_delete = 0 and b.is_reply = 0
+    group by b.board_id
+    order by b.rnum desc
+    limit 15 offset #{start}
   </select>
 
   <select id="selectBoardMaxRnum" parameterType="int" resultType="int" >
-    SELECT IFNULL(MAX(rnum),0) AS rnum
-    FROM BOARD
-    WHERE DEPARTMENT_ID = #{department_id}
+    select ifnull(max(rnum),0) as rnum
+    from board
+    where department_id = #{department_id}
   </select>
 
   <select id="selectBoard" parameterType="int" resultType="map" >
-    SELECT board_id, department_id, writer, title, contents, DATE_FORMAT(write_date, '%Y.%m.%d %T') AS write_date, hit, likes, dislike, report, is_anonymity
-    FROM BOARD
-    WHERE BOARD_ID = #{board_id}
+    select board_id, department_id, writer, title, contents, date_format(write_date, '%y.%m.%d %t') as write_date, hit, likes, dislike, report, is_anonymity
+    from board
+    where board_id = #{board_id}
   </select>
 
   <select id="selectBoardReplyAll" parameterType="int" resultType="map" >
-    SELECT board_id, writer, contents, DATE_FORMAT(write_date, '%Y.%m.%d %T') AS write_date, report
-    FROM BOARD
-    WHERE UPPER_ID = #{board_id} AND IS_DELETE = 0
-    ORDER BY WRITE_DATE
+    select board_id, writer, contents, date_format(write_date, '%y.%m.%d %t') as write_date, report
+    from board
+    where upper_id = #{board_id} and is_delete = 0
+    order by write_date
   </select>
 
   <select id="selectBoardMember_id" parameterType="int" resultType="int">
-    SELECT member_id FROM BOARD WHERE BOARD_ID = #{board_id}
+    select member_id from board where board_id = #{board_id}
   </select>
 
   <select id="selectBoardSubCount" parameterType="map" resultType="int" >
-    SELECT Count(BS_ID)
-    FROM BOARD_SUB
-    WHERE BOARD_ID = #{board_id} AND MEMBER_ID = #{member_id}
+    select count(bs_id)
+    from board_sub
+    where board_id = #{board_id} and member_id = #{member_id}
   </select>
 
   <select id="selectBoardSubType" parameterType="map" resultType="int">
-    SELECT kind FROM BOARD_SUB WHERE BOARD_ID = #{board_id} AND MEMBER_ID = #{member_id}
+    select kind from board_sub where board_id = #{board_id} and member_id = #{member_id}
   </select>
 
   <select id="selectBoardSearchCount" parameterType="map" resultType="int" >
-    SELECT Count(BOARD_ID)
-    FROM BOARD
-    WHERE DEPARTMENT_ID = #{department_id} AND IS_DELETE = 0 AND IS_REPLY = 0
+    select count(board_id)
+    from board
+    where department_id = #{department_id} and is_delete = 0 and is_reply = 0
     <choose>
-      <when test="searchType != null and searchType.equalsIgnoreCase('title')">
-        AND TITLE LIKE CONCAT('%', #{searchWord}, '%')
+      <when test="searchtype != null and searchtype.equalsignorecase('title')">
+        and title like concat('%', #{searchword}, '%')
       </when>
-      <when test="searchType != null and searchType.equalsIgnoreCase('contents')">
-        AND CONTENTS LIKE CONCAT('%', #{searchWord}, '%')
+      <when test="searchtype != null and searchtype.equalsignorecase('contents')">
+        and contents like concat('%', #{searchword}, '%')
       </when>
-      <when test="searchType != null and searchType.equalsIgnoreCase('title_contents')">
-        AND (TITLE LIKE CONCAT('%', #{searchWord}, '%') OR CONTENTS LIKE CONCAT('%', #{searchWord}, '%'))
+      <when test="searchtype != null and searchtype.equalsignorecase('title_contents')">
+        and (title like concat('%', #{searchword}, '%') or contents like concat('%', #{searchword}, '%'))
       </when>
-      <when test="searchType != null and searchType.equalsIgnoreCase('writer')">
-        AND WRITER LIKE CONCAT('%', #{searchWord}, '%')
+      <when test="searchtype != null and searchtype.equalsignorecase('writer')">
+        and writer like concat('%', #{searchword}, '%')
       </when>
       <otherwise>
-        AND (TITLE LIKE CONCAT('%', #{searchWord}, '%') OR CONTENTS LIKE CONCAT('%', #{searchWord}, '%') OR WRITER LIKE CONCAT('%', #{searchWord}, '%'))
+        and (title like concat('%', #{searchword}, '%') or contents like concat('%', #{searchword}, '%') or writer like concat('%', #{searchword}, '%'))
       </otherwise>
     </choose>
   </select>
 
   <select id="selectBoardSearch" parameterType="map" resultType="map">
-    SELECT B.rnum, B.board_id, B.writer, B.department_id, B.title, DATE_FORMAT(B.write_date, '%Y.%m.%d') AS write_date,
-           B.hit, B.likes, B.is_anonymity, SUM(IF(B2.IS_DELETE = 0,1,0)) as count
-    FROM BOARD B LEFT OUTER JOIN BOARD B2 ON B.BOARD_ID = B2.UPPER_ID
-    WHERE B.DEPARTMENT_ID = #{department_id} AND B.IS_DELETE = 0 AND B.IS_REPLY = 0
+    select b.rnum, b.board_id, b.writer, b.department_id, b.title, date_format(b.write_date, '%y.%m.%d') as write_date,
+           b.hit, b.likes, b.is_anonymity, sum(if(b2.is_delete = 0,1,0)) as count
+    from board b left outer join board b2 on b.board_id = b2.upper_id
+    where b.department_id = #{department_id} and b.is_delete = 0 and b.is_reply = 0
     <choose>
-      <when test="searchType != null and searchType.equalsIgnoreCase('title')">
-        AND B.TITLE LIKE CONCAT('%', #{searchWord}, '%')
+      <when test="searchtype != null and searchtype.equalsignorecase('title')">
+        and b.title like concat('%', #{searchword}, '%')
       </when>
-      <when test="searchType != null and searchType.equalsIgnoreCase('contents')">
-        AND B.CONTENTS LIKE CONCAT('%', #{searchWord}, '%')
+      <when test="searchtype != null and searchtype.equalsignorecase('contents')">
+        and b.contents like concat('%', #{searchword}, '%')
       </when>
-      <when test="searchType != null and searchType.equalsIgnoreCase('title_contents')">
-        AND (B.TITLE LIKE CONCAT('%', #{searchWord}, '%') OR B.CONTENTS LIKE CONCAT('%', #{searchWord}, '%'))
+      <when test="searchtype != null and searchtype.equalsignorecase('title_contents')">
+        and (b.title like concat('%', #{searchword}, '%') or b.contents like concat('%', #{searchword}, '%'))
       </when>
-      <when test="searchType != null and searchType.equalsIgnoreCase('writer')">
-        AND B.WRITER LIKE CONCAT('%', #{searchWord}, '%')
+      <when test="searchtype != null and searchtype.equalsignorecase('writer')">
+        and b.writer like concat('%', #{searchword}, '%')
       </when>
       <otherwise>
-        AND (B.TITLE LIKE CONCAT('%', #{searchWord}, '%') OR B.CONTENTS LIKE CONCAT('%', #{searchWord}, '%') OR B.WRITER LIKE CONCAT('%', #{searchWord}, '%'))
+        and (b.title like concat('%', #{searchword}, '%') or b.contents like concat('%', #{searchword}, '%') or b.writer like concat('%', #{searchword}, '%'))
       </otherwise>
     </choose>
-    GROUP BY B.BOARD_ID
-    ORDER BY B.RNUM DESC
-    LIMIT 15 OFFSET #{start}
+    group by b.board_id
+    order by b.rnum desc
+    limit 15 offset #{start}
   </select>
 
   <select id="selectSiteNoticeAll" resultType="map" >
-    SELECT board_id, department_id, title, DATE_FORMAT(write_date, '%Y.%m.%d') AS write_date
-    FROM BOARD
-    WHERE DEPARTMENT_ID = 14 AND IS_DELETE = 0 AND IS_REPLY = 0
-    ORDER BY board_id DESC LIMIT 5
+    select board_id, department_id, title, date_format(write_date, '%y.%m.%d') as write_date
+    from board
+    where department_id = 14 and is_delete = 0 and is_reply = 0
+    order by board_id desc limit 5
   </select>
 
   <select id="selectKpuNoticeAll" resultType="map" >
-    SELECT board_id, department_id, title, DATE_FORMAT(write_date, '%Y.%m.%d') AS write_date
-    FROM BOARD
-    WHERE DEPARTMENT_ID = 15 AND IS_DELETE = 0 AND IS_REPLY = 0
-    ORDER BY board_id DESC LIMIT 5
+    select board_id, department_id, title, date_format(write_date, '%y.%m.%d') as write_date
+    from board
+    where department_id = 15 and is_delete = 0 and is_reply = 0
+    order by board_id desc limit 5
   </select>
 
   <select id="selectLatestAll" resultType="map" >
-    SELECT D.department_name, B.board_id, B.writer, B.department_id, B.title, DATE_FORMAT(B.WRITE_DATE, '%Y.%m.%d %T') AS write_date, B.is_anonymity
-    FROM BOARD B LEFT OUTER JOIN DEPARTMENT D ON B.DEPARTMENT_ID = D.DEPARTMENT_ID
-    WHERE D.KIND IN ('dept', 'etc') AND B.IS_DELETE = 0 AND B.IS_REPLY = 0
-    GROUP BY B.BOARD_ID
-    ORDER BY B.BOARD_ID DESC LIMIT 15
+    select d.department_name, b.board_id, b.writer, b.department_id, b.title, date_format(b.write_date, '%y.%m.%d %t') as write_date, b.is_anonymity
+    from board b left outer join department d on b.department_id = d.department_id
+    where d.kind in ('dept', 'etc') and b.is_delete = 0 and b.is_reply = 0
+    group by b.board_id
+    order by b.board_id desc limit 15
   </select>
 
   <select id="selectHotAll" parameterType="map" resultType="map" >
-    SELECT D.department_name, B.board_id, B.writer, B.department_id, B.title, B.hit, B.likes, B.is_anonymity, SUM(IF(B2.IS_DELETE = 0,1,0)) as count
-    FROM BOARD B LEFT OUTER JOIN BOARD B2 ON B.BOARD_ID = B2.UPPER_ID LEFT OUTER JOIN DEPARTMENT D ON B.DEPARTMENT_ID = D.DEPARTMENT_ID
-    WHERE D.KIND IN ('dept', 'etc') AND B.IS_DELETE = 0 AND B.IS_REPLY = 0 AND B.LIKES <![CDATA[ >= ]]> 10
-    GROUP BY B.BOARD_ID
-    ORDER BY DATE_FORMAT(B.WRITE_DATE, '%Y.%m.%d') DESC, B.LIKES DESC, B.HIT DESC, COUNT DESC, B.BOARD_ID DESC LIMIT 15
+    select d.department_name, b.board_id, b.writer, b.department_id, b.title, b.hit, b.likes, b.is_anonymity, sum(if(b2.is_delete = 0,1,0)) as count
+    from board b left outer join board b2 on b.board_id = b2.upper_id left outer join department d on b.department_id = d.department_id
+    where d.kind in ('dept', 'etc') and b.is_delete = 0 and b.is_reply = 0 and b.likes <![cdata[ >= ]]> 10
+    group by b.board_id
+    order by date_format(b.write_date, '%y.%m.%d') desc, b.likes desc, b.hit desc, count desc, b.board_id desc limit 15
   </select>
 
 
@@ -138,75 +138,75 @@
   <insert id="insertBoard" parameterType="map">
     <choose>
       <when test="upper_id != null">
-        INSERT INTO BOARD (department_id, member_id, writer, contents, is_reply, upper_id)
-        VALUES (#{department_id},#{member_id},#{writer},#{contents},1,#{upper_id})
+        insert into board (department_id, member_id, writer, contents, is_reply, upper_id)
+        values (#{department_id},#{member_id},#{writer},#{contents},1,#{upper_id})
       </when>
       <when test="is_anonymity != null">
-        INSERT INTO BOARD (department_id, member_id, writer, rnum, title, contents, is_anonymity)
-        VALUES (#{department_id},#{member_id},#{writer},#{rnum},#{title},#{contents},#{is_anonymity})
+        insert into board (department_id, member_id, writer, rnum, title, contents, is_anonymity)
+        values (#{department_id},#{member_id},#{writer},#{rnum},#{title},#{contents},#{is_anonymity})
       </when>
       <otherwise>
-        INSERT INTO BOARD (department_id, member_id, writer, rnum, title, contents)
-        VALUES (#{department_id},#{member_id},#{writer},#{rnum},#{title},#{contents})
+        insert into board (department_id, member_id, writer, rnum, title, contents)
+        values (#{department_id},#{member_id},#{writer},#{rnum},#{title},#{contents})
       </otherwise>
     </choose>
   </insert>
 
   <insert id="insertBoardSub" parameterType="map">
-    INSERT INTO BOARD_SUB (board_id, member_id, kind)
-    VALUES (#{board_id},#{member_id},#{kind})
+    insert into board_sub (board_id, member_id, kind)
+    values (#{board_id},#{member_id},#{kind})
   </insert>
-  
+
   <!--update-->
-  
+
   <update id="updateBoardHit" parameterType="int">
-    UPDATE BOARD
-    SET
+    update board
+    set
     hit = hit + 1
-    WHERE BOARD_ID = #{board_id}
+    where board_id = #{board_id}
   </update>
 
   <update id="updateBoard" parameterType="map">
-    UPDATE BOARD
-    SET
+    update board
+    set
     title = #{title},
     contents = #{contents}
-    WHERE BOARD_ID = #{board_id}
+    where board_id = #{board_id}
   </update>
 
   <update id="updateBoardLike" parameterType="int">
-    UPDATE BOARD
-    SET
-    LIKES = LIKES + 1
-    WHERE BOARD_ID = #{board_id}
+    update board
+    set
+    likes = likes + 1
+    where board_id = #{board_id}
   </update>
 
   <update id="updateBoardDislike" parameterType="int">
-    UPDATE BOARD
-    SET
-    DISLIKE = DISLIKE + 1
-    WHERE BOARD_ID = #{board_id}
+    update board
+    set
+    dislike = dislike + 1
+    where board_id = #{board_id}
   </update>
 
   <update id="updateBoardReport" parameterType="int">
-    UPDATE BOARD
-    SET
-    REPORT = REPORT + 1
-    WHERE BOARD_ID = #{board_id}
+    update board
+    set
+    report = report + 1
+    where board_id = #{board_id}
   </update>
 
   <update id="updateBoardIsDelete" parameterType="int">
-    UPDATE BOARD
-    SET
-    IS_DELETE = 1
-    WHERE BOARD_ID = #{board_id}
+    update board
+    set
+    is_delete = 1
+    where board_id = #{board_id}
   </update>
 
 
   <!--delete-->
 
   <delete id="delete" parameterType="int">
-    DELETE FROM BOARD WHERE BOARD_ID = #{board_id}
+    delete from board where board_id = #{board_id}
   </delete>
 
 </mapper>

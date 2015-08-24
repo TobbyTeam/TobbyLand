@@ -6,81 +6,81 @@
   <!--select-->
 
   <select id="selectEvaluationAll" parameterType="int" resultType="map">
-    SELECT E.evaluation_id, E.lecture_id, E.method, E.task, E.exam, E.comment, E.score, DATE_FORMAT(E.write_date, '%Y.%m.%d') AS write_date,
-           E.likes, E.dislike, E.report, S.semester_title, SUM(IF(E2.IS_DELETE = 0,1,0)) as count
-    FROM EVALUATION E LEFT OUTER JOIN SEMESTER S ON E.SEMESTER = S.SEMESTER_ID LEFT OUTER JOIN EVALUATION E2 ON E.EVALUATION_ID = E2.UPPER_ID
-    WHERE E.LECTURE_ID = #{lecture_id} AND E.IS_DELETE = 0 AND E.IS_REPLY = 0
-    GROUP BY E.EVALUATION_ID
-    ORDER BY E.SEMESTER DESC, WRITE_DATE DESC
+    select e.evaluation_id, e.lecture_id, e.method, e.task, e.exam, e.comment, e.score, date_format(e.write_date, '%y.%m.%d') as write_date,
+           e.likes, e.dislike, e.report, s.semester_title, sum(if(e2.is_delete = 0,1,0)) as count
+    from evaluation e left outer join semester s on e.semester = s.semester_id left outer join evaluation e2 on e.evaluation_id = e2.upper_id
+    where e.lecture_id = #{lecture_id} and e.is_delete = 0 and e.is_reply = 0
+    group by e.evaluation_id
+    order by e.semester desc, write_date desc
   </select>
 
   <select id="selectEvaluationBest" parameterType="int" resultType="map">
-    SELECT E.evaluation_id, E.lecture_id, E.method, E.task, E.exam, E.comment, E.score, DATE_FORMAT(E.write_date, '%Y.%m.%d') AS write_date,
-           E.likes, E.dislike, E.report, S.semester_title, SUM(IF(E2.IS_DELETE = 0,1,0)) as count
-    FROM EVALUATION E LEFT OUTER JOIN SEMESTER S ON E.SEMESTER = S.SEMESTER_ID LEFT OUTER JOIN EVALUATION E2 ON E.EVALUATION_ID = E2.UPPER_ID
-    WHERE E.LECTURE_ID = #{lecture_id} AND E.IS_DELETE = 0 AND E.IS_REPLY = 0
-    GROUP BY E.EVALUATION_ID
-    ORDER BY E.LIKES DESC, E.SEMESTER DESC, E.WRITE_DATE DESC LIMIT 3
+    select e.evaluation_id, e.lecture_id, e.method, e.task, e.exam, e.comment, e.score, date_format(e.write_date, '%y.%m.%d') as write_date,
+           e.likes, e.dislike, e.report, s.semester_title, sum(if(e2.is_delete = 0,1,0)) as count
+    from evaluation e left outer join semester s on e.semester = s.semester_id left outer join evaluation e2 on e.evaluation_id = e2.upper_id
+    where e.lecture_id = #{lecture_id} and e.is_delete = 0 and e.is_reply = 0
+    group by e.evaluation_id
+    order by e.likes desc, e.semester desc, e.write_date desc limit 3
   </select>
 
   <select id="selectEvaluationCount" parameterType="map" resultType="int">
-    SELECT Count(evaluation_id) FROM EVALUATION WHERE MEMBER_ID = #{member_id} AND LECTURE_ID = #{lecture_id} AND IS_DELETE = 0
+    select count(evaluation_id) from evaluation where member_id = #{member_id} and lecture_id = #{lecture_id} and is_delete = 0
   </select>
 
   <select id="selectMember_id" parameterType="int" resultType="int">
-    SELECT member_id FROM EVALUATION WHERE Evaluation_ID = #{evaluation_id}
+    select member_id from evaluation where evaluation_id = #{evaluation_id}
   </select>
 
   <select id="selectEvaluation" parameterType="int" resultType="map">
-    SELECT E.*, S.semester_title
-    FROM EVALUATION E LEFT OUTER JOIN SEMESTER S ON E.SEMESTER = S.SEMESTER_ID
-    WHERE Evaluation_ID = #{evaluation_id}
+    select e.*, s.semester_title
+    from evaluation e left outer join semester s on e.semester = s.semester_id
+    where evaluation_id = #{evaluation_id}
   </select>
 
   <select id="selectSubCount" parameterType="map" resultType="int">
-    SELECT count(es_id) FROM EVALUATIONSUB WHERE EVALUATION_ID = #{evaluation_id} AND MEMBER_ID = #{member_id} AND KIND BETWEEN 1 AND 3
+    select count(es_id) from evaluationsub where evaluation_id = #{evaluation_id} and member_id = #{member_id} and kind between 1 and 3
   </select>
 
   <select id="selectSubType" parameterType="map" resultType="int">
-    SELECT kind FROM EVALUATIONSUB WHERE EVALUATION_ID = #{evaluation_id} AND MEMBER_ID = #{member_id} AND KIND BETWEEN 1 AND 3
+    select kind from evaluationsub where evaluation_id = #{evaluation_id} and member_id = #{member_id} and kind between 1 and 3
   </select>
 
   <select id="SearchEvaluationPrefer" parameterType="map" resultType="map">
-    SELECT E.evaluation_id, E.lecture_id, E.method, E.task, E.exam, E.comment, E.score, DATE_FORMAT(E.write_date, '%Y.%m.%d') AS write_date,
-    E.likes, E.dislike, E.report, S.semester_title, SUM(IF(E2.IS_DELETE = 0,1,0)) as count
-    FROM EVALUATION E LEFT OUTER JOIN SEMESTER S ON E.SEMESTER = S.SEMESTER_ID LEFT OUTER JOIN EVALUATION E2 ON E.EVALUATION_ID = E2.UPPER_ID
-    WHERE E.LECTURE_ID = #{lecture_id} AND E.IS_DELETE = 0 AND E.IS_REPLY = 0
+    select e.evaluation_id, e.lecture_id, e.method, e.task, e.exam, e.comment, e.score, date_format(e.write_date, '%y.%m.%d') as write_date,
+    e.likes, e.dislike, e.report, s.semester_title, sum(if(e2.is_delete = 0,1,0)) as count
+    from evaluation e left outer join semester s on e.semester = s.semester_id left outer join evaluation e2 on e.evaluation_id = e2.upper_id
+    where e.lecture_id = #{lecture_id} and e.is_delete = 0 and e.is_reply = 0
     <choose>
-      <when test="method != null and method.equalsIgnoreCase('all')"> </when>
+      <when test="method != null and method.equalsignorecase('all')"> </when>
       <otherwise>
-        AND E.MEMBER_METHOD = #{method}
+        and e.member_method = #{method}
       </otherwise>
     </choose>
     <choose>
-      <when test="task != null and task.equalsIgnoreCase('all')"> </when>
+      <when test="task != null and task.equalsignorecase('all')"> </when>
       <otherwise>
-        AND E.MEMBER_TASK = #{task}
+        and e.member_task = #{task}
       </otherwise>
     </choose>
     <choose>
-      <when test="exam != null and exam.equalsIgnoreCase('all')"> </when>
+      <when test="exam != null and exam.equalsignorecase('all')"> </when>
       <otherwise>
-        AND E.MEMBER_EXAM = #{exam}
+        and e.member_exam = #{exam}
       </otherwise>
     </choose>
-    GROUP BY E.EVALUATION_ID
-    ORDER BY E.SEMESTER DESC, E.WRITE_DATE DESC
+    group by e.evaluation_id
+    order by e.semester desc, e.write_date desc
   </select>
 
   <select id="selectReplyAll" parameterType="int" resultType="map">
-    SELECT evaluation_id, comment, DATE_FORMAT(write_date, '%Y.%m.%d %T') AS write_date, report
-    FROM EVALUATION
-    WHERE upper_id = #{evaluation_id} AND IS_DELETE = 0
-    ORDER BY WRITE_DATE
+    select evaluation_id, comment, date_format(write_date, '%y.%m.%d %t') as write_date, report
+    from evaluation
+    where upper_id = #{evaluation_id} and is_delete = 0
+    order by write_date
   </select>
 
   <select id="selectReplyMember_id" parameterType="int" resultType="int">
-    SELECT member_id FROM EVALUATIONSUB WHERE ES_ID = #{es_id}
+    select member_id from evaluationsub where es_id = #{es_id}
   </select>
 
 
@@ -89,84 +89,84 @@
   <insert id="insertEvaluation" parameterType="map">
     <choose>
       <when test="upper_id != null">
-        INSERT INTO EVALUATION (lecture_id, member_id, comment, is_reply, upper_id)
-        VALUES (#{lecture_id},#{member_id},#{comment},1,#{upper_id})
+        insert into evaluation (lecture_id, member_id, comment, is_reply, upper_id)
+        values (#{lecture_id},#{member_id},#{comment},1,#{upper_id})
       </when>
       <otherwise>
-        INSERT INTO EVALUATION (lecture_id, member_id, method, task, exam, comment, score, semester, member_method, member_task, member_exam)
-        VALUES (#{lecture_id},#{member_id},#{method},#{task},#{exam},#{comment},#{score},#{semester},#{member_method},#{member_task},#{member_exam})
+        insert into evaluation (lecture_id, member_id, method, task, exam, comment, score, semester, member_method, member_task, member_exam)
+        values (#{lecture_id},#{member_id},#{method},#{task},#{exam},#{comment},#{score},#{semester},#{member_method},#{member_task},#{member_exam})
       </otherwise>
     </choose>
   </insert>
 
   <insert id="insertSub" parameterType="map">
-    INSERT INTO EVALUATIONSUB (evaluation_id, member_id, kind)
-    VALUES (#{evaluation_id},#{member_id},#{kind})
+    insert into evaluationsub (evaluation_id, member_id, kind)
+    values (#{evaluation_id},#{member_id},#{kind})
   </insert>
 
 
   <!--update-->
 
   <update id="updateEvaluation" parameterType="map">
-    UPDATE EVALUATION
-    SET
+    update evaluation
+    set
     method = #{method},
     task = #{task},
     exam = #{exam},
     comment = #{comment},
     score = #{score},
     semester = #{semester}
-    WHERE EVALUATION_ID = #{evaluation_id}
+    where evaluation_id = #{evaluation_id}
   </update>
 
   <update id="updateEvaluationLike" parameterType="int">
-    UPDATE EVALUATION
-    SET
+    update evaluation
+    set
     likes = likes + 1
-    WHERE EVALUATION_ID = #{evaluation_id}
+    where evaluation_id = #{evaluation_id}
   </update>
 
   <update id="updateEvaluationDislike" parameterType="int">
-    UPDATE EVALUATION
-    SET
+    update evaluation
+    set
     dislike = dislike + 1
-    WHERE EVALUATION_ID = #{evaluation_id}
+    where evaluation_id = #{evaluation_id}
   </update>
 
   <update id="updateEvaluationReport" parameterType="int">
-    UPDATE EVALUATION
-    SET
+    update evaluation
+    set
     report = report + 1
-    WHERE EVALUATION_ID = #{evaluation_id}
+    where evaluation_id = #{evaluation_id}
   </update>
 
   <update id="updateIsDelete" parameterType="int">
-    UPDATE EVALUATION
-    SET
-    IS_DELETE = 1
-    WHERE EVALUATION_ID = #{evaluation_id}
+    update evaluation
+    set
+    is_delete = 1
+    where evaluation_id = #{evaluation_id}
   </update>
 
 
   <!--delete-->
 
   <delete id="delete" parameterType="int">
-    DELETE FROM EVALUATION WHERE EVALUATION_ID = #{value}
+    delete from evaluation where evaluation_id = #{value}
   </delete>
 
 
 
 
   <select id="selectAll" resultType="map">
-    SELECT * FROM EVALUATION WHERE IS_DELETE = 1 AND REPORT <![CDATA[ < ]]> 5 ORDER BY WRITE_DATE DESC
+    select * from evaluation where is_delete = 1 and report <![cdata[ < ]]> 5 order by write_date desc
   </select>
 
   <select id="selectAdmin" resultType="map">
-    SELECT E.EVALUATION_ID AS evaluation_id, E.MEMBER_ID AS member_id, E.LECTURE_ID AS lecture_id, L.LECTURE_NAME AS lecture_name,
-    E.METHOD AS method, E.TASK AS task, E.EXAM AS exam, E.COMMENT AS comment, E.SCORE AS score, E.WRITE_DATE AS write_date,
-    E.LIKES AS likes, E.DISLIKE AS dislike, E.REPORT AS report, E.IS_DELETE AS is_delete
-    FROM LECTURE L JOIN EVALUATION E ON L.LECTURE_ID = E.LECTURE_ID
-    ORDER BY L.LECTURE_ID, E.WRITE_DATE DESC
+    select e.evaluation_id as evaluation_id, e.member_id as member_id, e.lecture_id as lecture_id, l.lecture_name as lecture_name,
+    e.method as method, e.task as task, e.exam as exam, e.comment as comment, e.score as score, e.write_date as write_date,
+    e.likes as likes, e.dislike as dislike, e.report as report, e.is_delete as is_delete
+    from lecture l join evaluation e on l.lecture_id = e.lecture_id
+    order by l.lecture_id, e.write_date desc
   </select>
 
 <!--  <select id="selectReport" resultType="map">
@@ -178,53 +178,53 @@
   </select>-->
 
   <select id="selectReport" resultType="map">
-    SELECT E.EVALUATION_ID AS evaluation_id, E.MEMBER_ID AS member_id, E.LECTURE_ID AS lecture_id, L.LECTURE_NAME AS lecture_name,
-    E.METHOD AS method, E.TASK AS task, E.EXAM AS exam, E.COMMENT AS comment, E.SCORE AS score, E.WRITE_DATE AS write_date,
-    E.LIKES AS likes, E.DISLIKE AS dislike, E.REPORT AS report, E.IS_DELETE AS is_delete
-    FROM EVALUATION E LEFT OUTER JOIN LECTURE L ON L.LECTURE_ID = E.LECTURE_ID
-    WHERE REPORT <![CDATA[ >= ]]> 5
-    ORDER BY L.LECTURE_ID, E.WRITE_DATE DESC
+    select e.evaluation_id as evaluation_id, e.member_id as member_id, e.lecture_id as lecture_id, l.lecture_name as lecture_name,
+    e.method as method, e.task as task, e.exam as exam, e.comment as comment, e.score as score, e.write_date as write_date,
+    e.likes as likes, e.dislike as dislike, e.report as report, e.is_delete as is_delete
+    from evaluation e left outer join lecture l on l.lecture_id = e.lecture_id
+    where report <![cdata[ >= ]]> 5
+    order by l.lecture_id, e.write_date desc
   </select>
 
   <select id="selectSearchAdmin" resultType="map">
-    SELECT E.EVALUATION_ID AS evaluation_id, E.MEMBER_ID AS member_id, E.LECTURE_ID AS lecture_id, L.LECTURE_NAME AS lecture_name,
-    E.METHOD AS method, E.TASK AS task, E.EXAM AS exam, E.COMMENT AS comment, E.SCORE AS score, E.WRITE_DATE AS write_date,
-    E.LIKES AS likes, E.DISLIKE AS dislike, E.REPORT AS report, E.IS_DELETE AS is_delete
-    FROM LECTURE L JOIN EVALUATION E ON L.LECTURE_ID = E.LECTURE_ID
-    WHERE
-    <choose><when test="searchType != null and searchType.equalsIgnoreCase('lecture_name')">L.LECTURE_NAME LIKE CONCAT('%', #{searchWord}, '%')</when>
-    <when test="searchType != null and searchType.equalsIgnoreCase('content')">E.COMMENT LIKE CONCAT('%', #{searchWord}, '%') OR
-    E.METHOD LIKE CONCAT('%', #{searchWord}, '%') OR E.TASK LIKE CONCAT('%', #{searchWord}, '%') OR E.EXAM LIKE CONCAT('%', #{searchWord}, '%')</when>
-    <otherwise>E.MEMBER_ID LIKE CONCAT('%', #{searchWord}, '%')</otherwise>
+    select e.evaluation_id as evaluation_id, e.member_id as member_id, e.lecture_id as lecture_id, l.lecture_name as lecture_name,
+    e.method as method, e.task as task, e.exam as exam, e.comment as comment, e.score as score, e.write_date as write_date,
+    e.likes as likes, e.dislike as dislike, e.report as report, e.is_delete as is_delete
+    from lecture l join evaluation e on l.lecture_id = e.lecture_id
+    where
+    <choose><when test="searchtype != null and searchtype.equalsignorecase('lecture_name')">l.lecture_name like concat('%', #{searchword}, '%')</when>
+    <when test="searchtype != null and searchtype.equalsignorecase('content')">e.comment like concat('%', #{searchword}, '%') or
+    e.method like concat('%', #{searchword}, '%') or e.task like concat('%', #{searchword}, '%') or e.exam like concat('%', #{searchword}, '%')</when>
+    <otherwise>e.member_id like concat('%', #{searchword}, '%')</otherwise>
     </choose>
-    ORDER BY L.LECTURE_ID, E.WRITE_DATE DESC
+    order by l.lecture_id, e.write_date desc
   </select>
 
   <select id="selectSearch" parameterType="map" resultType="map">
-    SELECT L.LECTURE_ID AS lecture_id, L.LECTURE_NAME AS lecture_name, L.DEPT AS dept, L.PROF AS prof, SUM(IF(E.IS_DELETE = 1,1,0)) AS count
-    FROM LECTURE L LEFT OUTER JOIN EVALUATION E ON E.LECTURE_ID = L.LECTURE_ID
-    WHERE L.LIKES <![CDATA[ >= ]]> 10 AND L.IS_DELETE = 1 AND L.PROF LIKE CONCAT('%', #{searchWord}, '%')
-    GROUP BY L.LECTURE_ID
-    ORDER BY L.WRITE_DATE DESC
+    select l.lecture_id as lecture_id, l.lecture_name as lecture_name, l.dept as dept, l.prof as prof, sum(if(e.is_delete = 1,1,0)) as count
+    from lecture l left outer join evaluation e on e.lecture_id = l.lecture_id
+    where l.likes <![cdata[ >= ]]> 10 and l.is_delete = 1 and l.prof like concat('%', #{searchword}, '%')
+    group by l.lecture_id
+    order by l.write_date desc
   </select>
 
   <update id="isUndelete" parameterType="int">
-    UPDATE EVALUATION
-    SET
-    IS_DELETE = 1
-    WHERE EVALUATION_ID = #{evaluation_id}
+    update evaluation
+    set
+    is_delete = 1
+    where evaluation_id = #{evaluation_id}
   </update>
 
   <update id="updateAdmin" parameterType="map">
-    UPDATE EVALUATION
-    SET
+    update evaluation
+    set
     method = #{method},
     task = #{task},
     exam = #{exam},
     comment = #{comment},
     score = #{score},
     report = #{report}
-    WHERE EVALUATION_ID = #{evaluation_id}
+    where evaluation_id = #{evaluation_id}
   </update>
 
 </mapper>
