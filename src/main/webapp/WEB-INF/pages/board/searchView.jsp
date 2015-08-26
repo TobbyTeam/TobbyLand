@@ -175,7 +175,7 @@
       <div class="col-lg-0">
         <button onclick="location.href='/board/list/${department.department_id}/'" class="btn btn-default">전체목록</button>
         <button onclick="location.href='/board/regForm?department_id=${department.department_id}'" class="btn btn-primary">글작성</button>
-        <a href="/board/regTest?department_id=${department_id}">테스트</a>
+<%--        <a href="/board/regTest?department_id=${department_id}">테스트</a>--%>
       </div>
       <br />
 

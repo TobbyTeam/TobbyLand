@@ -6,136 +6,136 @@
   <!--select-->
 
   <select id="selectCountId" parameterType="String" resultType="int">
-    SELECT Count(MEMBER_ID) FROM MEMBER WHERE USER_ID = #{user_id}
+    select count(member_id) from member where user_id = #{user_id}
   </select>
 
   <select id="selectCountEmail" parameterType="String" resultType="int">
-    SELECT Count(MEMBER_ID) FROM MEMBER WHERE EMAIL = #{email}
+    select count(member_id) from member where email = #{email}
   </select>
 
   <select id="selectCountNick" parameterType="map" resultType="int">
-    SELECT Count(MEMBER_ID)
-    FROM MEMBER
-    WHERE
+    select count(member_id)
+    from member
+    where
     <choose>
-      <when test="member_id != null">NICKNAME = #{nickname} AND MEMBER_ID != #{member_id}</when>
-      <otherwise>NICKNAME = #{nickname}</otherwise>
+      <when test="member_id != null">nickname = #{nickname} and member_id != #{member_id}</when>
+      <otherwise>nickname = #{nickname}</otherwise>
     </choose>
   </select>
 
   <select id="selectMemberId" parameterType="String" resultType="int">
-    SELECT member_id FROM MEMBER WHERE USER_ID = #{user_id}
+    select member_id from member where user_id = #{user_id}
   </select>
 
   <select id="selectEnabled" parameterType="int" resultType="int">
-    SELECT Enabled FROM MEMBER WHERE MEMBER_ID = #{member_id}
+    select enabled from member where member_id = #{member_id}
   </select>
 
   <select id="selectMember" parameterType="int" resultType="map">
-    SELECT member_id, user_id, nickname, email, method, task, exam, DATE_FORMAT(reg_date, '%Y.%m.%d %T') AS reg_date, evaluation_count
-    FROM MEMBER
-    WHERE MEMBER_ID = #{member_id}
+    select member_id, user_id, nickname, email, method, task, exam, date_format(reg_date, '%Y.%m.%d %T') as reg_date, evaluation_count
+    from member
+    where member_id = #{member_id}
   </select>
 
   <select id="selectPassword" parameterType="int" resultType="String">
-    SELECT password FROM MEMBER WHERE MEMBER_ID = #{member_id}
+    select password from member where member_id = #{member_id}
   </select>
 
   <select id="selectId" parameterType="String" resultType="map">
-    SELECT member_id, user_id FROM MEMBER WHERE EMAIL = #{email}
+    select member_id, user_id from member where email = #{email}
   </select>
 
   <select id="selectCountSearch" parameterType="map" resultType="int">
-    SELECT Count(MEMBER_SEARCH_ID)
-    FROM MEMBER_SEARCH
-    WHERE MEMBER_ID = #{member_id} AND ip = INET_ATON(#{ip}) AND DATE(search_date) = curdate()
+    select count(member_search_id)
+    from member_search
+    where member_id = #{member_id} and ip = inet_aton(#{ip}) and date(search_date) = curdate()
   </select>
 
   <select id="selectSearch" parameterType="int" resultType="int">
-    SELECT search FROM MEMBER WHERE MEMBER_ID = #{member_id}
+    select search from member where member_id = #{member_id}
   </select>
 
   <select id="selectMemberTendency" parameterType="int" resultType="map">
-    SELECT method AS member_method, task AS member_task, exam AS member_exam FROM MEMBER WHERE MEMBER_ID = #{member_id}
+    select method as member_method, task as member_task, exam as member_exam from member where member_id = #{member_id}
   </select>
 
   <select id="selectTendencyAll" resultType="map">
-    SELECT * FROM TENDENCY
+    select * from tendency
   </select>
 
   <!--insert-->
 
   <insert id="insertMember" parameterType="map">
-    INSERT INTO MEMBER (user_id, password, nickname, email, method, task, exam)
-    VALUES (#{user_id},#{password},#{nickname},#{email},#{method},#{task},#{exam})
+    insert into member (user_id, password, nickname, email, method, task, exam)
+    values (#{user_id},#{password},#{nickname},#{email},#{method},#{task},#{exam})
   </insert>
 
   <insert id="insertRole" parameterType="int">
-    INSERT INTO MEMBER_ROLE (member_id) VALUES (#{member_id})
+    insert into member_role (member_id) values (#{member_id})
   </insert>
 
   <insert id="insertSearch" parameterType="map">
-    INSERT INTO MEMBER_SEARCH (member_id, ip) VALUES (#{member_id},INET_ATON(#{ip}))
+    insert into member_search (member_id, ip) values (#{member_id},inet_aton(#{ip}))
   </insert>
 
 
   <!--update-->
 
   <update id="updateEnabled" parameterType="int">
-    UPDATE MEMBER
-    SET
+    update member
+    set
     enabled = 1
-    WHERE MEMBER_ID = #{member_id}
+    where member_id = #{member_id}
   </update>
 
   <update id="updateMember" parameterType="map">
-    UPDATE MEMBER
-    SET
+    update member
+    set
     nickname = #{nickname},
     method = #{method},
     task = #{task},
     exam = #{exam}
-    WHERE MEMBER_ID = #{member_id}
+    where member_id = #{member_id}
   </update>
 
   <update id="updateEvaluationCount" parameterType="int">
-    UPDATE MEMBER
-    SET EVALUATION_COUNT = EVALUATION_COUNT + 1
-    WHERE MEMBER_ID = #{member_id}
+    update member
+    set evaluation_count = evaluation_count + 1
+    where member_id = #{member_id}
   </update>
 
   <update id="updateUnEvaluationCount" parameterType="int">
-    UPDATE MEMBER
-    SET EVALUATION_COUNT = EVALUATION_COUNT - 1
-    WHERE MEMBER_ID = #{member_id}
+    update member
+    set evaluation_count = evaluation_count - 1
+    where member_id = #{member_id}
   </update>
 
   <update id="updatePassword" parameterType="map">
-    UPDATE MEMBER
-    SET
+    update member
+    set
     password = #{password}
-    WHERE MEMBER_ID = #{member_id}
+    where member_id = #{member_id}
   </update>
 
   <update id="updateLocked" parameterType="int">
-    UPDATE MEMBER
-    SET
-    nonLocked = 0
-    WHERE MEMBER_ID = #{member_id}
+    update member
+    set
+    nonlocked = 0
+    where member_id = #{member_id}
   </update>
 
   <update id="updateSearch" parameterType="int">
-    UPDATE MEMBER
-    SET
-    SEARCH = SEARCH + 1
-    WHERE MEMBER_ID = #{member_id}
+    update member
+    set
+    search = search + 1
+    where member_id = #{member_id}
   </update>
 
   <update id="updateSearchZero" parameterType="int">
-    UPDATE MEMBER
-    SET
-    SEARCH = 0
-    WHERE MEMBER_ID = #{member_id}
+    update member
+    set
+    search = 0
+    where member_id = #{member_id}
   </update>
 
 
@@ -143,7 +143,7 @@
   <!--delete-->
 
   <delete id="delete" parameterType="int">
-    DELETE FROM MEMBER WHERE MEMBER_ID = #{member_id}
+    delete from member where member_id = #{member_id}
   </delete>
 
 </mapper>

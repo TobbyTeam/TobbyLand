@@ -15,13 +15,15 @@
 		<div class="col-md-8">
 			<br />
 			<p align="center"><img src="<c:url value="/resources/image/error.png" />" /><br /></p>
-			<h2 align="center">잘못된 접근입니다.</h2>
-			<hr />
 			<c:choose>
-				<c:when test="${not empty message}">
-					<h4 align="center">${message}</h4>
+				<c:when test="${not empty message1}">
+					<h2 align="center">${message1}</h2>
+					<hr />
+					<h4 align="center">${message2}</h4>
 				</c:when>
 				<c:otherwise>
+					<h2 align="center">잘못된 접근입니다.</h2>
+					<hr />
 					<h4 align="center">페이지가 없거나 오류가 발생하였습니다.</h4>
 				</c:otherwise>
 			</c:choose>

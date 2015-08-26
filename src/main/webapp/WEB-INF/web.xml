@@ -22,10 +22,14 @@
 		</param-value>
 	</context-param>
 
-<!--	<error-page>
+	<error-page>
 		<error-code>500</error-code>
 		<location>/500</location>
-	</error-page>-->
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404</location>
+	</error-page>
 
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
@@ -101,8 +105,7 @@
 	<!-- =================== -->
 
 	<welcome-file-list>
-		<welcome-file>login.jsp</welcome-file>
-		<welcome-file>login.do</welcome-file>
+		<welcome-file>/etc/index.html</welcome-file>
 	</welcome-file-list>
 
 	<!-- ================= -->
@@ -110,7 +113,7 @@
 	<!-- ================= -->
 
 	<session-config>
-		<session-timeout>300</session-timeout>
+		<session-timeout>1</session-timeout>
 		<tracking-mode>COOKIE</tracking-mode>
 	</session-config>
 

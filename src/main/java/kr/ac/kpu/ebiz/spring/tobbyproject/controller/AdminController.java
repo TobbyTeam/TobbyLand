@@ -30,6 +30,10 @@ public class AdminController {
 
 	/*강의 관리*/
 
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	public String main() {
+		return "/admin/main";
+	}
 
 	@RequestMapping(value = "/lecture/list", method = RequestMethod.GET)
 	public ModelAndView lectureList() {
@@ -163,10 +167,6 @@ public class AdminController {
 		ModelAndView mav = new ModelAndView("/admin/evaluationList");
 
 		mav.addObject("evaluations", evaluationRepository.selectReport());
-
-		System.out.println(mav.getModel());
-
-
 
 		return mav;
 	}

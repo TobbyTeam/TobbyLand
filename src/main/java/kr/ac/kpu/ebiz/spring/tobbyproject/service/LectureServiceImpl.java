@@ -109,8 +109,6 @@ public class LectureServiceImpl implements LectureService{
 
         String searchWord = (String) search.get("searchWord");
 
-        System.out.println(search.toString()+"+++++++검색 확인");
-
         List<Map> result = lectureRepository.selectLectureSearch(search);
         mav.addObject("lectures", result);
         mav.addObject("message", searchWord+"(으)로 검색한 결과");
@@ -280,13 +278,26 @@ public class LectureServiceImpl implements LectureService{
         return result;
     }
 
-    public void boardViewService(int lb_id, ModelAndView mav) {
+    public boolean boardViewService(int lb_id, ModelAndView mav) {
 
-        lectureRepository.updateBoardHit(lb_id);
+        Map board = lectureRepository.selectBoard(lb_id);
 
-        mav.addObject("board", lectureRepository.selectBoard(lb_id));
-        mav.addObject("replys", lectureRepository.selectBoardReplyAll(lb_id));
+        boolean result = true;
 
+        if(board == null){
+
+            mav.setViewName("redirect:/404");
+            result = false;
+
+        }else{
+
+            lectureRepository.updateBoardHit(lb_id);
+
+            mav.addObject("board", board);
+            mav.addObject("replys", lectureRepository.selectBoardReplyAll(lb_id));
+        }
+
+        return result;
     }
 
     public boolean boardConfirmService(int lb_id) {
@@ -319,7 +330,16 @@ public class LectureServiceImpl implements LectureService{
 
         if(member_id == writer || authorities.toString().contains("ROLE_ADMIN")){
 
-            mav.addObject("board", lectureRepository.selectBoard(lb_id));
+            Map board = lectureRepository.selectBoard(lb_id);
+
+            if(board == null){
+
+                mav.setViewName("redirect:/404");
+
+            } else {
+
+                mav.addObject("board", board);
+            }
 
         } else {
 

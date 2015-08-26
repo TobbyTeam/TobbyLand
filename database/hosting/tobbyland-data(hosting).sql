@@ -1,5 +1,3 @@
-USE tobbyland;
-
 --
 -- tendency table data
 --

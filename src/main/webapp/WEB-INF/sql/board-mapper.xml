@@ -10,7 +10,7 @@
   </select>
 
   <select id="selectBoardAll" parameterType="map" resultType="map" >
-    select b.rnum, b.board_id, b.writer, b.department_id, b.title, date_format(b.write_date, '%y.%m.%d') as write_date,
+    select b.rnum, b.board_id, b.writer, b.department_id, b.title, date_format(b.write_date, '%Y.%m.%d') as write_date,
            b.hit, b.likes, b.is_anonymity, sum(if(b2.is_delete = 0,1,0)) as count
     from board b left outer join board b2 on b.board_id = b2.upper_id
     where b.department_id = #{department_id} and b.is_delete = 0 and b.is_reply = 0
@@ -26,13 +26,13 @@
   </select>
 
   <select id="selectBoard" parameterType="int" resultType="map" >
-    select board_id, department_id, writer, title, contents, date_format(write_date, '%y.%m.%d %t') as write_date, hit, likes, dislike, report, is_anonymity
+    select board_id, department_id, writer, title, contents, date_format(write_date, '%Y.%m.%d %T') as write_date, hit, likes, dislike, report, is_anonymity
     from board
-    where board_id = #{board_id}
+    where board_id = #{board_id} and is_delete = 0
   </select>
 
   <select id="selectBoardReplyAll" parameterType="int" resultType="map" >
-    select board_id, writer, contents, date_format(write_date, '%y.%m.%d %t') as write_date, report
+    select board_id, writer, contents, date_format(write_date, '%Y.%m.%d %T') as write_date, report
     from board
     where upper_id = #{board_id} and is_delete = 0
     order by write_date
@@ -57,44 +57,44 @@
     from board
     where department_id = #{department_id} and is_delete = 0 and is_reply = 0
     <choose>
-      <when test="searchtype != null and searchtype.equalsignorecase('title')">
-        and title like concat('%', #{searchword}, '%')
+      <when test="searchType != null and searchType.equalsIgnoreCase('title')">
+        and title like CONCAT('%', #{searchWord}, '%')
       </when>
-      <when test="searchtype != null and searchtype.equalsignorecase('contents')">
-        and contents like concat('%', #{searchword}, '%')
+      <when test="searchType != null and searchType.equalsIgnoreCase('contents')">
+        and contents like CONCAT('%', #{searchWord}, '%')
       </when>
-      <when test="searchtype != null and searchtype.equalsignorecase('title_contents')">
-        and (title like concat('%', #{searchword}, '%') or contents like concat('%', #{searchword}, '%'))
+      <when test="searchType != null and searchType.equalsIgnoreCase('title_contents')">
+        and (title like CONCAT('%', #{searchWord}, '%') or contents like CONCAT('%', #{searchWord}, '%'))
       </when>
-      <when test="searchtype != null and searchtype.equalsignorecase('writer')">
-        and writer like concat('%', #{searchword}, '%')
+      <when test="searchType != null and searchType.equalsIgnoreCase('writer')">
+        and writer like CONCAT('%', #{searchWord}, '%')
       </when>
       <otherwise>
-        and (title like concat('%', #{searchword}, '%') or contents like concat('%', #{searchword}, '%') or writer like concat('%', #{searchword}, '%'))
+        and (title like CONCAT('%', #{searchWord}, '%') or contents like CONCAT('%', #{searchWord}, '%') or writer like CONCAT('%', #{searchWord}, '%'))
       </otherwise>
     </choose>
   </select>
 
   <select id="selectBoardSearch" parameterType="map" resultType="map">
-    select b.rnum, b.board_id, b.writer, b.department_id, b.title, date_format(b.write_date, '%y.%m.%d') as write_date,
+    select b.rnum, b.board_id, b.writer, b.department_id, b.title, date_format(b.write_date, '%Y.%m.%d') as write_date,
            b.hit, b.likes, b.is_anonymity, sum(if(b2.is_delete = 0,1,0)) as count
     from board b left outer join board b2 on b.board_id = b2.upper_id
     where b.department_id = #{department_id} and b.is_delete = 0 and b.is_reply = 0
     <choose>
-      <when test="searchtype != null and searchtype.equalsignorecase('title')">
-        and b.title like concat('%', #{searchword}, '%')
+      <when test="searchType != null and searchType.equalsIgnoreCase('title')">
+        and b.title like CONCAT('%', #{searchWord}, '%')
       </when>
-      <when test="searchtype != null and searchtype.equalsignorecase('contents')">
-        and b.contents like concat('%', #{searchword}, '%')
+      <when test="searchType != null and searchType.equalsIgnoreCase('contents')">
+        and b.contents like CONCAT('%', #{searchWord}, '%')
       </when>
-      <when test="searchtype != null and searchtype.equalsignorecase('title_contents')">
-        and (b.title like concat('%', #{searchword}, '%') or b.contents like concat('%', #{searchword}, '%'))
+      <when test="searchType != null and searchType.equalsIgnoreCase('title_contents')">
+        and (b.title like CONCAT('%', #{searchWord}, '%') or b.contents like CONCAT('%', #{searchWord}, '%'))
       </when>
-      <when test="searchtype != null and searchtype.equalsignorecase('writer')">
-        and b.writer like concat('%', #{searchword}, '%')
+      <when test="searchType != null and searchType.equalsIgnoreCase('writer')">
+        and b.writer like CONCAT('%', #{searchWord}, '%')
       </when>
       <otherwise>
-        and (b.title like concat('%', #{searchword}, '%') or b.contents like concat('%', #{searchword}, '%') or b.writer like concat('%', #{searchword}, '%'))
+        and (b.title like CONCAT('%', #{searchWord}, '%') or b.contents like CONCAT('%', #{searchWord}, '%') or b.writer like CONCAT('%', #{searchWord}, '%'))
       </otherwise>
     </choose>
     group by b.board_id
@@ -103,21 +103,21 @@
   </select>
 
   <select id="selectSiteNoticeAll" resultType="map" >
-    select board_id, department_id, title, date_format(write_date, '%y.%m.%d') as write_date
+    select board_id, department_id, title, date_format(write_date, '%Y.%m.%d') as write_date
     from board
     where department_id = 14 and is_delete = 0 and is_reply = 0
     order by board_id desc limit 5
   </select>
 
   <select id="selectKpuNoticeAll" resultType="map" >
-    select board_id, department_id, title, date_format(write_date, '%y.%m.%d') as write_date
+    select board_id, department_id, title, date_format(write_date, '%Y.%m.%d') as write_date
     from board
     where department_id = 15 and is_delete = 0 and is_reply = 0
     order by board_id desc limit 5
   </select>
 
   <select id="selectLatestAll" resultType="map" >
-    select d.department_name, b.board_id, b.writer, b.department_id, b.title, date_format(b.write_date, '%y.%m.%d %t') as write_date, b.is_anonymity
+    select d.department_name, b.board_id, b.writer, b.department_id, b.title, date_format(b.write_date, '%Y.%m.%d %T') as write_date, b.is_anonymity
     from board b left outer join department d on b.department_id = d.department_id
     where d.kind in ('dept', 'etc') and b.is_delete = 0 and b.is_reply = 0
     group by b.board_id
@@ -129,7 +129,7 @@
     from board b left outer join board b2 on b.board_id = b2.upper_id left outer join department d on b.department_id = d.department_id
     where d.kind in ('dept', 'etc') and b.is_delete = 0 and b.is_reply = 0 and b.likes <![CDATA[ >= ]]> 10
     group by b.board_id
-    order by date_format(b.write_date, '%y.%m.%d') desc, b.likes desc, b.hit desc, count desc, b.board_id desc limit 15
+    order by date_format(b.write_date, '%Y.%m.%d') desc, b.likes desc, b.hit desc, count desc, b.board_id desc limit 15
   </select>
 
 
@@ -156,9 +156,9 @@
     insert into board_sub (board_id, member_id, kind)
     values (#{board_id},#{member_id},#{kind})
   </insert>
-
+  
   <!--update-->
-
+  
   <update id="updateBoardHit" parameterType="int">
     update board
     set

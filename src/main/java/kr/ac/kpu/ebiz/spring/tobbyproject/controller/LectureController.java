@@ -152,7 +152,7 @@ public class LectureController {
 	}
 
 	@RequestMapping(value = "/boardReg", method = RequestMethod.POST)
-		 public @ResponseBody boolean boardReg(@RequestParam Map<String, String> lectureBoard) {
+ 	public @ResponseBody boolean boardReg(@RequestParam Map<String, String> lectureBoard) {
 
 		return lectureService.boardRegService(lectureBoard);
 	}
@@ -164,20 +164,21 @@ public class LectureController {
 
 		ModelAndView mav = new ModelAndView();
 
-		lectureService.boardViewService(lb_id, mav);
+		if(lectureService.boardViewService(lb_id, mav)){
 
-		if(!searchType.isEmpty()){
-			Map search = new HashMap();
-			search.put("searchType", searchType);
-			search.put("searchWord", searchWord);
-			search.put("lecture_id", lecture_id);
-			lectureService.boardSearchService(search, page, mav);
-			mav.setViewName("/lecture/boardSearchView");
+			if(!searchType.isEmpty()){
+				Map search = new HashMap();
+				search.put("searchType", searchType);
+				search.put("searchWord", searchWord);
+				search.put("lecture_id", lecture_id);
+				lectureService.boardSearchService(search, page, mav);
+				mav.setViewName("/lecture/boardSearchView");
 
-		} else {
-			lectureService.boardListService(lecture_id, page, mav);
-			mav.setViewName("/lecture/boardView");
+			} else {
+				lectureService.boardListService(lecture_id, page, mav);
+				mav.setViewName("/lecture/boardView");
 
+			}
 		}
 
 		return mav;

@@ -91,7 +91,7 @@ public class MemberServiceImpl implements MemberService{
             result = false;
         }
 
-        String content = user_id+"님 회원가입을 축하드립니다. 아래 링크를 누르시면 메일인증이 됩니다.<br />" + "<a href=\"http://localhost:8080/member/enabled?enSt="+enSt+"\">메일인증</a>";
+        String content = user_id+"님 회원가입을 축하드립니다. 아래 링크를 누르시면 메일인증이 됩니다.<br />" + "<a href=\"http://tobbyland.com/member/enabled?enSt="+enSt+"\">메일인증</a>";
 
         mailMail.sendMail( from, to, subject, content);
 
@@ -227,8 +227,6 @@ public class MemberServiceImpl implements MemberService{
 
         int member_id = Integer.parseInt(id);
 
-        System.out.println(member_id+"멤버아이디 확인");
-
         if(memberRepository.selectSearch(member_id) !=0) {
 
             Map member = new HashMap();
@@ -271,8 +269,6 @@ public class MemberServiceImpl implements MemberService{
             ip = req.getRemoteAddr();
         }
 
-        System.out.println("ip확인"+ip);
-
         int result = 0;
 
         if(memberRepository.selectCountEmail(email) != 0){
@@ -287,8 +283,6 @@ public class MemberServiceImpl implements MemberService{
             if(memberRepository.selectCountSearch(member) < 5) {
 
                 String member_id = member.get("member_id").toString();
-
-                System.out.println(member_id+"멤버아이디 확인");
 
                 String newPassword = temporaryPassword.temporaryPassword(10);
 
@@ -306,13 +300,11 @@ public class MemberServiceImpl implements MemberService{
                     e.printStackTrace();
                 }
 
-                System.out.println(enSt);
-
                 String from = "kpytobbyland@google.com";
                 String subject = "TOBBYLAND 회원정보 메일";
                 String content = "안녕하세요"+user_id+"님 요청하신 회원정보 입니다.<br /> <ul><li>아이디 : "+user_id+"</li>" +
                     "<li>새로운 비밀번호 : "+newPassword+"</li></ul><br />아래 링크를 클릭 하시면 회원님의 비밀번호가 새로운 비밀번호로 변경됩니다.<br />" +
-                    "<a href=\"http://localhost:8080/member/pwModMail?enSt="+enSt+"&key="+password+"\">비밀번호변경</a><br />" +
+                    "<a href=\"http://tobbyland.com/member/pwMod?enSt="+enSt+"&key="+password+"\">비밀번호변경</a><br />" +
                     "만약 토비랜드에서 이런 요청을 하신적이 없다면 이 이메일을 무시하셔도 됩니다.<br />" +
                     "링크를 클릭하여 새로운 비밀번호를 설정하기 전까지는 비밀번호가 변경되지 않습니다.";
 

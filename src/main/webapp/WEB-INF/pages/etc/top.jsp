@@ -49,11 +49,16 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li>
+        <s:authorize access="hasRole('ROLE_ADMIN')">
+          <a href="/admin/">사이트관리</a>
+        </s:authorize>
+      </li>
+      <li>
         <s:authorize access="isAnonymous()">
           <a href="/login">로그인</a>
         </s:authorize>
         <s:authorize access="isAuthenticated()">
-          <a href="${ctx}/j_spring_security_logout">로그아웃</a>
+        <a href="${ctx}/j_spring_security_logout">로그아웃</a>
         </s:authorize>
       </li>
       <li>

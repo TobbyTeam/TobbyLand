@@ -93,13 +93,26 @@ public class BoardServiceImpl implements BoardService{
         return result;
     }
 
-    public void viewService(int board_id, ModelAndView mav) {
+    public boolean viewService(int board_id, ModelAndView mav) {
 
-        boardRepository.updateBoardHit(board_id);
+        Map board = boardRepository.selectBoard(board_id);
 
-        mav.addObject("board", boardRepository.selectBoard(board_id));
-        mav.addObject("replys", boardRepository.selectBoardReplyAll(board_id));
+        boolean result = true;
 
+        if(board == null){
+
+            mav.setViewName("redirect:/404");
+            result = false;
+
+        }else{
+
+            boardRepository.updateBoardHit(board_id);
+
+            mav.addObject("board", board);
+            mav.addObject("replys", boardRepository.selectBoardReplyAll(board_id));
+        }
+
+        return result;
     }
 
     public boolean confirmService(int board_id) {
@@ -132,7 +145,17 @@ public class BoardServiceImpl implements BoardService{
 
         if(member_id == writer || authorities.toString().contains("ROLE_ADMIN")){
 
-            mav.addObject("board", boardRepository.selectBoard(board_id));
+            Map board = boardRepository.selectBoard(board_id);
+
+            if(board == null){
+
+                mav.setViewName("redirect:/404");
+
+            } else {
+
+                mav.addObject("board", board);
+
+            }
 
         } else {
 
@@ -290,24 +313,6 @@ public class BoardServiceImpl implements BoardService{
         search.put("start", start);
 
         mav.addObject("boards", boardRepository.selectBoardSearch(search));
-    }
-
-    @Cacheable(cacheName = "mainCache")
-    public ModelAndView mainService() {
-
-        ModelAndView mav = new ModelAndView("/etc/main");
-
-/*        model.addAttribute("sites", boardRepository.selectSiteNoticeAll());
-        model.addAttribute("kpus", boardRepository.selectKpuNoticeAll());
-        model.addAttribute("latests", boardRepository.selectLatestAll());
-        model.addAttribute("hots", boardRepository.selectHotAll());*/
-
-        mav.addObject("sites", boardRepository.selectSiteNoticeAll());
-        mav.addObject("kpus", boardRepository.selectKpuNoticeAll());
-        mav.addObject("latests", boardRepository.selectLatestAll());
-        mav.addObject("hots", boardRepository.selectHotAll());
-
-        return mav;
     }
 
     @Cacheable(cacheName = "topCache")

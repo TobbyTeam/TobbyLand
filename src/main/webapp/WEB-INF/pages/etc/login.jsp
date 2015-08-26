@@ -32,19 +32,18 @@
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					<input type="hidden" name="loginRedirect" value="${loginRedirect}" />
 					<button type="button" id="loginbtn" name="login" class="btn btn-lg btn-primary btn-block">로그인</button>
-					      				<c:if test="${not empty securityexceptionmsg}">
+					<c:if test="${not empty securityexceptionmsg}">
 					<div>
 						<font color="red">
 			                <p>로그인에 실패했습니다. 다시 시도 해주세요.</p>
 			                <p>${securityexceptionmsg}</p>
 						</font>
 					</div>
-				</c:if>
+					</c:if>
 					<div>
 						<p><a href="/member/regExpln">회원가입</a></p>
 						<p><a href="/member/searchForm">아이디/비밀번호 찾기</a></p>
 					</div>
-
 				</form>
 			</section>
 		</div>

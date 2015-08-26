@@ -67,19 +67,21 @@ public class BoardController {
 
 		ModelAndView mav = new ModelAndView();
 
-		boardService.viewService(board_id, mav);
 
-		if(!searchType.isEmpty()){
-			Map search = new HashMap();
-			search.put("searchType", searchType);
-			search.put("searchWord", searchWord);
-			search.put("department_id", department_id);
-			boardService.searchService(search, page, mav);
-			mav.setViewName("/board/searchView");
+		if(boardService.viewService(board_id, mav)){
 
-		} else {
-			boardService.listService(department_id, page, mav);
-			mav.setViewName("/board/view");
+			if(!searchType.isEmpty()){
+				Map search = new HashMap();
+				search.put("searchType", searchType);
+				search.put("searchWord", searchWord);
+				search.put("department_id", department_id);
+				boardService.searchService(search, page, mav);
+				mav.setViewName("/board/searchView");
+
+			} else {
+				mav.setViewName("/board/view");
+				boardService.listService(department_id, page, mav);
+			}
 
 		}
 
@@ -135,8 +137,6 @@ public class BoardController {
 
 	@RequestMapping(value = "/replyReg", method = RequestMethod.POST)
 	public @ResponseBody boolean replyReg(@RequestParam Map<String, java.io.Serializable> board) {
-
-		System.out.println(board.toString()+"++++++++++확인");
 
 		return boardService.replyRegService(board);
 	}

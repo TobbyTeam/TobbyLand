@@ -13,5 +13,7 @@
 		</c:otherwise>
 	</c:choose>
 
+	<a href="#" onClick="history.go(-2);">이전페이지로</a>
+
 </body>
 </html>

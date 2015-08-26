@@ -6,255 +6,254 @@
   <!--select-->
 
   <select id="selectAll" resultType="map">
-    SELECT L.lecture_id, L.lecture_name, L.prof, L.likes, DATE_FORMAT(L.write_date, '%Y.%m.%d %T') AS write_date, D.department_name
-    FROM LECTURE L LEFT OUTER JOIN DEPARTMENT D ON L.DEPT = D.DEPARTMENT_ID
-    WHERE likes <![CDATA[ < ]]> 10 AND IS_DELETE = 0 ORDER BY LECTURE_ID DESC
+    select l.lecture_id, l.lecture_name, l.prof, l.likes, date_format(l.write_date, '%Y.%m.%d %T') as write_date, d.department_name
+    from lecture l left outer join department d on l.dept = d.department_id
+    where likes <![CDATA[ < ]]> 10 and is_delete = 0 order by lecture_id desc
   </select>
 
   <select id="selectMember_id" parameterType="int" resultType="int">
-    SELECT member_id FROM LECTURE WHERE LECTURE_ID = #{lecture_id}
+    select member_id from lecture where lecture_id = #{lecture_id}
   </select>
 
   <select id="selectLecture" parameterType="int" resultType="map">
-    SELECT lecture_id, lecture_name, dept, prof
-    FROM LECTURE
-    WHERE LECTURE_ID = #{lecture_id}
+    select lecture_id, lecture_name, dept, prof
+    from lecture
+    where lecture_id = #{lecture_id}
   </select>
 
   <select id="selectLectureSearch" parameterType="map" resultType="map">
-    SELECT L.lecture_id, L.lecture_name, L.prof, D.department_name, SUM(IF(E.IS_DELETE = 0 AND E.IS_REPLY=0,1,0)) as count, IFNULL(ROUND(AVG(IF(E.IS_DELETE = 0 AND E.IS_REPLY=0,E.SCORE,NULL)), 1),0) as avg
-    FROM LECTURE L LEFT OUTER JOIN EVALUATION E ON L.LECTURE_ID = E.LECTURE_ID LEFT OUTER JOIN DEPARTMENT D ON L.DEPT = D.DEPARTMENT_ID
-    WHERE L.LIKES <![CDATA[ >= ]]> 10 AND L.IS_DELETE = 0
+    select l.lecture_id, l.lecture_name, l.prof, d.department_name, sum(if(e.is_delete = 0 and e.is_reply=0,1,0)) as count, ifnull(avg(if(e.is_delete = 0 and e.is_reply=0,e.score,null)),0) as avg
+    from lecture l left outer join evaluation e on l.lecture_id = e.lecture_id left outer join department d on l.dept = d.department_id
+    where l.likes <![CDATA[ >= ]]> 10 and l.is_delete = 0
     <choose>
       <when test="searchType != null and searchType.equalsIgnoreCase('lecture_name')">
-        AND L.LECTURE_NAME LIKE CONCAT('%', #{searchWord}, '%')
+        and l.lecture_name like CONCAT('%', #{searchWord}, '%')
       </when>
       <when test="searchType != null and searchType.equalsIgnoreCase('dept')">
-        AND D.DEPARTMENT_NAME LIKE CONCAT('%', #{searchWord}, '%')
+        and d.department_name like CONCAT('%', #{searchWord}, '%')
       </when>
       <otherwise>
-        AND L.PROF LIKE CONCAT('%', #{searchWord}, '%')
+        and l.prof like CONCAT('%', #{searchWord}, '%')
       </otherwise>
     </choose>
-    GROUP BY L.LECTURE_ID
-    ORDER BY L.WRITE_DATE DESC
+    group by l.lecture_id
+    order by l.write_date desc
   </select>
 
   <select id="selectSubCount" parameterType="map" resultType="int" >
-    SELECT Count(LS_ID)
-    FROM LECTURE_SUB
-    WHERE LECTURE_ID = #{lecture_id} AND MEMBER_ID = #{member_id}
+    select count(ls_id)
+    from lecture_sub
+    where lecture_id = #{lecture_id} and member_id = #{member_id}
   </select>
 
   <select id="selectBoardCount" parameterType="int" resultType="int" >
-    SELECT Count(LB_ID)
-    FROM LECTURE_BOARD
-    WHERE LECTURE_ID = #{lecture_id} AND IS_DELETE = 0 AND IS_REPLY = 0
+    select count(lb_id)
+    from lecture_board
+    where lecture_id = #{lecture_id} and is_delete = 0 and is_reply = 0
   </select>
 
   <select id="selectBoardAll" parameterType="map" resultType="map" >
-    SELECT B.rnum, B.lb_id, B.lecture_id, B.title, DATE_FORMAT(B.write_date, '%Y.%m.%d') AS write_date, B.hit, B.report, SUM(IF(B2.IS_DELETE = 0,1,0)) as count
-    FROM LECTURE_BOARD B LEFT OUTER JOIN LECTURE_BOARD B2 ON B.LB_ID = B2.UPPER_ID
-    WHERE B.LECTURE_ID = #{lecture_id} AND B.IS_DELETE = 0 AND B.IS_REPLY = 0
-    GROUP BY B.LB_ID
-    ORDER BY B.RNUM DESC
-    LIMIT 15 OFFSET #{start}
+    select b.rnum, b.lb_id, b.lecture_id, b.title, date_format(b.write_date, '%Y.%m.%d') as write_date, b.hit, b.report, sum(if(b2.is_delete = 0,1,0)) as count
+    from lecture_board b left outer join lecture_board b2 on b.lb_id = b2.upper_id
+    where b.lecture_id = #{lecture_id} and b.is_delete = 0 and b.is_reply = 0
+    group by b.lb_id
+    order by b.rnum desc
+    limit 15 offset #{start}
   </select>
 
   <select id="selectBoardMaxRnum" parameterType="int" resultType="int" >
-    SELECT IFNULL(MAX(rnum),0) AS rnum
-    FROM LECTURE_BOARD
-    WHERE LECTURE_ID = #{lecture_id}
+    select ifnull(max(rnum),0) as rnum
+    from lecture_board
+    where lecture_id = #{lecture_id}
   </select>
 
   <select id="selectBoard" parameterType="int" resultType="map" >
-    SELECT lb_id, lecture_id, title, contents, DATE_FORMAT(write_date, '%Y.%m.%d %T') AS write_date, hit, report
-    FROM LECTURE_BOARD
-    WHERE LB_ID = #{lb_id}
+    select lb_id, lecture_id, title, contents, date_format(write_date, '%Y.%m.%d %T') as write_date, hit, report
+    from lecture_board
+    where lb_id = #{lb_id} AND is_delete = 0
   </select>
 
   <select id="selectBoardReplyAll" parameterType="int" resultType="map" >
-    SELECT lb_id, contents, DATE_FORMAT(write_date, '%Y.%m.%d %T') AS write_date, report
-    FROM LECTURE_BOARD
-    WHERE UPPER_ID = #{lb_id} AND IS_DELETE = 0
-    ORDER BY WRITE_DATE
+    select lb_id, contents, date_format(write_date, '%Y.%m.%d %T') as write_date, report
+    from lecture_board
+    where upper_id = #{lb_id} and is_delete = 0
+    order by write_date
   </select>
 
   <select id="selectBoardMember_id" parameterType="int" resultType="int">
-    SELECT member_id FROM LECTURE_BOARD WHERE LB_ID = #{lb_id}
+    select member_id from lecture_board where lb_id = #{lb_id}
   </select>
 
   <select id="selectLecture_E" parameterType="int" resultType="map">
-    SELECT L.lecture_id, L.lecture_name, L.prof, D.department_name, Count(IF(E.IS_DELETE = 0 AND E.IS_REPLY=0,1,NULL)) as count, IFNULL(ROUND(AVG(IF(E.IS_DELETE = 0 AND E.IS_REPLY=0,E.SCORE,NULL)), 1),0) as avg
-    FROM LECTURE L LEFT OUTER JOIN EVALUATION E ON L.LECTURE_ID = E.LECTURE_ID LEFT OUTER JOIN DEPARTMENT D ON L.DEPT = D.DEPARTMENT_ID
-    WHERE L.LECTURE_ID = #{lecture_id}
-    GROUP BY L.LECTURE_ID
+    select l.lecture_id, l.lecture_name, l.prof, d.department_name, count(if(e.is_delete = 0 and e.is_reply=0,1,null)) as count,  ifnull(avg(if(e.is_delete = 0 and e.is_reply=0,e.score,null)),0) as avg
+    from lecture l left outer join evaluation e on l.lecture_id = e.lecture_id left outer join department d on l.dept = d.department_id
+    where l.lecture_id = #{lecture_id}
+    group by l.lecture_id
   </select>
 
   <select id="selectBoardSubCount" parameterType="map" resultType="int" >
-    SELECT Count(LB_ID)
-    FROM LECTURE_BOARD_SUB
-    WHERE LB_ID = #{lb_id} AND MEMBER_ID = #{member_id}
+    select count(lb_id)
+    from lecture_board_sub
+    where lb_id = #{lb_id} and member_id = #{member_id}
   </select>
 
   <select id="selectBoardSearchCount" parameterType="map" resultType="int" >
-    SELECT Count(LB_ID)
-    FROM LECTURE_BOARD
-    WHERE LECTURE_ID = #{lecture_id} AND IS_DELETE = 0 AND IS_REPLY = 0
+    select count(lb_id)
+    from lecture_board
+    where lecture_id = #{lecture_id} and is_delete = 0 and is_reply = 0
     <choose>
       <when test="searchType != null and searchType.equalsIgnoreCase('title')">
-        AND TITLE LIKE CONCAT('%', #{searchWord}, '%')
+        and title like CONCAT('%', #{searchWord}, '%')
       </when>
       <when test="searchType != null and searchType.equalsIgnoreCase('contents')">
-        AND CONTENTS LIKE CONCAT('%', #{searchWord}, '%')
+        and contents like CONCAT('%', #{searchWord}, '%')
       </when>
       <otherwise>
-        AND (TITLE LIKE CONCAT('%', #{searchWord}, '%') OR CONTENTS LIKE CONCAT('%', #{searchWord}, '%'))
+        and (title like CONCAT('%', #{searchWord}, '%') or contents like CONCAT('%', #{searchWord}, '%'))
       </otherwise>
     </choose>
   </select>
 
   <select id="selectBoardSearch" parameterType="map" resultType="map">
-    SELECT B.rnum, B.lb_id, B.lecture_id, B.title, DATE_FORMAT(B.write_date, '%Y.%m.%d') AS write_date, B.hit, B.report, SUM(IF(B2.IS_DELETE = 0,1,0)) as count
-    FROM LECTURE_BOARD B LEFT OUTER JOIN LECTURE_BOARD B2 ON B.LB_ID = B2.UPPER_ID
-    WHERE B.LECTURE_ID = #{lecture_id} AND B.IS_DELETE = 0 AND B.IS_REPLY = 0
+    select b.rnum, b.lb_id, b.lecture_id, b.title, date_format(b.write_date, '%Y.%m.%d') as write_date, b.hit, b.report, sum(if(b2.is_delete = 0,1,0)) as count
+    from lecture_board b left outer join lecture_board b2 on b.lb_id = b2.upper_id
+    where b.lecture_id = #{lecture_id} and b.is_delete = 0 and b.is_reply = 0
     <choose>
       <when test="searchType != null and searchType.equalsIgnoreCase('title')">
-        AND B.TITLE LIKE CONCAT('%', #{searchWord}, '%')
+        and b.title like CONCAT('%', #{searchWord}, '%')
       </when>
       <when test="searchType != null and searchType.equalsIgnoreCase('contents')">
-        AND B.CONTENTS LIKE CONCAT('%', #{searchWord}, '%')
+        and b.contents like CONCAT('%', #{searchWord}, '%')
       </when>
       <otherwise>
-        AND (B.TITLE LIKE CONCAT('%', #{searchWord}, '%') OR B.CONTENTS LIKE CONCAT('%', #{searchWord}, '%'))
+        and (b.title like CONCAT('%', #{searchWord}, '%') or b.contents like CONCAT('%', #{searchWord}, '%'))
       </otherwise>
     </choose>
-    GROUP BY B.LB_ID
-    ORDER BY B.RNUM DESC
-    LIMIT 15 OFFSET #{start}
+    group by b.lb_id
+    order by b.rnum desc
+    limit 15 offset #{start}
   </select>
 
 
   <!--insert-->
 
   <insert id="insertLecture" parameterType="map">
-    INSERT INTO LECTURE (member_id, lecture_name, dept, prof)
-    VALUES (#{member_id},#{lecture_name},#{dept},#{prof})
+    insert into lecture (member_id, lecture_name, dept, prof)
+    values (#{member_id},#{lecture_name},#{dept},#{prof})
   </insert>
 
   <insert id="insertSub" parameterType="map">
-    INSERT INTO LECTURE_SUB (lecture_id, member_id)
-    VALUES (#{lecture_id},#{member_id})
+    insert into lecture_sub (lecture_id, member_id)
+    values (#{lecture_id},#{member_id})
   </insert>
 
   <insert id="insertBoard" parameterType="map">
     <choose>
       <when test="upper_id != null">
-        INSERT INTO LECTURE_BOARD (lecture_id, member_id, contents, is_reply, upper_id)
-        VALUES (#{lecture_id},#{member_id},#{contents},1,#{upper_id})
+        insert into lecture_board (lecture_id, member_id, contents, is_reply, upper_id)
+        values (#{lecture_id},#{member_id},#{contents},1,#{upper_id})
       </when>
       <otherwise>
-        INSERT INTO LECTURE_BOARD (lecture_id, member_id, rnum, title, contents)
-        VALUES (#{lecture_id},#{member_id},#{rnum},#{title},#{contents})
+        insert into lecture_board (lecture_id, member_id, rnum, title, contents)
+        values (#{lecture_id},#{member_id},#{rnum},#{title},#{contents})
       </otherwise>
     </choose>
-
   </insert>
 
   <insert id="insertBoardSub" parameterType="map">
-    INSERT INTO LECTURE_BOARD_SUB (lb_id, member_id)
-    VALUES (#{lb_id},#{member_id})
+    insert into lecture_board_sub (lb_id, member_id)
+    values (#{lb_id},#{member_id})
   </insert>
 
   <!--update-->
 
   <update id="updateLecture" parameterType="map">
-    UPDATE LECTURE
-    SET
+    update lecture
+    set
     lecture_name = #{lecture_name},
     dept = #{dept},
     prof = #{prof}
-    WHERE LECTURE_ID = #{lecture_id}
+    where lecture_id = #{lecture_id}
   </update>
 
   <update id="updateLectureLike" parameterType="map">
-    UPDATE LECTURE
-    SET
+    update lecture
+    set
     likes = likes + 1
-    WHERE LECTURE_ID = #{lecture_id}
+    where lecture_id = #{lecture_id}
   </update>
 
   <update id="updateIsDelete" parameterType="map">
-    UPDATE LECTURE
-    SET
-    IS_DELETE = 1
-    WHERE LECTURE_ID = #{lecture_id}
+    update lecture
+    set
+    is_delete = 1
+    where lecture_id = #{lecture_id}
   </update>
 
   <update id="updateBoardHit" parameterType="int">
-    UPDATE LECTURE_BOARD
-    SET
+    update lecture_board
+    set
     hit = hit + 1
-    WHERE LB_ID = #{lb_id}
+    where lb_id = #{lb_id}
   </update>
 
   <update id="updateBoard" parameterType="map">
-    UPDATE LECTURE_BOARD
-    SET
+    update lecture_board
+    set
     title = #{title},
     contents = #{contents}
-    WHERE LB_ID = #{lb_id}
+    where lb_id = #{lb_id}
   </update>
 
   <update id="updateBoardIsDelete" parameterType="int">
-    UPDATE LECTURE_BOARD
-    SET
-    IS_DELETE = 1
-    WHERE LB_ID = #{lb_id}
+    update lecture_board
+    set
+    is_delete = 1
+    where lb_id = #{lb_id}
   </update>
 
   <update id="updateBoardReport" parameterType="map">
-    UPDATE LECTURE_BOARD
-    SET
+    update lecture_board
+    set
     report = report + 1
-    WHERE LB_ID = #{lb_id}
+    where lb_id = #{lb_id}
   </update>
 
 
   <!--delete-->
 
   <delete id="delete" parameterType="int">
-    DELETE FROM LECTURE WHERE LECTURE_ID = #{value}
+    delete from lecture where lecture_id = #{value}
   </delete>
 
 
 
 
   <select id="selectAdmin" resultType="map">
-    SELECT * FROM LECTURE ORDER BY WRITE_DATE DESC
+    select * from lecture order by write_date desc
   </select>
 
   <select id="selectSearchAdmin" parameterType="map" resultType="map">
-    SELECT * FROM LECTURE
-    WHERE
-    <choose><when test="searchType != null and searchType.equalsIgnoreCase('lecture_name')">LECTURE_NAME LIKE CONCAT('%', #{searchWord}, '%')</when>
-      <when test="searchType != null and searchType.equalsIgnoreCase('dept')">DEPT LIKE CONCAT('%', #{searchWord}, '%')</when>
-      <when test="searchType != null and searchType.equalsIgnoreCase('prof')">PROF LIKE CONCAT('%', #{searchWord}, '%')</when>
-      <otherwise>MEMBER_ID LIKE CONCAT('%', #{searchWord}, '%')</otherwise>
+    select * from lecture
+    where
+    <choose><when test="searchType != null and searchType.equalsIgnoreCase('lecture_name')">lecture_name like CONCAT('%', #{searchWord}, '%')</when>
+      <when test="searchType != null and searchType.equalsIgnoreCase('dept')">dept like CONCAT('%', #{searchWord}, '%')</when>
+      <when test="searchType != null and searchType.equalsIgnoreCase('prof')">prof like CONCAT('%', #{searchWord}, '%')</when>
+      <otherwise>member_id like CONCAT('%', #{searchWord}, '%')</otherwise>
     </choose>
-    ORDER BY WRITE_DATE DESC
+    order by write_date desc
   </select>
 
   <update id="isUndelete" parameterType="map">
-    UPDATE LECTURE
-    SET
-    IS_DELETE = 1
-    WHERE LECTURE_ID = #{lecture_id}
+    update lecture
+    set
+    is_delete = 1
+    where lecture_id = #{lecture_id}
   </update>
 
   <insert id="insertAdmin" parameterType="map">
-    INSERT INTO LECTURE (member_id, lecture_name, dept, prof, likes)
-    VALUES (#{member_id},#{lecture_name},#{dept},#{prof}, 10)
+    insert into lecture (member_id, lecture_name, dept, prof, likes)
+    values (#{member_id},#{lecture_name},#{dept},#{prof}, 10)
   </insert>
 
 <!--  <select id="boardAll" parameterType="map" resultType="map" >

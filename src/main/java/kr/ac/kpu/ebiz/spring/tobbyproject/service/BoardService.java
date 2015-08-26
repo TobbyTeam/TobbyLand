@@ -14,7 +14,7 @@ public interface BoardService {
 
     boolean regService(Map board);
 
-    void viewService(int board_id, ModelAndView mav);
+    boolean viewService(int board_id, ModelAndView mav);
 
     boolean confirmService(int board_id);
 
@@ -33,8 +33,6 @@ public interface BoardService {
     boolean replyRegService(Map board);
 
     void searchService(Map search, int page, ModelAndView mav);
-
-    ModelAndView mainService();
 
     List<Map> topService();
 

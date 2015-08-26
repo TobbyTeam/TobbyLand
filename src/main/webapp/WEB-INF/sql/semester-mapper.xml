@@ -4,15 +4,15 @@
 <mapper namespace="SemesterRepository">
 
   <select id="select" resultType="map">
-    SELECT * FROM SEMESTER WHERE SEMESTER = #{value}
+    select * from semester where semester = #{value}
   </select>
 
   <select id="selectAll" resultType="map">
-    SELECT * FROM SEMESTER WHERE SEMESTER_ID NOT IN(1)
+    select * from semester where semester_id not in(1)
   </select>
 
   <delete id="delete" parameterType="int">
-    DELETE FROM SEMESTER WHERE SEMESTER = #{value}
+    delete from semester where semester = #{value}
   </delete>
 
 </mapper>

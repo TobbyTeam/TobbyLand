@@ -31,7 +31,7 @@ public interface LectureService {
 
     boolean boardRegService(Map lectureBoard);
 
-    void boardViewService(int lb_id, ModelAndView mav);
+    boolean boardViewService(int lb_id, ModelAndView mav);
 
     boolean boardConfirmService(int lb_id);
 

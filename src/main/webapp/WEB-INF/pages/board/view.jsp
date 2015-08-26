@@ -151,7 +151,9 @@
         <tbody>
         <c:forEach var="board" items="${boards}" varStatus="status">
           <tr>
-            <td>${board.rnum}</td>
+            <td>
+            ${board.rnum}
+            </td>
             <td>
               <a href="/board/view/${board.department_id}/?board_id=${board.board_id}&page=${paging.pageNo}" class="title">${board.title}</a>
               <c:if test="${board.count != 0}">
@@ -173,7 +175,7 @@
       <div class="col-lg-0">
         <button type="button" onclick="location.href='/board/list/${department.department_id}/'" class="btn btn-default">전체목록</button>
         <button type="button" onclick="location.href='/board/regForm?department_id=${department.department_id}'" class="btn btn-primary">글작성</button>
-        <a href="/board/regTest?department_id=${department_id}">테스트</a>
+<%--        <a href="/board/regTest?department_id=${department_id}">테스트</a>--%>
       </div>
       <br />
 
