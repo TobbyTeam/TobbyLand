@@ -14,6 +14,8 @@
 
   <script src="<c:url value="/resources/js/lecture.js" />"></script>
   <script src="<c:url value="${ctx}/resources/js/evaluation.js" />"></script>
+  <script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>
+  <script src="<c:url value="/resources/js/sessionTimeout.js" />"></script>
 
 
   <title>토비랜드</title>
@@ -130,6 +132,8 @@
   <br />
   <br />
 
+  <c:set var="lb_id" value="${board.lb_id}" scope="page" />
+
   <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
@@ -145,7 +149,16 @@
         <tbody>
         <c:forEach var="board" items="${boards}" varStatus="status">
           <tr>
-            <td>${board.rnum}</td>
+            <td>
+              <c:choose>
+                <c:when test="${board.lb_id eq lb_id}">
+                  <strong>></strong>
+                </c:when>
+                <c:otherwise>
+                  ${board.rnum}
+                </c:otherwise>
+              </c:choose>
+            </td>
             <td>
               <a href="/lecture/boardView/${board.lecture_id}/?lb_id=${board.lb_id}&page=${paging.pageNo}">${board.title}
                 <c:if test="${board.count != 0}">

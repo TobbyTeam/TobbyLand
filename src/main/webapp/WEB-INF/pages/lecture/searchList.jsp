@@ -9,10 +9,13 @@
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 	<link rel="stylesheet" href="<c:url value="${ctx}/resources/css/evllist.css" />">
+	<script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>
+	<script src="<c:url value="/resources/js/sessionTimeout.js" />"></script>
 
-	<title>헬로 월드</title>
+	<title>토비랜드</title>
 
 </head>
+
 <body>
 
 <jsp:include page="/top" flush="true"/>

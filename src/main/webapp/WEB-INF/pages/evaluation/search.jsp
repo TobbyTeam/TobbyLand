@@ -8,8 +8,8 @@
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 	<link rel="stylesheet" href="<c:url value="${ctx}/resources/css/detailsearch.css" />">
-
-	<title></title>
+	<script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>
+	<script src="<c:url value="/resources/js/sessionTimeout.js" />"></script>
 
 </head>
 

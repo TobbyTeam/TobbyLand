@@ -5,7 +5,6 @@
 
     <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/paging.css" />">
 
-    <title></title>
 </head>
 
 <body>

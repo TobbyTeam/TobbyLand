@@ -16,8 +16,10 @@
 
     <script src="<c:url value="${ctx}/resources/js/jquery.validate.min.js" />"></script>
     <script src="<c:url value="${ctx}/resources/js/board_validate.js" />"></script>
+    <script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>
+    <script src="<c:url value="/resources/js/sessionTimeout.js" />"></script>
 
-    <title></title>
+    <title>토비랜드</title>
 
 </head>
 

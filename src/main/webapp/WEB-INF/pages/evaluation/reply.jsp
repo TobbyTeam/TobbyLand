@@ -5,8 +5,9 @@
 
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="<c:url value="/resources/js/evaluation.js" />"></script>
+    <script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>
+    <script src="<c:url value="/resources/js/sessionTimeout.js" />"></script>
 
-    <title></title>
 </head>
 <body>
 

@@ -14,7 +14,10 @@
 
 	<script src="<c:url value="/resources/js/lecture.js" />"></script>
 
-	<title>토비랜드</title></head>
+	<title>토비랜드</title>
+
+</head>
+
 <body>
 
 <jsp:include page="/top" flush="true"/>

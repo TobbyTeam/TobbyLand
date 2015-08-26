@@ -14,6 +14,7 @@
     <script src="<c:url value="${ctx}/resources/js/member_validate.js" />"></script>
 
     <title>토비랜드</title>
+
 </head>
 
 <body>

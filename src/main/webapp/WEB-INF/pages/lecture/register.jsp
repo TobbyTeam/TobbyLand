@@ -14,10 +14,13 @@
 
     <script src="<c:url value="/resources/js/jquery.validate.min.js" />"></script>
     <script src="<c:url value="/resources/js/lecture_validate.js" />"></script>
+    <script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>
+    <script src="<c:url value="/resources/js/sessionTimeout.js" />"></script>
 
     <title>토비랜드</title>
 
 </head>
+
 <body>
 
 <jsp:include page="/top" flush="true"/>

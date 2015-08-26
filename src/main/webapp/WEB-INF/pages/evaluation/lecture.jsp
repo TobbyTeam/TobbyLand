@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 
     <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/evlinfo.css" />">
-
-    <title></title>
+    <script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>
+    <script src="<c:url value="/resources/js/sessionTimeout.js" />"></script>
 
 </head>
 

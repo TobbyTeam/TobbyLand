@@ -55,6 +55,8 @@
             <concurrency-control max-sessions="1" expired-url="/login?message=timeout" error-if-maximum-exceeded="true" />
         </session-management>
 
+        <custom-filter after="EXCEPTION_TRANSLATION_FILTER" ref="ajaxSessionTimeoutFilter"/>
+
     </http>
 
     <beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />   
@@ -113,6 +115,10 @@
         <beans:property name="loginredirectname" value="loginRedirect" />
         <beans:property name="exceptionmsgname" value="securityexceptionmsg" />
         <beans:property name="defaultFailureUrl" value="/login?message=fail" />
+    </beans:bean>
+
+    <beans:bean id="ajaxSessionTimeoutFilter" class="kr.ac.kpu.ebiz.spring.tobbyproject.security.AjaxSessionTimeoutFilter">
+        <beans:property name="ajaxHeader" value="AJAX" />
     </beans:bean>
     
 </beans:beans>

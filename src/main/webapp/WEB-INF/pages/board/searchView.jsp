@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/boardview.css" />">
 
   <script src="<c:url value="/resources/js/board.js" />"></script>
+  <script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>
+  <script src="<c:url value="/resources/js/sessionTimeout.js" />"></script>
 
   <title>토비랜드</title>
 </head>
@@ -134,6 +136,8 @@
   <br />
   <br />
 
+  <c:set var="board_id" value="${board.board_id}" scope="page" />
+
   <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
@@ -153,7 +157,16 @@
         <tbody>
         <c:forEach var="board" items="${boards}" varStatus="status">
           <tr>
-            <td>${board.rnum}</td>
+            <td>
+              <c:choose>
+                <c:when test="${board.board_id eq board_id}">
+                  <strong>></strong>
+                </c:when>
+                <c:otherwise>
+                  ${board.rnum}
+                </c:otherwise>
+              </c:choose>
+            </td>
             <td>
               <a href="/board/view/${board.department_id}/?board_id=${board.board_id}&page=${paging.pageNo}&searchType=${search.searchType}&searchWord=${search.searchWord}">${board.title}</a>
               <c:if test="${board.count != 0}">

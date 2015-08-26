@@ -22,7 +22,7 @@
   </select>
 
   <select id="selectLectureSearch" parameterType="map" resultType="map">
-    select l.lecture_id, l.lecture_name, l.prof, d.department_name, sum(if(e.is_delete = 0 and e.is_reply=0,1,0)) as count, ifnull(avg(if(e.is_delete = 0 and e.is_reply=0,e.score,null)),0) as avg
+    select l.lecture_id, l.lecture_name, l.prof, d.department_name, sum(if(e.is_delete = 0 and e.is_reply=0,1,0)) as count, ifnull(round(avg(if(e.is_delete = 0 and e.is_reply=0,e.score,null)), 1),0) as avg
     from lecture l left outer join evaluation e on l.lecture_id = e.lecture_id left outer join department d on l.dept = d.department_id
     where l.likes <![CDATA[ >= ]]> 10 and l.is_delete = 0
     <choose>
@@ -37,7 +37,7 @@
       </otherwise>
     </choose>
     group by l.lecture_id
-    order by l.write_date desc
+    order by d.department_name, count desc, avg desc
   </select>
 
   <select id="selectSubCount" parameterType="map" resultType="int" >
@@ -85,7 +85,7 @@
   </select>
 
   <select id="selectLecture_E" parameterType="int" resultType="map">
-    select l.lecture_id, l.lecture_name, l.prof, d.department_name, count(if(e.is_delete = 0 and e.is_reply=0,1,null)) as count,  ifnull(avg(if(e.is_delete = 0 and e.is_reply=0,e.score,null)),0) as avg
+    select l.lecture_id, l.lecture_name, l.prof, d.department_name, count(if(e.is_delete = 0 and e.is_reply=0,1,null)) as count,  ifnull(round(avg(if(e.is_delete = 0 and e.is_reply=0,e.score,null)), 1),0) as avg
     from lecture l left outer join evaluation e on l.lecture_id = e.lecture_id left outer join department d on l.dept = d.department_id
     where l.lecture_id = #{lecture_id}
     group by l.lecture_id
