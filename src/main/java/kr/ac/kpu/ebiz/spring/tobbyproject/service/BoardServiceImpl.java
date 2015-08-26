@@ -63,6 +63,11 @@ public class BoardServiceImpl implements BoardService{
         int member_id = user.getMember_id();
         String writer = user.getNickname();
 
+        String contents_org = (String) board.get("contents");
+        String contents_db = contents_org.replaceAll("\r\n","<br />");
+        board.remove("contents");
+        board.put("contents", contents_db);
+
         int department_id = Integer.parseInt((String)board.get("department_id"));
 
         int maxRnum = boardRepository.selectBoardMaxRnum(department_id);
@@ -153,6 +158,11 @@ public class BoardServiceImpl implements BoardService{
 
             } else {
 
+                String contents_db = (String) board.get("contents");
+                String contents_org = contents_db.replaceAll("<br />", "\r\n");
+                board.remove("contents");
+                board.put("contents", contents_org);
+
                 mav.addObject("board", board);
 
             }
@@ -165,6 +175,11 @@ public class BoardServiceImpl implements BoardService{
     }
 
     public boolean modService(Map board) {
+
+        String contents_org = (String) board.get("contents");
+        String contents_db = contents_org.replaceAll("\r\n","<br />");
+        board.remove("contents");
+        board.put("contents", contents_db);
 
         boolean result = false;
 

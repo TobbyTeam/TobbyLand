@@ -110,6 +110,11 @@ public class EvaluationServiceImpl implements EvaluationService {
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int member_id = user.getMember_id();
 
+        String comment_org = (String) evaluation.get("comment");
+        String comment_db = comment_org.replaceAll("\r\n","<br />");
+        evaluation.remove("comment");
+        evaluation.put("comment", comment_db);
+
         evaluation.put("member_id", member_id);
         evaluation.putAll(memberRepository.selectMemberTendency(member_id));
 
@@ -151,9 +156,24 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         if(member_id == writer || authorities.toString().contains("ROLE_ADMIN")){
 
-            mav.setViewName("/evaluation/modify");
-            mav.addObject("evaluation", evaluationRepository.selectEvaluation(evaluation_id));
-            mav.addObject("semesters", semesterRepository.selectAll());
+            Map evaluation = evaluationRepository.selectEvaluation(evaluation_id);
+
+            if(evaluation == null){
+
+                mav.setViewName("redirect:/404");
+
+            } else {
+
+                String comment_db = (String) evaluation.get("comment");
+                String comment_org = comment_db.replaceAll("<br />", "\r\n");
+                evaluation.remove("comment");
+                evaluation.put("comment", comment_org);
+
+                mav.setViewName("/evaluation/modify");
+                mav.addObject("evaluation", evaluation);
+                mav.addObject("semesters", semesterRepository.selectAll());
+
+            }
 
         } else {
 
@@ -164,6 +184,11 @@ public class EvaluationServiceImpl implements EvaluationService {
     }
 
     public boolean modService(Map evaluation) {
+
+        String comment_org = (String) evaluation.get("comment");
+        String comment_db = comment_org.replaceAll("\r\n","<br />");
+        evaluation.remove("comment");
+        evaluation.put("comment", comment_db);
 
         boolean result = false;
 

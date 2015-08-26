@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
 
@@ -62,7 +63,16 @@
 			</table>
 			<div class="col-lg-0">
 				<button type="button" onclick="location.href='/board/list/${department.department_id}/'" class="btn btn-default">전체목록</button>
-				<button type="button" onclick="location.href='/board/regForm?department_id=${department.department_id}'" class="btn btn-primary">글작성</button>
+				<c:choose>
+					<c:when test="${department.kind eq 'notice'}">
+						<s:authorize access="hasRole('ROLE_ADMIN')">
+							<button type="button" onclick="location.href='/board/regForm?department_id=${department.department_id}'" class="btn btn-primary">글작성</button>
+						</s:authorize>
+					</c:when>
+					<c:otherwise>
+						<button type="button" onclick="location.href='/board/regForm?department_id=${department.department_id}'" class="btn btn-primary">글작성</button>
+					</c:otherwise>
+				</c:choose>
 <%--				<a href="/board/regTest?department_id=${department_id}">테스트</a>--%>
 			</div>
 			<br />

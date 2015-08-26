@@ -4,7 +4,7 @@
 <mapper namespace="DepartmentRepository">
 
   <select id="select" resultType="map">
-    select department_id, department_name from department where department_id = #{value}
+    select department_id, department_name, kind from department where department_id = #{value}
   </select>
 
   <select id="selectAll" resultType="map">

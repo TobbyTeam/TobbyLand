@@ -252,6 +252,11 @@ public class LectureServiceImpl implements LectureService{
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int member_id = user.getMember_id();
 
+        String contents_org = (String) lectureBoard.get("contents");
+        String contents_db = contents_org.replaceAll("\r\n","<br />");
+        lectureBoard.remove("contents");
+        lectureBoard.put("contents", contents_db);
+
         int lecture_id = Integer.parseInt((String)lectureBoard.get("lecture_id"));
 
 /*        int lecture_id =  Integer.parseInt(lectureSub.get("lecture_id").toString());*/
@@ -338,6 +343,11 @@ public class LectureServiceImpl implements LectureService{
 
             } else {
 
+                String contents_db = (String) board.get("contents");
+                String contents_org = contents_db.replaceAll("<br />", "\r\n");
+                board.remove("contents");
+                board.put("contents", contents_org);
+
                 mav.addObject("board", board);
             }
 
@@ -349,6 +359,11 @@ public class LectureServiceImpl implements LectureService{
     }
 
     public boolean boardModService(Map lectureBoard) {
+
+        String contents_org = (String) lectureBoard.get("contents");
+        String contents_db = contents_org.replaceAll("\r\n","<br />");
+        lectureBoard.remove("contents");
+        lectureBoard.put("contents", contents_db);
 
         boolean result = false;
 
