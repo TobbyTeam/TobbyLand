@@ -90,23 +90,34 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/regOk", method = RequestMethod.GET)
-	public String regOk() {
+	public ModelAndView regOk() {
 
-		return "/member/regOk";
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("etc/success");
+
+		mav.addObject("message1", "메일이 발송되었습니다.");
+		mav.addObject("message2", "KPU 웹메일로 가입인증 메일이 발송되었습니다.<br />메일을 확인하시고 메일인증 후 로그인 하시기 바랍니다.");
+
+		return mav;
+
 	}
 
 	@RequestMapping(value = "/enabled", method = RequestMethod.GET)
 	public ModelAndView enabled(@RequestParam("enSt") String enSt, @ModelAttribute("member") Member member, SessionStatus sessionStatus) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
 
-		ModelAndView mav = new ModelAndView("/member/enabled");
+		ModelAndView mav = new ModelAndView();
 
 		Map member1 = PropertyUtils.describe(member);
 
 		if(memberService.enabledService(enSt, member1)){
-			mav.addObject("message", "메일인증에 성공하셨습니다.");
+			mav.setViewName("etc/success");
+			mav.addObject("message1", "메일인증에 성공하셨습니다.");
+			mav.addObject("message2", "3초후에 로그인 페이지로 이동합니다.");
+			mav.addObject("refresh", "true");
 			sessionStatus.setComplete();
 		} else {
-			mav.addObject("message", "잘못된 접근입니다.");
+			mav.setViewName("redirect:/invalidAccess");
 		}
 
 		return mav;
@@ -168,12 +179,13 @@ public class MemberController {
 
 		ModelAndView mav = new ModelAndView();
 
-		mav.setViewName("/member/pwChangeOk");
-
 		if(memberService.pwModService(enSt, password)){
-			mav.addObject("message", "비밀번호가 정상적으로 변경되었습니다. <br>꼭 로그인 후 새로운 비밀번호로 수정하시기 바랍니다.");
+			mav.setViewName("etc/success");
+			mav.addObject("message1", "비밀번호가 정상적으로 변경되었습니다.");
+			mav.addObject("message2", "꼭 로그인 후 새로운 비밀번호로 수정하시기 바랍니다.");
+			mav.addObject("refresh", "true");
 		} else {
-			mav.addObject("message", "잘못된 접근입니다.");
+			mav.setViewName("redirect:/invalidAccess");
 		}
 
 		return mav;
@@ -192,15 +204,22 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
-	public @ResponseBody int research(@RequestParam ("email") String email) {
+	public @ResponseBody int search(@RequestParam ("email") String email) {
 
 		return memberService.searchService(email);
 	}
 
 	@RequestMapping(value = "/searchOk", method = RequestMethod.GET)
-	public String searchOk() {
+	public ModelAndView searchOk() {
 
-		return "member/searchOk";
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("etc/success");
+		mav.addObject("message1", "메일이 발송되었습니다.");
+		mav.addObject("message2", "KPU 웹메일로 임시 비밀번호를 포함한 회원정보가 발급되었습니다.");
+
+		return mav;
+
 	}
 
 }

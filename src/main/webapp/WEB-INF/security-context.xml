@@ -35,7 +35,6 @@
         <intercept-url pattern="/board/list/**" access="permitAll" />
         <intercept-url pattern="/board/**" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
-        <intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
 
         <!-- access denied page -->
         <access-denied-handler error-page="/403" />

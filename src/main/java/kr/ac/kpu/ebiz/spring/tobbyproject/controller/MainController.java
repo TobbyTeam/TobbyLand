@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -92,7 +91,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/500", method = RequestMethod.GET)
-         public ModelAndView enabledError() {
+         public ModelAndView dbError() {
 
         ModelAndView mav = new ModelAndView();
 
@@ -119,10 +118,18 @@ public class MainController {
 
     }
 
-    @RequestMapping(value = "/test")
-    public String test() throws Exception{
+    @RequestMapping(value = "/invalidAccess", method = RequestMethod.GET)
+    public ModelAndView invalidAccess() {
 
-        return "test/test";
+        ModelAndView mav = new ModelAndView();
+
+        mav.setViewName("etc/error");
+
+        mav.addObject("message1", "Invalid Access");
+        mav.addObject("message2", "잘못된 접근입니다.<br />정상적으로 했는데 이 메세지가 계속 나온다면 관리자에게 문의 해주세요.");
+
+        return mav;
+
     }
 
     @RequestMapping(value = "/paging")
