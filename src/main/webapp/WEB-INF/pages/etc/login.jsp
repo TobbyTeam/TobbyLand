@@ -3,7 +3,6 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
-	<%-- css경로	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">	--%>
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">

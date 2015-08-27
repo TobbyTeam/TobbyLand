@@ -44,7 +44,7 @@
 					<tr>
 						<td>${board.rnum}</td>
 						<td>
-							<a href="/board/view/${board.department_id}/?board_id=${board.board_id}&page=${paging.pageNo}&searchType=${search.searchType}&searchWord=${search.searchWord}">${board.title}</a>
+							<a href="/board/view/${board.department_id}/?board_id=${board.board_id}&page=${paging.pageNo}&searchType=${search.searchType}&searchWord=${search.searchWord}" class="title">${board.title}</a>
 							<c:if test="${board.count != 0}">
 								[${board.count}]
 							</c:if>

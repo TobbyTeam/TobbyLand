@@ -172,7 +172,6 @@ $(document).ready(function() {
 	})
 
 	$(document).off('click', '#boardDel_btn').on('click', '#boardDel_btn', function() {
-/*	$("#boardDel_btn").unbind("click").on("click", function() {*/
 
 		var lb_id = $("#lb_id").val();
 
@@ -208,7 +207,6 @@ $(document).ready(function() {
 	})
 
 	$(document).off('click', '#boardRep_btn').on('click', '#boardRep_btn', function() {
-		/*	$("#boardDel_btn").unbind("click").on("click", function() {*/
 
 		var lb_id = $("#lb_id").val();
 

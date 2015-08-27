@@ -27,7 +27,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4"></div>
-        <div class="col-md-4" align="center" id="search">
+        <div class="col-md-4" align="center" id="main">
             <img src="<c:url value="${ctx}/resources/image/main5.png" />" class="img-responsive"/>
             <br />
             <form action="/lecture/search" method="get" name="search_frm">
