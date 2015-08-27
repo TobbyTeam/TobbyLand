@@ -10,6 +10,8 @@ import java.util.Map;
  */
 public interface BoardService {
 
+    Map boardTopService(int department_id);
+
     void listService(int department_id, int page, ModelAndView mav);
 
     boolean regService(Map board);

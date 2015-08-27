@@ -26,6 +26,8 @@
 
 <jsp:include page="/lecture/search_form" flush="true"/>
 
+<jsp:include page="/evaluation/lecture?lecture_id=${evaluation.lecture_id}" flush="true"/>
+
 <br />
 
 <div class="container-fluid">

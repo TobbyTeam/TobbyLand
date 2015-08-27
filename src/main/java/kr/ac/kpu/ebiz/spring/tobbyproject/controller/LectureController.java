@@ -101,7 +101,11 @@ public class LectureController {
 	public ModelAndView boardList(@PathVariable int lecture_id, @RequestParam(value="page", required = false, defaultValue="1") int page,
 							  @RequestParam(value="searchType", required = false, defaultValue="") String searchType, @RequestParam(value="searchWord", required = false, defaultValue="") String searchWord) {
 
+		System.out.println(lecture_id+"++++++강의아이디 확인");
+
 		ModelAndView mav = new ModelAndView();
+
+		mav.addObject("lecture_id", lecture_id);
 
 		if(!searchType.isEmpty()){
 			Map search = new HashMap();

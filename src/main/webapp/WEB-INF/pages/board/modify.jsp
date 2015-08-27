@@ -24,6 +24,8 @@
 
 <jsp:include page="/top" flush="true"/>
 
+<jsp:include page="/board/top?department_id=${board.department_id}" flush="true"/>
+
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-1">

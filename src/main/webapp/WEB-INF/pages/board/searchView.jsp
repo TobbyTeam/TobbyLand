@@ -18,19 +18,20 @@
   <script src="<c:url value="/resources/js/sessionTimeout.js" />"></script>
 
   <title>토비랜드</title>
+  
 </head>
 
 <body>
 
 <jsp:include page="/top" flush="true"/>
 
+<jsp:include page="/board/top?department_id=${board.department_id}" flush="true"/>
+
 <div class="container">
   <div class="row">
     <div class="col-md-1">
     </div>
     <div class="col-md-10">
-      <span id="boardname">${department.department_name}</span>
-      <hr />
       <table class="table">
         <tr class="titleframe">
           <td width="5%">제목</td>
@@ -187,24 +188,24 @@
         </tbody>
       </table>
       <div class="col-lg-0">
-        <button onclick="location.href='/board/list/${department.department_id}/'" class="btn btn-default">전체목록</button>
+        <button onclick="location.href='/board/list/${board.department_id}/'" class="btn btn-default">전체목록</button>
         <c:choose>
           <c:when test="${department.kind eq 'notice'}">
             <s:authorize access="hasRole('ROLE_ADMIN')">
-              <button type="button" onclick="location.href='/board/regForm?department_id=${department.department_id}'" class="btn btn-primary">글작성</button>
+              <button type="button" onclick="location.href='/board/regForm?department_id=${board.department_id}'" class="btn btn-primary">글작성</button>
             </s:authorize>
           </c:when>
           <c:otherwise>
-            <button type="button" onclick="location.href='/board/regForm?department_id=${department.department_id}'" class="btn btn-primary">글작성</button>
+            <button type="button" onclick="location.href='/board/regForm?department_id=${board.department_id}'" class="btn btn-primary">글작성</button>
           </c:otherwise>
         </c:choose>
-<%--        <a href="/board/regTest?department_id=${department_id}">테스트</a>--%>
+<%--        <a href="/board/regTest?department_id=${board.department_id}">테스트</a>--%>
       </div>
       <br />
 
       <%--페이징--%>
       <jsp:include page="/paging" flush="true">
-        <jsp:param name="url" value="/board/list/${department_id}/?page=" />
+        <jsp:param name="url" value="/board/list/${board.department_id}/?page=" />
         <jsp:param name="search" value="&searchType=${search.searchType}&searchWord=${search.searchWord}" />
         <jsp:param name="totalCount" value="${paging.totalCount}" />
         <jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
@@ -218,7 +219,7 @@
 
       <div class="col-md-3"></div>
 
-      <form action="/board/list/${department.department_id}/" method="get" name="search_frm">
+      <form action="/board/list/${board.department_id}/" method="get" name="search_frm">
         <div class="col-md-2">
           <div id="select">
             <select type="text" name="searchType" class="form-control">

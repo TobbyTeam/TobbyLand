@@ -23,11 +23,24 @@ public class BoardController {
 	@Autowired
 	BoardRepository boardRepository;
 
+	@RequestMapping(value = "/top", method = {RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView top(@RequestParam("department_id") int department_id) {
+
+		ModelAndView mav = new ModelAndView("/board/top");
+
+		mav.addObject("department", boardService.boardTopService(department_id));
+
+		return mav;
+	}
+
+
 	@RequestMapping(value = "/list/{department_id}/", method = RequestMethod.GET)
 	public ModelAndView board(@PathVariable int department_id, @RequestParam(value="page", required = false, defaultValue="1") int page,
 							  @RequestParam(value="searchType", required = false, defaultValue="") String searchType, @RequestParam(value="searchWord", required = false, defaultValue="") String searchWord) {
 
 		ModelAndView mav = new ModelAndView();
+
+		mav.addObject("department_id", department_id);
 
 		if(!searchType.isEmpty()){
 			Map search = new HashMap();
@@ -66,7 +79,6 @@ public class BoardController {
 								  @RequestParam(value="searchWord", required = false, defaultValue="") String searchWord) {
 
 		ModelAndView mav = new ModelAndView();
-
 
 		if(boardService.viewService(board_id, mav)){
 

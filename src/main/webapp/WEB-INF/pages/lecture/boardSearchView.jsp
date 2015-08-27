@@ -161,7 +161,7 @@
               </c:choose>
             </td>
             <td>
-              <a href="/lecture/boardView/${board.lecture_id}/?lb_id=${board.lb_id}&page=${paging.pageNo}">${board.title}
+              <a href="/lecture/boardView/${board.lecture_id}/?lb_id=${board.lb_id}&page=${paging.pageNo}&searchType=${search.searchType}&searchWord=${search.searchWord}">${board.title}
                 <c:if test="${board.count != 0}">
                   [${board.count}]
                 </c:if>

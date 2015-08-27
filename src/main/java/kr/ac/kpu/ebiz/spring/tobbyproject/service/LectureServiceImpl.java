@@ -240,8 +240,8 @@ public class LectureServiceImpl implements LectureService{
         }
 
         Map lectureBoard = new HashMap();
-        lectureBoard.put("lecture_id", lecture_id);
         lectureBoard.put("start", start);
+        lectureBoard.put("lecture_id", lecture_id);
 
         mav.addObject("lecture_id", lecture_id);
         mav.addObject("boards", lectureRepository.selectBoardAll(lectureBoard));
@@ -434,7 +434,6 @@ public class LectureServiceImpl implements LectureService{
         paging.setTotalCount(lectureRepository.selectBoardSearchCount(search));
 
         mav.addObject("paging", paging);
-        mav.addObject("lecture_id", lecture_id);
         mav.addObject("search", search);
 
         int start = 0;

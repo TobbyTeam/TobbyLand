@@ -136,7 +136,7 @@
 	<br/>
 </div>--%>
 
-	<jsp:include page="/evaluation/listBest" flush="true"/> <br />
+<jsp:include page="/evaluation/listBest" flush="true"/> <br />
 
 <div class="container-fluid">
 
