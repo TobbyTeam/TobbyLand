@@ -40,6 +40,8 @@
 
 	<mvc:resources mapping="/resources/**" location="/resources/"/>
 
+	<mvc:resources mapping="/favicon.ico" location="/favicon.ico"/>
+
 	<context:component-scan base-package="kr.ac.kpu.ebiz.spring.tobbyproject"/>
 
 	<!-- ========================= VIEW RESOLVER ========================= -->
