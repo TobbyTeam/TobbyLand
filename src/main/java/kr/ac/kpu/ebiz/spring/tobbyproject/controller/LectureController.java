@@ -69,7 +69,7 @@ public class LectureController {
 		return lectureService.modService(lecture);
 	}
 
-	@RequestMapping(value = "/search_form", method = RequestMethod.GET)
+	@RequestMapping(value = "/search_form", method = {RequestMethod.GET, RequestMethod.POST })
 	public String search_form() {
 		return "/lecture/search";
 	}

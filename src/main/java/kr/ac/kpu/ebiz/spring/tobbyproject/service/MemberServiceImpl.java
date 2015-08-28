@@ -185,6 +185,16 @@ public class MemberServiceImpl implements MemberService{
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int member_id = user.getMember_id();
 
+        String newNickname = (String) member.get("nickname");
+
+        String nickname = user.getNickname();
+
+        if(!nickname.equals(newNickname)){
+
+            user.setNickname(newNickname);
+
+        }
+
         member.put("member_id",member_id);
 
         boolean result = false;

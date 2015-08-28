@@ -194,7 +194,7 @@
     update lecture_board
     set
     hit = hit + 1
-    where lb_id = #{lb_id}
+    where lb_id = #{lb_id} and is_delete = 0
   </update>
 
   <update id="updateBoard" parameterType="map">

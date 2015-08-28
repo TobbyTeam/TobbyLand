@@ -102,21 +102,18 @@ public class BoardServiceImpl implements BoardService{
 
     public boolean viewService(int board_id, ModelAndView mav) {
 
-        Map board = boardRepository.selectBoard(board_id);
-
         boolean result = true;
 
-        if(board == null){
+        if(boardRepository.updateBoardHit(board_id)){
+
+            mav.addObject("board", boardRepository.selectBoard(board_id));
+            mav.addObject("replys", boardRepository.selectBoardReplyAll(board_id));
+
+        }else{
 
             mav.setViewName("redirect:/404");
             result = false;
 
-        }else{
-
-            boardRepository.updateBoardHit(board_id);
-
-            mav.addObject("board", board);
-            mav.addObject("replys", boardRepository.selectBoardReplyAll(board_id));
         }
 
         return result;

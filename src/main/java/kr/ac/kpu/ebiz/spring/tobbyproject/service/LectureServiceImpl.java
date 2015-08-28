@@ -285,21 +285,18 @@ public class LectureServiceImpl implements LectureService{
 
     public boolean boardViewService(int lb_id, ModelAndView mav) {
 
-        Map board = lectureRepository.selectBoard(lb_id);
-
         boolean result = true;
 
-        if(board == null){
+        if(lectureRepository.updateBoardHit(lb_id)){
+
+            mav.addObject("board", lectureRepository.selectBoard(lb_id));
+            mav.addObject("replys", lectureRepository.selectBoardReplyAll(lb_id));
+
+        }else{
 
             mav.setViewName("redirect:/404");
             result = false;
 
-        }else{
-
-            lectureRepository.updateBoardHit(lb_id);
-
-            mav.addObject("board", board);
-            mav.addObject("replys", lectureRepository.selectBoardReplyAll(lb_id));
         }
 
         return result;

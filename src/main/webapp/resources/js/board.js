@@ -206,28 +206,28 @@ $(document).ready(function() {
 			}
 		});
 	})
-	
+
 	$(document).off('click', '#reReg_btn').on('click', '#reReg_btn', function() {
 
-		if($("#re_con").val().length===0){
-			alert("내용을 입력해주세요");
-			$("#re_con").focus();
-		} else {
-
-			$.ajax({
-				type: "POST",
-				url: "/board/replyReg",
-				data: $("#re_frm").serialize(),
-				dataType: "json",
-				success: function (result) {
-					if (result) {
-						location.reload();
-					} else {
-						alert("죄송합니다 다시 시도해주세요.")
-					}
-				}
-			})
+		if(document.reReg_frm.contents.value.length == 0) {
+			alert("내용을 입력해주세요.");
+			reReg_frm.contents.focus();
+			return;
 		}
+
+		$.ajax({
+			type: "POST",
+			url: "/board/replyReg",
+			data: $("#reReg_frm").serialize(),
+			dataType: "json",
+			success: function (result) {
+				if (result) {
+					location.reload();
+				} else {
+					alert("죄송합니다 다시 시도해주세요.")
+				}
+			}
+		})
 	})
 
 })

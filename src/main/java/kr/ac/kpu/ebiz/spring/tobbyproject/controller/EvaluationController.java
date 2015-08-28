@@ -45,7 +45,7 @@ public class EvaluationController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/lecture", method = RequestMethod.GET)
+	@RequestMapping(value = "/lecture", method = {RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView lecture(@RequestParam("lecture_id") int lecture_id) {
 
 		ModelAndView mav = new ModelAndView("/evaluation/lecture");

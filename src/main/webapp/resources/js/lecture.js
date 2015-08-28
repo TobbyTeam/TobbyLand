@@ -229,15 +229,16 @@ $(document).ready(function() {
 
 	$(document).off('click', '#reReg_btn').on('click', '#reReg_btn', function() {
 
-		if($("#re_con").val().length===0){
-			alert("내용을 입력해주세요");
-			$("#re_con").focus();
-		} else {
+			if(document.reReg_frm.contents.value.length == 0) {
+				alert("내용을 입력해주세요.");
+				reReg_frm.contents.focus();
+				return;
+			}
 
 			$.ajax({
 				type: "POST",
 				url: "/lecture/boardReplyReg",
-				data: $("#re_frm").serialize(),
+				data: $("#reReg_frm").serialize(),
 				dataType: "json",
 				success: function (result) {
 					if (result) {
@@ -247,7 +248,6 @@ $(document).ready(function() {
 					}
 				}
 			})
-		}
 	})
 
 })

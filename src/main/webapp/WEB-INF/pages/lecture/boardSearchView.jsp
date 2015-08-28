@@ -95,10 +95,10 @@
       <br />
       <div class="input-group col-md-12">
         <table class="col-md-12 table-condensed">
-          <form id="re_frm" method="post">
+          <form id="reReg_frm" name="reReg_frm" method="post">
             <tr>
-              <td width="70%"><input type="text" name="contents" id="re_con" class="form-control"/></td>
-              <td width="10%" align="right"><button id="reReg_btn" class="form-control">등록하기</button></td>
+              <td width="70%"><input type="text" name="contents" id="contents" class="form-control"/></td>
+              <td width="10%" align="right"><button type="button" id="reReg_btn" class="form-control">등록하기</button></td>
             </tr>
             <input type="hidden" name="lecture_id" value="${board.lecture_id}"/>
             <input type="hidden" name="upper_id" value="${board.lb_id}" />

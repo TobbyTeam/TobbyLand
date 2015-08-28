@@ -163,7 +163,7 @@
     update board
     set
     hit = hit + 1
-    where board_id = #{board_id}
+    where board_id = #{board_id} and is_delete = 0
   </update>
 
   <update id="updateBoard" parameterType="map">
