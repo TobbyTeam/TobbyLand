@@ -101,7 +101,6 @@ $(document).ready(function() {
 			 validator.errorList[0].element.focus();
 			 }*/
 		}, submitHandler: function (form) {
-			alert("처리 중입니다. 시간이 조금 걸리니 잠시만 기다려주세요.");
 			$.ajax({
 				type: "POST",
 				url: "/member/reg",
@@ -257,7 +256,6 @@ $(document).ready(function() {
 				kpumail: "kpu메일을 입력해주세요.(@kpu.ac.kr)"
 			}
 		}, submitHandler: function (form) {
-			alert("처리 중입니다. 시간이 조금 걸리니 잠시만 기다려주세요.");
 			$.ajax({
 				type: "POST",
 				url: "/member/search",

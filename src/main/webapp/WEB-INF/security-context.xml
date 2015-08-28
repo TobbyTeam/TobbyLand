@@ -12,13 +12,6 @@
     <http pattern="/favicon.ico" security="none" />
 
     <http auto-config="true" use-expressions="true">
-<!--        <intercept-url pattern="/" access="permitAll" />
-        <intercept-url pattern="/main" access="permitAll" />
-        <intercept-url pattern="/top" access="permitAll" />
-        <intercept-url pattern="/bottom" access="permitAll" />
-        <intercept-url pattern="/403" access="permitAll" />
-        <intercept-url pattern="/500" access="permitAll" />
-        <intercept-url pattern="/paging" access="permitAll" />-->
         <intercept-url pattern="/login*" access="isAnonymous()" />
         <intercept-url pattern="/member/view" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/member/pwConfirm" access="hasRole('ROLE_USER')" />

@@ -13,6 +13,9 @@
 
     <script src="<c:url value="${ctx}/resources/js/jquery.validate.min.js" />"></script>
     <script src="<c:url value="${ctx}/resources/js/member_validate.js" />"></script>
+    <script src="<c:url value="${ctx}/resources/js/jquery.blockUI.js" />"></script>
+    <script src="<c:url value="${ctx}/resources/js/blockUI.js" />"></script>
+
 
     <title>토비랜드</title>
 
@@ -26,7 +29,7 @@
     <div class="row">
         <div class="col-md-2">
         </div>
-        <div class="col-md-8 rgframe">
+        <div id="block" class="col-md-8 rgframe">
             <br />
             <h3>기본입력사항</h3>
             <hr />

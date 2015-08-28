@@ -12,6 +12,8 @@
 
     <script src="<c:url value="${ctx}/resources/js/jquery.validate.min.js" />"></script>
     <script src="<c:url value="${ctx}/resources/js/member_validate.js" />"></script>
+    <script src="<c:url value="${ctx}/resources/js/jquery.blockUI.js" />"></script>
+    <script src="<c:url value="${ctx}/resources/js/blockUI.js" />"></script>
 
     <title>토비랜드</title>
 
