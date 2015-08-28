@@ -133,7 +133,6 @@ public class MemberServiceImpl implements MemberService{
         int member_id = user.getMember_id();
 
         mav.addObject("member", memberRepository.selectMember(member_id));
-        mav.addObject("tendencys", memberRepository.selectTendencyAll());
 
     }
 
@@ -158,7 +157,6 @@ public class MemberServiceImpl implements MemberService{
 
         mav.addObject("member", memberRepository.selectMember(member_id));
         mav.addObject("questions", question.question());
-        mav.addObject("tendencys", memberRepository.selectTendencyAll());
 
     }
 

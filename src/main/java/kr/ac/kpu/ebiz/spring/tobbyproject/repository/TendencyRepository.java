@@ -3,11 +3,11 @@ package kr.ac.kpu.ebiz.spring.tobbyproject.repository;
 import java.util.List;
 import java.util.Map;
 
-public interface SemesterRepository {
+public interface TendencyRepository {
 
-	Map select(int semester_id);
+	Map select(int tendency_id);
 
 	List<Map> selectAll();
 
-	boolean delete(int semester_id);
+	boolean delete(int tendency_id);
 }

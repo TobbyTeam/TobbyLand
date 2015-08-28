@@ -86,15 +86,42 @@ public class LectureController {
 	}
 
 	@RequestMapping(value = "/likes", method = RequestMethod.POST)
-	public @ResponseBody boolean likes(@RequestParam("lecture_id") int lecture_id) {
+	public @ResponseBody int likes(@RequestParam("lecture_id") int lecture_id) {
 
-		return lectureService.likesService(lecture_id);
+		/*3은 삭제된거 1은 추천된거 2는 이미 한거*/
+
+		int result = 3;
+
+		if(lectureService.deleteConfirmService(lecture_id)){
+			return result;
+		}
+
+		if(lectureService.likesService(lecture_id)){
+			result = 1;
+		} else {
+			result = 2;
+		}
+
+		return result;
 	}
 
 	@RequestMapping(value = "/isDelete", method = RequestMethod.POST)
-	public @ResponseBody boolean isDelete(@RequestParam("lecture_id") int lecture_id)	{
+	public @ResponseBody int isDelete(@RequestParam("lecture_id") int lecture_id)	{
 
-		return lectureService.isDeleteService(lecture_id);
+		int result = 0;
+
+		if(lectureService.deleteConfirmService(lecture_id)){
+
+			result = 2;
+
+		} else {
+
+			if(lectureService.isDeleteService(lecture_id)){
+				result = 1;
+			}
+		}
+
+		return result;
 	}
 
 	@RequestMapping(value = "/boardList/{lecture_id}/", method = RequestMethod.GET)
@@ -123,27 +150,6 @@ public class LectureController {
 
 		return mav;
 	}
-
-/*	@RequestMapping(value = "/boardList2/{lecture_id}/", method = RequestMethod.GET)
-	public ModelAndView boardList2(@PathVariable int lecture_id, @RequestParam(value="page", required = false, defaultValue="1") int page,
-							  @RequestParam(value="searchType", required = false, defaultValue="") String searchType, @RequestParam(value="searchWord", required = false, defaultValue="") String searchWord) {
-
-		ModelAndView mav = new ModelAndView();
-
-		if(!searchType.isEmpty()){
-			Map search = new HashMap();
-			search.put("searchType", searchType);
-			search.put("searchWord", searchWord);
-			search.put("lecture_id", lecture_id);
-			lectureService.boardSearchService(search, page, mav);
-			mav.setViewName("/lecture/boardSearchList2");
-		} else {
-			lectureService.boardListService(lecture_id, page, mav);
-			mav.setViewName("/lecture/boardList2");
-		}
-
-		return mav;
-	}*/
 
 	@RequestMapping(value = "/boardRegForm", method = RequestMethod.GET)
 	public ModelAndView boardRegForm(@RequestParam("lecture_id") int lecture_id) {
@@ -228,16 +234,6 @@ public class LectureController {
 
 		return lectureService.boardReplyRegService(lectureBoard);
 	}
-
-/*	@RequestMapping(value = "/boardSearch", method = RequestMethod.GET)
-	public ModelAndView boardSearch(@RequestParam Map<String, String> search) {
-
-		ModelAndView mav = new ModelAndView();
-
-
-		return mav;
-
-	}*/
 
 	@RequestMapping(value = "/boardRegTest", method = RequestMethod.GET)
 	public String boardRegTest(@RequestParam("lecture_id") int lecture_id) {

@@ -23,6 +23,8 @@ public interface LectureService {
 
     void searchService(Map search, ModelAndView mav);
 
+    boolean deleteConfirmService(int lecture_id);
+
     boolean likesService(int lecture_id);
 
     boolean isDeleteService(int lecture_id);

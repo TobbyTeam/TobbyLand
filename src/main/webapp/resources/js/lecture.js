@@ -16,11 +16,17 @@ function likeAjax(lecture_id) {
 		data     : {lecture_id:lecture_id},
 		success  : function(result) {
 
-			if(result){
+			if(result === 1) {
 				alert("추천 되었습니다");
 				location.reload();
-			}else{
+			}else if(result === 2){
 				alert("이미 추천하였습니다.");
+			}else if(result === 3){
+				alert("이미 삭제 된 강의입니다.");
+				location.reload();
+			}else {
+				alert("에러가 발생했습니다. 다시 시도해주세요.");
+				location.reload();
 			}
 		}
 	});
@@ -60,11 +66,15 @@ function deleteAjax(lecture_id) {
 						dataType: "json",
 						data: {lecture_id: lecture_id},
 						success: function (data) {
-							if (data) {
+							if (data === 1) {
 								alert("삭제되었습니다.");
 								location.reload();
+							} else if(data === 2){
+								alert("이미 삭제 된 강의입니다.");
+								location.reload();
 							} else {
-								alert("다시 시도 하세요.");
+								alert("에러가 발생했습니다. 다시 시도해주세요.");
+								location.reload();
 							}
 						}
 					})

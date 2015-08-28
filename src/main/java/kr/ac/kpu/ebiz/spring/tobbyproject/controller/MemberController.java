@@ -3,7 +3,7 @@ package kr.ac.kpu.ebiz.spring.tobbyproject.controller;
 import kr.ac.kpu.ebiz.spring.tobbyproject.command.Member;
 import kr.ac.kpu.ebiz.spring.tobbyproject.encryptor.AES128Cipher;
 import kr.ac.kpu.ebiz.spring.tobbyproject.etc.Question;
-import kr.ac.kpu.ebiz.spring.tobbyproject.repository.MemberRepository;
+import kr.ac.kpu.ebiz.spring.tobbyproject.repository.TendencyRepository;
 import kr.ac.kpu.ebiz.spring.tobbyproject.service.MemberService;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ import java.util.Map;
 public class MemberController {
 
 	@Autowired
-	MemberRepository memberRepository;
+	TendencyRepository tendencyRepository;
 
 	@Autowired
 	MemberService memberService;
@@ -51,7 +51,7 @@ public class MemberController {
 
 		ModelAndView mav = new ModelAndView("/member/register");
 
-		mav.addObject("tendencys", memberRepository.selectTendencyAll());
+		mav.addObject("tendencys", tendencyRepository.selectAll());
 /*		mav.addObject("questions", question.question());*/
 
 		return mav;
@@ -129,6 +129,8 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView("/member/view");
 
 		memberService.viewService(mav);
+		mav.addObject("tendencys", tendencyRepository.selectAll());
+
 
 		return mav;
 	}
@@ -146,6 +148,7 @@ public class MemberController {
 		mav.setViewName("/member/modify");
 
 		memberService.modViewService(mav);
+		mav.addObject("tendencys", tendencyRepository.selectAll());
 
 		return mav;
 	}

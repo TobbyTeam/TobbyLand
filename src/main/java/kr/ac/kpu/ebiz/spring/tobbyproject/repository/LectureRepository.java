@@ -11,6 +11,8 @@ public interface LectureRepository {
 
 	int selectMember_id(int lecture_id);
 
+	int selectIsDelete(int lecture_id);
+
 	Map selectLecture(int lecture_id);
 
 	List<Map> selectLectureSearch(Map search);

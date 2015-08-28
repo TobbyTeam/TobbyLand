@@ -2,7 +2,6 @@ package kr.ac.kpu.ebiz.spring.tobbyproject.repository;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
-import java.util.List;
 import java.util.Map;
 
 public class MemberRepositoryImpl extends SqlSessionDaoSupport implements MemberRepository {
@@ -53,9 +52,6 @@ public class MemberRepositoryImpl extends SqlSessionDaoSupport implements Member
 		return getSqlSession().selectOne("MemberRepository.selectMemberTendency", member_id);
 	}
 
-	public List<Map> selectTendencyAll() {
-		return getSqlSession().selectList("MemberRepository.selectTendencyAll");
-	}
 
 
 	/*insert*/

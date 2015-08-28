@@ -119,6 +119,15 @@ public class LectureServiceImpl implements LectureService{
 
     }
 
+    public boolean deleteConfirmService(int lecture_id) {
+
+        if(lectureRepository.selectIsDelete(lecture_id) == 0){
+            return false;
+        }
+
+        return true;
+    }
+
     public boolean likesService(int lecture_id) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -144,13 +153,7 @@ public class LectureServiceImpl implements LectureService{
 
     public boolean isDeleteService(int lecture_id) {
 
-        boolean data = false;
-
-        if(lectureRepository.updateIsDelete(lecture_id)){
-            data = true;
-        }
-
-        return data;
+        return lectureRepository.updateIsDelete(lecture_id);
     }
 
 /*    public void boardListService(int lecture_id, int page, ModelAndView mav) {

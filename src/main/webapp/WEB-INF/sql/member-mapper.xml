@@ -59,9 +59,6 @@
     select method as member_method, task as member_task, exam as member_exam from member where member_id = #{member_id}
   </select>
 
-  <select id="selectTendencyAll" resultType="map">
-    select * from tendency
-  </select>
 
   <!--insert-->
 

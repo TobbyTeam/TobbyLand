@@ -1,6 +1,5 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.repository;
 
-import java.util.List;
 import java.util.Map;
 
 public interface MemberRepository {
@@ -29,7 +28,6 @@ public interface MemberRepository {
 
 	Map selectMemberTendency(int member_id);
 
-	List<Map> selectTendencyAll();
 
 
 	/*insert*/
