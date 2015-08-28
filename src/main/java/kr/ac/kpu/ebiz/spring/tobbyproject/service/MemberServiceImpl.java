@@ -75,7 +75,7 @@ public class MemberServiceImpl implements MemberService{
 
         String user_id = member.getUser_id();
 
-        String from = "kpytobbyland@google.com";
+        String from = "tobbyland@tobbyland.com";
         String to = member.getEmail();
         String subject = "TOBBYLAND 인증 메일입니다.";
 
@@ -310,7 +310,7 @@ public class MemberServiceImpl implements MemberService{
                     e.printStackTrace();
                 }
 
-                String from = "kpytobbyland@google.com";
+                String from = "tobbyland@tobbyland.com";
                 String subject = "TOBBYLAND 회원정보 메일";
                 String content = "안녕하세요"+user_id+"님 요청하신 회원정보 입니다.<br /> <ul><li>아이디 : "+user_id+"</li>" +
                     "<li>새로운 비밀번호 : "+newPassword+"</li></ul><br />아래 링크를 클릭 하시면 회원님의 비밀번호가 새로운 비밀번호로 변경됩니다.<br />" +
