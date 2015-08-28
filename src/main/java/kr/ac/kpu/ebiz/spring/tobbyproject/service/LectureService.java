@@ -25,7 +25,7 @@ public interface LectureService {
 
     boolean deleteConfirmService(int lecture_id);
 
-    boolean likesService(int lecture_id);
+    int likesService(int lecture_id);
 
     boolean isDeleteService(int lecture_id);
 
@@ -41,9 +41,11 @@ public interface LectureService {
 
     boolean boardModService(Map lectureBoard);
 
-    boolean boardIsDeleteService(int lecture_id);
+    boolean boardDeleteConfirmService(int lb_id);
 
-    boolean boardSubConfirmService(int lb_id);
+    boolean boardIsDeleteService(int lb_id);
+
+    int boardSubConfirmService(int lb_id);
 
     boolean boardReplyRegService(Map lectureBoard);
 

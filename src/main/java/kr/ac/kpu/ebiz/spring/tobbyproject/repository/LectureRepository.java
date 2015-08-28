@@ -31,6 +31,8 @@ public interface LectureRepository {
 
 	int selectBoardMember_id(int lb_id);
 
+	int selectBoardIsDelete(int lb_id);
+
 	Map selectLecture_E(int lecture_id);
 
 	int selectBoardSubCount(Map lectureBoardSub);

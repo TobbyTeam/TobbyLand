@@ -30,6 +30,7 @@
     학과명:
             <select id="dept" name="dept">
               <c:forEach var="department" items="${departments}" varStatus="status">
+                <c:if test="${department.kind eq 'dept'}">
                 <c:choose>
                 <c:when test="${department.department_id eq lecture.dept}">
                 <option value="${department.department_id}" selected="selected">${department.department_name}</option>
@@ -38,6 +39,7 @@
                 <option value="${department.department_id}">${department.department_name}</option>
                 </c:otherwise>
                 </c:choose>
+                </c:if>
               </c:forEach>
             </select>  <br/>
 

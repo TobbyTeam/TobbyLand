@@ -1,5 +1,6 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.repository;
 
+import com.googlecode.ehcache.annotations.Cacheable;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 import java.util.List;
@@ -11,12 +12,9 @@ public class DepartmentRepositoryImpl extends SqlSessionDaoSupport implements De
 		return getSqlSession().selectOne("DepartmentRepository.select", departmentId);
 	}
 
+	@Cacheable(cacheName = "topCache")
 	public List<Map> selectAll() {
 		return getSqlSession().selectList("DepartmentRepository.selectAll");
-	}
-
-	public List<Map> selectDeptAll() {
-		return getSqlSession().selectList("DepartmentRepository.selectDeptAll");
 	}
 
 	public boolean delete(int departmentId) {

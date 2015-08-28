@@ -1,6 +1,5 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.controller;
 
-import kr.ac.kpu.ebiz.spring.tobbyproject.paging.Paging;
 import kr.ac.kpu.ebiz.spring.tobbyproject.repository.LectureRepository;
 import kr.ac.kpu.ebiz.spring.tobbyproject.security.MemberInfo;
 import kr.ac.kpu.ebiz.spring.tobbyproject.service.LectureService;
@@ -21,22 +20,25 @@ public class LectureController {
 	LectureService lectureService;
 
 	@Autowired
-	Paging paging;
-
-	@Autowired
 	LectureRepository lectureRepository;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
+
 		ModelAndView mav = new ModelAndView("/lecture/list");
+
 		lectureService.listService(mav);
+
 		return mav;
 	}
 
 	@RequestMapping(value = "/regForm", method = RequestMethod.GET)
 	public ModelAndView regForm() {
+
 		ModelAndView mav = new ModelAndView("/lecture/register");
+
 		lectureService.regFormService(mav);
+
 		return mav;
 	}
 
@@ -85,43 +87,24 @@ public class LectureController {
 
 	}
 
+	@RequestMapping(value = "/deleteConfirm", method = RequestMethod.POST)
+	public @ResponseBody boolean deleteConfirm(@RequestParam("lecture_id") int lecture_id) {
+
+		return lectureService.deleteConfirmService(lecture_id);
+	}
+
 	@RequestMapping(value = "/likes", method = RequestMethod.POST)
 	public @ResponseBody int likes(@RequestParam("lecture_id") int lecture_id) {
 
-		/*3은 삭제된거 1은 추천된거 2는 이미 한거*/
+		/* 0=에러 1=성공 2=이미한거 */
 
-		int result = 3;
-
-		if(lectureService.deleteConfirmService(lecture_id)){
-			return result;
-		}
-
-		if(lectureService.likesService(lecture_id)){
-			result = 1;
-		} else {
-			result = 2;
-		}
-
-		return result;
+		return lectureService.likesService(lecture_id);
 	}
 
 	@RequestMapping(value = "/isDelete", method = RequestMethod.POST)
-	public @ResponseBody int isDelete(@RequestParam("lecture_id") int lecture_id)	{
+	public @ResponseBody boolean isDelete(@RequestParam("lecture_id") int lecture_id)	{
 
-		int result = 0;
-
-		if(lectureService.deleteConfirmService(lecture_id)){
-
-			result = 2;
-
-		} else {
-
-			if(lectureService.isDeleteService(lecture_id)){
-				result = 1;
-			}
-		}
-
-		return result;
+		return lectureService.isDeleteService(lecture_id);
 	}
 
 	@RequestMapping(value = "/boardList/{lecture_id}/", method = RequestMethod.GET)
@@ -189,9 +172,19 @@ public class LectureController {
 				mav.setViewName("/lecture/boardView");
 
 			}
+		} else {
+			mav.setViewName("redirect:/404");
 		}
 
 		return mav;
+	}
+
+	@RequestMapping(value = "/boardDeleteConfirm", method = RequestMethod.POST)
+	public @ResponseBody boolean boardDeleteConfirm(@RequestParam("lb_id") int lb_id) {
+
+		System.out.println(lb_id+"아이디 확인");
+
+		return lectureService.boardDeleteConfirmService(lb_id);
 	}
 
 	@RequestMapping(value = "/boardConfirm", method = RequestMethod.POST)
@@ -220,11 +213,13 @@ public class LectureController {
 	@RequestMapping(value = "/boardIsDelete", method = RequestMethod.POST)
 	public @ResponseBody boolean boardIsDelete(@RequestParam("lb_id") int lb_id)	{
 
+		System.out.println(lb_id+"리플 아이디 확인");
+
 		return lectureService.boardIsDeleteService(lb_id);
 	}
 
 	@RequestMapping(value = "/boardSubConfirm", method = RequestMethod.POST)
-	public @ResponseBody boolean boardSubConfirm(@RequestParam("lb_id") int lb_id) {
+	public @ResponseBody int boardSubConfirm(@RequestParam("lb_id") int lb_id) {
 
 		return lectureService.boardSubConfirmService(lb_id);
 	}

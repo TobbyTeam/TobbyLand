@@ -88,6 +88,10 @@
     select member_id from lecture_board where lb_id = #{lb_id}
   </select>
 
+  <select id="selectBoardIsDelete" parameterType="int" resultType="int">
+    select is_delete from lecture_board where lb_id = #{lb_id}
+  </select>
+
   <select id="selectLecture_E" parameterType="int" resultType="map">
     select l.lecture_id, l.lecture_name, l.prof, d.department_name, count(if(e.is_delete = 0 and e.is_reply=0,1,null)) as count,  ifnull(round(avg(if(e.is_delete = 0 and e.is_reply=0,e.score,null)), 1),0) as avg
     from lecture l left outer join evaluation e on l.lecture_id = e.lecture_id left outer join department d on l.dept = d.department_id
@@ -177,21 +181,20 @@
     lecture_name = #{lecture_name},
     dept = #{dept},
     prof = #{prof}
-    where lecture_id = #{lecture_id}
+    where lecture_id = #{lecture_id} and is_delete = 0
   </update>
 
   <update id="updateLectureLike" parameterType="map">
     update lecture
     set
     likes = likes + 1
-    where lecture_id = #{lecture_id}
+    where lecture_id = #{lecture_id} and is_delete = 0
   </update>
 
   <update id="updateIsDelete" parameterType="map">
     update lecture
-    set
-    is_delete = 1
-    where lecture_id = #{lecture_id}
+    set is_delete = 1
+    where lecture_id = #{lecture_id} and is_delete = 0
   </update>
 
   <update id="updateBoardHit" parameterType="int">
@@ -206,21 +209,21 @@
     set
     title = #{title},
     contents = #{contents}
-    where lb_id = #{lb_id}
+    where lb_id = #{lb_id} and is_delete = 0
   </update>
 
   <update id="updateBoardIsDelete" parameterType="int">
     update lecture_board
     set
     is_delete = 1
-    where lb_id = #{lb_id}
+    where lb_id = #{lb_id} and is_delete = 0
   </update>
 
   <update id="updateBoardReport" parameterType="map">
     update lecture_board
     set
     report = report + 1
-    where lb_id = #{lb_id}
+    where lb_id = #{lb_id} and is_delete = 0
   </update>
 
 

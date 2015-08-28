@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/searchbar.css" />">
   <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/boardview.css" />">
 
-  <script src="<c:url value="/resources/js/lecture.js" />"></script>
+  <script src="<c:url value="${ctx}/resources/js/lecture_board.js" />"></script>
   <script src="<c:url value="${ctx}/resources/js/evaluation.js" />"></script>
   <script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>
   <script src="<c:url value="/resources/js/sessionTimeout.js" />"></script>
@@ -112,7 +112,7 @@
             <td width="5%"></td>
             <td width="75%">${reply.contents}</td>
             <td width="10%" align="right" class="littlebtn">${reply.write_date}</td>
-            <td width="5%" align="right" class="littlebtn"><button onclick="reDeleteAjax(${reply.lb_id})" class="btn btn-default littlebtn">삭제</button></td>
+            <td width="5%" align="right" class="littlebtn"><button onclick="boardReDeleteAjax(${reply.lb_id})" class="btn btn-default littlebtn">삭제</button></td>
             <td width="5%" align="right" class="littlebtn"><button onclick="reReportAjax(${reply.lb_id})" class="btn btn-danger littlebtn">신고</button></td>
           </tr>
         </c:forEach>

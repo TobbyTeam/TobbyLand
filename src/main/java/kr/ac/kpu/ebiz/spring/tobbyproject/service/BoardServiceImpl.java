@@ -328,7 +328,6 @@ public class BoardServiceImpl implements BoardService{
         mav.addObject("boards", boardRepository.selectBoardSearch(search));
     }
 
-    @Cacheable(cacheName = "topCache")
     public List<Map> topService(){
 
         return departmentRepository.selectAll();

@@ -52,7 +52,9 @@
                     <div class="col-sm-4">
                         <select type="text" id="dept" name="dept" class="form-control">
                             <c:forEach var="department" items="${departments}" varStatus="status">
+                                <c:if test="${department.kind eq 'dept'}">
                                 <option value="${department.department_id}">${department.department_name}</option>
+                                </c:if>
                             </c:forEach>
                         </select>
                     </div>

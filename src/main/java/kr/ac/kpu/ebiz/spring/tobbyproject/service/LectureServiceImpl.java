@@ -36,7 +36,7 @@ public class LectureServiceImpl implements LectureService{
 
     public void regFormService(ModelAndView mav) {
 
-        mav.addObject("departments", departmentRepository.selectDeptAll());
+        mav.addObject("departments", departmentRepository.selectAll());
 
     }
 
@@ -47,13 +47,7 @@ public class LectureServiceImpl implements LectureService{
 
         lecture.put("member_id", member_id);
 
-        boolean result = false;
-
-        if (lectureRepository.insertLecture(lecture)) {
-            result = true;
-        }
-
-        return result;
+        return lectureRepository.insertLecture(lecture);
     }
 
     public boolean confirmService(int lecture_id) {
@@ -86,7 +80,7 @@ public class LectureServiceImpl implements LectureService{
         if(member_id == writer || authorities.toString().contains("ROLE_ADMIN")){
 
             mav.addObject("lecture", lectureRepository.selectLecture(lecture_id));
-            mav.addObject("departments", departmentRepository.selectDeptAll());
+            mav.addObject("departments", departmentRepository.selectAll());
 
         } else {
             mav.setViewName("redirect:/lecture/list");
@@ -96,13 +90,7 @@ public class LectureServiceImpl implements LectureService{
 
     public boolean modService(Map lecture) {
 
-        boolean result = false;
-
-        if (lectureRepository.updateLecture(lecture)) {
-            result = true;
-        }
-
-        return result;
+        return lectureRepository.updateLecture(lecture);
     }
 
     public void searchService(Map search, ModelAndView mav) {
@@ -128,7 +116,7 @@ public class LectureServiceImpl implements LectureService{
         return true;
     }
 
-    public boolean likesService(int lecture_id) {
+    public int likesService(int lecture_id) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int member_id = user.getMember_id();
@@ -140,12 +128,18 @@ public class LectureServiceImpl implements LectureService{
 
         int count = lectureRepository.selectSubCount(lectureSub);
 
-        boolean result = false;
+        int result = 0;
 
         if(count == 0) {
-            lectureRepository.insertSub(lectureSub);
-            lectureRepository.updateLectureLike(lecture_id);
-            result = true;
+
+            if(lectureRepository.insertSub(lectureSub)&&lectureRepository.updateLectureLike(lecture_id)){
+                result = 1;
+            } else {
+                return result;
+            }
+
+        } else {
+            result = 2;
         }
 
         return result;
@@ -155,73 +149,6 @@ public class LectureServiceImpl implements LectureService{
 
         return lectureRepository.updateIsDelete(lecture_id);
     }
-
-/*    public void boardListService(int lecture_id, int page, ModelAndView mav) {
-
-        int startPage = 0;
-
-        int endPage = 0;
-
-        int start = 0;
-
-        try{
-            // 시작페이지 설정 1~10 페이지 일경우 1​​
-            startPage = (Integer.parseInt(page) - 1) / 10 * 10 + 1;
-
-            //ex) 현재 11페이지 일경우 (11-1) /10 * 10 +1 = 1 -> 11 페이지 부터 시작​​
-            endPage = startPage + 10 - 1;
-
-            if (page != null && page != "") {
-                if (!page.equals("1")) {
-                    // 첫페이지가 아닐경우 그 페이지에 맞는 목록 뽑아옴​
-                    int temp = (Integer.parseInt(page) - 1) * 15;
-                    start = temp;
-                } else if (page.equals("1")) {
-                    // 페이지 번호가 1이면 처음부터 15개​
-                    start = 0;
-                }
-            }
-
-        }catch(Exception e){
-
-            // 이상한 페이지 번호 들어오면 해당 게시판 처음으로 리다이렉트​
-            mav.setViewName("redirect:/lecture/boardList/" + lecture_id + "/");
-
-        }
-
-        //  전체 게시물 갯수 뽑아옴 ​
-
-        int rownum = lectureRepository.selectBoardCount(lecture_id);
-
-        //pageNum 변수는 전체 페이지의 수​
-        int pageNum = rownum / 15 + 1;
-
-        // 게시물이 딱 15개일 경우 다음페이지가 생기지 않게 -1 해줌​
-        if (rownum % 15 == 0) {
-            pageNum--;
-        }
-
-        if (endPage > pageNum) {
-            // 예를 들어 마지막페이지가 12페이지인 경우 endPage가 15페이지 까지 출력되기때문에 12페이지로 바꿔줌​
-            endPage = pageNum;
-        }
-
-        int current = Integer.parseInt(page);
-
-        Map lectureBoard = new HashMap();
-        lectureBoard.put("lecture_id", lecture_id);
-        lectureBoard.put("start", start);
-
-        List<Map> boards = lectureRepository.selectBoardAll(lectureBoard);
-
-        mav.addObject("lecture_id", lecture_id);
-        mav.addObject("boards", boards);
-        mav.addObject("pageNum", pageNum);
-        mav.addObject("start", startPage);
-        mav.addObject("end", endPage);
-        mav.addObject("current", current);   // 현재 페이지 번호 모델로 넘김
-
-    }*/
 
     public void boardListService(int lecture_id, int page, ModelAndView mav) {
 
@@ -277,13 +204,7 @@ public class LectureServiceImpl implements LectureService{
         lectureBoard.put("member_id", member_id);
         lectureBoard.put("rnum", rnum);
 
-        boolean result = false;
-
-        if(lectureRepository.insertBoard(lectureBoard)){
-            result = true;
-        }
-
-        return result;
+        return lectureRepository.insertBoard(lectureBoard);
     }
 
     public boolean boardViewService(int lb_id, ModelAndView mav) {
@@ -297,7 +218,6 @@ public class LectureServiceImpl implements LectureService{
 
         }else{
 
-            mav.setViewName("redirect:/404");
             result = false;
 
         }
@@ -365,27 +285,24 @@ public class LectureServiceImpl implements LectureService{
         lectureBoard.remove("contents");
         lectureBoard.put("contents", contents_db);
 
-        boolean result = false;
+        return lectureRepository.updateBoard(lectureBoard);
+    }
 
-        if (lectureRepository.updateBoard(lectureBoard)) {
-            result = true;
+    public boolean boardDeleteConfirmService(int lb_id) {
+
+        if(lectureRepository.selectBoardIsDelete(lb_id) == 0){
+            return false;
         }
 
-        return result;
+        return true;
     }
 
     public boolean boardIsDeleteService(int lb_id) {
 
-        boolean data = false;
-
-        if(lectureRepository.updateBoardIsDelete(lb_id)) {
-            data = true;
-        }
-
-        return data;
+        return lectureRepository.updateBoardIsDelete(lb_id);
     }
 
-    public boolean boardSubConfirmService(int lb_id) {
+    public int boardSubConfirmService(int lb_id) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int member_id = user.getMember_id();
@@ -397,12 +314,18 @@ public class LectureServiceImpl implements LectureService{
 
         int count = lectureRepository.selectBoardSubCount(lectureBoardSub);
 
-        boolean result = false;
+        int result = 0;
 
         if(count == 0) {
-            lectureRepository.insertBoardSub(lectureBoardSub);
-            lectureRepository.updateBoardReport(lb_id);
-            result = true;
+
+            if(lectureRepository.insertBoardSub(lectureBoardSub)&&lectureRepository.updateBoardReport(lb_id)){
+                result = 1;
+            } else {
+                return result;
+            }
+
+        } else {
+            result = 2;
         }
 
         return result;
@@ -416,18 +339,10 @@ public class LectureServiceImpl implements LectureService{
 
         lectureBoard.put("member_id", member_id);
 
-        boolean result = false;
-
-        if(lectureRepository.insertBoard(lectureBoard)){
-            result =true;
-        }
-
-        return result;
+        return lectureRepository.insertBoard(lectureBoard);
     }
 
     public void boardSearchService(Map search, int page, ModelAndView mav) {
-
-        int lecture_id =  Integer.parseInt(search.get("lecture_id").toString());
 
         paging.setPageNo(page);
         paging.setPageSize(15);

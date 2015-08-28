@@ -11,10 +11,6 @@
     select * from department
   </select>
 
-  <select id="selectDeptAll" resultType="map">
-    select * from department where kind = 'dept'
-  </select>
-
   <delete id="delete" parameterType="int">
     delete from department where department_id = #{value}
   </delete>
