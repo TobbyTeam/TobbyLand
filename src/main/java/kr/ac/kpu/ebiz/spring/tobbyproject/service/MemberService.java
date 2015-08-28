@@ -18,7 +18,7 @@ public interface MemberService {
 
     boolean regService(Member member);
 
-    boolean enabledService(String enSt, Map member);
+    int certificationService(String enSt, Map member);
 
     void viewService(ModelAndView mav);
 
@@ -32,7 +32,7 @@ public interface MemberService {
 
     boolean pwModService(String password);
 
-    boolean pwModService(String enSt, String password);
+    int pwModService(String enSt, String password);
 
     boolean lockService();
 

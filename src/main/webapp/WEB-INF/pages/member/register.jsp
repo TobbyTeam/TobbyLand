@@ -1,7 +1,7 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -15,7 +15,6 @@
     <script src="<c:url value="${ctx}/resources/js/member_validate.js" />"></script>
     <script src="<c:url value="${ctx}/resources/js/jquery.blockUI.js" />"></script>
     <script src="<c:url value="${ctx}/resources/js/blockUI.js" />"></script>
-
 
     <title>토비랜드</title>
 

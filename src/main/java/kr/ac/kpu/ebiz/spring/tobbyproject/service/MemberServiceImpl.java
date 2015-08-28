@@ -2,7 +2,6 @@ package kr.ac.kpu.ebiz.spring.tobbyproject.service;
 
 import kr.ac.kpu.ebiz.spring.tobbyproject.command.Member;
 import kr.ac.kpu.ebiz.spring.tobbyproject.encryptor.AES128Cipher;
-import kr.ac.kpu.ebiz.spring.tobbyproject.etc.Question;
 import kr.ac.kpu.ebiz.spring.tobbyproject.etc.TemporaryPassword;
 import kr.ac.kpu.ebiz.spring.tobbyproject.mail.MailMail;
 import kr.ac.kpu.ebiz.spring.tobbyproject.repository.MemberRepository;
@@ -31,9 +30,6 @@ public class MemberServiceImpl implements MemberService{
 
     @Autowired
     AES128Cipher aes128Cipher;
-
-    @Autowired
-    Question question;
 
     @Autowired
     TemporaryPassword temporaryPassword;
@@ -91,16 +87,16 @@ public class MemberServiceImpl implements MemberService{
             result = false;
         }
 
-        String content = user_id+"님 회원가입을 축하드립니다. 아래 링크를 누르시면 메일인증이 됩니다.<br />" + "<a href=\"http://tobbyland.com/member/enabled?enSt="+enSt+"\">메일인증</a>";
+        String content = user_id+"님 회원가입을 축하드립니다. 아래 링크를 누르시면 메일인증이 됩니다.<br /><br />" + "<a href=\"http://tobbyland.com/member/certification?enSt="+enSt+"\">메일인증</a>";
 
         mailMail.sendMail( from, to, subject, content);
 
         return result;
     }
 
-    public boolean enabledService(String enSt, Map member) {
+    public int certificationService(String enSt, Map member) {
 
-        boolean result = false;
+        int result = 0;
 
         String user_id = "";
 
@@ -108,6 +104,9 @@ public class MemberServiceImpl implements MemberService{
             user_id = aes128Cipher.decode(enSt);
         } catch (Exception e) {
             e.printStackTrace();
+
+            result = 2;
+            return result;
         }
 
         String user_id2= (String) member.get("user_id");
@@ -117,11 +116,15 @@ public class MemberServiceImpl implements MemberService{
             String password = (String) member.get("password");
             member.remove("password");
             member.put("password", passwordEncoder.encode(password));
-            memberRepository.insertMember(member);
-            memberRepository.insertRole(memberRepository.selectMemberId(user_id));
 
-            result = true;
+            if(memberRepository.insertMember(member)&&memberRepository.insertRole(memberRepository.selectMemberId(user_id))){
+                result = 1;
+            } else {
+                return result;
+            }
 
+        } else {
+            result = 2;
         }
 
         return result;
@@ -156,7 +159,6 @@ public class MemberServiceImpl implements MemberService{
         int member_id = user.getMember_id();
 
         mav.addObject("member", memberRepository.selectMember(member_id));
-        mav.addObject("questions", question.question());
 
     }
 
@@ -195,12 +197,7 @@ public class MemberServiceImpl implements MemberService{
 
         member.put("member_id",member_id);
 
-        boolean result = false;
-
-        if(memberRepository.updateMember(member)){
-            result = true;
-        }
-        return result;
+        return memberRepository.updateMember(member);
     }
 
     public boolean pwModService(String password) {
@@ -212,18 +209,12 @@ public class MemberServiceImpl implements MemberService{
         member.put("member_id", member_id);
         member.put("password", passwordEncoder.encode(password));
 
-        boolean result = false;
-
-        if(memberRepository.updatePassword(member)){
-            result = true;
-        }
-
-        return result;
+        return memberRepository.updatePassword(member);
     }
 
-    public boolean pwModService(String enSt, String password) {
+    public int pwModService(String enSt, String password) {
 
-        boolean result = false;
+        int result = 0;
 
         String id = "";
 
@@ -231,6 +222,8 @@ public class MemberServiceImpl implements MemberService{
             id = aes128Cipher.decode(enSt);
         } catch (Exception e) {
             e.printStackTrace();
+            result = 2;
+            return result;
         }
 
         int member_id = Integer.parseInt(id);
@@ -241,10 +234,14 @@ public class MemberServiceImpl implements MemberService{
             member.put("member_id", member_id);
             member.put("password", password);
 
-            memberRepository.updatePassword(member);
-            memberRepository.updateSearchZero(member_id);
+            if(memberRepository.updatePassword(member)&&memberRepository.updateSearchZero(member_id)){
+                result = 1;
+            } else {
+                return result;
+            }
 
-            result = true;
+        } else {
+            result = 2;
 
         }
 
@@ -296,36 +293,39 @@ public class MemberServiceImpl implements MemberService{
 
                 String password = passwordEncoder.encode(newPassword);
 
-                memberRepository.insertSearch(member);
 
-                memberRepository.updateSearch(Integer.parseInt(member_id));
+                if(memberRepository.insertSearch(member)&&memberRepository.updateSearch(Integer.parseInt(member_id))){
 
-                String enSt = "";
+                    String enSt = "";
 
-                try {
-                    enSt = aes128Cipher.encode(member_id);
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    try {
+                        enSt = aes128Cipher.encode(member_id);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    String from = "tobbyland@tobbyland.com";
+                    String subject = "TOBBYLAND 회원정보 메일";
+                    String content = "안녕하세요"+user_id+"님 요청하신 회원정보 입니다.<br /> <ul><li>아이디 : "+user_id+"</li>" +
+                            "<li>새로운 비밀번호 : "+newPassword+"</li></ul><br />아래 링크를 클릭 하시면 회원님의 비밀번호가 새로운 비밀번호로 변경됩니다.<br />" +
+                            "<a href=\"http://tobbyland.com/member/pwModMail?enSt="+enSt+"&key="+password+"\">비밀번호변경</a><br />" +
+                            "만약 토비랜드에서 이런 요청을 하신적이 없다면 이 이메일을 무시하셔도 됩니다.<br />" +
+                            "링크를 클릭하여 새로운 비밀번호를 설정하기 전까지는 비밀번호가 변경되지 않습니다.";
+
+                    mailMail.sendMail( from, email, subject, content);
+
+                    result = 1;
+
                 }
 
-                String from = "tobbyland@tobbyland.com";
-                String subject = "TOBBYLAND 회원정보 메일";
-                String content = "안녕하세요"+user_id+"님 요청하신 회원정보 입니다.<br /> <ul><li>아이디 : "+user_id+"</li>" +
-                    "<li>새로운 비밀번호 : "+newPassword+"</li></ul><br />아래 링크를 클릭 하시면 회원님의 비밀번호가 새로운 비밀번호로 변경됩니다.<br />" +
-                    "<a href=\"http://tobbyland.com/member/pwModMail?enSt="+enSt+"&key="+password+"\">비밀번호변경</a><br />" +
-                    "만약 토비랜드에서 이런 요청을 하신적이 없다면 이 이메일을 무시하셔도 됩니다.<br />" +
-                    "링크를 클릭하여 새로운 비밀번호를 설정하기 전까지는 비밀번호가 변경되지 않습니다.";
-
-                mailMail.sendMail( from, email, subject, content);
-
-                result = 1;
-
             } else {
-
                 result = 2;
             }
+        } else {
+            result = 3;
         }
 
         return result;
     }
+
 }

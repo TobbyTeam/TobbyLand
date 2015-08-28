@@ -112,7 +112,7 @@ $(document).ready(function() {
 						alert("회원가입을 축하합니다. 메일인증을 꼭 받아주세요.");
 						window.open("/member/regOk", "_self");
 					} else {
-						alert("죄송합니다 다시 시도해주세요.")
+						alert("죄송합니다. 다시 시도해주세요.")
 					}
 				}
 			});
@@ -265,12 +265,13 @@ $(document).ready(function() {
 					if (result === 1 ) {
 						alert("메일이 전송 되었습니다. 확인해주세요.");
 						window.open("/member/searchOk", "_self");
-					} else if (result === 0){
+					} else if (result === 2){
+						alert("1일 메일요청 횟수 5회를 초과하셨습니다.");
+					} else if(result ===3){
 						alert("등록되지 않은 메일입니다.");
 					} else {
-						alert("1일 메일요청 횟수 5회를 초과하셨습니다.");
+						alert("죄송합니다 다시 시도해주세요.")
 					}
-
 				}
 			});
 		}

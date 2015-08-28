@@ -2,7 +2,6 @@ package kr.ac.kpu.ebiz.spring.tobbyproject.controller;
 
 import kr.ac.kpu.ebiz.spring.tobbyproject.command.Member;
 import kr.ac.kpu.ebiz.spring.tobbyproject.encryptor.AES128Cipher;
-import kr.ac.kpu.ebiz.spring.tobbyproject.etc.Question;
 import kr.ac.kpu.ebiz.spring.tobbyproject.repository.TendencyRepository;
 import kr.ac.kpu.ebiz.spring.tobbyproject.service.MemberService;
 import org.apache.commons.beanutils.PropertyUtils;
@@ -32,9 +31,6 @@ public class MemberController {
 	MemberService memberService;
 
 	@Autowired
-	Question question;
-
-	@Autowired
 	AES128Cipher aes128Cipher;
 
 	@Autowired
@@ -52,7 +48,6 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView("/member/register");
 
 		mav.addObject("tendencys", tendencyRepository.selectAll());
-/*		mav.addObject("questions", question.question());*/
 
 		return mav;
 	}
@@ -103,21 +98,31 @@ public class MemberController {
 
 	}
 
-	@RequestMapping(value = "/enabled", method = RequestMethod.GET)
+	@RequestMapping(value = "/certification", method = RequestMethod.GET)
 	public ModelAndView enabled(@RequestParam("enSt") String enSt, @ModelAttribute("member") Member member, SessionStatus sessionStatus) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
 
 		ModelAndView mav = new ModelAndView();
 
 		Map member1 = PropertyUtils.describe(member);
 
-		if(memberService.enabledService(enSt, member1)){
-			mav.setViewName("etc/success");
-			mav.addObject("message1", "메일인증에 성공하셨습니다.");
-			mav.addObject("message2", "3초후에 로그인 페이지로 이동합니다.");
-			mav.addObject("refresh", "true");
-			sessionStatus.setComplete();
-		} else {
-			mav.setViewName("redirect:/invalidAccess");
+		/*0=에러 1=성공 2=잘못된 접근*/
+
+		switch(memberService.certificationService(enSt, member1)) {
+			case 1:
+				mav.setViewName("etc/success");
+				mav.addObject("message1", "메일인증에 성공하셨습니다.");
+				mav.addObject("message2", "3초후에 로그인 페이지로 이동합니다.");
+				mav.addObject("refresh", "true");
+				sessionStatus.setComplete();
+			break;
+			case 2:
+				mav.setViewName("redirect:/invalidAccess");
+				break;
+			case 0:
+				mav.setViewName("redirect:/500");
+			break;
+			default:
+				mav.setViewName("redirect:/500");
 		}
 
 		return mav;
@@ -131,7 +136,6 @@ public class MemberController {
 		memberService.viewService(mav);
 		mav.addObject("tendencys", tendencyRepository.selectAll());
 
-
 		return mav;
 	}
 
@@ -139,6 +143,12 @@ public class MemberController {
 	public String pwConfirm() {
 
 		return "member/pwConfirm";
+	}
+
+	@RequestMapping(value = "/pwCheck", method = RequestMethod.POST)
+	public @ResponseBody boolean pwCheck(@RequestParam ("password")String password) {
+
+		return memberService.pwCheckService(password);
 	}
 
 	@RequestMapping(value = "/modView", method = RequestMethod.GET)
@@ -165,12 +175,6 @@ public class MemberController {
 		return "member/pwChange";
 	}
 
-	@RequestMapping(value = "/pwCheck", method = RequestMethod.POST)
-	public @ResponseBody boolean pwCheck(@RequestParam ("password")String password) {
-
-		return memberService.pwCheckService(password);
-	}
-
 	@RequestMapping(value = "/pwMod", method = RequestMethod.POST)
 	public @ResponseBody boolean pwModify(@RequestParam ("password")String password) {
 
@@ -182,13 +186,22 @@ public class MemberController {
 
 		ModelAndView mav = new ModelAndView();
 
-		if(memberService.pwModService(enSt, password)){
-			mav.setViewName("etc/success");
-			mav.addObject("message1", "비밀번호가 정상적으로 변경되었습니다.");
-			mav.addObject("message2", "꼭 로그인 후 새로운 비밀번호로 수정하시기 바랍니다.");
-			mav.addObject("refresh", "true");
-		} else {
-			mav.setViewName("redirect:/invalidAccess");
+		/*0=에러 1=성공 2=잘못된 접근*/
+
+		switch(memberService.pwModService(enSt, password)) {
+			case 1:
+				mav.setViewName("etc/success");
+				mav.addObject("message1", "비밀번호가 정상적으로 변경되었습니다.");
+				mav.addObject("message2", "꼭 로그인 후 새로운 비밀번호로 수정하시기 바랍니다.");
+				mav.addObject("refresh", "true");
+			break;
+			case 2:
+				mav.setViewName("redirect:/invalidAccess");
+			break;
+			case 0:
+				mav.setViewName("redirect:/500");
+			default:
+				mav.setViewName("redirect:/500");
 		}
 
 		return mav;
@@ -208,6 +221,8 @@ public class MemberController {
 
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public @ResponseBody int search(@RequestParam ("email") String email) {
+
+		/*0=에러 1=성공 2=횟수촤과 3=등록되지 않은 메일*/
 
 		return memberService.searchService(email);
 	}

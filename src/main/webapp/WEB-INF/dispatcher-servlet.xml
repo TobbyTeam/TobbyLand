@@ -170,8 +170,6 @@
 
 	<!-- ========================= ETC DEFINITION ========================= -->
 
-	<bean id="question" class="kr.ac.kpu.ebiz.spring.tobbyproject.etc.Question"/>
-
 	<bean id="paging" class="kr.ac.kpu.ebiz.spring.tobbyproject.paging.Paging"/>
 
 	<bean id="temporaryPassword" class="kr.ac.kpu.ebiz.spring.tobbyproject.etc.TemporaryPassword"/>
