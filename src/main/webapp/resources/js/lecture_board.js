@@ -1,115 +1,57 @@
 function boardReDeleteAjax(reply_id) {
 
-	var lecture_id = $("#lecture_id").val();
-
-	var lb_id = $("#lb_id").val();
-
 	$.ajax({
 		type: "POST",
-		url: "/lecture/boardDeleteConfirm",
+		url: "/lecture/boardConfirm",
 		dataType: "json",
-		data: {lb_id: lb_id},
+		data: {lb_id: reply_id},
 		success: function (result) {
-			if (result) {
-				alert("이미 삭제 된 글입니다.");
-				window.open("/lecture/boardList/"+lecture_id+"/", "_self");
-			} else {
-				$.ajax({
-					type: "POST",
-					url: "/lecture/boardDeleteConfirm",
-					dataType: "json",
-					data: {lb_id: reply_id},
-					success: function (result2) {
-						if (result2) {
-							alert("이미 삭제 된 글입니다.");
-							location.reload();
-						} else {
-							$.ajax({
-								type: "POST",
-								url: "/lecture/boardConfirm",
-								dataType: "json",
-								data: {lb_id: reply_id},
-								success: function (result3) {
-									if (result3) {
-										if (confirm("정말 삭제하시겠습니까?")) {
-											$.ajax({
-												type: "POST",
-												url: "/lecture/boardIsDelete",
-												dataType: "json",
-												data: {lb_id: reply_id},
-												success: function (result4) {
-													if (result4) {
-														alert("삭제되었습니다.");
-														location.reload();
-													} else {
-														alert("에러가 발생했습니다. 다시 시도해주세요.");
-														location.reload();
-													}
-												}
-											})
-										}
-									} else {
-										alert("본인이 작성하신 글이 아닙니다.");
-									}
-								}
-							})
+			if(result === 1) {
+				if (confirm("정말 삭제하시겠습니까?")) {
+					$.ajax({
+						type: "POST",
+						url: "/lecture/boardIsDelete",
+						dataType: "json",
+						data: {lb_id: reply_id},
+						success: function (result2) {
+							if (result2) {
+								alert("삭제되었습니다.");
+								location.reload();
+							} else {
+								alert("에러가 발생했습니다. 다시 시도해주세요.");
+								location.reload();
+							}
 						}
-					}
-				})
+					})
+				}
+			} else if(result === 2) {
+				alert("본인이 작성하신 글이 아닙니다.");
+			} else {
+				alert("이미 삭제 된 글입니다.");
+				location.reload();
 			}
 		}
 	})
-
 }
 
 
 function reReportAjax(reply_id) {
 
-	var lecture_id = $("#lecture_id").val();
-
-	var lb_id = $("#lb_id").val();
-
 	$.ajax({
-		type: "POST",
-		url: "/lecture/boardDeleteConfirm",
-		dataType: "json",
-		data: {lb_id: lb_id},
-		success: function (result) {
-			if (result) {
-				alert("이미 삭제 된 글입니다.");
-				window.open("/lecture/boardList/"+lecture_id+"/", "_self");
-			} else {
-				$.ajax({
-					type: "POST",
-					url: "/lecture/boardDeleteConfirm",
-					dataType: "json",
-					data: {lb_id: reply_id},
-					success: function (result2) {
-						if (result2) {
-							alert("이미 삭제 된 글입니다.");
-							location.reload();
-						} else {
-							$.ajax({
-								type     : "POST",
-								url      : "/lecture/boardSubConfirm",
-								dataType : "json",
-								data     : {lb_id:reply_id},
-								success  : function(result3) {
+		type     : "POST",
+		url      : "/lecture/boardSubConfirm",
+		dataType : "json",
+		data     : {lb_id:reply_id},
+		success  : function(result) {
 
-									if(result3 === 1){
-										alert("신고 되었습니다");
-										location.reload();
-									}else if(result3 === 2){
-										alert("이미 신고하였습니다.");
-									}else{
-										alert("에러가 발생했습니다. 다시 시도해주세요.");
-										location.reload();
-									}
-								}
-							})
-						}
-					}
-				})
+			if(result === 1){
+				alert("신고 되었습니다");
+				location.reload();
+			}else if(result === 2){
+				alert("이미 신고하였습니다.");
+			}else{
+				alert("이미 삭제된 글이거나 에러가 발생했습니다.");
+				location.reload();
 			}
 		}
 	})
@@ -147,29 +89,17 @@ $(document).ready(function() {
 
 		$.ajax({
 			type: "POST",
-			url: "/lecture/boardDeleteConfirm",
+			url: "/lecture/boardConfirm",
 			dataType: "json",
 			data: {lb_id: lb_id},
 			success: function (result) {
-				if (result) {
-					alert("이미 삭제 된 글입니다.");
-					window.open("/lecture/boardList/"+lecture_id+"/", "_self");
+				if(result === 1) {
+					window.open('/lecture/boardModView?lb_id=' + lb_id, '_self');
+				} else if(result === 2) {
+					alert("본인이 작성하신 글이 아닙니다.");
 				} else {
-					$.ajax({
-						type: "POST",
-						url: "/lecture/boardConfirm",
-						dataType: "json",
-						data: {lb_id: lb_id},
-						success: function (result) {
-
-							if (result) {
-								window.open('/lecture/boardModView?lb_id=' + lb_id, '_self');
-
-							} else {
-								alert("본인이 작성하신 글이 아닙니다.");
-							}
-						}
-					})
+					alert("삭제 된 글입니다.");
+					window.open("/lecture/boardList/"+lecture_id+"/", "_self");
 				}
 			}
 		})
@@ -180,80 +110,55 @@ $(document).ready(function() {
 
 		$.ajax({
 			type: "POST",
-			url: "/lecture/boardDeleteConfirm",
+			url: "/lecture/boardConfirm",
 			dataType: "json",
 			data: {lb_id: lb_id},
 			success: function (result) {
-				if (result) {
-					alert("이미 삭제 된 글입니다.");
-					window.open("/lecture/boardList/"+$("#lecture_id").val()+"/", "_self");
-				} else {
-					$.ajax({
-						type: "POST",
-						url: "/lecture/boardConfirm",
-						dataType: "json",
-						data: {lb_id: lb_id},
-						success: function (result2) {
-
-							if (result2) {
-								if (confirm("정말 삭제하시겠습니까?")) {
-									$.ajax({
-										type: "POST",
-										url: "/lecture/boardIsDelete",
-										dataType: "json",
-										data: {lb_id: lb_id},
-										success: function (result3) {
-											if (result3) {
-												alert("삭제되었습니다.");
-												window.open("/lecture/boardList/"+lecture_id+"/", "_self");
-											} else {
-												alert("에러가 발생했습니다. 다시 시도해주세요.");
-												location.reload();
-											}
-										}
-									})
+				if(result === 1) {
+					if (confirm("정말 삭제하시겠습니까?")) {
+						$.ajax({
+							type: "POST",
+							url: "/lecture/boardIsDelete",
+							dataType: "json",
+							data: {lb_id: lb_id},
+							success: function (result2) {
+								if (result2) {
+									alert("삭제되었습니다.");
+									window.open("/lecture/boardList/"+lecture_id+"/", "_self");
+								} else {
+									alert("이미 삭제된 글이거나 에러가 발생했습니다.");
+									location.reload();
 								}
-							} else {
-								alert("본인이 작성하신 글이 아닙니다.");
 							}
-						}
-					})
+						})
+					}
+				} else if(result === 2) {
+					alert("본인이 작성하신 글이 아닙니다.");
+				} else {
+					alert("삭제 된 글입니다.");
+					window.open("/lecture/boardList/"+$("#lecture_id").val()+"/", "_self");
 				}
 			}
 		})
-
 	})
 
 	$(document).off('click', '#boardRep_btn').on('click', '#boardRep_btn', function() {
 
 		$.ajax({
-			type: "POST",
-			url: "/lecture/boardDeleteConfirm",
-			dataType: "json",
-			data: {lb_id: lb_id},
-			success: function (result) {
-				if (result) {
-					alert("이미 삭제 된 글입니다.");
-					window.open("/lecture/boardList/"+lecture_id+"/", "_self");
-				} else {
-					$.ajax({
-						type     : "POST",
-						url      : "/lecture/boardSubConfirm",
-						dataType : "json",
-						data     : {lb_id:lb_id},
-						success  : function(result2) {
+			type     : "POST",
+			url      : "/lecture/boardSubConfirm",
+			dataType : "json",
+			data     : {lb_id:lb_id},
+			success  : function(result) {
 
-							if(result2 === 1){
-								alert("신고 되었습니다");
-								location.reload();
-							}else if(result2 === 2){
-								alert("이미 신고하였습니다.");
-							}else{
-								alert("에러가 발생했습니다. 다시 시도해주세요.");
-								location.reload();
-							}
-						}
-					})
+				if(result === 1){
+					alert("신고 되었습니다");
+					location.reload();
+				}else if(result === 2){
+					alert("이미 신고하였습니다.");
+				}else{
+					alert("이미 삭제된 글이거나 에러가 발생했습니다.");
+					location.reload();
 				}
 			}
 		})
@@ -270,28 +175,15 @@ $(document).ready(function() {
 
 		$.ajax({
 			type: "POST",
-			url: "/lecture/boardDeleteConfirm",
+			url: "/lecture/boardReplyReg",
+			data: $("#reReg_frm").serialize(),
 			dataType: "json",
-			data: {lb_id: lb_id},
 			success: function (result) {
 				if (result) {
-					alert("이미 삭제 된 글입니다.");
-					window.open("/lecture/boardList/"+lecture_id+"/", "_self");
+					location.reload();
 				} else {
-					$.ajax({
-						type: "POST",
-						url: "/lecture/boardReplyReg",
-						data: $("#reReg_frm").serialize(),
-						dataType: "json",
-						success: function (result2) {
-							if (result2) {
-								location.reload();
-							} else {
-								alert("에러가 발생했습니다. 다시 시도해주세요.");
-								location.reload();
-							}
-						}
-					})
+					alert("에러가 발생했습니다. 다시 시도해주세요.");
+					location.reload();
 				}
 			}
 		})

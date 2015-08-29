@@ -14,7 +14,6 @@
 
   <script src="<c:url value="${ctx}/resources/js/jquery.validate.min.js" />"></script>
   <script src="<c:url value="${ctx}/resources/js/lecture_validate.js" />"></script>
-  <script src="<c:url value="${ctx}/resources/js/evaluation.js" />"></script>
   <script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>
   <script src="<c:url value="/resources/js/sessionTimeout.js" />"></script>
 

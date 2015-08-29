@@ -9,7 +9,7 @@ public interface LectureRepository {
 
 	List<Map> selectAll();
 
-	int selectMember_id(int lecture_id);
+	Map selectMember_id(int lecture_id);
 
 	int selectIsDelete(int lecture_id);
 
@@ -29,7 +29,7 @@ public interface LectureRepository {
 
 	List<Map> selectBoardReplyAll(int lb_id);
 
-	int selectBoardMember_id(int lb_id);
+	Map selectBoardMember_id(int lb_id);
 
 	int selectBoardIsDelete(int lb_id);
 

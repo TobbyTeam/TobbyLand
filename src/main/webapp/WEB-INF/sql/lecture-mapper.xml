@@ -11,8 +11,8 @@
     where likes <![CDATA[ < ]]> 10 and is_delete = 0 order by lecture_id desc
   </select>
 
-  <select id="selectMember_id" parameterType="int" resultType="int">
-    select member_id from lecture where lecture_id = #{lecture_id}
+  <select id="selectMember_id" parameterType="int" resultType="Map">
+    select member_id, is_delete from lecture where lecture_id = #{lecture_id}
   </select>
 
   <select id="selectIsDelete" parameterType="int" resultType="int">
@@ -84,8 +84,8 @@
     order by write_date
   </select>
 
-  <select id="selectBoardMember_id" parameterType="int" resultType="int">
-    select member_id from lecture_board where lb_id = #{lb_id}
+  <select id="selectBoardMember_id" parameterType="int" resultType="map">
+    select member_id, is_delete from lecture_board where lb_id = #{lb_id}
   </select>
 
   <select id="selectBoardIsDelete" parameterType="int" resultType="int">

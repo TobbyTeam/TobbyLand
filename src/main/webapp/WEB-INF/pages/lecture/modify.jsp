@@ -44,7 +44,7 @@
             </select>  <br/>
 
     교수명: <input type="text" id="prof" name="prof" value="${lecture.prof}"/><br>
-            <input type="hidden" name="lecture_id" value="${lecture.lecture_id}"/>
+            <input type="hidden" id="lecture_id" name="lecture_id" value="${lecture.lecture_id}"/>
             <input type="button" value="수정" onclick="$(this.form).submit()"/>&nbsp;&nbsp;&nbsp; <input type="reset" value="취소" onclick="history.back()"/>
   </form>
 

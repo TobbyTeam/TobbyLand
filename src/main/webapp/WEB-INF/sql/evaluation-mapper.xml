@@ -31,6 +31,10 @@
     select member_id from evaluation where evaluation_id = #{evaluation_id}
   </select>
 
+  <select id="selectIsDelete" parameterType="int" resultType="int">
+    select is_delete from evaluation where evaluation_id = #{evaluation_id}
+  </select>
+
   <select id="selectEvaluation" parameterType="int" resultType="map">
     select e.*, s.semester_title
     from evaluation e left outer join semester s on e.semester = s.semester_id

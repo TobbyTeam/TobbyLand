@@ -22,7 +22,7 @@ public class LectureController {
 	@Autowired
 	LectureRepository lectureRepository;
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView list() {
 
 		ModelAndView mav = new ModelAndView("/lecture/list");
@@ -49,7 +49,9 @@ public class LectureController {
 	}
 
 	@RequestMapping(value = "/confirm", method = RequestMethod.POST)
-	public @ResponseBody boolean confirm(@RequestParam int lecture_id) {
+	public @ResponseBody int confirm(@RequestParam int lecture_id) {
+
+		/* 1=성공 2=너꺼아님 3=삭제된거*/
 
 		return lectureService.confirmService(lecture_id);
 	}
@@ -111,25 +113,21 @@ public class LectureController {
 	public ModelAndView boardList(@PathVariable int lecture_id, @RequestParam(value="page", required = false, defaultValue="1") int page,
 							  @RequestParam(value="searchType", required = false, defaultValue="") String searchType, @RequestParam(value="searchWord", required = false, defaultValue="") String searchWord) {
 
-		System.out.println(lecture_id+"++++++강의아이디 확인");
-
 		ModelAndView mav = new ModelAndView();
 
-		mav.addObject("lecture_id", lecture_id);
+			mav.addObject("lecture_id", lecture_id);
 
-		if(!searchType.isEmpty()){
-			Map search = new HashMap();
-			search.put("searchType", searchType);
-			search.put("searchWord", searchWord);
-			search.put("lecture_id", lecture_id);
-			lectureService.boardSearchService(search, page, mav);
-			mav.setViewName("/lecture/boardSearchList");
-
-		} else {
-			lectureService.boardListService(lecture_id, page, mav);
-			mav.setViewName("/lecture/boardList");
-
-		}
+			if(!searchType.isEmpty()){
+				Map search = new HashMap();
+				search.put("searchType", searchType);
+				search.put("searchWord", searchWord);
+				search.put("lecture_id", lecture_id);
+				lectureService.boardSearchService(search, page, mav);
+				mav.setViewName("/lecture/boardSearchList");
+			} else {
+				lectureService.boardListService(lecture_id, page, mav);
+				mav.setViewName("/lecture/boardList");
+			}
 
 		return mav;
 	}
@@ -173,7 +171,8 @@ public class LectureController {
 
 			}
 		} else {
-			mav.setViewName("redirect:/404");
+			mav.setViewName("/lecture/error");
+			mav.addObject("lecture_id", lecture_id);
 		}
 
 		return mav;
@@ -188,7 +187,9 @@ public class LectureController {
 	}
 
 	@RequestMapping(value = "/boardConfirm", method = RequestMethod.POST)
-	public @ResponseBody boolean boardConfirm(@RequestParam("lb_id") int lb_id) {
+	public @ResponseBody int boardConfirm(@RequestParam("lb_id") int lb_id) {
+
+		/* 1=성공 2=너꺼아님 3=삭제된거*/
 
 		return lectureService.boardConfirmService(lb_id);
 	}

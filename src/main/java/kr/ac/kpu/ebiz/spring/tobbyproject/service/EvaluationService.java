@@ -21,17 +21,21 @@ public interface EvaluationService {
 
     boolean regService(Map evaluation);
 
+    boolean deleteConfirmService(int evaluation_id);
+
     boolean confirmService(int evaluation_id);
 
     void viewService(int lecture_id, int evaluation_id,  ModelAndView mav);
 
     boolean modService(Map evaluation);
 
-    int likesService(int evaluation_id);
+    int subConfirmService(int evaluation_id);
 
-    int dislikeService(int evaluation_id);
+    boolean likesService(int evaluation_id);
 
-    int reportService(int evaluation_id);
+    boolean dislikeService(int evaluation_id);
+
+    boolean reportService(int evaluation_id);
 
     boolean isDeleteService(int evaluation_id);
 

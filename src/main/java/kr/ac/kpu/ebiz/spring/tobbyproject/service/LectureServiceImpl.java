@@ -50,19 +50,33 @@ public class LectureServiceImpl implements LectureService{
         return lectureRepository.insertLecture(lecture);
     }
 
-    public boolean confirmService(int lecture_id) {
+    public int confirmService(int lecture_id) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int member_id = user.getMember_id();
 
-        int writer = lectureRepository.selectMember_id(lecture_id);
+        int result = 3;
 
-        Collection authorities = user.getAuthorities();
+        Map lecture = lectureRepository.selectMember_id(lecture_id);
+;
+        int writer = Integer.parseInt(lecture.get("member_id").toString());
 
-        boolean result = false;
+        boolean is_delete = (Boolean) lecture.get("is_delete");
 
-        if(member_id == writer || authorities.toString().contains("ROLE_ADMIN")){
-            result = true;
+        if(is_delete){
+
+            return result;
+
+        } else {
+
+            Collection authorities = user.getAuthorities();
+
+            if(member_id == writer || authorities.toString().contains("ROLE_ADMIN")){
+                result = 1;
+            } else {
+                result = 2;
+            }
+
         }
 
         return result;
@@ -73,7 +87,9 @@ public class LectureServiceImpl implements LectureService{
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int member_id = user.getMember_id();
 
-        int writer = lectureRepository.selectMember_id(lecture_id);
+        Map lecture = lectureRepository.selectMember_id(lecture_id);
+
+        int writer = Integer.parseInt(lecture.get("member_id").toString());
 
         Collection authorities = user.getAuthorities();
 
@@ -132,8 +148,12 @@ public class LectureServiceImpl implements LectureService{
 
         if(count == 0) {
 
-            if(lectureRepository.insertSub(lectureSub)&&lectureRepository.updateLectureLike(lecture_id)){
-                result = 1;
+            if(lectureRepository.updateLectureLike(lecture_id)){
+                if(lectureRepository.insertSub(lectureSub)){
+                    result = 1;
+                } else {
+                    return result;
+                }
             } else {
                 return result;
             }
@@ -225,19 +245,31 @@ public class LectureServiceImpl implements LectureService{
         return result;
     }
 
-    public boolean boardConfirmService(int lb_id) {
+    public int boardConfirmService(int lb_id) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int member_id = user.getMember_id();
 
-        int writer = lectureRepository.selectBoardMember_id(lb_id);
+        Map lectureBoard = lectureRepository.selectBoardMember_id(lb_id);
 
-        Collection authorities = user.getAuthorities();
+        int writer = Integer.parseInt(lectureBoard.get("member_id").toString());
 
-        boolean result = false;
+        boolean is_delete = (Boolean) lectureBoard.get("is_delete");
 
-        if(member_id == writer || authorities.toString().contains("ROLE_ADMIN")){
-            result = true;
+        int result = 3;
+
+        if(is_delete){
+
+            return result;
+        } else {
+
+            Collection authorities = user.getAuthorities();
+
+            if(member_id == writer || authorities.toString().contains("ROLE_ADMIN")){
+                result = 1;
+            } else {
+                result = 2;
+            }
         }
 
         return result;
@@ -249,7 +281,9 @@ public class LectureServiceImpl implements LectureService{
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int member_id = user.getMember_id();
 
-        int writer = lectureRepository.selectBoardMember_id(lb_id);
+        Map lectureBoard = lectureRepository.selectBoardMember_id(lb_id);
+
+        int writer = Integer.parseInt(lectureBoard.get("member_id").toString());
 
         Collection authorities = user.getAuthorities();
 
@@ -318,8 +352,13 @@ public class LectureServiceImpl implements LectureService{
 
         if(count == 0) {
 
-            if(lectureRepository.insertBoardSub(lectureBoardSub)&&lectureRepository.updateBoardReport(lb_id)){
-                result = 1;
+            if(lectureRepository.updateBoardReport(lb_id)){
+                if(lectureRepository.insertBoardSub(lectureBoardSub)){
+                    result = 1;
+                } else {
+                    return result;
+                }
+
             } else {
                 return result;
             }

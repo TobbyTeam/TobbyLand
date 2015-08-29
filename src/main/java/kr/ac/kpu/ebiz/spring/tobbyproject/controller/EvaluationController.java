@@ -1,6 +1,7 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.controller;
 
 import kr.ac.kpu.ebiz.spring.tobbyproject.service.EvaluationService;
+import kr.ac.kpu.ebiz.spring.tobbyproject.service.LectureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,9 @@ public class EvaluationController {
 	@Autowired
 	EvaluationService evaluationService;
 
+	@Autowired
+	LectureService lectureService;
+
 	@RequestMapping(value = "/main")
 	public String main() {
 
@@ -28,9 +32,18 @@ public class EvaluationController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list(@RequestParam("lecture_id") int lecture_id) {
 
-		ModelAndView mav = new ModelAndView("/evaluation/list");
+		ModelAndView mav = new ModelAndView();
+
+		if(lectureService.deleteConfirmService(lecture_id)){
+			mav.setViewName("/404");
+			return mav;
+		}
+
+		mav.setViewName("/evaluation/list");
 
 		evaluationService.listService(lecture_id, mav);
+
+		mav.addObject("lecture_id", lecture_id);
 
 		return mav;
 	}
@@ -66,6 +79,11 @@ public class EvaluationController {
 
 		ModelAndView mav = new ModelAndView();
 
+		if(lectureService.deleteConfirmService(lecture_id)){
+			mav.setViewName("/404");
+			return mav;
+		}
+
 		evaluationService.regFormService(lecture_id, mav);
 
 		return mav;
@@ -75,6 +93,12 @@ public class EvaluationController {
 	public @ResponseBody boolean register(@RequestParam Map<String, Serializable> evaluation) {
 
 		return evaluationService.regService(evaluation);
+	}
+
+	@RequestMapping(value = "/deleteConfirm", method = RequestMethod.POST)
+	public @ResponseBody boolean deleteConfirm(@RequestParam int evaluation_id) {
+
+		return evaluationService.deleteConfirmService(evaluation_id);
 	}
 
 	@RequestMapping(value = "/confirm", method = RequestMethod.POST)
@@ -99,20 +123,27 @@ public class EvaluationController {
 		return evaluationService.modService(evaluation);
 	}
 
+	@RequestMapping(value = "/subConfirm", method = RequestMethod.POST)
+	public @ResponseBody int subConfirm(@RequestParam("evaluation_id") int evaluation_id) {
+
+		return evaluationService.subConfirmService(evaluation_id);
+	}
+
+
 	@RequestMapping(value = "/likes", method = RequestMethod.POST)
-	public @ResponseBody int likes(@RequestParam("evaluation_id") int evaluation_id) {
+	public @ResponseBody boolean likes(@RequestParam("evaluation_id") int evaluation_id) {
 
 		return evaluationService.likesService(evaluation_id);
 	}
 
 	@RequestMapping(value = "/dislike", method = RequestMethod.POST)
-	public @ResponseBody int dislike(@RequestParam("evaluation_id") int evaluation_id) {
+	public @ResponseBody boolean dislike(@RequestParam("evaluation_id") int evaluation_id) {
 
 		return evaluationService.dislikeService(evaluation_id);
 	}
 
 	@RequestMapping(value = "/report", method = RequestMethod.POST)
-	public @ResponseBody int report(@RequestParam("evaluation_id") int evaluation_id) {
+	public @ResponseBody boolean report(@RequestParam("evaluation_id") int evaluation_id) {
 
 		return evaluationService.reportService(evaluation_id);
 	}

@@ -28,7 +28,6 @@ public class EvaluationServiceImpl implements EvaluationService {
     public void listService(int lecture_id, ModelAndView mav) {
 
         mav.addObject("evaluations", evaluationRepository.selectEvaluationAll(lecture_id));
-        mav.addObject("lecture_id", lecture_id);
 
     }
 
@@ -86,8 +85,12 @@ public class EvaluationServiceImpl implements EvaluationService {
             int year = cal.get(Calendar.YEAR) - 2000;
             int month = cal.get(Calendar.MONTH);
             int half;
-            if(month>=6){half = 2;}
-            else{half = 1;}
+            if(month>=6){
+                half = 1;
+            } else {
+                year = year-1;
+                half = 2;
+            }
 
             StringBuilder current = new StringBuilder(String.valueOf(year));
             StringBuilder current2 = new StringBuilder("-");
@@ -145,6 +148,15 @@ public class EvaluationServiceImpl implements EvaluationService {
         return result;
     }
 
+    public boolean deleteConfirmService(int evaluation_id) {
+
+        if(evaluationRepository.selectIsDelete(evaluation_id) == 0){
+            return false;
+        }
+
+        return true;
+    }
+
     public void viewService(int lecture_id, int evaluation_id, ModelAndView mav) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -190,16 +202,48 @@ public class EvaluationServiceImpl implements EvaluationService {
         evaluation.remove("comment");
         evaluation.put("comment", comment_db);
 
+        return evaluationRepository.updateEvaluation(evaluation);
+    }
+
+    public int subConfirmService(int evaluation_id) {
+
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        int member_id = user.getMember_id();
+
+        HashMap evaluationSub = new HashMap();
+        evaluationSub.put("evaluation_id", evaluation_id);
+        evaluationSub.put("member_id", member_id);
+
+        int result =0;
+
+        if(evaluationRepository.selectSubCount(evaluationSub) == 0){
+            return result;
+        }
+
+        return evaluationRepository.selectSubType(evaluationSub);
+    }
+
+    public boolean likesService(int evaluation_id) {
+
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        int member_id = user.getMember_id();
+
+        HashMap evaluationSub = new HashMap();
+        evaluationSub.put("evaluation_id", evaluation_id);
+        evaluationSub.put("member_id", member_id);
+        evaluationSub.put("kind", 1);
+
         boolean result = false;
 
-        if(evaluationRepository.updateEvaluation(evaluation)){
+        if(evaluationRepository.insertSub(evaluationSub)&&evaluationRepository.updateEvaluationLike(evaluation_id)){
+
             result = true;
         }
 
         return result;
     }
 
-    public int likesService(int evaluation_id) {
+    public boolean dislikeService(int evaluation_id) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int member_id = user.getMember_id();
@@ -207,54 +251,20 @@ public class EvaluationServiceImpl implements EvaluationService {
         HashMap evaluationSub = new HashMap();
         evaluationSub.put("evaluation_id", evaluation_id);
         evaluationSub.put("member_id", member_id);
+        evaluationSub.put("kind", 2);
 
-        int count = evaluationRepository.selectSubCount(evaluationSub);
+        boolean result = false;
 
-        int result;
+        if(evaluationRepository.insertSub(evaluationSub)&&evaluationRepository.updateEvaluationDislike(evaluation_id)){
 
-        int kind = 1;
-
-        if(count !=0) {
-            result = evaluationRepository.selectSubType(evaluationSub);
-        } else {
-            evaluationSub.put("kind", kind);
-            evaluationRepository.insertSub(evaluationSub);
-            evaluationRepository.updateEvaluationLike(evaluation_id);
-            result = 0;
-        }
-
-        return result;
-    }
-
-    public int dislikeService(int evaluation_id) {
-
-        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        int member_id = user.getMember_id();
-
-        HashMap evaluationSub = new HashMap();
-        evaluationSub.put("evaluation_id", evaluation_id);
-        evaluationSub.put("member_id", member_id);
-
-        int count = evaluationRepository.selectSubCount(evaluationSub);
-
-        int result;
-
-        int kind = 2;
-
-        if(count !=0) {
-            result = evaluationRepository.selectSubType(evaluationSub);
-        } else {
-            evaluationSub.put("kind", kind);
-            evaluationRepository.insertSub(evaluationSub);
-            evaluationRepository.updateEvaluationDislike(evaluation_id);
-            result = 0;
+            result = true;
         }
 
         return result;
 
     }
 
-    public int reportService(int evaluation_id) {
+    public boolean reportService(int evaluation_id) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int member_id = user.getMember_id();
@@ -262,20 +272,16 @@ public class EvaluationServiceImpl implements EvaluationService {
         HashMap evaluationSub = new HashMap();
         evaluationSub.put("evaluation_id", evaluation_id);
         evaluationSub.put("member_id", member_id);
+        evaluationSub.put("kind", 3);
+        evaluationRepository.insertSub(evaluationSub);
+        evaluationRepository.updateEvaluationReport(evaluation_id);
 
-        int count = evaluationRepository.selectSubCount(evaluationSub);
+        boolean result = false;
 
-        int result;
+        if(evaluationRepository.insertSub(evaluationSub)&&evaluationRepository.updateEvaluationReport(evaluation_id)){
 
-        int kind = 3;
+            result = true;
 
-        if(count !=0) {
-            result = evaluationRepository.selectSubType(evaluationSub);
-        } else {
-            evaluationSub.put("kind", kind);
-            evaluationRepository.insertSub(evaluationSub);
-            evaluationRepository.updateEvaluationReport(evaluation_id);
-            result = 0;
         }
 
         return result;
@@ -287,13 +293,15 @@ public class EvaluationServiceImpl implements EvaluationService {
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int member_id = user.getMember_id();
 
-        boolean data = false;
+        boolean result = false;
 
         if(evaluationRepository.updateIsDelete(evaluation_id)&&memberRepository.updateUnEvaluationCount(member_id)){
-            data = true;
+
+            result = true;
+
         }
 
-        return data;
+        return result;
     }
 
     public void searchPreferService(Map search, ModelAndView mav) {

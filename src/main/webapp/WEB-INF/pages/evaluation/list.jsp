@@ -185,7 +185,7 @@
 					<button onclick="evalDislikeAjax(${evaluation.evaluation_id})" class="btn"><span class="glyphicon glyphicon-thumbs-down"></span><br />비추천<br />${evaluation.dislike}</button>
 				</div>
 				<div class="col-xs-offset-8">
-					<button onclick="evalModAjax(${evaluation.evaluation_id})" class="btn btn-default littlebtn">수정</button>
+<%--					<button onclick="evalModAjax(${evaluation.evaluation_id})" class="btn btn-default littlebtn">수정</button>--%>
 					<button onclick="evalDeleteAjax(${evaluation.evaluation_id})" class="btn btn-default littlebtn">삭제</button>
 					<button onclick="evalReportAjax(${evaluation.evaluation_id})" class="btn btn-danger littlebtn">신고(${evaluation.report})</button>
 				</div>

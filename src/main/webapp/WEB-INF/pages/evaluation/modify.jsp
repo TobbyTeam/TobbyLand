@@ -138,7 +138,7 @@
                     </div>
                 </div>
 
-                <input type="hidden" name="evaluation_id" value="${evaluation.evaluation_id}">
+                <input type="hidden" name="evaluation_id" id="evaluation_id" value="${evaluation.evaluation_id}">
                 <input type="hidden" id="lecture_id" name="lecture_id" value="${evaluation.lecture_id}">
 
                 <div class="form-group">

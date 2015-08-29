@@ -70,7 +70,7 @@ public class BoardServiceImpl implements BoardService{
         board.remove("contents");
         board.put("contents", contents_db);
 
-        int department_id = Integer.parseInt((String)board.get("department_id"));
+        int department_id = Integer.parseInt(board.get("department_id").toString());
 
         int maxRnum = boardRepository.selectBoardMaxRnum(department_id);
 
