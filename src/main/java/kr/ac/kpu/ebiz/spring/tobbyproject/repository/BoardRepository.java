@@ -41,6 +41,8 @@ public interface BoardRepository {
 
 	boolean insertBoard(Map board);
 
+	boolean insertReply(Map board);
+
 	boolean insertBoardSub(Map boardSub);
 
 

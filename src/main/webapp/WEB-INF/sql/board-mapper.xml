@@ -32,7 +32,7 @@
   </select>
 
   <select id="selectBoardReplyAll" parameterType="int" resultType="map" >
-    select board_id, writer, contents, date_format(write_date, '%Y.%m.%d %T') as write_date
+    select board_id, writer, contents, date_format(write_date, '%Y.%m.%d %T') as write_date, is_anonymity
     from board
     where upper_id = #{board_id} and is_delete = 0
     order by write_date
@@ -135,10 +135,6 @@
 
   <insert id="insertBoard" parameterType="map">
     <choose>
-      <when test="upper_id != null">
-        insert into board (department_id, member_id, writer, contents, is_reply, upper_id)
-        values (#{department_id},#{member_id},#{writer},#{contents},1,#{upper_id})
-      </when>
       <when test="is_anonymity != null">
         insert into board (department_id, member_id, writer, rnum, title, contents, is_anonymity)
         values (#{department_id},#{member_id},#{writer},#{rnum},#{title},#{contents},#{is_anonymity})
@@ -146,6 +142,19 @@
       <otherwise>
         insert into board (department_id, member_id, writer, rnum, title, contents)
         values (#{department_id},#{member_id},#{writer},#{rnum},#{title},#{contents})
+      </otherwise>
+    </choose>
+  </insert>
+
+  <insert id="insertReply" parameterType="map">
+    <choose>
+      <when test="is_anonymity != null">
+        insert into board (department_id, member_id, writer, contents, is_reply, is_anonymity, upper_id)
+        values (#{department_id},#{member_id},#{writer},#{contents},1,#{is_anonymity},#{upper_id})
+      </when>
+      <otherwise>
+        insert into board (department_id, member_id, writer, contents, is_reply, upper_id)
+        values (#{department_id},#{member_id},#{writer},#{contents},1,#{upper_id})
       </otherwise>
     </choose>
   </insert>

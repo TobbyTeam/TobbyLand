@@ -73,6 +73,10 @@ public class BoardRepositoryImpl extends SqlSessionDaoSupport implements BoardRe
 		return getSqlSession().insert("BoardRepository.insertBoard", board) > 0;
 	}
 
+	public boolean insertReply(Map board) {
+		return getSqlSession().insert("BoardRepository.insertReply", board) > 0;
+	}
+
 	public boolean insertBoardSub(Map boardSub) {
 		return getSqlSession().insert("BoardRepository.insertBoardSub", boardSub) > 0;
 	}

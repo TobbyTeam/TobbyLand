@@ -272,6 +272,7 @@ $(document).ready(function() {
 		})
 	})
 
+/*
 	$(document).off('click', '#reReg_btn').on('click', '#reReg_btn', function() {
 
 		if(document.reReg_frm.contents.value.length == 0) {
@@ -294,5 +295,6 @@ $(document).ready(function() {
 			}
 		})
 	})
+*/
 
 })

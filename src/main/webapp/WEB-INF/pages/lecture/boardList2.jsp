@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="s" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
 
@@ -12,7 +11,8 @@
 	<link rel="stylesheet" href="<c:url value="${ctx}/resources/css/boardlist.css" />">
 	<link rel="stylesheet" href="<c:url value="${ctx}/resources/css/searchbar.css" />">
 
-	<script src="<c:url value="${ctx}/resources/js/board.js" />"></script>
+	<script src="<c:url value="${ctx}/resources/js/lecture_board.js" />"></script>
+	<script src="<c:url value="${ctx}/resources/js/evaluation.js" />"></script>
 
 	<title>토비랜드</title>
 
@@ -22,7 +22,9 @@
 
 <jsp:include page="/top" flush="true"/>
 
-<jsp:include page="/board/top?department_id=${department_id}" flush="true"/>
+<jsp:include page="/lecture/search_form" flush="true"/>
+
+<jsp:include page="/evaluation/lecture?lecture_id=${lecture_id}" flush="true"/>
 
 <div class="container">
 	<div class="row">
@@ -90,7 +92,6 @@
 	<%--페이징--%>
 	<jsp:include page="/paging" flush="true">
 		<jsp:param name="url" value="/board/list/${department_id}/?page=" />
-		<jsp:param name="search" value="&searchType=${search.searchType}&searchWord=${search.searchWord}" />
 		<jsp:param name="totalCount" value="${paging.totalCount}" />
 		<jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
 		<jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
@@ -110,55 +111,23 @@
 						<td>
 							<div id="select">
 								<select type="text" name="searchType">
-									<c:choose>
-										<c:when test="${search.searchType eq 'contents'}">
-											<option value="title">제목</option>
-											<option value="contents" selected="selected">내용</option>
-											<option value="title_contents">제목+내용</option>
-											<option value="writer">글쓴이</option>
-											<option value="all">전체</option>
-										</c:when>
-										<c:when test="${search.searchType eq 'title_contents'}">
-											<option value="title">제목</option>
-											<option value="contents">내용</option>
-											<option value="title_contents" selected="selected">제목+내용</option>
-											<option value="writer">글쓴이</option>
-											<option value="all">전체</option>
-										</c:when>
-										<c:when test="${search.searchType eq 'writer'}">
-											<option value="title">제목</option>
-											<option value="contents">내용</option>
-											<option value="title_contents">제목+내용</option>
-											<option value="writer" selected="selected">글쓴이</option>
-											<option value="all">전체</option>
-										</c:when>
-										<c:when test="${search.searchType eq 'all'}">
-											<option value="title">제목</option>
-											<option value="contents">내용</option>
-											<option value="title_contents">제목+내용</option>
-											<option value="writer">글쓴이</option>
-											<option value="all" selected="selected">전체</option>
-										</c:when>
-										<c:otherwise>
-											<option value="title" selected="selected">제목</option>
-											<option value="contents">내용</option>
-											<option value="title_contents">제목+내용</option>
-											<option value="writer">글쓴이</option>
-											<option value="all">전체</option>
-										</c:otherwise>
-									</c:choose>
+									<option value="title" selected="selected">제목</option>
+									<option value="contents">내용</option>
+									<option value="title_contents">제목+내용</option>
+									<option value="writer">글쓴이</option>
+									<option value="all">전체</option>
 								</select>
 							</div>
 						</td>
 						<td>
 							<div id="search">
 								<div class="input-group col-md-12">
-									<input type="text" name="searchWord" value="${search.searchWord}" class="form-control"/>
-									  <span class="input-group-btn">
+									<input type="text" name="searchWord" class="form-control"/>
+									<span class="input-group-btn">
 										<button type="button" onclick="search()" class="btn btn-info btn-lg" >
 											<i class="glyphicon glyphicon-search"></i>
 										</button>
-									  </span>
+									 </span>
 								</div>
 							</div>
 						</td>

@@ -83,4 +83,41 @@ $(document).ready(function() {
 		}
 	})
 
+	$("#reReg_frm").validate({
+		onfocusout: false,
+		rules: {
+			contents: {
+				required: true
+			},writer: {
+				required: true,
+				space: true,
+				rangelength: [2, 20]
+			}
+		}, messages: {
+			contents: {
+				required: "내용을 입력하세요."
+			}, writer: {
+				required: "닉네임을 입력하세요.",
+				space: "공백은 불가능합니다.",
+				rangelength: $.validator.format("닉네임은 2 글자 이상 20글자 이하로 입력하세요.")
+			}
+		}, submitHandler: function (form) {
+			$.ajax({
+				type: "POST",
+				url: "/board/replyReg",
+				dataType: "json",
+				data: $(form).serialize(),
+				success: function (result) {
+					if (result) {
+						location.reload();
+					} else {
+						alert("죄송합니다 다시 시도해주세요.")
+						location.reload();
+					}
+
+				}
+			})
+		}
+	})
+
 })

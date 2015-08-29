@@ -53,15 +53,20 @@
 							</c:choose>
 						</td>
 						<td>
-							<a href="/board/view/${board.department_id}/?board_id=${board.board_id}&page=${paging.pageNo}" class="title">${board.title}</a>
+							<a href="/board/view/${board.department_id}/?board_id=${board.board_id}&page=${paging.pageNo}" >${board.title}</a>
 							<c:if test="${board.count != 0}">
 								[${board.count}]
 							</c:if>
 						</td>
-						<td>${board.writer}
-							<c:if test="${board.is_anonymity == 1}">
-								(익명)
-							</c:if>
+						<td>
+						<c:choose>
+							<c:when test="${board.is_anonymity ne 1}">
+								<span class="title">${board.writer}*</span>
+							</c:when>
+							<c:otherwise>
+								${board.writer}
+							</c:otherwise>
+						</c:choose>
 						</td>
 						<td>${board.write_date}</td>
 						<td>${board.hit}</td>

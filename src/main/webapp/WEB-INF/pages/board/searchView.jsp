@@ -18,6 +18,9 @@
   <script src="<c:url value="/resources/js/sessionTimeout.js" />"></script>
   <script src="<c:url value="/resources/js/nickname.js" />"></script>
 
+  <script src="<c:url value="${ctx}/resources/js/jquery.validate.min.js" />"></script>
+  <script src="<c:url value="${ctx}/resources/js/board_validate.js" />"></script>
+
   <title>토비랜드</title>
 
 </head>
@@ -46,10 +49,16 @@
         </tr>
         <tr class="titleframe">
           <td width="10%">작성자</td>
-          <td width="45%"><span class="title">${board.writer}
-            <c:if test="${board.is_anonymity == 1}">
-              (익명)
-            </c:if></span></td>
+          <td width="45%">
+            <c:choose>
+              <c:when test="${board.is_anonymity ne 1}">
+                <span class="title">${board.writer}*</span>
+              </c:when>
+              <c:otherwise>
+                ${board.writer}
+              </c:otherwise>
+            </c:choose>
+          </td>
           <td width="25%"></td>
           <td width="10%">조회수</td>
           <td width="10%">${board.hit}</td>
@@ -99,30 +108,38 @@
     <div class="col-md-1"></div>
     <div class="col-md-10">
       <br />
-      <table class="col-md-12 table-condensed comment">
-        <form method="post" action="#">
-
+      <form id="reReg_frm" name="reReg_frm" method="post">
+        <table class="col-md-12 table-condensed comment">
           <tr>
-            <td width="20%"> <input type="text" id="writer" class="form-control" disabled="disabled" /></td>
-            <td width="70%"><input type="text" name="contents" id="contents" class="form-control"/></td>
-            <td width="10%" align="right"><input type="button" id="reReg_btn" class="form-control" value="등록하기"/></td>
+            <td width="20%"><input type="text" id="writer" name="writer" class="form-control" disabled="disabled" /></td>
+            <td width="70%"><input type="text" id="contents" name="contents" class="form-control"/></td>
+            <td width="10%" align="right"><input type="button" onclick="$(this.form).submit()" class="form-control" value="등록하기"/></td>
           </tr>
           <tr>
             <td width="10%">
-              <input type="checkbox" id="anonymity" name="is_anonymity" onclick="check(this.form)"/>
+              <input type="checkbox" id="is_anonymity" name="is_anonymity" value="1" onclick="check(this.form)"/>
               익명으로 댓글달기
             </td>
             <td ></td>
           </tr>
           <input type="hidden" id="department_id" name="department_id" value="${department_id}"/>
           <input type="hidden" id="board.id" name="upper_id" value="${board_id}" />
-        </form>
-      </table>
+        </table>
+      </form>
 
       <table class="col-md-12 table-striped table-condensed">
         <c:forEach var="reply" items="${replys}" varStatus="status">
           <tr class="reframe">
-            <td width="15%" class="title" align="center">${reply.writer}</td>
+            <td width="15%" align="center">
+              <c:choose>
+                <c:when test="${reply.is_anonymity ne 1}">
+                  <span class="title">${reply.writer}*</span>
+                </c:when>
+                <c:otherwise>
+                  ${reply.writer}
+                </c:otherwise>
+              </c:choose>
+            </td>
             <td width="65%">${reply.contents}</td>
             <td width="10%" align="right" class="littlebtn">${reply.write_date}</td>
             <td width="5%" align="right" class="littlebtn"><button onclick="reDeleteAjax(${reply.board_id})" class="btn btn-default littlebtn">삭제</button></td>
@@ -165,15 +182,20 @@
               </c:choose>
             </td>
             <td>
-              <a href="/board/view/${board.department_id}/?board_id=${board.board_id}&page=${paging.pageNo}" class="title">${board.title}</a>
+              <a href="/board/view/${board.department_id}/?board_id=${board.board_id}&page=${paging.pageNo}&searchType=${search.searchType}&searchWord=${search.searchWord}" class="title">${board.title}</a>
               <c:if test="${board.count != 0}">
                 [${board.count}]
               </c:if>
             </td>
-            <td>${board.writer}
-              <c:if test="${board.is_anonymity == 1}">
-                (익명)
-              </c:if>
+            <td>
+              <c:choose>
+                <c:when test="${board.is_anonymity ne 1}">
+                  <span class="title">${board.writer}*</span>
+                </c:when>
+                <c:otherwise>
+                  ${board.writer}
+                </c:otherwise>
+              </c:choose>
             </td>
             <td>${board.write_date}</td>
             <td>${board.hit}</td>

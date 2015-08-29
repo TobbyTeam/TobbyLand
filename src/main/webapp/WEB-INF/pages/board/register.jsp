@@ -39,7 +39,7 @@
                     <label class="col-sm-2 control-label">
                         닉네임
                     </label>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <c:choose>
                             <c:when test="${department_id == 16}">
                                 <input type="text" name="writer" class="form-control" />
@@ -47,7 +47,7 @@
                             </c:when>
                             <c:otherwise>
                                 <input type="text" name="writer" id="writer" class="form-control" disabled="disabled" />
-                                <input type="checkbox" id="anonymity" name="is_anonymity" value="1" onclick="check(this.form)"/><span class="sf">익명으로 작성</span>
+                                <input type="checkbox" id="is_anonymity" name="is_anonymity" value="1" onclick="check(this.form)"/><span class="sf">익명으로 작성</span>
                             </c:otherwise>
                         </c:choose>
                     </div>

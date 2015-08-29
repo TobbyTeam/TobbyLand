@@ -85,7 +85,6 @@ public class BoardServiceImpl implements BoardService{
         board.put("member_id", member_id);
         board.put("rnum", rnum);
 
-
         if(board.get("is_anonymity")==null){
             board.remove("writer");
             board.put("writer", writer);
@@ -285,9 +284,17 @@ public class BoardServiceImpl implements BoardService{
         String writer = user.getNickname();
 
         board.put("member_id", member_id);
-        board.put("writer", writer);
 
-        return boardRepository.insertBoard(board);
+        System.out.println(board.get("is_anonymity")+"익명 확인");
+
+        if(board.get("is_anonymity")==null){
+            board.remove("writer");
+            board.put("writer", writer);
+        }
+
+        System.out.println(writer+"작성자 확인");
+
+        return boardRepository.insertReply(board);
     }
 
     public void searchService(Map search, int page, ModelAndView mav) {
