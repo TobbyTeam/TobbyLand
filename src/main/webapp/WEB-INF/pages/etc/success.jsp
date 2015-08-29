@@ -5,6 +5,8 @@
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 	<title>토비랜드</title>
 
@@ -18,7 +20,7 @@
 
 <jsp:include page="/top" flush="true"/>
 
-<div class="container-fluid">
+<div class="container">
 	<div class="row">
 		<div class="col-md-2">
 		</div>

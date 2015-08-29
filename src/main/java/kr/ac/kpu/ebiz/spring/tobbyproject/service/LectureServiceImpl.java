@@ -137,12 +137,8 @@ public class LectureServiceImpl implements LectureService{
 
         if(count == 0) {
 
-            if(lectureRepository.updateLectureLike(lecture_id)){
-                if(lectureRepository.insertSub(lectureSub)){
-                    result = 1;
-                } else {
-                    return result;
-                }
+            if(lectureRepository.updateLectureLike(lecture_id)&&lectureRepository.insertSub(lectureSub)){
+                result = 1;
             } else {
                 return result;
             }
@@ -330,13 +326,8 @@ public class LectureServiceImpl implements LectureService{
 
         if(count == 0) {
 
-            if(lectureRepository.updateBoardReport(lb_id)){
-                if(lectureRepository.insertBoardSub(lectureBoardSub)){
-                    result = 1;
-                } else {
-                    return result;
-                }
-
+            if(lectureRepository.updateBoardReport(lb_id)&&lectureRepository.insertBoardSub(lectureBoardSub)){
+                result = 1;
             } else {
                 return result;
             }

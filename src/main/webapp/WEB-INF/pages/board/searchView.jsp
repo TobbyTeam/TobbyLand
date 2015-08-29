@@ -16,9 +16,10 @@
   <script src="<c:url value="/resources/js/board.js" />"></script>
   <script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>
   <script src="<c:url value="/resources/js/sessionTimeout.js" />"></script>
+  <script src="<c:url value="/resources/js/nickname.js" />"></script>
 
   <title>토비랜드</title>
-  
+
 </head>
 
 <body>
@@ -26,6 +27,9 @@
 <jsp:include page="/top" flush="true"/>
 
 <jsp:include page="/board/top?department_id=${board.department_id}" flush="true"/>
+
+<c:set var="board_id" value="${board.board_id}" scope="page" />
+<c:set var="department_id" value="${board.department_id}" scope="page" />
 
 <div class="container">
   <div class="row">
@@ -35,7 +39,7 @@
       <table class="table">
         <tr class="titleframe">
           <td width="5%">제목</td>
-          <td width="50%"><a href="#" class="title">${board.title}</a></td>
+          <td width="50%"><span class="title">${board.title}</span></td>
           <td width="25%"></td>
           <td width="10%">작성일</td>
           <td width="10%">${board.write_date}</td>
@@ -64,12 +68,11 @@
       <br />
       <br />
       <br />
-      <input type="hidden" id="board_id" value="${board.board_id}" />
-      <input type="hidden" id="department_id" value="${board.department_id}" />
     </div>
     <div class="col-md-1">
     </div>
   </div>
+
 
   <div class="row">
     <div class="col-md-1">
@@ -96,54 +99,46 @@
     <div class="col-md-1"></div>
     <div class="col-md-10">
       <br />
-      <div class="input-group col-md-12">
-        <table class="col-md-12 table-condensed">
-          <form id="reReg_frm" name="reReg_frm" method="post">
-            <tr>
-              <td width="70%"><input type="text" name="contents" id="contents" class="form-control"/></td>
-              <td width="10%" align="right"><button type="button" id="reReg_btn" class="form-control">등록하기</button></td>
-            </tr>
-            <input type="hidden" name="department_id" value="${board.department_id}"/>
-            <input type="hidden" name="upper_id" value="${board.board_id}" />
-          </form>
-        </table>
-      </div>
-      <br />
+      <table class="col-md-12 table-condensed comment">
+        <form method="post" action="#">
+
+          <tr>
+            <td width="20%"> <input type="text" id="writer" class="form-control" disabled="disabled" /></td>
+            <td width="70%"><input type="text" name="contents" id="contents" class="form-control"/></td>
+            <td width="10%" align="right"><input type="button" id="reReg_btn" class="form-control" value="등록하기"/></td>
+          </tr>
+          <tr>
+            <td width="10%">
+              <input type="checkbox" id="anonymity" name="is_anonymity" onclick="check(this.form)"/>
+              익명으로 댓글달기
+            </td>
+            <td ></td>
+          </tr>
+          <input type="hidden" id="department_id" name="department_id" value="${department_id}"/>
+          <input type="hidden" id="board.id" name="upper_id" value="${board_id}" />
+        </form>
+      </table>
+
       <table class="col-md-12 table-striped table-condensed">
         <c:forEach var="reply" items="${replys}" varStatus="status">
           <tr class="reframe">
             <td width="15%" class="title" align="center">${reply.writer}</td>
             <td width="65%">${reply.contents}</td>
             <td width="10%" align="right" class="littlebtn">${reply.write_date}</td>
-
-
             <td width="5%" align="right" class="littlebtn"><button onclick="reDeleteAjax(${reply.board_id})" class="btn btn-default littlebtn">삭제</button></td>
             <td width="5%" align="right" class="littlebtn"><button onclick="reReportAjax(${reply.board_id})" class="btn btn-danger littlebtn">신고</button></td>
           </tr>
         </c:forEach>
-
       </table>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <hr />
+
     </div>
     <div class="col-md-1"></div>
   </div>
-
   <br />
-  <br />
-  <br />
-
-  <c:set var="board_id" value="${board.board_id}" scope="page" />
 
   <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-      <span id="boardname">${department.department_name}</span>
       <hr />
       <table class="table table-striped">
         <thead>
@@ -170,7 +165,7 @@
               </c:choose>
             </td>
             <td>
-              <a href="/board/view/${board.department_id}/?board_id=${board.board_id}&page=${paging.pageNo}&searchType=${search.searchType}&searchWord=${search.searchWord}" class="title">${board.title}</a>
+              <a href="/board/view/${board.department_id}/?board_id=${board.board_id}&page=${paging.pageNo}" class="title">${board.title}</a>
               <c:if test="${board.count != 0}">
                 [${board.count}]
               </c:if>
@@ -188,98 +183,102 @@
         </tbody>
       </table>
       <div class="col-lg-0">
-        <button onclick="location.href='/board/list/${board.department_id}/'" class="btn btn-default">전체목록</button>
+        <button type="button" onclick="location.href='/board/list/${department_id}/'" class="btn btn-default">전체목록</button>
         <c:choose>
           <c:when test="${department.kind eq 'notice'}">
             <s:authorize access="hasRole('ROLE_ADMIN')">
-              <button type="button" onclick="location.href='/board/regForm?department_id=${board.department_id}'" class="btn btn-primary">글작성</button>
+              <button type="button" onclick="location.href='/board/regForm?department_id=${department_id}'" class="btn btn-primary">글작성</button>
             </s:authorize>
           </c:when>
           <c:otherwise>
-            <button type="button" onclick="location.href='/board/regForm?department_id=${board.department_id}'" class="btn btn-primary">글작성</button>
+            <button type="button" onclick="location.href='/board/regForm?department_id=${department_id}'" class="btn btn-primary">글작성</button>
           </c:otherwise>
         </c:choose>
-<%--        <a href="/board/regTest?department_id=${board.department_id}">테스트</a>--%>
       </div>
-      <br />
-
-      <%--페이징--%>
-      <jsp:include page="/paging" flush="true">
-        <jsp:param name="url" value="/board/list/${board.department_id}/?page=" />
-        <jsp:param name="search" value="&searchType=${search.searchType}&searchWord=${search.searchWord}" />
-        <jsp:param name="totalCount" value="${paging.totalCount}" />
-        <jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
-        <jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
-        <jsp:param name="startPageNo" value="${paging.startPageNo}" />
-        <jsp:param name="pageNo" value="${paging.pageNo}" />
-        <jsp:param name="endPageNo" value="${paging.endPageNo}" />
-        <jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
-        <jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
-      </jsp:include>
-
-      <div class="col-md-3"></div>
-
-      <form action="/board/list/${board.department_id}/" method="get" name="search_frm">
-        <div class="col-md-2">
-          <div id="select">
-            <select type="text" name="searchType" class="form-control">
-              <c:choose>
-                <c:when test="${search.searchType eq 'contents'}">
-                  <option value="title">제목</option>
-                  <option value="contents" selected="selected">내용</option>
-                  <option value="title_contents">제목+내용</option>
-                  <option value="writer">글쓴이</option>
-                  <option value="all">전체</option>
-                </c:when>
-                <c:when test="${search.searchType eq 'title_contents'}">
-                  <option value="title">제목</option>
-                  <option value="contents">내용</option>
-                  <option value="title_contents" selected="selected">제목+내용</option>
-                  <option value="writer">글쓴이</option>
-                  <option value="all">전체</option>
-                </c:when>
-                <c:when test="${search.searchType eq 'writer'}">
-                  <option value="title">제목</option>
-                  <option value="contents">내용</option>
-                  <option value="title_contents">제목+내용</option>
-                  <option value="writer" selected="selected">글쓴이</option>
-                  <option value="all">전체</option>
-                </c:when>
-                <c:when test="${search.searchType eq 'all'}">
-                  <option value="title">제목</option>
-                  <option value="contents">내용</option>
-                  <option value="title_contents">제목+내용</option>
-                  <option value="writer">글쓴이</option>
-                  <option value="all" selected="selected">전체</option>
-                </c:when>
-                <c:otherwise>
-                  <option value="title" selected="selected">제목</option>
-                  <option value="contents">내용</option>
-                  <option value="title_contents">제목+내용</option>
-                  <option value="writer">글쓴이</option>
-                  <option value="all">전체</option>
-                </c:otherwise>
-              </c:choose>
-            </select>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div id="search">
-            <div class="input-group col-md-12">
-              <input type="text" name="searchWord"  value="${search.searchWord}" class="form-control"/>
-                	    <span class="input-group-btn">
-                        <button type="button" onclick="search()" class="btn btn-info btn-lg" >
-                          <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                   		</span>
-            </div>
-          </div>
-        </div>
-      </form>
-      <div class="col-md-4"></div>
     </div>
     <div class="col-md-1"></div>
+  </div>
 
+  <%--페이징--%>
+  <jsp:include page="/paging" flush="true">
+    <jsp:param name="url" value="/board/list/${board.department_id}/?page=" />
+    <jsp:param name="search" value="&searchType=${search.searchType}&searchWord=${search.searchWord}" />
+    <jsp:param name="totalCount" value="${paging.totalCount}" />
+    <jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
+    <jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
+    <jsp:param name="startPageNo" value="${paging.startPageNo}" />
+    <jsp:param name="pageNo" value="${paging.pageNo}" />
+    <jsp:param name="endPageNo" value="${paging.endPageNo}" />
+    <jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
+    <jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
+  </jsp:include>
+
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4" align="center">
+      <form action="/board/list/${department_id}/" method="get" name="search_frm">
+        <table>
+          <tr>
+            <td>
+              <div id="select">
+                <select type="text" name="searchType">
+                  <c:choose>
+                    <c:when test="${search.searchType eq 'contents'}">
+                      <option value="title">제목</option>
+                      <option value="contents" selected="selected">내용</option>
+                      <option value="title_contents">제목+내용</option>
+                      <option value="writer">글쓴이</option>
+                      <option value="all">전체</option>
+                    </c:when>
+                    <c:when test="${search.searchType eq 'title_contents'}">
+                      <option value="title">제목</option>
+                      <option value="contents">내용</option>
+                      <option value="title_contents" selected="selected">제목+내용</option>
+                      <option value="writer">글쓴이</option>
+                      <option value="all">전체</option>
+                    </c:when>
+                    <c:when test="${search.searchType eq 'writer'}">
+                      <option value="title">제목</option>
+                      <option value="contents">내용</option>
+                      <option value="title_contents">제목+내용</option>
+                      <option value="writer" selected="selected">글쓴이</option>
+                      <option value="all">전체</option>
+                    </c:when>
+                    <c:when test="${search.searchType eq 'all'}">
+                      <option value="title">제목</option>
+                      <option value="contents">내용</option>
+                      <option value="title_contents">제목+내용</option>
+                      <option value="writer">글쓴이</option>
+                      <option value="all" selected="selected">전체</option>
+                    </c:when>
+                    <c:otherwise>
+                      <option value="title" selected="selected">제목</option>
+                      <option value="contents">내용</option>
+                      <option value="title_contents">제목+내용</option>
+                      <option value="writer">글쓴이</option>
+                      <option value="all">전체</option>
+                    </c:otherwise>
+                  </c:choose>
+                </select>
+              </div>
+            </td>
+            <td>
+              <div id="search">
+                <div class="input-group col-md-12">
+                  <input type="text" name="searchWord"  value="${search.searchWord}" class="form-control"/>
+                  <span class="input-group-btn">
+                    <button type="button" onclick="search()" class="btn btn-info btn-lg" >
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <div class="col-md-4"></div>
   </div>
 
 </div>

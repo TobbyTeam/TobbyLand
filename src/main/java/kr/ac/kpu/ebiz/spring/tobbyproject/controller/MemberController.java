@@ -117,7 +117,7 @@ public class MemberController {
 			break;
 			case 2:
 				mav.setViewName("redirect:/invalidAccess");
-				break;
+			break;
 			case 0:
 				mav.setViewName("redirect:/500");
 			break;
@@ -200,6 +200,7 @@ public class MemberController {
 			break;
 			case 0:
 				mav.setViewName("redirect:/500");
+			break;
 			default:
 				mav.setViewName("redirect:/500");
 		}
@@ -222,7 +223,7 @@ public class MemberController {
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public @ResponseBody int search(@RequestParam ("email") String email) {
 
-		/*0=에러 1=성공 2=횟수촤과 3=등록되지 않은 메일*/
+		/*0=에러 1=성공 2=횟수초과 */
 
 		return memberService.searchService(email);
 	}

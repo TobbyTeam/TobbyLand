@@ -30,10 +30,6 @@ public class EvaluationRepositoryImpl extends SqlSessionDaoSupport implements Ev
 		return getSqlSession().selectOne("EvaluationRepository.selectConfirm", evaluation_id);
 	}
 
-	public int selectIsDelete(int evaluation_id) {
-		return getSqlSession().selectOne("EvaluationRepository.selectIsDelete", evaluation_id);
-	}
-
 	public Map selectEvaluation(int evaluation_id) {
 		return getSqlSession().selectOne("EvaluationRepository.selectEvaluation", evaluation_id);
 	}

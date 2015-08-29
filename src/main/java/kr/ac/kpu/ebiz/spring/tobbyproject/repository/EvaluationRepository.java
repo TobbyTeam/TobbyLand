@@ -17,8 +17,6 @@ public interface EvaluationRepository {
 
 	Map selectConfirm(int evaluation_id);
 
-	int selectIsDelete(int evaluation_id);
-
 	Map selectEvaluation(int evaluation_id);
 
 	int selectSubCount(Map evaluationSub);

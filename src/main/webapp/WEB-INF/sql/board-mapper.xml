@@ -32,7 +32,7 @@
   </select>
 
   <select id="selectBoardReplyAll" parameterType="int" resultType="map" >
-    select board_id, writer, contents, date_format(write_date, '%Y.%m.%d %T') as write_date, report
+    select board_id, writer, contents, date_format(write_date, '%Y.%m.%d %T') as write_date
     from board
     where upper_id = #{board_id} and is_delete = 0
     order by write_date

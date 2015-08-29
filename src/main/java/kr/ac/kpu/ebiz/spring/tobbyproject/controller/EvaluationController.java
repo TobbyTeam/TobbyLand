@@ -85,12 +85,6 @@ public class EvaluationController {
 		return evaluationService.regService(evaluation);
 	}
 
-	@RequestMapping(value = "/deleteConfirm", method = RequestMethod.POST)
-	public @ResponseBody boolean deleteConfirm(@RequestParam int evaluation_id) {
-
-		return evaluationService.deleteConfirmService(evaluation_id);
-	}
-
 	@RequestMapping(value = "/confirm", method = RequestMethod.POST)
 	public @ResponseBody int confirm(@RequestParam int evaluation_id) {
 

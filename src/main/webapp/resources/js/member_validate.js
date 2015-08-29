@@ -256,24 +256,37 @@ $(document).ready(function() {
 				kpumail: "kpu메일을 입력해주세요.(@kpu.ac.kr)"
 			}
 		}, submitHandler: function (form) {
+
 			$.ajax({
 				type: "POST",
-				url: "/member/search",
+				url: "/member/emailCheck",
+				data: $(form).serialize(),
 				dataType: "json",
-				data: {email: $("#email").val()},
 				success: function (result) {
-					if (result === 1 ) {
-						alert("메일이 전송 되었습니다. 확인해주세요.");
-						window.open("/member/searchOk", "_self");
-					} else if (result === 2){
-						alert("1일 메일요청 횟수 5회를 초과하셨습니다.");
-					} else if(result ===3){
+					if (result) {
 						alert("등록되지 않은 메일입니다.");
 					} else {
-						alert("죄송합니다 다시 시도해주세요.")
+						$.ajax({
+							type: "POST",
+							url: "/member/search",
+							dataType: "json",
+							data: {email: $("#email").val()},
+							success: function (result2) {
+								if (result2 === 1 ) {
+									alert("메일이 전송 되었습니다. 확인해주세요.");
+									window.open("/member/searchOk", "_self");
+								} else if (result2 === 2){
+									alert("1일 메일요청 횟수 5회를 초과하셨습니다.");
+								} else {
+									alert("죄송합니다 다시 시도해주세요.")
+								}
+							}
+						});
 					}
 				}
 			});
+
+
 		}
 	})
 

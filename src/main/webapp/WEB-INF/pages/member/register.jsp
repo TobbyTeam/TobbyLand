@@ -24,7 +24,7 @@
 
 <jsp:include page="/top" flush="true"/>
 
-<div class="container-fluid">
+<div class="container">
     <div class="row">
         <div class="col-md-2">
         </div>
@@ -144,7 +144,6 @@
                 </div>
             </form>
             <br />
-            <a href="http://mail.kpu.ac.kr/login" target="_blank">kpu메일</a>
         </div>
     </div>
 </div>

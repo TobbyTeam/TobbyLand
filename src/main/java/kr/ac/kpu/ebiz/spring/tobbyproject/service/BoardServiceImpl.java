@@ -226,11 +226,8 @@ public class BoardServiceImpl implements BoardService{
 
         boolean result = false;
 
-        if(boardRepository.updateBoardLike(board_id)){
-
-            if(boardRepository.insertBoardSub(boardSub)){
-                result = true;
-            }
+        if(boardRepository.updateBoardLike(board_id)&&boardRepository.insertBoardSub(boardSub)){
+            result = true;
         }
 
         return result;
@@ -248,11 +245,8 @@ public class BoardServiceImpl implements BoardService{
 
         boolean result = false;
 
-        if(boardRepository.updateBoardDislike(board_id)){
-
-            if(boardRepository.insertBoardSub(boardSub)){
-                result = true;
-            }
+        if(boardRepository.updateBoardDislike(board_id)&&boardRepository.insertBoardSub(boardSub)){
+            result = true;
         }
 
         return result;
@@ -271,11 +265,8 @@ public class BoardServiceImpl implements BoardService{
 
         boolean result = false;
 
-        if(boardRepository.updateBoardReport(board_id)){
-
-            if(boardRepository.insertBoardSub(boardSub)){
-                result = true;
-            }
+        if(boardRepository.updateBoardReport(board_id)&&boardRepository.insertBoardSub(boardSub)){
+            result = true;
         }
 
         return result;
@@ -300,8 +291,6 @@ public class BoardServiceImpl implements BoardService{
     }
 
     public void searchService(Map search, int page, ModelAndView mav) {
-
-        int department_id =  Integer.parseInt(search.get("department_id").toString());
 
         paging.setPageNo(page);
         paging.setPageSize(15);

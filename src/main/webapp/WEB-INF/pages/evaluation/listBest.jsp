@@ -20,7 +20,7 @@
 
 <body>
 
-<div class="container-fluid">
+<div class="container">
 
 	<div class="col-xs-offset-2">
 		<table>

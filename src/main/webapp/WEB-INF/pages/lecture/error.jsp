@@ -30,7 +30,7 @@
 
 <jsp:include page="/evaluation/lecture?lecture_id=${lecture_id}" flush="true"/>
 
-<div class="container-fluid">
+<div class="container">
 	<div class="row">
 		<div class="col-md-2">
 		</div>

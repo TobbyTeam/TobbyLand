@@ -5,7 +5,6 @@
 
   <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/bottom.css" />">
 
-  <title></title>
 </head>
 
 <body>

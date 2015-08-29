@@ -123,8 +123,8 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         boolean result = false;
 
-        if(evaluationRepository.insertEvaluation(evaluation)&&memberRepository.updateEvaluationCount(member_id)){
-            result = true;
+        if(memberRepository.updateEvaluationCount(member_id)&&evaluationRepository.insertEvaluation(evaluation)){
+                result = true;
         }
 
        return result;
@@ -160,15 +160,6 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         return result;
 
-    }
-
-    public boolean deleteConfirmService(int evaluation_id) {
-
-        if(evaluationRepository.selectIsDelete(evaluation_id) == 0){
-            return false;
-        }
-
-        return true;
     }
 
     public void viewService(int lecture_id, int evaluation_id, ModelAndView mav) {
@@ -228,9 +219,7 @@ public class EvaluationServiceImpl implements EvaluationService {
         evaluationSub.put("evaluation_id", evaluation_id);
         evaluationSub.put("member_id", member_id);
 
-        Map confirm = evaluationRepository.selectSub(evaluationSub);
-
-        System.out.println(confirm+"가져온거 확인");
+        Map confirm = evaluationRepository.selectSub(evaluationSub);;
 
         int result =0;
 
@@ -259,11 +248,10 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         boolean result = false;
 
-        if(evaluationRepository.updateEvaluationLike(evaluation_id)){
+        if(evaluationRepository.updateEvaluationLike(evaluation_id)&&evaluationRepository.insertSub(evaluationSub)){
 
-            if(evaluationRepository.insertSub(evaluationSub)){
-                result = true;
-            }
+            result = true;
+
         }
 
         return result;
@@ -281,11 +269,8 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         boolean result = false;
 
-        if(evaluationRepository.updateEvaluationDislike(evaluation_id)){
-
-            if(evaluationRepository.insertSub(evaluationSub)){
-                result = true;
-            }
+        if(evaluationRepository.updateEvaluationDislike(evaluation_id)&&evaluationRepository.insertSub(evaluationSub)){
+            result = true;
         }
 
         return result;
@@ -304,11 +289,8 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         boolean result = false;
 
-        if(evaluationRepository.updateEvaluationReport(evaluation_id)){
-
-            if(evaluationRepository.insertSub(evaluationSub)){
-                result = true;
-            }
+        if(evaluationRepository.updateEvaluationReport(evaluation_id)&&evaluationRepository.insertSub(evaluationSub)){
+            result = true;
         }
 
         return result;
@@ -322,11 +304,8 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         boolean result = false;
 
-        if(evaluationRepository.updateIsDelete(evaluation_id)){
-
-            if(memberRepository.updateUnEvaluationCount(member_id)){
-                result = true;
-            }
+        if(evaluationRepository.updateIsDelete(evaluation_id)&&memberRepository.updateUnEvaluationCount(member_id)){
+            result = true;
         }
 
         return result;
@@ -362,14 +341,7 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         evaluationSub.put("member_id", member_id);
 
-        boolean result = false;
-
-        if(evaluationRepository.insertEvaluation(evaluationSub)){
-
-            result = true;
-        }
-
-        return result;
+        return evaluationRepository.insertEvaluation(evaluationSub);
     }
 
 }
