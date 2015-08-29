@@ -1,5 +1,4 @@
 function boardReDeleteAjax(reply_id) {
-
 	$.ajax({
 		type: "POST",
 		url: "/lecture/boardConfirm",
@@ -37,24 +36,25 @@ function boardReDeleteAjax(reply_id) {
 
 function reReportAjax(reply_id) {
 
-	$.ajax({
-		type     : "POST",
-		url      : "/lecture/boardSubConfirm",
-		dataType : "json",
-		data     : {lb_id:reply_id},
-		success  : function(result) {
+	if (confirm("신고 하시겠습니까?\n허위신고시 사이트 이용에 제한이 걸릴 수 있습니다.")) {
+		$.ajax({
+			type: "POST",
+			url: "/lecture/boardSubConfirm",
+			dataType: "json",
+			data: {lb_id: reply_id},
+			success: function (result) {
 
-			if(result === 1){
-				alert("신고 되었습니다");
-				location.reload();
-			}else if(result === 2){
-				alert("이미 신고하였습니다.");
-			}else{
-				alert("이미 삭제된 글이거나 에러가 발생했습니다.");
-				location.reload();
+				if (result === 1) {
+					alert("신고 되었습니다");
+				} else if (result === 2) {
+					alert("이미 신고하였습니다.");
+				} else {
+					alert("이미 삭제된 글이거나 에러가 발생했습니다.");
+					location.reload();
+				}
 			}
-		}
-	})
+		})
+	}
 
 }
 
@@ -144,24 +144,26 @@ $(document).ready(function() {
 
 	$(document).off('click', '#boardRep_btn').on('click', '#boardRep_btn', function() {
 
-		$.ajax({
-			type     : "POST",
-			url      : "/lecture/boardSubConfirm",
-			dataType : "json",
-			data     : {lb_id:lb_id},
-			success  : function(result) {
+		if (confirm("신고 하시겠습니까?\n허위신고시 사이트 이용에 제한이 걸릴 수 있습니다.")) {
+			$.ajax({
+				type: "POST",
+				url: "/lecture/boardSubConfirm",
+				dataType: "json",
+				data: {lb_id: lb_id},
+				success: function (result) {
 
-				if(result === 1){
-					alert("신고 되었습니다");
-					location.reload();
-				}else if(result === 2){
-					alert("이미 신고하였습니다.");
-				}else{
-					alert("이미 삭제된 글이거나 에러가 발생했습니다.");
-					location.reload();
+					if (result === 1) {
+						alert("신고 되었습니다");
+					} else if (result === 2) {
+						alert("이미 신고하였습니다.");
+					} else {
+						alert("이미 삭제된 글이거나 에러가 발생했습니다.");
+						location.reload();
+					}
+
 				}
-			}
-		})
+			})
+		}
 
 	})
 
@@ -183,7 +185,6 @@ $(document).ready(function() {
 					location.reload();
 				} else {
 					alert("에러가 발생했습니다. 다시 시도해주세요.");
-					location.reload();
 				}
 			}
 		})

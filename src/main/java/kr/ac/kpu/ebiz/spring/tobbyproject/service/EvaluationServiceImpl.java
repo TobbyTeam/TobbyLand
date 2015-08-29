@@ -232,7 +232,6 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         System.out.println(confirm+"가져온거 확인");
 
-
         int result =0;
 
         if(confirm == null){

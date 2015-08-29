@@ -74,7 +74,8 @@ $(document).ready(function() {
 						alert("글 수정이 완료 되었습니다.")
 						window.open("/board/view/"+$("#department_id").val()+"/?board_id="+$("#board_id").val(), "_self");
 					} else {
-						alert("죄송합니다 다시 시도해주세요.");
+						alert("이미 삭제된 글이거나 에러가 발생했습니다.");
+						window.open("/board/list/"+$("#department_id").val()+"/", "_self");
 					}
 
 				}

@@ -18,17 +18,19 @@ public interface BoardService {
 
     boolean viewService(int board_id, ModelAndView mav);
 
-    boolean confirmService(int board_id);
+    int confirmService(int board_id);
 
     void modViewService(int board_id, ModelAndView mav);
 
     boolean modService(Map board);
 
-    int likeService(int board_id);
+    int subConfirmService(int board_id);
 
-    int dislikeService(int board_id);
+    boolean likeService(int board_id);
 
-    int reportService(int board_id);
+    boolean dislikeService(int board_id);
+
+    boolean reportService(int board_id);
 
     boolean isDeleteService(int department_id);
 

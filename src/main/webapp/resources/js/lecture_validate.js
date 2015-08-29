@@ -150,7 +150,7 @@ $(document).ready(function() {
 						alert("글 수정이 완료 되었습니다.")
 						window.open("/lecture/boardView/"+lecture_id+"/?lb_id="+lb_id, "_self");
 					} else {
-						alert("에러가 발생했습니다. 다시 시도해주세요.");
+						alert("이미 삭제된 글이거나 에러가 발생했습니다.");
 						window.open("/lecture/boardList/"+lecture_id+"/", "_self");
 					}
 				}

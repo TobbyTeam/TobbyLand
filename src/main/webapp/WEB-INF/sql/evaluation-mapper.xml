@@ -7,7 +7,7 @@
 
   <select id="selectEvaluationAll" parameterType="int" resultType="map">
     select e.evaluation_id, e.lecture_id, e.method, e.task, e.exam, e.comment, e.score, date_format(e.write_date, '%Y.%m.%d') as write_date,
-           e.likes, e.dislike, e.report, s.semester_title, sum(if(e2.is_delete = 0,1,0)) as count
+           e.likes, e.dislike, s.semester_title, sum(if(e2.is_delete = 0,1,0)) as count
     from evaluation e left outer join semester s on e.semester = s.semester_id left outer join evaluation e2 on e.evaluation_id = e2.upper_id
     where e.lecture_id = #{lecture_id} and e.is_delete = 0 and e.is_reply = 0
     group by e.evaluation_id
@@ -16,7 +16,7 @@
 
   <select id="selectEvaluationBest" parameterType="int" resultType="map">
     select e.evaluation_id, e.lecture_id, e.method, e.task, e.exam, e.comment, e.score, date_format(e.write_date, '%Y.%m.%d') as write_date,
-           e.likes, e.dislike, e.report, s.semester_title, sum(if(e2.is_delete = 0,1,0)) as count
+           e.likes, e.dislike, s.semester_title, sum(if(e2.is_delete = 0,1,0)) as count
     from evaluation e left outer join semester s on e.semester = s.semester_id left outer join evaluation e2 on e.evaluation_id = e2.upper_id
     where e.lecture_id = #{lecture_id} and e.is_delete = 0 and e.is_reply = 0
     group by e.evaluation_id
@@ -45,21 +45,13 @@
     where evaluation_id = #{evaluation_id} and is_delete = 0
   </select>
 
-<!--  <select id="selectSubCount" parameterType="map" resultType="int">
-    select count(es_id) from evaluationsub where evaluation_id = #{evaluation_id} and member_id = #{member_id}
-  </select>
-
-  <select id="selectSubType" parameterType="map" resultType="int">
-    select kind from evaluationsub where evaluation_id = #{evaluation_id} and member_id = #{member_id}
-  </select>-->
-
   <select id="selectSub" parameterType="map" resultType="Map">
     select kind from evaluationsub where evaluation_id = #{evaluation_id} and member_id = #{member_id}
   </select>
 
   <select id="SearchEvaluationPrefer" parameterType="map" resultType="map">
     select e.evaluation_id, e.lecture_id, e.method, e.task, e.exam, e.comment, e.score, date_format(e.write_date, '%Y.%m.%d') as write_date,
-    e.likes, e.dislike, e.report, s.semester_title, sum(if(e2.is_delete = 0,1,0)) as count
+    e.likes, e.dislike, s.semester_title, sum(if(e2.is_delete = 0,1,0)) as count
     from evaluation e left outer join semester s on e.semester = s.semester_id left outer join evaluation e2 on e.evaluation_id = e2.upper_id
     where e.lecture_id = #{lecture_id} and e.is_delete = 0 and e.is_reply = 0
     <choose>

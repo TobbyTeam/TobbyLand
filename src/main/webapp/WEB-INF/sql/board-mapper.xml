@@ -42,13 +42,11 @@
     select member_id from board where board_id = #{board_id}
   </select>
 
-  <select id="selectBoardSubCount" parameterType="map" resultType="int" >
-    select count(bs_id)
-    from board_sub
-    where board_id = #{board_id} and member_id = #{member_id}
+  <select id="selectBoardConfirm" parameterType="int" resultType="map">
+    select member_id, is_delete from board where board_id = #{board_id}
   </select>
 
-  <select id="selectBoardSubType" parameterType="map" resultType="int">
+  <select id="selectBoardSub" parameterType="map" resultType="map">
     select kind from board_sub where board_id = #{board_id} and member_id = #{member_id}
   </select>
 
@@ -171,35 +169,35 @@
     set
     title = #{title},
     contents = #{contents}
-    where board_id = #{board_id}
+    where board_id = #{board_id} and is_delete = 0
   </update>
 
   <update id="updateBoardLike" parameterType="int">
     update board
     set
     likes = likes + 1
-    where board_id = #{board_id}
+    where board_id = #{board_id} and is_delete = 0
   </update>
 
   <update id="updateBoardDislike" parameterType="int">
     update board
     set
     dislike = dislike + 1
-    where board_id = #{board_id}
+    where board_id = #{board_id} and is_delete = 0
   </update>
 
   <update id="updateBoardReport" parameterType="int">
     update board
     set
     report = report + 1
-    where board_id = #{board_id}
+    where board_id = #{board_id} and is_delete = 0
   </update>
 
   <update id="updateBoardIsDelete" parameterType="int">
     update board
     set
     is_delete = 1
-    where board_id = #{board_id}
+    where board_id = #{board_id} and is_delete = 0
   </update>
 
 

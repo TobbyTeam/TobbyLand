@@ -190,7 +190,7 @@
 				<div class="col-xs-offset-8">
 <%--					<button onclick="evalModAjax(${evaluation.evaluation_id})" class="btn btn-default littlebtn">수정</button>--%>
 					<button onclick="evalDeleteAjax(${evaluation.evaluation_id})" class="btn btn-default littlebtn">삭제</button>
-					<button onclick="evalReportAjax(${evaluation.evaluation_id})" class="btn btn-danger littlebtn">신고(${evaluation.report})</button>
+					<button onclick="evalReportAjax(${evaluation.evaluation_id})" class="btn btn-danger littlebtn">신고</button>
 				</div>
 				<hr />
 			</div>

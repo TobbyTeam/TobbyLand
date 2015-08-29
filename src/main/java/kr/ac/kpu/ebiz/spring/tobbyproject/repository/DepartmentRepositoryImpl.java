@@ -12,7 +12,7 @@ public class DepartmentRepositoryImpl extends SqlSessionDaoSupport implements De
 		return getSqlSession().selectOne("DepartmentRepository.select", departmentId);
 	}
 
-	@Cacheable(cacheName = "topCache")
+	@Cacheable(cacheName = "departmentCache")
 	public List<Map> selectAll() {
 		return getSqlSession().selectList("DepartmentRepository.selectAll");
 	}

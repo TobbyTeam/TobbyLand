@@ -91,13 +91,7 @@ public class BoardServiceImpl implements BoardService{
             board.put("writer", writer);
         }
 
-        boolean result = false;
-
-        if(boardRepository.insertBoard(board)){
-            result = true;
-        }
-
-        return result;
+        return boardRepository.insertBoard(board);
     }
 
     public boolean viewService(int board_id, ModelAndView mav) {
@@ -119,19 +113,31 @@ public class BoardServiceImpl implements BoardService{
         return result;
     }
 
-    public boolean confirmService(int board_id) {
+    public int confirmService(int board_id) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int member_id = user.getMember_id();
 
-        int writer = boardRepository.selectBoardMember_id(board_id);
+        Map board = boardRepository.selectBoardConfirm(board_id);
 
-        Collection authorities = user.getAuthorities();
+        int writer = Integer.parseInt(board.get("member_id").toString());
 
-        boolean result = false;
+        boolean is_delete = (Boolean) board.get("is_delete");
 
-        if(member_id == writer || authorities.toString().contains("ROLE_ADMIN")){
-            result = true;
+        int result = 3;
+
+        if(is_delete){
+
+            return result;
+        } else {
+
+            Collection authorities = user.getAuthorities();
+
+            if(member_id == writer || authorities.toString().contains("ROLE_ADMIN")){
+                result = 1;
+            } else {
+                result = 2;
+            }
         }
 
         return result;
@@ -180,16 +186,57 @@ public class BoardServiceImpl implements BoardService{
         board.remove("contents");
         board.put("contents", contents_db);
 
+        return boardRepository.updateBoard(board);
+    }
+
+    public int subConfirmService(int board_id) {
+
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        int member_id = user.getMember_id();
+
+        HashMap boardSub = new HashMap();
+        boardSub.put("board_id", board_id);
+        boardSub.put("member_id", member_id);
+
+        Map confirm = boardRepository.selectBoardSub(boardSub);
+
+        int result =0;
+
+        if(confirm == null){
+            return result;
+
+        } else {
+
+            int type = Integer.parseInt(confirm.get("kind").toString());
+            result = type;
+        }
+
+        return result;
+    }
+
+    public boolean likeService(int board_id) {
+
+        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        int member_id = user.getMember_id();
+
+        HashMap boardSub = new HashMap();
+        boardSub.put("board_id", board_id);
+        boardSub.put("member_id", member_id);
+        boardSub.put("kind", 1);
+
         boolean result = false;
 
-        if (boardRepository.updateBoard(board)) {
-            result = true;
+        if(boardRepository.updateBoardLike(board_id)){
+
+            if(boardRepository.insertBoardSub(boardSub)){
+                result = true;
+            }
         }
 
         return result;
     }
 
-    public int likeService(int board_id) {
+    public boolean dislikeService(int board_id) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int member_id = user.getMember_id();
@@ -197,26 +244,22 @@ public class BoardServiceImpl implements BoardService{
         HashMap boardSub = new HashMap();
         boardSub.put("board_id", board_id);
         boardSub.put("member_id", member_id);
+        boardSub.put("kind", 2);
 
-        int count = boardRepository.selectBoardSubCount(boardSub);
+        boolean result = false;
 
-        int result;
+        if(boardRepository.updateBoardDislike(board_id)){
 
-        int kind = 1;
-
-        if(count !=0) {
-            result = boardRepository.selectBoardSubType(boardSub);
-        } else {
-            boardSub.put("kind", kind);
-            boardRepository.insertBoardSub(boardSub);
-            boardRepository.updateBoardLike(board_id);
-            result = 0;
+            if(boardRepository.insertBoardSub(boardSub)){
+                result = true;
+            }
         }
 
         return result;
+
     }
 
-    public int dislikeService(int board_id) {
+    public boolean reportService(int board_id) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int member_id = user.getMember_id();
@@ -224,48 +267,15 @@ public class BoardServiceImpl implements BoardService{
         HashMap boardSub = new HashMap();
         boardSub.put("board_id", board_id);
         boardSub.put("member_id", member_id);
+        boardSub.put("kind", 3);
 
-        int count = boardRepository.selectBoardSubCount(boardSub);
+        boolean result = false;
 
-        int result;
+        if(boardRepository.updateBoardReport(board_id)){
 
-        int kind = 2;
-
-        if(count !=0) {
-            result = boardRepository.selectBoardSubType(boardSub);
-        } else {
-            boardSub.put("kind", kind);
-            boardRepository.insertBoardSub(boardSub);
-            boardRepository.updateBoardDislike(board_id);
-            result = 0;
-        }
-
-        return result;
-
-    }
-
-    public int reportService(int board_id) {
-
-        MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        int member_id = user.getMember_id();
-
-        HashMap boardSub = new HashMap();
-        boardSub.put("board_id", board_id);
-        boardSub.put("member_id", member_id);
-
-        int count = boardRepository.selectBoardSubCount(boardSub);
-
-        int result;
-
-        int kind = 3;
-
-        if(count !=0) {
-            result = boardRepository.selectBoardSubType(boardSub);
-        } else {
-            boardSub.put("kind", kind);
-            boardRepository.insertBoardSub(boardSub);
-            boardRepository.updateBoardReport(board_id);
-            result = 0;
+            if(boardRepository.insertBoardSub(boardSub)){
+                result = true;
+            }
         }
 
         return result;
@@ -274,13 +284,7 @@ public class BoardServiceImpl implements BoardService{
 
     public boolean isDeleteService(int board_id) {
 
-        boolean data = false;
-
-        if(boardRepository.updateBoardIsDelete(board_id)) {
-            data = true;
-        }
-
-        return data;
+        return boardRepository.updateBoardIsDelete(board_id);
     }
     
     public boolean replyRegService(Map board) {
@@ -292,13 +296,7 @@ public class BoardServiceImpl implements BoardService{
         board.put("member_id", member_id);
         board.put("writer", writer);
 
-        boolean result = false;
-
-        if(boardRepository.insertBoard(board)){
-            result =true;
-        }
-
-        return result;
+        return boardRepository.insertBoard(board);
     }
 
     public void searchService(Map search, int page, ModelAndView mav) {

@@ -31,7 +31,7 @@ function evalLikeAjax(evaluation_id) {
 			if (result === 1) {
 				alert("이미 추천하였습니다.");
 			} else if (result === 2) {
-				alert("이미 비공감하였습니다.");
+				alert("이미 비추천하였습니다.");
 			} else if (result === 3){
 				alert("이미 신고하였습니다.");
 			} else {
@@ -67,7 +67,7 @@ function evalDislikeAjax(evaluation_id) {
 			if (result === 1) {
 				alert("이미 추천하였습니다.");
 			} else if (result === 2) {
-				alert("이미 비공감하였습니다.");
+				alert("이미 비추천하였습니다.");
 			} else if (result === 3){
 				alert("이미 신고하였습니다.");
 			} else {
@@ -78,7 +78,7 @@ function evalDislikeAjax(evaluation_id) {
 					data: {evaluation_id: evaluation_id},
 					success: function (result2) {
 						if (result2) {
-							alert("비공감 하였습니다.");
+							alert("비추천 하였습니다.");
 							location.reload();
 						} else {
 							alert("이미 삭제된 강의거나 에러가 발생했습니다.");
@@ -103,25 +103,26 @@ function evalReportAjax(evaluation_id) {
 			if (result === 1) {
 				alert("이미 추천하였습니다.");
 			} else if (result === 2) {
-				alert("이미 비공감하였습니다.");
+				alert("이미 비추천하였습니다.");
 			} else if (result === 3){
 				alert("이미 신고하였습니다.");
 			} else {
-				$.ajax({
-					type: "POST",
-					url: "/evaluation/report",
-					dataType: "json",
-					data: {evaluation_id: evaluation_id},
-					success: function (result2) {
-						if (result2) {
-							alert("신고 되었습니다.");
-							location.reload();
-						} else {
-							alert("이미 삭제된 강의거나 에러가 발생했습니다.");
-							location.reload();
+				if (confirm("신고 하시겠습니까?\n허위신고시 사이트 이용에 제한이 걸릴 수 있습니다.")) {
+					$.ajax({
+						type: "POST",
+						url: "/evaluation/report",
+						dataType: "json",
+						data: {evaluation_id: evaluation_id},
+						success: function (result2) {
+							if (result2) {
+								alert("신고 되었습니다.");
+							} else {
+								alert("이미 삭제된 강의거나 에러가 발생했습니다.");
+								location.reload();
+							}
 						}
-					}
-				});
+					});
+				}
 			}
 		}
 	});

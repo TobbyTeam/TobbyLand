@@ -2,6 +2,7 @@ package kr.ac.kpu.ebiz.spring.tobbyproject.controller;
 
 
 import kr.ac.kpu.ebiz.spring.tobbyproject.repository.BoardRepository;
+import kr.ac.kpu.ebiz.spring.tobbyproject.repository.DepartmentRepository;
 import kr.ac.kpu.ebiz.spring.tobbyproject.security.MemberInfo;
 import kr.ac.kpu.ebiz.spring.tobbyproject.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class BoardController {
 	@Autowired
 	BoardRepository boardRepository;
 
+	@Autowired
+	DepartmentRepository departmentRepository;
+
 	@RequestMapping(value = "/top", method = {RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView top(@RequestParam("department_id") int department_id) {
 
@@ -40,7 +44,7 @@ public class BoardController {
 
 		ModelAndView mav = new ModelAndView();
 
-		mav.addObject("department_id", department_id);
+		mav.addObject("department", departmentRepository.select(department_id));
 
 		if(!searchType.isEmpty()){
 			Map search = new HashMap();
@@ -95,13 +99,18 @@ public class BoardController {
 				boardService.listService(department_id, page, mav);
 			}
 
+		} else {
+			mav.setViewName("/board/error");
+			mav.addObject("department_id", department_id);
 		}
 
 		return mav;
 	}
 
 	@RequestMapping(value = "/confirm", method = RequestMethod.POST)
-	public @ResponseBody boolean confirm(@RequestParam("board_id") int board_id) {
+	public @ResponseBody int confirm(@RequestParam("board_id") int board_id) {
+
+		/* 1=성공 2=너꺼아님 3=삭제된거*/
 
 		return boardService.confirmService(board_id);
 	}
@@ -123,20 +132,28 @@ public class BoardController {
 		return boardService.modService(board);
 	}
 
+	@RequestMapping(value = "/subConfirm", method = RequestMethod.POST)
+	public @ResponseBody int subConfirm(@RequestParam("board_id") int board_id) {
+
+		/* 0=성공 1=추천 2=비공감 3=신고*/
+
+		return boardService.subConfirmService(board_id);
+	}
+
 	@RequestMapping(value = "/like", method = RequestMethod.POST)
-	public @ResponseBody int like(@RequestParam("board_id") int board_id) {
+	public @ResponseBody boolean like(@RequestParam("board_id") int board_id) {
 
 		return boardService.likeService(board_id);
 	}
 
 	@RequestMapping(value = "/dislike", method = RequestMethod.POST)
-	public @ResponseBody int dislike(@RequestParam("board_id") int board_id) {
+	public @ResponseBody boolean dislike(@RequestParam("board_id") int board_id) {
 
 		return boardService.dislikeService(board_id);
 	}
 
 	@RequestMapping(value = "/report", method = RequestMethod.POST)
-	public @ResponseBody int report(@RequestParam("board_id") int board_id) {
+	public @ResponseBody boolean report(@RequestParam("board_id") int board_id) {
 
 		return boardService.reportService(board_id);
 	}

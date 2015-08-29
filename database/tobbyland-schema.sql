@@ -280,7 +280,7 @@ CREATE TABLE board_sub (
   bs_id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   board_id int(10) UNSIGNED DEFAULT NULL,
   member_id int(5) UNSIGNED DEFAULT NULL,
-  kind tinyint(1) UNSIGNED DEFAULT '0',
+  kind int(1) UNSIGNED DEFAULT '0',
   PRIMARY KEY (bs_id),
   KEY FK_board_sub_board (board_id),
   KEY FK_board_sub_member (member_id),
