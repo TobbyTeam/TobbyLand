@@ -18,12 +18,12 @@
         <div class="col-md-8">
             <table>
                 <tr>
-                    <td id="marname">경영학부</td>
+                    <td id="marname">${lecture.department_name}</td>
                 </tr>
                 <tr>
-                    <td id="subname">기업데이터 분석</td>
+                    <td id="subname">${lecture.lecture_name}</td>
                     <td>&nbsp;(</td>
-                    <td id="proname">누구누구</td>
+                    <td id="proname">${lecture.prof}</td>
                     <td>&nbsp;교수님</td>
                     <td>)</td>
                 </tr>

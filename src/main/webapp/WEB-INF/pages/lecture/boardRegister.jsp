@@ -14,7 +14,7 @@
 
     <script src="<c:url value="${ctx}/resources/js/jquery.validate.min.js" />"></script>
     <script src="<c:url value="${ctx}/resources/js/lecture_validate.js" />"></script>
-    <script src="<c:url value="${ctx}/resources/js/evaluation.js" />"></script>
+
     <script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>
     <script src="<c:url value="/resources/js/sessionTimeout.js" />"></script>
 
@@ -37,6 +37,16 @@
         </div>
         <div class="col-md-9">
             <form id="reg_board_frm" name="reg_board_frm" method="post" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">
+                        닉네임
+                    </label>
+                    <div class="col-sm-4">
+                        <input type="text" name="writer" class="form-control" />
+                        <br />
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label class="col-sm-2 control-label">
                         제목

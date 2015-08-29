@@ -285,8 +285,6 @@ public class BoardServiceImpl implements BoardService{
 
         board.put("member_id", member_id);
 
-        System.out.println(board.get("is_anonymity")+"익명 확인");
-
         if(board.get("is_anonymity")==null){
             board.remove("writer");
             board.put("writer", writer);

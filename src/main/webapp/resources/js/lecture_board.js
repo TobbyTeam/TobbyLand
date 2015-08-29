@@ -167,7 +167,7 @@ $(document).ready(function() {
 
 	})
 
-	$(document).off('click', '#reReg_btn').on('click', '#reReg_btn', function() {
+/*	$(document).off('click', '#reReg_btn').on('click', '#reReg_btn', function() {
 
 		if(document.reReg_frm.contents.value.length == 0) {
 			alert("내용을 입력해주세요.");
@@ -189,6 +189,6 @@ $(document).ready(function() {
 			}
 		})
 
-	})
+	})*/
 
 })

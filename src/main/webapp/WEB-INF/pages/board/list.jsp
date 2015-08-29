@@ -36,27 +36,19 @@
 					<th width="18%">작성자</th>
 					<th width="8%">작성일</th>
 					<th width="8%">조회수</th>
-					<th width="8%">추천</th>
+					<th width="8%">추천수</th>
 				</tr>
 				</thead>
 				<tbody>
 				<c:forEach var="board" items="${boards}" varStatus="status">
 					<tr>
+						<td>${board.rnum}</td>
 						<td>
-							<c:choose>
-								<c:when test="${board.board_id eq board_id}">
-									<strong>></strong>
-								</c:when>
-								<c:otherwise>
-									${board.rnum}
-								</c:otherwise>
-							</c:choose>
-						</td>
-						<td>
-							<a href="/board/view/${board.department_id}/?board_id=${board.board_id}&page=${paging.pageNo}" >${board.title}</a>
+							<a href="/board/view/${board.department_id}/?board_id=${board.board_id}&page=${paging.pageNo}" >${board.title}
 							<c:if test="${board.count != 0}">
 								[${board.count}]
 							</c:if>
+							</a>
 						</td>
 						<td>
 						<c:choose>

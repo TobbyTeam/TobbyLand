@@ -123,7 +123,7 @@
             <td ></td>
           </tr>
           <input type="hidden" id="department_id" name="department_id" value="${department_id}"/>
-          <input type="hidden" id="board.id" name="upper_id" value="${board_id}" />
+          <input type="hidden" id="board_id" name="upper_id" value="${board_id}" />
         </table>
       </form>
 
@@ -165,7 +165,7 @@
           <th width="18%">작성자</th>
           <th width="8%">작성일</th>
           <th width="8%">조회수</th>
-          <th width="8%">추천</th>
+          <th width="8%">추천수</th>
         </tr>
         </thead>
         <tbody>
