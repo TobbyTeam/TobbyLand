@@ -80,11 +80,17 @@
                     <tr class="boardtext">
                         <td>${latest.department_name}</td>
                         <td><a href="/board/view/${latest.department_id}/?board_id=${latest.board_id}"><span class="title">${latest.title}</span></a></td>
-                        <td>${latest.writer}
-                            <c:if test="${latest.is_anonymity == 1}">
-                                (익명)
-                            </c:if>
+                        <td>
+                            <c:choose>
+                                <c:when test="${latest.is_anonymity ne 1}">
+                                    <span class="bold">${latest.writer}*</span>
+                                </c:when>
+                                <c:otherwise>
+                                    ${latest.writer}
+                                </c:otherwise>
+                            </c:choose>
                         </td>
+
                         <td>${latest.write_date}</td>
                     </tr>
                 </c:forEach>
@@ -116,11 +122,14 @@
                             </span>
                             </a>
                         </td>
-                        <td>${hot.writer}
-                            <c:if test="${hot.is_anonymity == 1}">
-                                (익명)
-                            </c:if>
-                        </td>
+                        <c:choose>
+                            <c:when test="${hot.is_anonymity ne 1}">
+                                <span class="bold">${hot.writer}*</span>
+                            </c:when>
+                            <c:otherwise>
+                                ${hot.writer}
+                            </c:otherwise>
+                        </c:choose>
                         <td>${hot.hit}</td>
                         <td>${hot.likes}</td>
                     </tr>

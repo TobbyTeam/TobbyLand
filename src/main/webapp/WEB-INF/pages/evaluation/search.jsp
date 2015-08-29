@@ -24,37 +24,37 @@
 								상세검색
 							</button>
 							<div class="dropdown-menu dropdown-menu-right">
-								<form class="form-horiontal">
+								<form action="/evaluation/searchPrefer" method="get" class="form-horiontal">
 									<div class="form-group">
 										<label for="filter">수업방식</label>
-										<select class="form-control">
-											<option value="0" selected="selected">전체</option>
+										<select name="method" class="form-control">
+											<option value="all" selected="selected">전체</option>
 											<option value="1">독고다이</option>
-											<option value="2">토론</option>
-											<option value="3">실습</option>
+											<option value="2">토론형</option>
+											<option value="3">실습형</option>
 										</select>
 									</div>
 									<div class="form-group">
 										<label for="filter">과제방식</label>
-										<select class="form-control">
-											<option value="0" selected="selected">전체</option>
-											<option value="1">텀프로젝트</option>
-											<option value="2">팀플레이</option>
-											<option value="3">개인과제</option>
+										<select name="task" class="form-control">
+											<option value="all" selected="selected">전체</option>
+											<option value="4">텀프로젝트</option>
+											<option value="5">팀과제</option>
+											<option value="6">개인과제</option>
 										</select>
 									</div>
 									<div class="form-group">
 										<label for="filter">시험방식</label>
-										<select class="form-control">
-											<option value="0" selected="selected">전체</option>
-											<option value="1">서술형</option>
-											<option value="2">혼합형</option>
-											<option value="3">오픈북</option>
-											<option value="4">실습</option>
+										<select name="exam" class="form-control">
+											<option value="all"selected="selected">전체</option>
+											<option value="7">서술형</option>
+											<option value="8">혼합형</option>
+											<option value="9">오픈북</option>
+											<option value="10">실습</option>
 										</select>
 									</div>
 									<div class="form-group" align="center">
-										<button type="button" class="littlebtn">검색</button>
+										<button type="submit" class="littlebtn">검색</button>
 									</div>
 									<input type="hidden" id="lecture_id" name="lecture_id" value="${lecture_id}">
 								</form>

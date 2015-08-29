@@ -322,7 +322,9 @@ public class EvaluationServiceImpl implements EvaluationService {
         mav.addObject("lecture_id", lecture_id);
 
         if(result.isEmpty() == true) {
-            mav.addObject("error", "검색 결과가 없습니다.");
+            mav.addObject("error", "일치하는 강의평가가 없습니다.");
+
+            System.out.println("검색결과 없음");
         }
 
     }

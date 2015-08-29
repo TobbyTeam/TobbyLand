@@ -41,7 +41,7 @@
       </otherwise>
     </choose>
     group by l.lecture_id
-    order by d.department_name, count desc, avg desc
+    order by count desc, avg desc, d.department_name
   </select>
 
   <select id="selectSubCount" parameterType="map" resultType="int" >

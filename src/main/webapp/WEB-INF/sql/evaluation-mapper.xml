@@ -11,7 +11,7 @@
     from evaluation e left outer join semester s on e.semester = s.semester_id left outer join evaluation e2 on e.evaluation_id = e2.upper_id
     where e.lecture_id = #{lecture_id} and e.is_delete = 0 and e.is_reply = 0
     group by e.evaluation_id
-    order by e.semester desc, write_date desc
+    order by write_date desc, e.semester desc
   </select>
 
   <select id="selectEvaluationBest" parameterType="int" resultType="map">

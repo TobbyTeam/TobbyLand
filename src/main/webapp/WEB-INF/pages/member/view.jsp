@@ -41,7 +41,7 @@
                     <label class="col-sm-3 control-label">
                         아이디
                     </label>
-                    <div class="col-sm-3">
+                    <div class="col-sm-6">
                         <input type="text" class="form-control" value="${member.user_id}" disabled/>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                     <label class="col-sm-3 control-label">
                         닉네임
                     </label>
-                    <div class="col-sm-3">
+                    <div class="col-sm-6">
                         <input type="text" class="form-control" value="${member.nickname}" disabled/>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                     <label class="col-sm-3 control-label">
                         이메일
                     </label>
-                    <div class="col-sm-3">
+                    <div class="col-sm-6">
                         <input type="text" class="form-control" value="${member.email}" disabled/>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                     <label class="col-sm-3 control-label">
                         작성한 강의평가 수
                     </label>
-                    <div class="col-sm-3">
+                    <div class="col-sm-6">
                         <input type="text" class="form-control" value="${member.evaluation_count}" disabled/>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
                     <label class="col-sm-3 control-label">
                         가입일
                     </label>
-                    <div class="col-sm-3">
+                    <div class="col-sm-6">
                         <input type="text" class="form-control" value="${member.reg_date}" disabled/>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                     <label class="col-sm-3 control-label">
                         수업 방식
                     </label>
-                    <div class="col-sm-3">
+                    <div class="col-sm-6">
                     <c:forEach var="tendency" items="${tendencys}" varStatus="status" >
                             <c:if test="${tendency.tendency_id eq member.method}">
                                 <input type="text" class="form-control" value="${tendency.tendency_title}" disabled/>
@@ -94,7 +94,7 @@
                     <label class="col-sm-3 control-label">
                         과제 방식
                     </label>
-                    <div class="col-sm-3">
+                    <div class="col-sm-6">
                     <c:forEach var="tendency" items="${tendencys}" varStatus="status" >
                             <c:if test="${tendency.tendency_id eq member.task}">
                                 <input type="text" class="form-control" value="${tendency.tendency_title}" disabled/>
@@ -106,7 +106,7 @@
                     <label class="col-sm-3 control-label">
                         시험 방식
                     </label>
-                    <div class="col-sm-3">
+                    <div class="col-sm-6">
                     <c:forEach var="tendency" items="${tendencys}" varStatus="status" >
                             <c:if test="${tendency.tendency_id eq member.exam}">
                                 <input type="text" class="form-control" value="${tendency.tendency_title}" disabled/>

@@ -24,7 +24,7 @@
 
 	<div class="col-xs-offset-2">
 		<table>
-			<td class="subname">베스트 강의평가</td>
+			<td><img src="<c:url value="${ctx}/resources/image/best.jpg" />" class="img-responsive"/></td>
 		</table>
 	</div>
 	<br />
@@ -38,28 +38,34 @@
 				<hr />
 				<table class="col-md-12 table-condensed tablemargin">
 					<tr class="reframe">
-						<td width="30%" class="title" align="center">수강학기</td>
-						<td width="70%">${best.semester_title}</td>
+						<td width="15%" class="title" align="center">수강학기</td>
+						<td width="82%">${best.semester_title}</td>
+						<td width="3%"></td>
 					</tr>
 					<tr class="reframe">
-						<td width="30%" class="title" align="center">수업방식</td>
-						<td width="70%">${best.method}</td>
+						<td width="15%" class="title" align="center">수업방식</td>
+						<td width="82%">${best.method}</td>
+						<td width="3%"></td>
 					</tr>
 					<tr class="reframe">
-						<td width="30%" class="title" align="center">과제방식</td>
-						<td width="70%">${best.task}</td>
+						<td width="15%" class="title" align="center">과제방식</td>
+						<td width="82%">${best.task}</td>
+						<td width="3%"></td>
 					</tr>
 					<tr class="reframe">
-						<td width="30%" class="title" align="center">시험방식</td>
-						<td width="70%">${best.exam}</td>
+						<td width="15%" class="title" align="center">시험방식</td>
+						<td width="82%">${best.exam}</td>
+						<td width="3%"></td>
 					</tr>
 					<tr class="reframe">
-						<td width="30%" class="title" align="center">총평</td>
-						<td width="70%">${best.comment}</td>
+						<td width="15%" class="title" align="center">총평</td>
+						<td width="82%">${best.comment}</td>
+						<td width="3%"></td>
 					</tr>
 					<tr class="reframe">
-						<td width="30%" class="title" align="center">평점</td>
-						<td width="70%" class="score">${best.score}</td>
+						<td width="15%" class="title" align="center">평점</td>
+						<td width="82%" class="score">${best.score}</td>
+						<td width="3%"></td>
 					</tr>
 				</table>
 				<div class="row" align="center">
