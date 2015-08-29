@@ -123,15 +123,6 @@ public class LectureServiceImpl implements LectureService{
 
     }
 
-    public boolean deleteConfirmService(int lecture_id) {
-
-        if(lectureRepository.selectIsDelete(lecture_id) == 0){
-            return false;
-        }
-
-        return true;
-    }
-
     public int likesService(int lecture_id) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -320,15 +311,6 @@ public class LectureServiceImpl implements LectureService{
         lectureBoard.put("contents", contents_db);
 
         return lectureRepository.updateBoard(lectureBoard);
-    }
-
-    public boolean boardDeleteConfirmService(int lb_id) {
-
-        if(lectureRepository.selectBoardIsDelete(lb_id) == 0){
-            return false;
-        }
-
-        return true;
     }
 
     public boolean boardIsDeleteService(int lb_id) {

@@ -89,12 +89,6 @@ public class LectureController {
 
 	}
 
-	@RequestMapping(value = "/deleteConfirm", method = RequestMethod.POST)
-	public @ResponseBody boolean deleteConfirm(@RequestParam("lecture_id") int lecture_id) {
-
-		return lectureService.deleteConfirmService(lecture_id);
-	}
-
 	@RequestMapping(value = "/likes", method = RequestMethod.POST)
 	public @ResponseBody int likes(@RequestParam("lecture_id") int lecture_id) {
 
@@ -176,14 +170,6 @@ public class LectureController {
 		}
 
 		return mav;
-	}
-
-	@RequestMapping(value = "/boardDeleteConfirm", method = RequestMethod.POST)
-	public @ResponseBody boolean boardDeleteConfirm(@RequestParam("lb_id") int lb_id) {
-
-		System.out.println(lb_id+"아이디 확인");
-
-		return lectureService.boardDeleteConfirmService(lb_id);
 	}
 
 	@RequestMapping(value = "/boardConfirm", method = RequestMethod.POST)

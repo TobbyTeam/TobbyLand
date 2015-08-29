@@ -23,8 +23,6 @@ public interface LectureService {
 
     void searchService(Map search, ModelAndView mav);
 
-    boolean deleteConfirmService(int lecture_id);
-
     int likesService(int lecture_id);
 
     boolean isDeleteService(int lecture_id);
@@ -40,8 +38,6 @@ public interface LectureService {
     void boardModViewService(int lb_id, ModelAndView mav);
 
     boolean boardModService(Map lectureBoard);
-
-    boolean boardDeleteConfirmService(int lb_id);
 
     boolean boardIsDeleteService(int lb_id);
 

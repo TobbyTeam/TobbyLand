@@ -15,10 +15,6 @@
     select member_id, is_delete from lecture where lecture_id = #{lecture_id}
   </select>
 
-  <select id="selectIsDelete" parameterType="int" resultType="int">
-    select is_delete from lecture where lecture_id = #{lecture_id}
-  </select>
-
   <select id="selectLecture" parameterType="int" resultType="map">
     select lecture_id, lecture_name, dept, prof
     from lecture
@@ -86,10 +82,6 @@
 
   <select id="selectBoardMember_id" parameterType="int" resultType="map">
     select member_id, is_delete from lecture_board where lb_id = #{lb_id}
-  </select>
-
-  <select id="selectBoardIsDelete" parameterType="int" resultType="int">
-    select is_delete from lecture_board where lb_id = #{lb_id}
   </select>
 
   <select id="selectLecture_E" parameterType="int" resultType="map">

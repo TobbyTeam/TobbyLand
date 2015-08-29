@@ -17,10 +17,6 @@ public class LectureRepositoryImpl extends SqlSessionDaoSupport implements Lectu
 		return getSqlSession().selectOne("LectureRepository.selectMember_id", lecture_id);
 	}
 
-	public int selectIsDelete(int lecture_id) {
-		return getSqlSession().selectOne("LectureRepository.selectIsDelete", lecture_id);
-	}
-
 	public Map selectLecture(int lecture_id) {
 		return getSqlSession().selectOne("LectureRepository.selectLecture", lecture_id);
 	}
@@ -54,10 +50,6 @@ public class LectureRepositoryImpl extends SqlSessionDaoSupport implements Lectu
 
 	public Map selectBoardMember_id(int lb_id) {
 		return getSqlSession().selectOne("LectureRepository.selectBoardMember_id", lb_id);
-	}
-
-	public int selectBoardIsDelete(int lb_id) {
-		return getSqlSession().selectOne("LectureRepository.selectBoardIsDelete", lb_id);
 	}
 
 	public Map selectLecture_E(int lecture_id) {
