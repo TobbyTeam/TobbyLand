@@ -76,7 +76,7 @@ function deleteAjax(lecture_id) {
 								alert("삭제되었습니다.");
 								location.reload();
 							} else {
-								alert("에러가 발생했습니다. 다시 시도해주세요.");
+								alert("이미 삭제된 강의거나 에러가 발생했습니다.");
 								location.reload();
 							}
 						}

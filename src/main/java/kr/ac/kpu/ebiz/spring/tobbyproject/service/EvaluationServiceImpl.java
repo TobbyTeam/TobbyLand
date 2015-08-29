@@ -130,22 +130,36 @@ public class EvaluationServiceImpl implements EvaluationService {
        return result;
     }
 
-    public boolean confirmService(int evaluation_id) {
+    public int confirmService(int evaluation_id) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int member_id = user.getMember_id();
 
-        int writer = evaluationRepository.selectMember_id(evaluation_id);
+        Map evaluation = evaluationRepository.selectConfirm(evaluation_id);
 
-        Collection authorities = user.getAuthorities();
+        int writer = Integer.parseInt(evaluation.get("member_id").toString());
 
-        boolean result = false;
+        boolean is_delete = (Boolean) evaluation.get("is_delete");
 
-        if(member_id == writer || authorities.toString().contains("ROLE_ADMIN")){
-            result = true;
+        int result = 3;
+
+        if(is_delete){
+
+            return result;
+
+        } else {
+
+            Collection authorities = user.getAuthorities();
+
+            if(member_id == writer || authorities.toString().contains("ROLE_ADMIN")){
+                result = 1;
+            } else {
+                result = 2;
+            }
         }
 
         return result;
+
     }
 
     public boolean deleteConfirmService(int evaluation_id) {
@@ -214,13 +228,24 @@ public class EvaluationServiceImpl implements EvaluationService {
         evaluationSub.put("evaluation_id", evaluation_id);
         evaluationSub.put("member_id", member_id);
 
+        Map confirm = evaluationRepository.selectSub(evaluationSub);
+
+        System.out.println(confirm+"가져온거 확인");
+
+
         int result =0;
 
-        if(evaluationRepository.selectSubCount(evaluationSub) == 0){
+        if(confirm == null){
+
             return result;
+
+        } else {
+
+            int type = Integer.parseInt(confirm.get("kind").toString());
+            result = type;
         }
 
-        return evaluationRepository.selectSubType(evaluationSub);
+        return result;
     }
 
     public boolean likesService(int evaluation_id) {
@@ -235,9 +260,11 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         boolean result = false;
 
-        if(evaluationRepository.insertSub(evaluationSub)&&evaluationRepository.updateEvaluationLike(evaluation_id)){
+        if(evaluationRepository.updateEvaluationLike(evaluation_id)){
 
-            result = true;
+            if(evaluationRepository.insertSub(evaluationSub)){
+                result = true;
+            }
         }
 
         return result;
@@ -255,9 +282,11 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         boolean result = false;
 
-        if(evaluationRepository.insertSub(evaluationSub)&&evaluationRepository.updateEvaluationDislike(evaluation_id)){
+        if(evaluationRepository.updateEvaluationDislike(evaluation_id)){
 
-            result = true;
+            if(evaluationRepository.insertSub(evaluationSub)){
+                result = true;
+            }
         }
 
         return result;
@@ -273,15 +302,14 @@ public class EvaluationServiceImpl implements EvaluationService {
         evaluationSub.put("evaluation_id", evaluation_id);
         evaluationSub.put("member_id", member_id);
         evaluationSub.put("kind", 3);
-        evaluationRepository.insertSub(evaluationSub);
-        evaluationRepository.updateEvaluationReport(evaluation_id);
 
         boolean result = false;
 
-        if(evaluationRepository.insertSub(evaluationSub)&&evaluationRepository.updateEvaluationReport(evaluation_id)){
+        if(evaluationRepository.updateEvaluationReport(evaluation_id)){
 
-            result = true;
-
+            if(evaluationRepository.insertSub(evaluationSub)){
+                result = true;
+            }
         }
 
         return result;
@@ -295,10 +323,11 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         boolean result = false;
 
-        if(evaluationRepository.updateIsDelete(evaluation_id)&&memberRepository.updateUnEvaluationCount(member_id)){
+        if(evaluationRepository.updateIsDelete(evaluation_id)){
 
-            result = true;
-
+            if(memberRepository.updateUnEvaluationCount(member_id)){
+                result = true;
+            }
         }
 
         return result;
@@ -312,7 +341,6 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         mav.addObject("search", search);
         mav.addObject("evaluations", result);
-        mav.addObject("lecture", lectureRepository.selectLecture_E(lecture_id));
         mav.addObject("lecture_id", lecture_id);
 
         if(result.isEmpty() == true) {

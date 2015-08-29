@@ -15,6 +15,8 @@ public interface EvaluationRepository {
 
 	int selectMember_id(int evaluation_id);
 
+	Map selectConfirm(int evaluation_id);
+
 	int selectIsDelete(int evaluation_id);
 
 	Map selectEvaluation(int evaluation_id);
@@ -22,6 +24,8 @@ public interface EvaluationRepository {
 	int selectSubCount(Map evaluationSub);
 
 	int selectSubType(Map evaluationSub);
+
+	Map selectSub(Map evaluationSub);
 
 	List<Map> SearchEvaluationPrefer(Map search);
 

@@ -26,6 +26,10 @@ public class EvaluationRepositoryImpl extends SqlSessionDaoSupport implements Ev
 		return getSqlSession().selectOne("EvaluationRepository.selectMember_id", evaluation_id);
 	}
 
+	public Map selectConfirm(int evaluation_id) {
+		return getSqlSession().selectOne("EvaluationRepository.selectConfirm", evaluation_id);
+	}
+
 	public int selectIsDelete(int evaluation_id) {
 		return getSqlSession().selectOne("EvaluationRepository.selectIsDelete", evaluation_id);
 	}
@@ -40,6 +44,10 @@ public class EvaluationRepositoryImpl extends SqlSessionDaoSupport implements Ev
 
 	public int selectSubType(Map evaluationSub) {
 		return getSqlSession().selectOne("EvaluationRepository.selectSubType", evaluationSub);
+	}
+
+	public Map selectSub(Map evaluationSub) {
+		return getSqlSession().selectOne("EvaluationRepository.selectSub", evaluationSub);
 	}
 
 	public List<Map> SearchEvaluationPrefer(Map search) { return getSqlSession().selectList("EvaluationRepository.SearchEvaluationPrefer", search); }

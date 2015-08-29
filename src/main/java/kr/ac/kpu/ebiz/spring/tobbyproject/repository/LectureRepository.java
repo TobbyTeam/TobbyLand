@@ -9,7 +9,9 @@ public interface LectureRepository {
 
 	List<Map> selectAll();
 
-	Map selectMember_id(int lecture_id);
+	int selectMember_id(int lecture_id);
+
+	Map selectConfirm(int lecture_id);
 
 	Map selectLecture(int lecture_id);
 
@@ -27,7 +29,9 @@ public interface LectureRepository {
 
 	List<Map> selectBoardReplyAll(int lb_id);
 
-	Map selectBoardMember_id(int lb_id);
+	int selectBoardMember_id(int lb_id);
+
+	Map selectBoardConfirm(int lb_id);
 
 	Map selectLecture_E(int lecture_id);
 

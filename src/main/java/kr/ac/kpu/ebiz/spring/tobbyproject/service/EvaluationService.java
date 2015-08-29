@@ -23,7 +23,7 @@ public interface EvaluationService {
 
     boolean deleteConfirmService(int evaluation_id);
 
-    boolean confirmService(int evaluation_id);
+    int confirmService(int evaluation_id);
 
     void viewService(int lecture_id, int evaluation_id,  ModelAndView mav);
 

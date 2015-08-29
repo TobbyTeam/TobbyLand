@@ -31,6 +31,10 @@
     select member_id from evaluation where evaluation_id = #{evaluation_id}
   </select>
 
+  <select id="selectConfirm" parameterType="int" resultType="map">
+    select member_id, is_delete from evaluation where evaluation_id = #{evaluation_id}
+  </select>
+
   <select id="selectIsDelete" parameterType="int" resultType="int">
     select is_delete from evaluation where evaluation_id = #{evaluation_id}
   </select>
@@ -41,12 +45,16 @@
     where evaluation_id = #{evaluation_id} and is_delete = 0
   </select>
 
-  <select id="selectSubCount" parameterType="map" resultType="int">
-    select count(es_id) from evaluationsub where evaluation_id = #{evaluation_id} and member_id = #{member_id} and kind between 1 and 3
+<!--  <select id="selectSubCount" parameterType="map" resultType="int">
+    select count(es_id) from evaluationsub where evaluation_id = #{evaluation_id} and member_id = #{member_id}
   </select>
 
   <select id="selectSubType" parameterType="map" resultType="int">
-    select kind from evaluationsub where evaluation_id = #{evaluation_id} and member_id = #{member_id} and kind between 1 and 3
+    select kind from evaluationsub where evaluation_id = #{evaluation_id} and member_id = #{member_id}
+  </select>-->
+
+  <select id="selectSub" parameterType="map" resultType="Map">
+    select kind from evaluationsub where evaluation_id = #{evaluation_id} and member_id = #{member_id}
   </select>
 
   <select id="SearchEvaluationPrefer" parameterType="map" resultType="map">
@@ -120,35 +128,35 @@
     comment = #{comment},
     score = #{score},
     semester = #{semester}
-    where evaluation_id = #{evaluation_id}
+    where evaluation_id = #{evaluation_id} and is_delete = 0
   </update>
 
   <update id="updateEvaluationLike" parameterType="int">
     update evaluation
     set
     likes = likes + 1
-    where evaluation_id = #{evaluation_id}
+    where evaluation_id = #{evaluation_id} and is_delete = 0
   </update>
 
   <update id="updateEvaluationDislike" parameterType="int">
     update evaluation
     set
     dislike = dislike + 1
-    where evaluation_id = #{evaluation_id}
+    where evaluation_id = #{evaluation_id} and is_delete = 0
   </update>
 
   <update id="updateEvaluationReport" parameterType="int">
     update evaluation
     set
     report = report + 1
-    where evaluation_id = #{evaluation_id}
+    where evaluation_id = #{evaluation_id} and is_delete = 0
   </update>
 
   <update id="updateIsDelete" parameterType="int">
     update evaluation
     set
     is_delete = 1
-    where evaluation_id = #{evaluation_id}
+    where evaluation_id = #{evaluation_id} and is_delete = 0
   </update>
 
 

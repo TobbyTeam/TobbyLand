@@ -1,5 +1,6 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.repository;
 
+import com.googlecode.ehcache.annotations.Cacheable;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 import java.util.List;
@@ -11,6 +12,7 @@ public class SemesterRepositoryImpl extends SqlSessionDaoSupport implements Seme
 		return getSqlSession().selectOne("SemesterRepository.select", semester_id);
 	}
 
+	@Cacheable(cacheName = "semesterCache")
 	public List<Map> selectAll() {
 		return getSqlSession().selectList("SemesterRepository.selectAll");
 	}

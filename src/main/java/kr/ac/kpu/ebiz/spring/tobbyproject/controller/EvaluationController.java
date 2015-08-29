@@ -34,11 +34,6 @@ public class EvaluationController {
 
 		ModelAndView mav = new ModelAndView();
 
-		if(lectureService.deleteConfirmService(lecture_id)){
-			mav.setViewName("/404");
-			return mav;
-		}
-
 		mav.setViewName("/evaluation/list");
 
 		evaluationService.listService(lecture_id, mav);
@@ -79,11 +74,6 @@ public class EvaluationController {
 
 		ModelAndView mav = new ModelAndView();
 
-		if(lectureService.deleteConfirmService(lecture_id)){
-			mav.setViewName("/404");
-			return mav;
-		}
-
 		evaluationService.regFormService(lecture_id, mav);
 
 		return mav;
@@ -102,7 +92,9 @@ public class EvaluationController {
 	}
 
 	@RequestMapping(value = "/confirm", method = RequestMethod.POST)
-	public @ResponseBody boolean confirm(@RequestParam int evaluation_id) {
+	public @ResponseBody int confirm(@RequestParam int evaluation_id) {
+
+		/* 1=성공 2=너꺼아님 3=삭제된거*/
 
 		return evaluationService.confirmService(evaluation_id);
 	}
@@ -125,6 +117,8 @@ public class EvaluationController {
 
 	@RequestMapping(value = "/subConfirm", method = RequestMethod.POST)
 	public @ResponseBody int subConfirm(@RequestParam("evaluation_id") int evaluation_id) {
+
+		/* 0=성공 1=추천 2=비공감 3=신고*/
 
 		return evaluationService.subConfirmService(evaluation_id);
 	}

@@ -44,35 +44,21 @@ $(document).ready(function() {
             }
         }, submitHandler: function (form) {
             if(confirm("많은 학생들이 보게 됩니다. 감정적으로 적지 마시고 객관적으로 부탁드립니다.")){
-
                 $.ajax({
-                    type     : "POST",
-                    url      : "/lecture/deleteConfirm",
-                    dataType : "json",
-                    data     : {lecture_id:lecture_id},
-                    success  : function(result) {
-                        if(result){
-                            alert("이미 삭제 된 강의입니다.");
-                            window.open('/evaluation/main', '_self');
+                    type: "POST",
+                    url: "/evaluation/reg",
+                    dataType: "json",
+                    data: $(form).serialize(),
+                    success: function (result) {
+                        if (result) {
+                            alert("강의평가 등록이 완료되었습니다.")
+                            window.open("/evaluation/list?lecture_id="+lecture_id, "_self");
                         } else {
-                            $.ajax({
-                                type: "POST",
-                                url: "/evaluation/reg",
-                                dataType: "json",
-                                data: $(form).serialize(),
-                                success: function (result) {
-                                    if (result) {
-                                        alert("강의평가 등록이 완료되었습니다.")
-                                        window.open("/evaluation/list?lecture_id="+lecture_id, "_self");
-                                    } else {
-                                        alert("에러가 발생했습니다. 다시 시도해주세요.");
-                                    }
-
-                                }
-                            })
+                            alert("에러가 발생했습니다. 다시 시도해주세요.");
                         }
+
                     }
-                });
+                })
             }
         }
     })
@@ -117,46 +103,21 @@ $(document).ready(function() {
             if(confirm("많은 학생들이 보게 됩니다. 감정적으로 적지 마시고 객관적으로 부탁드립니다.")){
 
                 $.ajax({
-                    type     : "POST",
-                    url      : "/lecture/deleteConfirm",
-                    dataType : "json",
-                    data     : {lecture_id:lecture_id},
-                    success  : function(result) {
-                        if(result){
-                            alert("이미 삭제 된 강의입니다.");
-                            window.open('/evaluation/main', '_self');
+                    type: "POST",
+                    url: "/evaluation/mod",
+                    dataType: "json",
+                    data: $(form).serialize(),
+                    success: function (result3) {
+                        if (result3) {
+                            alert("강의평가 수정이 완료되었습니다.")
+                            window.open("/evaluation/list?lecture_id="+lecture_id, "_self");
                         } else {
-                            $.ajax({
-                                type     : "POST",
-                                url      : "/evaluation/deleteConfirm",
-                                dataType : "json",
-                                data     : {evaluation_id:evaluation_id},
-                                success  : function(result2) {
-                                    if(result2){
-                                        alert("이미 삭제 된 강의평가입니다.");
-                                        location.reload();
-                                    } else {
-                                        $.ajax({
-                                            type: "POST",
-                                            url: "/evaluation/mod",
-                                            dataType: "json",
-                                            data: $(form).serialize(),
-                                            success: function (result3) {
-                                                if (result3) {
-                                                    alert("강의평가 수정이 완료되었습니다.")
-                                                    window.open("/evaluation/list?lecture_id="+lecture_id, "_self");
-                                                } else {
-                                                    alert("에러가 발생했습니다. 다시 시도해주세요.");
-                                                }
-
-                                            }
-                                        })
-                                    }
-                                }
-                            })
+                            alert("이미 삭제된 글이거나 에러가 발생했습니다.");
+                            window.open("/evaluation/list?lecture_id="+lecture_id, "_self");
                         }
+
                     }
-                });
+                })
             }
         }
     })

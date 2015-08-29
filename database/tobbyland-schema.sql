@@ -23,8 +23,6 @@ CREATE TABLE member (
   password varchar(100) DEFAULT NULL,
   nickname varchar(20) DEFAULT NULL,
   email varchar(22) DEFAULT NULL,
-/*  question int(2) UNSIGNED DEFAULT '1',
-  answer varchar(10) DEFAULT NULL,*/
   reg_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   method tinyint(2) UNSIGNED DEFAULT '1',
   task tinyint(2) UNSIGNED DEFAULT '4',
@@ -233,7 +231,7 @@ CREATE TABLE evaluationsub (
   es_id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   evaluation_id int(10) UNSIGNED DEFAULT NULL,
   member_id int(5) UNSIGNED DEFAULT NULL,
-  kind tinyint(1) UNSIGNED DEFAULT '0',
+  kind int(1) UNSIGNED DEFAULT '0',
   PRIMARY KEY (es_id),
 /*  UNIQUE KEY uni_evaluation_id_member_id (evaluation_id,member_id),*/
   KEY FK_evaluationsub_evaluation (evaluation_id),

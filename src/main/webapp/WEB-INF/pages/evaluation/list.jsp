@@ -151,6 +151,9 @@
 
 		<div class="row">
 			<div class="col-md-2"></div>
+			<c:if test="${not empty error}">
+				${error}
+			</c:if>
 			<div class="col-md-8 bigframe" align="right">
 					${evaluation.write_date}
 				<hr />

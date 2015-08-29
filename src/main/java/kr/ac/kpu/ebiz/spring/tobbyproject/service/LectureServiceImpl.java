@@ -57,7 +57,7 @@ public class LectureServiceImpl implements LectureService{
 
         int result = 3;
 
-        Map lecture = lectureRepository.selectMember_id(lecture_id);
+        Map lecture = lectureRepository.selectConfirm(lecture_id);
 ;
         int writer = Integer.parseInt(lecture.get("member_id").toString());
 
@@ -87,9 +87,7 @@ public class LectureServiceImpl implements LectureService{
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int member_id = user.getMember_id();
 
-        Map lecture = lectureRepository.selectMember_id(lecture_id);
-
-        int writer = Integer.parseInt(lecture.get("member_id").toString());
+        int writer = lectureRepository.selectMember_id(lecture_id);
 
         Collection authorities = user.getAuthorities();
 
@@ -241,7 +239,7 @@ public class LectureServiceImpl implements LectureService{
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int member_id = user.getMember_id();
 
-        Map lectureBoard = lectureRepository.selectBoardMember_id(lb_id);
+        Map lectureBoard = lectureRepository.selectBoardConfirm(lb_id);
 
         int writer = Integer.parseInt(lectureBoard.get("member_id").toString());
 
@@ -272,9 +270,7 @@ public class LectureServiceImpl implements LectureService{
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int member_id = user.getMember_id();
 
-        Map lectureBoard = lectureRepository.selectBoardMember_id(lb_id);
-
-        int writer = Integer.parseInt(lectureBoard.get("member_id").toString());
+        int writer = lectureRepository.selectBoardMember_id(lb_id);
 
         Collection authorities = user.getAuthorities();
 
