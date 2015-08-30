@@ -63,7 +63,7 @@
 			<div class="col-lg-0">
 				<button type="button" onclick="location.href='/lecture/boardList/${lecture_id}/'" class="btn btn-default">전체목록</button>
 				<button type="button" onclick="location.href='/lecture/boardRegForm?lecture_id=${lecture_id}'" class="btn btn-primary">글작성</button>
-				<%--				<a href="/lecture/boardRegTest?lecture_id=${lecture_id}">테스트</a>--%>
+								<a href="/lecture/boardRegTest?lecture_id=${lecture_id}">테스트</a>
 			</div>
 		</div>
 		<div class="col-md-1"></div>
@@ -74,11 +74,9 @@
 		<jsp:param name="url" value="/lecture/boardList/${lecture_id}/?page=" />
 		<jsp:param name="totalCount" value="${paging.totalCount}" />
 		<jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
-		<jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
 		<jsp:param name="startPageNo" value="${paging.startPageNo}" />
 		<jsp:param name="pageNo" value="${paging.pageNo}" />
 		<jsp:param name="endPageNo" value="${paging.endPageNo}" />
-		<jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
 		<jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
 	</jsp:include>
 

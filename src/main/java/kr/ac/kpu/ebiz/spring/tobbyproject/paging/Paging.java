@@ -9,11 +9,9 @@ import org.apache.commons.lang.builder.ToStringStyle;
 public class Paging {
     private int pageSize; // 게시 글 수
     private int firstPageNo; // 첫 번째 페이지 번호
-    private int prevPageNo; // 이전 페이지 번호
     private int startPageNo; // 시작 페이지 (페이징 네비 기준)
     private int pageNo; // 페이지 번호
     private int endPageNo; // 끝 페이지 (페이징 네비 기준)
-    private int nextPageNo; // 다음 페이지 번호
     private int finalPageNo; // 마지막 페이지 번호
     private int totalCount; // 게시 글 전체 수
 
@@ -43,20 +41,6 @@ public class Paging {
      */
     public void setFirstPageNo(int firstPageNo) {
         this.firstPageNo = firstPageNo;
-    }
-
-    /**
-     * @return the prevPageNo
-     */
-    public int getPrevPageNo() {
-        return prevPageNo;
-    }
-
-    /**
-     * @param prevPageNo the prevPageNo to set
-     */
-    public void setPrevPageNo(int prevPageNo) {
-        this.prevPageNo = prevPageNo;
     }
 
     /**
@@ -99,20 +83,6 @@ public class Paging {
      */
     public void setEndPageNo(int endPageNo) {
         this.endPageNo = endPageNo;
-    }
-
-    /**
-     * @return the nextPageNo
-     */
-    public int getNextPageNo() {
-        return nextPageNo;
-    }
-
-    /**
-     * @param nextPageNo the nextPageNo to set
-     */
-    public void setNextPageNo(int nextPageNo) {
-        this.nextPageNo = nextPageNo;
     }
 
     /**
@@ -169,20 +139,8 @@ public class Paging {
 
         this.setFirstPageNo(1); // 첫 번째 페이지 번호
 
-        if (isNowFirst) {
-            this.setPrevPageNo(1); // 이전 페이지 번호
-        } else {
-            this.setPrevPageNo(((pageNo - 1) < 1 ? 1 : (pageNo - 1))); // 이전 페이지 번호
-        }
-
         this.setStartPageNo(startPage); // 시작 페이지 (페이징 네비 기준)
         this.setEndPageNo(endPage); // 끝 페이지 (페이징 네비 기준)
-
-        if (isNowFinal) {
-            this.setNextPageNo(finalPage); // 다음 페이지 번호
-        } else {
-            this.setNextPageNo(((pageNo + 1) > finalPage ? finalPage : (pageNo + 1))); // 다음 페이지 번호
-        }
 
         this.setFinalPageNo(finalPage); // 마지막 페이지 번호
     }

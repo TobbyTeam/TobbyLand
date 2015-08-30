@@ -233,6 +233,7 @@ public class LectureController {
 
 			String test = "테스트"+i;
 
+			lectureBoard.put("writer", test);
 			lectureBoard.put("rnum", rnum);
 			lectureBoard.put("title", test);
 			lectureBoard.put("contents", test);
