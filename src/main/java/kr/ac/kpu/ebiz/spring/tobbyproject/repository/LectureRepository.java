@@ -9,6 +9,8 @@ public interface LectureRepository {
 
 	List<Map> selectAll();
 
+	List<Map> selectAllNon();
+
 	int selectMember_id(int lecture_id);
 
 	Map selectConfirm(int lecture_id);

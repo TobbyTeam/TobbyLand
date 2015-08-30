@@ -37,12 +37,6 @@ public class EvaluationServiceImpl implements EvaluationService {
 
     }
 
-    public void lectureService(int lecture_id, ModelAndView mav) {
-
-        mav.addObject("lecture", lectureRepository.selectLecture_E(lecture_id));
-
-    }
-
     public boolean regChechService(int lecture_id) {
 
         MemberInfo user = (MemberInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

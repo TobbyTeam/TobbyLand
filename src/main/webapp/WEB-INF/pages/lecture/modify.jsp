@@ -20,8 +20,6 @@
 
 <jsp:include page="/top" flush="true"/>
 
-<br /><br />
-
 <jsp:include page="/lecture/search_form" flush="true"/>
 
 <br /><br />

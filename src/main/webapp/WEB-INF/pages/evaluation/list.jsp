@@ -24,11 +24,7 @@
 
 <jsp:include page="/top" flush="true"/>
 
-<jsp:include page="/lecture/search_form" flush="true"/>
-
-<jsp:include page="/evaluation/lecture?lecture_id=${lecture_id}" flush="true"/>
-
-<jsp:include page="/evaluation/search" flush="true"/> <br />
+<jsp:include page="/lecture/evaluationTop?lecture_id=${lecture_id}" flush="true"/>
 
 <jsp:include page="/evaluation/listBest" flush="true"/>
 

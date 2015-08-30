@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -21,6 +22,32 @@ public class LectureController {
 
 	@Autowired
 	LectureRepository lectureRepository;
+
+	@RequestMapping(value = "/evaluationTop", method = {RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView evaluationTop(@RequestParam int lecture_id) {
+
+		ModelAndView mav = new ModelAndView("/evaluation/top");
+
+		/*mav.addObject("lecture", lectureRepository.selectLecture_E(lecture_id));*/
+
+		List<Map> lectures = lectureRepository.selectAll();
+
+		int end = lectures.size();
+
+		for(int i=0; i < end; i++){
+
+			Map lecture = lectures.get(i);
+
+			int lecture_id2 = Integer.parseInt(lecture.get("lecture_id").toString());
+
+			if(lecture_id == lecture_id2){
+
+				break;
+			}
+		}
+
+		return mav;
+	}
 
 	@RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView list() {

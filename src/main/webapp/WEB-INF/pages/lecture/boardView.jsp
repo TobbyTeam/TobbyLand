@@ -29,9 +29,7 @@
 
 <jsp:include page="/top" flush="true"/>
 
-<jsp:include page="/lecture/search_form" flush="true"/>
-
-<jsp:include page="/evaluation/lecture?lecture_id=${board.lecture_id}" flush="true"/>
+<jsp:include page="/lecture/evaluationTop?lecture_id=${lecture_id}" flush="true"/>
 
 <c:set var="lb_id" value="${board.lb_id}" scope="page" />
 <c:set var="lecture_id" value="${board.lecture_id}" scope="page" />

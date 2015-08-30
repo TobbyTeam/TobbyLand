@@ -1,5 +1,6 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.repository;
 
+import com.googlecode.ehcache.annotations.Cacheable;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 import java.util.List;
@@ -9,8 +10,13 @@ public class LectureRepositoryImpl extends SqlSessionDaoSupport implements Lectu
 
 	/*select*/
 
+	@Cacheable(cacheName = "lectureCache")
 	public List<Map> selectAll() {
 		return getSqlSession().selectList("LectureRepository.selectAll");
+	}
+
+	public List<Map> selectAllNon() {
+		return getSqlSession().selectList("LectureRepository.selectAllNon");
 	}
 
 	public int selectMember_id(int lecture_id) {

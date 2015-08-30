@@ -6,6 +6,13 @@
   <!--select-->
 
   <select id="selectAll" resultType="map">
+    select l.lecture_id, l.lecture_name, l.prof, d.department_name, count(if(e.is_delete = 0 and e.is_reply=0,1,null)) as count,  ifnull(round(avg(if(e.is_delete = 0 and e.is_reply=0,e.score,null)), 1),0) as avg
+    from lecture l left outer join evaluation e on l.lecture_id = e.lecture_id left outer join department d on l.dept = d.department_id
+    where l.likes <![CDATA[ >= ]]> 10 and l.is_delete = 0
+    group by l.lecture_id
+  </select>
+
+  <select id="selectAllNon" resultType="map">
     select l.lecture_id, l.lecture_name, l.prof, l.likes, date_format(l.write_date, '%Y.%m.%d %T') as write_date, d.department_name
     from lecture l left outer join department d on l.dept = d.department_id
     where likes <![CDATA[ < ]]> 10 and is_delete = 0 order by lecture_id desc

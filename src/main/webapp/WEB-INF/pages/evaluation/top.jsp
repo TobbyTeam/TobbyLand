@@ -7,12 +7,51 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 
     <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/evlinfo.css" />">
+    <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/searchbar.css" />">
+
     <script src="<c:url value="${ctx}/resources/js/evaluation.js" />"></script>
 
 </head>
 
 <body>
 <div class="container">
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="col-md-3"></div>
+            <form action="/lecture/search" method="get" name="search_frm">
+                <div class="col-md-2">
+                    <div id="select">
+                        <select type="text" name="searchType" class="form-control">
+                            <option value="lecture_name" selected="selected">강의명</option>
+                            <option value="dept">학과명</option>
+                            <option value="prof">교수명</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div id="search">
+                        <div class="input-group col-md-12">
+                            <input type="text" name="searchWord" class="form-control"/>
+                            <span class="input-group-btn">
+                            <button type="button" onclick="searchLecture()" class="btn btn-info btn-lg">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="col-md-2"></div>
+            <div class="col-md-2">
+                <button type="button" onclick="location.href='/lecture/list'" class="btn btn-primary littlebtn2" type="button">강의생성<br />게시판</button>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+
+    </div>
+
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">

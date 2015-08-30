@@ -30,7 +30,7 @@ public class LectureServiceImpl implements LectureService{
 
     public void listService(ModelAndView mav) {
 
-        mav.addObject("lectures", lectureRepository.selectAll());
+        mav.addObject("lectures", lectureRepository.selectAllNon());
 
     }
 
