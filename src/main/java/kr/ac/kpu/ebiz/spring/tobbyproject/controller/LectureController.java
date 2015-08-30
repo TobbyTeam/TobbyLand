@@ -42,6 +42,8 @@ public class LectureController {
 
 			if(lecture_id == lecture_id2){
 
+				mav.addObject("lecture", lecture);
+
 				break;
 			}
 		}

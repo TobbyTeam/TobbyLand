@@ -40,7 +40,6 @@ public class EvaluationController {
 
 		mav.addObject("lecture_id", lecture_id);
 
-		System.out.println("리스트 확인");
 		return mav;
 	}
 

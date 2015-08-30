@@ -58,28 +58,7 @@ function reReportAjax(reply_id) {
 
 }
 
-
-function boardSearchLecture() {
-	if(document.board_search_frm.searchWord.value.length == 0) {
-		alert("검색어를 입력해 주세요.");
-		board_search_frm.searchWord.focus();
-		return;
-	}
-
-	document.board_search_frm.submit();
-}
-
-
-
 $(document).ready(function() {
-
-	var bd = $("body");
-
-	bd.on("dblclick", function () {
-
-		window.scrollTo(0, 0);
-
-	})
 
 	var lb_id = $("#lb_id").val();
 

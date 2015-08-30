@@ -9,7 +9,6 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
   <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/boardlist.css" />">
-  <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/searchbar.css" />">
   <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/boardview.css" />">
 
   <script src="<c:url value="/resources/js/updownScroll.js" />"></script>
@@ -141,7 +140,16 @@
         <tbody>
         <c:forEach var="board" items="${boards}" varStatus="status">
           <tr>
-            <td>${board.rnum}</td>
+            <td>
+              <c:choose>
+                <c:when test="${board.lb_id eq lb_id}">
+                  <strong>></strong>
+                </c:when>
+                <c:otherwise>
+                  ${board.rnum}
+                </c:otherwise>
+              </c:choose>
+            </td>
             <td>
               <a href="/lecture/boardView/${board.lecture_id}/?lb_id=${board.lb_id}&page=${paging.pageNo}">${board.title}
                 <c:if test="${board.count != 0}">
@@ -176,41 +184,10 @@
     <jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
   </jsp:include>
 
-  <div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4" align="center">
-      <form action="/lecture/boardList/${lecture_id}/" method="get" name="board_search_frm">
-        <table>
-          <tr>
-            <td>
-              <div id="select">
-                <select type="text" name="searchType">
-                  <option value="title" selected="selected">제목</option>
-                  <option value="contents">내용</option>
-                  <option value="title_contents">제목+내용</option>
-                  <option value="writer">글쓴이</option>
-                  <option value="all">전체</option>
-                </select>
-              </div>
-            </td>
-            <td>
-              <div id="search">
-                <div class="input-group col-md-12">
-                  <input type="text" name="searchWord" class="form-control"/>
-                  <span class="input-group-btn">
-                      <button type="button" onclick="boardSearchLecture()" class="btn btn-info btn-lg" >
-                        <i class="glyphicon glyphicon-search"></i>
-                      </button>
-                   </span>
-                </div>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </form>
-    </div>
-    <div class="col-md-4"></div>
-  </div>
+  <%--서치--%>
+  <jsp:include page="/search" flush="true">
+    <jsp:param name="url" value="/lecture/boardList/${lecture_id}/" />
+  </jsp:include>
 
 </div>
 

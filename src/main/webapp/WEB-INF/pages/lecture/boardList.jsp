@@ -9,12 +9,10 @@
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 	<link rel="stylesheet" href="<c:url value="${ctx}/resources/css/boardlist.css" />">
-	<link rel="stylesheet" href="<c:url value="${ctx}/resources/css/searchbar.css" />">
-
-	<script src="<c:url value="/resources/js/updownScroll.js" />"></script>
 
 	<script src="<c:url value="${ctx}/resources/js/lecture_board.js" />"></script>
-	<script src="<c:url value="${ctx}/resources/js/evaluation.js" />"></script>
+
+	<script src="<c:url value="/resources/js/updownScroll.js" />"></script>
 
 	<title>토비랜드</title>
 
@@ -61,7 +59,6 @@
 			<div class="col-lg-0">
 				<button type="button" onclick="location.href='/lecture/boardList/${lecture_id}/'" class="btn btn-default">전체목록</button>
 				<button type="button" onclick="location.href='/lecture/boardRegForm?lecture_id=${lecture_id}'" class="btn btn-primary">글작성</button>
-								<a href="/lecture/boardRegTest?lecture_id=${lecture_id}">테스트</a>
 			</div>
 		</div>
 		<div class="col-md-1"></div>
@@ -78,41 +75,11 @@
 		<jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
 	</jsp:include>
 
-	<div class="row">
-		<div class="col-md-4"></div>
-		<div class="col-md-4" align="center">
-			<form action="/lecture/boardList/${lecture_id}/" method="get" name="board_search_frm">
-				<table>
-					<tr>
-						<td>
-							<div id="select">
-								<select type="text" name="searchType">
-									<option value="title" selected="selected">제목</option>
-									<option value="contents">내용</option>
-									<option value="title_contents">제목+내용</option>
-									<option value="writer">글쓴이</option>
-									<option value="all">전체</option>
-								</select>
-							</div>
-						</td>
-						<td>
-							<div id="search">
-								<div class="input-group col-md-12">
-									<input type="text" name="searchWord" class="form-control"/>
-									<span class="input-group-btn">
-										<button type="button" onclick="boardSearchLecture()" class="btn btn-info btn-lg" >
-											<i class="glyphicon glyphicon-search"></i>
-										</button>
-									 </span>
-								</div>
-							</div>
-						</td>
-					</tr>
-				</table>
-			</form>
-		</div>
-		<div class="col-md-4"></div>
-	</div>
+	<%--서치--%>
+	<jsp:include page="/search" flush="true">
+		<jsp:param name="url" value="/lecture/boardList/${lecture_id}/" />
+	</jsp:include>
+
 </div>
 
 <jsp:include page="/bottom" flush="true"/>

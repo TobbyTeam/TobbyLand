@@ -138,4 +138,10 @@ public class MainController {
         return "/etc/paging";
     }
 
+    @RequestMapping(value = "/search")
+    public String search() throws Exception{
+
+        return "/etc/search";
+    }
+
 }

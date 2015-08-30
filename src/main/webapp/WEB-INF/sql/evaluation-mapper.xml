@@ -6,7 +6,7 @@
   <!--select-->
 
   <select id="selectEvaluationAll" parameterType="int" resultType="map">
-    select e.evaluation_id, e.lecture_id, e.method, e.task, e.exam, e.comment, e.score, date_format(e.write_date, '%Y.%m.%d') as write_date,
+    select e.evaluation_id, e.method, e.task, e.exam, e.comment, e.score, date_format(e.write_date, '%Y.%m.%d') as write_date,
            e.likes, e.dislike, s.semester_title, sum(if(e2.is_delete = 0,1,0)) as count
     from evaluation e left outer join semester s on e.semester = s.semester_id left outer join evaluation e2 on e.evaluation_id = e2.upper_id
     where e.lecture_id = #{lecture_id} and e.is_delete = 0 and e.is_reply = 0
