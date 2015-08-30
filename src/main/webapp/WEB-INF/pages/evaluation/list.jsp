@@ -10,6 +10,8 @@
 
 	<link rel="stylesheet" href="<c:url value="${ctx}/resources/css/evlview.css" />">
 
+	<script src="<c:url value="/resources/js/updownScroll.js" />"></script>
+
 	<script src="<c:url value="${ctx}/resources/js/scripts.js" />"></script>
 	<script src="<c:url value="${ctx}/resources/js/evaluation.js" />"></script>
 	<script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>

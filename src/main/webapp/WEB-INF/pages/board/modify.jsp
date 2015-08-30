@@ -12,6 +12,8 @@
 
   <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/boardregister.css" />">
 
+  <script src="<c:url value="/resources/js/updownScroll.js" />"></script>
+
   <script src="<c:url value="/resources/js/jquery.validate.min.js" />"></script>
   <script src="<c:url value="/resources/js/board_validate.js" />"></script>
   <script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>

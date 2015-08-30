@@ -11,7 +11,8 @@
 
     <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/evlmain.css" />">
 
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="<c:url value="/resources/js/updownScroll.js" />"></script>
+
     <script src="<c:url value="${ctx}/resources/js/lecture.js" />"></script>
     <script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>
     <script src="<c:url value="/resources/js/sessionTimeout.js" />"></script>

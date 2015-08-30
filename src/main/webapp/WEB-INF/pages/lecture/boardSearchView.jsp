@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/searchbar.css" />">
   <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/boardview.css" />">
 
+  <script src="<c:url value="/resources/js/updownScroll.js" />"></script>
+
   <script src="<c:url value="${ctx}/resources/js/lecture_board.js" />"></script>
   <script src="<c:url value="${ctx}/resources/js/evaluation.js" />"></script>
   <script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>

@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="<c:url value="${ctx}/resources/css/searchbar.css" />">
 
 	<script src="<c:url value="${ctx}/resources/js/board.js" />"></script>
+	<script src="<c:url value="/resources/js/updownScroll.js" />"></script>
 
 	<title>토비랜드</title>
 
@@ -44,7 +45,7 @@
 					<tr>
 						<td>${board.rnum}</td>
 						<td>
-							<a href="/board/view/${board.department_id}/?board_id=${board.board_id}&page=${paging.pageNo}&searchType=${search.searchType}&searchWord=${search.searchWord}" class="title">${board.title}
+							<a href="/board/view/${board.department_id}/?board_id=${board.board_id}&page=${paging.pageNo}&searchType=${search.searchType}&searchWord=${search.searchWord}">${board.title}
 							<c:if test="${board.count != 0}">
 								[${board.count}]
 							</c:if>

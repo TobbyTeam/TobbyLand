@@ -17,6 +17,7 @@
   <script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>
   <script src="<c:url value="/resources/js/sessionTimeout.js" />"></script>
   <script src="<c:url value="/resources/js/nickname.js" />"></script>
+  <script src="<c:url value="/resources/js/updownScroll.js" />"></script>
 
   <script src="<c:url value="${ctx}/resources/js/jquery.validate.min.js" />"></script>
   <script src="<c:url value="${ctx}/resources/js/board_validate.js" />"></script>

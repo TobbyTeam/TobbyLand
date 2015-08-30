@@ -9,7 +9,7 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/main.css" />">
-    <script src="<c:url value="/resources/js/upscroll.js" />"></script>
+    <script src="<c:url value="/resources/js/updownScroll.js" />"></script>
 
     <title>토비랜드</title>
 

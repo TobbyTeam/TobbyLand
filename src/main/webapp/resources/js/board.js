@@ -82,15 +82,6 @@ function search() {
 
 $(document).ready(function() {
 
-	var bd = $("body");
-
-	bd.on("dblclick", function () {
-
-		window.scrollTo(0, 0);
-
-	})
-
-
 	$(document).off('click', '#mod_btn').on('click', '#mod_btn', function() {
 /*	$("#mod_btn").unbind("click").on("click", function() {  스크립트 두번 뜨는거 다른 방법*/
 
@@ -115,7 +106,6 @@ $(document).ready(function() {
 	})
 
 	$(document).off('click', '#del_btn').on('click', '#del_btn', function() {
-/*	$("#del_btn").unbind("click").on("click", function() {*/
 
 		var board_id = $("#board_id").val();
 
@@ -155,7 +145,6 @@ $(document).ready(function() {
 	})
 
 	$(document).off('click', '#like_btn').on('click', '#like_btn', function() {
-		/*	$("#like_btn").unbind("click").on("click", function() {*/
 
 		var board_id = $("#board_id").val();
 
@@ -194,7 +183,6 @@ $(document).ready(function() {
 	})
 
 	$(document).off('click', '#dislike_btn').on('click', '#dislike_btn', function() {
-		/*	$("#dislike_btn").unbind("click").on("click", function() {*/
 
 		var board_id = $("#board_id").val();
 
@@ -233,7 +221,6 @@ $(document).ready(function() {
 	})
 
 	$(document).off('click', '#report_btn').on('click', '#report_btn', function() {
-		/*	$("#report_btn").unbind("click").on("click", function() {*/
 
 		var board_id = $("#board_id").val();
 
@@ -271,30 +258,5 @@ $(document).ready(function() {
 			}
 		})
 	})
-
-/*
-	$(document).off('click', '#reReg_btn').on('click', '#reReg_btn', function() {
-
-		if(document.reReg_frm.contents.value.length == 0) {
-			alert("내용을 입력해주세요.");
-			reReg_frm.contents.focus();
-			return;
-		}
-
-		$.ajax({
-			type: "POST",
-			url: "/board/replyReg",
-			data: $("#reReg_frm").serialize(),
-			dataType: "json",
-			success: function (result) {
-				if (result) {
-					location.reload();
-				} else {
-					alert("죄송합니다 다시 시도해주세요.")
-				}
-			}
-		})
-	})
-*/
 
 })

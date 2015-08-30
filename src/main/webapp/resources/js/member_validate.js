@@ -162,19 +162,12 @@ $(document).ready(function() {
 				required: "닉네임을 입력하세요.",
 				space: "공백은 불가능합니다."
 			}
-			/*        }, invalidHandler: function (form, validator) {
-			 var errors = validator.numberOfInvalids();
-			 if (errors) {
-			 alert(validator.errorList[0].message);
-			 validator.errorList[0].element.focus();
-			 }*/
 		}, submitHandler: function (form) {
 			$.ajax({
 				type: "POST",
 				url: "/member/mod",
 				data: $(form).serialize(),
 				dataType: "json",
-				/*                contentType: "application/x-www-form-urlencoded; charset=utf-8",*/
 				success: function (result) {
 					if (result) {
 						alert("회원정보 수정을 완료 하였습니다.");
@@ -228,7 +221,6 @@ $(document).ready(function() {
 				url: "/member/pwMod",
 				data: $(form).serialize(),
 				dataType: "json",
-				/*                contentType: "application/x-www-form-urlencoded; charset=utf-8",*/
 				success: function (result) {
 					if (result) {
 						alert("비밀번호 수정이 완료되었습니다.");

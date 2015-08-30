@@ -12,8 +12,6 @@
     <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/searchbar.css" />">
 
     <script src="<c:url value="${ctx}/resources/js/lecture.js" />"></script>
-    <script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>
-    <script src="<c:url value="/resources/js/sessionTimeout.js" />"></script>
 
     <title>토비랜드</title>
 

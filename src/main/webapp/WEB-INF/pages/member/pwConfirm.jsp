@@ -8,6 +8,9 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/login.css" />">
+
+    <script src="<c:url value="/resources/js/updownScroll.js" />"></script>
+
     <script src="<c:url value="${ctx}/resources/js/member.js" />"></script>
     <script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>
     <script src="<c:url value="/resources/js/sessionTimeout.js" />"></script>

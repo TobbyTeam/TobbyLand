@@ -17,6 +17,7 @@
   <script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>
   <script src="<c:url value="/resources/js/sessionTimeout.js" />"></script>
   <script src="<c:url value="/resources/js/nickname.js" />"></script>
+  <script src="<c:url value="/resources/js/updownScroll.js" />"></script>
 
   <script src="<c:url value="${ctx}/resources/js/jquery.validate.min.js" />"></script>
   <script src="<c:url value="${ctx}/resources/js/board_validate.js" />"></script>
@@ -182,7 +183,7 @@
               </c:choose>
             </td>
             <td>
-              <a href="/board/view/${board.department_id}/?board_id=${board.board_id}&page=${paging.pageNo}&searchType=${search.searchType}&searchWord=${search.searchWord}" class="title">${board.title}</a>
+              <a href="/board/view/${board.department_id}/?board_id=${board.board_id}&page=${paging.pageNo}&searchType=${search.searchType}&searchWord=${search.searchWord}">${board.title}</a>
               <c:if test="${board.count != 0}">
                 [${board.count}]
               </c:if>

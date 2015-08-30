@@ -218,16 +218,4 @@ function reDeleteAjax(evaluation_id) {
 	});
 }
 
-/*맨위로 이동*/
-
-$(document).ready(function() {
-	var bd = $("body");
-
-	bd.on("dblclick", function () {
-
-		window.scrollTo(0, 0);
-
-	});
-});
-
 
