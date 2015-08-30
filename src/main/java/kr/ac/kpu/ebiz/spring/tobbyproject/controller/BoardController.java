@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -99,6 +100,8 @@ public class BoardController {
 				boardService.listService(department_id, page, mav);
 			}
 
+			mav.addObject("replys", boardRepository.selectBoardReplyAll(board_id));
+
 		} else {
 			mav.setViewName("/board/error");
 			mav.addObject("department_id", department_id);
@@ -168,6 +171,14 @@ public class BoardController {
 	public @ResponseBody boolean replyReg(@RequestParam Map<String, java.io.Serializable> board) {
 
 		return boardService.replyRegService(board);
+	}
+
+	@RequestMapping(value = "/replyList", method = RequestMethod.POST)
+	public @ResponseBody List<Map> replyList(@RequestParam("board_id") int board_id) {
+
+		System.out.println("리플가져오기 확인");
+
+		return boardRepository.selectBoardReplyAll(board_id);
 	}
 
 	@RequestMapping(value = "/regTest", method = RequestMethod.GET)

@@ -12,7 +12,6 @@
 
 	<script src="<c:url value="/resources/js/updownScroll.js" />"></script>
 
-	<script src="<c:url value="${ctx}/resources/js/scripts.js" />"></script>
 	<script src="<c:url value="${ctx}/resources/js/evaluation.js" />"></script>
 	<script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>
 	<script src="<c:url value="/resources/js/sessionTimeout.js" />"></script>

@@ -30,7 +30,13 @@ public class BoardServiceImpl implements BoardService{
 
     public Map boardTopService(int department_id){
 
-        return departmentRepository.select(department_id);
+        List<Map> departments = departmentRepository.selectAll();
+
+        int index = department_id-1;
+
+        Map department = departments.get(index);
+
+        return department;
     }
 
     public void listService(int department_id, int page, ModelAndView mav) {
@@ -100,7 +106,6 @@ public class BoardServiceImpl implements BoardService{
         if(boardRepository.updateBoardHit(board_id)){
 
             mav.addObject("board", boardRepository.selectBoard(board_id));
-            mav.addObject("replys", boardRepository.selectBoardReplyAll(board_id));
 
         }else{
 

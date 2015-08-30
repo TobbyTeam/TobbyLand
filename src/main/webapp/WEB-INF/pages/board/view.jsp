@@ -128,7 +128,7 @@
       </table>
       </form>
 
-      <table class="col-md-12 table-striped table-condensed">
+      <table id="reply" class="col-md-12 table-striped table-condensed">
         <c:forEach var="reply" items="${replys}" varStatus="status">
           <tr class="reframe">
             <td width="15%" align="center">
