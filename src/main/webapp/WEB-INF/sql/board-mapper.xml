@@ -46,6 +46,14 @@
     select member_id, is_delete from board where board_id = #{board_id}
   </select>
 
+  <select id="selectBoardLike" parameterType="int" resultType="int">
+    select likes from board where board_id = #{board_id}
+  </select>
+
+  <select id="selectBoardDislike" parameterType="int" resultType="int">
+    select dislike from board where board_id = #{board_id}
+  </select>
+
   <select id="selectBoardSub" parameterType="map" resultType="map">
     select kind from board_sub where board_id = #{board_id} and member_id = #{member_id}
   </select>

@@ -21,6 +21,10 @@ public interface BoardRepository {
 
 	Map selectBoardConfirm(int board_id);
 
+	int selectBoardLike(int board_id);
+
+	int selectBoardDislike(int board_id);
+
 	Map selectBoardSub(Map boardSub);
 
 	int selectBoardSearchCount(Map board);

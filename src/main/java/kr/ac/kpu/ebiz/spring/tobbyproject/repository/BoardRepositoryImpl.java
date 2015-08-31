@@ -37,6 +37,14 @@ public class BoardRepositoryImpl extends SqlSessionDaoSupport implements BoardRe
 		return getSqlSession().selectOne("BoardRepository.selectBoardConfirm", board_id);
 	}
 
+	public int selectBoardLike(int board_id) {
+		return getSqlSession().selectOne("BoardRepository.selectBoardLike", board_id);
+	}
+
+	public int selectBoardDislike(int board_id) {
+		return getSqlSession().selectOne("BoardRepository.selectBoardDislike", board_id);
+	}
+
 	public Map selectBoardSub(Map boardSub) {
 		return getSqlSession().selectOne("BoardRepository.selectBoardSub", boardSub);
 	}

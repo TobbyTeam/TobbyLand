@@ -18,9 +18,6 @@
   <script src="<c:url value="/resources/js/nickname.js" />"></script>
   <script src="<c:url value="/resources/js/updownScroll.js" />"></script>
 
-  <script src="<c:url value="${ctx}/resources/js/jquery.validate.min.js" />"></script>
-  <script src="<c:url value="${ctx}/resources/js/board_validate.js" />"></script>
-
   <title>토비랜드</title>
 
 </head>
@@ -108,28 +105,10 @@
     <div class="col-md-1"></div>
     <div class="col-md-10">
       <br />
-      <form id="reReg_frm" name="reReg_frm" method="post">
-      <table class="col-md-12 table-condensed comment">
-        <tr>
-            <td width="20%"><input type="text" id="writer" name="writer" class="form-control" disabled="disabled" /></td>
-            <td width="70%"><input type="text" id="contents" name="contents" class="form-control"/></td>
-            <td width="10%" align="right"><input type="button" onclick="$(this.form).submit()" class="form-control" value="등록하기"/></td>
-          </tr>
-          <tr>
-            <td width="10%">
-              <input type="checkbox" id="is_anonymity" name="is_anonymity" value="1" onclick="check(this.form)"/>
-              익명으로 댓글달기
-            </td>
-            <td ></td>
-          </tr>
-          <input type="hidden" id="department_id" name="department_id" value="${department_id}"/>
-          <input type="hidden" id="board_id" name="upper_id" value="${board_id}" />
-      </table>
-      </form>
 
       <table id="reply" class="col-md-12 table-striped table-condensed">
         <c:forEach var="reply" items="${replys}" varStatus="status">
-          <tr class="reframe">
+          <tr class="reframe test">
             <td width="15%" align="center">
               <c:choose>
                 <c:when test="${reply.is_anonymity ne 1}">
@@ -147,6 +126,25 @@
           </tr>
         </c:forEach>
       </table>
+
+      <form id="reReg_frm" name="reReg_frm" method="post">
+        <table class="col-md-12 table-condensed comment">
+          <tr>
+            <td width="20%"><input type="text" id="writer" name="writer" class="form-control" disabled="disabled" /></td>
+            <td width="70%"><input type="text" id="contents" name="contents" class="form-control"/></td>
+            <td width="10%" align="right"><input type="button" id="reReg_btn" class="form-control" value="등록하기"/></td>
+          </tr>
+          <tr>
+            <td width="10%">
+              <input type="checkbox" id="is_anonymity" name="is_anonymity" value="1" onclick="check(this.form)"/>
+              익명으로 댓글달기
+            </td>
+            <td ></td>
+          </tr>
+          <input type="hidden" id="department_id" name="department_id" value="${department_id}"/>
+          <input type="hidden" id="board_id" name="upper_id" value="${board_id}" />
+        </table>
+      </form>
 
     </div>
     <div class="col-md-1"></div>

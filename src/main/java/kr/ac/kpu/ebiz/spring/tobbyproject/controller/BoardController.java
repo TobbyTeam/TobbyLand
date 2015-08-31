@@ -173,12 +173,22 @@ public class BoardController {
 		return boardService.replyRegService(board);
 	}
 
-	@RequestMapping(value = "/replyList", method = RequestMethod.POST)
+	@RequestMapping(value = "/replyList", method = {RequestMethod.GET, RequestMethod.POST})
 	public @ResponseBody List<Map> replyList(@RequestParam("board_id") int board_id) {
 
-		System.out.println("리플가져오기 확인");
-
 		return boardRepository.selectBoardReplyAll(board_id);
+	}
+
+	@RequestMapping(value = "/searchLike", method = {RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody int searchLike(@RequestParam("board_id") int board_id) {
+
+		return boardRepository.selectBoardLike(board_id);
+	}
+
+	@RequestMapping(value = "/searchDislike", method = {RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody int searchDislike(@RequestParam("board_id") int board_id) {
+
+		return boardRepository.selectBoardDislike(board_id);
 	}
 
 	@RequestMapping(value = "/regTest", method = RequestMethod.GET)

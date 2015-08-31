@@ -1,3 +1,59 @@
+function replyList(board_id) {
+	$.ajax({
+		type: "POST",
+		url: "/board/replyList",
+		dataType: "json",
+		data: {board_id: board_id},
+		success: function (result2) {
+
+			if(result2.length == 0){
+
+				$("#reply").empty();
+
+			} else {
+
+			$.each(result2, function () {
+
+				var list = result2;
+
+				var content = '<table id="reply" class="col-md-12 table-striped table-condensed">';
+
+				for( i=0;i < list.length ; i++){
+
+					content += '<tr class="reframe test">';
+					content += '<td width="15%" align="center">';
+
+					if(list[i].is_anonymity === 0){
+
+						content += '<span class="title">'+list[i].writer+'*</span>';
+
+					} else {
+
+						content += list[i].writer;
+					}
+
+					content += '</td>';
+					content += '<td width="65%">'+ list[i].contents +'</td>';
+					content += '<td width="10%" align="right" class="littlebtn">' + list[i].write_date + '</td>';
+					content += '<td width="5%" align="right" class="littlebtn"><button onclick="reDeleteAjax(' + list[i].board_id + ')" class="btn btn-default littlebtn">삭제</button></td>';
+					content += '<td width="5%" align="right" class="littlebtn"><button onclick="reReportAjax(' + list[i].board_id + ')" class="btn btn-danger littlebtn">신고</button></td>';
+					content += "</tr>";
+
+				}
+
+				content += "</table>";
+
+				$("#reply").replaceWith(content);
+
+
+
+			})
+			}
+
+		}
+	})
+}
+
 function reDeleteAjax(board_id) {
 	$.ajax({
 		type: "POST",
@@ -17,7 +73,8 @@ function reDeleteAjax(board_id) {
 						success: function (result2) {
 							if (result2) {
 								alert("삭제되었습니다.");
-								location.reload();
+
+								replyList($("#board_id").val());
 							} else {
 								alert("다시 시도 하세요.");
 							}
@@ -27,7 +84,7 @@ function reDeleteAjax(board_id) {
 			} else if(result === 2) {
 				alert("본인이 작성하신 글이 아닙니다.");
 			} else {
-				alert("이미 삭제 된 글입니다.");
+				alert("삭제 된 글입니다.");
 				location.reload();
 			}
 		}
@@ -55,7 +112,7 @@ function reReportAjax(board_id) {
 							if (result2) {
 								alert("신고 되었습니다");
 							} else {
-								alert("이미 삭제된 글이거나 에러가 발생했습니다.");
+								alert("삭제된 글이거나 에러가 발생했습니다.");
 								location.reload();
 							}
 						}
@@ -117,7 +174,7 @@ $(document).ready(function() {
 									alert("삭제되었습니다.");
 									window.open("/board/list/"+$("#department_id").val()+"/", "_self");
 								} else {
-									alert("이미 삭제된 글이거나 에러가 발생했습니다.");
+									alert("삭제된 글이거나 에러가 발생했습니다.");
 									location.reload();
 								}
 							}
@@ -159,9 +216,21 @@ $(document).ready(function() {
 						success: function (result2) {
 							if (result2) {
 								alert("추천 되었습니다..");
-								location.reload();
+								$.ajax({
+									type: "POST",
+									url: "/board/searchLike",
+									dataType: "json",
+									data: {board_id: board_id},
+									success: function (result3) {
+
+										var searchLike = '<button id="like_btn" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up"></span><br />추천<br />'+result3+'</button>';
+
+										$("#like_btn").replaceWith(searchLike);
+
+									}
+								});
 							} else {
-								alert("이미 삭제된 글이거나 에러가 발생했습니다.");
+								alert("삭제된 글이거나 에러가 발생했습니다.");
 								location.reload();
 							}
 						}
@@ -197,9 +266,21 @@ $(document).ready(function() {
 						success: function (result2) {
 							if (result2) {
 								alert("비추천 되었습니다.");
-								location.reload();
+								$.ajax({
+									type: "POST",
+									url: "/board/searchDislike",
+									dataType: "json",
+									data: {board_id: board_id},
+									success: function (result3) {
+
+										var searchDislike = '<button id="dislike_btn"class="btn"><span class="glyphicon glyphicon-thumbs-down"></span><br />비추천<br />'+result3+'</button>';
+
+										$("#dislike_btn").replaceWith(searchDislike);
+
+									}
+								});
 							} else {
-								alert("이미 삭제된 글이거나 에러가 발생했습니다.");
+								alert("삭제된 글이거나 에러가 발생했습니다.");
 								location.reload();
 							}
 						}
@@ -237,12 +318,71 @@ $(document).ready(function() {
 								if (result2) {
 									alert("신고 되었습니다.");
 								} else {
-									alert("이미 삭제된 글이거나 에러가 발생했습니다.");
+									alert("삭제된 글이거나 에러가 발생했습니다.");
 									location.reload();
 								}
 							}
 						});
 					}
+				}
+			}
+		})
+	})
+
+	$(document).off('click', '#reReg_btn').on('click', '#reReg_btn', function() {
+
+		var checked = $("#is_anonymity").is(":checked");
+
+		if(checked) {
+
+			var writer = $("#writer").val();
+
+			if( writer == "" || writer == null ){
+
+				alert( "닉네임을 입력해주세요." );
+				return;
+			}
+
+			var blank_pattern = /[\s]/g;
+			if( blank_pattern.test(writer) == true){
+				alert("닉네임에 공백은 사용할 수 없습니다.");
+				return;
+			}
+		}
+
+		var contents = $("#contents").val();
+
+		if( contents == "" || contents == null ){
+
+			alert( "내용을 입력해주세요." );
+			return;
+		}
+
+		var blank_pattern2 = /^\s+|\s+$/g;
+		if( contents.replace(blank_pattern2, "") == "" ){
+			alert("내용이 공백만 입력되었습니다");
+			return;
+		}
+
+		$.ajax({
+			type     : "POST",
+			url: "/board/replyReg",
+			dataType : "json",
+			data: $("#reReg_frm").serialize(),
+			success  : function(result) {
+
+				if (result) {
+
+					$("#writer").val("");
+					$("#writer").attr("disabled", true);
+					$("#contents").val("");
+					$("#is_anonymity").attr("checked",false);
+
+					replyList($("#board_id").val());
+
+				} else {
+					alert("죄송합니다. 에러가 발생했습니다..")
+					location.reload();
 				}
 			}
 		})

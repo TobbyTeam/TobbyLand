@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -28,9 +27,9 @@ public class LectureController {
 
 		ModelAndView mav = new ModelAndView("/evaluation/top");
 
-		/*mav.addObject("lecture", lectureRepository.selectLecture_E(lecture_id));*/
+		mav.addObject("lecture", lectureRepository.selectLecture_E(lecture_id));
 
-		List<Map> lectures = lectureRepository.selectAll();
+/*		List<Map> lectures = lectureRepository.selectAll();
 
 		int end = lectures.size();
 
@@ -46,7 +45,7 @@ public class LectureController {
 
 				break;
 			}
-		}
+		}*/
 
 		return mav;
 	}

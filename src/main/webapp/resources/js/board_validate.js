@@ -83,7 +83,7 @@ $(document).ready(function() {
 		}
 	})
 
-	$("#reReg_frm").validate({
+	/*$("#reReg_frm").validate({
 		onfocusout: false,
 		rules: {
 			contents: {
@@ -109,7 +109,14 @@ $(document).ready(function() {
 				data: $(form).serialize(),
 				success: function (result) {
 					if (result) {
-						location.reload();
+
+						$("#writer").val("");
+						$("#writer").attr("disabled", true);
+						$("#contents").val("");
+						$("#is_anonymity").attr("checked",false);
+
+						replyList($("#board_id").val());
+
 					} else {
 						alert("죄송합니다 다시 시도해주세요.")
 						location.reload();
@@ -118,6 +125,6 @@ $(document).ready(function() {
 				}
 			})
 		}
-	})
+	})*/
 
 })
