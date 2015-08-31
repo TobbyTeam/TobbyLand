@@ -38,6 +38,22 @@
             <form class="form-horizontal">
                 <div class="form-group">
                     <label class="col-sm-2 control-label">
+                        주의사항
+                    </label>
+                    <div class="col-sm-9">
+						<textarea class="form-control" rows="7" readonly>
+1. 회원가입을 한 웹브라우저로 새탭이나 링크를 통해 KPU 메일 로그인 하셔야 합니다.
+
+2. 메일인증을 되지 않으면 회원정보는 저희 DB에 등록되지 않습니다.
+(정상적으로 진행하였는데도 메일인증이 실패하면 새로이 회원가입을 진행해주시기 바랍니다.)
+                        </textarea>
+                    </div>
+                </div>
+            </form>
+
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">
                         가입절차
                     </label>
                     <div class="col-sm-9">

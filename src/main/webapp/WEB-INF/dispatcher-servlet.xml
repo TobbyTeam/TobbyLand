@@ -150,10 +150,10 @@
 	<!-- ========================= GMAIL DEFINITION ========================= -->
 
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com" />
+		<property name="host" value="mw-002.cafe24.com" />
 		<property name="port" value="587" />
-		<property name="username" value="kputobbyland" />
-		<property name="password" value="tobby1234" />
+		<property name="username" value="tobbyland@tobbyland.com" />
+		<property name="password" value="tobby..!" />
 
 		<property name="javaMailProperties">
 			<props>
