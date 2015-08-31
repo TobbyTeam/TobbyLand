@@ -26,6 +26,8 @@
         <intercept-url pattern="/evaluation/**" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/lecture/**" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/board/list/**" access="permitAll" />
+        <intercept-url pattern="/board/view/14/**" access="permitAll" />
+        <intercept-url pattern="/board/view/15/**" access="permitAll" />
         <intercept-url pattern="/board/**" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/**" access="permitAll" />

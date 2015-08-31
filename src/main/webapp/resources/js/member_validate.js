@@ -9,7 +9,7 @@ $(document).ready(function() {
 	});
 
 	$.validator.addMethod("mix", function (value, element) {
-		return this.optional(element) || /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{7,20}$/.test(value);
+		return this.optional(element) || /^(?=.*[a-zA-Z])(?=.*[0-9]).{7,20}$/.test(value);
 	});
 
 	$.validator.addMethod("space", function (value, element) {
@@ -75,7 +75,7 @@ $(document).ready(function() {
 				required: "패스워드를 입력하세요.",
 				space: "공백은 불가능합니다.",
 				rangelength: $.validator.format("패스워드 7글자 이상 20글자 이하로 입력하세요."),
-				mix: "비밀번호는 문자, 숫자, 특수문자(!@#$%^*+=-)의 조합으로 입력해주세요."
+				mix: "비밀번호는 문자, 숫자 조합으로 입력해주세요."
 			}, password_check: {
 				required: "패스워드 확인 입력하세요.",
 				equalTo: "패스워드와 일치하지 않습니다."
@@ -210,7 +210,7 @@ $(document).ready(function() {
 				required: "패스워드를 입력하세요.",
 				space: "공백은 불가능합니다.",
 				rangelength: $.validator.format("패스워드 7글자 이상 20글자 이하로 입력하세요."),
-				mix: "비밀번호는 문자, 숫자, 특수문자(!@#$%^*+=-)의 조합으로 입력해주세요."
+				mix: "비밀번호는 문자, 숫자 조합으로 입력해주세요."
 			}, password_check: {
 				required: "패스워드 확인 입력하세요.",
 				equalTo: "패스워드와 일치하지 않습니다."

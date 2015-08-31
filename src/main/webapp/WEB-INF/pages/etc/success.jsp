@@ -10,6 +10,8 @@
 
 	<script src="<c:url value="/resources/js/updownScroll.js" />"></script>
 
+	<link rel="stylesheet" href="<c:url value="${ctx}/resources/css/explanation.css" />">
+
 	<title>토비랜드</title>
 
 </head>
@@ -32,7 +34,17 @@
 			<br />
 			<h2 align="center">${message1}</h2>
 			<hr />
-			<h4 align="center">${message2}</h4>
+
+			<c:choose>
+				<c:when test="${empty message3}">
+					<h4 align="center">${message2}</h4>
+				</c:when>
+				<c:otherwise>
+					<h4 align="center" class="warn">${message3}</h4>
+					<br />
+					<h4 align="center">${message2}</h4>
+				</c:otherwise>
+			</c:choose>
 			<br />
 			<p align="center"><a href="http://mail.kpu.ac.kr/login" target="_blank">KPU 메일 확인하기</a></p>
 			<p align="center"><a href="/login">로그인 페이지</a></p>

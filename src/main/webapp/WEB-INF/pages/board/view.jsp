@@ -127,6 +127,8 @@
         </c:forEach>
       </table>
 
+      <s:authorize access="isAuthenticated()">
+
       <form id="reReg_frm" name="reReg_frm" method="post">
         <table class="col-md-12 table-condensed comment">
           <tr>
@@ -145,6 +147,8 @@
           <input type="hidden" id="board_id" name="upper_id" value="${board_id}" />
         </table>
       </form>
+
+      </s:authorize>
 
     </div>
     <div class="col-md-1"></div>

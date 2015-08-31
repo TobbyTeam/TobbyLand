@@ -93,6 +93,7 @@ public class MemberController {
 
 		mav.addObject("message1", "메일이 발송되었습니다.");
 		mav.addObject("message2", "KPU 웹메일로 가입인증 메일이 발송되었습니다.<br />메일을 확인하시고 메일인증 후 로그인 하시기 바랍니다.");
+		mav.addObject("message3", "회원가입을 진행한 브라우저로 KPU 웹메일 로그인 후 진행 하시기 바랍니다.");
 
 		return mav;
 
