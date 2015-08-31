@@ -23,11 +23,14 @@
 }
 
 #search button{
-    margin: 0 2 0 0;
+    margin: 0 2px 0 0;
     background: none;
     box-shadow: none;
     border: 0;
     color: #666666;
     padding: 0 8px 0 10px;
     border-left: solid 1px #ccc;
+}
+#minHeight {
+    min-height: 45%;
 }

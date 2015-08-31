@@ -11,3 +11,6 @@
 .bold {
 	font-weight:bold;
 }
+#minHeight {
+	min-height: 52%;
+}

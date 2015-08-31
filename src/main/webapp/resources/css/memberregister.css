@@ -6,3 +6,6 @@
 .littlebtn{
 	font-size:10px;
 }
+#minHeight {
+	min-height: 52%;
+}

@@ -54,8 +54,8 @@
     </div>
 
     <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
             <table>
                 <tr>
                     <td id="marname">${lecture.department_name}</td>
@@ -85,17 +85,17 @@
             <table class="table">
                 <tr>
                     <td>
-                        <button type="button" onclick="location.href='/evaluation/list?lecture_id=${lecture.lecture_id}'" class="btn btn-default littlebtn">강의평가</button>
+                        <button type="button" onclick="location.href='/evaluation/list?lecture_id=${lecture.lecture_id}'" class="btn btn-default">강의평가</button>
                     </td>
                     <td>
-                        <button type="button" onclick="location.href='/lecture/boardList/${lecture.lecture_id}/'" class="btn btn-default littlebtn">강의게시판</button>
+                        <button type="button" onclick="location.href='/lecture/boardList/${lecture.lecture_id}/'" class="btn btn-default">강의게시판</button>
                     </td>
                     <td width="90%"></td>
                     <td><button type="button" onclick="evalRegAjax(${lecture.lecture_id})" class="btn btn-primary">평가작성</button></td>
                 <tr>
             </table>
         </div>
-        <div class="col-md-2"></div>
+        <div class="col-md-10"></div>
     </div>
 </div>
 

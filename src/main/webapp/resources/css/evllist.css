@@ -11,3 +11,6 @@
 .littlebtn2{
 	font-size:11px;
 }
+#minHeight {
+	min-height: 41%;
+}

@@ -25,8 +25,8 @@
 <div class="container">
 
 	<div class="row">
-		<div class="col-md-2"></div>
-		<div class="col-md-8" align="left">
+		<div class="col-md-1"></div>
+		<div class="col-md-10" align="left">
 			<table>
 				<tr>
 					<td>
@@ -75,12 +75,12 @@
 				<tr>
 			</table>
 		</div>
-		<div class="col-md-2"></div>
+		<div class="col-md-1"></div>
 	</div>
 
 	<br />
 
-	<div class="col-xs-offset-2">
+	<div class="col-xs-offset-1">
 		<table>
 			<td><img src="<c:url value="${ctx}/resources/image/best.jpg" />" class="img-responsive"/></td>
 		</table>
@@ -90,7 +90,7 @@
 	<c:forEach var="best" items="${best}" varStatus="status">
 
 		<div class="row">
-			<div class="col-md-2"></div>
+			<div class="col-md-1"></div>
 			<div class="col-md-8 bigframe" align="right">
 					${best.write_date}
 				<hr />

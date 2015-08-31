@@ -67,26 +67,26 @@
 		<div class="col-md-1"></div>
 	</div>
 
-	<%--페이징--%>
-	<jsp:include page="/paging" flush="true">
-		<jsp:param name="url" value="/lecture/boardList/${lecture_id}/?page=" />
-		<jsp:param name="search" value="&searchType=${search.searchType}&searchWord=${search.searchWord}" />
-		<jsp:param name="totalCount" value="${paging.totalCount}" />
-		<jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
-		<jsp:param name="startPageNo" value="${paging.startPageNo}" />
-		<jsp:param name="pageNo" value="${paging.pageNo}" />
-		<jsp:param name="endPageNo" value="${paging.endPageNo}" />
-		<jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
-	</jsp:include>
-
-	<%--서치--%>
-	<jsp:include page="/search" flush="true">
-		<jsp:param name="url" value="/lecture/boardList/${lecture_id}/" />
-		<jsp:param name="searchType" value="${search.searchType}" />
-		<jsp:param name="searchWord" value="${search.searchWord}" />
-	</jsp:include>
-
 </div>
+
+<%--페이징--%>
+<jsp:include page="/paging" flush="true">
+	<jsp:param name="url" value="/lecture/boardList/${lecture_id}/?page=" />
+	<jsp:param name="search" value="&searchType=${search.searchType}&searchWord=${search.searchWord}" />
+	<jsp:param name="totalCount" value="${paging.totalCount}" />
+	<jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
+	<jsp:param name="startPageNo" value="${paging.startPageNo}" />
+	<jsp:param name="pageNo" value="${paging.pageNo}" />
+	<jsp:param name="endPageNo" value="${paging.endPageNo}" />
+	<jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
+</jsp:include>
+
+<%--서치--%>
+<jsp:include page="/search" flush="true">
+	<jsp:param name="url" value="/lecture/boardList/${lecture_id}/" />
+	<jsp:param name="searchType" value="${search.searchType}" />
+	<jsp:param name="searchWord" value="${search.searchWord}" />
+</jsp:include>
 
 <jsp:include page="/bottom" flush="true"/>
 

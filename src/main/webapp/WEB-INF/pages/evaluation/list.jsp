@@ -51,7 +51,7 @@
 	<c:forEach var="evaluation" items="${evaluations}" varStatus="status">
 
 	<div class="row">
-		<div class="col-md-2"></div>
+		<div class="col-md-1"></div>
 
 		<div class="col-md-8 bigframe" align="right">
 				${evaluation.write_date}

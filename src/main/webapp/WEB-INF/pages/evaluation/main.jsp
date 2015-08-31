@@ -25,7 +25,7 @@
 
 <body>
 <br />
-<div class="container">
+<div class="container" id="minHeight">
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4" align="center" id="main">

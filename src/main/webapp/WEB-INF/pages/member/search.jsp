@@ -25,7 +25,7 @@
 
 <jsp:include page="/top" flush="true"/>
 
-<div class="container">
+<div class="container" id="minHeight">
     <div class="row">
         <div class="col-md-2">
         </div>

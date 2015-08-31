@@ -19,10 +19,9 @@
 
 <jsp:include page="/top" flush="true"/>
 
-<div class="container">
+<div class="container" id="minHeight">
     <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-5">
+        <div class="col-md-6">
             <span class="boardname">사이트 공지사항</span>
             <table class="table">
                 <thead align="center">
@@ -41,7 +40,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-6">
             <span class="boardname">학교 공지사항</span>
             <table class="table">
                 <thead align="center">
@@ -60,11 +59,10 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-md-1"></div>
+
     </div>
     <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-5">
+        <div class="col-md-6">
             <span class="boardname">최신글</span>
             <table class="table">
                 <thead>
@@ -97,7 +95,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-6">
             <span class="boardname">핫 게시글</span>
             <table class="table">
                 <thead>
@@ -137,7 +135,6 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-md-1"></div>
     </div>
 </div>
 

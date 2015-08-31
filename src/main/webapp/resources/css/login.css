@@ -13,6 +13,9 @@ form[role=login] input, form[role=login] button {
 form[role=login] > div {
 	text-align: center;
 }
+#minHeight {
+	min-height: 52%;
+}
 
 
 
