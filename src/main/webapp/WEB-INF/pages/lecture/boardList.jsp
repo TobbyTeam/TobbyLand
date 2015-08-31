@@ -9,6 +9,7 @@
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 	<link rel="stylesheet" href="<c:url value="${ctx}/resources/css/boardlist.css" />">
+	<link rel="stylesheet" href="<c:url value="${ctx}/resources/css/textCut.css" />">
 
 	<script src="<c:url value="${ctx}/resources/js/lecture_board.js" />"></script>
 
@@ -28,29 +29,29 @@
 	<div class="row">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
-			<table class="table table-hover">
+			<table class="table table-hover" style="TABLE-layout:fixed">
 			<thead>
 				<tr>
 					<th width="8%">번호</th>
 					<th width="58%">제목</th>
 					<th width="18%">작성자</th>
-					<th width="8%">작성일</th>
-					<th width="8%">조회수</th>
+					<th width="9%">작성일</th>
+					<th width="7%">조회수</th>
 				</tr>
 				</thead>
 				<tbody>
 				<c:forEach var="board" items="${boards}" varStatus="status">
 					<tr>
 						<td>${board.rnum}</td>
-						<td>
+						<td width="58%" class="textCutE">
 							<a href="/lecture/boardView/${board.lecture_id}/?lb_id=${board.lb_id}&page=${paging.pageNo}">${board.title}</a>
 								<c:if test="${board.count != 0}">
 									[${board.count}]
 								</c:if>
 						</td>
-						<td>${board.writer}</td>
+						<td width="20%" class="textCutE">${board.writer}</td>
 						<td>${board.write_date}</td>
-						<td >${board.hit}</td>
+						<td align="center">${board.hit}</td>
 					</tr>
 				</c:forEach>
 				</tbody>

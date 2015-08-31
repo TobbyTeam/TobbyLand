@@ -9,24 +9,24 @@ $(document).ready(function() {
 		rules: {
 			title: {
 				required: true,
-				maxlength: 100
+				maxlength: 40
 			},contents: {
 				required: true
 			},writer: {
 				required: true,
 				space: true,
-				rangelength: [2, 20]
+				rangelength: [2, 15]
 			}
 		}, messages: {
 			title: {
 				required: "제목를 입력하세요.",
-				maxlength: $.validator.format("제목은 100글자 이하로 입력하세요.")
+				maxlength: $.validator.format("제목은 40글자 이하로 입력하세요.")
 			}, contents: {
 				required: "내용을 입력하세요."
 			}, writer: {
 				required: "닉네임을 입력하세요.",
 				space: "공백은 불가능합니다.",
-				rangelength: $.validator.format("닉네임은 2 글자 이상 20글자 이하로 입력하세요.")
+				rangelength: $.validator.format("닉네임은 2 글자 이상 15글자 이하로 입력하세요.")
 			}
 		}, submitHandler: function (form) {
 			$.ajax({
@@ -52,14 +52,14 @@ $(document).ready(function() {
 		rules: {
 			title: {
 				required: true,
-				maxlength: 100
+				maxlength: 40
 			},contents: {
 				required: true
 			}
 		}, messages: {
 			title: {
 				required: "제목을 입력하세요.",
-				maxlength: $.validator.format("제목은 100글자 이하로 입력하세요.")
+				maxlength: $.validator.format("제목은 40글자 이하로 입력하세요.")
 			}, contents: {
 				required: "내용을 입력하세요."
 			}

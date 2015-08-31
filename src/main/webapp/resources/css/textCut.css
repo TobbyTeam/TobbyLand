@@ -1,0 +1,13 @@
+@charset "utf-8";
+.textCutE{
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+
+}
+.textCutC{
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:clip;
+
+}

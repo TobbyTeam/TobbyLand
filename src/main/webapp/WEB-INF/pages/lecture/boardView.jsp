@@ -10,6 +10,7 @@
 
   <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/boardlist.css" />">
   <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/boardview.css" />">
+  <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/textCut.css" />">
 
   <script src="<c:url value="/resources/js/updownScroll.js" />"></script>
 
@@ -38,8 +39,8 @@
       <table class="table">
         <tr class="titleframe">
           <td width="5%">제목</td>
-          <td width="50%"><span class="title">${board.title}</span></td>
-          <td width="25%"></td>
+          <td width="55%"><span class="title">${board.title}</span></td>
+          <td width="20%"></td>
           <td width="10%">작성일</td>
           <td width="10%">${board.write_date}</td>
         </tr>
@@ -125,14 +126,14 @@
   <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-      <table class="table table-hover">
-        <thead>
+      <table class="table table-hover" style="TABLE-layout:fixed">
+      <thead>
         <tr>
           <th width="8%">번호</th>
           <th width="58%">제목</th>
           <th width="18%">작성자</th>
-          <th width="8%">작성일</th>
-          <th width="8%">조회수</th>
+          <th width="9%">작성일</th>
+          <th width="7%">조회수</th>
         </tr>
         </thead>
         <tbody>
@@ -148,15 +149,15 @@
                 </c:otherwise>
               </c:choose>
             </td>
-            <td>
+            <td width="58%" class="textCutE">
               <a href="/lecture/boardView/${board.lecture_id}/?lb_id=${board.lb_id}&page=${paging.pageNo}">${board.title}</a>
                 <c:if test="${board.count != 0}">
                   [${board.count}]
                 </c:if>
             </td>
-            <td>${board.writer}</td>
+            <td width="20%" class="textCutE">${board.writer}</td>
             <td>${board.write_date}</td>
-            <td >${board.hit}</td>
+            <td align="center">${board.hit}</td>
           </tr>
         </c:forEach>
         </tbody>

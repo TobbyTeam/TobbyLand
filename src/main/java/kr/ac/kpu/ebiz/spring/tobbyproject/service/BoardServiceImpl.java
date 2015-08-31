@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by happy on 2015-07-01.
@@ -307,8 +304,6 @@ public class BoardServiceImpl implements BoardService{
             board.put("writer", writer);
         }
 
-        System.out.println(writer+"작성자 확인");
-
         return boardRepository.insertReply(board);
     }
 
@@ -354,7 +349,37 @@ public class BoardServiceImpl implements BoardService{
 
     @Cacheable(cacheName = "latestCache")
     public List<Map> latestService() {
-        return boardRepository.selectLatestAll();
+
+        List<Map> latests = boardRepository.selectLatestAll();
+
+        int end = latests.size();
+
+        List<Map> list = new ArrayList<Map>();
+
+        for(int i=0 ; i<end ;i++){
+
+            Map latest = latests.get(i);
+
+            String ym = (String) latest.get("ym");
+            String now = (String) latest.get("now");
+
+            if(ym.equals(now)){
+
+                String time = (String) latest.get("time");
+
+                latest.put("write_date", time);
+
+            } else {
+
+                latest.put("write_date", ym);
+
+            }
+
+            list.add(latest);
+
+        }
+
+        return list;
     }
 
     @Cacheable(cacheName = "hotCache")

@@ -206,6 +206,12 @@ $(document).ready(function() {
 			return;
 		}
 
+		if( writer.length < 2 || writer.length > 15){
+
+			alert( "닉네임은 2 글자 이상 15글자 이하로 입력하세요." );
+			return;
+		}
+
 		var contents = $("#contents").val();
 
 		if( contents == "" || contents == null ){

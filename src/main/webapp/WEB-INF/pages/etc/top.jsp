@@ -14,16 +14,6 @@
   <div class="container">
     <ul class="nav navbar-nav navbar-left">
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">공지사항<span class="caret"></span></a>
-        <ul class="dropdown-menu" role="menu">
-          <c:forEach var="dept" items="${depts}" varStatus="status">
-            <c:if test="${dept.kind eq 'notice'}">
-              <li><a href="/board/list/${dept.department_id}/">${dept.department_name}</a></li>
-            </c:if>
-          </c:forEach>
-        </ul>
-      </li>
-      <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">학과게시판<span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
           <c:forEach var="dept" items="${depts}" varStatus="status">
@@ -39,6 +29,16 @@
         <ul class="dropdown-menu" role="menu">
           <c:forEach var="dept" items="${depts}" varStatus="status">
             <c:if test="${dept.kind eq 'etc'}">
+              <li><a href="/board/list/${dept.department_id}/">${dept.department_name}</a></li>
+            </c:if>
+          </c:forEach>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">운영/안내<span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <c:forEach var="dept" items="${depts}" varStatus="status">
+            <c:if test="${dept.kind eq 'notice' || dept.kind eq 'opt'}">
               <li><a href="/board/list/${dept.department_id}/">${dept.department_name}</a></li>
             </c:if>
           </c:forEach>

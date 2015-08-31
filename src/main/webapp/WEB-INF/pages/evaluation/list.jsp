@@ -44,7 +44,6 @@
 			<h2>${error}</h2>
 		</div>
 		<div class="col-md-1"></div>
-
 	</div>
 	</c:if>
 

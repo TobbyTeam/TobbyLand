@@ -109,21 +109,31 @@
   </select>
 
   <select id="selectSiteNoticeAll" resultType="map" >
-    select board_id, department_id, title, date_format(write_date, '%Y.%m.%d') as write_date
+    select board_id, department_id, title, date_format(write_date, '%y.%m.%d') as write_date
     from board
     where department_id = 14 and is_delete = 0 and is_reply = 0
     order by board_id desc limit 5
   </select>
 
   <select id="selectKpuNoticeAll" resultType="map" >
-    select board_id, department_id, title, date_format(write_date, '%Y.%m.%d') as write_date
+    select board_id, department_id, title, date_format(write_date, '%y.%m.%d') as write_date
     from board
     where department_id = 15 and is_delete = 0 and is_reply = 0
     order by board_id desc limit 5
   </select>
 
+<!--  <select id="selectLatestAll" resultType="map" >
+    select d.shot_name, b.board_id, b.writer, b.department_id, b.title, date_format(b.write_date, '%T') as write_date, b.is_anonymity
+    from board b left outer join department d on b.department_id = d.department_id
+    where d.kind in ('dept', 'etc') and b.is_delete = 0 and b.is_reply = 0
+    group by b.board_id
+    order by b.board_id desc limit 15
+  </select>-->
+
   <select id="selectLatestAll" resultType="map" >
-    select d.department_name, b.board_id, b.writer, b.department_id, b.title, date_format(b.write_date, '%Y.%m.%d %T') as write_date, b.is_anonymity
+    select d.shot_name, b.board_id, b.writer, b.department_id, b.title,
+    date_format(b.write_date, '%H:%i') as time, date_format(b.write_date, '%y.%m.%d') as ym, date_format(now(), '%y.%m.%d') as now,
+    b.is_anonymity
     from board b left outer join department d on b.department_id = d.department_id
     where d.kind in ('dept', 'etc') and b.is_delete = 0 and b.is_reply = 0
     group by b.board_id
@@ -131,11 +141,11 @@
   </select>
 
   <select id="selectHotAll" parameterType="map" resultType="map" >
-    select d.department_name, b.board_id, b.writer, b.department_id, b.title, b.hit, b.likes, b.is_anonymity, sum(if(b2.is_delete = 0,1,0)) as count
+    select d.shot_name, b.board_id, b.writer, b.department_id, b.title, b.hit, b.likes, b.is_anonymity, sum(if(b2.is_delete = 0,1,0)) as count
     from board b left outer join board b2 on b.board_id = b2.upper_id left outer join department d on b.department_id = d.department_id
     where d.kind in ('dept', 'etc') and b.is_delete = 0 and b.is_reply = 0 and b.likes <![CDATA[ >= ]]> 10
     group by b.board_id
-    order by date_format(b.write_date, '%Y.%m.%d') desc, b.likes desc, b.hit desc, count desc, b.board_id desc limit 15
+    order by date_format(b.write_date, '%y.%m.%d') desc, b.likes desc, b.hit desc, count desc, b.board_id desc limit 15
   </select>
 
 

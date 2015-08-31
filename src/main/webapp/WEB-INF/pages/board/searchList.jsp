@@ -10,6 +10,7 @@
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 	<link rel="stylesheet" href="<c:url value="${ctx}/resources/css/boardlist.css" />">
+	<link rel="stylesheet" href="<c:url value="${ctx}/resources/css/textCut.css" />">
 
 	<script src="<c:url value="${ctx}/resources/js/board.js" />"></script>
 	<script src="<c:url value="/resources/js/updownScroll.js" />"></script>
@@ -28,31 +29,31 @@
 	<div class="row">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
-			<table class="table table-hover">
+			<table class="table table-hover" style="TABLE-layout:fixed">
 			<thead>
 				<tr>
 					<th width="8%">번호</th>
-					<th width="50%">제목</th>
-					<th width="18%">작성자</th>
-					<th width="8%">작성일</th>
-					<th width="8%">조회수</th>
-					<th width="8%">추천수</th>
+					<th width="53%">제목</th>
+					<th width="15%">작성자</th>
+					<th width="10%">작성일</th>
+					<th width="7%">조회수</th>
+					<th width="7%">추천수</th>
 				</tr>
 				</thead>
 				<tbody>
 				<c:forEach var="board" items="${boards}" varStatus="status">
 					<tr>
 						<td>${board.rnum}</td>
-						<td>
-							<a href="/board/view/${board.department_id}/?board_id=${board.board_id}&page=${paging.pageNo}&searchType=${search.searchType}&searchWord=${search.searchWord}">${board.title}</a>
+						<td width="53%" class="textCutE">
+						<a href="/board/view/${board.department_id}/?board_id=${board.board_id}&page=${paging.pageNo}&searchType=${search.searchType}&searchWord=${search.searchWord}">${board.title}</a>
 							<c:if test="${board.count != 0}">
 								[${board.count}]
 							</c:if>
 						</td>
-						<td>
+						<td width="15%" class="textCutE">
 							<c:choose>
 								<c:when test="${board.is_anonymity ne 1}">
-									<span class="title">${board.writer}*</span>
+									<span class="title">*${board.writer}</span>
 								</c:when>
 								<c:otherwise>
 									${board.writer}
@@ -60,8 +61,8 @@
 							</c:choose>
 						</td>
 						<td>${board.write_date}</td>
-						<td>${board.hit}</td>
-						<td>${board.likes}</td>
+						<td align="center">${board.hit}</td>
+						<td align="center">${board.likes}</td>
 					</tr>
 				</c:forEach>
 				</tbody>

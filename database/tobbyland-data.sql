@@ -141,6 +141,12 @@ VALUES ('과목교환', 'etc');
 INSERT INTO department (department_name, kind)
 VALUES ('취업상담', 'etc');
 
+INSERT INTO department (department_name, kind)
+VALUES ('건의게시판', 'opt');
+
+INSERT INTO department (department_name, kind)
+VALUES ('신고게시판', 'opt');
+
 
 --
 -- department table data
