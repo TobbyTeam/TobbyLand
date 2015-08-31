@@ -30,7 +30,7 @@
 
 <div class="container">
 
-	<div class="col-xs-offset-2">
+	<div class="col-xs-offset-1">
 		<table>
 			<td><img src="<c:url value="${ctx}/resources/image/all.jpg" />" class="img-responsive"/></td>
 		</table>
@@ -53,7 +53,7 @@
 	<div class="row">
 		<div class="col-md-1"></div>
 
-		<div class="col-md-8 bigframe" align="right">
+		<div class="col-md-10 bigframe" align="right">
 				${evaluation.write_date}
 			<hr />
 			<table class="col-md-12 table-condensed tablemargin">
@@ -99,7 +99,7 @@
 			</div>
 			<hr />
 		</div>
-		<div class="col-md-2"></div>
+		<div class="col-md-1"></div>
 	</div>
 	<br />
 	</c:forEach>

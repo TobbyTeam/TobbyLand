@@ -46,7 +46,7 @@
             </form>
             <div class="col-md-2"></div>
             <div class="col-md-2">
-                <button type="button" onclick="location.href='/lecture/list'" class="btn btn-primary littlebtn2" type="button">강의생성<br />게시판</button>
+                <button type="button" onclick="location.href='/lecture/list'" class="btn btn-primary" type="button">강의생성<br />게시판</button>
             </div>
         </div>
         <div class="col-md-1"></div>
@@ -95,7 +95,7 @@
                 <tr>
             </table>
         </div>
-        <div class="col-md-10"></div>
+        <div class="col-md-1"></div>
     </div>
 </div>
 

@@ -91,7 +91,7 @@
 
 		<div class="row">
 			<div class="col-md-1"></div>
-			<div class="col-md-8 bigframe" align="right">
+			<div class="col-md-10 bigframe" align="right">
 					${best.write_date}
 				<hr />
 				<table class="col-md-12 table-condensed tablemargin">
@@ -137,7 +137,7 @@
 				</div>
 				<hr />
 			</div>
-			<div class="col-md-2">
+			<div class="col-md-1">
 			</div>
 		</div>
 		<br />
