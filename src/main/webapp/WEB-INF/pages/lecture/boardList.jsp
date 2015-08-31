@@ -28,8 +28,8 @@
 	<div class="row">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
-			<table class="table table-striped">
-				<thead>
+			<table class="table table-hover">
+			<thead>
 				<tr>
 					<th width="8%">번호</th>
 					<th width="58%">제목</th>
@@ -43,11 +43,10 @@
 					<tr>
 						<td>${board.rnum}</td>
 						<td>
-							<a href="/lecture/boardView/${board.lecture_id}/?lb_id=${board.lb_id}&page=${paging.pageNo}">${board.title}
+							<a href="/lecture/boardView/${board.lecture_id}/?lb_id=${board.lb_id}&page=${paging.pageNo}">${board.title}</a>
 								<c:if test="${board.count != 0}">
 									[${board.count}]
 								</c:if>
-							</a>
 						</td>
 						<td>${board.writer}</td>
 						<td>${board.write_date}</td>

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -243,6 +244,13 @@ public class LectureController {
 	public @ResponseBody boolean boardReplyReg(@RequestParam Map<String, java.io.Serializable> lectureBoard) {
 
 		return lectureService.boardReplyRegService(lectureBoard);
+	}
+
+	@RequestMapping(value = "/boardReplyList", method = {RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody
+	List<Map> replyList(@RequestParam("lb_id") int lb_id) {
+
+		return lectureRepository.selectBoardReplyAll(lb_id);
 	}
 
 	@RequestMapping(value = "/boardRegTest", method = RequestMethod.GET)

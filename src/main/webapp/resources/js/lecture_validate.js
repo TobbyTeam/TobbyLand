@@ -166,7 +166,7 @@ $(document).ready(function() {
 		}
 	})
 
-	$("#reReg_frm").validate({
+/*	$("#reReg_frm").validate({
 		onfocusout: false,
 		rules: {
 			contents: {
@@ -201,6 +201,6 @@ $(document).ready(function() {
 				}
 			})
 		}
-	})
+	})*/
 
 })

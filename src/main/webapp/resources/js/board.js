@@ -61,8 +61,6 @@ function reDeleteAjax(board_id) {
 		dataType: "json",
 		data: {board_id: board_id},
 		success: function (result) {
-
-
 			if(result === 1) {
 				if (confirm("정말 삭제하시겠습니까?")) {
 					$.ajax({

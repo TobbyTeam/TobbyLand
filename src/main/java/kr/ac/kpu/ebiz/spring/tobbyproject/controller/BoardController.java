@@ -45,7 +45,7 @@ public class BoardController {
 
 		ModelAndView mav = new ModelAndView();
 
-		mav.addObject("department", departmentRepository.select(department_id));
+		mav.addObject("department", boardService.boardTopService(department_id));
 
 		if(!searchType.isEmpty()){
 			Map search = new HashMap();
@@ -84,6 +84,8 @@ public class BoardController {
 								  @RequestParam(value="searchWord", required = false, defaultValue="") String searchWord) {
 
 		ModelAndView mav = new ModelAndView();
+
+		mav.addObject("department", boardService.boardTopService(department_id));
 
 		if(boardService.viewService(board_id, mav)){
 

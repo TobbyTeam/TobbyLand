@@ -108,7 +108,7 @@
 
       <table id="reply" class="col-md-12 table-striped table-condensed">
         <c:forEach var="reply" items="${replys}" varStatus="status">
-          <tr class="reframe test">
+          <tr class="reframe">
             <td width="15%" align="center">
               <c:choose>
                 <c:when test="${reply.is_anonymity ne 1}">
@@ -159,8 +159,8 @@
     <div class="col-md-1"></div>
     <div class="col-md-10">
       <hr />
-      <table class="table table-striped">
-        <thead>
+      <table class="table table-hover">
+      <thead>
         <tr>
           <th width="8%">번호</th>
           <th width="50%">제목</th>

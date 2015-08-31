@@ -18,9 +18,6 @@
   <script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>
   <script src="<c:url value="/resources/js/sessionTimeout.js" />"></script>
 
-  <script src="<c:url value="${ctx}/resources/js/jquery.validate.min.js" />"></script>
-  <script src="<c:url value="${ctx}/resources/js/lecture_validate.js" />"></script>
-
   <title>토비랜드</title>
 </head>
 
@@ -95,29 +92,30 @@
     <div class="col-md-1"></div>
     <div class="col-md-10">
       <br />
-      <form id="reReg_frm" name="reReg_frm" method="post">
-        <table class="col-md-12 table-condensed comment">
-          <tr>
-            <td width="20%"><input type="text" id="writer" name="writer" class="form-control"/></td>
-            <td width="70%"><input type="text" id="contents" name="contents" class="form-control"/></td>
-            <td width="10%" align="right"><input type="button" onclick="$(this.form).submit()" class="form-control" value="등록하기"/></td>
-          </tr>
-          <input type="hidden" id="lecture_id" name="lecture_id" value="${lecture_id}"/>
-          <input type="hidden" id="lb_id" name="upper_id" value="${lb_id}" />
-        </table>
-      </form>
 
-      <table class="col-md-12 table-striped table-condensed">
-        <c:forEach var="reply" items="${replys}" varStatus="status">
+      <table id="reply" class="col-md-12 table-striped table-condensed">
+      <c:forEach var="reply" items="${replys}" varStatus="status">
           <tr class="reframe">
             <td width="15%" align="center">${reply.writer}</td>
             <td width="65%">${reply.contents}</td>
             <td width="10%" align="right" class="littlebtn">${reply.write_date}</td>
             <td width="5%" align="right" class="littlebtn"><button onclick="boardReDeleteAjax(${reply.lb_id})" class="btn btn-default littlebtn">삭제</button></td>
-            <td width="5%" align="right" class="littlebtn"><button onclick="reReportAjax(${reply.lb_id})" class="btn btn-danger littlebtn">신고</button></td>
+            <td width="5%" align="right" class="littlebtn"><button onclick="boardReReportAjax(${reply.lb_id})" class="btn btn-danger littlebtn">신고</button></td>
           </tr>
         </c:forEach>
       </table>
+
+      <form id="reReg_frm" name="reReg_frm" method="post">
+        <table class="col-md-12 table-condensed comment">
+          <tr>
+            <td width="20%"><input type="text" id="writer" name="writer" class="form-control"/></td>
+            <td width="70%"><input type="text" id="contents" name="contents" class="form-control"/></td>
+            <td width="10%" align="right"><input type="button" id="reReg_btn" class="form-control" value="등록하기"/></td>
+          </tr>
+          <input type="hidden" id="lecture_id" name="lecture_id" value="${lecture_id}"/>
+          <input type="hidden" id="lb_id" name="upper_id" value="${lb_id}" />
+        </table>
+      </form>
 
     </div>
     <div class="col-md-1"></div>
@@ -127,7 +125,7 @@
   <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-      <table class="table table-striped">
+      <table class="table table-hover">
         <thead>
         <tr>
           <th width="8%">번호</th>
@@ -151,11 +149,10 @@
               </c:choose>
             </td>
             <td>
-              <a href="/lecture/boardView/${board.lecture_id}/?lb_id=${board.lb_id}&page=${paging.pageNo}">${board.title}
+              <a href="/lecture/boardView/${board.lecture_id}/?lb_id=${board.lb_id}&page=${paging.pageNo}">${board.title}</a>
                 <c:if test="${board.count != 0}">
                   [${board.count}]
                 </c:if>
-              </a>
             </td>
             <td>${board.writer}</td>
             <td>${board.write_date}</td>

@@ -71,12 +71,24 @@ public class BoardServiceImpl implements BoardService{
         int member_id = user.getMember_id();
         String writer = user.getNickname();
 
+        int department_id = Integer.parseInt(board.get("department_id").toString());
+
+        if(department_id == 14 || department_id == 15) {
+
+            Collection authorities = user.getAuthorities();
+
+            if(!authorities.toString().contains("ROLE_ADMIN")) {
+
+                return false;
+            }
+
+        }
+
         String contents_org = (String) board.get("contents");
         String contents_db = contents_org.replaceAll("\r\n","<br />");
         board.remove("contents");
         board.put("contents", contents_db);
 
-        int department_id = Integer.parseInt(board.get("department_id").toString());
 
         int maxRnum = boardRepository.selectBoardMaxRnum(department_id);
 

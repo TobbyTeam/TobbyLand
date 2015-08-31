@@ -28,7 +28,7 @@
 	<div class="row">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
-			<table class="table table-striped">
+			<table class="table table-hover">
 				<thead>
 				<tr>
 					<th width="8%">번호</th>
@@ -44,11 +44,10 @@
 					<tr>
 						<td>${board.rnum}</td>
 						<td>
-							<a href="/board/view/${board.department_id}/?board_id=${board.board_id}&page=${paging.pageNo}" >${board.title}
+							<a href="/board/view/${board.department_id}/?board_id=${board.board_id}&page=${paging.pageNo}" >${board.title}</a>
 							<c:if test="${board.count != 0}">
 								[${board.count}]
 							</c:if>
-							</a>
 						</td>
 						<td>
 						<c:choose>

@@ -41,7 +41,7 @@
                         가입절차
                     </label>
                     <div class="col-sm-9">
-						<textarea class="form-control" rows="24" readonly>
+						<textarea class="form-control" rows="25" readonly>
 1. 가입 양식을 작성하고 회원가입을 합니다
 
 *가입 양식 중 선호방식은 본인 성향에 따라 선택하시면 됩니다. 추후 강의평 조회시 참고 자료로 사용됩니다
