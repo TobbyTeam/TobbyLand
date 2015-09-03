@@ -15,6 +15,14 @@
 
 	<title>토비랜드</title>
 
+	<script>
+
+
+
+
+
+	</script>
+
 </head>
 
 <body onload='document.loginfrm.loginid.focus();'>

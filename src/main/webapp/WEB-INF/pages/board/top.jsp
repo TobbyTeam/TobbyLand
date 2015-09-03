@@ -18,11 +18,12 @@
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
 			<a href="/board/list/${department.department_id}/"><span id="boardname">${department.department_name}</span></a>
-			<hr />
 		</div>
 		<div class="col-md-1"></div>
 	</div>
 </div>
+
+<br />
 
 </body>
 </html>

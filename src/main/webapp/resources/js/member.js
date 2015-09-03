@@ -1,16 +1,29 @@
 $(document).ready(function() {
 
-	$("#loginbtn").click(function(){
-		if($("#loginid").val() == ""){
+	function login(){
+		if($("#loginid").val() == "" || $("#loginid").val() == null){
 			alert("로그인 아이디를 입력해주세요");
 			$("#loginid").focus();
-		}else if($("#loginpwd").val() == ""){
+		}else if($("#loginpwd").val() == "" || $("#loginpwd").val() == null){
 			alert("로그인 비밀번호를 입력해주세요");
 			$("#loginpwd").focus();
 		}else{
 			$("#loginfrm").submit();
 		}
+	}
+
+	$("#id").keydown(function(key) {
+
+		if (key.keyCode == 13) {
+
+			login();
+
+		}
+
 	});
+
+
+	$("#loginbtn").click(login);
 
 	$("#pw_btn").click(function () {
 		if($("#password").val() == "") {

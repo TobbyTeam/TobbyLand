@@ -74,9 +74,10 @@
 
 <br />
 
-<p>
-  <a href="/main"><img src="<c:url value="/resources/image/mainlogo.png" />" width="306" height="89"/></a>
-</p>
+<div align="center">
+  <a href="/main"><img src="<c:url value="/resources/image/mainlogo.png" />" width="306" height="89" align="center"/></a>
+</div>
+
 
 <br />
 

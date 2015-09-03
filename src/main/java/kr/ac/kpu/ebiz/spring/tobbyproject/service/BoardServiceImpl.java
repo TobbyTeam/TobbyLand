@@ -81,10 +81,10 @@ public class BoardServiceImpl implements BoardService{
 
         }
 
-        String contents_org = (String) board.get("contents");
+/*        String contents_org = (String) board.get("contents");
         String contents_db = contents_org.replaceAll("\r\n","<br />");
         board.remove("contents");
-        board.put("contents", contents_db);
+        board.put("contents", contents_db);*/
 
 
         int maxRnum = boardRepository.selectBoardMaxRnum(department_id);

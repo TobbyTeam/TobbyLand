@@ -15,10 +15,12 @@
     <script src="<c:url value="${ctx}/resources/js/nickname.js" />"></script>
     <script src="<c:url value="/resources/js/updownScroll.js" />"></script>
 
-    <script src="<c:url value="${ctx}/resources/js/jquery.validate.min.js" />"></script>
-    <script src="<c:url value="${ctx}/resources/js/board_validate.js" />"></script>
     <script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>
     <script src="<c:url value="/resources/js/sessionTimeout.js" />"></script>
+
+    <script src="<c:url value="/resources/js/htmlRemove.js" />"></script>
+    <script src="<c:url value="/resources/editor/js/HuskyEZCreator.js" />"></script>
+    <script src="<c:url value="/resources/js/editor.js" />"></script>
 
     <title>토비랜드</title>
 
@@ -34,10 +36,10 @@
     <div class="row">
         <div class="col-md-1">
         </div>
-        <div class="col-md-9">
+        <div class="col-md-10">
             <form id="reg_frm" name="reg_frm" method="post" class="form-horizontal" role="form">
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">
+                    <label class="col-sm-1 control-label" style="text-align:left">
                         닉네임
                     </label>
                     <div class="col-sm-4">
@@ -55,28 +57,25 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">
+                    <label class="col-sm-1 control-label" style="text-align:left">
                         제목
                     </label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-11">
                         <input type="text" id="title" name="title" class="form-control"/>
                     </div>
                 </div>
                 <br />
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">
-                        내용
-                    </label>
-                    <div class="col-sm-10">
-                        <textarea name="contents" rows="20" placeholder="내용을 입력해주세요" class="form-control"></textarea>
+                    <div class="col-sm-12">
+                        <textarea id="contents" name="contents" rows="20" class="form-control" style="width:100%"></textarea>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-10" align="right">
-                        <button type="button" onclick="$(this.form).submit()" class="btn btn-primary">작성</button>
+                        <button type="button" id="reg_btn" class="btn btn-primary">작성</button>
                         <button type="reset" onclick="history.back()" class="btn btn-default">취소 </button>
                     </div>
                 </div>
@@ -85,7 +84,7 @@
 
             </form>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
         </div>
     </div>
 </div>

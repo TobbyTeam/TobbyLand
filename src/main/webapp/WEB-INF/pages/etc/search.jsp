@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/searchbar.css" />">
+    <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/searchbar2.css" />">
 
     <script src="<c:url value="${ctx}/resources/js/search.js" />"></script>
 
@@ -16,13 +16,6 @@
 <body>
 
 <div class="container">
-
-<c:choose>
-    <c:when test="${empty param.searchType}">
-    </c:when>
-    <c:otherwise>
-    </c:otherwise>
-</c:choose>
 
     <div class="row">
         <div class="col-md-4"></div>
@@ -84,15 +77,16 @@
                                 </select>
                             </div>
                         </td>
+
                         <td>
                             <div id="search">
                                 <div class="input-group col-md-12">
                                     <c:choose>
                                         <c:when test="${empty param.searchType}">
-                                            <input type="text" name="searchWord" class="form-control"/>
+                                            <input type="text" name="searchWord"/>
                                         </c:when>
                                         <c:otherwise>
-                                            <input type="text" name="searchWord" value="${param.searchWord}" class="form-control"/>
+                                            <input type="text" name="searchWord" value="${param.searchWord}"/>
                                         </c:otherwise>
                                     </c:choose>
                                     <span class="input-group-btn">

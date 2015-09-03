@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="boardlist.css">
+<link rel="stylesheet" href="searchbar.css">
+<link rel="stylesheet" href="boardview.css">
+<script src="nickname2.js"></script>
+
+<title>무제 문서</title>
+</head>
+
+<body>
+<br />
+<div class="container">
+	<div class="row">
+		<div class="col-md-1">
+		</div>
+		<div class="col-md-10">
+			<table class="table">
+				<tr class="titleframe">
+					<td width="5%">제목</td>
+					<td width="50%"><a href="#" class="title">글제목</a></td>
+					<td width="25%"></td>
+					<td width="10%">작성일</td>
+					<td width="10%">yyyy/mm/dd</td>
+				</tr>
+				<tr class="titleframe">
+					<td width="10%">작성자</td>
+					<td width="45%"><a href="#" class="title">닉네임</a></td>
+					<td width="25%"></td>
+					<td width="10%">조회</td>
+					<td width="10%">0</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>		
+			</table>
+            <h1>
+	            내용내용내용내용내용내용내용내용내용내용내용내용내용내용
+	            내용내용내용내용내용내용내용내용내용내용내용내용내용내용
+	            내용내용내용내용내용내용내용내용내용내용내용내용내용내용
+	            내용내용내용내용내용내용내용내용내용내용내용내용내용내용
+	            내용내용내용내용내용내용내용내용내용내용내용내용내용내용
+	            내용내용내용내용내용내용내용내용내용내용내용내용내용내용
+	            내용내용내용내용내용내용내용내용내용내용내용내용내용내용 
+            <h1>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />                                               
+		</div>
+		<div class="col-md-1">
+		</div>
+	</div>
+    
+	<div class="row">
+		<div class="col-md-1">
+		</div>
+		<div class="col-md-10" align="center">
+        <button class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up"></span><br />추천<br />0</button>
+        <button class="btn"><span class="glyphicon glyphicon-thumbs-down"></span><br />비추천<br />0</button>
+        <br />
+        <br />
+        <br />                
+        	<div class="col-xs-offset-8" align="right">
+        		<button class="btn btn-default littlebtn">수정</button>
+        		<button class="btn btn-default littlebtn">삭제</button>               
+        		<button class="btn btn-danger littlebtn">신고</button>                
+            </div>
+            <hr />
+            <br /> 
+		</div>
+		<div class="col-md-1">
+		</div>
+	</div>      
+
+	<div class="row">
+    	<div class="col-md-1"></div>
+        <div class="col-md-10">
+        <br />
+            <table class="col-md-12 table-condensed comment">
+        			<form method="post" action="#">
+                   
+                    <tr>
+        				<td width="20%"> <input type="text" id="writer" class="form-control" value="원래아이디" disabled="disabled" /></td>
+        				<td width="70%"><input type="text" class="form-control"/></td>
+        				<td width="10%" align="right"><input type="button" class="form-control" value="등록하기"/>	</td>                        
+        			</tr>
+                    <tr>
+                    	<td width="10%">
+                        	<input type="checkbox" id="anonymity" name="is_anonymity" onclick="check(this.form)"/>
+                        	익명으로 댓글달기
+                        </td>
+                    	<td ></td>                                              
+                    </tr> 
+                    </form>
+            </table>
+            <table class="col-md-12 table-striped table-condensed comment">
+        			<tr class="reframe">
+        				<td width="20%" class="title" align="center">Username</td>
+        				<td width="70%">댓글내용</td>
+                        <td></td>
+        				<td width="10%" align="right" class="littlebtn">yyyy/mm/dd</td>                        
+        			</tr>
+                    <tr class="reframe">
+        				<td width="20%" class="title" align="center">Username</td>
+        				<td width="70%">댓글내용</td>
+                        <td></td>                        
+        				<td width="10%" align="right" class="littlebtn">yyyy/mm/dd</td>                        
+        			</tr>
+            </table>                                                          
+        </div>
+       	<div class="col-md-1"></div>
+    </div>
+    <br />
+    
+	<div class="row">    
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+            <hr />        
+        	<table class="table table-striped">
+				<thead>
+					<tr>
+						<th width="8%">번호</th>
+						<th width="50%">제목</th>
+						<th width="18%">작성자</th>
+						<th width="8%">작성일</th>
+                        <th width="8%">조회수</th>
+                        <th width="8%">추천</th>
+					</tr>
+				</thead>
+				<tbody>	
+					<tr>
+						<td>0</td>
+						<td><a href="#" class="title">게시글 제목</a></td>	
+						<td>닉네임</td>
+						<td>yyyy/mm/dd</td>
+                        <td>0</td>
+                        <td>0</td>
+					</tr>
+                    <tr>
+						<td>0</td>
+						<td><a href="#" class="title">게시글 제목</a></td>	
+						<td>닉네임</td>
+						<td>yyyy/mm/dd</td>
+                        <td>0</td>
+                        <td>0</td>
+					</tr>            
+				</tbody>
+			</table>
+            <div class="col-lg-0">
+        		<button class="btn btn-default">목록</button>
+				<button class="btn btn-primary">글쓰기</button>                
+            </div>
+		</div>
+		<div class="col-md-1"></div> 
+	</div>
+    
+    <div class="row">
+		<div class="col-md-4"></div>
+        <div class="col-md-4" align="center">
+			<table>
+                <tr>
+                <td>
+            	<div id="select">
+            		<select type="text">          
+					<option value="title" selected="selected">제목</option>          
+					<option value="contents">내용</option>
+					<option value="title_contents">제목+내용</option>
+					<option value="writer">글쓴이</option>
+					<option value="all">전체</option>
+					</select>
+	            </div>
+                </td>
+                <td>
+				<div id="search">
+        	        <div class="input-group col-md-12">
+            	        <input type="text"/>
+                	    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="button">
+                        <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                   		</span>
+               		</div>
+           		</div>
+                </td>
+                </tr>
+                </table>	 
+		</div>
+		<div class="col-md-4"></div>
+    </div>
+</div>
+
+<br />
+<br />
+<br />
+
+</body>
+</html>
+

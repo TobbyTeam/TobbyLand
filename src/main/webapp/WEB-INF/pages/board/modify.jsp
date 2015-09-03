@@ -14,10 +14,12 @@
 
   <script src="<c:url value="/resources/js/updownScroll.js" />"></script>
 
-  <script src="<c:url value="/resources/js/jquery.validate.min.js" />"></script>
-  <script src="<c:url value="/resources/js/board_validate.js" />"></script>
   <script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>
   <script src="<c:url value="/resources/js/sessionTimeout.js" />"></script>
+
+  <script src="<c:url value="/resources/js/htmlRemove.js" />"></script>
+  <script src="<c:url value="/resources/editor/js/HuskyEZCreator.js" />"></script>
+  <script src="<c:url value="/resources/js/editor.js" />"></script>
 
   <title>토비랜드</title>
 
@@ -50,7 +52,8 @@
             내용
           </label>
           <div class="col-sm-10">
-            <textarea name="contents" rows="20" cols="40" wrap="hard" placeholder="내용을 입력해주세요" class="form-control" >${board.contents}</textarea>
+            <textarea id="contents" name="contents" rows="20" class="form-control" style="width:100%">${board.contents}</textarea>
+            <%--<textarea name="contents" rows="20" cols="40" wrap="hard" placeholder="내용을 입력해주세요" class="form-control" >${board.contents}</textarea>--%>
           </div>
         </div>
 
@@ -59,7 +62,7 @@
         <div class="form-group">
           <div class="col-sm-2"></div>
           <div class="col-sm-10" align="right">
-            <button type="button" onclick="$(this.form).submit()" class="btn btn-primary">수정</button>
+            <button type="button" id="mod_btn" class="btn btn-primary">수정</button>
             <button type="reset" onclick="history.back()" class="btn btn-default">취소</button>
           </div>
         </div>

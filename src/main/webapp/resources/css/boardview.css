@@ -1,5 +1,7 @@
 .titleframe{
 	background-color:#F5F5F5;
+	border-bottom:solid #E6E6E6 1px;
+	border-top:solid #E6E6E6 1px;	
 
 }
 #viewtitle {
@@ -16,4 +18,17 @@ h1 {
 	font-size:13px;
 	border-top:solid #CCC 1px;
 	border-bottom:solid #CCC 1px;
+}
+.comment {	
+	margin-bottom: 50px;
+}
+.writecomment {
+	border:solid #E6E6E6 1px;
+}
+.fixtable {
+	table-layout:fixed;
+	word-break:break-all;
+}
+.date{
+	font-size:15px;
 }
