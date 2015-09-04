@@ -38,22 +38,18 @@
       <form id="mod_frm" name="mod_frm" method="post" class="form-horizontal" role="form">
 
         <div class="form-group">
-          <label class="col-sm-2 control-label">
+          <label class="col-sm-1 control-label" style="text-align:left">
             제목
           </label>
-          <div class="col-sm-10">
+          <div class="col-sm-11">
             <input type="text" id="title" name="title" value="${board.title}" class="form-control"/>
           </div>
         </div>
         <br />
 
         <div class="form-group">
-          <label class="col-sm-2 control-label">
-            내용
-          </label>
-          <div class="col-sm-10">
+          <div class="col-sm-12">
             <textarea id="contents" name="contents" rows="20" class="form-control" style="width:100%">${board.contents}</textarea>
-            <%--<textarea name="contents" rows="20" cols="40" wrap="hard" placeholder="내용을 입력해주세요" class="form-control" >${board.contents}</textarea>--%>
           </div>
         </div>
 

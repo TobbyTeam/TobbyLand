@@ -347,6 +347,11 @@ public class LectureServiceImpl implements LectureService{
 
         lectureBoard.put("member_id", member_id);
 
+        String contents_org = (String) lectureBoard.get("contents");
+        String contents_db = contents_org.replaceAll("\r\n","<br />");
+        lectureBoard.remove("contents");
+        lectureBoard.put("contents", contents_db);
+
         return lectureRepository.insertBoard(lectureBoard);
     }
 

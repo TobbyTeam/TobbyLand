@@ -37,39 +37,32 @@
     <div class="col-md-1">
     </div>
     <div class="col-md-10">
-      <table class="table">
-        <tr class="titleframe">
-          <td width="5%">제목</td>
-          <td width="55%"><span class="title">${board.title}</span></td>
-          <td width="20%"></td>
-          <td width="10%">작성일</td>
-          <td width="10%">${board.write_date}</td>
+      <table class="table titleframe">
+        <tr>
+          <td width="8%" align="left" class="fixtable">제목</td>
+          <td width="71%" align="left" class="fixtable"><span class="title">${board.title}</span></td>
+          <td width="3%" align="left" class="fixtable"></td>
+          <td width="16%" align="left" class="fixtable date" valign="middle">${board.write_date}</td>
         </tr>
-        <tr class="titleframe">
-          <td width="10%">작성자</td>
-          <td width="45%">
+        <tr>
+          <td width="8%" class="fixtable">작성자</td>
+          <td width="71%" class="fixtable">
             <c:choose>
               <c:when test="${board.is_anonymity ne 1}">
-                <span class="title">${board.writer}*</span>
+                <span class="title">*${board.writer}</span>
               </c:when>
               <c:otherwise>
                 ${board.writer}
               </c:otherwise>
             </c:choose>
           </td>
-          <td width="25%"></td>
-          <td width="10%">조회수</td>
-          <td width="10%">${board.hit}</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td width="3%" class="fixtable"></td>
+          <td width="16%" class="fixtable">조회 ${board.hit}</td>
         </tr>
       </table>
+
       ${board.contents}
+
       <br />
       <br />
       <br />
@@ -107,7 +100,7 @@
     <div class="col-md-10">
       <br />
 
-      <table id="reply" class="col-md-12 table-striped table-condensed">
+      <table id="reply" class="col-md-12 table-striped table-condensed comment">
         <c:forEach var="reply" items="${replys}" varStatus="status">
           <tr class="reframe">
             <td width="15%" align="center">
@@ -131,18 +124,15 @@
       <s:authorize access="isAuthenticated()">
 
         <form id="reReg_frm" name="reReg_frm" method="post">
-          <table class="col-md-12 table-condensed comment">
+          <table class="col-md-12 table-condensed writecomment">
             <tr>
-              <td width="20%"><input type="text" id="writer" name="writer" class="form-control" disabled="disabled" /></td>
-              <td width="70%"><input type="text" id="contents" name="contents" class="form-control"/></td>
-              <td width="10%" align="right"><input type="button" id="reReg_btn" class="form-control" value="등록하기"/></td>
-            </tr>
-            <tr>
-              <td width="10%">
+              <td width="15%" valign="top">
+                <input type="text" id="writer" name="writer" class="form-control" disabled="disabled" />
                 <input type="checkbox" id="is_anonymity" name="is_anonymity" value="1" onclick="check(this.form)"/>
-                익명으로 댓글달기
+                <span class="littlebtn">익명으로 달기</span>
               </td>
-              <td ></td>
+              <td width="80%" valign="top"><textarea id="contents" name="contents" class="form-control"></textarea></td>
+              <td width="5%" align="right" valign="top"><input type="button" id="reReg_btn" class="btn-block form-control" value="등록"/></td>
             </tr>
             <input type="hidden" id="department_id" name="department_id" value="${department_id}"/>
             <input type="hidden" id="board_id" name="upper_id" value="${board_id}" />
@@ -154,6 +144,7 @@
     </div>
     <div class="col-md-1"></div>
   </div>
+
   <br />
 
   <div class="row">

@@ -6,8 +6,8 @@
 	var rFilter = /^(image\/bmp|image\/gif|image\/jpg|image\/jpeg|image\/png)$/i;  
 	var rFilter2 = /^(bmp|gif|jpg|jpeg|png)$/i; 
 	var nTotalSize = 0;
-	var nMaxImageSize = 10*1024*1024;
-	var nMaxTotalImageSize = 50*1024*1024;
+	var nMaxImageSize = 1*1024*1024;
+	var nMaxTotalImageSize = 5*1024*1024;
 	var nMaxImageCount = 10;
 	var nImageFileCount = 0;
 	var bSupportDragAndDropAPI = false;
@@ -256,7 +256,7 @@
 				if (!rFilter.test(files[i].type)) {
 					alert("이미지파일 (jpg,gif,png,bmp)만 업로드 가능합니다.");
 				} else if(files[i].size > nMaxImageSize){
-					alert("이미지 용량이 10MB를 초과하여 등록할 수 없습니다.");
+					alert("이미지 용량이 1MB를 초과하여 등록할 수 없습니다.");
 				} else {
 					//제한된 수만 업로드 가능.
 					if ( j < nMaxImageCount ){
@@ -309,7 +309,7 @@
 		bExceedLimitTotalSize = checkTotalImageSize(ofile.size);
 
 		if( !!bExceedLimitTotalSize ){
-			alert("전체 이미지 용량이 50MB를 초과하여 등록할 수 없습니다. \n\n (파일명 : "+sFileName+", 사이즈 : "+sFileSize+")");
+			alert("전체 이미지 용량이 5MB를 초과하여 등록할 수 없습니다. \n\n (파일명 : "+sFileName+", 사이즈 : "+sFileSize+")");
 		} else {
 			//이미지 정보 저장							
 			htImageInfo['img'+nImageInfoCnt] = ofile;

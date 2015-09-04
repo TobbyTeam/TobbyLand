@@ -16,7 +16,7 @@ function replyList(lb_id) {
 
 					var list = result2;
 
-					var content = '<table id="reply" class="col-md-12 table-striped table-condensed">';
+					var content = '<table id="reply" class="col-md-12 table-striped table-condensed comment">';
 
 					for( i=0;i < list.length ; i++){
 

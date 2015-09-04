@@ -15,12 +15,9 @@
   <script src="<c:url value="/resources/js/updownScroll.js" />"></script>
 
   <script src="<c:url value="${ctx}/resources/js/lecture_board.js" />"></script>
-  <script src="<c:url value="${ctx}/resources/js/evaluation.js" />"></script>
   <script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>
   <script src="<c:url value="/resources/js/sessionTimeout.js" />"></script>
 
-  <script src="<c:url value="${ctx}/resources/js/jquery.validate.min.js" />"></script>
-  <script src="<c:url value="${ctx}/resources/js/lecture_validate.js" />"></script>
 
   <title>토비랜드</title>
 </head>
@@ -39,32 +36,23 @@
     <div class="col-md-1">
     </div>
     <div class="col-md-10">
-      <table class="table">
-        <tr class="titleframe">
-          <td width="5%">제목</td>
-          <td width="55%"><span class="title">${board.title}</span></td>
-          <td width="20%"></td>
-          <td width="10%">작성일</td>
-          <td width="10%">${board.write_date}</td>
-        </tr>
-        <tr class="titleframe">
-          <td width="10%">작성자</td>
-          <td width="45%">
-            ${board.writer}
-          </td>
-          <td width="25%"></td>
-          <td width="10%">조회수</td>
-          <td width="10%">${board.hit}</td>
+      <table class="table titleframe">
+        <tr>
+          <td width="8%" align="left" class="fixtable">제목</td>
+          <td width="71%" align="left" class="fixtable"><span class="title">${board.title}</span></td>
+          <td width="3%" align="left" class="fixtable"></td>
+          <td width="16%" align="left" class="fixtable date" valign="middle">${board.write_date}</td>
         </tr>
         <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td width="8%" class="fixtable">작성자</td>
+          <td width="71%" class="fixtable">${board.writer}</td>
+          <td width="3%" class="fixtable"></td>
+          <td width="16%" class="fixtable">조회 ${board.hit}</td>
         </tr>
       </table>
+
       ${board.contents}
+
       <br />
       <br />
       <br />
@@ -97,7 +85,8 @@
     <div class="col-md-10">
       <br />
 
-      <table id="reply" class="col-md-12 table-striped table-condensed">
+
+      <table id="reply" class="col-md-12 table-striped table-condensed comment">
         <c:forEach var="reply" items="${replys}" varStatus="status">
           <tr class="reframe">
             <td width="15%" align="center">${reply.writer}</td>
@@ -110,11 +99,13 @@
       </table>
 
       <form id="reReg_frm" name="reReg_frm" method="post">
-        <table class="col-md-12 table-condensed comment">
+        <table class="col-md-12 table-condensed writecomment">
           <tr>
-            <td width="20%"><input type="text" id="writer" name="writer" class="form-control"/></td>
-            <td width="70%"><input type="text" id="contents" name="contents" class="form-control"/></td>
-            <td width="10%" align="right"><input type="button" id="reReg_btn" class="form-control" value="등록하기"/></td>
+            <td width="15%" valign="top">
+              <input type="text" id="writer" name="writer" class="form-control" />
+            </td>
+            <td width="80%" valign="top"><textarea id="contents" name="contents" rows="3" class="form-control"></textarea></td>
+            <td width="5%" align="right" valign="top"><input type="button" id="reReg_btn" class="btn-block form-control" value="등록"/></td>
           </tr>
           <input type="hidden" id="lecture_id" name="lecture_id" value="${lecture_id}"/>
           <input type="hidden" id="lb_id" name="upper_id" value="${lb_id}" />
@@ -129,6 +120,7 @@
   <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
+      <hr />
       <table class="table table-hover" style="TABLE-layout:fixed">
       <thead>
         <tr>

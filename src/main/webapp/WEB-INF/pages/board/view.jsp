@@ -49,7 +49,7 @@
           <td width="71%" class="fixtable">
             <c:choose>
               <c:when test="${board.is_anonymity ne 1}">
-                <span class="title">${board.writer}*</span>
+                <span class="title">*${board.writer}</span>
               </c:when>
               <c:otherwise>
                 ${board.writer}
@@ -131,7 +131,7 @@
               <input type="checkbox" id="is_anonymity" name="is_anonymity" value="1" onclick="check(this.form)"/>
               <span class="littlebtn">익명으로 달기</span>
             </td>
-            <td width="80%" valign="top"><textarea id="contents" name="contents" class="form-control"></textarea></td>
+            <td width="80%" valign="top"><textarea id="contents" name="contents" rows="3" class="form-control"></textarea></td>
             <td width="5%" align="right" valign="top"><input type="button" id="reReg_btn" class="btn-block form-control" value="등록"/></td>
           </tr>
           <input type="hidden" id="department_id" name="department_id" value="${department_id}"/>
@@ -144,6 +144,7 @@
     </div>
     <div class="col-md-1"></div>
   </div>
+
   <br />
 
   <div class="row">
