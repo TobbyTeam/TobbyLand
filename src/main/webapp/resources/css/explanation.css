@@ -3,4 +3,6 @@
 }
 .warn{
 	color:#F00;
+	font-weight:bold;
+	font-size: 15px;
 }
