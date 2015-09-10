@@ -7,7 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/login.css" />">
+    <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/pwConfirm.css" />">
 
     <script src="<c:url value="/resources/js/updownScroll.js" />"></script>
 
@@ -26,12 +26,12 @@
     <div class="row" id="pwd-container">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            <section class="frame" id="id">
-                <form role="login">
+            <section class="frame" id="pw_confirm">
+                <div role="pw_confirm">
                     <input type="password" id="password" name="password" placeholder="Password" class="form-control input-lg">
                     <button type="button" id="pw_btn" class="btn btn-lg btn-primary btn-block">확인</button>
                     <button type="reset" onclick="history.back()" class="btn btn-lg btn-danger btn-block">취소</button>
-                </form>
+                </div>
             </section>
         </div>
     </div>

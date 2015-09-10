@@ -12,40 +12,60 @@ $(document).ready(function() {
 		}
 	}
 
-	$("#id").keydown(function(key) {
+	$("#login").keydown(function(key) {
+		if (key.keyCode == 13) {
+			login();
+		}
+	});
+
+	$("#login_btn").click(login);
+
+
+	function pwConfirm() {
+
+		var password = $("#password").val();
+
+		if(password == ""|| password == null) {
+			alert("비밀번호를 입력해주세요");
+			$("#password").focus();
+			return;
+		}
+
+		var blank_pattern = /[\s]/g;
+		if( blank_pattern.test(password) == true){
+			alert("공백은 불가능합니다.");
+			return;
+		}
+
+		$.ajax({
+			type: "POST",
+			url: "/member/pwCheck",
+			dataType: "json",
+			data: {password: $("#password").val()},
+			success: function (result) {
+
+				if (result) {
+					window.open("/member/modView", "_self");
+				} else {
+					alert("비밀번호가 틀립니다");
+				}
+
+			}
+		})
+	}
+
+	$("#pw_confirm").keydown(function(key) {
 
 		if (key.keyCode == 13) {
 
-			login();
+			pwConfirm();
 
 		}
 
 	});
 
+	$("#pw_btn").click(pwConfirm);
 
-	$("#loginbtn").click(login);
-
-	$("#pw_btn").click(function () {
-		if($("#password").val() == "") {
-			alert("비밀번호를 입력해주세요");
-		}else{
-			$.ajax({
-				type: "POST",
-				url: "/member/pwCheck",
-				dataType: "json",
-				data: {password: $("#password").val()},
-				success: function (result) {
-
-					if (result) {
-						window.open("/member/modView", "_self");
-					} else {
-						alert("비밀번호가 틀립니다");
-					}
-
-				}
-			})
-		}
-	})
 
 	$("#withdrawal").click(function () {
 

@@ -181,7 +181,7 @@ public class BoardServiceImpl implements BoardService{
 
         } else {
 
-            mav.setViewName("redirect:/lecture/boardView?board_id="+board_id);
+            mav.setViewName("redirect:/invalidAccess");
         }
 
     }

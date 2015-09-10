@@ -33,7 +33,7 @@
 	<div class="row" id="pwd-container">
 		<div class="col-md-4"></div>
 		<div class="col-md-4">
-			<section class="frame" id="id">
+			<section class="frame" id="login">
 				<form role="login" id="loginfrm" name="loginfrm" action="<c:url value='${ctx}/j_spring_security_check'/>" method='POST'>
 					<input type="text" id="loginid" name="loginid" value="${loginid}" placeholder="ID" class="form-control input-lg">
 					<input type="password" id="loginpwd" name="loginpwd" value="${loginpwd}" placeholder="Password" class="form-control input-lg">

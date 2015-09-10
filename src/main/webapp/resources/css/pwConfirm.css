@@ -1,0 +1,17 @@
+div[role=pw_confirm] {
+	color: #5d5d5d;
+	background: #f2f2f2;
+	padding: 26px;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+div[role=pw_confirm] input, div[role=pw_confirm] button {
+	font-size: 18px;
+	margin: 16px 0;
+}
+div[role=pw_confirm] > div {
+	text-align: center;
+}
+
+

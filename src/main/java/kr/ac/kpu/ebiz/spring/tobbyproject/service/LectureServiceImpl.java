@@ -290,7 +290,7 @@ public class LectureServiceImpl implements LectureService{
 
         } else {
 
-            mav.setViewName("redirect:/lecture/boardView?lb_id="+lb_id);
+            mav.setViewName("redirect:/invalidAccess");
         }
 
     }
