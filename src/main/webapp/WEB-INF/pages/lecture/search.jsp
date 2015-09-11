@@ -28,16 +28,46 @@
                 <div class="col-md-2">
                     <div id="select">
                         <select type="text" name="searchType" class="form-control">
-                            <option value="lecture_name" selected="selected">강의명</option>
-                            <option value="prof">교수명</option>
-                            <option value="dept">학과명</option>
+                            <c:choose>
+                                <c:when test="${empty search}">
+                                    <option value="lecture_name" selected="selected">강의명</option>
+                                    <option value="prof">교수명</option>
+                                    <option value="dept">학과명</option>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:choose>
+                                        <c:when test="${search.searchType eq 'prof'}">
+                                            <option value="lecture_name">강의명</option>
+                                            <option value="prof" selected="selected">교수명</option>
+                                            <option value="dept">학과명</option>
+                                        </c:when>
+                                        <c:when test="${search.searchType eq 'dept'}">
+                                            <option value="lecture_name">강의명</option>
+                                            <option value="prof">교수명</option>
+                                            <option value="dept" selected="selected">학과명</option>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <option value="lecture_name" selected="selected">강의명</option>
+                                            <option value="prof">교수명</option>
+                                            <option value="dept">학과명</option>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:otherwise>
+                            </c:choose>
                         </select>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div id="search">
                         <div class="input-group col-md-12">
-                            <input type="text" id="searchWord" name="searchWord" class="form-control"/>
+                            <c:choose>
+                                <c:when test="${empty search}">
+                                    <input type="text" id="searchWord" name="searchWord" class="form-control"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <input type="text" id="searchWord" name="searchWord" value="${search.searchWord}" class="form-control"/>
+                                </c:otherwise>
+                            </c:choose>
                             <span class="input-group-btn">
                             <button type="button" id="search_lecture_btn" class="btn btn-info btn-lg">
                                 <i class="glyphicon glyphicon-search"></i>

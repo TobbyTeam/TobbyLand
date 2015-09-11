@@ -20,7 +20,7 @@
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4" align="center">
-            <form action="${param.url}" method="get" name="board_search_frm">
+            <form action="${param.url}" method="get" id="board_search_frm" name="board_search_frm">
                 <table>
                     <tr>
                         <td>
@@ -83,14 +83,14 @@
                                 <div class="input-group col-md-12">
                                     <c:choose>
                                         <c:when test="${empty param.searchType}">
-                                            <input type="text" name="searchWord"/>
+                                            <input type="text" id="board_searchWord" name="searchWord"/>
                                         </c:when>
                                         <c:otherwise>
-                                            <input type="text" name="searchWord" value="${param.searchWord}"/>
+                                            <input type="text" id="searchWord" name="searchWord" value="${param.searchWord}"/>
                                         </c:otherwise>
                                     </c:choose>
                                     <span class="input-group-btn">
-                                     <button type="button" id="search_btn" onclick="search()" class="btn btn-info btn-lg" >
+                                     <button type="button" id="board_search_btn" class="btn btn-info btn-lg" >
                                          <i class="glyphicon glyphicon-search"></i>
                                      </button>
                                   </span>

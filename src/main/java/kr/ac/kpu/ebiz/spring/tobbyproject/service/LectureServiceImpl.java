@@ -111,14 +111,16 @@ public class LectureServiceImpl implements LectureService{
 
         String searchWord = (String) search.get("searchWord");
 
-        List<Map> result = lectureRepository.selectLectureSearch(search);
-        mav.addObject("lectures", result);
-        mav.addObject("message", searchWord+"(으)로 검색한 결과");
+        List<Map> list = lectureRepository.selectLectureSearch(search);
 
-        if(result.isEmpty() == true){
+        mav.addObject("search", search);
+
+        if(list.isEmpty() == true){
             mav.addObject("error", searchWord+"에 대한 검색 결과가 없습니다.");
+        } else {
+            mav.addObject("lectures", list);
+            mav.addObject("message", searchWord + "(으)로 검색한 결과");
         }
-
     }
 
     public int likesService(int lecture_id) {

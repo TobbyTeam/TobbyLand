@@ -2,8 +2,6 @@ $(document).ready(function() {
 
 	function searchLecture() {
 
-		$("#search_frm").attr("onsubmit", "return false;")
-
 		var searchWord = $("#searchWord").val();
 
 		var blank_pattern = /^\s+|\s+$/g;
@@ -18,8 +16,11 @@ $(document).ready(function() {
 
 	}
 
-	$("#search_frm").keydown(function(key) {
+	$("#searchWord").keydown(function(key) {
 		if (key.keyCode == 13) {
+
+			$("#search_frm").attr("onsubmit", "return false;")
+
 			searchLecture();
 		}
 	});
