@@ -13,7 +13,7 @@
 
     <script src="<c:url value="/resources/js/updownScroll.js" />"></script>
 
-    <script src="<c:url value="${ctx}/resources/js/lecture.js" />"></script>
+    <script src="<c:url value="${ctx}/resources/js/lectureSearch.js" />"></script>
     <script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>
     <script src="<c:url value="/resources/js/sessionTimeout.js" />"></script>
 
@@ -24,26 +24,28 @@
 <jsp:include page="/top" flush="true"/>
 
 <body>
+
 <br />
+
 <div class="container" id="minHeight">
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4" align="center" id="main">
             <img src="<c:url value="${ctx}/resources/image/main5.png" />" class="img-responsive"/>
             <br />
-            <form action="/lecture/search" method="get" name="search_frm">
+            <form action="/lecture/search" id="search_frm" name="search_frm" method="get">
                 <div>
                     <select type="text" name="searchType" class="form-control">
                         <option value="lecture_name">강의명</option>
-                        <option value="dept">학과명</option>
                         <option value="prof">교수명</option>
+                        <option value="dept">학과명</option>
                     </select>
                 </div>
                 <div id="search">
                     <div class="input-group col-md-12">
-                        <input type="text" name="searchWord" class="form-control"/>
+                        <input type="text" id="searchWord" name="searchWord" class="form-control"/>
                 	<span class="input-group-btn">
-                    	<button type="button" onclick="searchLecture()" class="btn btn-info btn-lg">
+                    	<button type="button" id="search_lecture_btn" class="btn btn-info btn-lg">
                             <i class="glyphicon glyphicon-search"></i>
                         </button>
                     </span>
@@ -54,8 +56,8 @@
         <div class="col-md-4"></div>
     </div>
     <br />
-
 </div>
+
 <br />
 <br />
 <jsp:include page="/bottom" flush="true"/>

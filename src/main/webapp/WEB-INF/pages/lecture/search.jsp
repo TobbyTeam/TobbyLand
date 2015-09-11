@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/leclist.css" />">
     <link rel="stylesheet" href="<c:url value="${ctx}/resources/css/searchbar.css" />">
 
-    <script src="<c:url value="${ctx}/resources/js/lecture.js" />"></script>
+    <script src="<c:url value="${ctx}/resources/js/lectureSearch.js" />"></script>
 
     <title>토비랜드</title>
 
@@ -24,22 +24,22 @@
         <div class="col-md-1"></div>
         <div class="col-md-10">
             <div class="col-md-3"></div>
-            <form action="/lecture/search" method="get" name="search_frm">
+            <form action="/lecture/search" id="search_frm" name="search_frm" method="get">
                 <div class="col-md-2">
                     <div id="select">
                         <select type="text" name="searchType" class="form-control">
                             <option value="lecture_name" selected="selected">강의명</option>
-                            <option value="dept">학과명</option>
                             <option value="prof">교수명</option>
+                            <option value="dept">학과명</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div id="search">
                         <div class="input-group col-md-12">
-                            <input type="text" name="searchWord" class="form-control"/>
+                            <input type="text" id="searchWord" name="searchWord" class="form-control"/>
                             <span class="input-group-btn">
-                            <button type="button" onclick="searchLecture()" class="btn btn-info btn-lg">
+                            <button type="button" id="search_lecture_btn" class="btn btn-info btn-lg">
                                 <i class="glyphicon glyphicon-search"></i>
                             </button>
                             </span>

@@ -15,14 +15,6 @@
 
 	<title>토비랜드</title>
 
-	<script>
-
-
-
-
-
-	</script>
-
 </head>
 
 <body onload='document.loginfrm.loginid.focus();'>
@@ -30,7 +22,7 @@
 <jsp:include page="/top" flush="true"/>
 
 <div class="container" id="minHeight">
-	<div class="row" id="pwd-container">
+	<div class="row">
 		<div class="col-md-4"></div>
 		<div class="col-md-4">
 			<section class="frame" id="login">
@@ -39,14 +31,14 @@
 					<input type="password" id="loginpwd" name="loginpwd" value="${loginpwd}" placeholder="Password" class="form-control input-lg">
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					<input type="hidden" name="loginRedirect" value="${loginRedirect}" />
-					<button type="button" id="loginbtn" name="login" class="btn btn-lg btn-primary btn-block">로그인</button>
+					<button type="button" id="login_btn" name="login" class="btn btn-lg btn-primary btn-block">로그인</button>
 					<c:if test="${not empty securityexceptionmsg}">
-					<div>
-						<font color="red">
-			                <p>로그인에 실패했습니다. 다시 시도 해주세요.</p>
-			                <p>${securityexceptionmsg}</p>
-						</font>
-					</div>
+						<div>
+							<font color="red">
+								<p>로그인에 실패했습니다. 다시 시도 해주세요.</p>
+								<p>${securityexceptionmsg}</p>
+							</font>
+						</div>
 					</c:if>
 					<div>
 						<p><a href="/member/regExpln">회원가입</a></p>

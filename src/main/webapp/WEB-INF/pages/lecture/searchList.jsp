@@ -15,6 +15,8 @@
 	<script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>
 	<script src="<c:url value="/resources/js/sessionTimeout.js" />"></script>
 
+	<script src="<c:url value="/resources/js/lecture.js" />"></script>
+
 	<title>토비랜드</title>
 
 </head>
