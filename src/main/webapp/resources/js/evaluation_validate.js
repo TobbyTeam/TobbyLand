@@ -51,7 +51,6 @@ $(document).ready(function() {
                     data: $(form).serialize(),
                     success: function (result) {
                         if (result) {
-                            alert("강의평가 등록이 완료되었습니다.")
                             window.open("/evaluation/list?lecture_id="+lecture_id, "_self");
                         } else {
                             alert("에러가 발생했습니다. 다시 시도해주세요.");

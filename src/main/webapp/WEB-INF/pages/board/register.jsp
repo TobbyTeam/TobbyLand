@@ -22,6 +22,9 @@
     <script src="<c:url value="/resources/editor/js/HuskyEZCreator.js" />"></script>
     <script src="<c:url value="/resources/js/editor.js" />"></script>
 
+    <script src="<c:url value="${ctx}/resources/js/jquery.blockUI.js" />"></script>
+    <script src="<c:url value="${ctx}/resources/js/blockUI.js" />"></script>
+
     <title>토비랜드</title>
 
 </head>

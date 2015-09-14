@@ -19,6 +19,9 @@
   <script src="<c:url value="/resources/js/ajaxSesstion.js" />"></script>
   <script src="<c:url value="/resources/js/sessionTimeout.js" />"></script>
 
+  <script src="<c:url value="${ctx}/resources/js/jquery.blockUI.js" />"></script>
+  <script src="<c:url value="${ctx}/resources/js/blockUI.js" />"></script>
+
 
   <title>토비랜드</title>
 

@@ -32,12 +32,12 @@ $(function(){
 			// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
 			bUseVerticalResizer : true,
 			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-			bUseModeChanger : false
+			bUseModeChanger : true
 
 		}, //boolean 
 		fOnAppLoad : function(){
 			obj.getById["contents"].exec("SET_ATTACHPHOTO_TOTALCOUNT", [nUploadedPhotoCount]);
-/*			obj.getById["contents"].exec("PASTE_HTML", ["한 글자라도 글자가 입력되어야 합니다."]);*/
+			/*			obj.getById["contents"].exec("PASTE_HTML", ["한 글자라도 글자가 입력되어야 합니다."]);*/
 
 		},
 		fCreator: "createSEditor2"
@@ -84,13 +84,14 @@ $(function(){
 		}
 
 		var blank_pattern2 = /^\s+|\s+$/g;
-		if( title.length > 40){
-			alert("제목은 40글자까지 입력이 가능합니다.");
+		if( title.replace(blank_pattern2, "") == "" ){
+			alert("제목이 공백만 입력되었습니다");
 			return;
 		}
 
-		if( title == "" || title == null ){
-			alert( "제목을 입력해주세요." );
+		var blank_pattern2 = /^\s+|\s+$/g;
+		if( title.length > 40){
+			alert("제목은 40글자까지 입력이 가능합니다.");
 			return;
 		}
 
@@ -103,12 +104,6 @@ $(function(){
 			return;
 		}
 
-		var blank_pattern2 = /^\s+|\s+$/g;
-		if( contents.replace(blank_pattern2, "") == "" ){
-			alert("내용이 공백만 입력되었습니다");
-			return;
-		}
-
 		$.ajax({
 			type: "POST",
 			url: "/board/reg",
@@ -116,7 +111,6 @@ $(function(){
 			data: $("#reg_frm").serialize(),
 			success: function (result) {
 				if (result) {
-					alert("글 작성이 완료 되었습니다.")
 					window.open("/board/list/"+$("#department_id").val()+"/", "_self");
 				} else {
 					alert("죄송합니다 다시 시도해주세요.");
@@ -154,12 +148,6 @@ $(function(){
 			return;
 		}
 
-		var blank_pattern2 = /^\s+|\s+$/g;
-		if( contents.replace(blank_pattern2, "") == "" ){
-			alert("내용이 공백만 입력되었습니다");
-			return;
-		}
-
 		$.ajax({
 			type: "POST",
 			url: "/board/mod",
@@ -167,7 +155,6 @@ $(function(){
 			data: $("#mod_frm").serialize(),
 			success: function (result) {
 				if (result) {
-					alert("글 수정이 완료 되었습니다.")
 					window.open("/board/view/"+$("#department_id").val()+"/?board_id="+$("#board_id").val(), "_self");
 				} else {
 					alert("이미 삭제된 글이거나 에러가 발생했습니다.");

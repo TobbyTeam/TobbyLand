@@ -78,8 +78,8 @@
     <div class="col-md-1">
     </div>
     <div class="col-md-10" align="center">
-      <button id="like_btn" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up"></span><br />추천<br />${board.likes}</button>
-      <button id="dislike_btn"class="btn"><span class="glyphicon glyphicon-thumbs-down"></span><br />비추천<br />${board.dislike}</button>
+      <button id="like_btn" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up"></span><br />추천<br /><span id="board_like">${board.likes}</span></button>
+      <button id="dislike_btn"class="btn"><span class="glyphicon glyphicon-thumbs-down"></span><br />비추천<br /><span id="board_dislike">${board.dislike}</span></button>
       <br />
       <br />
       <br />

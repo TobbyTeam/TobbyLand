@@ -1,6 +1,6 @@
 var lecture_id = $("#lecture_id").val();
 
-function evalRegAjax(lecture_id) {
+var evalRegAjax = function(lecture_id) {
 
 	$.ajax({
 		type: "POST",
@@ -19,7 +19,7 @@ function evalRegAjax(lecture_id) {
 
 }
 
-function evalLikeAjax(evaluation_id) {
+var evalLikeAjax = function(evaluation_id) {
 
 	$.ajax({
 		type: "POST",
@@ -55,7 +55,7 @@ function evalLikeAjax(evaluation_id) {
 	});
 }
 
-function evalDislikeAjax(evaluation_id) {
+var evalDislikeAjax = function(evaluation_id) {
 
 	$.ajax({
 		type: "POST",
@@ -91,7 +91,7 @@ function evalDislikeAjax(evaluation_id) {
 	});
 }
 
-function evalReportAjax(evaluation_id) {
+var evalReportAjax = function(evaluation_id) {
 
 	$.ajax({
 		type: "POST",
@@ -129,7 +129,7 @@ function evalReportAjax(evaluation_id) {
 }
 
 
-function evalModAjax(evaluation_id) {
+var evalModAjax = function(evaluation_id) {
 	$.ajax({
 		type: "POST",
 		url: "/evaluation/confirm",
@@ -149,7 +149,7 @@ function evalModAjax(evaluation_id) {
 	})
 }
 
-function evalDeleteAjax(evaluation_id) {
+var evalDeleteAjax = function(evaluation_id) {
 
 	$.ajax({
 		type: "POST",
@@ -186,7 +186,7 @@ function evalDeleteAjax(evaluation_id) {
 	})
 }
 
-function reDeleteAjax(evaluation_id) {
+var reDeleteAjax = function(evaluation_id) {
 	$.ajax({
 		type: "POST",
 		url: "/evaluation/confirm",
@@ -217,5 +217,3 @@ function reDeleteAjax(evaluation_id) {
 		}
 	});
 }
-
-

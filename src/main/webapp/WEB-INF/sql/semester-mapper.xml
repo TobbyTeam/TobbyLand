@@ -8,7 +8,10 @@
   </select>
 
   <select id="selectAll" resultType="map">
-    select * from semester where semester_id not in(1)
+    select *
+    from semester
+    where semester_id not in(1)
+    order by semester_id desc
   </select>
 
   <delete id="delete" parameterType="int">

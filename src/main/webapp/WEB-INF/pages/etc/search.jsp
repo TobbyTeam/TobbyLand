@@ -83,10 +83,10 @@
                                 <div class="input-group col-md-12">
                                     <c:choose>
                                         <c:when test="${empty param.searchType}">
-                                            <input type="text" id="board_searchWord" name="searchWord"/>
+                                            <input type="text" id="board_search_word" name="searchWord"/>
                                         </c:when>
                                         <c:otherwise>
-                                            <input type="text" id="searchWord" name="searchWord" value="${param.searchWord}"/>
+                                            <input type="text" id="board_search_word" name="searchWord" value="${param.searchWord}"/>
                                         </c:otherwise>
                                     </c:choose>
                                     <span class="input-group-btn">

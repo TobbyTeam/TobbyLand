@@ -36,10 +36,9 @@ $(document).ready(function() {
 					data: $(form).serialize(),
 					success: function (result) {
 						if (result) {
-							alert("강의등록이 완료되었습니다.")
 							window.open("/lecture/list", "_self");
 						} else {
-							alert("이미 삭제된 강의거나 에러가 발생했습니다.");
+							alert("에러가 발생했습니다. 다시 시도해주세요.");
 							window.open("/lecture/list", "_self");
 						}
 
@@ -121,7 +120,6 @@ $(document).ready(function() {
 				data: $(form).serialize(),
 				success: function (result) {
 					if (result) {
-						alert("글 작성이 완료 되었습니다.")
 						window.open("/lecture/boardList/"+$("#lecture_id").val()+"/", "_self");
 					} else {
 						alert("에러가 발생했습니다. 다시 시도해주세요.");
@@ -155,7 +153,6 @@ $(document).ready(function() {
 				data: $(form).serialize(),
 				success: function (result) {
 					if (result) {
-						alert("글 수정이 완료 되었습니다.")
 						window.open("/lecture/boardView/"+lecture_id+"/?lb_id="+lb_id, "_self");
 					} else {
 						alert("이미 삭제된 글이거나 에러가 발생했습니다.");
