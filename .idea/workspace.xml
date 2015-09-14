@@ -6,22 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ef39bd55-c5a4-43ad-bf23-0a0b224e2f8b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/member/eventList.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/main.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/controller/AdminController.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/controller/AdminController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/EvaluationRepository.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/EvaluationRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/EvaluationRepositoryImpl.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/EvaluationRepositoryImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/service/EvaluationServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/service/EvaluationServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/controller/MemberController.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/controller/MemberController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/MemberRepository.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/MemberRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/MemberRepositoryImpl.java" afterPath="$PROJECT_DIR$/src/main/java/kr/ac/kpu/ebiz/spring/tobbyproject/repository/MemberRepositoryImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/board-mapper.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/board-mapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/evaluation-mapper.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/evaluation-mapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/member-mapper.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/sql/member-mapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/security-context.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/security-context.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/tobbyland-schema.sql" afterPath="$PROJECT_DIR$/database/tobbyland-schema.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/etc/top.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/etc/top.jsp" />
+    <list default="true" id="ef39bd55-c5a4-43ad-bf23-0a0b224e2f8b" name="Default" comment="호스팅26&#10;&#10;1. 이벤트를 위해 매니저 페이지 생성&#10;- 전 커밋 강의평가 작성시 eval_date 업데이느 수정(4개 이하일대만 eval_date가 업데이트 되고 4개 초과일때는 멤버 카운트만 업데이트 된다)&#10;&#10;2. 보드서브, 렉처서브, 렉처보드서브, 에발서브 유니크 키 추가&#10;- 외래키 두개 유니크로 지정 중복입력 안되게 했다.&#10;- 호스팅 DB도 수정하였다.&#10;&#10;3. 호스팅 DB 수정&#10;- 위에서 말한거랑 전 커밋에서 말한거(멤버 eval_date 속성 추가) 반영했다.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="tobby.iws" />
@@ -562,6 +547,9 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -590,15 +578,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
+              <option name="myItemId" value="target" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -613,88 +593,11 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WEB-INF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tobby" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TobbyLand" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WEB-INF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sql" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tobby" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TobbyLand" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tobby" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TobbyLand" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1378,13 +1281,8 @@
       <workItem from="1441925669114" duration="10009000" />
       <workItem from="1441936054834" duration="1207000" />
       <workItem from="1442179564166" duration="15636000" />
-      <workItem from="1442197589471" duration="15905000" />
-    </task>
-    <task id="LOCAL-00094" summary="전 커밋 추가&#10;">
-      <created>1438074744820</created>
-      <option name="number" value="00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1438074744820</updated>
+      <workItem from="1442197589471" duration="16533000" />
+      <workItem from="1442251717630" duration="1911000" />
     </task>
     <task id="LOCAL-00095" summary="전 커밋 추가&#10;">
       <created>1438074778086</created>
@@ -1674,11 +1572,17 @@
       <option name="project" value="LOCAL" />
       <updated>1442205570892</updated>
     </task>
-    <option name="localTasksCounter" value="143" />
+    <task id="LOCAL-00143" summary="호스팅26&#10;&#10;1. 이벤트를 위해 매니저 페이지 생성&#10;- 전 커밋 강의평가 작성시 eval_date 업데이느 수정(4개 이하일대만 eval_date가 업데이트 되고 4개 초과일때는 멤버 카운트만 업데이트 된다)&#10;&#10;2. 보드서브, 렉처서브, 렉처보드서브, 에발서브 유니크 키 추가&#10;- 외래키 두개 유니크로 지정 중복입력 안되게 했다.&#10;- 호스팅 DB도 수정하였다.&#10;&#10;3. 호스팅 DB 수정&#10;- 위에서 말한거랑 전 커밋에서 말한거(멤버 eval_date 속성 추가) 반영했다.">
+      <created>1442214129553</created>
+      <option name="number" value="00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1442214129554</updated>
+    </task>
+    <option name="localTasksCounter" value="144" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1246837000" />
+    <option name="totallyTimeSpent" value="1249376000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1690,7 +1594,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="0" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1738,7 +1642,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="호스팅8&#10;&#10;1. 강의와 관련된거 수정&#10;에러처리, 동시요청 처리, 리팩토링" />
     <MESSAGE value="호스팅8&#10;&#10;1. 강의 추가 수정 및 강의평가와 관련된거 모두 수정&#10;에러 처리 및 동시성 제어" />
     <MESSAGE value="호스팅8-1&#10;&#10;1. 전꺼 추가 수정" />
     <MESSAGE value="호스팅9&#10;&#10;1. 강의평가 수정&#10;에러처리 및 동시요청 처리" />
@@ -1763,7 +1666,8 @@
     <MESSAGE value="호스팅23&#10;&#10;1. 강의검색 아무것도 입력안하면 검색 안되게 수정&#10;(폼에 인풋 타입이 한개이면 엔터누르면 자동으로 서브민 된다. 그래서 폼의 onsubmit 값을 false로 주고 입력값이 있으면 true로 바꿔 서브밋 했다)" />
     <MESSAGE value="호스팅24&#10;&#10;1. 글작성시 유투브 첨부 가능하게 수정&#10;&#10;2. ajax 두번 호출 방지함&#10;- 바인드, 언바인드로 처리 하지만 한페이지에 뿌려지는 리플이나 강의평가리스트들에는 적용 못했다.&#10;&#10;3. 검색시 마우스로 버튼 클릭하면 검색어를 입력 했음에도 입력 해달라는 창 뜨던거 수정" />
     <MESSAGE value="호스팅25&#10;&#10;1. 강의평가 4개작성 이벤트를 위해 멤버 테이블에 새로운 속성(eval_date) 추가&#10;- 강의평가 작성시 이 속성이 업데이트 된다. &#10;2. 보드 수정 &#10;- 전에 공지사항은 비회원도 볼 수 있게 했는데 비회원이면 글작성버튼 및 다른버튼(추천,반대,신고,삭제,수정) 안나오게끔 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="호스팅25&#10;&#10;1. 강의평가 4개작성 이벤트를 위해 멤버 테이블에 새로운 속성(eval_date) 추가&#10;- 강의평가 작성시 이 속성이 업데이트 된다. &#10;2. 보드 수정 &#10;- 전에 공지사항은 비회원도 볼 수 있게 했는데 비회원이면 글작성버튼 및 다른버튼(추천,반대,신고,삭제,수정) 안나오게끔 수정" />
+    <MESSAGE value="호스팅26&#10;&#10;1. 이벤트를 위해 매니저 페이지 생성&#10;- 전 커밋 강의평가 작성시 eval_date 업데이느 수정(4개 이하일대만 eval_date가 업데이트 되고 4개 초과일때는 멤버 카운트만 업데이트 된다)&#10;&#10;2. 보드서브, 렉처서브, 렉처보드서브, 에발서브 유니크 키 추가&#10;- 외래키 두개 유니크로 지정 중복입력 안되게 했다.&#10;- 호스팅 DB도 수정하였다.&#10;&#10;3. 호스팅 DB 수정&#10;- 위에서 말한거랑 전 커밋에서 말한거(멤버 eval_date 속성 추가) 반영했다." />
+    <option name="LAST_COMMIT_MESSAGE" value="호스팅26&#10;&#10;1. 이벤트를 위해 매니저 페이지 생성&#10;- 전 커밋 강의평가 작성시 eval_date 업데이느 수정(4개 이하일대만 eval_date가 업데이트 되고 4개 초과일때는 멤버 카운트만 업데이트 된다)&#10;&#10;2. 보드서브, 렉처서브, 렉처보드서브, 에발서브 유니크 키 추가&#10;- 외래키 두개 유니크로 지정 중복입력 안되게 했다.&#10;- 호스팅 DB도 수정하였다.&#10;&#10;3. 호스팅 DB 수정&#10;- 위에서 말한거랑 전 커밋에서 말한거(멤버 eval_date 속성 추가) 반영했다." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1790,27 +1694,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/updownScroll.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3857791">
-          <caret line="17" column="37" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/lecture_board(org).js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3630862">
-          <caret line="270" column="2" selection-start-line="270" selection-start-column="2" selection-end-line="270" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/lecture_board.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.9288956">
           <caret line="149" column="17" selection-start-line="149" selection-start-column="17" selection-end-line="149" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1818,7 +1705,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4945055">
           <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="22" selection-end-column="76" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1826,7 +1712,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.75">
           <caret line="6" column="48" selection-start-line="6" selection-start-column="48" selection-end-line="6" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1834,7 +1719,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1842,7 +1726,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.02118">
           <caret line="45" column="50" selection-start-line="45" selection-start-column="50" selection-end-line="45" selection-end-column="50" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1858,7 +1741,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.9531014">
           <caret line="218" column="1" selection-start-line="218" selection-start-column="1" selection-end-line="218" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1866,7 +1748,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="20" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1874,7 +1755,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1882,15 +1762,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18838304">
           <caret line="8" column="61" selection-start-line="8" selection-start-column="61" selection-end-line="8" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/board/list.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.541667">
-          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="82" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1910,35 +1781,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/board/searchView.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.588697">
-          <caret line="25" column="6" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/board/searchList.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30769232">
-          <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/board/view.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6766091">
-          <caret line="64" column="23" selection-start-line="64" selection-start-column="23" selection-end-line="64" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/main.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.375">
           <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1954,7 +1800,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1962,7 +1807,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.47655067">
           <caret line="15" column="35" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1970,7 +1814,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.5">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1978,7 +1821,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.041667">
           <caret line="56" column="32" selection-start-line="56" selection-start-column="27" selection-end-line="56" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1986,7 +1828,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.34039333">
           <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1994,7 +1835,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.32967034">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2018,7 +1858,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7645212">
           <caret line="143" column="0" selection-start-line="143" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2026,11 +1865,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
-          <folding>
-            <marker date="1442201087242" expanded="true" signature="-1:-1" placeholder="select * fro..semester..." />
-            <marker date="1442201087242" expanded="true" signature="-1:-1" placeholder="select * fro..semester..." />
-            <marker date="1442201087242" expanded="true" signature="-1:-1" placeholder="delete from ..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2038,7 +1873,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.40126383">
           <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2046,7 +1880,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.61119515">
           <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2054,7 +1887,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.47806355">
           <caret line="99" column="59" selection-start-line="99" selection-start-column="59" selection-end-line="99" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2062,9 +1894,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5900151">
           <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2072,7 +1901,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.022692889">
           <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2080,33 +1908,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="113" column="34" selection-start-line="113" selection-start-column="34" selection-end-line="113" selection-end-column="34" />
-          <folding>
-            <marker date="1442209293538" expanded="true" signature="-1:-1" placeholder="select count..member..." />
-            <marker date="1442209293538" expanded="true" signature="-1:-1" placeholder="select count..member..." />
-            <marker date="1442209293538" expanded="true" signature="-1:-1" placeholder="select membe..member..." />
-            <marker date="1442209293538" expanded="true" signature="-1:-1" placeholder="select enabl..member..." />
-            <marker date="1442209293538" expanded="true" signature="-1:-1" placeholder="select membe..member..." />
-            <marker date="1442209293538" expanded="true" signature="-1:-1" placeholder="select passw..member..." />
-            <marker date="1442209293538" expanded="true" signature="-1:-1" placeholder="select membe..member..." />
-            <marker date="1442209293538" expanded="true" signature="-1:-1" placeholder="select count..member_search..." />
-            <marker date="1442209293538" expanded="true" signature="-1:-1" placeholder="select searc..member..." />
-            <marker date="1442209293538" expanded="true" signature="-1:-1" placeholder="select metho..member..." />
-            <marker date="1442209293538" expanded="true" signature="-1:-1" placeholder="select evalu..member..." />
-            <marker date="1442209293538" expanded="true" signature="-1:-1" placeholder="select user_..member..." />
-            <marker date="1442209293538" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-            <marker date="1442209293538" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-            <marker date="1442209293538" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-            <marker date="1442209293538" expanded="true" signature="-1:-1" placeholder="update membe..." />
-            <marker date="1442209293538" expanded="true" signature="-1:-1" placeholder="update membe..." />
-            <marker date="1442209293538" expanded="true" signature="-1:-1" placeholder="update membe..." />
-            <marker date="1442209293538" expanded="true" signature="-1:-1" placeholder="update membe..." />
-            <marker date="1442209293538" expanded="true" signature="-1:-1" placeholder="update membe..." />
-            <marker date="1442209293538" expanded="true" signature="-1:-1" placeholder="update membe..." />
-            <marker date="1442209293538" expanded="true" signature="-1:-1" placeholder="update membe..." />
-            <marker date="1442209293538" expanded="true" signature="-1:-1" placeholder="update membe..." />
-            <marker date="1442209293538" expanded="true" signature="-1:-1" placeholder="update membe..." />
-            <marker date="1442209293538" expanded="true" signature="-1:-1" placeholder="delete from ..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2114,7 +1916,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.02118">
           <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2122,9 +1923,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.45234492">
           <caret line="268" column="13" selection-start-line="268" selection-start-column="13" selection-end-line="268" selection-end-column="13" />
-          <folding>
-            <marker date="1441936043057" expanded="true" signature="-1:-1" placeholder="select l.lec..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2140,31 +1939,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.607142">
           <caret line="45" column="11" selection-start-line="45" selection-start-column="11" selection-end-line="45" selection-end-column="11" />
-          <folding>
-            <marker date="1442210435162" expanded="true" signature="-1:-1" placeholder="select e.eva..." />
-            <marker date="1442210435162" expanded="true" signature="-1:-1" placeholder="select e.eva..." />
-            <marker date="1442210435162" expanded="true" signature="-1:-1" placeholder="select count..evaluation..." />
-            <marker date="1442210435162" expanded="true" signature="-1:-1" placeholder="select membe..evaluation..." />
-            <marker date="1442210435162" expanded="true" signature="-1:-1" placeholder="select membe..evaluation..." />
-            <marker date="1442210435162" expanded="true" signature="-1:-1" placeholder="select e.*, ..evaluation..." />
-            <marker date="1442210435162" expanded="true" signature="-1:-1" placeholder="select disti..evaluationsub..." />
-            <marker date="1442210435162" expanded="true" signature="-1:-1" placeholder="select e.eva..." />
-            <marker date="1442210435162" expanded="true" signature="-1:-1" placeholder="select evalu..evaluation..." />
-            <marker date="1442210435162" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-            <marker date="1442210435162" expanded="true" signature="-1:-1" placeholder="update evalu..." />
-            <marker date="1442210435162" expanded="true" signature="-1:-1" placeholder="update evalu..." />
-            <marker date="1442210435162" expanded="true" signature="-1:-1" placeholder="update evalu..." />
-            <marker date="1442210435162" expanded="true" signature="-1:-1" placeholder="update evalu..." />
-            <marker date="1442210435162" expanded="true" signature="-1:-1" placeholder="update evalu..." />
-            <marker date="1442210435162" expanded="true" signature="-1:-1" placeholder="delete from ..." />
-            <marker date="1442210435162" expanded="true" signature="-1:-1" placeholder="select * fro..evaluation..." />
-            <marker date="1442210435162" expanded="true" signature="-1:-1" placeholder="select e.eva..lecture..." />
-            <marker date="1442210435162" expanded="true" signature="-1:-1" placeholder="select e.eva..evaluation..." />
-            <marker date="1442210435162" expanded="true" signature="-1:-1" placeholder="select e.eva..lecture..." />
-            <marker date="1442210435162" expanded="true" signature="-1:-1" placeholder="select l.lec..." />
-            <marker date="1442210435162" expanded="true" signature="-1:-1" placeholder="update evalu..." />
-            <marker date="1442210435162" expanded="true" signature="-1:-1" placeholder="update evalu..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2172,37 +1947,33 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.38135594">
           <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database/tobbyland-data.sql">
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.70037454">
           <caret line="75" column="25" selection-start-line="75" selection-start-column="25" selection-end-line="75" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/evaluation.sql">
       <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/evaluation.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
+      </provider>
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.1779661">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2210,9 +1981,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7224199">
           <caret line="165" column="0" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
-          <folding>
-            <marker date="1442208321778" expanded="true" signature="-1:-1" placeholder="select disti..board_sub..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2236,7 +2005,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.39721793">
           <caret line="228" column="38" selection-start-line="228" selection-start-column="38" selection-end-line="228" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2252,7 +2020,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.0432767">
           <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2260,8 +2027,52 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.30448222">
           <caret line="255" column="41" selection-start-line="255" selection-start-column="41" selection-end-line="255" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/board/searchList.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48956662">
+          <caret line="82" column="30" selection-start-line="82" selection-start-column="30" selection-end-line="82" selection-end-column="30" />
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/board/top.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/board/list.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3515249">
+          <caret line="72" column="30" selection-start-line="72" selection-start-column="30" selection-end-line="72" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/board/searchView.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.8218299">
+          <caret line="99" column="8" selection-start-line="99" selection-start-column="8" selection-end-line="99" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/board/view.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.70626">
+          <caret line="129" column="26" selection-start-line="129" selection-start-column="26" selection-end-line="129" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/image/main5.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
   </component>
