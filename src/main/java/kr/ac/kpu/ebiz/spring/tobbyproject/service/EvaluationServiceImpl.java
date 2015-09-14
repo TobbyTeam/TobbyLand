@@ -117,8 +117,21 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         boolean result = false;
 
-        if(memberRepository.updateEvaluation(member_id)&&evaluationRepository.insertEvaluation(evaluation)){
+        /*이벤트때문에 현재까지 강의평가 수를 가져온다. 4개 이상이면 시간 업데이트를 안하는 쿼리로
+        4개 미만이면 시간도 업데이트 하는 쿼리로 이벤트 끝나면 수정 필요함*/
+
+        if(memberRepository.selectEvaluationCount(member_id) >= 4){
+
+            if (memberRepository.updateEvaluationCount(member_id)&&evaluationRepository.insertEvaluation(evaluation)){
                 result = true;
+            }
+
+        } else {
+
+            if(memberRepository.updateEvaluation(member_id)&&evaluationRepository.insertEvaluation(evaluation)){
+                result = true;
+            }
+
         }
 
        return result;

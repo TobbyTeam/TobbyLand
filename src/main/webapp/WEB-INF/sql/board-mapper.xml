@@ -55,7 +55,7 @@
   </select>
 
   <select id="selectBoardSub" parameterType="map" resultType="map">
-    select kind from board_sub where board_id = #{board_id} and member_id = #{member_id}
+    select distinct kind from board_sub where board_id = #{board_id} and member_id = #{member_id}
   </select>
 
   <select id="selectBoardSearchCount" parameterType="map" resultType="int" >

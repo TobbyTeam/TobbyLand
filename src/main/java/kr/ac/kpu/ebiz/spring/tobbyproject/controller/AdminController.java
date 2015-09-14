@@ -26,8 +26,6 @@ public class AdminController {
 	EvaluationRepository evaluationRepository;
 
 
-
-
 	/*강의 관리*/
 
 	@RequestMapping(value = "/main", method = RequestMethod.GET)

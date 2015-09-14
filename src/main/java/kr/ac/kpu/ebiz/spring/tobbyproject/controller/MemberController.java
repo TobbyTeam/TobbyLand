@@ -2,6 +2,7 @@ package kr.ac.kpu.ebiz.spring.tobbyproject.controller;
 
 import kr.ac.kpu.ebiz.spring.tobbyproject.command.Member;
 import kr.ac.kpu.ebiz.spring.tobbyproject.encryptor.AES128Cipher;
+import kr.ac.kpu.ebiz.spring.tobbyproject.repository.MemberRepository;
 import kr.ac.kpu.ebiz.spring.tobbyproject.repository.TendencyRepository;
 import kr.ac.kpu.ebiz.spring.tobbyproject.service.MemberService;
 import org.apache.commons.beanutils.PropertyUtils;
@@ -26,6 +27,9 @@ public class MemberController {
 
 	@Autowired
 	TendencyRepository tendencyRepository;
+
+	@Autowired
+	MemberRepository memberRepository;
 
 	@Autowired
 	MemberService memberService;
@@ -240,6 +244,16 @@ public class MemberController {
 
 		return mav;
 
+	}
+
+	@RequestMapping(value = "/event", method = RequestMethod.GET)
+	public ModelAndView event() {
+
+		ModelAndView mav = new ModelAndView("/member/eventList");
+
+		mav.addObject("members", memberRepository.selectMemberEvent());
+
+		return mav;
 	}
 
 }

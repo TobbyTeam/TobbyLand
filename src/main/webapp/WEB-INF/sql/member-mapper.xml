@@ -59,6 +59,17 @@
     select method as member_method, task as member_task, exam as member_exam from member where member_id = #{member_id}
   </select>
 
+  <select id="selectEvaluationCount" parameterType="int" resultType="int">
+    select evaluation_count from member where member_id = #{member_id}
+  </select>
+
+  <select id="selectMemberEvent" resultType="map">
+    select user_id, nickname, evaluation_count, eval_date
+    from member
+    where evaluation_count <![CDATA[ >= ]]> 4
+    order by eval_date desc
+  </select>
+
 
   <!--insert-->
 
@@ -100,6 +111,13 @@
     set
     evaluation_count = evaluation_count + 1,
     eval_date = now()
+    where member_id = #{member_id}
+  </update>
+
+  <update id="updateEvaluationCount" parameterType="int">
+    update member
+    set
+    evaluation_count = evaluation_count + 1
     where member_id = #{member_id}
   </update>
 

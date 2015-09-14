@@ -42,7 +42,7 @@
   </select>
 
   <select id="selectSub" parameterType="map" resultType="Map">
-    select kind from evaluationsub where evaluation_id = #{evaluation_id} and member_id = #{member_id}
+    select distinct kind from evaluationsub where evaluation_id = #{evaluation_id} and member_id = #{member_id}
   </select>
 
   <select id="SearchEvaluationPrefer" parameterType="map" resultType="map">
@@ -77,10 +77,6 @@
     from evaluation
     where upper_id = #{evaluation_id} and is_delete = 0
     order by write_date
-  </select>
-
-  <select id="selectReplyMember_id" parameterType="int" resultType="int">
-    select member_id from evaluationsub where es_id = #{es_id}
   </select>
 
 

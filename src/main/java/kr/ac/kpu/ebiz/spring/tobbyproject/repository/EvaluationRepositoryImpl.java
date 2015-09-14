@@ -52,9 +52,6 @@ public class EvaluationRepositoryImpl extends SqlSessionDaoSupport implements Ev
 		return getSqlSession().selectList("EvaluationRepository.selectReplyAll", evaluation_id);
 	}
 
-	public int selectReplyMember_id(int es_id) {
-		return getSqlSession().selectOne("EvaluationRepository.selectReplyMember_id", es_id);
-	}
 
 
 	/*insert*/

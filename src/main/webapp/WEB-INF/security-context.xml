@@ -22,6 +22,7 @@
         <intercept-url pattern="/member/pwMod" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/member/modNickCheck" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/member/withdrawal" access="hasRole('ROLE_USER')" />
+        <intercept-url pattern="/member/event" access="hasRole('ROLE_MANAGER')" />
         <intercept-url pattern="/member/**" access="isAnonymous()" />
         <intercept-url pattern="/evaluation/**" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/lecture/**" access="hasRole('ROLE_USER')" />

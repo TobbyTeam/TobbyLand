@@ -29,8 +29,6 @@ public interface EvaluationRepository {
 
 	List<Map> selectReplyAll(int evaluation_id);
 
-	int selectReplyMember_id(int es_id);
-
 
 
 

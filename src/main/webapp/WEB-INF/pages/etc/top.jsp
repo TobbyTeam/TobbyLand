@@ -49,7 +49,12 @@
     <ul class="nav navbar-nav navbar-right">
       <li>
         <s:authorize access="hasRole('ROLE_ADMIN')">
-          <a href="/admin/">사이트관리</a>
+          <a href="/admin/main">사이트관리</a>
+        </s:authorize>
+      </li>
+      <li>
+        <s:authorize access="hasRole('ROLE_MANAGER')">
+          <a href="/member/event">매니저</a>
         </s:authorize>
       </li>
       <li>

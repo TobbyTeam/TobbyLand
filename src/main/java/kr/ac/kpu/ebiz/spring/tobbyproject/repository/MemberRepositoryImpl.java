@@ -2,6 +2,7 @@ package kr.ac.kpu.ebiz.spring.tobbyproject.repository;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
+import java.util.List;
 import java.util.Map;
 
 public class MemberRepositoryImpl extends SqlSessionDaoSupport implements MemberRepository {
@@ -52,6 +53,14 @@ public class MemberRepositoryImpl extends SqlSessionDaoSupport implements Member
 		return getSqlSession().selectOne("MemberRepository.selectMemberTendency", member_id);
 	}
 
+	public int selectEvaluationCount(int member_id) {
+		return getSqlSession().selectOne("MemberRepository.selectEvaluationCount", member_id);
+	}
+
+	public List<Map> selectMemberEvent() {
+		return getSqlSession().selectList("MemberRepository.selectMemberEvent");
+	}
+
 
 
 	/*insert*/
@@ -82,6 +91,10 @@ public class MemberRepositoryImpl extends SqlSessionDaoSupport implements Member
 
 	public boolean updateEvaluation(int member_id) {
 		return getSqlSession().update("MemberRepository.updateEvaluation", member_id) > 0;
+	}
+
+	public boolean updateEvaluationCount(int member_id) {
+		return getSqlSession().update("MemberRepository.updateEvaluationCount", member_id) > 0;
 	}
 
 	public boolean updateUnEvaluationCount(int member_id) {

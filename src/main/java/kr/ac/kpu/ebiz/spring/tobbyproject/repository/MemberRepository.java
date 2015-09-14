@@ -1,5 +1,6 @@
 package kr.ac.kpu.ebiz.spring.tobbyproject.repository;
 
+import java.util.List;
 import java.util.Map;
 
 public interface MemberRepository {
@@ -28,6 +29,9 @@ public interface MemberRepository {
 
 	Map selectMemberTendency(int member_id);
 
+	int selectEvaluationCount(int member_id);
+
+	List<Map> selectMemberEvent();
 
 
 	/*insert*/
@@ -46,6 +50,8 @@ public interface MemberRepository {
 	boolean updateMember(Map member);
 
 	boolean updateEvaluation(int member_id);
+
+	boolean updateEvaluationCount(int member_id);
 
 	boolean updateUnEvaluationCount(int member_id);
 
