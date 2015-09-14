@@ -30,6 +30,7 @@ CREATE TABLE member (
   enabled tinyint(1) UNSIGNED DEFAULT '1',
   nonLocked tinyint(1) UNSIGNED DEFAULT '1',
   evaluation_count smallint(4) UNSIGNED DEFAULT '0',
+  eval_date datetime DEFAULT NULL,
   search tinyint(1) UNSIGNED DEFAULT '0',
   PRIMARY KEY (member_id),
   KEY FK_member_method (method),

@@ -49,9 +49,9 @@
           <td width="16%" class="fixtable">조회 ${board.hit}</td>
         </tr>
       </table>
-
+      <br />
+      <br />
       ${board.contents}
-
       <br />
       <br />
       <br />

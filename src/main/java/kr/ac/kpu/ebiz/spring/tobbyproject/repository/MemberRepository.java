@@ -45,7 +45,7 @@ public interface MemberRepository {
 
 	boolean updateMember(Map member);
 
-	boolean updateEvaluationCount(int member_id);
+	boolean updateEvaluation(int member_id);
 
 	boolean updateUnEvaluationCount(int member_id);
 

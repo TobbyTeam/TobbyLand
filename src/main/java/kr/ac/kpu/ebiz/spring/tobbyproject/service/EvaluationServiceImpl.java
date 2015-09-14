@@ -117,7 +117,7 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         boolean result = false;
 
-        if(memberRepository.updateEvaluationCount(member_id)&&evaluationRepository.insertEvaluation(evaluation)){
+        if(memberRepository.updateEvaluation(member_id)&&evaluationRepository.insertEvaluation(evaluation)){
                 result = true;
         }
 

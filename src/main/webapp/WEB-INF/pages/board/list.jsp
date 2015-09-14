@@ -69,16 +69,18 @@
 			</table>
 			<div class="col-lg-0">
 				<button type="button" onclick="location.href='/board/list/${department_id}/'" class="btn btn-default">전체목록</button>
-				<c:choose>
-					<c:when test="${department.kind eq 'notice'}">
-						<s:authorize access="hasRole('ROLE_ADMIN')">
+				<s:authorize access="isAuthenticated()">
+					<c:choose>
+						<c:when test="${department.kind eq 'notice'}">
+							<s:authorize access="hasRole('ROLE_ADMIN')">
+								<button type="button" onclick="location.href='/board/regForm?department_id=${department_id}'" class="btn btn-primary">글작성</button>
+							</s:authorize>
+						</c:when>
+						<c:otherwise>
 							<button type="button" onclick="location.href='/board/regForm?department_id=${department_id}'" class="btn btn-primary">글작성</button>
-						</s:authorize>
-					</c:when>
-					<c:otherwise>
-						<button type="button" onclick="location.href='/board/regForm?department_id=${department_id}'" class="btn btn-primary">글작성</button>
-					</c:otherwise>
-				</c:choose>
+						</c:otherwise>
+					</c:choose>
+				</s:authorize>
 			</div>
 		</div>
 		<div class="col-md-1"></div>

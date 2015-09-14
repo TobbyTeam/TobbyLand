@@ -63,8 +63,8 @@
   <!--insert-->
 
   <insert id="insertMember" parameterType="map">
-    insert into member (user_id, password, nickname, email, method, task, exam)
-    values (#{user_id},#{password},#{nickname},#{email},#{method},#{task},#{exam})
+    insert into member (user_id, password, nickname, email, method, task, exam, eval_date)
+    values (#{user_id},#{password},#{nickname},#{email},#{method},#{task},#{exam}, now())
   </insert>
 
   <insert id="insertRole" parameterType="int">
@@ -95,9 +95,11 @@
     where member_id = #{member_id}
   </update>
 
-  <update id="updateEvaluationCount" parameterType="int">
+  <update id="updateEvaluation" parameterType="int">
     update member
-    set evaluation_count = evaluation_count + 1
+    set
+    evaluation_count = evaluation_count + 1,
+    eval_date = now()
     where member_id = #{member_id}
   </update>
 

@@ -60,9 +60,9 @@
           <td width="16%" class="fixtable">조회 ${board.hit}</td>
         </tr>
       </table>
-
+      <br />
+      <br />
       ${board.contents}
-
       <br />
       <br />
       <br />
@@ -78,15 +78,19 @@
     <div class="col-md-1">
     </div>
     <div class="col-md-10" align="center">
-      <button id="like_btn" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up"></span><br />추천<br /><span id="board_like">${board.likes}</span></button>
-      <button id="dislike_btn"class="btn"><span class="glyphicon glyphicon-thumbs-down"></span><br />비추천<br /><span id="board_dislike">${board.dislike}</span></button>
+      <s:authorize access="isAuthenticated()">
+        <button id="like_btn" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up"></span><br />추천<br /><span id="board_like">${board.likes}</span></button>
+        <button id="dislike_btn"class="btn"><span class="glyphicon glyphicon-thumbs-down"></span><br />비추천<br /><span id="board_dislike">${board.dislike}</span></button>
+      </s:authorize>
       <br />
       <br />
       <br />
       <div class="col-xs-offset-8" align="right">
-        <button id="mod_btn" class="btn btn-default littlebtn">수정</button>
-        <button id="del_btn" class="btn btn-default littlebtn">삭제</button>
-        <button id="report_btn" class="btn btn-danger littlebtn">신고</button>
+        <s:authorize access="isAuthenticated()">
+          <button id="mod_btn" class="btn btn-default littlebtn">수정</button>
+          <button id="del_btn" class="btn btn-default littlebtn">삭제</button>
+          <button id="report_btn" class="btn btn-danger littlebtn">신고</button>
+        </s:authorize>
       </div>
       <hr />
       <br />
@@ -114,30 +118,37 @@
               </c:choose>
             </td>
             <td width="65%">${reply.contents}</td>
-            <td width="10%" align="right" class="littlebtn">${reply.write_date}</td>
-            <td width="5%" align="right" class="littlebtn"><button onclick="reDeleteAjax(${reply.board_id})" class="btn btn-default littlebtn">삭제</button></td>
-            <td width="5%" align="right" class="littlebtn"><button onclick="reReportAjax(${reply.board_id})" class="btn btn-danger littlebtn">신고</button></td>
+            <s:authorize access="isAuthenticated()">
+              <td width="10%" align="right" class="littlebtn">${reply.write_date}</td>
+              <td width="5%" align="right" class="littlebtn"><button onclick="reDeleteAjax(${reply.board_id})" class="btn btn-default littlebtn">삭제</button></td>
+              <td width="5%" align="right" class="littlebtn"> <button onclick="reReportAjax(${reply.board_id})" class="btn btn-danger littlebtn">신고</button></td>
+            </s:authorize>
+            <s:authorize access="isAnonymous()">
+              <td width="9%" align="right"></td>
+              <td width="10%" align="right" class="littlebtn">${reply.write_date}</td>
+              <td width="1%" align="right"></td>
+            </s:authorize>
           </tr>
         </c:forEach>
       </table>
 
       <s:authorize access="isAuthenticated()">
 
-      <form id="reReg_frm" name="reReg_frm" method="post">
-        <table class="col-md-12 table-condensed writecomment">
-          <tr>
-            <td width="15%" valign="top">
-              <input type="text" id="writer" name="writer" class="form-control" disabled="disabled" />
-              <input type="checkbox" id="is_anonymity" name="is_anonymity" value="1" onclick="check(this.form)"/>
-              <span class="littlebtn">익명으로 달기</span>
-            </td>
-            <td width="80%" valign="top"><textarea id="contents" name="contents" rows="3" class="form-control"></textarea></td>
-            <td width="5%" align="right" valign="top"><input type="button" id="reReg_btn" class="btn-block form-control" value="등록"/></td>
-          </tr>
-          <input type="hidden" id="department_id" name="department_id" value="${department_id}"/>
-          <input type="hidden" id="board_id" name="upper_id" value="${board_id}" />
-        </table>
-      </form>
+        <form id="reReg_frm" name="reReg_frm" method="post">
+          <table class="col-md-12 table-condensed writecomment">
+            <tr>
+              <td width="15%" valign="top">
+                <input type="text" id="writer" name="writer" class="form-control" disabled="disabled" />
+                <input type="checkbox" id="is_anonymity" name="is_anonymity" value="1" onclick="check(this.form)"/>
+                <span class="littlebtn">익명으로 달기</span>
+              </td>
+              <td width="80%" valign="top"><textarea id="contents" name="contents" rows="3" class="form-control"></textarea></td>
+              <td width="5%" align="right" valign="top"><input type="button" id="reReg_btn" class="btn-block form-control" value="등록"/></td>
+            </tr>
+            <input type="hidden" id="department_id" name="department_id" value="${department_id}"/>
+            <input type="hidden" id="board_id" name="upper_id" value="${board_id}" />
+          </table>
+        </form>
 
       </s:authorize>
 
@@ -200,16 +211,18 @@
       </table>
       <div class="col-lg-0">
         <button type="button" onclick="location.href='/board/list/${department_id}/'" class="btn btn-default">전체목록</button>
-        <c:choose>
-          <c:when test="${department.kind eq 'notice'}">
-            <s:authorize access="hasRole('ROLE_ADMIN')">
+        <s:authorize access="isAuthenticated()">
+          <c:choose>
+            <c:when test="${department.kind eq 'notice'}">
+              <s:authorize access="hasRole('ROLE_ADMIN')">
+                <button type="button" onclick="location.href='/board/regForm?department_id=${department_id}'" class="btn btn-primary">글작성</button>
+              </s:authorize>
+            </c:when>
+            <c:otherwise>
               <button type="button" onclick="location.href='/board/regForm?department_id=${department_id}'" class="btn btn-primary">글작성</button>
-            </s:authorize>
-          </c:when>
-          <c:otherwise>
-            <button type="button" onclick="location.href='/board/regForm?department_id=${department_id}'" class="btn btn-primary">글작성</button>
-          </c:otherwise>
-        </c:choose>
+            </c:otherwise>
+          </c:choose>
+        </s:authorize>
       </div>
     </div>
     <div class="col-md-1"></div>

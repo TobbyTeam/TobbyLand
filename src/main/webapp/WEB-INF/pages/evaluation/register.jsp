@@ -44,7 +44,7 @@
                     <label class="col-sm-2 control-label">
                         수강학기
                     </label>
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         <select type="text" name="semester" class="form-control">
                             <c:forEach var="semester" items="${semesters}" varStatus="status">
                                 <c:choose>
@@ -95,7 +95,7 @@
                     <label class="col-sm-2 control-label">
                         평점
                     </label>
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         <select type="text" name="score" class="form-control">
                             <option value="2">★</option>
                             <option value="4">★★</option>
