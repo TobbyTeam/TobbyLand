@@ -3,15 +3,6 @@
 mysql -uroot -p < tobbyland-schema.sql
 mysql -uroot -p < tobbyland < tobbyland-data.sql
 
-
-[자바의 정석 예제코드]
-
-  o http://www.webhard.co.kr (castello/javachobo)
-
-[Java Exception Tutorial]
-
-  o http://www.tutorialspoint.com/java/java_exceptions.htm
-  
 [Tomcat]
 
 Tomcat/conf/server.xml 파일
@@ -22,3 +13,7 @@ Tomcat/conf/server.xml 파일
                connectionTimeout="20000"
                redirectPort="8443" URIEncoding="UTF-8" />
 ```
+
+[Java Exception Tutorial]
+
+  o http://www.tutorialspoint.com/java/java_exceptions.htm
